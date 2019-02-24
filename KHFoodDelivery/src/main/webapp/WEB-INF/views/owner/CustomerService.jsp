@@ -84,7 +84,7 @@ pageEncoding="UTF-8"%>
 		font-size: 16px;
 		cursor:pointer;
 		float:left;
-		-webkit-transition-duration: 0.4s; /* Safari */\
+		-webkit-transition-duration: 0.4s; /* Safari */
 		transition-duration: 0.4s;
 	}
 	.oneVSoneBtn:hover {
@@ -102,7 +102,7 @@ pageEncoding="UTF-8"%>
 		font-size: 16px;
 		cursor:pointer;
 		float:left;
-		-webkit-transition-duration: 0.4s; /* Safari */\
+		-webkit-transition-duration: 0.4s; /* Safari */
 		transition-duration: 0.4s;
 	}
 	.questBtn:hover {
@@ -147,7 +147,7 @@ pageEncoding="UTF-8"%>
 		display: inline-block;
 		font-size: 16px;
 		cursor:pointer;
-		-webkit-transition-duration: 0.4s; /* Safari */\
+		-webkit-transition-duration: 0.4s; /* Safari */
 		transition-duration: 0.4s;
 	}
 	.oneVSoneWrite2:hover {
