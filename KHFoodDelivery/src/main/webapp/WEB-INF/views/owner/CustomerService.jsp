@@ -74,6 +74,88 @@ pageEncoding="UTF-8"%>
     #emailHelp{
     	padding-left:12px;
     }
+    .oneVSoneBtn {
+		background-color: rgb(200, 226, 255); 
+		border: none;
+		color: rgb(106, 108, 255);
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		cursor:pointer;
+		float:left;
+		-webkit-transition-duration: 0.4s; /* Safari */\
+		transition-duration: 0.4s;
+	}
+	.oneVSoneBtn:hover {
+		background-color: rgb(117, 119, 255);
+		color: white;
+		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	}
+	.questBtn {
+		background-color: rgb(200, 226, 255);
+		border: none;
+		color: rgb(106, 108, 255);
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		cursor:pointer;
+		float:left;
+		-webkit-transition-duration: 0.4s; /* Safari */\
+		transition-duration: 0.4s;
+	}
+	.questBtn:hover {
+		background-color: rgb(117, 119, 255); 
+		color: white;
+		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	}
+	.oneVSoneWrite1 {
+		-moz-box-shadow:inset 0px 1px 11px 5px rgb(148, 219, 146);
+		-webkit-box-shadow:inset 0px 1px 11px 5px rgb(148, 219, 146);
+		background-color: rgb(185, 255, 182);
+		border-radius: 4px;
+		padding: 4px 20px;
+		border: 1px solid rgb(220, 255, 219);
+		color: rgb(42, 104, 40);
+		font-weight:bold;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		cursor:pointer;
+		-webkit-transition-duration: 0.4s; /* Safari */
+		transition-duration: 0.4s;
+	}
+	.oneVSoneWrite1:hover {
+		-moz-box-shadow:inset 0px 1px 11px 5px rgb(111, 230, 107);
+		-webkit-box-shadow:inset 0px 1px 11px 5px rgb(111, 230, 107);
+		background-color: rgb(85, 190, 81); 
+		color: white;
+	}
+	.oneVSoneWrite2 {
+		-moz-box-shadow:inset 0px 1px 11px 5px rgb(148, 219, 146);
+		-webkit-box-shadow:inset 0px 1px 11px 5px rgb(148, 219, 146);
+		background-color: rgb(185, 255, 182);
+		border-radius: 4px;
+		padding: 4px 20px;
+		border: 1px solid rgb(220, 255, 219);
+		color: rgb(42, 104, 40);
+		font-weight:bold;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		cursor:pointer;
+		-webkit-transition-duration: 0.4s; /* Safari */\
+		transition-duration: 0.4s;
+	}
+	.oneVSoneWrite2:hover {
+		-moz-box-shadow:inset 0px 1px 11px 5px rgb(111, 230, 107);
+		-webkit-box-shadow:inset 0px 1px 11px 5px rgb(111, 230, 107);
+		background-color: rgb(85, 190, 81); 
+		color: white;
+	}
 </style>
 </head>
 <body>
@@ -81,8 +163,8 @@ pageEncoding="UTF-8"%>
 	   	<div class="top">
 	   		<div class="row">
 	   			<div class="col-md-12">
-	   				<button class="btn btn-outline-primary" id="oneVSoneBtn" onclick="">1:1문의</button>
-	   				<button class="btn btn-outline-primary" id="questBtn" onclick="">나의 문의내역</button>
+	   				<button class="oneVSoneBtn" id="oneVSoneBtn" onclick="">1:1문의</button>
+	   				<button class="questBtn" id="questBtn" onclick="">나의 문의내역</button>
 	   			</div>
 	   		</div>
 	   	</div>
@@ -108,7 +190,7 @@ pageEncoding="UTF-8"%>
 						<label for="oneVSoneWrite1" class="control-label" style="font-size:30px; font-weight:bold;">공지사항</label>
 					</div>
 					<div id="write">
-						<button type="submit" id="oneVSoneWrite1" class="btn btn-outline-danger" onclick="">더보기</button>
+						<button type="submit" id="oneVSoneWrite1" class="oneVSoneWrite1" onclick="">더보기</button>
 				    </div>
 			    </div>
 				<table class="table table-bordered table-hover">
@@ -160,7 +242,7 @@ pageEncoding="UTF-8"%>
 						<label for="oneVSoneWrite2" class="control-label" style="font-size:30px; font-weight:bold;">1:1문의내역</label>
 					</div>
 					<div id="write">
-						<button type="submit" id="oneVSoneWrite2" class="btn btn-outline-danger" onclick="">더보기</button>
+						<button type="submit" id="oneVSoneWrite2" class="oneVSoneWrite2" onclick="">더보기</button>
 				    </div>
 			    </div>
 				<table class="table table-bordered table-hover">
