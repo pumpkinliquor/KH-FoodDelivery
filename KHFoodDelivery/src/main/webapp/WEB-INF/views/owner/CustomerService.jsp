@@ -73,7 +73,7 @@ pageEncoding="UTF-8"%>
     }
     #emailHelp{
     	padding-left:12px;
-    }
+    } 
     .oneVSoneBtn {
 		background-color: rgb(200, 226, 255); 
 		border: none;
