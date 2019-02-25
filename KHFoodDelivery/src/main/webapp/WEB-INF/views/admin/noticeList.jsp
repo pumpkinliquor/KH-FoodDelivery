@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <body>
 <style>
     #topTable {
@@ -28,9 +31,9 @@
 
             </div>
 
-            <!-- <form action="./insertCommentAction.jsp" method="post"> -->
+          
 
-            <!--  <form id="board_form"> -->
+          <form action="${pageContext.request.contextPath}/notice/noticeList.do" method="post">
             <h3 style="float:left">글 수</h3> &nbsp;&nbsp; <h3 style="color:red; float: left;">2</h3>
             <table class="table table-hover board">
 
@@ -74,18 +77,11 @@
                 <button type="button" class="btn btn-default" name="board_prev">
                     <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
                 </button>
-                <ul class="pagination">
-
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-
+              
                     <button type="button" class="btn btn-default" aria-label="Left Align" name="board_next">
                         <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
                     </button>
-                </ul>
+                
             </div>
 
         </div>

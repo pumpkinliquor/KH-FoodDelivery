@@ -19,7 +19,8 @@
 <body>
 	<a href="${path }/owner/customService.do">고객센터</a>
 	<a href="${path }/owner/storeForm.do">업체등록</a>
-	<a href="${path }/owner/noticeList.do">공지사항</a>
-	<a href="${path }/owner/memberList.do">멤버리스트</a>
+	<a href="${path }/admin/noticeList.do">공지사항</a>
+	<a href="${path }/admin/noticeForm.do">공지사항등록</a>
+	<a href="${path }/admin/memberList.do">멤버리스트</a>
 </body>
 </html>
