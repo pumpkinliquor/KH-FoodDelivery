@@ -80,9 +80,6 @@ local.properties
 .classpath
 .factorypath
 .buildpath
-<<<<<<< HEAD
-.target
-=======
 .target/
 .tern-project
 .springBeans
