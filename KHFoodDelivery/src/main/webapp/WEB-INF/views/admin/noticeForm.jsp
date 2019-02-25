@@ -8,15 +8,7 @@
  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-</head>
-<body>
-
-    <!------ Include the above in your HEAD tag ---------->
-
-
-
-    <head>
-        <script
+       <script
             src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script>
         <script
             src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script>
@@ -40,6 +32,12 @@
         <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.3.4/tinymce.min.js'></script>
+</head>
+<body>
+
+    <!------ Include the above in your HEAD tag ---------->
+
+     
         <script>$(function () {
 
                 // tinymce directive
@@ -87,7 +85,7 @@
 //# sourceURL=pen.js
         </script>
         <!-- <style class="cp-pen-styles"></style> -->
-    </head>
+
 
     <body>
         <div class="container">

@@ -22,5 +22,6 @@
 	<a href="${path }/admin/noticeList.do">공지사항</a>
 	<a href="${path }/admin/noticeForm.do">공지사항등록</a>
 	<a href="${path }/admin/memberList.do">멤버리스트</a>
+	
 </body>
 </html>
