@@ -84,7 +84,6 @@ local.properties
 .target
 =======
 .target/
->>>>>>> branch 'master' of https://github.com/pumpkinliqour/KH-FoodDelivery
 .tern-project
 .springBeans
 .recommenders/
@@ -130,10 +129,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-<<<<<<< HEAD
-.root-context.xml
-=======
 root-context*
->>>>>>> branch 'master' of https://github.com/pumpkinliqour/KH-FoodDelivery
 # End of https://www.gitignore.io/api/windows,eclipse,java-web
 # 
