@@ -114,6 +114,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+.target
 root-context.xml
 # End of https://www.gitignore.io/api/windows,eclipse,java-web
 # 
