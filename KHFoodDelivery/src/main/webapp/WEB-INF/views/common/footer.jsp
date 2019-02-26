@@ -121,7 +121,7 @@ border-left:1px solid #999;
                 <p class="footercopy">Copyright 2019 ⓒ KH delivery Corp. All rights reserved.</p>
     					
     				</div>
-    				</hr>
+    				
     			</div>
 
     		
