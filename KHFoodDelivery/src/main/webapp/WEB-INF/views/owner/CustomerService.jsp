@@ -9,22 +9,14 @@ pageEncoding="UTF-8"%>
 <html>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 <head>
-<script src="${path}/resources/js/jquery-3.2.1.min.js"></script>
-<!-- 부트스트랩관련 라이브러리 -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- 부트스트랩 -->
+<link	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <!-- 사용자작성 css -->
 <link rel="stylesheet" href="${path}/resources/css/style.css" />
 <meta charset="UTF-8">
 <title>고객센터</title>
 <style>
-	body{
-	}
-	.container{
-		padding-top: 10%;
-		padding-bottom: 10%;
-		background-color:white;
-	}
 	/* Bootstrap 수정 */
     .table > thead {
       background-color: rgb(253, 238, 238);
@@ -66,7 +58,7 @@ pageEncoding="UTF-8"%>
     }
     #keyword{
     	margin-top:10px;
-    	width:26em;
+    	width:29em;
     }
     .search{
     	margin-top:10px;
@@ -111,13 +103,13 @@ pageEncoding="UTF-8"%>
 		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 	}
 	.oneVSoneWrite1 {
-		-moz-box-shadow:inset 0px 1px 11px 5px rgb(148, 219, 146);
-		-webkit-box-shadow:inset 0px 1px 11px 5px rgb(148, 219, 146);
-		background-color: rgb(185, 255, 182);
+		-moz-box-shadow:inset 0px 1px 11px 5px rgb(200, 226, 255);
+		-webkit-box-shadow:inset 0px 1px 11px 5px rgb(200, 226, 255);
+		background-color: rgb(200, 226, 255);
 		border-radius: 4px;
 		padding: 4px 20px;
-		border: 1px solid rgb(220, 255, 219);
-		color: rgb(42, 104, 40);
+		border: 1px solid rgb(161, 191, 224);
+		color: rgb(106, 108, 255);
 		font-weight:bold;
 		text-align: center;
 		text-decoration: none;
@@ -128,19 +120,19 @@ pageEncoding="UTF-8"%>
 		transition-duration: 0.4s;
 	}
 	.oneVSoneWrite1:hover {
-		-moz-box-shadow:inset 0px 1px 11px 5px rgb(111, 230, 107);
-		-webkit-box-shadow:inset 0px 1px 11px 5px rgb(111, 230, 107);
-		background-color: rgb(85, 190, 81); 
+		-moz-box-shadow:inset 0px 1px 11px 5px  rgb(117, 119, 255);
+		-webkit-box-shadow:inset 0px 1px 11px 5px  rgb(117, 119, 255);
+		background-color:  rgb(117, 119, 255); 
 		color: white;
 	}
 	.oneVSoneWrite2 {
-		-moz-box-shadow:inset 0px 1px 11px 5px rgb(148, 219, 146);
-		-webkit-box-shadow:inset 0px 1px 11px 5px rgb(148, 219, 146);
-		background-color: rgb(185, 255, 182);
+		-moz-box-shadow:inset 0px 1px 11px 5px rgb(200, 226, 255);
+		-webkit-box-shadow:inset 0px 1px 11px 5px rgb(200, 226, 255);
+		background-color: rgb(200, 226, 255);
 		border-radius: 4px;
 		padding: 4px 20px;
-		border: 1px solid rgb(220, 255, 219);
-		color: rgb(42, 104, 40);
+		border: 1px solid rgb(161, 191, 224);
+		color: rgb(106, 108, 255);
 		font-weight:bold;
 		text-align: center;
 		text-decoration: none;
@@ -151,9 +143,9 @@ pageEncoding="UTF-8"%>
 		transition-duration: 0.4s;
 	}
 	.oneVSoneWrite2:hover {
-		-moz-box-shadow:inset 0px 1px 11px 5px rgb(111, 230, 107);
-		-webkit-box-shadow:inset 0px 1px 11px 5px rgb(111, 230, 107);
-		background-color: rgb(85, 190, 81); 
+		-moz-box-shadow:inset 0px 1px 11px 5px  rgb(117, 119, 255);
+		-webkit-box-shadow:inset 0px 1px 11px 5px  rgb(117, 119, 255);
+		background-color:  rgb(117, 119, 255); 
 		color: white;
 	}
 </style>
@@ -161,6 +153,7 @@ pageEncoding="UTF-8"%>
 <body>
 	<div class="container">
 	   	<div class="top">
+	   		<button onclick="location.href='${path }/'">홈</button>
 	   		<div class="row">
 	   			<div class="col-md-12">
 	   				<button class="oneVSoneBtn" id="oneVSoneBtn" onclick="">1:1문의</button>
@@ -170,16 +163,18 @@ pageEncoding="UTF-8"%>
 	   	</div>
 	   	
 	   	<div class="search">
-	   		<div class="row">
-	   			<div class="col-md-12">
-	   				<form class="form-inline">
-	   				<div class="form-group" style="padding-left: 0px;">
-					<input type="search" style="margin-right: 5px;" class="form-control" id="keyword" name="keyword" placeholder="제목이나 내용을 입력하세요." value="${param.keyword!=null?param.keyword:''}"/>
-					<input type="submit" class="btn btn-outline-primary" id="keywordBtn" value="검색"/>
-					</div>
-					</form>
-					<label for="keyword"><small id="emailHelp" style="float:left;" class="form-text text-muted">Please enter a title or content.</small></label>
-	   			</div>
+	   		<div class="table-responsive">
+		   		<div class="row">
+		   			<div class="col-md-12" style="padding-left:5px;">
+		   				<form class="form-inline">
+		   				<div class="form-group" style="padding-left: 0px;">
+						<input type="search" style="margin-right: 5px;" class="form-control" id="keyword" name="keyword" placeholder="제목이나 내용을 입력하세요." value="${param.keyword!=null?param.keyword:''}"/>
+						<input type="submit" class="btn btn-primary" id="keywordBtn" value="검색"/>
+						</div>
+						</form>
+						<label for="keyword"><small id="emailHelp" style="float:left;" class="form-text text-muted">Please enter a title or content.</small></label>
+		   			</div>
+		   		</div>
 	   		</div>
 	   	</div>
 		<div class="middle">
