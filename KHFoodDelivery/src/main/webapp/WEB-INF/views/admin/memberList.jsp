@@ -5,11 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- 부트스트랩 -->
-<link	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link href="/resources/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <!-- 제이쿼리 -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script
@@ -58,7 +55,6 @@ $("#memberListTable #checkall").click(function () {
 				</div>
 			</div>
 		</div>
-		<div class="table-responsive">
 			<div class="row">
 				<div class="col-md-12">
 
@@ -130,7 +126,6 @@ $("#memberListTable #checkall").click(function () {
 					</table>
 				</div>
 			</div>
-		</div>
 
 
 		<div class="col-md-6">

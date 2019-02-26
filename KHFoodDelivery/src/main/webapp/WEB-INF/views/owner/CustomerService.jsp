@@ -9,9 +9,10 @@ pageEncoding="UTF-8"%>
 <html>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 <head>
-<!-- 부트스트랩 -->
-<link	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="${path}/resources/js/jquery-3.2.1.min.js"></script>
+<!-- 부트스트랩관련 라이브러리 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <!-- 사용자작성 css -->
 <link rel="stylesheet" href="${path}/resources/css/style.css" />
 <meta charset="UTF-8">
@@ -58,7 +59,7 @@ pageEncoding="UTF-8"%>
     }
     #keyword{
     	margin-top:10px;
-    	width:29em;
+    	width:26em;
     }
     .search{
     	margin-top:10px;
@@ -163,18 +164,16 @@ pageEncoding="UTF-8"%>
 	   	</div>
 	   	
 	   	<div class="search">
-	   		<div class="table-responsive">
-		   		<div class="row">
-		   			<div class="col-md-12" style="padding-left:5px;">
-		   				<form class="form-inline">
-		   				<div class="form-group" style="padding-left: 0px;">
-						<input type="search" style="margin-right: 5px;" class="form-control" id="keyword" name="keyword" placeholder="제목이나 내용을 입력하세요." value="${param.keyword!=null?param.keyword:''}"/>
-						<input type="submit" class="btn btn-primary" id="keywordBtn" value="검색"/>
-						</div>
-						</form>
-						<label for="keyword"><small id="emailHelp" style="float:left;" class="form-text text-muted">Please enter a title or content.</small></label>
-		   			</div>
-		   		</div>
+	   		<div class="row">
+	   			<div class="col-md-12" style="padding-left:5px;">
+	   				<form class="form-inline">
+	   				<div class="form-group" style="padding-left: 0px;">
+					<input type="search" style="margin-right: 5px;" class="form-control" id="keyword" name="keyword" placeholder="제목이나 내용을 입력하세요." value="${param.keyword!=null?param.keyword:''}"/>
+					<input type="submit" class="btn btn-primary" id="keywordBtn" value="검색"/>
+					</div>
+					</form>
+					<label for="keyword"><small id="emailHelp" style="float:left;" class="form-text text-muted">Please enter a title or content.</small></label>
+	   			</div>
 	   		</div>
 	   	</div>
 		<div class="middle">
@@ -198,36 +197,15 @@ pageEncoding="UTF-8"%>
 						</tr>
 					</thead>
 					<tbody>
+						<%-- <c:forEach var="notice" items="${noticeList }" begin="1" end="5" varStatus="vs"> --%>
+						<c:forEach begin="1" end="5">
 						<tr>
 							<td>1</td>
 							<td>admin</td>
 							<td><a href="#">2018-03-21 patch.</a></td>
 							<td>2018-03-21</td>
 						</tr>
-						<tr>
-							<td>2</td>
-							<td>admin</td>
-							<td><a href="#">금일 새로운 업데이트</a></td>
-							<td>2018-04-23</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>admin</td>
-							<td><a href="#">이번 KHFoodDelivery 패치입니다.</a></td>
-							<td>2018-06-30</td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>admin</td>
-							<td><a href="#">추가 된 메뉴들입니다.</a></td>
-							<td>2018-12-02</td>
-						</tr>
-						<tr>
-							<td>5</td>
-							<td>admin</td>
-							<td><a href="#">사장님들 필독 부탁드립니다.</a></td>
-							<td>2019-01-15</td>
-						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
@@ -250,36 +228,15 @@ pageEncoding="UTF-8"%>
 						</tr>
 					</thead>
 					<tbody>
+						<%-- <c:forEach var="qna" items="${qnaList }" begin="1" end="5" varStatus="vs"> --%>
+						<c:forEach begin="1" end="5">
 						<tr>
 							<td>1</td>
 							<td>hwang3324</td>
 							<td><a href="#">배달비 인상</a></td>
 							<td>2019-01-29</td>
 						</tr>
-						<tr>
-							<td>2</td>
-							<td>leedayun0202</td>
-							<td><a href="#">위치 이동 할 수 있을까요?</a></td>
-							<td>2019-02-01</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>wlzh0108</td>
-							<td><a href="#">저희 메뉴 수정부탁드립니다.</a></td>
-							<td>2019-02-12</td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>duaqhtjd123</td>
-							<td><a href="#">리뷰 관리는 어디서 하나요?</a></td>
-							<td>2019-02-15</td>
-						</tr>
-						<tr>
-							<td>5</td>
-							<td>hyuna0523</td>
-							<td><a href="#">너무심하네..</a></td>
-							<td>2019-02-23</td>
-						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
