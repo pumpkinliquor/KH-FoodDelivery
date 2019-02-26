@@ -23,11 +23,18 @@
  <header>
   <nav class="navbar navbar-expand-sm bg-light justify-content-center login">
         <ul class="navbar-nav">
+        	<!-- if문 사용해서 나누기 -->
           <li class="nav-item">
             <a class="nav-link" href="#"  style="background-color:#F8F9FA">로그인</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" style="background-color:#F8F9FA">회원가입</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"  style="background-color:#F8F9FA">마이페이지</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="background-color:#F8F9FA">로그아웃</a>
           </li>
         </ul>
       </nav>
