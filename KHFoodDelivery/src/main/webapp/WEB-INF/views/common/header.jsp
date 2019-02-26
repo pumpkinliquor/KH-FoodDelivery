@@ -20,6 +20,7 @@
 </head>
 <body>
  
+ <header>
   <nav class="navbar navbar-expand-sm bg-light justify-content-center login">
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -66,6 +67,4 @@
     </ul>
   </nav>
  
- 
-</body>
-</html>
+</header>
