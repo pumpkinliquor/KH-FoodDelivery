@@ -5,12 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <!-- 제이쿼리 -->
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 <!------ Include the above in your HEAD tag ---------->
 
 </head>
@@ -23,7 +24,7 @@
 <body>
 
 
-
+<!-- 
 	<script>
     $(document).ready(function(){
 $("#memberListTable #checkall").click(function () {
@@ -42,7 +43,7 @@ $("#memberListTable #checkall").click(function () {
     $("[data-toggle=tooltip]").tooltip();
 });
 
-    </script>
+    </script> -->
 	<div class="container">
 		<div class="top">
 			<div class="row">
@@ -128,15 +129,15 @@ $("#memberListTable #checkall").click(function () {
 			</div>
 
 
-		<div class="col-md-6">
+		<!-- <div class="col-md-6">
 			<button class="btn btn-danger btn" data-title="Delete"
 				data-toggle="modal" data-target="#delete">
 				<span class="glyphicon glyphicon-trash"></span>
 			</button>
-			<!-- <button type="button" class="btn btn-default">삭제</button> -->
+			<button type="button" class="btn btn-default">삭제</button>
 
 		</div>
-
+ -->
 	</div>
 
 

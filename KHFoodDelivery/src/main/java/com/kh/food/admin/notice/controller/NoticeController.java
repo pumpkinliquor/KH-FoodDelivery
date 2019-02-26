@@ -28,4 +28,9 @@ public class NoticeController {
 		return "admin/memberList";
 	}
 	
+	
+	@RequestMapping("/common/footer.do")
+	public String fooer() {
+		return "common/footer";
+	}
 }
