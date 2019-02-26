@@ -83,12 +83,12 @@ local.properties
 
 # Annotation Processing
 .apt_generated
-
 .sts4-cache/
 
 ### Java-Web ###
 ## ignoring target file
 target/
+*/target/*
 
 ### Windows ###
 # Windows thumbnail cache files
