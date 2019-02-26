@@ -154,7 +154,7 @@ pageEncoding="UTF-8"%>
 	   	
 	   	<div class="search">
 	   		<div class="row">
-	   			<div class="col-md-12" style="padding-left:5px;">
+	   			<div class="col-md-12">
 	   				<form class="form-inline">
 	   				<div class="form-group" style="padding-left: 0px;">
 					<input type="search" style="margin-right: 5px;" class="form-control" id="keyword" name="keyword" placeholder="제목이나 내용을 입력하세요." value="${param.keyword!=null?param.keyword:''}"/>
