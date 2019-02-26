@@ -3,15 +3,17 @@ body {font-family:"D2Coding";}
 div, section, header, aside, footer {padding:10px;}
 
 /********** 전체컨테이너 **********/
-div.container	{padding-top:10%; padding-bottom:10%;}
-div#container	{padding-top:10%; padding-bottom:10%;}
+div.container	{padding-top:5%; padding-bottom:5%;}
+div#container	{padding-top:5%; padding-bottom:5%;}
 
 /********** header **********/
+header {padding:0;}
 header div#header-container {height:100px;}
 header div#header-container h2 	{margin:30px 10px 0px 10px;}
 
 
 /********** footer **********/
+footer {padding:0;}
 footer		{background-color:#f8f9fa; background-clip:content-box; clear:both; height:95px; text-align:center;}
 footer p 	{margin-top:30px;}
 
