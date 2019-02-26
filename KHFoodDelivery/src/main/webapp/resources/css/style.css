@@ -3,7 +3,8 @@ body {font-family:"D2Coding";}
 div, section, header, aside, footer {padding:10px;}
 
 /********** 전체컨테이너 **********/
-div#container	{}
+div.container	{padding-top:10%; padding-bottom:10%;}
+div#container	{padding-top:10%; padding-bottom:10%;}
 
 /********** header **********/
 header div#header-container {height:100px;}
