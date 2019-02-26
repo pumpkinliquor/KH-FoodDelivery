@@ -154,7 +154,7 @@ pageEncoding="UTF-8"%>
 <body>
 	<div class="container">
 	   	<div class="top">
-	   	<button onclick="location.href='${path }/'">홈</button>
+	   	<button class="btn btn-outline-success" onclick="location.href='${path }/'">홈</button>
 	   		<div class="row">
 	   			<div class="col-md-12">
 	   				<button class="oneVSoneBtn" id="oneVSoneBtn" onclick="">1:1문의</button>
@@ -184,7 +184,7 @@ pageEncoding="UTF-8"%>
 						<label for="oneVSoneWrite1" class="control-label" style="font-size:30px; font-weight:bold; cursor:pointer;">공지사항</label>
 					</div>
 					<div id="write">
-						<button type="submit" id="oneVSoneWrite1" class="oneVSoneWrite1" onclick="">더보기</button>
+						<button type="submit" id="oneVSoneWrite1" class="oneVSoneWrite1" onclick="location.href='${path}/owner/noticeList.do'">더보기</button>
 				    </div>
 			    </div>
 				<table class="table table-bordered table-hover">
@@ -212,10 +212,10 @@ pageEncoding="UTF-8"%>
 			<div class="col-md-6">
 				<div>
 					<div id="oneVsoneTitle">
-						<label for="oneVSoneWrite2" class="control-label" style="font-size:30px; font-weight:bold; cursor:pointer;">1:1문의내역</label>
+						<label for="oneVSoneWrite2" class="control-label" style="font-size:30px; font-weight:bold; cursor:pointer;">문의게시판</label>
 					</div>
 					<div id="write">
-						<button type="submit" id="oneVSoneWrite2" class="oneVSoneWrite2" onclick="">더보기</button>
+						<button type="submit" id="oneVSoneWrite2" class="oneVSoneWrite2" onclick="location.href='${path}/owner/oneVSoneList.do'">더보기</button>
 				    </div>
 			    </div>
 				<table class="table table-bordered table-hover">
