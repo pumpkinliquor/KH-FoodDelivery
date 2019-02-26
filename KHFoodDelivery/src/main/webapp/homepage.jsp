@@ -28,6 +28,5 @@
 	<a href="${path }/admin/noticeForm.do">공지사항등록</a>
 	<a href="${path }/admin/memberList.do">멤버리스트</a>
 	<a href="${path }/admin/appStoreList.do">입점 신청 현황</a>
-	
 </body>
 </html>
