@@ -133,7 +133,7 @@ $RECYCLE.BIN/
 .settings/
 target/
 Users/
-KHFoodDelivery/target/
-KHFoodDelivery/src/main/webapp/WEB-INF/spring/root-context.xml
+.root-context.xml
+.pom.properties
 # End of https://www.gitignore.io/api/windows,eclipse,java-web
 # 

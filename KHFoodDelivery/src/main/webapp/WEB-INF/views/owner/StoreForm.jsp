@@ -20,7 +20,6 @@ pageEncoding="UTF-8"%>
 	<div class="container">
 		<div class="col-sm-12">
 		    <div id="update-container">
-		    	<button class="btn btn-outline-success" onclick="location.href='${path }/'">홈</button>
 		        <form action="${path}/board/boardWriteEnd.do" method="post" enctype="multipart/form-data">
 		        	<div class="col-sm-12">
 		        	<label for="storeName" class="col-sm-3 control-label" style="float:left;"><small>업체명</small></label>
