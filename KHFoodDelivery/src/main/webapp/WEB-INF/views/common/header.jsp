@@ -38,10 +38,10 @@
     <!-- Links -->
     <ul class="navbar-nav container ">
       <li class="nav-item" style="margin-left:-20px;font-size:30px">
-      <a class="nav-link" href="#">배달의 민족</a>
+      <a class="nav-link" href="${path }/">배달의 민족</a>
     </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">HOMEPAGE</a>
+        <a class="nav-link" href="${path }/">HOMEPAGE</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">ABOUT US</a>

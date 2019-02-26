@@ -143,7 +143,6 @@ pageEncoding="UTF-8"%>
 <body>
 	<div class="container">
 	   	<div class="top">
-	   	<button class="btn btn-outline-success" onclick="location.href='${path }/'">홈</button>
 	   		<div class="row">
 	   			<div class="col-md-12">
 	   				<button class="oneVSoneBtn" id="oneVSoneBtn" onclick="">1:1문의</button>
