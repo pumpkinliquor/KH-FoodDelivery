@@ -50,7 +50,7 @@
         <a class="nav-link" href="${path }/admin/appStoreList.do">입점 신청 현황</a>
       </li>
       <li class="nav-item">
-       <a class="nav-link" href="#">문의 내역</a>
+       <a class="nav-link" href="${path }/admin/qnaList.do">문의 내역</a>
       </li>
   
       <!-- Dropdown -->

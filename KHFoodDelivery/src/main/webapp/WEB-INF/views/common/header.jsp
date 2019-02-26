@@ -23,11 +23,18 @@
  <header>
   <nav class="navbar navbar-expand-sm bg-light justify-content-center login">
         <ul class="navbar-nav">
+        	<!-- if문 사용해서 나누기 -->
           <li class="nav-item">
             <a class="nav-link" href="#"  style="background-color:#F8F9FA">로그인</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" style="background-color:#F8F9FA">회원가입</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"  style="background-color:#F8F9FA">마이페이지</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="background-color:#F8F9FA">로그아웃</a>
           </li>
         </ul>
       </nav>
@@ -38,10 +45,10 @@
     <!-- Links -->
     <ul class="navbar-nav container ">
       <li class="nav-item" style="margin-left:-20px;font-size:30px">
-      <a class="nav-link" href="#">배달의 민족</a>
+      <a class="nav-link" href="${path }/">배달의 민족</a>
     </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">HOMEPAGE</a>
+        <a class="nav-link" href="${path }/">HOMEPAGE</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">ABOUT US</a>
