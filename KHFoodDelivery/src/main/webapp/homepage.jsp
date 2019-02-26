@@ -16,4 +16,3 @@
 
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
->>>>>>> branch 'master' of https://github.com/pumpkinliqour/KH-FoodDelivery
