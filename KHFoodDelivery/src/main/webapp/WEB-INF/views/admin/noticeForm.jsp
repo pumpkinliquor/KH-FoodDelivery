@@ -25,7 +25,8 @@
 
         <link rel='stylesheet prefetch'
             href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css'>
-
+		<!-- 사용자작성 css -->
+		<link rel="stylesheet" href="${path}/resources/css/style.css" />
 
         <script
             src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
