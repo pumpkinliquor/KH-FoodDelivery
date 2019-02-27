@@ -41,6 +41,7 @@
         }
 
         #footer {
+        	margin-top:5%;
             background: black !important;
             opacity: 0.7;
             height: 220px;
