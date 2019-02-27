@@ -13,6 +13,36 @@ pageEncoding="UTF-8"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 
+<section>
+    <div class="container">
+                <div class="col-md-6 mx-auto text-center">
+                   <div class="header-title">
+                      <h1 class="wv-heading--title">
+                        KH Delivery 사장님 로그인 해주세요!
+                      </h1>
+                   </div>
+                </div>
+                <div class="row">
+                   <div class="col-md-4 mx-auto">
+                      <div class="myform form ">
+                         <form action="" method="post" name="login">
+                            <div class="form-group">
+                               <input type="text" name="id"  class="form-control my-input" id="name" placeholder="이름">
+                            </div>
+                            <div class="form-group">
+                               <input type="email" name="email"  class="form-control my-input" id="email" placeholder="email">
+                            </div>
+                            <div class="text-center loginDiv_1">
+                               <button type="submit" class=" btn btn-block send-button tx-tfm">로그인</button>
+                            </div>
+                         </form>
+                      </div>
+                   </div>
+                </div>
+             </div>
+
+
+</section>
 
 
 

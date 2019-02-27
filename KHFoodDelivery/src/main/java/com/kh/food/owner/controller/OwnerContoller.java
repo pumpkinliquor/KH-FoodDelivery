@@ -29,4 +29,10 @@ public class OwnerContoller {
 		logger.debug("로그인들어왔니?");
 		return "owner/ownerlogin";
 	}
+	
+	@RequestMapping("/owner/ownerIdSearch.do")
+	public String ownerSearchId() 
+	{
+		return "owner/ownerIdSearch";
+	}
 }

@@ -48,7 +48,7 @@ pageEncoding="UTF-8"%>
                             </div>
                          </form>
                       </div>
-                      <p class="small mt-3">아이디 또는 비밀번호가 기억이 안나시나요? 옆에 버튼을 눌러 찾을 수 있습니다.<a href="#" class="ps-hero__content__link">아이디찾기</a> or <a href="#">비밀번호 찾기</a>.
+                      <p class="small mt-3">아이디 또는 비밀번호가 기억이 안나시나요? 옆에 버튼을 눌러 찾을 수 있습니다.<a href="${path }/owner/ownerIdSearch.do" class="ps-hero__content__link">아이디찾기</a> or <a href="#">비밀번호 찾기</a>.
                       </p>
                    </div>
                 </div>
