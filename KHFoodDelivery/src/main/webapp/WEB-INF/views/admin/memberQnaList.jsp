@@ -27,11 +27,11 @@
 		<h4 id="titleText">회원 문의 내역</h4>
 		<div class="btn-group" id="btn-category">
 			<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-				카테고리<span class="caret"></span>
+				배달<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu">
-			    <li><a href="#">Action</a></li>
-			    <li><a href="#">Another action</a></li>
+			    <li><a href="#">환불/취소</a></li>
+			    <li><a href="#">ㅇ</a></li>
 			    <li><a href="#">Something else here</a></li>
 			    <li class="divider"></li>
 			    <li><a href="#">Separated link</a></li>
