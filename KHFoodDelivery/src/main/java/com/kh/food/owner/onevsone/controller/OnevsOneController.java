@@ -18,4 +18,9 @@ public class OnevsOneController {
 		mv.setViewName("owner/oneVSoneList");
 		return mv;
 	}
+	
+	@RequestMapping("/owner/oneVSoneQ.do")
+	public String oneVSoneQ() {
+		return "owner/oneVSoneForm";
+	}
 }

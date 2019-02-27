@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 <style>
 	/* Bootstrap 수정 */
     .table > thead {
@@ -141,11 +141,11 @@ pageEncoding="UTF-8"%>
 </style>
 </head>
 <body>
-	<div id="container">
+	<div class="container">
 	   	<div class="top">
 	   		<div class="row">
 	   			<div class="col-md-12">
-	   				<button class="oneVSoneBtn" id="oneVSoneBtn" onclick="">1:1문의</button>
+	   				<button class="oneVSoneBtn" id="oneVSoneBtn" onclick="location.href='${path}/owner/oneVSoneQ.do'">1:1문의</button>
 	   				<button class="questBtn" id="questBtn" onclick="">나의 문의내역</button>
 	   			</div>
 	   		</div>

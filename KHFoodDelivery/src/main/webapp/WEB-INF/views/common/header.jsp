@@ -20,7 +20,7 @@
 </head>
 <body>
  
-<body>
+<header>
 
         <section class="newsletter">
             <div class="row headerDiv1">
@@ -53,8 +53,5 @@
                 </div>
                 </div>
                 </section>
-  
- 	</body>
- 	</html>
  
 </header>
