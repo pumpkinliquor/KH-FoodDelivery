@@ -41,6 +41,7 @@
         }
 
         #footer {
+        	margin-top:5%;
             background: black !important;
             opacity: 0.7;
             height: 220px;
@@ -123,6 +124,7 @@
                         <ul class="list-unstyled quick-links">
                             <li><a href="${path }"><i class="fa fa-angle-double-right"></i>Home</a></li>
                             <li><a href="${path }/owner/ownerMain.do"><i class="fa fa-angle-double-right"></i>사장님페이지</a></li>
+                            <li><a href="${path }/owner/oneVSoneList.do"><i class="fa fa-angle-double-right"></i>공지사항</a></li>
                             <li><a href="${path }"><i class="fa fa-angle-double-right"></i>공지사항</a></li>
                             <li><a href="${path }"><i class="fa fa-angle-double-right"></i>1:1문의</a></li>
                         </ul>
