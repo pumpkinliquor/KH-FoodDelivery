@@ -14,6 +14,5 @@
 	<a href="${path }/admin/memberList.do">멤버리스트</a>
 	<a href="${path }/admin/appStoreList.do">입점 신청 현황</a> --%>
 	<a href="${path }/map/test.do">메인구현</a>
-
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

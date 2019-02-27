@@ -16,6 +16,10 @@
 	div#qnaList{
 		margin-top: 15px;
 	}	
+	thead#tableHead {
+	background-color: #4D4D4D;
+	color: rgba(255, 255, 255, .5);
+}
 </style>
 
 <div class="container">	
@@ -23,11 +27,11 @@
 		<h4 id="titleText">회원 문의 내역</h4>
 		<div class="btn-group" id="btn-category">
 			<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-				카테고리<span class="caret"></span>
+				배달<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu">
-			    <li><a href="#">Action</a></li>
-			    <li><a href="#">Another action</a></li>
+			    <li><a href="#">환불/취소</a></li>
+			    <li><a href="#">ㅇ</a></li>
 			    <li><a href="#">Something else here</a></li>
 			    <li class="divider"></li>
 			    <li><a href="#">Separated link</a></li>
@@ -35,21 +39,25 @@
 		</div>
 	</div>
 	<div id="qnaList">
-		<table class="table">
-			<tr>	
-				<th>번호</th>	
-				<th>제목</th>
-				<th>아이디</th>
-				<th>날짜</th>		
-			</tr>
-			<c:forEach begin="1" end="5">
-				<tr>
-					<td>1</td>
-					<td>안녕</td>
-					<td>주홍범</td>
-					<td>2019-02-26</td> 
+		<table class="table table-hover">
+			<thead id="tableHead">
+				<tr>	
+					<th>번호</th>	
+					<th>제목</th>
+					<th>아이디</th>
+					<th>날짜</th>		
 				</tr>
-			</c:forEach>
+			</thead>
+			<tbody>
+				<c:forEach begin="1" end="5">
+					<tr>
+						<td>1</td>
+						<td>안녕</td>
+						<td>주홍범</td>
+						<td>2019-02-26</td> 
+					</tr>				
+				</c:forEach>
+			</tbody>
 		</table>
 	</div>
 </div>

@@ -1,17 +1,18 @@
 @CHARSET "UTF-8";
-body {font-family:"D2Coding";}
+html {min-height:100%; position:relative;}
+body {font-family:"D2Coding"; min-height:100%;}
 
 /********** 전체컨테이너 **********/
-div.container	{}
+div.container{padding-top:5%; padding-bottom:15%;}
 
 /********** header **********/
-header {padding-bottom:5%;}
+header {}
 /* header div#header-container {height:100px;}
 header div#header-container h2 	{margin:30px 10px 0px 10px;} */
 
 
 /********** footer **********/
-footer { bottom:0px; width:100%}
+footer {position:absolute; bottom:0; width:100%;}
 footer		{background-color:#f8f	9fa; background-clip:content-box; clear:both; height:95px; text-align:center;}
 footer p 	{margin-top:30px;}
 

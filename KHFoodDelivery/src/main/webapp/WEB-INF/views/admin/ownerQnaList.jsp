@@ -15,7 +15,11 @@
 	}
 	div#qnaList{
 		margin-top: 15px;
-	}	
+	}
+	thead#tableHead{
+		background-color: #4D4D4D;
+		color: rgba(255, 255, 255, .5);
+	}
 </style>
 
 <div class="container">	
@@ -35,21 +39,48 @@
 		</div>
 	</div>
 	<div id="qnaList">
-		<table class="table">
-			<tr>	
-				<th>¹øÈ£</th>	
-				<th>Á¦¸ñ</th>
-				<th>¾ÆÀÌµð</th>
-				<th>³¯Â¥</th>		
-			</tr>
-			<c:forEach begin="1" end="5">
-				<tr>
-					<td>1</td>
-					<td>¾È³ç</td>
-					<td>ÁÖÈ«¹ü</td>
-					<td>2019-02-26</td> 
+		<table class="table table-hover">
+			<thead id="tableHead">
+				<tr>	
+					<th>¹øÈ£</th>
+					<th>Á¦¸ñ</th>
+					<th>¾ÆÀÌµð</th>
+					<th>³¯Â¥</th>
+					<th>´äº¯ ¿©ºÎ</th>
 				</tr>
-			</c:forEach>
+			</thead>
+			<tbody>
+				<c:forEach begin="1" end="5">
+					<tr>
+						<td>1</td>
+						<td>¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç</td>
+						<td>ÁÖÈ«¹ü</td>
+						<td>2019-02-26</td>
+						<td>´äº¯ ¿Ï·á</td> 
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>¾È³ç¾È³ç</td>
+						<td>ÁÖÈ«¹ü</td>
+						<td>2019-02-26</td>
+						<td>´äº¯ ¿Ï·á</td> 
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>¾È³ç¾È³ç</td>
+						<td>ÁÖÈ«¹ü</td>
+						<td>2019-02-26</td>
+						<td>´äº¯ ¿Ï·á</td> 
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>¾È³ç¾È³ç</td>
+						<td>ÁÖÈ«¹ü</td>
+						<td>2019-02-26</td>
+						<td>´äº¯ ¿Ï·á</td> 
+					</tr>
+				</c:forEach>
+			</tbody>
 		</table>
 	</div>
 </div>
