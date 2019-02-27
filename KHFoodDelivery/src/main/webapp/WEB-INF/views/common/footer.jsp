@@ -43,7 +43,7 @@
         #footer {
             background: black !important;
             opacity: 0.7;
-            height: 200px;
+            height: 220px;
         }
 
         #footer h5 {
@@ -143,7 +143,7 @@
                 <p class="footercopy">Copyright 2019 ⓒ KH delivery Corp. All rights reserved.</p>
            </div>
             </div>
-            <div class="col-md-2"></div>
+           
         </div>
        
 
