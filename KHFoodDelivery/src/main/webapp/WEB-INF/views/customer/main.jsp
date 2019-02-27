@@ -15,7 +15,7 @@ div.menu4,div.menu5,div.menu6{float:left; border :1px solid #BDBDBD;margin-right
 div.menu7,div.menu8,div.menu9{float:left; border :1px solid #BDBDBD;margin-right:20px; margin-bottom:20px; text-align:center; overflow: hidden;width: 100%; }
 div.main a{text-decoration:none; color:black;}
 img{max-width:100%; max-height: 100%; margin-bottom:-9.9305px;margin-left:14%;vertical-align: middle;}
-div.row{margin-left:80px}
+div.mainrow{margin-left:120px; margin-right:0px;}
 div.search input.search-txt{text-align:center;margin-left:80px}
 </style>
 
@@ -23,7 +23,7 @@ div.search input.search-txt{text-align:center;margin-left:80px}
 <section>
 <div class="container">
 
-	 <div class="row">
+	 <div class="mainrow row">
 	 
 	<div class="main col-sm-12">
 
