@@ -21,7 +21,7 @@
 <body>
 <header>
         <div class="newsletter">
-            <div class="row headerDiv1">
+              <div class="row headerDiv1">
                     <div class="col-sm-9"></div>
                     <div class="col-sm-3 login">
                     <a>로그인</a>
