@@ -10,6 +10,8 @@ public class AppStoreDaoImpl implements AppStoreDao {
 	@Autowired
 	SqlSessionTemplate session;
 	
+
+	// 입점 승인 메소드
 	@Override
 	public int updateStoreConfirm(int no) {
 		return session.update("store.updateStoreConfirm", no);

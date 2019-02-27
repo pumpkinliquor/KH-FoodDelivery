@@ -14,18 +14,13 @@ public class AppStoreController {
 	@Autowired
 	AppStoreService service;
 	
+	// 입점 신청 현황 리스트 페이지 반환
 	@RequestMapping("/admin/appStoreList.do")
 	public String appStoreList() {
 		return "admin/appStoreList";
 	}
 	
-	@RequestMapping("/admin/appStoreView.do")
-	public ModelAndView appStoreView() {
-		ModelAndView mv = new ModelAndView();
-		
-		return mv;
-	}
-	
+	// 입점 신청 승인 후 결과 메시지 반환
 	@RequestMapping("/admin/confirmApp.do")
 	public ModelAndView updateStoreConfirm(@RequestParam("no") int no) {
 		ModelAndView mv = new ModelAndView();

@@ -11,6 +11,7 @@ public class AppStoreServiceImpl implements AppStoreService{
 	@Autowired
 	AppStoreDao dao;
 	
+	// 입점 승인 메소드
 	@Override
 	public int updateStoreConfirm(int no) {
 		return dao.updateStoreConfirm(no);
