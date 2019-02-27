@@ -11,23 +11,27 @@
 		<h4>입점 신청 현황</h4>
 	</div>
 	<div>
-		<table class="table">
-			<tr>			
-				<th>업종</th>
-				<th>가게명</th>
-				<th>점주명</th>
-				<th>주소</th>
-				<th>입점 신청일</th>
-			</tr>
-			<c:forEach begin="1" end="5">
-				<tr>
-					<td onclick="fn_modal()">치킨</td>
-					<td onclick="fn_modal()">배민</td>
-					<td onclick="fn_modal()">주홍범</td>
-					<td onclick="fn_modal()">서울특별시 강남구 역삼동</td>
-					<td onclick="fn_modal()">2019-02-26</td> 
+		<table class="table table-hover">
+			<thead>
+				<tr>			
+					<th>업종</th>
+					<th>점포명</th>
+					<th>점주명</th>
+					<th>주소</th>
+					<th>입점 신청일</th>
 				</tr>
-			</c:forEach>
+			</thead>
+			<tbody>
+				<c:forEach begin="1" end="5">
+					<tr>
+						<td onclick="fn_modal()">치킨</td>
+						<td onclick="fn_modal()">배민</td>
+						<td onclick="fn_modal()">주홍범</td>
+						<td onclick="fn_modal()">서울특별시 강남구 역삼동</td>
+						<td onclick="fn_modal()">2019-02-26</td> 
+					</tr>
+				</c:forEach>
+			</tbody>
 		</table>
 	</div>
 </div>
@@ -53,7 +57,7 @@
 						<td>치킨</td>						
 					</tr>
 					<tr>
-						<th>가게명</th>
+						<th>점포명</th>
 						<td>배민</td>
 					</tr>
 					<tr>
@@ -76,12 +80,17 @@
 						<th>가게 소개</th>
 						<td>ㅎㅎ</td>
 						<!-- <textarea>ㅎㅎ</textarea> -->
-					</tr>									
+					</tr>
+					<tr>
+						<td colspan='2' align="center">
+							<button type="button" class="btn btn-outline-success" data-dismiss="modal">승인</button>
+							<button type="button" class="btn btn-outline-danger" data-dismiss="modal">거절</button>
+						</td>
+					</tr>
 				</table>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-success" data-dismiss="modal">승인</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 			</div>
 		</div>  
 	</div>

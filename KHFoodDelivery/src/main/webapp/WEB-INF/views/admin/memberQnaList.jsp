@@ -16,6 +16,10 @@
 	div#qnaList{
 		margin-top: 15px;
 	}	
+	thead#tableHead {
+	background-color: #4D4D4D;
+	color: rgba(255, 255, 255, .5);
+}
 </style>
 
 <div class="container">	
@@ -35,21 +39,25 @@
 		</div>
 	</div>
 	<div id="qnaList">
-		<table class="table">
-			<tr>	
-				<th>번호</th>	
-				<th>제목</th>
-				<th>아이디</th>
-				<th>날짜</th>		
-			</tr>
-			<c:forEach begin="1" end="5">
-				<tr>
-					<td>1</td>
-					<td>안녕</td>
-					<td>주홍범</td>
-					<td>2019-02-26</td> 
+		<table class="table table-hover">
+			<thead id="tableHead">
+				<tr>	
+					<th>번호</th>	
+					<th>제목</th>
+					<th>아이디</th>
+					<th>날짜</th>		
 				</tr>
-			</c:forEach>
+			</thead>
+			<tbody>
+				<c:forEach begin="1" end="5">
+					<tr>
+						<td>1</td>
+						<td>안녕</td>
+						<td>주홍범</td>
+						<td>2019-02-26</td> 
+					</tr>				
+				</c:forEach>
+			</tbody>
 		</table>
 	</div>
 </div>
