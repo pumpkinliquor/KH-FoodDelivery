@@ -11,8 +11,8 @@ header div#header-container h2 	{margin:30px 10px 0px 10px;} */
 
 
 /********** footer **********/
-footer {padding-top:5%;}
-footer		{background-color:#f8f9fa; background-clip:content-box; clear:both; height:95px; text-align:center;}
+footer {}
+footer		{background-color:#f8f	9fa; background-clip:content-box; clear:both; height:95px; text-align:center;}
 footer p 	{margin-top:30px;}
 
 
