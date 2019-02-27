@@ -11,7 +11,7 @@ header div#header-container h2 	{margin:30px 10px 0px 10px;} */
 
 
 /********** footer **********/
-footer {}
+footer {position:absolute; bottom:0px; width:100%}
 footer		{background-color:#f8f	9fa; background-clip:content-box; clear:both; height:95px; text-align:center;}
 footer p 	{margin-top:30px;}
 
