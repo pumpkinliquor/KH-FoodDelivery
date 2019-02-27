@@ -11,18 +11,14 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-<style>
-
-</style>
-
+<jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 
 <section>
     <div class="container">
                 <div class="col-md-6 mx-auto text-center">
                    <div class="header-title">
                       <h1 class="wv-heading--title">
-                         Check out — it’s free!
+                        KH Delivery 사장님 로그인 해주세요!
                       </h1>
                    </div>
                 </div>
@@ -39,10 +35,6 @@ pageEncoding="UTF-8"%>
                             <div class="text-center loginDiv_1">
                                <button type="submit" class=" btn btn-block send-button tx-tfm">로그인</button>
                             </div>
-                            <div class="text-center">
-							<a id="kakao-login-btn"></a>
-							<a href="http://developers.kakao.com/logout"></a>
-                            </div>
                             <div class="col-md-12 ">
                                <div class="login-or">
                                   <hr class="hr-or">
@@ -50,34 +42,18 @@ pageEncoding="UTF-8"%>
                                </div>
                             </div>
                             <div class="form-group">
-                               <a class="btn btn-block g-button" href="#">
+                               <a class="btn btn-block g-button" href="${path }/owner/insertOwner.do">
                                <i class="fa fa-google"></i>회원가입
                                </a>
                             </div>
-                            <p class="small mt-3">By signing up, you are indicating that you have read and agree to the <a href="#" class="ps-hero__content__link">Terms of Use</a> and <a href="#">Privacy Policy</a>.
-                            </p>
                          </form>
                       </div>
+                      <p class="small mt-3">아이디 또는 비밀번호가 기억이 안나시나요? 옆에 버튼을 눌러 찾을 수 있습니다.<a href="#" class="ps-hero__content__link">아이디찾기</a> or <a href="#">비밀번호 찾기</a>.
+                      </p>
                    </div>
                 </div>
              </div>
 
-							<script type='text/javascript'>
-							  //<![CDATA[
-							    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-							    Kakao.init('011c109c7507b9fbacd344180992f049');
-							    // 카카오 로그인 버튼을 생성합니다.
-							    Kakao.Auth.createLoginButton({
-							      container: '#kakao-login-btn',
-							      success: function(authObj) {
-							        alert(JSON.stringify(authObj));
-							      },
-							      fail: function(err) {
-							         alert(JSON.stringify(err));
-							      }
-							    });
-							  //]]>
-							</script>
 
 </section>
 
