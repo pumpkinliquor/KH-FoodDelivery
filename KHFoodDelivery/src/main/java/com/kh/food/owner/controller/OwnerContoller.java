@@ -12,4 +12,10 @@ public class OwnerContoller {
 		
 		return "owner/ownerMain";
 	}
+	
+	@RequestMapping("/owner/insertOwner.do")
+	public String insertOwner()
+	{
+		return "owner/ownerEnroll";
+	}
 }
