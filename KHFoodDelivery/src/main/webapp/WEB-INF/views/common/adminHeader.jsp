@@ -15,22 +15,15 @@
 </head>
 <body> 
 	<header>
-		<nav class="navbar navbar-expand-sm bg-light justify-content-center login">
-			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" href="#"  style="background-color:#F8F9FA">로그인</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#" style="background-color:#F8F9FA">회원가입</a>
-				</li>
-			</ul>
-		</nav>
-  
+		<div class="headerDiv1">
+            <a href="#">로그인</a>
+            <a href="#">회원가입</a>
+        </div>
 		<nav class="navbar navbar-expand-sm  navbar-dark ">  
 			<!-- Links -->
 			<ul class="navbar-nav container ">
 				<li class="nav-item" style="margin-left:-20px;font-size:30px">
-					<a class="nav-link" href="${path }/admin/adminMain.do">배달의 민족</a>
+					<a class="nav-link" href="${path }/admin/adminMain.do">관리자페이지</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="${path }/admin/noticeList.do">공지사항</a>
@@ -40,9 +33,14 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="${path }/admin/appStoreList.do">입점 신청 현황</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="${path }/admin/qnaList.do">문의 내역</a>
+				</li>				
+				<!-- Dropdown -->
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">문의내역</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="${path }/admin/memberQnaList.do">회원 문의</a>
+						<a class="dropdown-item" href="${path }/admin/ownerQnaList.do">사장님 문의</a>
+					</div>
 				</li>
 			</ul>
 		</nav> 

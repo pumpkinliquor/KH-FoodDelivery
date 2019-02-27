@@ -3,7 +3,14 @@
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 
 <section>
-관리자 페이지입니다.
+	<div class="container">
+		<div>
+			입점 대기
+		</div>
+		<div>
+		
+		</div>
+	</div>
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

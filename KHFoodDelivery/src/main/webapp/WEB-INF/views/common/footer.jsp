@@ -48,7 +48,6 @@
 
         #footer h5 {
             padding-right: 10px;
-
             padding-bottom: 6px;
             margin-bottom: 20px;
             color: #ffffff;

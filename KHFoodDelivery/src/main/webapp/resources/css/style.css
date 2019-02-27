@@ -1,18 +1,19 @@
 @CHARSET "UTF-8";
-body {font-family:"D2Coding";}
+html {min-height:100%; position:relative;}
+body {font-family:"D2Coding"; min-height:100%;}
 
 /********** 전체컨테이너 **********/
-div.container	{}
+div.container{padding-top:5%; padding-bottom:15%;}
 
 /********** header **********/
-header {padding-bottom:5%;}
+header {}
 /* header div#header-container {height:100px;}
 header div#header-container h2 	{margin:30px 10px 0px 10px;} */
 
 
 /********** footer **********/
-footer {padding-top:5%;}
-footer		{background-color:#f8f9fa; background-clip:content-box; clear:both; height:95px; text-align:center;}
+footer {position:absolute; bottom:0; width:100%;}
+footer		{background-color:#f8f	9fa; background-clip:content-box; clear:both; height:95px; text-align:center;}
 footer p 	{margin-top:30px;}
 
 
@@ -22,7 +23,6 @@ footer p 	{margin-top:30px;}
 background-color: #4D4D4D;
 height: 200px;
 }
-
 .newsletter .content {
 max-width: 650px;
 margin: 0 auto;
@@ -54,6 +54,8 @@ font-weight:600;
 }
 
 .headerDiv1{
+	text-align:right; 
+	padding-right:10%;
     background-color: white;
     height: 30px;
 }
@@ -194,5 +196,9 @@ and-tourism-courses-copy.jpg");
 
 /* 끝 */
  
-
-
+/* 사장님 회원가입 */
+    #ownerJoinBtn{
+        width:100%;
+    }
+    
+ /* 끝 */
