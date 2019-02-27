@@ -23,7 +23,6 @@ pageEncoding="UTF-8"%>
    width:20px;
    height:20px;
 }
-
 </style>
 <body>
 
@@ -51,7 +50,7 @@ $("#memberListTable #checkall").click(function () {
    <div class="container">
       <div class="top">
          <div class="row">
-         <div class="listDiv">
+         <div>
 		<h4>리스트</h4>
 	</div>
             <div class="col-md-12">
