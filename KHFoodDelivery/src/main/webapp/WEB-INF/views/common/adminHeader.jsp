@@ -23,7 +23,7 @@
 			<!-- Links -->
 			<ul class="navbar-nav container ">
 				<li class="nav-item" style="margin-left:-20px;font-size:30px">
-					<a class="nav-link" href="${path }/admin/adminMain.do">배달의 민족</a>
+					<a class="nav-link" href="${path }/admin/adminMain.do">관리자페이지</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="${path }/admin/noticeList.do">공지사항</a>
