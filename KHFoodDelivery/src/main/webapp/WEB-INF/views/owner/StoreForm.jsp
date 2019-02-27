@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 <style>
     div#update-container{
 		background-color:white;
@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
 </style>
 </head>
 <body>
-	<div class="container">
+	<div id="container">
 		<div class="col-sm-12">
 		    <div id="update-container">
 		        <form action="${path}/board/boardWriteEnd.do" method="post" enctype="multipart/form-data">
