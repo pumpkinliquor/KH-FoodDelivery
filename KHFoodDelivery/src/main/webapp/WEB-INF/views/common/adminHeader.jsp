@@ -33,9 +33,14 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="${path }/admin/appStoreList.do">입점 신청 현황</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="${path }/admin/qnaList.do">문의 내역</a>
+				</li>				
+				<!-- Dropdown -->
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">문의내역</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="${path }/admin/memberQnaList.do">회원 문의</a>
+						<a class="dropdown-item" href="${path }/admin/ownerQnaList.do">사장님 문의</a>
+					</div>
 				</li>
 			</ul>
 		</nav> 
