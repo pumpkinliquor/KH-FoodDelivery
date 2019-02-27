@@ -19,10 +19,8 @@
 <title>Insert title here</title>
 </head>
 <body>
- 
-<body>
-
-        <section class="newsletter">
+<header>
+        <div class="newsletter">
             <div class="row headerDiv1">
                     <div class="col-sm-9"></div>
                     <div class="col-sm-3 login">
@@ -31,8 +29,7 @@
                     </div>
             </div>
                 <div id="container">             
-                <div class="row">
-                
+                <div class="row">           
                 <div class="col-sm-12 headerDiv2">
                     <div class="content">
                         <h2>배달의 민족</h2>
@@ -41,7 +38,7 @@
                 <div class="col-sm-12">
                     <div class="content">
                     <div class="input-group">
-                         <button id="positionBtn"><img id="locationImg" src="resources/images/place.png"></button>
+                         <button id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
                          <input type="text" class="form-control" placeholder="주소를 입력해주세요">
                          <span class="input-group-btn">
                          <button class="btn" type="submit">검색</button>
@@ -52,9 +49,6 @@
                 
                 </div>
                 </div>
-                </section>
+                </div>
   
- 	</body>
- 	</html>
- 
 </header>
