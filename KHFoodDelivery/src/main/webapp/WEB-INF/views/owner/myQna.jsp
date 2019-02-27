@@ -8,13 +8,11 @@ pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 
 <div class="container">
+	<div class="QnaWriteBtn" style="text-align:right; padding-bottom:5px;">
+		<button onclick="" id="QnaWriteBtn" class="btn btn-outline-success">1:1문의하기</button>
+	</div>
 	<div class="row">
-		<div class="col-md-1">
-			<li><a href="#">경로</a></li>
-			<li><a href="#">경로</a></li>
-			<li><a href="#">경로</a></li>
-		</div>
-		<div class="col-md-11">
+		<div class="col-md-12">
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
@@ -25,9 +23,9 @@ pageEncoding="UTF-8"%>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach begin="1" end="50">
+					<c:forEach begin="1" end="20" varStatus="vs">
 						<tr>
-							<td>1</td>
+							<td>${vs.count }</td>
 							<td>hwang3324</td>
 							<td><a href="#">어떻게 수정 요청하나요?</a></td>
 							<td>2019-02-27</td>

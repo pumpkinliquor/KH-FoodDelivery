@@ -41,7 +41,6 @@
         }
 
         #footer {
-        	margin-top:5%;
             background: black !important;
             opacity: 0.7;
             height: 220px;
@@ -49,7 +48,6 @@
 
         #footer h5 {
             padding-right: 10px;
-
             padding-bottom: 6px;
             margin-bottom: 20px;
             color: #ffffff;

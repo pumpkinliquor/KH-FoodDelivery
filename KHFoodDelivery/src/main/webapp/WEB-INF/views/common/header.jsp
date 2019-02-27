@@ -24,7 +24,7 @@
                     <a href="#">로그인</a>
                     <a href="#">회원가입</a>
             </div>
-                <div class="container">             
+                <div id="container">             
                 <div class="row">           
                 <div class="col-sm-12 headerDiv2">
                     <div class="content">
