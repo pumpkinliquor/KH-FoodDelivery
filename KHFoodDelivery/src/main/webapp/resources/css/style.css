@@ -1,42 +1,78 @@
 @CHARSET "UTF-8";
 body {font-family:"D2Coding";}
-div, section, header, aside, footer {padding:10px;}
 
 /********** 전체컨테이너 **********/
-div.container	{padding-top:5%; padding-bottom:5%;}
-div#container	{padding-top:5%; padding-bottom:5%;}
+div.container	{}
 
 /********** header **********/
-header {padding:0;}
-header div#header-container {height:100px;}
-header div#header-container h2 	{margin:30px 10px 0px 10px;}
+header {padding-bottom:5%;}
+/* header div#header-container {height:100px;}
+header div#header-container h2 	{margin:30px 10px 0px 10px;} */
 
 
 /********** footer **********/
-footer {padding:0;}
+footer {padding-top:5%;}
 footer		{background-color:#f8f9fa; background-clip:content-box; clear:both; height:95px; text-align:center;}
 footer p 	{margin-top:30px;}
 
 
-/********** header 일호 ******** / 
- .carousel-inner img {
-      width: 100%;
-      height: 100%;
-  }
+/* 헤더   11 */
 
-  /**********************
-  /***** Services *******
-  /*********************/
- 
-  section{
-  	padding: 60px 0;
-  }
-  section .section-title{
-  	text-align:center;
-  	color:#007b5e;
-  	margin-bottom:50px;
-  	text-transform:uppercase;
-  }
+   .newsletter {
+background-color: #4D4D4D;
+height: 200px;
+}
+
+.newsletter .content {
+max-width: 650px;
+margin: 0 auto;
+text-align: center;
+position: relative;
+z-index: 2; }
+.newsletter .content h2 {
+color: #ffffff;
+margin-bottom: 40px; }
+.newsletter .content .form-control {
+height: 50px;
+border-color: #ffffff;
+border-radius:0;
+}
+.newsletter .content.form-control:focus {
+box-shadow: none;
+border: 2px solid #243c4f;
+}
+.newsletter .content .btn {
+min-height: 50px; 
+border-radius:0;
+background: #243c4f;
+color: #fff;
+font-weight:600;
+}
+
+.login{
+    color: black;
+}
+
+.headerDiv1{
+    background-color: white;
+    height: 30px;
+}
+
+.headerDiv2{
+    margin-top: 20px;
+}    
+
+#positionBtn
+{
+    margin-right: 15px;
+}
+
+#locationImg{
+    width: 30px;
+    height:30px;
+}
+
+
   #what-we-do{
   	background:#ffffff;
   }
@@ -133,96 +169,30 @@ footer p 	{margin-top:30px;}
     background-color: #F8F9FA;
   }
   .jumbotron{
-    background-image: url("http://backgroundcheckall.com/wp-content/uploads/2017/12/soothing-background-music-14.jpg") ;
+    background-image: url("http://backgroundcheckall.com/wp-
+
+content/uploads/2017/12/soothing-background-music-14.jpg") ;
     background-size: 2000px 600px;
     height: 600px;
   }
 
 .carouselsection{
-  background-image: url("https://www.training.com.au/wp-content/uploads/travel-and-tourism-courses-copy.jpg");
+  background-image: url("https://www.training.com.au/wp-content/uploads/travel-
+
+and-tourism-courses-copy.jpg");
   background-size: cover;
   height: 500px;
 }
 
+  .carousel-inner img {
+      width: 100%;
+      height: 100%;
+  }
 
 
-/* Footer */
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-section {
-    padding: 60px 0;
-}
 
-section .section-title {
-    text-align: center;
-    color: #007b5e;
-    margin-bottom: 50px;
-    text-transform: uppercase;
-}
-#footer {
-    background: black !important;
-    opacity: 0.7;
-}
-#footer h5{
-	padding-left: 10px;
-    border-left: 3px solid #eeeeee;
-    padding-bottom: 6px;
-    margin-bottom: 20px;
-    color:#ffffff;
-}
-#footer a {
-    color: #ffffff;
-    text-decoration: none !important;
-    background-color: transparent;
-    -webkit-text-decoration-skip: objects;
-}
-#footer ul.social li{
-	padding: 3px 0;
-}
-#footer ul.social li a i {
-    margin-right: 5px;
-	font-size:25px;
-	-webkit-transition: .5s all ease;
-	-moz-transition: .5s all ease;
-	transition: .5s all ease;
-}
-#footer ul.social li:hover a i {
-	font-size:30px;
-	margin-top:-10px;
-}
-#footer ul.social li a,
-#footer ul.quick-links li a{
-	color:#ffffff;
-}
-#footer ul.social li a:hover{
-	color:#eeeeee;
-}
-#footer ul.quick-links li{
-	padding: 3px 0;
-	-webkit-transition: .5s all ease;
-	-moz-transition: .5s all ease;
-	transition: .5s all ease;
-}
-#footer ul.quick-links li:hover{
-	padding: 3px 0;
-	margin-left:5px;
-	font-weight:700;
-}
-#footer ul.quick-links li a i{
-	margin-right: 5px;
-}
-#footer ul.quick-links li:hover a i {
-    font-weight: 700;
-}
 
-@media (max-width:767px){
-	#footer h5 {
-    padding-left: 0;
-    border-left: transparent;
-    padding-bottom: 0px;
-    margin-bottom: 10px;
-}
-}
-
-/************* 끝 ************/
+/* 끝 */
+ 
 
 

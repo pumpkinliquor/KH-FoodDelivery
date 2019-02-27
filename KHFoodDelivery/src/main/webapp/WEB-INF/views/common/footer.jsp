@@ -43,7 +43,7 @@
         #footer {
             background: black !important;
             opacity: 0.7;
-            height: 200px;
+            height: 220px;
         }
 
         #footer h5 {
@@ -122,7 +122,7 @@
                     <div class="col-xs-12 col-sm-4 col-md-12">
                         <ul class="list-unstyled quick-links">
                             <li><a href="${path }"><i class="fa fa-angle-double-right"></i>Home</a></li>
-                            <li><a href="${path }"><i class="fa fa-angle-double-right"></i>사장님페이지</a></li>
+                            <li><a href="${path }/owner/ownerMain.do"><i class="fa fa-angle-double-right"></i>사장님페이지</a></li>
                             <li><a href="${path }"><i class="fa fa-angle-double-right"></i>공지사항</a></li>
                             <li><a href="${path }"><i class="fa fa-angle-double-right"></i>1:1문의</a></li>
                         </ul>
@@ -143,7 +143,7 @@
                 <p class="footercopy">Copyright 2019 ⓒ KH delivery Corp. All rights reserved.</p>
            </div>
             </div>
-            <div class="col-md-2"></div>
+           
         </div>
        
 

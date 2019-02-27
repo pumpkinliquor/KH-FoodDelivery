@@ -27,9 +27,9 @@ pageEncoding="UTF-8"%>
 
 
 
-	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
+	<div class="container">
+		<!-- <div class="col-md-2"></div>
+		<div class="col-md-8"> -->
 			<h5 id="h3board">공지사항</h5>
 			<h6 id="h5_board">
 				<a href="">메인화면></a> <a href="#">공지사항</a>
@@ -71,17 +71,16 @@ pageEncoding="UTF-8"%>
 
 				</tbody>
 			</table>
-			<br>
+			
 
 
-			<button type="button" class="btn btn-default pull-right">글쓰기</button>
+			<button type="button" class="btn btn-light float-right">글쓰기</button>
 
 
-		</div>
+		<!-- </div>
 
-		<div class="col-md-2"></div>
+		<div class="col-md-2"></div> -->
 	</div>
-</body>
-</html>
+
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
