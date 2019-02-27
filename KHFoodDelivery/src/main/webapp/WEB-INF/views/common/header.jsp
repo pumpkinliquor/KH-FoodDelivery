@@ -20,58 +20,41 @@
 </head>
 <body>
  
- <header>
-  <nav class="navbar navbar-expand-sm bg-light justify-content-center login">
-        <ul class="navbar-nav">
-        	<!-- if문 사용해서 나누기 -->
-          <li class="nav-item">
-            <a class="nav-link" href="#"  style="background-color:#F8F9FA">로그인</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" style="background-color:#F8F9FA">회원가입</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"  style="background-color:#F8F9FA">마이페이지</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" style="background-color:#F8F9FA">로그아웃</a>
-          </li>
-        </ul>
-      </nav>
+<body>
+
+        <section class="newsletter">
+            <div class="row headerDiv1">
+                    <div class="col-sm-9"></div>
+                    <div class="col-sm-3 login">
+                    <a>로그인</a>
+                    <a>회원가입</a>
+                    </div>
+            </div>
+                <div id="container">             
+                <div class="row">
+                
+                <div class="col-sm-12 headerDiv2">
+                    <div class="content">
+                        <h2>배달의 민족</h2>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="content">
+                    <div class="input-group">
+                         <button id="positionBtn"><img id="locationImg" src="resources/images/place.png"></button>
+                         <input type="text" class="form-control" placeholder="주소를 입력해주세요">
+                         <span class="input-group-btn">
+                         <button class="btn" type="submit">검색</button>
+                         </span>
+                    </div>
+                    </div>
+                </div>
+                
+                </div>
+                </div>
+                </section>
   
-  
-      <nav class="navbar navbar-expand-sm  navbar-dark ">
-  
-    <!-- Links -->
-    <ul class="navbar-nav container ">
-      <li class="nav-item" style="margin-left:-20px;font-size:30px">
-      <a class="nav-link" href="${path }/">배달의 민족</a>
-    </li>
-      <li class="nav-item">
-        <a class="nav-link" href="${path }/">HOMEPAGE</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">ABOUT US</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">SERVICES</a>
-      </li>
-      <li class="nav-item">
-       <a class="nav-link" href="#">CONTACTS</a>
-      </li>
-  
-      <!-- Dropdown -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-          MORE
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Link 1</a>
-          <a class="dropdown-item" href="#">Link 2</a>
-          <a class="dropdown-item" href="#">Link 3</a>
-        </div>
-      </li>
-    </ul>
-  </nav>
+ 	</body>
+ 	</html>
  
 </header>
