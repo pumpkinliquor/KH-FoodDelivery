@@ -105,6 +105,4 @@ pageEncoding="UTF-8"%>
 	</div>
 
 
->>>>>>> branch 'master' of https://github.com/pumpkinliqour/KH-FoodDelivery
-
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
