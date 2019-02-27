@@ -11,5 +11,11 @@ public class Map {
 	public String admainMainView() {
 		return "customer/main";
 	}
+	
+	@RequestMapping("/customer/login.do")
+	public String login()
+	{
+		return "customer/login";
+	}
 
 }
