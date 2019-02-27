@@ -1,4 +1,4 @@
-package com.kh.food.map;
+package com.kh.food.customer.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +9,7 @@ public class Map {
 	
 	@RequestMapping("/map/test.do")
 	public String admainMainView() {
-		return "custom/main";
+		return "customer/main";
 	}
 
 }
