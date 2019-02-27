@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="store">
+
+
+	<!-- 입점 신청 승인 -->
+	<update id="updateStoreConfirm" parameterType="_int">
+		UPDATE STORE SET isConfirm = 1 WHERE businessCode = #{no}
+	</update>
+	
+</mapper>

@@ -65,6 +65,20 @@
 						<td>2019-02-26</td>
 						<td>답변 완료</td> 
 					</tr>
+					<tr>
+						<td>1</td>
+						<td>안녕안녕</td>
+						<td>주홍범</td>
+						<td>2019-02-26</td>
+						<td>답변 완료</td> 
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>안녕안녕</td>
+						<td>주홍범</td>
+						<td>2019-02-26</td>
+						<td>답변 완료</td> 
+					</tr>
 				</c:forEach>
 			</tbody>
 		</table>

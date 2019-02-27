@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class qnaController {
+public class QnaController {
 
 	@RequestMapping("/admin/memberQnaList.do")
 	public String memberQnaList() {

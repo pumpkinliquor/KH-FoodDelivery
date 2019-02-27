@@ -6,13 +6,19 @@
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 
+<style>
+	thead#tableHead {
+		background-color: #4D4D4D;
+		color: rgba(255, 255, 255, .5);
+	}
+</style>
 <div class="container">	
 	<div>
 		<h4>입점 신청 현황</h4>
 	</div>
 	<div>
 		<table class="table table-hover">
-			<thead>
+			<thead id="tableHead">
 				<tr>			
 					<th>업종</th>
 					<th>점포명</th>
@@ -39,6 +45,9 @@
 <script>
 	function fn_modal(){
 		$('#storeModal').modal();
+	}
+	function fn_appConfirm(no){
+		location.href="${path}/admin/confirmApp.do?no="+no;
 	}
 </script>
 
@@ -83,7 +92,7 @@
 					</tr>
 					<tr>
 						<td colspan='2' align="center">
-							<button type="button" class="btn btn-outline-success" data-dismiss="modal">승인</button>
+							<button type="button" class="btn btn-outline-success" onclick="fn_appConfirm()">승인</button>
 							<button type="button" class="btn btn-outline-danger" data-dismiss="modal">거절</button>
 						</td>
 					</tr>
