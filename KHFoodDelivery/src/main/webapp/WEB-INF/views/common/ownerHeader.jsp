@@ -21,8 +21,8 @@
  <body>
 	<header>
     <div class="headerDiv1">
-          <a href="#">로그인</a>
-          <a href="${path }/owner/insertOwner.do"">회원가입</a>
+          <a href="${path }/owner/login.do">로그인</a>
+          <a href="${path }/owner/insertOwner.do">회원가입</a>
           <a href="#">마이페이지</a>
     </div>
   
