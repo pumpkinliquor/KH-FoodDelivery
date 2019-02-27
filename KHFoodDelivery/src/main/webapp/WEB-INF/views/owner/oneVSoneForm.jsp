@@ -35,7 +35,7 @@ pageEncoding="UTF-8"%>
 		            </tr>
 		            <tr>
 		                <td colspan="2">
-		                    <input type="button" value="문의하기" onclick="" class="pull-right"/>
+		                    <input type="button" value="문의하기" onclick="" class="btn btn-outline-success" style="float:right;"/>
 		                </td>
 		            </tr>
 		    </tbody>

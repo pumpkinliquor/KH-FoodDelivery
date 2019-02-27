@@ -27,14 +27,6 @@ pageEncoding="UTF-8"%>
 	color: red;
 	float: left;
 }
-
-.th_noticeTitle{
-	width:700px;
-}
-
-.pageBar_div1{
-	text-align: center;
-}
 </style>
 
 <body>
@@ -43,7 +35,7 @@ pageEncoding="UTF-8"%>
 
 	<div class="container">
 		<div>
-			<h4>사장님 공지사항</h4>
+			<h4>공지사항</h4>
 		</div>
 
 		<table class="table table-hover board">
@@ -51,50 +43,29 @@ pageEncoding="UTF-8"%>
 			<thead id="noticeThead">
 				<tr id="topTable">
 					<th>번호</th>
-					<th class="th_noticeTitle">제목</th>
+					<th>제목</th>
 					<th>날짜</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>1</td>
+					<td>공지</td>
 					<td><a href="#">첫공지사항!</a></td>
 					<td>19.02.23</td>
 				</tr>
 
 				<tr>
-					<td>2</td>
+					<td>공지</td>
 					<td>첫공지사항!</td>
 					<td>19.02.23</td>
 				</tr>
-				
-				<tr>
-					<td>3</td>
-					<td>첫공지사항!</td>
-					<td>19.02.23</td>
-				</tr>
-				
-				<tr>
-					<td>4</td>
-					<td>첫공지사항!</td>
-					<td>19.02.23</td>
-				</tr>
-				
-				<tr>
-					<td>5</td>
-					<td>첫공지사항!</td>
-					<td>19.02.23</td>
-				</tr>
-				
+
+
 			</tbody>
 		</table>
-		
-		<div class="row">
-		<div class="col-sm-3"></div>
-		<div class="col-sm-6 pageBar_div1">페이지바</div>
-		<div class="col-sm-3"></div>
-		</div>
-		
+
+
+
 		<button type="button" class="btn btn-light float-right"
 			onclick="location.href='${path}/notice/noticeForm.do'">글쓰기</button>
 
@@ -103,6 +74,7 @@ pageEncoding="UTF-8"%>
 
 		<div class="col-md-2"></div> -->
 	</div>
+
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

@@ -14,7 +14,7 @@ public class CustomerController {
 
 	@RequestMapping("/owner/customService.do")
 	public String customerService() {
-		return "owner/CustomerService";
+		return "owner/customerService";
 	}
 	
 }

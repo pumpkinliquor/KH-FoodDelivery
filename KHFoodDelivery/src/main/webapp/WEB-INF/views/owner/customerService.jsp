@@ -34,12 +34,12 @@ pageEncoding="UTF-8"%>
     }
     #questBtn{
     	margin-bottom:10px;
-    	width:16em;
+    	width:17em;
     	text-align:center;
     }
     #oneVSoneBtn{
     	margin-bottom:10px;
-    	width:16em;
+    	width:17em;
     	text-align:center;
     }
     #keywordBtn{
@@ -48,10 +48,11 @@ pageEncoding="UTF-8"%>
     }
     #keyword{
     	margin-top:10px;
-    	width:26em;
+    	width:27em;
     }
     .search{
-    	margin-top:10px;
+    	margin-top:5%;
+    	margin-bottom:5%;
     }
     #emailHelp{
     	padding-left:12px;
@@ -164,6 +165,7 @@ pageEncoding="UTF-8"%>
 	   			</div>
 	   		</div>
 	   	</div>
+	   	
 		<div class="middle">
 			<div class="row">
 				<div class="col-md-6">

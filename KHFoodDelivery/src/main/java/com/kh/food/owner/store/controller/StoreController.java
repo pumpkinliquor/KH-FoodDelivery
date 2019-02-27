@@ -14,7 +14,7 @@ public class StoreController {
 
 	@RequestMapping("/owner/storeForm.do")
 	public String storeForm() {
-		return "owner/StoreForm";
+		return "owner/storeForm";
 	}
 	
 }
