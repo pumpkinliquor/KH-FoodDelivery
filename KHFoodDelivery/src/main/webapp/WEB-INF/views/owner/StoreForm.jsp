@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
 </style>
 </head>
 <body>
-	<div class="container">
+	<div id="container">
 		<div class="col-sm-12">
 		    <div id="update-container">
 		        <form action="${path}/board/boardWriteEnd.do" method="post" enctype="multipart/form-data">
