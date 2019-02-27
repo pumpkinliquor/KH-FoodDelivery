@@ -15,17 +15,10 @@
 </head>
 <body> 
 	<header>
-		<nav class="navbar navbar-expand-sm bg-light justify-content-center login">
-			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" href="#"  style="background-color:#F8F9FA">로그인</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#" style="background-color:#F8F9FA">회원가입</a>
-				</li>
-			</ul>
-		</nav>
-  
+		<div class="headerDiv1">
+            <a href="#">로그인</a>
+            <a href="#">회원가입</a>
+        </div>
 		<nav class="navbar navbar-expand-sm  navbar-dark ">  
 			<!-- Links -->
 			<ul class="navbar-nav container ">

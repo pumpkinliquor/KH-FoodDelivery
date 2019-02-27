@@ -20,13 +20,10 @@
 </head>
  <body>
 	<header>
-    <div class="row ownerheaderDiv1">
-                    <div class="col-sm-9"></div>
-                    <div class="col-sm-3 login">
-                    <a>로그인</a>
-                    <a>회원가입</a>
-                    <a>마이페이지</a>
-                    </div>
+    <div class="headerDiv1">
+          <a href="#">로그인</a>
+          <a href="${path }/owner/insertOwner.do"">회원가입</a>
+          <a href="#">마이페이지</a>
     </div>
   
   
@@ -39,16 +36,16 @@
       <a class="nav-link" href="#">배달의 민족</a>
     </li>
       <li class="nav-item">
-        <a class="nav-link" href="${path }/admin/noticeList.do">공지사항</a>
+        <a class="nav-link" href="${path }">메뉴관리</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${path }/admin/memberList.do">멤버 리스트</a>
+        <a class="nav-link" href="${path }">정보수정</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${path }/admin/appStoreList.do">입점 신청 현황</a>
+        <a class="nav-link" href="${path }">업소통계</a>
       </li>
       <li class="nav-item">
-       <a class="nav-link" href="${path }/admin/qnaList.do">문의 내역</a>
+       <a class="nav-link" href="${path }/owner/customService.do">고객센터</a>
       </li>
   
       <!-- Dropdown -->

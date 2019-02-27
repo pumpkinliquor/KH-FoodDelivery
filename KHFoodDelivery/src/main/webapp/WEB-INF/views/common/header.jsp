@@ -14,21 +14,17 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css" />
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <header>
         <div class="newsletter">
-              <div class="row headerDiv1">
-                    <div class="col-sm-9"></div>
-                    <div class="col-sm-3 login">
-                    <a>로그인</a>
-                    <a>회원가입</a>
-                    </div>
+              <div class="headerDiv1">
+                    <a href="#">로그인</a>
+                    <a href="#">회원가입</a>
             </div>
-                <div id="container">             
+                <div class="container">             
                 <div class="row">           
                 <div class="col-sm-12 headerDiv2">
                     <div class="content">
