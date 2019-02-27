@@ -20,13 +20,10 @@
 </head>
  <body>
 	<header>
-    <div class="row ownerheaderDiv1">
-                    <div class="col-sm-9"></div>
-                    <div class="col-sm-3 login">
-                    <a>로그인</a>
-                    <a>회원가입</a>
-                    <a>마이페이지</a>
-                    </div>
+    <div class="headerDiv1">
+          <a href="#">로그인</a>
+          <a href="#">회원가입</a>
+          <a href="#">마이페이지</a>
     </div>
   
   
