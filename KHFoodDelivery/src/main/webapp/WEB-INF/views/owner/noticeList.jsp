@@ -7,4 +7,8 @@ pageEncoding="UTF-8"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 
+<div class="container">
+
+</div>
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

@@ -25,7 +25,7 @@
                     <a href="#">회원가입</a>
             </div>
                 <div id="container">             
-                <div class="row">           
+                <div class="row" style="margin:0;">           
                 <div class="col-sm-12 headerDiv2">
                     <div class="content">
                         <h2>배달의 민족</h2>
