@@ -16,6 +16,19 @@
 *.xlsx
 *.pdf
 *.log
+### Eclipse ###
+
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
 
 # External tool builders
 .externalToolBuilders/
@@ -63,38 +76,18 @@
 
 ### Eclipse Patch ###
 # Eclipse Core
-.metadata
-bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.settings/
-.loadpath
-.recommenders
 .project
-.externalToolBuilders/
-*.launch
-.classpath
-.factorypath
-.buildpath
-/target/
-.tern-project
-.springBeans
-.recommenders/
 
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
 # Annotation Processing
 .apt_generated
-
 .sts4-cache/
 
 ### Java-Web ###
 ## ignoring target file
+target/
 */target/*
 
 ### Windows ###
@@ -102,11 +95,6 @@ local.properties
 Thumbs.db
 ehthumbs.db
 ehthumbs_vista.db
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
 
 # Dump file
 *.stackdump
@@ -126,14 +114,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-# ignore sts default file 
-.classpath
-.project
-.springBeans
-.settings/
-target/
-Users/
-.root-context.xml
-.pom.properties
+*.properties
 # End of https://www.gitignore.io/api/windows,eclipse,java-web
 # 
+
