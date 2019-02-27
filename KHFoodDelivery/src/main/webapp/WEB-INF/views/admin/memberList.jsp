@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+import="java.util.*, java.sql.*" 
+pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
+<jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 <!-- 제이쿼리 -->
 <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script
@@ -20,11 +18,16 @@
 .memberList_select {
 	float: left;
 }
+
+.memberListDelBtn{
+	width:20px;
+	height:20px;
+}
 </style>
 <body>
 
 
-<!-- 
+ 
 	<script>
     $(document).ready(function(){
 $("#memberListTable #checkall").click(function () {
@@ -43,7 +46,7 @@ $("#memberListTable #checkall").click(function () {
     $("[data-toggle=tooltip]").tooltip();
 });
 
-    </script> -->
+    </script>
 	<div class="container">
 		<div class="top">
 			<div class="row">
@@ -125,6 +128,7 @@ $("#memberListTable #checkall").click(function () {
 						</tbody>
 
 					</table>
+					<button><img src="${path}/resources/images/admin/deleteBtn.png" class="memberListDelBtn"></button>
 				</div>
 			</div>
 
@@ -275,3 +279,4 @@ $("#ownerListTable #checkall2").click(function () {
 </body>
 
 </html>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
