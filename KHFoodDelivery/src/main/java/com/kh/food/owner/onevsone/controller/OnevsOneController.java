@@ -1,5 +1,7 @@
 package com.kh.food.owner.onevsone.controller;
 
+import javax.xml.ws.RequestWrapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,4 +20,16 @@ public class OnevsOneController {
 		mv.setViewName("owner/oneVSoneList");
 		return mv;
 	}
+	
+	@RequestMapping("/owner/oneVSoneQ.do")
+	public String oneVSoneQ() {
+		return "owner/oneVSoneForm";
+	}
+	
+	@RequestMapping("/owner/myOneVSone")
+	public ModelAndView myOneVSone(ModelAndView mv) {
+		mv.setViewName("owner/myQna");
+		return mv;
+	}
+	
 }
