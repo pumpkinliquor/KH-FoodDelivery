@@ -34,7 +34,8 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="${path }/admin/appStoreList.do">입점 신청 현황</a>
-				</li>				
+				</li>
+				
 				<!-- Dropdown -->
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">문의내역</a>
