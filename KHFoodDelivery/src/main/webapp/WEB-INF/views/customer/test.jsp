@@ -3,48 +3,33 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>   
+	
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param value="" name="pageTitle"/>
-</jsp:include>
-
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 <section>
- <script type="text/javascript">
-function googleapisView() {
-    var lat = "35.2075976"; // 위도
-    var lng = "126.8354369"; // 경도
-    var geocode = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&sensor=false";
-    jQuery.ajax({
-        url: geocode,
-        type: 'POST',
-           success: function(myJSONResult){
-                    if(myJSONResult.status == 'OK') {
-                        var tag = "";
-                        var i;
-                        for (i = 0; i < myJSONResult.results.length; i++) {
-                          tag += "주소 : " +myJSONResult.results[i].formatted_address+" <br />";
-                          tag += "위도 : " +myJSONResult.results[i].geometry.location.lat+" <br />";
-                          tag += "경도 : " +myJSONResult.results[i].geometry.location.lng+" <br />";
-                        }
-                        document.getElementById("message").innerHTML = tag;
-                    } else if(myJSONResult.status == 'ZERO_RESULTS') {
-                        alert("지오코딩이 성공했지만 반환된 결과가 없음을 나타냅니다.\n\n이는 지오코딩이 존재하지 않는 address 또는 원격 지역의 latlng을 전달받는 경우 발생할 수 있습니다.")
-                    } else if(myJSONResult.status == 'OVER_QUERY_LIMIT') {
-                        alert("할당량이 초과되었습니다.");
-                    } else if(myJSONResult.status == 'REQUEST_DENIED') {
-                        alert("요청이 거부되었습니다.\n\n대부분의 경우 sensor 매개변수가 없기 때문입니다.");
-                    } else if(myJSONResult.status == 'INVALID_REQUEST') {
-                        alert("일반적으로 쿼리(address 또는 latlng)가 누락되었음을 나타냅니다.");
-                    }
-            }
-    });
- 
-}
-googleapisView();
+
+<div id="content"></div>
+<script>
+    var lon = 37.4923615;
+    var lat = 127.02928809999999;
+    function test(){
+		$.ajax({
+    url: 'https://apis.daum.net/local/geo/coord2addr?apikey=feed05c2d7c3c51d07205126e0f9d71b=' + lon + '&latitude=' + lat + '&inputCoordSystem=WGS84&output=json',
+    type: 'GET',
+    cache: false,
+    context: {},
+    crossOrigin: true,
+    success: function(data) {
+        var jsonObj = $.parseJSON(data);
+        var contentText = document.getElementById('content');
+            contentText.innerHTML += "<br>동네 이름 : " + jsonObj.name + " / 전체 주소 : " + jsonObj.fullName + " / 나라 : " + jsonObj.name0;
+    },error:function(request,status,error){
+        alert("다시 시도해주세요.\n" + "code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    }
+});
+    }
+
 </script>
-<div id="message"></div>
-
-
 </section>
  
 
