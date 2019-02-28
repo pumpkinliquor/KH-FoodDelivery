@@ -25,9 +25,9 @@ pageEncoding="UTF-8"%>
 				</thead>
 				<tbody>
 					<c:forEach begin="1" end="10" varStatus="vs">
-						<tr style="cursor:pointer;" onclick="location.href='${path}/owner/myOneVSone'">
+						<tr style="cursor:pointer;" onclick="location.href='${path}/owner/oneVSoneView.do'">
 							<td>${vs.count }</td>
-							<td><a href="#">어떻게 수정 요청하나요?</a></td>
+							<td><a href="${path }/owner/oneVSoneView.do">어떻게 수정 요청하나요?</a></td>
 							<td>2019-02-27</td>
 						</tr>
 					</c:forEach>
