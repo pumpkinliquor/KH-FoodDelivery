@@ -50,36 +50,13 @@ pageEncoding="UTF-8"%>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
+				<c:forEach begin="1" end="10" varStatus="vs">
+				<tr style="cursor:pointer;" onclick="location.href='${path}/owner/noticeList.do'">
+					<td>${vs.count }</td>
 					<td><a href="#">첫공지사항!</a></td>
 					<td>19.02.23</td>
 				</tr>
-
-				<tr>
-					<td>2</td>
-					<td>첫공지사항!</td>
-					<td>19.02.23</td>
-				</tr>
-				
-				<tr>
-					<td>3</td>
-					<td>첫공지사항!</td>
-					<td>19.02.23</td>
-				</tr>
-				
-				<tr>
-					<td>4</td>
-					<td>첫공지사항!</td>
-					<td>19.02.23</td>
-				</tr>
-				
-				<tr>
-					<td>5</td>
-					<td>첫공지사항!</td>
-					<td>19.02.23</td>
-				</tr>
-				
+				</c:forEach>
 			</tbody>
 		</table>
 		

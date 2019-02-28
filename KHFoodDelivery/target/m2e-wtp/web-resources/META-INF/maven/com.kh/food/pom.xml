@@ -180,7 +180,23 @@
 		    <artifactId>json-lib-ext-spring</artifactId>
 		    <version>1.0.2</version>
 		</dependency>
-	
+		
+		<!--  SMTP 이메일에 필요한 라이브러리 -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>5.0.6.RELEASE</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artif act/javax.mail/javax.mail-api -->
+			<dependency>
+			    <groupId>javax.mail</groupId>
+			    <artifactId>javax.mail-api</artifactId>
+			    <version>1.5.6</version>
+			</dependency>
+		
+			
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
