@@ -29,8 +29,7 @@ pageEncoding="UTF-8"%>
 }
 </style>
 
-<body>
-
+<section>
 
 
 	<div class="container">
@@ -76,5 +75,5 @@ pageEncoding="UTF-8"%>
 	</div>
 
 
-
+</section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

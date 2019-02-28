@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
-
+<section>
 <div class="container">
 	<div class="QnaWriteBtn" style="text-align: right; padding-bottom: 5px;">
 		<button onclick="" id="QnaWriteBtn" class="btn btn-outline-success">1:1문의하기</button>
@@ -35,5 +35,5 @@
 		</div>
 	</div>
 </div>
-
+</section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

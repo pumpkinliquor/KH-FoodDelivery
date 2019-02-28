@@ -7,6 +7,7 @@ pageEncoding="UTF-8"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 
+<section>
 <div class="container">
 	<div class="QnaWriteBtn" style="text-align:right; padding-bottom:5px;">
 		<button onclick="location.href='${path}/owner/oneVSoneList.do'" id="QnaListBtn" class="btn btn-outline-success">문의게시판</button>
@@ -37,5 +38,5 @@ pageEncoding="UTF-8"%>
 		</div>
 	</div>
 </div>
-
+</section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
