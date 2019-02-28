@@ -1,52 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>   
-<c:set var="path" value="${pageContext.request.contextPath}"/>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param value="" name="pageTitle"/>
+	<jsp:param value="" name="pageTitle" />
 </jsp:include>
 
-<section>
- <script type="text/javascript">
-function googleapisView() {
-    var lat = "35.2075976"; // 위도
-    var lng = "126.8354369"; // 경도
-    var geocode = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&sensor=false";
-    jQuery.ajax({
-        url: geocode,
-        type: 'POST',
-           success: function(myJSONResult){
-                    if(myJSONResult.status == 'OK') {
-                        var tag = "";
-                        var i;
-                        for (i = 0; i < myJSONResult.results.length; i++) {
-                          tag += "주소 : " +myJSONResult.results[i].formatted_address+" <br />";
-                          tag += "위도 : " +myJSONResult.results[i].geometry.location.lat+" <br />";
-                          tag += "경도 : " +myJSONResult.results[i].geometry.location.lng+" <br />";
-                        }
-                        document.getElementById("message").innerHTML = tag;
-                    } else if(myJSONResult.status == 'ZERO_RESULTS') {
-                        alert("지오코딩이 성공했지만 반환된 결과가 없음을 나타냅니다.\n\n이는 지오코딩이 존재하지 않는 address 또는 원격 지역의 latlng을 전달받는 경우 발생할 수 있습니다.")
-                    } else if(myJSONResult.status == 'OVER_QUERY_LIMIT') {
-                        alert("할당량이 초과되었습니다.");
-                    } else if(myJSONResult.status == 'REQUEST_DENIED') {
-                        alert("요청이 거부되었습니다.\n\n대부분의 경우 sensor 매개변수가 없기 때문입니다.");
-                    } else if(myJSONResult.status == 'INVALID_REQUEST') {
-                        alert("일반적으로 쿼리(address 또는 latlng)가 누락되었음을 나타냅니다.");
-                    }
-            }
-    });
+
+
+<body>
+
+<!-- 	 <div id="map" style="width:500px;height:400px;"></div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c"></script> -->
+
+ <script>
  
-}
-googleapisView();
-</script>
-<div id="message"></div>
-
-
-</section>
  
+/*  $(document).ready(function () {
+		$("#Btn").click(function(){
+    function getLocation() {
+        if (navigator.geolocation) { // GPS를 지원하면
+          navigator.geolocation.getCurrentPosition(function(position) {
+            alert("현재위치:   위도 : "+position.coords.latitude + " 경도: " + position.coords.longitude);
 
+    		var container = document.getElementById('map');
+    		var options = {
+    			center: new daum.maps.LatLng(position.coords.latitude, position.coords.longitude),
+    			level: 2
+    		};
+
+    		var map = new daum.maps.Map(container, options);
+          }, function(error) {
+            console.error(error);
+          }, {
+            enableHighAccuracy: true,
+            maximumAge: 0,
+            timeout: Infinity
+          });
+        } else {
+          alert('GPS를 지원하지 않습니다');
+        }
+      }
+      getLocation();	
+		});
+}); */
+ 
+	</script>
+	
+	 
+
+
+
+
+
+
+</body>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

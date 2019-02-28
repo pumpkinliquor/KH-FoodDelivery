@@ -20,6 +20,9 @@
 		background-color: #4D4D4D;
 		color: rgba(255, 255, 255, .5);
 	}
+	.pnt{
+		cursor: pointer;
+	}
 </style>
 
 <section>
@@ -52,30 +55,9 @@
 				</thead>
 				<tbody>
 					<c:forEach begin="1" end="5">
-						<tr>
+						<tr class="pnt" onclick="fn_qnaView()">
 							<td>1</td>
 							<td>¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç¾È³ç</td>
-							<td>ÁÖÈ«¹ü</td>
-							<td>2019-02-26</td>
-							<td>´äº¯ ¿Ï·á</td> 
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>¾È³ç¾È³ç</td>
-							<td>ÁÖÈ«¹ü</td>
-							<td>2019-02-26</td>
-							<td>´äº¯ ¿Ï·á</td> 
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>¾È³ç¾È³ç</td>
-							<td>ÁÖÈ«¹ü</td>
-							<td>2019-02-26</td>
-							<td>´äº¯ ¿Ï·á</td> 
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>¾È³ç¾È³ç</td>
 							<td>ÁÖÈ«¹ü</td>
 							<td>2019-02-26</td>
 							<td>´äº¯ ¿Ï·á</td> 

@@ -19,8 +19,15 @@
 	thead#tableHead {
 	background-color: #4D4D4D;
 	color: rgba(255, 255, 255, .5);
-}
+	}
+	.pnt { cursor: pointer; }
 </style>
+
+<script>
+	function fn_qnaView(){
+		location.href="${path}/admin/memberQnaView.do";
+	}
+</script>
 
 <section>
 	<div class="container">	
@@ -28,14 +35,14 @@
 			<h4 id="titleText">회원 문의 내역</h4>
 			<div class="btn-group" id="btn-category">
 				<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					배달<span class="caret"></span>
+					회원<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu" role="menu">
-				    <li><a href="#">환불/취소</a></li>
-				    <li><a href="#">ㅇ</a></li>
-				    <li><a href="#">Something else here</a></li>
-				    <li class="divider"></li>
-				    <li><a href="#">Separated link</a></li>
+				    <li><a href="#">회원</a></li>
+				    <li><a href="#">주문</a></li>
+				    <li><a href="#">결제</a></li>
+				    <li><a href="#">포인트</a></li>				    
+				    <li><a href="#">리뷰</a></li>
 	  			</ul>
 			</div>
 		</div>
@@ -51,7 +58,7 @@
 				</thead>
 				<tbody>
 					<c:forEach begin="1" end="5">
-						<tr>
+						<tr class="pnt" onclick="fn_qnaView()">
 							<td>1</td>
 							<td>안녕</td>
 							<td>주홍범</td>

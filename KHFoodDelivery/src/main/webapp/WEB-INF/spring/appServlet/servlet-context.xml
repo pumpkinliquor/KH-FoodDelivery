@@ -32,5 +32,5 @@
 		<beans:property name="order" value="1"/>
 	</beans:bean>
 	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/>
-	
+	 
 </beans:beans>

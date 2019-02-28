@@ -11,9 +11,13 @@
 		background-color: #4D4D4D;
 		color: rgba(255, 255, 255, .5);
 	}
+	.pnt { cursor: pointer; }
+	tr#btnGroup td{
+		margin-top: 15px;
+	}	
 </style>
 
-<script>
+<script> 
 	function fn_modal(){
 		$('#storeModal').modal();
 	}
@@ -39,14 +43,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach begin="1" end="5">
-						<tr>
-							<td onclick="fn_modal()">치킨</td>
-							<td onclick="fn_modal()">배민</td>
-							<td onclick="fn_modal()">주홍범</td>
-							<td onclick="fn_modal()">서울특별시 강남구 역삼동</td>
-							<td onclick="fn_modal()">2019-02-26</td> 
-						</tr>
+					<c:forEach begin="1" end="5">						
+						<tr class="pnt" onclick="fn_modal()">
+							<td>치킨</td>
+							<td>배민</td>
+							<td>주홍범</td>
+							<td>서울특별시 강남구 역삼동</td>
+							<td>2019-02-26</td>
+						</tr>						
 					</c:forEach>
 				</tbody>
 			</table>
@@ -101,7 +105,7 @@
 						<td>ㅎㅎ</td>
 						<!-- <textarea>ㅎㅎ</textarea> -->
 					</tr>
-					<tr>
+					<tr id="btnGroup">
 						<td colspan='2' align="center">
 							<button type="button" class="btn btn-outline-success" onclick="fn_appConfirm()">승인</button>
 							<button type="button" class="btn btn-outline-danger" data-dismiss="modal">거절</button>

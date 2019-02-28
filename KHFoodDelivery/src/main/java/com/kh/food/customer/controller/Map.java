@@ -8,7 +8,7 @@ public class Map {
 	
 	
 	@RequestMapping("/cutomer/main.do")
-	public String admainMainView() {
+	public String MainView() {
 		return "customer/main";
 	}
 	
