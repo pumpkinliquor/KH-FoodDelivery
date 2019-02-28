@@ -6,9 +6,24 @@
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 <style>
-img.memberListDelBtn {
-	width: 20px;
-	height: 20px;
+.pnt {
+	cursor: pointer;
+}
+
+img.memListProfile {
+	border-radius: 150px;
+	width: 50px;
+	height: 50px;
+}
+
+button#memListDelBtn {
+	background-color: transparent;
+	border-color: transparent;
+}
+
+img.memberListDelImg {
+	width: 25px;
+	height: 25px;
 }
 
 h4#memberListTitle {
@@ -30,27 +45,23 @@ thead#tableHead {
 </style>
 
 <script>
-    $(document).ready(function(){
-$("#memberListTable #checkall").click(function () {
-        if ($("#memberListTable #checkall").is(':checked')) {
-            $("#memberListTable input[type=checkbox]").each(function () {
-                $(this).prop("checked", true);
-            });
+	$(document).ready(function() {
+		$("#memberListTable #checkall").click(function() {
+			if ($("#memberListTable #checkall").is(':checked')) {
+				$("#memberListTable input[type=checkbox]").each(function() {
+					$(this).prop("checked", true);
+				});
 
-        } else {
-            $("#memberListTable input[type=checkbox]").each(function () {
-                $(this).prop("checked", false);
-            });
-        }
-    });
-    
-    $("[data-toggle=tooltip]").tooltip();
-});
-    
-    
- 
+			} else {
+				$("#memberListTable input[type=checkbox]").each(function() {
+					$(this).prop("checked", false);
+				});
+			}
+		});
 
-    </script>
+		$("[data-toggle=tooltip]").tooltip();
+	});
+</script>
 
 
 <div class="container">
@@ -84,17 +95,17 @@ $("#memberListTable #checkall").click(function () {
 
 				<tr>
 					<td><input type="checkbox" class="checkthis" /></td>
-					<td onclick="fn_memListmodal()">5</td>
-					<td onclick="fn_memListmodal()">wjdqls9357</td>
-					<td onclick="fn_memListmodal()">최정빈</td>
-					<td onclick="fn_memListmodal()">wjdqls7773@gmail.com</td>
-					<td onclick="fn_memListmodal()">2019.02.23</td>
+					<td class="pnt" onclick="fn_memListmodal()">5</td>
+					<td class="pnt" onclick="fn_memListmodal()">wjdqls9357</td>
+					<td class="pnt" onclick="fn_memListmodal()">최정빈</td>
+					<td class="pnt" onclick="fn_memListmodal()">wjdqls7773@gmail.com</td>
+					<td class="pnt" onclick="fn_memListmodal()">2019.02.23</td>
 				</tr>
 			</tbody>
 		</table>
-		<button onclick="fn_memListDel();">
+		<button id="memListDelBtn" onclick="fn_memListDel();">
 			<img src="${path}/resources/images/admin/deleteBtn.png"
-				class="memberListDelBtn">
+				class="memberListDelImg">
 		</button>
 
 	</div>
@@ -103,14 +114,14 @@ $("#memberListTable #checkall").click(function () {
 
 
 <script>
-   function fn_memListmodal(){
-      $('#memListModal').modal();
-   
-   };
-   
-    function fn_memListDel(){
-          $('#memListDel').modal();
-       };
+	function fn_memListmodal() {
+		$('#memListModal').modal();
+
+	};
+
+	function fn_memListDel() {
+		$('#memListDel').modal();
+	};
 </script>
 
 <div class="modal" id="memListDel" role="dialog">
@@ -151,9 +162,9 @@ $("#memberListTable #checkall").click(function () {
 			<div class="modal-body">
 				<table class="table">
 					<tr>
-						<th>프로필(둥글게 할 예정ㄴ)</th>
+						<th>프로필</th>
 						<td><img src="${path }/resources/images/place.png"
-							width="30px" height="30px"></td>
+							id="memListProfile"></td>
 
 					</tr>
 					<tr>

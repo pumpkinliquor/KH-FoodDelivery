@@ -28,4 +28,14 @@ public class NoticeController {
 		return "admin/memberList";
 	}
 	
+	@RequestMapping("/admin/noticeView.do")
+	public String noticeView() {
+		return "/admin/noticeView";
+	}
+	
+	@RequestMapping("admin/noticeUpdateForm.do")
+	public String noticeUpdateForm() {
+		return "/admin/noticeUpdateForm";
+	}
+	
 }
