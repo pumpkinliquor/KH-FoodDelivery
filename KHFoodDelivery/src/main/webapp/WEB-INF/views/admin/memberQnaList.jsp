@@ -19,7 +19,8 @@
 	thead#tableHead {
 	background-color: #4D4D4D;
 	color: rgba(255, 255, 255, .5);
-}
+	}
+	.pnt { cursor: pointer; }
 </style>
 
 <script>
@@ -57,11 +58,11 @@
 				</thead>
 				<tbody>
 					<c:forEach begin="1" end="5">
-						<tr>
-							<td onclick="fn_qnaView()">1</td>
-							<td onclick="fn_qnaView()">救崇</td>
-							<td onclick="fn_qnaView()">林全裹</td>
-							<td onclick="fn_qnaView()">2019-02-26</td> 
+						<tr class="pnt" onclick="fn_qnaView()">
+							<td>1</td>
+							<td>救崇</td>
+							<td>林全裹</td>
+							<td>2019-02-26</td> 
 						</tr>				
 					</c:forEach>
 				</tbody>
