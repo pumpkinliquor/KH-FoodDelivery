@@ -11,6 +11,7 @@
 		background-color: #4D4D4D;
 		color: rgba(255, 255, 255, .5);
 	}
+	.pnt { cursor: pointer; }
 </style>
 
 <script>
@@ -39,14 +40,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach begin="1" end="5">
+					<c:forEach begin="1" end="5">						
 						<tr>
-							<td onclick="fn_modal()">치킨</td>
-							<td onclick="fn_modal()">배민</td>
-							<td onclick="fn_modal()">주홍범</td>
-							<td onclick="fn_modal()">서울특별시 강남구 역삼동</td>
-							<td onclick="fn_modal()">2019-02-26</td> 
-						</tr>
+							<td class="pnt" onclick="fn_modal()">치킨</td>
+							<td class="pnt" onclick="fn_modal()">배민</td>
+							<td class="pnt" onclick="fn_modal()">주홍범</td>
+							<td class="pnt" onclick="fn_modal()">서울특별시 강남구 역삼동</td>
+							<td class="pnt" onclick="fn_modal()">2019-02-26</td>
+						</tr>						
 					</c:forEach>
 				</tbody>
 			</table>

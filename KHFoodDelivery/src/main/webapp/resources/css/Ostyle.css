@@ -21,9 +21,6 @@ footer p 	{margin-top:30px;}
 
 
 /* 헤더   11 */
-td{
-	cursor:pointer;
-}
 .newsletter  {
 background-color: #4D4D4D;
 height: 200px;
@@ -160,6 +157,7 @@ font-weight:600;
     opacity: 1;
     right: 0;
   }
+/* 헤더 */
 
   .nav-link{
     color:black;
@@ -175,28 +173,13 @@ font-weight:600;
   #topnav{
     background-color: #F8F9FA;
   }
-  .jumbotron{
-    background-image: url("http://backgroundcheckall.com/wp-
 
-content/uploads/2017/12/soothing-background-music-14.jpg") ;
-    background-size: 2000px 600px;
-    height: 600px;
-  }
-
-.carouselsection{
-  background-image: url("https://www.training.com.au/wp-content/uploads/travel-
-
-and-tourism-courses-copy.jpg");
-  background-size: cover;
-  height: 500px;
+.headerDiv1{
+	text-align:right; 
+	padding-right:10%;
+    background-color: white;
+    height: 30px;
 }
-
-  .carousel-inner img {
-      width: 100%;
-      height: 100%;
-  }
-
-
 
 
 /* 끝 */
