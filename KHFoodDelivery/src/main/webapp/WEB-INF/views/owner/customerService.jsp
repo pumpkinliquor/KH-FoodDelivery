@@ -140,8 +140,7 @@ pageEncoding="UTF-8"%>
 		color: white;
 	}
 </style>
-</head>
-<body>
+<section>
 	<div class="container">
 	   	<div class="top">
 	   		<div class="row">
@@ -233,4 +232,5 @@ pageEncoding="UTF-8"%>
 			</div>
 		</div>
 	</div>
+</section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
