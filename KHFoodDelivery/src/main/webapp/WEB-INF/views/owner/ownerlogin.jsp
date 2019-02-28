@@ -101,10 +101,10 @@ font-size: 20px;
                       <div class="myform form ">
                          <form action="" method="post" name="login">
                             <div class="form-group">
-                               <input type="text" name="id"  class="form-control my-input" id="name" placeholder="id">
+                               <input type="text" name="id"  class="form-control my-input" id="name" placeholder="id" required="required">
                             </div>
                             <div class="form-group">
-                               <input type="password" name="password"  class="form-control my-input" id="password" placeholder="password">
+                               <input type="password" name="password"  class="form-control my-input" id="password" placeholder="password" required="required">
                             </div>
                             <div class="text-center loginDiv_1">
                                <button type="submit" class=" btn btn-block send-button tx-tfm">로그인</button>
@@ -122,7 +122,7 @@ font-size: 20px;
                             </div>
                          </form>
                       </div>
-                      <p class="small mt-3">아이디 또는 비밀번호가 기억이 안나시나요? 옆에 버튼을 눌러 찾을 수 있습니다.<a href="${path }/owner/ownerIdSearch.do" class="ps-hero__content__link">아이디찾기</a> or <a href="#">비밀번호 찾기</a>.
+                      <p class="small mt-3">아이디 또는 비밀번호가 기억이 안나시나요? 옆에 버튼을 눌러 찾을 수 있습니다.<a href="${path }/owner/ownerIdSearch.do" class="ps-hero__content__link">아이디찾기</a> or <a href="${path }/owner/ownerSearchPw.do">비밀번호 찾기</a>.
                       </p>
                    </div>
                 </div>

@@ -3,6 +3,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.kh.food.common.StringArrayTypeHandler" alias="strArray"/>
+		<typeAlias type="com.kh.food.owner.member.model.vo.Owner" alias="ownermember"/>	
 	</typeAliases>
 	<typeHandlers>
 		<package name="com.kh.food.common"/>

@@ -4,6 +4,6 @@ import com.kh.food.owner.member.model.vo.Owner;
 
 public interface OwnerMemberService {
 
-	int insertOwner(Owner o) throws Exception;
+	int insertOwner(Owner o);
 
 }
