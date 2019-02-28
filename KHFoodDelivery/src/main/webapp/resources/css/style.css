@@ -3,7 +3,7 @@ html {min-height:100%; position:relative;}
 body {font-family:"D2Coding"; min-height:100%;}
 
 /********** 전체컨테이너 **********/
-div.container{padding-top:5%; padding-bottom:15%;}
+div.container{padding-top:5%; padding-bottom:5%;}
 
 /********** header **********/
 header {}
@@ -12,7 +12,7 @@ header div#header-container h2 	{margin:30px 10px 0px 10px;} */
 
 
 /********** footer **********/
-footer {position:absolute; bottom:0; width:100%; overflow:hidden;}
+footer {position:relative; width:100%; overflow:hidden;}
 footer		{background-color:#f8f	9fa; background-clip:content-box; clear:both; height:95px; text-align:center;}
 footer p 	{margin-top:30px;}
 

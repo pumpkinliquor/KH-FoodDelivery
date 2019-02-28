@@ -34,7 +34,7 @@
                 <div class="col-sm-12">
                     <div class="content">
                     <div class="input-group">
-                         <button id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
+                         <button id="positionBtn" onclik=""><img id="locationImg" src="${path }/resources/images/place.png"></button>
                          <input type="text" class="form-control" placeholder="주소를 입력해주세요">
                          <span class="input-group-btn">
                          <button class="btn" type="submit">검색</button>
