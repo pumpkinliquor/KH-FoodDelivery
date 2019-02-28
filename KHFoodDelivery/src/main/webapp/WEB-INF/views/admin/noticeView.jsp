@@ -65,7 +65,7 @@ background-color: transparent;
 		</div>
 		<br>
 		<hr>
-		<button id="noticeListBtn">목록</button>
+		<button id="noticeListBtn" class="btn btn-default">목록</button>
 	</div>
 </section>
 

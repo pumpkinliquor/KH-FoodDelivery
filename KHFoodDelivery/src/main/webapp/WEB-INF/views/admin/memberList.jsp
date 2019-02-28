@@ -10,7 +10,7 @@
 	cursor: pointer;
 }
 
-img.memListProfile {
+img#memListProfile {
 	border-radius: 150px;
 	width: 50px;
 	height: 50px;
