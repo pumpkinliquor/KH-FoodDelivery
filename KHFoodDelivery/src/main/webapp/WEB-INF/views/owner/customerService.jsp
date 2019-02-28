@@ -42,21 +42,12 @@ pageEncoding="UTF-8"%>
     	width:17em;
     	text-align:center;
     }
-    #keywordBtn{
-   		margin-top:10px;
-    	width:6em;
-    }
-    #keyword{
-    	margin-top:10px;
-    	width:27em;
-    }
-    .search{
-    	margin-top:5%;
-    	margin-bottom:5%;
-    }
     #emailHelp{
     	padding-left:12px;
     } 
+    .middle{
+    	padding-top:15%;
+    }
     .oneVSoneBtn {
 		background-color: rgb(200, 226, 255); 
 		border: none;
@@ -151,20 +142,6 @@ pageEncoding="UTF-8"%>
 	   		</div>
 	   	</div>
 	   	
-	   	<div class="search">
-	   		<div class="row">
-	   			<div class="col-md-12">
-	   				<form class="form-inline">
-	   				<div class="form-group" style="padding-left: 0px;">
-					<input type="search" style="margin-right: 5px;" class="form-control" id="keyword" name="keyword" placeholder="제목이나 내용을 입력하세요." value="${param.keyword!=null?param.keyword:''}"/>
-					<input type="submit" class="btn btn-outline-primary" id="keywordBtn" value="검색"/>
-					</div>
-					</form>
-					<label for="keyword"><small id="emailHelp" style="float:left;" class="form-text text-muted">Please enter a title or content.</small></label>
-	   			</div>
-	   		</div>
-	   	</div>
-	   	
 		<div class="middle">
 			<div class="row">
 				<div class="col-md-6">
@@ -180,17 +157,15 @@ pageEncoding="UTF-8"%>
 						<thead>
 							<tr>
 								<th width="11%">번호</th>
-								<th width="15%">작성자</th>
-								<th width="50%">제목</th>
+								<th width="65%">제목</th>
 								<th width="24%">날짜</th>
 							</tr>
 						</thead>
 						<tbody>
 							<%-- <c:forEach var="notice" items="${noticeList }" begin="1" end="5" varStatus="vs"> --%>
-							<c:forEach begin="1" end="5">
-							<tr>
-								<td>1</td>
-								<td>admin</td>
+							<c:forEach begin="1" end="5" varStatus="vs">
+							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/customService.do'">
+								<td>${vs.count }</td>
 								<td><a href="#">2018-03-21 patch.</a></td>
 								<td>2018-03-21</td>
 							</tr>
@@ -218,9 +193,9 @@ pageEncoding="UTF-8"%>
 						</thead>
 						<tbody>
 							<%-- <c:forEach var="qna" items="${qnaList }" begin="1" end="5" varStatus="vs"> --%>
-							<c:forEach begin="1" end="5">
-							<tr>
-								<td>1</td>
+							<c:forEach begin="1" end="5" varStatus="vs">
+							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/customService.do'">
+								<td>${vs.count }</td>
 								<td>hwang3324</td>
 								<td><a href="#">배달비 인상</a></td>
 								<td>2019-01-29</td>

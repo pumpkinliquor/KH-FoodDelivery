@@ -15,20 +15,18 @@ pageEncoding="UTF-8"%>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<table class="table table-bordered table-hover">
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>번호</th>
-						<th>작성자</th>
 						<th>제목</th>
 						<th>날짜</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach begin="1" end="20" varStatus="vs">
-						<tr>
+					<c:forEach begin="1" end="10" varStatus="vs">
+						<tr style="cursor:pointer;" onclick="location.href='${path}/owner/myOneVSone'">
 							<td>${vs.count }</td>
-							<td>hwang3324</td>
 							<td><a href="#">어떻게 수정 요청하나요?</a></td>
 							<td>2019-02-27</td>
 						</tr>

@@ -21,8 +21,10 @@ footer p 	{margin-top:30px;}
 
 
 /* 헤더   11 */
-
-   .newsletter  {
+td{
+	cursor:pointer;
+}
+.newsletter  {
 background-color: #4D4D4D;
 height: 200px;
 }
