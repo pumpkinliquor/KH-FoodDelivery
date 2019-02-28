@@ -66,12 +66,9 @@
 
 
 		<button type="button" class="btn btn-light float-right"
-			onclick="location.href='${path}/notice/noticeForm.do'">글쓰기</button>
+			onclick="location.href='${path}/admin/noticeForm.do'">글쓰기</button>
 
 
-		<!-- </div>
-
-		<div class="col-md-2"></div> -->
 	</div>
 
 
