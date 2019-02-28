@@ -32,4 +32,10 @@ public class OnevsOneController {
 		return mv;
 	}
 	
+	@RequestMapping("/owner/oneVSoneView.do")
+	public ModelAndView oneVSoneView(ModelAndView mv) {
+		mv.setViewName("owner/oneVSoneView");
+		return mv;
+	}
+	
 }

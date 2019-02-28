@@ -14,22 +14,8 @@ public class OwnerMemberDaoImpl implements OwnerMemberDao {
 	
 	@Override
 	public int insertOwner(Owner o) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return sqlSession.insert("ownerMember.insertOwner",o);
 	}
 
-	@Override
-	public int createAuthKey(String ownerEmail, String key) {
-		// TODO Auto-generated method stub
-		Owner o = new Owner();
-		/*o.setUser_authCode(user_authCode);*/
-		o.setOwnerEmail(ownerEmail);
-
-		int result = sqlSession.selectOne("owner.createAuthKey", o);
-		
-		return result;
-	}
-
-	
-	
 }

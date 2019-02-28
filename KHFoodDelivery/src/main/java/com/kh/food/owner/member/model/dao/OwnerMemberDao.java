@@ -6,6 +6,4 @@ public interface OwnerMemberDao {
 
 	int insertOwner(Owner o);
 
-	int createAuthKey(String ownerEmail, String key);
-
 }
