@@ -12,35 +12,6 @@
 		color: rgba(255, 255, 255, .5);
 	}
 </style>
-<div class="container">	
-	<div>
-		<h4>입점 신청 현황</h4>
-	</div>
-	<div>
-		<table class="table table-hover">
-			<thead id="tableHead">
-				<tr>			
-					<th>업종</th>
-					<th>점포명</th>
-					<th>점주명</th>
-					<th>주소</th>
-					<th>입점 신청일</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach begin="1" end="5">
-					<tr>
-						<td onclick="fn_modal()">치킨</td>
-						<td onclick="fn_modal()">배민</td>
-						<td onclick="fn_modal()">주홍범</td>
-						<td onclick="fn_modal()">서울특별시 강남구 역삼동</td>
-						<td onclick="fn_modal()">2019-02-26</td> 
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
-</div>
 
 <script>
 	function fn_modal(){
@@ -51,6 +22,46 @@
 	}
 </script>
 
+<section>
+	<div class="container">	
+		<div>
+			<h4>입점 신청 현황</h4>
+		</div>
+		<div>
+			<table class="table table-hover">
+				<thead id="tableHead">
+					<tr>			
+						<th>업종</th>
+						<th>점포명</th>
+						<th>점주명</th>
+						<th>주소</th>
+						<th>입점 신청일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach begin="1" end="5">
+						<tr>
+							<td onclick="fn_modal()">치킨</td>
+							<td onclick="fn_modal()">배민</td>
+							<td onclick="fn_modal()">주홍범</td>
+							<td onclick="fn_modal()">서울특별시 강남구 역삼동</td>
+							<td onclick="fn_modal()">2019-02-26</td> 
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+
+
+<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+
+
+
+
+
+<!-- 모달 구현 -->
 <div class="modal" id="storeModal" role="dialog">
 	<div class="modal-dialog">
 		<!-- Modal content-->
@@ -104,5 +115,3 @@
 		</div>  
 	</div>
 </div>
-
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
