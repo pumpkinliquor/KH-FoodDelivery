@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Map {
 	
 	
-	@RequestMapping("/map/test.do")
+	@RequestMapping("/cutomer/main.do")
 	public String admainMainView() {
 		return "customer/main";
 	}
@@ -16,6 +16,12 @@ public class Map {
 	public String login()
 	{
 		return "customer/login";
+	}
+	
+	@RequestMapping("/map/test.do")
+	public String map()
+	{
+		return "customer/test";
 	}
 
 }

@@ -13,13 +13,39 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css" />
+
+
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+
 <header>
+   <script>
+  		 $(document).ready(function () {
+   			$("#positionBtn").click(function(){
+                function getLocation() {
+                    if (navigator.geolocation) { // GPS를 지원하면
+                      navigator.geolocation.getCurrentPosition(function(position) {
+                        alert("현재위치:   위도 : "+position.coords.latitude + " 경도: " + position.coords.longitude);
+                      }, function(error) {
+                        console.error(error);
+                      }, {
+                        enableHighAccuracy: false,
+                        maximumAge: 0,
+                        timeout: Infinity
+                      });
+                    } else {
+                      alert('GPS를 지원하지 않습니다');
+                    }
+                  }
+                  getLocation();	
+   			});
+   });
+   </script>
         <div class="newsletter">
               <div class="headerDiv1">
                     <a href="${path }/customer/login.do/">로그인</a>
@@ -35,7 +61,7 @@
                 <div class="col-sm-12">
                     <div class="content">
                     <div class="input-group">
-                         <button id="positionBtn" onclik=""><img id="locationImg" src="${path }/resources/images/place.png"></button>
+                         <button id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
                          <input type="text" class="form-control" placeholder="주소를 입력해주세요">
                          <span class="input-group-btn">
                          <button class="btn" type="submit">검색</button>
