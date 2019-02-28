@@ -5,7 +5,7 @@
 	
 	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>   
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+ <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>  
 
 
  <jsp:include page="/WEB-INF/views/common/header.jsp"> 
@@ -19,7 +19,7 @@ div.main a{text-decoration:none; color:black;}
 img.i{max-width:100%; max-height: 100%; margin-bottom:-9.9305px;margin-left:14%;vertical-align: middle;}
 div.main{text-align:center;}
 
-  div.container{margin-bottom:8%;/* box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.8); */}
+  div.container{margin-bottom:4%;/* box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.8); */}
 
 
 
