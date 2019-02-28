@@ -14,7 +14,7 @@
 	<a href="${path }/admin/noticeForm.do">공지사항등록</a>
 	<a href="${path }/admin/memberList.do">멤버리스트</a>
 	<a href="${path }/admin/appStoreList.do">입점 신청 현황</a> --%>
-	<a href="${path }/customer/main.do">메인구현</a>
+	<a href="${path }/cutomer/main.do">메인구현</a> 
 	<a href="${path }/map/test.do">지도 테스트</a>
 	</div>
 </section>

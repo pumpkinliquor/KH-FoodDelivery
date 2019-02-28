@@ -1,37 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>   
-	
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-<section>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+<jsp:include page="/WEB-INF/views/common/header.jsp">
+	<jsp:param value="" name="pageTitle" />
+</jsp:include>
 
-<div id="content"></div>
-<script>
-    var lon = 37.4923615;
-    var lat = 127.02928809999999;
-    function test(){
-		$.ajax({
-    url: 'https://apis.daum.net/local/geo/coord2addr?apikey=feed05c2d7c3c51d07205126e0f9d71b=' + lon + '&latitude=' + lat + '&inputCoordSystem=WGS84&output=json',
-    type: 'GET',
-    cache: false,
-    context: {},
-    crossOrigin: true,
-    success: function(data) {
-        var jsonObj = $.parseJSON(data);
-        var contentText = document.getElementById('content');
-            contentText.innerHTML += "<br>동네 이름 : " + jsonObj.name + " / 전체 주소 : " + jsonObj.fullName + " / 나라 : " + jsonObj.name0;
-    },error:function(request,status,error){
-        alert("다시 시도해주세요.\n" + "code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-    }
-});
-    }
 
-</script>
-</section>
+
+<body>
+
+<!-- 	 <div id="map" style="width:500px;height:400px;"></div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c"></script> -->
+
+ <script>
  
+ 
+/*  $(document).ready(function () {
+		$("#Btn").click(function(){
+    function getLocation() {
+        if (navigator.geolocation) { // GPS를 지원하면
+          navigator.geolocation.getCurrentPosition(function(position) {
+            alert("현재위치:   위도 : "+position.coords.latitude + " 경도: " + position.coords.longitude);
 
+    		var container = document.getElementById('map');
+    		var options = {
+    			center: new daum.maps.LatLng(position.coords.latitude, position.coords.longitude),
+    			level: 2
+    		};
+
+    		var map = new daum.maps.Map(container, options);
+          }, function(error) {
+            console.error(error);
+          }, {
+            enableHighAccuracy: true,
+            maximumAge: 0,
+            timeout: Infinity
+          });
+        } else {
+          alert('GPS를 지원하지 않습니다');
+        }
+      }
+      getLocation();	
+		});
+}); */
+ 
+	</script>
+	
+	 
+
+
+
+
+
+
+</body>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

@@ -9,7 +9,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -17,34 +17,43 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css" />
 
 
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
 <header>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c"></script>
    <script>
-  		 $(document).ready(function () {
-   			$("#positionBtn").click(function(){
-                function getLocation() {
-                    if (navigator.geolocation) { // GPS를 지원하면
-                      navigator.geolocation.getCurrentPosition(function(position) {
-                        alert("현재위치:   위도 : "+position.coords.latitude + " 경도: " + position.coords.longitude);
-                      }, function(error) {
-                        console.error(error);
-                      }, {
-                        enableHighAccuracy: false,
-                        maximumAge: 0,
-                        timeout: Infinity
-                      });
-                    } else {
-                      alert('GPS를 지원하지 않습니다');
-                    }
-                  }
-                  getLocation();	
-   			});
-   });
+   $(document).ready(function () {
+		$("#positionBtn").click(function(){
+  			 function getLocation() {
+			       if (navigator.geolocation) { // GPS를 지원하면
+			           navigator.geolocation.getCurrentPosition(function(position) {
+			           alert("현재위치:   위도 : "+position.coords.latitude + " 경도: " + position.coords.longitude);
+			
+					   		var container = document.getElementById('map');
+					   		var options = {
+					   			center: new daum.maps.LatLng(position.coords.latitude, position.coords.longitude),
+					   			level: 2
+					   		};
+			
+			   					var map = new daum.maps.Map(container, options);
+				         }, function(error) {
+				           console.error(error);
+				         }, {
+				           enableHighAccuracy: true,
+				           maximumAge: 0,
+				           timeout: Infinity
+				         });
+			       } else {
+			         alert('GPS를 지원하지 않습니다');
+			       }
+			     }
+			     getLocation();	
+		});
+});
    </script>
         <div class="newsletter">
               <div class="headerDiv1">
@@ -65,6 +74,7 @@
                          <input type="text" class="form-control" placeholder="주소를 입력해주세요">
                          <span class="input-group-btn">
                          <button class="btn" type="submit">검색</button>
+
                          </span>
                     </div>
                     </div>
@@ -73,5 +83,6 @@
                 </div>
                 </div>
        </div>
+                         	 <div id="map" style="width:300px;height:300px;"></div>
  
 </header>
