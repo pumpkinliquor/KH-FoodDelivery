@@ -4,4 +4,12 @@
 	<insert id="insertOwner" parameterType="ownermember">
 		insert into owner values(SEQ_OWNERNUM.nextval , #{ownerId},#{ownerPw},#{ownerName},#{ownerPhone},#{ownerEmail},sysdate)
 	</insert>
+	
+	<select id="selectLogin" parameterType="string" resultType="ownermember">
+		select * from owner where ownerid = #{ownerId}
+	</select>
+	
+	<select id="selectSearchId" parameterType="map" resultType="map">
+		select * from owner where ownername = #{ownerName} and ownerEmail = #{ownerEmail}
+	</select>
 </mapper>

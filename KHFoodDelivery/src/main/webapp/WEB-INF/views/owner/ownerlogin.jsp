@@ -11,7 +11,9 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-<jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/ownerHeader.jsp">
+ 	<jsp:param value="사장님 로그인" name="pageTitle"/>
+</jsp:include>
 <style>
 /*  로그인 */ 
 
@@ -99,12 +101,12 @@ font-size: 20px;
                 <div class="row">
                    <div class="col-md-4 mx-auto">
                       <div class="myform form ">
-                         <form action="" method="post" name="login">
+                         <form action="${path }/login/loginEnd.do" method="post" name="login">
                             <div class="form-group">
-                               <input type="text" name="id"  class="form-control my-input" id="name" placeholder="id" required="required">
+                               <input type="text" name="ownerId"  class="form-control my-input" id="ownerId" placeholder="id" required="required">
                             </div>
                             <div class="form-group">
-                               <input type="password" name="password"  class="form-control my-input" id="password" placeholder="password" required="required">
+                               <input type="password" name="ownerPw"  class="form-control my-input" id="ownerPw" placeholder="password" required="required">
                             </div>
                             <div class="text-center loginDiv_1">
                                <button type="submit" class=" btn btn-block send-button tx-tfm">로그인</button>

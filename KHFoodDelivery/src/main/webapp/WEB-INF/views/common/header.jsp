@@ -57,9 +57,10 @@
    </script>
         <div class="newsletter">
               <div class="headerDiv1">
-                    <a href="${path }/customer/login.do/">로그인</a>
+                    <a href="${path }/customer/login.do/">로그인</a>        
                     <a href="#">회원가입</a>
-            </div>
+              		<a href="#">로그아웃</a>
+              </div>
                 <div id="container">             
                 <div class="row" style="margin:0;">           
                 <div class="col-sm-12 headerDiv2">
