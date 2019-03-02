@@ -11,7 +11,9 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-<jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/ownerHeader.jsp">
+	 	<jsp:param value="사장님 아이디찾기" name="pageTitle"/>
+</jsp:include>
 
 <section>
     <div class="container">
@@ -25,12 +27,12 @@ pageEncoding="UTF-8"%>
                 <div class="row">
                    <div class="col-md-4 mx-auto">
                       <div class="myform form ">
-                         <form action="${path }/owner/ownerSearchId.do" method="post" name="login">
+                         <form action="${path }/owner/ownerSearchIdEnd.do" method="post" name="login">
                             <div class="form-group">
-                               <input type="text" name="id"  class="form-control my-input" id="name" placeholder="이름">
+                               <input type="text" name="ownerName"  class="form-control my-input" id="ownerName" placeholder="이름">
                             </div>
                             <div class="form-group">
-                               <input type="email" name="email"  class="form-control my-input" id="email" placeholder="email">
+                               <input type="email" name="ownerEmail"  class="form-control my-input" id="email" placeholder="email">
                             </div>
                             <div class="text-center loginDiv_1">
                                <button type="submit" class=" btn btn-block send-button tx-tfm">찾기</button>
