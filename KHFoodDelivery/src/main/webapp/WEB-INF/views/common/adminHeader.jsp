@@ -26,8 +26,12 @@
 				<li class="nav-item" style="margin-left:-20px;font-size:30px">
 					<a class="nav-link" href="${path }/admin/adminMain.do">관리자페이지</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="${path }/admin/noticeList.do">공지사항</a>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">공지사항</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="${path }/admin/memberNoticeList.do">회원 공지사항</a>
+						<a class="dropdown-item" href="${path }/admin/ownerNoticeList.do">사장님 공지사항</a>
+					</div>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="${path }/admin/memberList.do">멤버 리스트</a>

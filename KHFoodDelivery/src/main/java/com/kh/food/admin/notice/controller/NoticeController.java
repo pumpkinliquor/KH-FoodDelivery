@@ -13,9 +13,16 @@ public class NoticeController {
 	@Autowired
 	NoticeService service;
 	
-	@RequestMapping("/admin/noticeList.do")
-	public String noticeService() {
-		return "admin/noticeList";
+	
+	  @RequestMapping("/admin/memberNoticeList.do") 
+	  public String memberNoticeList() { 
+		  return "admin/memberNoticeList"; 
+		  }
+	 
+	
+	@RequestMapping("/admin/ownerNoticeList.do")
+	public String ownerNoticeList() {
+		return "admin/ownerNoticeList";
 	}
 	
 	@RequestMapping("/admin/noticeForm.do")
@@ -23,19 +30,19 @@ public class NoticeController {
 		return "admin/noticeForm";
 	}
 	
-	@RequestMapping("/admin/memberList.do")
-	public String memberList() {
-		return "admin/memberList";
-	}
+	/*
+	 * @RequestMapping("/admin/memberList.do") public String memberList() { return
+	 * "admin/memberList"; }
+	 */
 	
 	@RequestMapping("/admin/noticeView.do")
 	public String noticeView() {
-		return "/admin/noticeView";
+		return "admin/noticeView";
 	}
 	
 	@RequestMapping("admin/noticeUpdateForm.do")
 	public String noticeUpdateForm() {
-		return "/admin/noticeUpdateForm";
+		return "admin/noticeUpdateForm";
 	}
 	
 }
