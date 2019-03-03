@@ -15,12 +15,31 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Ostyle.css" />
+<style>
+  .headerDiv2{
+  	width:100%;
+  	z-index: 9;
+  }
+</style>
+<script>
 
-
+	$(function(){
+		$(window).scroll(function(){
+			var num = $(this).scrollTop();
+		
+			if(num > 107){
+				$(".headerDiv2").css("position","fixed");
+			}else{
+			/* 	$(".headerDiv2").css("position","absolute"); */
+			}
+		});
+	});
+</script>
 
 </head>
  <body>
 	<header>
+<div class="headerDiv2">
     <div class="headerDiv1">
     	<c:if test="${sessionScope.ownerId == null}">
           <a href="${path }/owner/login.do">로그인</a>
@@ -34,7 +53,7 @@
   
   
   
-      <nav class="navbar navbar-expand-sm  navbar-dark ">
+      <nav class="navbar navbar-expand-sm  navbar-dark ownerNav">
   
     <!-- Links -->
     <ul class="navbar-nav container ">
@@ -67,5 +86,5 @@
       </li>
     </ul>
   </nav>
- 
+ </div>
 </header>
