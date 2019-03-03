@@ -17,7 +17,6 @@ public class MemberListServiceImpl implements MemberListService {
 	@Override
 	public List<Map<String,String>> selectListMember()
 	{
-	System.out.println("서비스");
 	return dao.selectListMember();
 	}
 }

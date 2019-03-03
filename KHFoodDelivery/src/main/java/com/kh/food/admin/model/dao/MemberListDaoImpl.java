@@ -14,8 +14,6 @@ public class MemberListDaoImpl implements MemberListDao {
 	SqlSessionTemplate sqlSession;
 	
 	public List<Map<String,String>> selectListMember(){
-		
-	System.out.println("쿼리문직전");
 	return sqlSession.selectList("admin.selectListMember");
 	}
 }

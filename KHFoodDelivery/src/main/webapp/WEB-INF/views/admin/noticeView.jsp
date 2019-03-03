@@ -32,15 +32,15 @@ background-color: transparent;
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-10">
-				<h4>제목제목제목제목제목제목</h4>
+				<h4>${notice.NOTICETITLE }</h4>
 			</div>
 			<div class="col-sm-2">		
 			</div>
 			<div class="col-sm-1">
-				<p>글번호 <b>1</b></p>
+				<p>글 번호 <b>${notice.NOTICENUM }</b></p>
 			</div>
 			<div class="col-sm-3">
-				<p>2019-02-28 11:15:28</p>
+				<p>${notice.WRITEDATE }</p>
 			</div>
 			<div class="col-sm-2">
 			</div>
@@ -56,10 +56,7 @@ background-color: transparent;
 		<br/>	
 		<div class="row">			
 			<div class="col-sm-12">
-				아아ㅏ앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ아아아아아ㅏ앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ아아아아아ㅏ앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ아아아
-					아아ㅏ앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ아아아아아ㅏ앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇdddddddddddddddddddddddㅇㅇㅇ아아아
-						아아ㅏ앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ아아아아아ㅏ앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ아아아아아ㅏ앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ아아아
-					아아ㅏ앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ아아아아아ㅏ앙ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇdddddddddddddddddddddddㅇㅇㅇ아아아
+				${notice.NOTICECONTENT}
 			</div>
 			<div class="col-sm-2"></div>
 		</div>

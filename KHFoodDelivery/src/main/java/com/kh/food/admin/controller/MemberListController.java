@@ -26,12 +26,9 @@ public class MemberListController {
 	  @RequestMapping("/admin/memberList.do")
 	  public ModelAndView memberList() {
 	  ModelAndView mv=new ModelAndView();
-	  logger.debug("리스트야?");
 	  List<Map<String,String>> list=service.selectListMember();
-	  logger.debug("리스트들어와");
 	  mv.addObject("list",list);
 	  mv.setViewName("admin/memberList"); 
-	  logger.debug(list+"리스트");
 	  return mv; 
 	  }
 	 

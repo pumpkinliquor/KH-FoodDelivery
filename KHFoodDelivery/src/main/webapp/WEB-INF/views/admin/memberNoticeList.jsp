@@ -51,15 +51,17 @@ function fn_noticeView(){
 
             </tr>
          </thead>
+          <c:forEach items="${list }"  var="mn" >
          <tbody>
             <tr class="pnt" onclick="fn_noticeView()">
-               <td >1</td>
-               <td id="noticeTitleTd">안녕ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ</td>
-               <td>19.02.23</td>
+               <td >${mn.NOTICENUM }</td>
+               <td id="noticeTitleTd">${mn.NOTICETITLE}</td>
+               <td>${mn.WRITEDATE}</td>
 
             </tr>
 
          </tbody>
+         </c:forEach>
       </table>
 
 
