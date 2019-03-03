@@ -25,6 +25,8 @@ footer p 	{margin-top:30px;}
  .newsletter  {
 background-color: #4D4D4D;
 height: 200px;
+width:100%;
+z-index: 9;
 }
 .newsletter .content {
 max-width: 650px;

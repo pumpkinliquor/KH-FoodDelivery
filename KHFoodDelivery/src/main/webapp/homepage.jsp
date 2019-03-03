@@ -5,7 +5,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-<section>
+<style>
+#main{
+	height:1500px;
+}
+</style>
+<section id="main">
 	<div class="container">
 	<a href="${path }/owner/customService.do">고객센터</a>
 	<a href="${path }/owner/storeForm.do">업체등록</a>
