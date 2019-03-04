@@ -121,7 +121,7 @@ font-size: 20px;
                                </div>
                             </div>
                             <div class="form-group">
-                               <a class="btn btn-block g-button" href="#">
+                               <a class="btn btn-block g-button" href="${path}/member/memberEnroll.do">
                                <i class="fa fa-google"></i>회원가입
                                </a>
                             </div>

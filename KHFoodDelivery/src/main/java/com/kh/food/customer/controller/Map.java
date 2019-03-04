@@ -1,11 +1,17 @@
 package com.kh.food.customer.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.kh.food.customer.member.model.vo.Member;
 
 @Controller
 public class Map {
 	
+
 	
 	@RequestMapping("/cutomer/main.do")
 	public String MainView() {
@@ -23,5 +29,7 @@ public class Map {
 	{
 		return "customer/test";
 	}
+	
+	
 
 }
