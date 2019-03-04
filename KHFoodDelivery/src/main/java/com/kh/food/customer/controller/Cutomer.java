@@ -4,9 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class Map {
+public class Cutomer {
 	
-
 	
 	@RequestMapping("/cutomer/main.do")
 	public String MainView() {
@@ -24,6 +23,5 @@ public class Map {
 	{
 		return "customer/test";
 	}
-	
 
 }

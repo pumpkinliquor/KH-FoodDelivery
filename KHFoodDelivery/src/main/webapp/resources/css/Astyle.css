@@ -112,3 +112,114 @@ h2{
 font-size: 20px;
 } */
 }
+
+
+
+/* 정빈 memberList */
+.pnt {
+	cursor: pointer;
+}
+
+img#memListProfile {
+	border-radius: 150px;
+	width: 50px;
+	height: 50px;
+}
+
+button#memListDelBtn {
+	background-color: transparent;
+	border-color: transparent;
+}
+
+img.memberListDelImg {
+	width: 25px;
+	height: 25px;
+}
+
+
+h4#memberListTitle {
+	display: inline;
+}
+
+div#btn-category {
+	float: right;
+}
+
+div#memberList {
+	margin-top: 15px;
+}
+
+thead#tableHead {
+	background-color: #4D4D4D;
+	color: rgba(255, 255, 255, .5);
+}
+
+/* 정빈ownerList */
+img#ownListProfile {
+	border-radius: 150px;
+	width: 50px;
+	height: 50px;
+}
+
+button#ownerDelBtn {
+	background-color: transparent;
+	border-color: transparent;
+}
+
+img.ownerListDelImg {
+	width: 25px;
+	height: 25px;
+}
+
+
+h4#ownerListTitle {
+	display: inline;
+}
+
+div#ownerList {
+	margin-top: 15px;
+}
+
+
+/* 정빈 memberNoticeList, ownerNoticeList */
+#noticeTitleTd{
+   width:800px;
+}
+#topTable {
+   background-color: #4D4D4D;
+   color: rgba(255, 255, 255, .5);
+}
+
+#noticeListCount {
+   float: left;
+}
+
+#noticeListCount2 {
+   color: red;
+   float: left;
+}
+.pnt{
+   cursor:pointer;
+}
+
+
+/* 정빈 noticeView */
+#noticeViewDate {
+	color: #898989;
+}
+
+button#noticeCancelkBtn{
+	background-color: transparent;
+	border-color: transparent;
+}
+
+button#noticeUpBtn{
+background-color: transparent;
+	border-color: transparent;
+}
+
+button#noticeListBtn{
+background-color: transparent;
+	border-color: transparent;
+}
+

@@ -16,4 +16,11 @@ public class MemberListDaoImpl implements MemberListDao {
 	public List<Map<String,String>> selectListMember(){
 	return sqlSession.selectList("admin.selectListMember");
 	}
+
+	@Override
+	public List<Map<String, String>> selectListOwner() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("admin.selectListOwner");
+	}
+	
 }

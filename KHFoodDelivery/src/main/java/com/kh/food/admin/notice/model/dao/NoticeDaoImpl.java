@@ -26,11 +26,13 @@ public class NoticeDaoImpl implements NoticeDao {
 	@Override
 	public Map<String, String> selectMemberNotice(int noticeNum) {
 		// TODO Auto-generated method stub
-		System.out.println("dao접근");
 		return sqlSession.selectOne("admin.selectMemberNotice",noticeNum);
 	}
 
-	
+	@Override
+	public List<Map<String, String>> ownerNoticeList() {
+		return sqlSession.selectList("ownerMember.ownerNoticeList");
+	}
 	
 	
 }

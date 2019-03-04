@@ -52,12 +52,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach begin="1" end="20" varStatus="vs">
+					<c:forEach var="one" items="${oneVSoneList }" varStatus="vs">
 						<tr style="cursor:pointer;" onclick="location.href='${path}/owner/oneVSoneList.do'">
 							<td>${vs.count }</td>
-							<td>hwang3324</td>
-							<td><a href="#">어떻게 수정 요청하나요?</a></td>
-							<td>2019-02-27</td>
+							<td>${one.OWNERID }</td>
+							<td><a href="#">${one.QNATITLE }</a></td>
+							<td>${one.WRITEDATE }</td>
 						</tr>
 					</c:forEach>
 				</tbody>

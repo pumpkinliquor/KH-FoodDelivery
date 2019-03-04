@@ -9,5 +9,7 @@ public interface OwnerMemberDao {
 	int insertOwner(Owner o);
 	Owner selectLogin(String ownerId);
 	Map<String, String> selectSearchId(Map<String, String> map);
+	Map<String, String> selectConfirmIdEmail(Map<String, String> map);
+	int updateTempPw(Map<String, String> map);
 	
 }

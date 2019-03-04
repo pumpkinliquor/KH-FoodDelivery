@@ -22,7 +22,7 @@ public class MemberListController {
 	  MemberListService service;
 	  
 	  
-	  
+	  //회원리스트
 	  @RequestMapping("/admin/memberList.do")
 	  public ModelAndView memberList() {
 	  ModelAndView mv=new ModelAndView();
@@ -33,5 +33,14 @@ public class MemberListController {
 	  }
 	 
 	
-
+	  //사장님리스트
+	  @RequestMapping("/admin/ownerList.do")
+	  public ModelAndView ownerList() {
+		 ModelAndView mv=new ModelAndView();
+		 List<Map<String,String>> list=service.selectListOwner();
+		 mv.addObject("list",list);
+		 mv.setViewName("admin/ownerList");
+		 return mv;
+	  }
+	  
 }
