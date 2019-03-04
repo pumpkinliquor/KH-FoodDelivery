@@ -10,22 +10,16 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-10">
-				<h4>어떻게 수정 요청하나요?</h4>
+				<h4>${views.QNATITLE }</h4>
 			</div>
 			<div class="col-sm-2">
 				<button>목록으로</button>				
 			</div>
 			<div class="col-sm-2">
-				<p>작성자 <b>hwang3324</b></p>
+				<p>작성자 <b>${views.OWNERID }</b></p>
 			</div>
-			<div class="col-sm-2">
-				<p>2019-02-28 12:14</p>
-			</div>
-			<div class="col-sm-2">
-				<p>조회 12회</p>
-			</div>
-			<div class="col-sm-2">
-				<p>댓글 12건</p>
+			<div class="col-sm-6">
+				<p>${views.WRITEDATE }</p>
 			</div>
 			<div class="col-sm-2"></div>
 			<div class="col-sm-2">
@@ -36,8 +30,7 @@
 		<br/>	
 		<div class="row">			
 			<div class="col-sm-12">
-				궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요
-				궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요궁금해요
+				${views.QNACONTENT }
 			</div>
 			<div class="col-sm-2"></div>
 		</div>

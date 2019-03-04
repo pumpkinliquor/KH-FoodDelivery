@@ -2,6 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="oneVSone">
 	<select id="oneVSoneList" resultType="map">
-		SELECT A.*, B.* FROM OWNER_QNA A INNER JOIN OWNER B ON A.BUSINESSCODE=B.OWNERNUM ORDER BY WRITEDATE DESC
+		SELECT A.*, B.* FROM OWNER_QNA A INNER JOIN OWNER B ON A.OWNERNUM=B.OWNERNUM ORDER BY WRITEDATE DESC
 	</select>
+	
+	<select id="myQnaList" parameterType="string" resultType="map">
+		SELECT A.*, B.* FROM OWNER_QNA A INNER JOIN OWNER B ON A.OWNERNUM=B.OWNERNUM WHERE OWNERID=#{ownerId}
+	</select>
+	
+	<select id="oneVSoneView" parameterType="_int" resultType="map">
+		SELECT * FROM OWNER_QNA A INNER JOIN OWNER B ON A.OWNERNUM=B.OWNERNUM WHERE QNACODE=#{qnaCode}
+	</select>
+	
+	<select id="selectOwnerForm" parameterType="string" resultType="_int">
+		SELECT A.OWNERNUM FROM OWNER_QNA A INNER JOIN OWNER B ON A.OWNERNUM=B.OWNERNUM WHERE OWNERID=#{ownerId}
+	</select>
+	
+	<insert id="insertQna" parameterType="ownerqna">
+		INSERT INTO OWNER_QNA VALUES(SEQ_O_QNACODE.NEXTVAL,#{ownerNum},SYSDATE, #{origianlFileName}, #{reNamedFileName}, #{qnaContent}, #{qnaTitle})
+	</insert>
 </mapper>
