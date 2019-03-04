@@ -13,6 +13,10 @@
 		select * from owner where ownername = #{ownerName} and ownerEmail = #{ownerEmail}
 	</select>
 	
+	<select id="ownerNoticeList" resultType="map">
+		SELECT * FROM NOTICE ORDER BY WRITEDATE DESC
+	</select>
+	
 	<select id="selectConfirmIdEmail" resultType="map" parameterType="map">
 		select * from owner where ownerId = #{ownerId} and ownerEmail = #{ownerEmail}
 	</select>

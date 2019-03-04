@@ -36,8 +36,8 @@ pageEncoding="UTF-8"%>
 
 
 	<div class="container">
-		<div>
-			<h4>사장님 공지사항</h4>
+		<div style="text-align:center;">
+			<a href="#"><h2>사장님 공지사항</h2></a>
 		</div>
 
 		<table class="table table-hover board">
@@ -50,11 +50,11 @@ pageEncoding="UTF-8"%>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach begin="1" end="10" varStatus="vs">
+				<c:forEach var="owner" items="${ownerNoticeList }" varStatus="vs">
 				<tr style="cursor:pointer;" onclick="location.href='${path}/owner/noticeList.do'">
 					<td>${vs.count }</td>
-					<td><a href="#">첫공지사항!</a></td>
-					<td>19.02.23</td>
+					<td><a href="#">${owner.NOTICETITLE }</a></td>
+					<td>${owner.WRITEDATE }</td>
 				</tr>
 				</c:forEach>
 			</tbody>

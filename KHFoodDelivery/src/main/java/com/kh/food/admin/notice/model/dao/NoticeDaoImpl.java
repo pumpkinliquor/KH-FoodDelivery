@@ -29,7 +29,10 @@ public class NoticeDaoImpl implements NoticeDao {
 		return sqlSession.selectOne("admin.selectMemberNotice",noticeNum);
 	}
 
-	
+	@Override
+	public List<Map<String, String>> ownerNoticeList() {
+		return sqlSession.selectList("ownerMember.ownerNoticeList");
+	}
 	
 	
 }
