@@ -29,9 +29,20 @@
 }
 </style> -->
 <script>
-function fn_noticeView(){
+/* function fn_noticeView(e){
+	var id = e.attr(id);
+	console.log("id"+id);
 	location.href="${path}/admin/noticeView.do?noticeNum=${mn.NOTICENUM}";
-}
+} */
+
+/* function fn_noticeView(${mn.NOTICENUM})
+{
+	location.href="${path}/admin/noticeView.do?noticeNum="+${mn.NOTICENUM};
+	} */
+	
+	/* $("#mnTarget").click(function(){
+		location.href="${path}/admin/noticeView.do?noticeNum="+${mn.NOTICENUM};
+	}); */
 </script>
 <body>
 
@@ -54,9 +65,10 @@ function fn_noticeView(){
          </thead>
           <c:forEach items="${list }"  var="mn" >
          <tbody>
-            <tr class="pnt" id="${mn.NOTICENUM}" onclick="fn_noticeView()">
+           <%--  <tr class="pnt" id="mnTarget" onclick="fn_noticeView(${mn.NOTICENUM});"> --%>
+              <tr>
                <td>${mn.NOTICENUM }</td>
-               <td id="noticeTitleTd">${mn.NOTICETITLE}</td>
+               <td id="noticeTitleTd"><a href="${path}/admin/noticeView.do?noticeNum=${mn.NOTICENUM}">${mn.NOTICETITLE}</a></td>
                <td>${mn.WRITEDATE}</td>
             </tr>
 
@@ -79,9 +91,6 @@ function fn_noticeView(){
 <!------ Include the above in your HEAD tag ---------->
 
 
-   
-   <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-   
-</html>
+
 
    <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

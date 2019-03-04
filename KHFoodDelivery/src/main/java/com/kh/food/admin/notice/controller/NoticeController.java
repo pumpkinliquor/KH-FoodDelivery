@@ -45,11 +45,8 @@ public class NoticeController {
 	@RequestMapping("/admin/noticeView.do")
 	public ModelAndView noticeView(int noticeNum) {
 		ModelAndView mv=new ModelAndView();
-		logger.debug("ggggggggg"+String.valueOf(noticeNum));
-		System.out.println("con접근");
 		Map<String,String> map=service.selectMemberNotice(noticeNum);
 		mv.addObject("notice",map);
-		System.out.println(map +"맵");
 		mv.setViewName("admin/noticeView");
 		return mv;
 	}
@@ -59,5 +56,21 @@ public class NoticeController {
 		
 		return "admin/noticeUpdateForm";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//사장님 공지사항 리스트
 	
 }
