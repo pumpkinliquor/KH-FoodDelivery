@@ -12,4 +12,8 @@
 	<select id="selectSearchId" parameterType="map" resultType="map">
 		select * from owner where ownername = #{ownerName} and ownerEmail = #{ownerEmail}
 	</select>
+	
+	<select id="ownerNoticeList" resultType="map">
+		SELECT * FROM NOTICE ORDER BY WRITEDATE DESC
+	</select>
 </mapper>
