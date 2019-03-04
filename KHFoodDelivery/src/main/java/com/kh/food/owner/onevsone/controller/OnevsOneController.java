@@ -44,7 +44,7 @@ public class OnevsOneController {
 		
 		mv.addObject("ownerNum", ownerNum);
 		
-		System.out.println(ownerNum);
+//		System.out.println(ownerNum);
 		
 		mv.setViewName("owner/oneVSoneForm");
 		

@@ -30,8 +30,10 @@ function validate(){
 			    <tbody>
 			        	<tr>
 			        		<th>작성자</th>
-			        		<td><input type="text" name="ownerId" class="form-control" value="${sessionScope.ownerId }" required readonly/></td>
-			        		<td><input type="hidden" name="ownerNum" value="${ownerNum }"/></td>
+			        		<td>
+				        		<input type="text" name="ownerId" class="form-control" value="${sessionScope.ownerId }" required readonly/>
+				        		<input type="hidden" name="ownerNum" value="${ownerNum }"/>
+			        		</td>
 			        	</tr>
 			        	<tr>
 			        		<th>분류</th>
