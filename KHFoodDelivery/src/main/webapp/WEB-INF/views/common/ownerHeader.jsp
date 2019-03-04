@@ -64,7 +64,7 @@
         <a class="nav-link" href="${path }">메뉴관리</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${path }">정보수정</a>
+        <a class="nav-link" href="${path }/owner/storeForm.do"">업체등록</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="${path }">업소통계</a>
