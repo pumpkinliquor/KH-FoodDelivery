@@ -7,20 +7,22 @@
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 
 <style>
-	h4#titleText{
-		display: inline;
-	}
-	div#btn-category{
-		float: right;
-	}
-	div#qnaList{
-		margin-top: 15px;
-	}	
-	thead#tableHead {
-	background-color: #4D4D4D;
-	color: rgba(255, 255, 255, .5);
-	}
-	.pnt { cursor: pointer; }
+	h4#titleText{ display: inline; }	
+	div#qnaList{ margin-top: 15px; }
+	thead#tableHead{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); }
+	.pnt{ cursor: pointer; }
+	div#qna-search{ margin-top: 20px; }
+	div#qna-sort{ float: right; }
+	table#qnaTable{ table-layout: fixed; word-wrap: break-word; }
+	table#qnaTable th, table#qnaTable td{ text-align: center; vertical-align: middle; }
+	
+	table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
+	table#table-sort th{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); border: 1px solid #444444; padding: 0; }
+	table#table-sort td{ border: 1px solid #444444; padding: 0; }
+	
+	input[type=checkbox], input[type=radio] {  }
+	input[type=checkbox]:checked, input[type=radio]:checked {background: #ffffff;}
+		
 </style>
 
 <script>
@@ -31,42 +33,76 @@
 
 <section>
 	<div class="container">	
-		<div id="qna-title">
-			<h4 id="titleText">회원 문의 내역</h4>
-			<div class="btn-group" id="btn-category">
-				<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					회원<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-				    <li><a href="#">회원</a></li>
-				    <li><a href="#">주문</a></li>
-				    <li><a href="#">결제</a></li>
-				    <li><a href="#">포인트</a></li>				    
-				    <li><a href="#">리뷰</a></li>
-	  			</ul>
+		<h4 id="titleText">회원 문의 내역 </h4>
+		
+		<div class="row">			
+			<div class="col-sm-6">
+				<div class="input-group" id="qna-search">
+					<form class="form-controll navbar-right" role="search" action="" method="get">
+						<div class="form-group">
+							<div class="input-group">
+								<input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="제목을 입력하세요"/>
+								<span class="input-group-btn">
+									<button type="submit" class="btn btn-default" id="searchBar">검색</button>
+								</span>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>			
+			<div class="col-sm-6">
+				<div id="qna-sort">
+					<form action="" method="get">
+						<table id="table-sort">
+							<tbody>
+								<tr>
+									<th>답변</th>
+									<td><input type="radio" id="radio1" name="radios" value="all" checked/><label for="radio1">전체</label></td>
+									<td><input type="radio" id="radio2" name="radios" value="complete"/><label for="radio2">완료</label></td>
+									<td><input type="radio" id="radio3" name="radios" value="incomplete"/><label for="radio3">대기</label></td>														
+								</tr>
+								<tr>
+									<th>카테고리</th>
+									<td><input type="checkbox" id="chk1" checked/><label for="chk1">전체</label></td>
+									<td><input type="checkbox" id="chk2"/><label for="chk2">결제</label></td>
+									<td><input type="checkbox" id="chk3"/><label for="chk3">회원</label></td>
+									<td><input type="checkbox" id="chk4"/><label for="chk4">주문</label></td>
+									<td><input type="checkbox" id="chk5"/><label for="chk5">포인트</label></td>
+									<td><input type="checkbox" id="chk6"/><label for="chk6">리뷰</label></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>	
 			</div>
-		</div>
-		<div id="qnaList">
-			<table class="table table-hover">
-				<thead id="tableHead">
-					<tr>	
-						<th>번호</th>	
-						<th>제목</th>
-						<th>아이디</th>
-						<th>날짜</th>		
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach begin="1" end="5">
-						<tr class="pnt" onclick="fn_qnaView()">
-							<td>1</td>
-							<td>안녕</td>
-							<td>주홍범</td>
-							<td>2019-02-26</td> 
-						</tr>				
-					</c:forEach>
-				</tbody>
-			</table>
+			</div>
+			
+			
+			<div id="qnaList">
+				<table class="table table-hover" id="qnaTable">
+					<thead id="tableHead">
+						<tr>	
+							<th>카테고리</th>	
+							<th style="width: 60%">제목</th>
+							<th>작성자</th>
+							<th>날짜</th>	
+							<th>답변여부</th>						
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach begin="1" end="5">
+							<tr class="pnt" onclick="fn_qnaView()">
+								<td>결제</td>
+								<td>안녕</td>
+								<td>주홍범</td>
+								<td>2019-02-26</td> 
+								<td><img src="${path }/resources/images/admin/complete.png" width="30px" height="30px"/></td>
+								<%-- <td><img src="${path }/resources/images/admin/incomplete.png" width="30px" height="30px"/></td> --%>
+							</tr>				
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </section>

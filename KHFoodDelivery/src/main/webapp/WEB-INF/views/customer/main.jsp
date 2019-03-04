@@ -8,7 +8,7 @@
  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>  
 
 
- <jsp:include page="/WEB-INF/views/common/header.jsp"> </jsp:include> 
+ <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include> 
 <style>
 div.menu1,div.menu2,div.menu3{position: relative; display:inline-block; border :1px solid #BDBDBD;margin:7px;   text-align:center; overflow: hidden;width: 100%;box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5); }
 div.menu4,div.menu5,div.menu6{position: relative; display:inline-block;  border :1px solid #BDBDBD;margin:7px;  text-align:center; overflow: hidden;width: 100%;box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5); }
@@ -16,18 +16,8 @@ div.menu7,div.menu8,div.menu9{position: relative; display:inline-block;  border 
 div.main a{text-decoration:none; color:black;}
 img.i{max-width:100%; max-height: 100%; margin-bottom:-9.9305px;margin-left:14%;vertical-align: middle;}
 div.main{text-align:center;}
-
-  div.container{margin-bottom:4%;}
-
-
-
-
-
-
-
+div.container{margin-bottom:4%; margin-top:-8%;}
 </style>
-
-
 
 <section>
 <div class="container">
@@ -35,7 +25,6 @@ div.main{text-align:center;}
 	 <div class="mainrow row">
 	 
 	<div class="main col-sm-12">
-	
 	
 	<div class="menu1 col-xs-6 col-sm-4 col-md-3 col-lg-3 "><a href=""  ng-click="select_home_category('1인분주문')">
 	<div class="category-title">돈까스/일식</div> <img class="i" src="${path}/resources/images/customer/main/돈까스.png"></a></div>
