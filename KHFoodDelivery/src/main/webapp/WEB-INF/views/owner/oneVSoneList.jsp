@@ -21,17 +21,20 @@
 }
 </style>
 <div class="container">
+	<div style="text-align:center; margin-bottom:5em;">
+		<h2 style="font-weight:bold;">사장님 1:1문의게시판</h2>
+	</div>
 	<div class="search">
    		<div class="row">
    			<div class="col-md-12">
-   				<form class="form-inline">
+   				<form class="form-inline" action="${path }/owner/qnaSearch.do" method="post">
    				<div class="form-group" style="padding-left: 0px;">
    				<select name="qnaCategory" style="margin-right:5px;">
-   					<option value="결제">결제</option>
-   					<option value="회원">회원</option>
-   					<option value="주문">주문</option>
-   					<option value="포인트">포인트</option>
-   					<option value="리뷰">리뷰</option>
+   					<option value="결제"<c:if test="${'결제' eq param.qnaCategory }"> selected</c:if>>결제</option>
+   					<option value="회원"<c:if test="${'회원' eq param.qnaCategory }"> selected</c:if>>회원</option>
+   					<option value="주문"<c:if test="${'주문' eq param.qnaCategory }"> selected</c:if>>주문</option>
+   					<option value="포인트"<c:if test="${'포인트' eq param.qnaCategory }"> selected</c:if>>포인트</option>
+   					<option value="리뷰"<c:if test="${'리뷰' eq param.qnaCategory }"> selected</c:if>>리뷰</option>
    				</select>
 				<input type="search" style="margin-right: 5px;" placeholder="제목을 입력하세요." class="form-control" id="keyword" name="keyword" value="${param.keyword!=null?param.keyword:''}"/>
 				<input type="submit" class="btn btn-outline-primary" id="keywordBtn" value="검색"/>
@@ -42,26 +45,31 @@
    	</div>
 	<div class="row" style="clear:both;">
 		<div class="col-md-12">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>작성자</th>
-						<th>제목</th>
-						<th>날짜</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="one" items="${oneVSoneList }" varStatus="vs">
-						<tr style="cursor:pointer;" onclick="location.href='${path}/owner/oneVSoneList.do'">
-							<td>${vs.count }</td>
-							<td>${one.OWNERID }</td>
-							<td><a href="#">${one.QNATITLE }</a></td>
-							<td>${one.WRITEDATE }</td>
+			<c:if test="${not empty oneVSoneList }">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>작성자</th>
+							<th>제목</th>
+							<th>날짜</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<c:forEach var="one" items="${oneVSoneList }" varStatus="vs">
+							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/oneVSoneView.do?qnaCode=${one.QNACODE}'">
+								<td>${vs.count }</td>
+								<td>${one.OWNERID }</td>
+								<td><a href="${path }/owner/oneVSoneView.do?qnaCode=${one.QNACODE}">${one.QNATITLE }</a></td>
+								<td>${one.WRITEDATE }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</c:if>
+			<c:if test="${empty oneVSoneList }">
+				<h3 style="text-align:center; margin-top:5em;">검색하신 결과가 없습니다.</h3>
+			</c:if>
 		</div>
 	</div>
 </div>

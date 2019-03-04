@@ -36,9 +36,9 @@ pageEncoding="UTF-8"%>
 
 
 	<div class="container">
-		<div style="text-align:center;">
-			<a href="#"><h2>사장님 공지사항</h2></a>
-		</div>
+	<div style="text-align:center; margin-bottom:5em;">
+		<h2 style="font-weight:bold;">사장님 공지사항</h2>
+	</div>
 
 		<table class="table table-hover board">
 
