@@ -2,6 +2,7 @@ package com.kh.food.owner.member.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
 
@@ -103,34 +104,78 @@ public class OwnerMemberController {
 	
 	//비밀번호찾기 
 	@RequestMapping("/owner/ownerSearchPwEnd.do")
-	public ModelAndView ownerSearchPwEnd(String ownerEmail)
+	public ModelAndView ownerSearchPwEnd(String ownerId,String ownerEmail)
 	{
 		ModelAndView mv = new ModelAndView();
 		logger.debug("오너이메일"+ownerEmail);
 		
+		Map<String,String> map = new HashMap<>();
+		map.put("ownerId", ownerId);
+		map.put("ownerEmail", ownerEmail);
 		
-		String setfrom = "wow";
-		String tomail = ownerEmail; // 받는 사람 이메일
-		String title = "배달의민족 사장님 사이트 비밀번호 입니다."; // 제목
-		String content = "비밀번호는 1234 입니다 ."; // 내용
+		String msg = "";
+		String loc = "";
+		//아이디 또는 이메일이 일치 하지 않는다.
+		Map<String,String> idEmail = service.selectConfirmIdEmail(map);
+		logger.debug("아이디와 이메일" + idEmail);
 		
-		try {
-			MimeMessage message = mailSender.createMimeMessage();
-			MimeMessageHelper messageHelper = new MimeMessageHelper(message,
-					true, "UTF-8");
-
-			messageHelper.setFrom(setfrom); // 보내는사람 생략하면 정상작동을 안함
-			messageHelper.setTo(tomail); // 받는사람 이메일
-			messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
-			messageHelper.setText(content); // 메일 내용
-
-			mailSender.send(message);
-		} catch (Exception e) {
-			System.out.println(e);
+		char[] charaters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'};
+        StringBuilder sb = new StringBuilder("");
+        Random rn = new Random();
+        
+		if(idEmail == null)
+		{
+			msg = "아이디 또는 이메일이 일치 하지 않습니다";
+			loc = "owner/ownerlogin";
+		}		
+		else
+		{
+			
+			//랜덤비밀번호 생성
+			
+	        for( int i = 0 ; i < 8 ; i++ ){
+	            sb.append( charaters[ rn.nextInt( charaters.length ) ] );
+	        }
+			
+	        logger.debug("랜덤비밀번호:"+sb);
+			String newPw = pwEncoder.encode(sb);
+			map.put("ownerPw", newPw);
+			int result = service.updateTempPw(map);
+			//임시비밀번호로 디비 업데이트
+			if(result > 0 )
+			{
+			
+				msg = "메일 전송";
+				loc = "/owner/ownerMain.do";
+					
+				String setfrom = "admin";
+				String tomail = ownerEmail; // 받는 사람 이메일
+				String title = "배달의민족 사장님 사이트 임시 비밀번호 입니다."; // 제목
+				String content = "비밀번호는"+ sb + " 입니다 ."; // 내용
+				
+				try {
+					MimeMessage message = mailSender.createMimeMessage();
+					MimeMessageHelper messageHelper = new MimeMessageHelper(message,
+							true, "UTF-8");
+	
+					messageHelper.setFrom(setfrom); // 보내는사람 생략하면 정상작동을 안함
+					messageHelper.setTo(tomail); // 받는사람 이메일
+					messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+					messageHelper.setText(content); // 메일 내용
+	
+					mailSender.send(message);
+				} catch (Exception e) {
+					System.out.println(e);
+				}
+			
+			}
+			else
+				{
+					msg = "비밀번호 변경 실패";
+					loc = "/owner/ownerMain.do";
+				}
 		}
-
-		String msg="메일전송";
-		String loc="/owner/ownerMain.do";
+		
 		mv.addObject("msg",msg);
 		mv.addObject("loc",loc);
 		mv.setViewName("common/msg");
@@ -153,7 +198,8 @@ public class OwnerMemberController {
 		{
 			
 			//로그인성공 
-			if(ownerPw.equals(o.getOwnerPw()))
+			/*if(ownerPw.equals(o.getOwnerPw()))*/
+			if(pwEncoder.matches(ownerPw, o.getOwnerPw()))
 			{
 				
 			mv.addObject("ownerId",o.getOwnerId());

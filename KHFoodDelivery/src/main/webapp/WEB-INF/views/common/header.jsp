@@ -21,6 +21,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+
 <body>
 
 <header>
@@ -83,7 +84,7 @@
                 <div class="row" style="margin:0;">           
                 <div class="col-sm-12 headerDiv2">
                     <div class="content">
-                        <h2>배달의 민족</h2>
+  							<h2>배달의 민족</h2>
                     </div>
                 </div>
                 <div class="col-sm-12">
