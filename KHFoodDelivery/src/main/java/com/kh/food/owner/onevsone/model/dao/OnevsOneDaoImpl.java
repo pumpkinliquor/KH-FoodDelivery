@@ -34,10 +34,15 @@ public class OnevsOneDaoImpl implements OnevsOneDao {
 	}
 
 	@Override
-	public int qnaFormEnd(Map<String,Object> qna) {
-		return session.insert("oneVSone.insertQna", qna);
+	public List<Map<String, String>> qnaSearch(Map<String, String> map) {
+		return session.selectList("oneVSone.qnaSearch", map);
 	}
-	
-	
+
+//	@Override
+//	public int qnaFormEnd(Map<String,Object> qna) {
+//		return session.insert("oneVSone.insertQna", qna);
+//	}
+//	
+//	
 
 }

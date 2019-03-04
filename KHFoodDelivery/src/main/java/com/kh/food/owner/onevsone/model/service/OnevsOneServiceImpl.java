@@ -35,9 +35,20 @@ public class OnevsOneServiceImpl implements OnevsOneService {
 	}
 
 	@Override
-	public int qnaFormEnd(Map<String,Object> qna) {
-		
-		return dao.qnaFormEnd(qna);
+	public List<Map<String, String>> qnaSearch(Map<String, String> map) {
+		return dao.qnaSearch(map);
 	}
+
+//	@Override
+//	public int qnaFormEnd(Map<String,Object> qna) throws Exception {
+//		int result=0;
+//		try {
+//			result=dao.qnaFormEnd(qna);
+//			if(result==0) {
+//				throw new Exception();
+//			}
+//		}
+//		return result;
+//	}
 
 }

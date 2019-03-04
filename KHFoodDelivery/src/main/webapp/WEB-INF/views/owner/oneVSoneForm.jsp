@@ -24,8 +24,11 @@ function validate(){
 </script>
 <section>
 <div class="container">
+	<div style="text-align:center; margin-bottom:5em;">
+		<h2 style="font-weight:bold;">1:1문의</h2>
+	</div>
 	<div class="col-md-12">
-		<form action="${path }/owner/oneVSoneFormEnd.do" method="post" onsubmit="return validate();"  enctype="multipart/form-data">
+		<form action="${path }/owner/oneVSoneFormEnd.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
 			<table class="table table-bordered">
 			    <tbody>
 			        	<tr>

@@ -8,5 +8,6 @@ public interface OnevsOneService {
 	List<Map<String,String>> myQnaList(String ownerId);
 	Map<String,String> oneVSoneView(int qnaCode);
 	int selectOwnerForm(String ownerId);
-	int qnaFormEnd(Map<String, Object> qna);
+//	int qnaFormEnd(Map<String, Object> qna);
+	List<Map<String,String>> qnaSearch(Map<String,String> map);
 }
