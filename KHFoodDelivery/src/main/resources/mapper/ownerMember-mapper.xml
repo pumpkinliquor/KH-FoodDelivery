@@ -12,4 +12,16 @@
 	<select id="selectSearchId" parameterType="map" resultType="map">
 		select * from owner where ownername = #{ownerName} and ownerEmail = #{ownerEmail}
 	</select>
+	
+	<select id="ownerNoticeList" resultType="map">
+		SELECT * FROM NOTICE ORDER BY WRITEDATE DESC
+	</select>
+	
+	<select id="selectConfirmIdEmail" resultType="map" parameterType="map">
+		select * from owner where ownerId = #{ownerId} and ownerEmail = #{ownerEmail}
+	</select>
+	
+	<update id="updateTempPw" parameterType="map">
+		update owner set ownerPw = #{ownerPw} where ownerId = #{ownerId} and ownerEmail = #{ownerEmail}
+	</update>
 </mapper>

@@ -35,7 +35,7 @@ pageEncoding="UTF-8"%>
         }
         #enrollBtn{
             width:100%;
-            height:30px;
+            height:40px;
         }
         .infoDiv{
              /* border: 1px solid black;  */
@@ -45,18 +45,22 @@ pageEncoding="UTF-8"%>
         .infoDiv2{
             height:170px;
             border:1px solid #ccc;
-             padding-top: 20px; 
+             padding-top: 25px; 
             /* display: inline-flex; */
         }
         .infoDiv3{
-            
+            padding-left:10%;
         }
         .infoDiv4{
+       		padding-left:15%;
             /* width: 150px; */
             /* margin-left: 30px; */
         }
         #notice_ta{
         	line-height:50px;
+        }
+        .main_row1{
+        	margin-top:30px;
         }
     </style>
     <section>
@@ -66,7 +70,7 @@ pageEncoding="UTF-8"%>
             <div class="col-md-12">
                 <img src="${path }/resources/images/owner/main/사장님메인.png" width="100%" height="500px">
             </div>
-            <div class="row">
+            <div class="row main_row1">
                 <div class="col-md-8">
                     <div class="col-md-12">
                     <p id="p1">공지사항</p>
@@ -92,14 +96,16 @@ pageEncoding="UTF-8"%>
                         <p>사장님 로그인 해주세요!</p>
                     </div>
                     <div class="col-md-12">
-                        <button id="loginBtn">로그인 하기</button>
+                        <button id="loginBtn" onclick="location.href='${path }/owner/login.do'">로그인</button>
                     </div>
-                    <div class="col-md-5"></div>
-                    <div class="col-md-7 idPwSearch_Div">
-                        <a>아이디찾기</a><a>비밀번호찾기</a>
+                    <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6 idPwSearch_Div">
+                        <a href="${path }/owner/ownerIdSearch.do">아이디찾기</a><a href="${path }/owner/ownerSearchPw.do">비밀번호찾기</a>
+                    </div>
                     </div>
                     <div class="col-md-12">
-                        <button id="enrollBtn">회원가입</button>
+                        <button id="enrollBtn" onclick="location.href='${path }/owner/insertOwner.do'">회원가입</button>
                     </div>
                 </div>
             </div>
