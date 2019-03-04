@@ -6,6 +6,11 @@
 	select * from member
 	</select>
 	 
+	 <!-- 사장님 리스트 -->
+	 <select id="selectListOwner" resultType="Map">
+	 select * from owner o, store s where o.ownerid=s.ownerid
+	 </select>
+	 
 	 <!-- 회원공지사항리스트 -->
 	<select id="selectMemberNoticeList" resultType="Map">
 	select * from notice

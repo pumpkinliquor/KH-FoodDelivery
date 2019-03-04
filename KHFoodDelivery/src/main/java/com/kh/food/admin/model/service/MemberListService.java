@@ -6,4 +6,5 @@ import java.util.Map;
 public interface MemberListService {
 
 	List<Map<String,String>> selectListMember();
+	List<Map<String,String>> selectListOwner();
 }

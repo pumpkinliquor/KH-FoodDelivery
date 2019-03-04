@@ -4,9 +4,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 </head>
-<style>
+<!-- <style>
 #noticeTitleTd{
    width:800px;
 }
@@ -26,10 +27,10 @@
 .pnt{
    cursor:pointer;
 }
-</style>
+</style> -->
 <script>
 function fn_noticeView(){
-   location.href="${path }/admin/noticeView.do";
+	location.href="${path}/admin/noticeView.do?noticeNum=${mn.NOTICENUM}";
 }
 </script>
 <body>
@@ -53,11 +54,10 @@ function fn_noticeView(){
          </thead>
           <c:forEach items="${list }"  var="mn" >
          <tbody>
-            <tr class="pnt" onclick="fn_noticeView()">
-               <td >${mn.NOTICENUM }</td>
+            <tr class="pnt" id="${mn.NOTICENUM}" onclick="fn_noticeView()">
+               <td>${mn.NOTICENUM }</td>
                <td id="noticeTitleTd">${mn.NOTICETITLE}</td>
                <td>${mn.WRITEDATE}</td>
-
             </tr>
 
          </tbody>
@@ -72,5 +72,16 @@ function fn_noticeView(){
 
    </div>
 
+
+
+
+
+<!------ Include the above in your HEAD tag ---------->
+
+
+   
+   <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+   
+</html>
 
    <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

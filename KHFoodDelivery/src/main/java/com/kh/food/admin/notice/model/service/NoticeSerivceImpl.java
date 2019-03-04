@@ -26,6 +26,7 @@ public class NoticeSerivceImpl implements NoticeService {
 	@Override
 	public Map<String, String> selectMemberNotice(int noticeNum) {
 		// TODO Auto-generated method stub
+		System.out.println("ser접근");
 		return dao.selectMemberNotice(noticeNum);
 	}
 

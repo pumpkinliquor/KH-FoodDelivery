@@ -7,4 +7,5 @@ public interface MemberListDao {
 
 	
 	List<Map<String,String>> selectListMember();
+	List<Map<String,String>> selectListOwner();
 }

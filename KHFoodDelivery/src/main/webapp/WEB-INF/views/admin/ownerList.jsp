@@ -6,55 +6,16 @@
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
-<!-- <style>
-.pnt {
-	cursor: pointer;
-}
-
-img#memListProfile {
-	border-radius: 150px;
-	width: 50px;
-	height: 50px;
-}
-
-button#memListDelBtn {
-	background-color: transparent;
-	border-color: transparent;
-}
-
-img.memberListDelImg {
-	width: 25px;
-	height: 25px;
-}
-
-h4#memberListTitle {
-	display: inline;
-}
-
-div#btn-category {
-	float: right;
-}
-
-div#memberList {
-	margin-top: 15px;
-}
-
-thead#tableHead {
-	background-color: #4D4D4D;
-	color: rgba(255, 255, 255, .5);
-}
-</style> -->
-
 <script>
 	$(document).ready(function() {
-		$("#memberListTable #checkall").click(function() {
-			if ($("#memberListTable #checkall").is(':checked')) {
-				$("#memberListTable input[type=checkbox]").each(function() {
+		$("#ownerListTable #owncheckall").click(function() {
+			if ($("#ownerListTable #owncheckall").is(':checked')) {
+				$("#ownerListTable input[type=checkbox]").each(function() {
 					$(this).prop("checked", true);
 				});
 
 			} else {
-				$("#memberListTable input[type=checkbox]").each(function() {
+				$("#ownerListTable input[type=checkbox]").each(function() {
 					$(this).prop("checked", false);
 				});
 			}
@@ -64,51 +25,50 @@ thead#tableHead {
 	});
 </script>
 
-
 <div class="container">
-	<div id="memberList-title">
-		<h4 id="memberListTitle">리스트</h4>
+	<div id="ownerList-title">
+		<h4 id="onwerListTitle">리스트</h4>
 		<div class="btn-group" id="btn-category">
 			<button class="btn btn-default dropdown-toggle"
 				data-toggle="dropdown" aria-expanded="false">
 				목록<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu">
-				<li><a href="#">회원</a></li>
-				<li><a href="${path}/admin/ownerList.do">사장님</a></li>
+				<li><a href="${path }/admin/memberList.do">회원</a></li>
+				<li><a href="#">사장님</a></li>
 				<li class="divider"></li>
 			</ul>
 		</div>
 	</div>
-	<div id="memberList">
-		<table class="table table-hover" id="memberListTable">
+	<div id="ownerList">
+		<table class="table table-hover" id="ownerListTable">
 			<thead id="tableHead">
 				<tr>
-					<th><input type="checkbox" id="checkall" /></th>
-					<th>회원 번호</th>
+					<th><input type="checkbox" id="owncheckall" /></th>
+					<th>사장님 번호</th>
 					<th>아이디</th>
-					<th>이름</th>
-					<th>이메일</th>
+					<th>가게 이름</th>
+					<th>가게 카테고리</th>
 					<th>가입날짜</th>
 				</tr>
 			</thead>
 			
-				 <c:forEach items="${list }"  var="m" >
+				 <c:forEach items="${list }"  var="o" >
 				 <tbody>
 				<tr>
 					<td><input type="checkbox" class="checkthis" /></td>
-					<td class="pnt" onclick="fn_memListmodal()">${m.MEMBERNUM}</td>
-					<td class="pnt" onclick="fn_memListmodal()">${m.MEMBERID}</td>
-					<td class="pnt" onclick="fn_memListmodal()">${m.MEMBERNAME}</td>
-					<td class="pnt" onclick="fn_memListmodal()">${m.MEMBEREMAIL}</td>
-					<td class="pnt" onclick="fn_memListmodal()">${m.MEMBERENROLLDATE}</td>
+					<td class="pnt" onclick="fn_ownListmodal()">${o.OWNERNUM}</td>
+					<td class="pnt" onclick="fn_ownListmodal()">${o.OWNERID}</td>
+					<td class="pnt" onclick="fn_ownListmodal()">${o.STORENAME}</td>
+					<td class="pnt" onclick="fn_ownListmodal()">${o.STORECATEGORY}</td>
+					<td class="pnt" onclick="fn_ownListmodal()">${o.OWNERENROLLDATE}</td>
 				</tr>
 			</tbody>
 			</c:forEach>
 		</table>
-		<button id="memListDelBtn" onclick="fn_memListDel();">
+		<button id="ownerDelBtn" onclick="fn_ownListDel();">
 			<img src="${path}/resources/images/admin/deleteBtn.png"
-				class="memberListDelImg">
+				class="ownerListDelImg">
 		</button>
 
 	</div>
@@ -118,16 +78,16 @@ thead#tableHead {
 
 <script>
 	function fn_memListmodal() {
-		$('#memListModal').modal();
+		$('#ownListModal').modal();
 
 	};
 
 	function fn_memListDel() {
-		$('#memListDel').modal();
+		$('#ownListDel').modal();
 	};
 </script>
 
-<div class="modal" id="memListDel" role="dialog">
+<div class="modal" id="ownListDel" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">
@@ -139,7 +99,7 @@ thead#tableHead {
 					<tr>
 						<td colspan='2' align="center">
 							<button type="button" class="btn btn-outline-success"
-								onclick="fn_memListDelCan()">삭제</button>
+								onclick="fn_ownListDelCan()">삭제</button>
 							<button type="button" class="btn btn-outline-danger"
 								data-dismiss="modal">취소</button>
 						</td>
