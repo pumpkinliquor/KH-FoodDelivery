@@ -100,7 +100,7 @@ font-size: 20px;
                 <div class="row">
                    <div class="col-md-4 mx-auto">
                       <div class="myform form ">
-                         <form action="" method="post" name="login">
+                         <form action="${path }" method="post" name="login">
                             <div class="form-group">
                                <input type="text" name="id"  class="form-control my-input" id="name" placeholder="id">
                             </div>

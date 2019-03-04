@@ -1,5 +1,7 @@
 package com.kh.food.owner.member.model.service;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +29,16 @@ public class OwnerMemberServiceImpl implements OwnerMemberService {
 		
 	}
 
+	@Override
+	public Owner selectLogin(String ownerId) {
+		return dao.selectLogin(ownerId);
+	}
+
+	@Override
+	public Map<String, String> selectSearchId(Map<String, String> map) {
+		return dao.selectSearchId(map);
+	}
+
+	
 	
 }

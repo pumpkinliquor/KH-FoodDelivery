@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="admin">
+	<!-- 회원리스트 -->
+	<select id="selectListMember" resultType="Map">
+	select * from member
+	</select>
+	 
+	 <!-- 회원공지사항리스트 -->
+	<select id="selectMemberNoticeList" resultType="Map">
+	select * from notice
+	</select> 
+	
+	
+	<!-- 회원공지사항 뷰 -->
+	<select id="selectMemberNotice" parameterType="_int" resultType="Map">
+	select * from notice where noticenum=#{noticeNum}
+	</select>
+</mapper>

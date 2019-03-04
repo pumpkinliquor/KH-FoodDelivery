@@ -91,17 +91,19 @@ thead#tableHead {
 					<th>가입날짜</th>
 				</tr>
 			</thead>
-			<tbody>
-
+			
+				 <c:forEach items="${list }"  var="m" >
+				 <tbody>
 				<tr>
 					<td><input type="checkbox" class="checkthis" /></td>
-					<td class="pnt" onclick="fn_memListmodal()">5</td>
-					<td class="pnt" onclick="fn_memListmodal()">wjdqls9357</td>
-					<td class="pnt" onclick="fn_memListmodal()">최정빈</td>
-					<td class="pnt" onclick="fn_memListmodal()">wjdqls7773@gmail.com</td>
-					<td class="pnt" onclick="fn_memListmodal()">2019.02.23</td>
+					<td class="pnt" onclick="fn_memListmodal()">${m.MEMBERNUM}</td>
+					<td class="pnt" onclick="fn_memListmodal()">${m.MEMBERID}</td>
+					<td class="pnt" onclick="fn_memListmodal()">${m.MEMBERNAME}</td>
+					<td class="pnt" onclick="fn_memListmodal()">${m.MEMBEREMAIL}</td>
+					<td class="pnt" onclick="fn_memListmodal()">${m.MEMBERENROLLDATE}</td>
 				</tr>
 			</tbody>
+			</c:forEach>
 		</table>
 		<button id="memListDelBtn" onclick="fn_memListDel();">
 			<img src="${path}/resources/images/admin/deleteBtn.png"

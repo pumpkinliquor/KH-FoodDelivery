@@ -14,7 +14,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
 
 
 
@@ -54,12 +54,31 @@
 			     getLocation();	
 		});
 });
+   
+   
+   
+   
+	//헤더 고정 
+	$(function(){
+		$(window).scroll(function(){
+			var num = $(this).scrollTop();
+		
+			if(num > 36){
+				$(".newsletter").css("position","fixed");
+			}else{
+				$(".newsletter").css("position","absolute");
+			}
+		});
+	});
+
+
    </script>
         <div class="newsletter">
               <div class="headerDiv1">
-                    <a href="${path }/customer/login.do/">로그인</a>
+                    <a href="${path }/customer/login.do/">로그인</a>        
                     <a href="#">회원가입</a>
-            </div>
+              		<a href="#">로그아웃</a>
+              </div>
                 <div id="container">             
                 <div class="row" style="margin:0;">           
                 <div class="col-sm-12 headerDiv2">
