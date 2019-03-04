@@ -24,7 +24,7 @@ public class OwnerNoticeController {
 		
 		List<Map<String, String>> ownerNoticeList=service.ownerNoticeList();
 		
-		System.out.println(ownerNoticeList);
+//		System.out.println(ownerNoticeList);
 		
 		mv.addObject("ownerNoticeList", ownerNoticeList);
 		

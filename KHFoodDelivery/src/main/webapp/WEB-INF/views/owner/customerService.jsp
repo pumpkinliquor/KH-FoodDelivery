@@ -136,8 +136,8 @@ pageEncoding="UTF-8"%>
 	   	<div class="top">
 	   		<div class="row">
 	   			<div class="col-md-12">
-	   				<button class="oneVSoneBtn" id="oneVSoneBtn" onclick="location.href='${path}/owner/oneVSoneQ.do'">1:1문의</button>
-	   				<button class="questBtn" id="questBtn" onclick="location.href='${path}/owner/myOneVSone'">나의 문의내역</button>
+	   				<button class="oneVSoneBtn" id="oneVSoneBtn" onclick="location.href='${path}/owner/oneVSoneQ.do?ownerId=${sessionScope.ownerId }'">1:1문의</button>
+	   				<button class="questBtn" id="questBtn" onclick="location.href='${path}/owner/myOneVSone.do?ownerId=${sessionScope.ownerId }'">나의 문의내역</button>
 	   			</div>
 	   		</div>
 	   	</div>

@@ -24,11 +24,11 @@ pageEncoding="UTF-8"%>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach begin="1" end="10" varStatus="vs">
-						<tr style="cursor:pointer;" onclick="location.href='${path}/owner/oneVSoneView.do'">
+					<c:forEach var="my" items="${myQnaList}" varStatus="vs">
+						<tr style="cursor:pointer;" onclick="location.href='${path}/owner/oneVSoneView.do?qnaCode=${my.QNACODE }'">
 							<td>${vs.count }</td>
-							<td><a href="${path }/owner/oneVSoneView.do">어떻게 수정 요청하나요?</a></td>
-							<td>2019-02-27</td>
+							<td><a href="${path }/owner/oneVSoneView.do?qnaCode=${my.QNACODE}">${my.QNATITLE }</a></td>
+							<td>${my.WRITEDATE }</td>
 						</tr>
 					</c:forEach>
 				</tbody>
