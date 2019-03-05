@@ -20,12 +20,12 @@ span.guide {
 	right: 10px;
 }
 
-span.ok {
+span.ok,span.ok1 {
 	color: green;
 	margin-right: 20px;
 }
 
-span.error {
+span.error,span.error1 {
 	color: red;
 	margin-right: 20px;
 }
@@ -65,6 +65,7 @@ span.error {
 	
 		//비밀번호 중복확인
 		$("#reownerPw").keyup(function() {
+			
 			ownerPw = $("#ownerPw").val();
 			var ownewPw1 = $("#ownerPw").val().trim();
 			reownerPw = $("#reownerPw").val();
@@ -109,6 +110,16 @@ span.error {
 			$("#reownerPw").focus();
 			return false;
 		}
+		
+		var passwordRules = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
+		console.log("패스워드룰"+passwordRules.test(ownerPw));
+		if(passwordRules.test(ownerPw) == false)
+			{
+				alert(" 6~20 영문 대소문자 , 최소 1개의 숫자 혹은 특수 문자를 포함 하세요!");
+				$("#ownerPw").val('');
+				$("#ownerPw").focus();
+			return false;
+			}
 		return true;
 	}
 </script>
