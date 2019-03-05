@@ -164,6 +164,7 @@ thead#tableHead {
 			</div>
 			<div class="modal-body">
 				<table class="table">
+				
 					<tr>
 						<th>프로필</th>
 						<td><img src="${path }/resources/images/place.png"
@@ -172,30 +173,30 @@ thead#tableHead {
 					</tr>
 					<tr>
 						<th>주소</th>
-						<td>강남</td>
+						<td>${MEMBERADDRESS}</td>
 					</tr>
 					<tr>
 						<th>생년월일</th>
-						<td>951114</td>
+						<td>${MEMBERBIRTH}</td>
 					</tr>
 					<tr>
 						<th>전화번호</th>
-						<td>01011111111</td>
+						<td>${MEMBERPHONE}</td>
 					</tr>
 					<tr>
 						<th>가입날짜</th>
-						<td>2019.02.27</td>
+						<td>${MEMBERENROLLDATE}</td>
 					</tr>
 					<tr>
 						<th>성별</th>
-						<td>여</td>
+						<td>${MEMBERGENDER}</td>
 					</tr>
 					<tr>
 						<th>마일리지</th>
-						<td>1114점</td>
+						<td>${MILEAGE}</td>
 					</tr>
 
-
+			
 				</table>
 			</div>
 			<div class="modal-footer">

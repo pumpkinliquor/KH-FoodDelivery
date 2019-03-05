@@ -21,4 +21,9 @@
 	<select id="selectMemberNotice" parameterType="_int" resultType="Map">
 	select * from notice where noticenum=#{noticeNum}
 	</select>
+	
+	<!-- 회원공지사항 삭제 -->
+	<delete id="deleteMemberNotice" parameterType="_int">
+	delete from notice where noticenum=#{noticeNum}
+	</delete>
 </mapper>

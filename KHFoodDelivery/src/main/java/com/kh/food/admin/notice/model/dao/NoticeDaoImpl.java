@@ -33,6 +33,14 @@ public class NoticeDaoImpl implements NoticeDao {
 	public List<Map<String, String>> ownerNoticeList() {
 		return sqlSession.selectList("ownerMember.ownerNoticeList");
 	}
+
+	@Override
+	public int deleteMemberNotice(int noticeNum) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("admin.deleteMemberNotice", noticeNum);
+	}
+
+	
 	
 	
 }

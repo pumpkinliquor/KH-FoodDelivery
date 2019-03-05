@@ -45,7 +45,7 @@ pageEncoding="UTF-8"%>
 				</div>
 
 
-				<button name="noticeListBtn" class="btn btn-default float-left" onclick="location.href='${path}'">목록</button>
+				<button name="noticeListBtn" class="btn btn-default float-left" onclick="location.href='${path}/admin/memberNoticeList.do'">목록</button>
 				<button type="submit" onclick="return validate();" class="btn btn-default float-right">등록</button>
 				
 			</form>

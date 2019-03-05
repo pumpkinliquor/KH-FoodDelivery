@@ -20,7 +20,7 @@ public class NoticeController {
 	@Autowired
 	NoticeService service;
 	
-	//회원리스트
+	//회원 공지사항리스트
 	@RequestMapping("/admin/memberNoticeList.do")
 	public ModelAndView memberNoticeList()
 	{
@@ -31,26 +31,27 @@ public class NoticeController {
 		return mv;
 	}
 	
-	@RequestMapping("/admin/ownerNoticeList.do")
-	public String ownerNoticeList() {
-		return "admin/ownerNoticeList";
-	}
+	//회원공지사항 뷰
+		@RequestMapping("/admin/noticeView.do")
+		public ModelAndView noticeView(int noticeNum) {
+			ModelAndView mv=new ModelAndView();
+			Map<String,String> map=service.selectMemberNotice(noticeNum);
+			mv.addObject("notice",map);
+			mv.setViewName("admin/noticeView");
+			return mv;
+		}
 	
+	
+		
+	
+	//회원공지사항 글쓰기
 	@RequestMapping("/admin/noticeForm.do")
 	public String noticeInsert() {
 		return "admin/noticeForm";
 	}
 	
-	//회원공지사항 뷰
-	@RequestMapping("/admin/noticeView.do")
-	public ModelAndView noticeView(int noticeNum) {
-		ModelAndView mv=new ModelAndView();
-		Map<String,String> map=service.selectMemberNotice(noticeNum);
-		mv.addObject("notice",map);
-		mv.setViewName("admin/noticeView");
-		return mv;
-	}
 	
+	//회원공지사항 수정
 	@RequestMapping("admin/noticeUpdateForm.do")
 	public String noticeUpdateForm() {
 		
@@ -58,7 +59,12 @@ public class NoticeController {
 	}
 	
 	
-	
+	//회원공지사항 삭제
+	@RequestMapping("/admin/memberNoticeDel.do")
+	public String noticeDel(int noticeNum) {
+		int result=service.deleteMemberNotice(noticeNum);
+		return "redirect:memberNoticeList.do";
+	}
 	
 	
 	
@@ -72,5 +78,12 @@ public class NoticeController {
 	
 	
 	//사장님 공지사항 리스트
+	
+	
+	
+	/*@RequestMapping("/admin/ownerNoticeList.do")
+	public String ownerNoticeList() {
+		return "admin/ownerNoticeList";
+	}*/
 	
 }

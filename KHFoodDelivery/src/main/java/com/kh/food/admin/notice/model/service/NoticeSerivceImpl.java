@@ -30,6 +30,16 @@ public class NoticeSerivceImpl implements NoticeService {
 	}
 
 
+	@Override
+	public int deleteMemberNotice(int noticeNum) {
+		// TODO Auto-generated method stub
+		return dao.deleteMemberNotice(noticeNum);
+	}
+
+
+	
+
+
 	
 	
 	
