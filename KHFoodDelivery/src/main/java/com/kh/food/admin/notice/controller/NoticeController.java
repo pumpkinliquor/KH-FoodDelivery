@@ -1,5 +1,6 @@
 package com.kh.food.admin.notice.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,10 +45,23 @@ public class NoticeController {
 	
 		
 	
-	//회원공지사항 글쓰기
+	//회원공지사항 글쓰기페이지 이동
 	@RequestMapping("/admin/noticeForm.do")
 	public String noticeInsert() {
 		return "admin/noticeForm";
+	}
+	
+	//회원공지사항 글쓰기 완료
+	@RequestMapping("/admin/noticeFormEnd.do")
+	public String noticeFormEnd(String noticeTitle, String noticeContent) {
+		Map<String,String> notice=new HashMap();
+		logger.debug(noticeTitle +noticeContent);
+		notice.put("noticeTitle", noticeTitle);
+		notice.put("noticeContent", noticeContent);
+		
+		int result=service.insertMemberNotice(notice);
+		System.out.println("con:"+notice);
+		return "redirect:/admin/memberNoticeList.do";
 	}
 	
 	
