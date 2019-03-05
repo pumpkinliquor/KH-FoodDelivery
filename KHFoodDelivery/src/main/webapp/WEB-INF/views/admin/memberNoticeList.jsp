@@ -4,9 +4,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 </head>
-<style>
+<!-- <style>
 #noticeTitleTd{
    width:800px;
 }
@@ -26,11 +27,22 @@
 .pnt{
    cursor:pointer;
 }
-</style>
+</style> -->
 <script>
-function fn_noticeView(){
-   location.href="${path }/admin/noticeView.do";
-}
+/* function fn_noticeView(e){
+	var id = e.attr(id);
+	console.log("id"+id);
+	location.href="${path}/admin/noticeView.do?noticeNum=${mn.NOTICENUM}";
+} */
+
+/* function fn_noticeView(${mn.NOTICENUM})
+{
+	location.href="${path}/admin/noticeView.do?noticeNum="+${mn.NOTICENUM};
+	} */
+	
+	/* $("#mnTarget").click(function(){
+		location.href="${path}/admin/noticeView.do?noticeNum="+${mn.NOTICENUM};
+	}); */
 </script>
 <body>
 
@@ -53,11 +65,11 @@ function fn_noticeView(){
          </thead>
           <c:forEach items="${list }"  var="mn" >
          <tbody>
-            <tr class="pnt" onclick="fn_noticeView()">
-               <td >${mn.NOTICENUM }</td>
-               <td id="noticeTitleTd">${mn.NOTICETITLE}</td>
+           <%--  <tr class="pnt" id="mnTarget" onclick="fn_noticeView(${mn.NOTICENUM});"> --%>
+              <tr>
+               <td>${mn.NOTICENUM }</td>
+               <td id="noticeTitleTd"><a href="${path}/admin/noticeView.do?noticeNum=${mn.NOTICENUM}">${mn.NOTICETITLE}</a></td>
                <td>${mn.WRITEDATE}</td>
-
             </tr>
 
          </tbody>
@@ -71,6 +83,14 @@ function fn_noticeView(){
 
 
    </div>
+
+
+
+
+
+<!------ Include the above in your HEAD tag ---------->
+
+
 
 
    <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

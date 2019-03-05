@@ -4,6 +4,8 @@
 	<typeAliases>
 		<typeAlias type="com.kh.food.common.StringArrayTypeHandler" alias="strArray"/>
 		<typeAlias type="com.kh.food.owner.member.model.vo.Owner" alias="ownermember"/>	
+		<typeAlias type="com.kh.food.customer.member.model.vo.Member" alias="member"/>
+		<typeAlias type="com.kh.food.owner.onevsone.model.vo.OwnerQna" alias="ownerqna"/>
 	</typeAliases>
 	<typeHandlers>
 		<package name="com.kh.food.common"/>

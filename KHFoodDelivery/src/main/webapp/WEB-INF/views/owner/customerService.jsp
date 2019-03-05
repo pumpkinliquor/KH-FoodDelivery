@@ -136,8 +136,8 @@ pageEncoding="UTF-8"%>
 	   	<div class="top">
 	   		<div class="row">
 	   			<div class="col-md-12">
-	   				<button class="oneVSoneBtn" id="oneVSoneBtn" onclick="location.href='${path}/owner/oneVSoneQ.do'">1:1문의</button>
-	   				<button class="questBtn" id="questBtn" onclick="location.href='${path}/owner/myOneVSone'">나의 문의내역</button>
+	   				<button class="oneVSoneBtn" id="oneVSoneBtn" onclick="location.href='${path}/owner/oneVSoneQ.do?ownerId=${sessionScope.ownerId }'">1:1문의</button>
+	   				<button class="questBtn" id="questBtn" onclick="location.href='${path}/owner/myOneVSone.do?ownerId=${sessionScope.ownerId }'">나의 문의내역</button>
 	   			</div>
 	   		</div>
 	   	</div>
@@ -162,12 +162,11 @@ pageEncoding="UTF-8"%>
 							</tr>
 						</thead>
 						<tbody>
-							<%-- <c:forEach var="notice" items="${noticeList }" begin="1" end="5" varStatus="vs"> --%>
-							<c:forEach begin="1" end="5" varStatus="vs">
+							<c:forEach var="notice" items="${selectNoticeList }" begin="0" end="4" step="1" varStatus="vs">
 							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/customService.do'">
 								<td>${vs.count }</td>
-								<td><a href="#">2018-03-21 patch.</a></td>
-								<td>2018-03-21</td>
+								<td><a href="#">${notice.NOTICETITLE }</a></td>
+								<td>${notice.WRITEDATE }</td>
 							</tr>
 							</c:forEach>
 						</tbody>
@@ -192,13 +191,12 @@ pageEncoding="UTF-8"%>
 							</tr>
 						</thead>
 						<tbody>
-							<%-- <c:forEach var="qna" items="${qnaList }" begin="1" end="5" varStatus="vs"> --%>
-							<c:forEach begin="1" end="5" varStatus="vs">
+							<c:forEach var="qna" items="${selectQnaList }" begin="0" end="4" step="1" varStatus="vs">
 							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/customService.do'">
 								<td>${vs.count }</td>
-								<td>hwang3324</td>
-								<td><a href="#">배달비 인상</a></td>
-								<td>2019-01-29</td>
+								<td>${qna.OWNERID }</td>
+								<td><a href="#">${qna.QNATITLE }</a></td>
+								<td>${qna.WRITEDATE }</td>
 							</tr>
 							</c:forEach>
 						</tbody>

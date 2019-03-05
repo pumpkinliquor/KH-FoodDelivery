@@ -9,6 +9,9 @@ pageEncoding="UTF-8"%>
 
 <section>
 <div class="container">
+	<div style="text-align:center; margin-bottom:5em;">
+		<h2 style="font-weight:bold;">나(사장님)의 문의내역</h2>
+	</div>
 	<div class="QnaWriteBtn" style="text-align:right; padding-bottom:5px;">
 		<button onclick="location.href='${path}/owner/oneVSoneList.do'" id="QnaListBtn" class="btn btn-outline-success">문의게시판</button>
 		<button onclick="location.href='${path}/owner/oneVSoneQ.do'" id="QnaWriteBtn" class="btn btn-outline-success">1:1문의하기</button>
@@ -24,11 +27,11 @@ pageEncoding="UTF-8"%>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach begin="1" end="10" varStatus="vs">
-						<tr style="cursor:pointer;" onclick="location.href='${path}/owner/oneVSoneView.do'">
+					<c:forEach var="my" items="${myQnaList}" varStatus="vs">
+						<tr style="cursor:pointer;" onclick="location.href='${path}/owner/oneVSoneView.do?qnaCode=${my.QNACODE }'">
 							<td>${vs.count }</td>
-							<td><a href="${path }/owner/oneVSoneView.do">어떻게 수정 요청하나요?</a></td>
-							<td>2019-02-27</td>
+							<td><a href="${path }/owner/oneVSoneView.do?qnaCode=${my.QNACODE}">${my.QNATITLE }</a></td>
+							<td>${my.WRITEDATE }</td>
 						</tr>
 					</c:forEach>
 				</tbody>

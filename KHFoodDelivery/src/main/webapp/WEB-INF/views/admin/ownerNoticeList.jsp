@@ -4,9 +4,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 </head>
-<style>
+<!-- <style>
 #noticeTitleTd{
    width:800px;
 }
@@ -26,7 +27,7 @@
 .pnt{
    cursor:pointer;
 }
-</style>
+</style> -->
 <script>
 function fn_noticeView(){
    location.href="${path }/admin/noticeView.do";

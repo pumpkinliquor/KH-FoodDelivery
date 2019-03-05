@@ -19,4 +19,12 @@ public class MemberListServiceImpl implements MemberListService {
 	{
 	return dao.selectListMember();
 	}
+
+	@Override
+	public List<Map<String, String>> selectListOwner() {
+		// TODO Auto-generated method stub
+		return dao.selectListOwner();
+	}
+	
+	
 }
