@@ -40,6 +40,11 @@ public class OwnerMemberDaoImpl implements OwnerMemberDao {
 		return sqlSession.update("ownerMember.updateTempPw",map);
 	}
 
+	@Override
+	public int ownerCheckId(String ownerId) {
+		return sqlSession.selectOne("ownerMember.ownerCheckId",ownerId);
+	}
+
 	
 	
 }

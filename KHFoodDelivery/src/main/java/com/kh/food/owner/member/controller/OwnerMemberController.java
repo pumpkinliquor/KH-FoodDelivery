@@ -1,10 +1,12 @@
 package com.kh.food.owner.member.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -234,5 +236,15 @@ public class OwnerMemberController {
 		}
 		
 		return "redirect:/owner/ownerMain.do";
+	}
+	
+	//아이디 중복체크
+	@RequestMapping("/owner/ownerCheckId.do")
+	public void ownerCheckId(String ownerId,HttpServletResponse response) throws IOException 
+	{
+		logger.debug("아이디중복체크");
+		boolean isId = service.ownerCheckId(ownerId)==0?false:true;
+		logger.debug(String.valueOf(isId));
+		response.getWriter().print(isId);
 	}
 }
