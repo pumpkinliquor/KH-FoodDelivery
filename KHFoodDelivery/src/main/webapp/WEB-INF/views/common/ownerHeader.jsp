@@ -60,7 +60,7 @@
     <!-- Links -->
     <ul class="navbar-nav container ">
       <li class="nav-item" style="margin-left:-20px;font-size:30px">
-      <a class="nav-link" href="${path }/owner/ownerMain.do">배달의 민족</a>
+      <a class="nav-link" href="${path }/owner/ownerMain.do">간<span style="font-size:10px;">단하고</span> 신<span style="font-size:10px;">속한</span> 배<span style="font-size:10px;">달</span></a>
     </li>
       <li class="nav-item">
         <a class="nav-link" href="${path }/owner/menuEnroll.do">메뉴관리</a>
