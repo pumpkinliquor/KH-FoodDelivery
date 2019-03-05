@@ -5,7 +5,12 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
+<c:if test="${sessionScope.ownerId!='admin' }">
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
+</c:if>
+<c:if test="${sessionScope.ownerId=='admin' }">
+<jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
+</c:if>
 
 <style>
 #topTable {

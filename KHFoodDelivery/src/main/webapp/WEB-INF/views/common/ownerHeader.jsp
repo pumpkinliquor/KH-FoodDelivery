@@ -59,8 +59,8 @@
   
     <!-- Links -->
     <ul class="navbar-nav container ">
-      <li class="nav-item" style="margin-left:-20px;font-size:30px">
-      <a class="nav-link" href="${path }/owner/ownerMain.do">배달의 민족</a>
+      <li class="nav-item" style="margin-left:-20px;font-size:40px">
+      <a class="nav-link" href="${path }/owner/ownerMain.do"><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></a>
     </li>
       <li class="nav-item">
         <a class="nav-link" href="${path }/owner/menuEnroll.do">메뉴관리</a>
