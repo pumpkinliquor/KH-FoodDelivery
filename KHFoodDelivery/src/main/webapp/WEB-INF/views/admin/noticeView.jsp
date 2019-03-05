@@ -28,6 +28,21 @@ background-color: transparent;
 }
 </style> -->
 
+<style>
+div#noticeContectDiv{
+	min-height: 200px;
+}
+</style>
+<script>
+function fn_memberNoticeDel(e){
+	
+	var num = $(e).val();
+	
+	location.href="${path}/admin/memberNoticeDel.do?noticeNum="+num;
+}
+
+</script>
+
 
 <section>
 	<div class="container">
@@ -37,8 +52,8 @@ background-color: transparent;
 			</div>
 			<div class="col-sm-2">		
 			</div>
-			<div class="col-sm-1">
-				<p>글 번호 <b>${notice.NOTICENUM }</b></p>
+			<div class="col-sm-2">
+				<p>번호 <b>${notice.NOTICENUM }</b> 작성자 <b>관리자</b></p>
 			</div>
 			<div class="col-sm-3">
 				<p>${notice.WRITEDATE }</p>
@@ -47,23 +62,23 @@ background-color: transparent;
 			</div>
 			<div class="col-sm-2">
 			</div>
-			<div class="col-sm-2"></div>
+			<div class="col-sm-1"></div>
 			<div class="col-sm-2">			
-				<button id="noticeCancelkBtn" name="noticeCancelkBtn" class="btn btn-default float-right">삭제</button>
+				<button id="noticeCancelkBtn" name="noticeCancelkBtn" class="btn btn-default float-right" value="${notice.NOTICENUM }" onclick="fn_memberNoticeDel(this)">삭제</button>
 				<button id="noticeUpBtn" type="submit" onclick="return validate();" class="btn btn-default float-right">수정</button>
 			</div>	
 		</div>
 		<hr/>
 		<br/>	
 		<div class="row">			
-			<div class="col-sm-12">
+			<div class="col-sm-12" id="noticeContectDiv">
 				${notice.NOTICECONTENT}
 			</div>
 			<div class="col-sm-2"></div>
 		</div>
 		<br>
 		<hr>
-		<button id="noticeListBtn" class="btn btn-default">목록</button>
+		<button id="noticeListBtn" class="btn btn-default" >목록</button>
 	</div>
 </section>
 
