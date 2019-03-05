@@ -43,13 +43,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach begin="1" end="5">						
+					<c:forEach items="${appStoreList}" var="store">						
 						<tr class="pnt" onclick="fn_modal()">
-							<td>치킨</td>
-							<td>배민</td>
-							<td>주홍범</td>
-							<td>서울특별시 강남구 역삼동</td>
-							<td>2019-02-26</td>
+							<td>${store.storeCategory }</td>
+							<td>${store.storeName }</td>
+							<td>${store.businessName }</td>
+							<td>${store.storeAddress }</td>
+							<td>${store.appDate }</td>
 						</tr>						
 					</c:forEach>
 				</tbody>
