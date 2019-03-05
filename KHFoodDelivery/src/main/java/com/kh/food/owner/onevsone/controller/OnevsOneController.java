@@ -184,8 +184,8 @@ public class OnevsOneController {
 		reviewUp.put("reQnaReviewCode", reQnaReviewCode);
 		reviewUp.put("updateContext", updateContext);
 		
-		System.out.println(qnaCode);
-		System.out.println(reviewUp);
+//		System.out.println(qnaCode);
+//		System.out.println(reviewUp);
 		
 		int result=service.qnaReviewUpdate(reviewUp);
 		

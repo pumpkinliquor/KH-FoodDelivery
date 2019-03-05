@@ -38,19 +38,20 @@
 			<div class="col-sm-10">
 				<h4>${views.QNATITLE }</h4>
 			</div>
-			<div class="col-sm-2">
-				<button>목록으로</button>				
+			<div class="col-sm-2" style="margin-bottom:1em;">
+				<button class="btn btn-default" onclick="location.href='${path}/owner/oneVSoneList.do'">문의게시판</button>
 			</div>
 			<div class="col-sm-2">
 				<p>작성자 <b>${views.OWNERID }</b></p>
 			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				<p>${views.WRITEDATE }</p>
 			</div>
-			<div class="col-sm-2"></div>
+			<div class="col-sm-5">
+				<p>분류 : ${views.QNACATEGORY }
+			</div>
 			<div class="col-sm-2">
-				<button>수정</button>
-				<button>삭제</button>			
+				<button class="btn btn-default">삭제</button>			
 			</div>	
 		</div>
 		<br/>	
@@ -69,7 +70,12 @@
                <input type="hidden" name="ownerNum" value="${sessionScope.ownerNum }"/>
                <input type="text" class="form-control" id="reviewContext" name="reviewContext" style="margin-right:1em;" placeholder="내용을 입력하세요.">
                <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit">등록</button>
+               		<c:if test="${not empty sessionScope }">
+                    	<button class="btn btn-default" type="submit">등록</button>
+                    </c:if>
+                    <c:if test="${empty sessionScope }">
+                    	<button class="btn btn-default" onclick="loginException();" type="button">등록</button>
+                    </c:if>
                </span>
               </div>
         </form>
@@ -77,6 +83,11 @@
         <div class="commentList" style="margin-top:2em;">
         	<c:forEach var="comment" items="${commentList}">
         		<script>
+        		//로그인 예외처리
+        		function loginException(){
+        			alert('로그인 하십시오.');
+        			location.href='${path}/owner/login.do';
+        		}
 				//모달창 띄우기
 			    $(function() {
 			        $("#modalBtn${comment.QNAREVIEWCODE}").click(function(){
@@ -98,8 +109,10 @@
 				            <span class='line'>|</span>
 				            <span class='reviewdate'>${comment.WRITEDATE }</span>
 				            <span style="float:right;" class="reviewBtn">
+				            <c:if test="${not empty sessionScope&&comment.OWNERID==sessionScope.ownerId||not empty sessionScope&&sessionScope.ownerId=='admin' }">
 				            <button class="updBtn" id="modalBtn${comment.QNAREVIEWCODE}" type="button">수정</button>
 				            <button class="delBtn" onclick="location.href='${path}/owner/reviewDelete.do?qnaReviewCode=${comment.QNAREVIEWCODE }&qnaCode=${comment.QNACODE }'" type="button">삭제</button>
+				            </c:if>
 				            </span>
 			            </small>
 			            </th>

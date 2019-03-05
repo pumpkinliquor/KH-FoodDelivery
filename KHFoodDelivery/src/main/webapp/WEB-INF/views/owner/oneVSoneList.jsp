@@ -7,6 +7,9 @@
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 <section>
 <style>
+.writeQnaBtn{
+	float:left;
+}
 .search{
 	float:right;
 	padding-bottom:1em;
@@ -22,8 +25,9 @@
 </style>
 <div class="container">
 	<div style="text-align:center; margin-bottom:5em;">
-		<h2 style="font-weight:bold;">사장님 1:1문의게시판</h2>
+		<h2 style="font-weight:bold;">사장님 1:1 문의게시판</h2>
 	</div>
+	<div class="btn btn-default writeQnaBtn" onclick="location.href='${path}/owner/oneVSoneQ.do?ownerId=${sessionScope.ownerId }'">문의하기</div>
 	<div class="search">
    		<div class="row">
    			<div class="col-md-12">
@@ -53,6 +57,7 @@
 							<th>작성자</th>
 							<th>제목</th>
 							<th>날짜</th>
+							<th>분류</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -62,6 +67,7 @@
 								<td>${one.OWNERID }</td>
 								<td><a href="${path }/owner/oneVSoneView.do?qnaCode=${one.QNACODE}">${one.QNATITLE }</a></td>
 								<td>${one.WRITEDATE }</td>
+								<td>${one.QNACATEGORY }</td>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="ownerNoticeList" resultType="map">
-		SELECT * FROM NOTICE ORDER BY WRITEDATE DESC
+		SELECT * FROM OWNERNOTICE ORDER BY OWNERWRITEDATE DESC
 	</select>
 	
 	<select id="selectConfirmIdEmail" resultType="map" parameterType="map">
