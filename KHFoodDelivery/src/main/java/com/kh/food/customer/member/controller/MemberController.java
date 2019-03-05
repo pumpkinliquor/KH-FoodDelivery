@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -55,7 +57,37 @@ public class MemberController {
 	}
 	
 	
-	
+	@RequestMapping("/member/login.do")
+	public ModelAndView login(String id,String pw, HttpSession session) {
+		
+		ModelAndView mv =new ModelAndView();
+		
+		Map<String,String> map=new HashMap();
+		map.put("id",id);
+		map.put("pw",pw);
+		
+		Map<String,String> result=service.login(map);
+		
+		String msg="";
+		String loc="/";
+		if(result!=null) {
+			
+			if(pwEncoder.matches(pw,result.get("MEMBERPW"))) {
+				msg="로그인 성공";
+				mv.addObject("Id",result.get("MEMBERID"));
+			}else {
+				msg="패스워드가 일치하지 않습니다.";
+			}
+		}else {
+			msg="아이디가 존재하지 않습니다.";
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		
+		return mv;
+	}
+		
 	
 	
 	@RequestMapping("/member/memberEnroll.do")
@@ -90,5 +122,13 @@ public class MemberController {
 		model.addAttribute("loc",loc);
 		return "common/msg";
 	}
+	
+	@RequestMapping("/map/test.do")
+	public String map()
+	{
+		return "customer/test";
+	}
+
+	
 	
 }

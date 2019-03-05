@@ -60,6 +60,7 @@
 		    <artifactId>commons-dbcp</artifactId>
 		    <version>1.4</version>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
