@@ -35,8 +35,7 @@ public class MemberController {
 		Map map=new HashMap();
 		boolean isId=service.checkId(memberId)==0?false:true;
 		map.put("isId",isId);
-		
-	
+
 		
 		mv.addAllObjects(map); //map 으로 된거 통째로 넣어줌
 		mv.addObject("char",URLEncoder.encode("문자열","UTF-8"));
@@ -48,7 +47,24 @@ public class MemberController {
 		
 		
 	}
-	
+	@RequestMapping("/member/checkNick.do")
+	public ModelAndView checkNick(String nickName,ModelAndView mv) throws UnsupportedEncodingException{
+		
+		Map map=new HashMap();
+		boolean isNick=service.checkNick(nickName)==0?false:true;
+		map.put("isNick",isNick);
+
+		
+		mv.addAllObjects(map); //map 으로 된거 통째로 넣어줌
+		mv.addObject("char",URLEncoder.encode("문자열","UTF-8"));
+		mv.addObject("num",1);
+			
+		mv.setViewName("jsonView");
+		
+		return mv;
+		
+		
+	}
 
 	@RequestMapping("/customer/login.do")
 	public String login()

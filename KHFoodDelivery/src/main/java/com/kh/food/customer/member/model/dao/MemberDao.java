@@ -9,5 +9,5 @@ public interface MemberDao {
 	int memberEnroll(Member m);
 	int checkId(String memberId);
 	Map<String,String> login(Map<String,String> map);
-	
+	int checkNick(String nickName);
 }

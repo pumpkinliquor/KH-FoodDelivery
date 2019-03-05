@@ -26,6 +26,12 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectOne("member.checkId",memberId);
 		
 	}
+	
+	@Override
+	public int checkNick(String nickName) {
+		return sqlSession.selectOne("member.checkNick",nickName);
+	}
+
 	@Override
 	public Map<String,String> login(Map<String,String> map){
 		return sqlSession.selectOne("member.login",map);

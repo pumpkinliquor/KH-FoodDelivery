@@ -24,6 +24,12 @@ public class MemberServiceImpl implements MemberService {
 	public int checkId(String memberId) {
 		return dao.checkId(memberId);
 	}
+	
+	@Override
+	public int checkNick(String nickName) {
+		return dao.checkNick(nickName);
+	}
+
 	@Override
 	public Map<String,String> login(Map<String,String> map){
 		return dao.login(map);

@@ -13,6 +13,10 @@
 		select count(*) from member where memberId=#{memberId}
 	</select>
 	
+	<select id="checkNick" parameterType="String" resultType="_int">
+		select count(*) from member where nickName=#{nickName}
+	</select>
+	
 	<select id="login" parameterType="map" resultMap="member">
 		select * from member where memberId=#{id}
 	</select>

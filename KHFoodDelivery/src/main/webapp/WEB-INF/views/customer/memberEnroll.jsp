@@ -17,8 +17,9 @@ pageEncoding="UTF-8"%>
     div#enroll-container{position:relative; padding:0px;}
     div#enroll-container span.guide {display:none;font-size: 12px;position:absolute; top:12px; right:10px;}
     div#enroll-container span.guide1 {display:none;font-size: 12px;position:absolute; top:105px; right:10px;}
-    div#enroll-container span.ok,span.ok1{color:blue;}
-    div#enroll-container span.error{color:red;}
+     div#enroll-container span.guide2 {display:none;font-size: 12px;position:absolute; top:200px; right:10px;}
+    div#enroll-container span.ok,span.ok1,span.ok2{color:blue;}
+    div#enroll-container span.error,span.error2{color:red;}
 	    
        
 </style>      
@@ -32,11 +33,25 @@ pageEncoding="UTF-8"%>
             <script>
             var id="";
             var memberId="";
+            var nick="";
             $(function(){
 
             	//비밀번호 확인
             		$('#memberPw2').blur(function(){
-            		   if($('#memberPw').val() != $('#memberPw2').val()){
+            			memberPw = $("#memberPw").val();
+            			var passwordRules =  /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
+            			
+            			console.log("패스워드룰"+passwordRules.test(memberPw));
+             		   	if(passwordRules.test(memberPw) == false)
+             		   	if($('#memberPw2').val()!=''){
+             		   		{
+             		   			alert(" 6~20 영문 대소문자 , 최소 1개의 숫자 혹은 특수 문자를 포함 하세요!");
+             		   			$('#memberPw2').val('');
+             		   			$('#memberPw2').focus();
+             		   		
+             		   		}
+             		   	}
+            			if($('#memberPw').val() != $('#memberPw2').val()){
             		    	if($('#memberPw2').val()!=''){
             			    alert("비밀번호가 일치하지 않습니다.");
             		    	    $('#memberPw2').val('');
@@ -44,6 +59,7 @@ pageEncoding="UTF-8"%>
             		       }
             		    	
             		    }
+            		  
             		   else{
             			   $(".guide1.ok1").show();
             		   }
@@ -70,21 +86,10 @@ pageEncoding="UTF-8"%>
             			$.ajax({
             				url:"${path}/member/checkId.do",
             				data:{"memberId":memberId},
-            				success:function(data){
-            			/* 		console.log(data);
-            					console.log(data.num+" : "+typeof data.num);
-            					console.log(decodeURI(data['char'])+" : "+typeof data['char']); */
-            					/* console.log(data.isId+" : "+typeof data.isId); */
+            				success:function(data){          
             					console.log(data.isId);
             					id=data.isId;
-            					console.log(id);
-            					
-            					/* console.log(data.list+" : "+typeof data.list);
-            					
-            					for(var i=0; i<data.list.length;i++){
-            						console.log("for: "+data.list[i]);
-            					} */
-            					
+            					console.log(id);       					
             					if(data.isId==false){
             						$(".guide.ok").show();
             						$(".guide.error").hide();
@@ -93,6 +98,34 @@ pageEncoding="UTF-8"%>
             						
             						$(".guide.error").show();
             						$(".guide.ok").hide();
+            						
+            					}
+            					
+            					
+            				}
+            			});
+            		});
+            	});
+            	
+            	$(function(){
+            		$("#nickName").keyup(function(){
+            			nickName=$("#nickName").val().trim();
+         
+            			$.ajax({
+            				url:"${path}/member/checkNick.do",
+            				data:{"nickName":nickName},
+            				success:function(data){          
+            					console.log(data.isNick);
+            					nick=data.isNick;
+            					console.log(nick);       					
+            					if(data.isNick==false){
+            						$(".guide2.ok2").show();
+            						$(".guide2.error2").hide();
+            					
+            					}else{
+            						
+            						$(".guide2.error2").show();
+            						$(".guide2.ok2").hide();
             						
             					}
             					
@@ -115,6 +148,11 @@ pageEncoding="UTF-8"%>
             				alert("아이디를 4글자 이상 입력해주세요");
             				return false;
             			}
+            		if(nick==true)
+            			{
+            				alert("닉네임을 확인해주세요");
+            				return false;
+            			}
             		return true;
             		
             	}
@@ -127,6 +165,8 @@ pageEncoding="UTF-8"%>
         
             <input type="text" class="form-control" placeholder="이름" name="memberName" id="memberName" required>
              <input type="text" class="form-control" placeholder="닉네임" name="nickName" id="nickName" required>
+             <span class="guide2 ok2">사용 가능한 닉네임입니다. </span>
+            <span class="guide2 error2">닉네임이 존재합니다. </span>
             <input type="number" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth" maxlength="6" oninput="maxLengthCheck(this)" required>
             <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" required>
             <input type="tel" class="form-control" placeholder="전화번호 (예:01012345678)" name="memberPhone" id="memberPhone" maxlength="11" required>
