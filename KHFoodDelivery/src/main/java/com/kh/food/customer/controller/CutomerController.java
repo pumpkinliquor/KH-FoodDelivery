@@ -12,12 +12,6 @@ public class CutomerController {
 		return "customer/main";
 	}
 	
-	@RequestMapping("/customer/login.do")
-	public String login()
-	{
-		return "customer/login";
-	}
-	
 	@RequestMapping("/map/test.do")
 	public String map()
 	{

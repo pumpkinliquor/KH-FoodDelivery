@@ -14,4 +14,6 @@ public interface OnevsOneService {
 	List<Map<String,String>> qnaSearch(Map<String,String> map);
 	int qnaReviewForm(OwnerQnaReview oqr);
 	List<Map<String,String>> commentList(int qnaCode);
+	int qnaReviewUpdate(Map<String,Object> reviewUp);
+	int qnaReviewDelete(int qnaReviewCode);
 }

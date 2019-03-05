@@ -19,8 +19,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public int checkId(String userId) {
-		return dao.checkId(userId);
+	public int checkId(String memberId) {
+		return dao.checkId(memberId);
 	}
 
 	
