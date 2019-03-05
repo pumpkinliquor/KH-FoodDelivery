@@ -19,5 +19,10 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.insert("member.insertMember",m);
 	}
 	
+	@Override
+	public int checkId(String userId) {
+		return sqlSession.selectOne("member.checkId",userId);
+		
+	}
 	
 }

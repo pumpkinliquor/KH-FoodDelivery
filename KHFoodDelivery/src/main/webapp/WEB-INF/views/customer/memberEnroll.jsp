@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 import="java.util.*, java.sql.*" 
 pageEncoding="UTF-8"%>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>    
    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -23,20 +19,51 @@ pageEncoding="UTF-8"%>
     div#enroll-container span.ok{color:blue;}
     div#enroll-container span.error{color:red;}
 	    
-         <script>
-            function maxLengthCheck(object){
-                if (object.value.length > object.maxLength){
-                  object.value = object.value.slice(0, object.maxLength);
-                }    
-              }
-            	
-            
-            
-            </script>
+       
 </style>      
       <div id="enroll-container">
          <form action="${path }/member/memberEnrollEnd.do" method="post" >
-            <input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="memberId" id="memberId" required> 
+            <span class="guide ok">이 아이디는 사용할 수 있음 </span>
+            <span class="guide error">이 아이디는 사용할 수 없음 </span>
+            <input type="hidden" name="checkId" value="0"/>
+       <input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="userId" id="userId_" required>
+            <script>
+            	$(function(){
+            		$("#userId_").keyup(function(){
+            			var userId=$("#userId_").val().trim();
+            			if(userId.length<4)
+            			{
+            				$(".guide").hide();
+            				return;
+            			}
+            			$.ajax({
+            				url:"${path}/member/checkId.do",
+            				data:{"userId":userId},
+            				success:function(data){
+            					console.log(data);
+            					console.log(data.num+" : "+typeof data.num);
+            					console.log(decodeURI(data['char'])+" : "+typeof data['char']);
+            					console.log(data.isId+" : "+typeof data.isId);
+            					/* console.log(data.list+" : "+typeof data.list);
+            					for(var i=0; i<data.list.length;i++){
+            						console.log("for: "+data.list[i]);
+            					} */
+            					if(data.isId==false){
+            						$(".guide.ok").show();
+            						$(".guide.error").hide();
+            					
+            					}else{
+            						$(".guide.error").show();
+            						$(".guide.ok").hide();
+            						
+            					}
+            				}
+            			});
+            		});
+            	});
+            
+            
+            </script>
             <input type="password" class="form-control" placeholder="비밀번호" name="memberPw" id="memberPw2" required>
             <input type="password" class="form-control" placeholder="비밀번호확인"name="memberPw2" id="memberPw2" required>
             <input type="text" class="form-control" placeholder="이름" name="memberName" id="memberName" required>
