@@ -58,7 +58,6 @@ pageEncoding="UTF-8"%>
 		        	<label for="boardOriginalFileName" class="col-sm-3 control-label" style="float:left;"><small>사진</small></label>
 		        	</div>
 		            <input type="file" class="form-control" style="float:left;" id="boardOriginalFileName" name="boardOriginalFileName">
-		            <input type="file" class="form-control" style="float:left;" id="boardOriginalFileName" name="boardOriginalFileName">
 		            </div>
 		            <br/>
 		            <br/>

@@ -62,7 +62,7 @@ function validate(){
 			            <tr>
 			                <th>
 								<div class="input-group-prepend" style="padding:0px;">
-			                    	<span class="input-group-text">첨부파일1</span>
+			                    	<label for="upFile1"><span class="input-group-text">첨부파일#1</span></label>
 				                </div>
 							</th>
 			                <td>
@@ -75,7 +75,7 @@ function validate(){
 			            <tr>
 			                <th>
 								<div class="input-group-prepend" style="padding:0px;">
-			                    	<span class="input-group-text">첨부파일2</span>
+			                    	<label for="upFile2"><span class="input-group-text">첨부파일#2</span></label>
 			                	</div>
 							</th>
 			                <td>
