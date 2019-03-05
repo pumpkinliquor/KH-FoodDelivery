@@ -17,6 +17,11 @@ public class MemberServiceImpl implements MemberService {
 		
 		return dao.memberEnroll(m);
 	}
+	
+	@Override
+	public int checkId(String userId) {
+		return dao.checkId(userId);
+	}
 
 	
 	
