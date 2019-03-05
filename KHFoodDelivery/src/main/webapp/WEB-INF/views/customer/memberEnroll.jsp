@@ -28,6 +28,28 @@ pageEncoding="UTF-8"%>
             <input type="hidden" name="checkId" value="0"/>
        <input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="memberId" id="memberId" required>
             <script>
+            $(function(){
+
+            	//비밀번호 확인
+            		$('#memberPw2').blur(function(){
+            		   if($('#memberPw').val() != $('#memberPw2').val()){
+            		    	if($('#memberPw2').val()!=''){
+            			    alert("비밀번호가 일치하지 않습니다.");
+            		    	    $('#memberPw2').val('');
+            		          $('#memberPw2').focus();
+            		       }
+            		    }
+            		})  	   
+            	});
+
+
+	            function maxLengthCheck(object){
+	                if (object.value.length > object.maxLength){
+	                  object.value = object.value.slice(0, object.maxLength);
+	                }    
+	              }
+	            
+	            
             	$(function(){
             		$("#memberId").keyup(function(){
             			var memberId=$("#memberId").val().trim();
