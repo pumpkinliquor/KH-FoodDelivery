@@ -33,6 +33,19 @@ public class MemberListController {
 	  }
 	 
 	
+	  /*//회원 삭제
+	  @RequestMapping("/admin/memberList.do")
+	  public String memberDel(int memberNum) {
+		  int result=service.memberDel(memberNum);
+		  return "redirect:/admin/memberList.do";
+	  }*/
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	  //사장님리스트
 	  @RequestMapping("/admin/ownerList.do")
 	  public ModelAndView ownerList() {
