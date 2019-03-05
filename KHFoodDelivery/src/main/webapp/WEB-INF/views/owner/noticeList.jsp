@@ -53,26 +53,15 @@ pageEncoding="UTF-8"%>
 				<c:forEach var="owner" items="${ownerNoticeList }" varStatus="vs">
 				<tr style="cursor:pointer;" onclick="location.href='${path}/owner/noticeList.do'">
 					<td>${vs.count }</td>
-					<td><a href="#">${owner.NOTICETITLE }</a></td>
-					<td>${owner.WRITEDATE }</td>
+					<td><a href="#">${owner.OWNERNOTICETITLE }</a></td>
+					<td>${owner.OWNERWRITEDATE }</td>
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		
-		<div class="row">
-		<div class="col-sm-3"></div>
-		<div class="col-sm-6 pageBar_div1">페이지바</div>
-		<div class="col-sm-3"></div>
+		<div class="pageBar" style="text-align:center;">
+			페이지바
 		</div>
-		
-		<button type="button" class="btn btn-light float-right"
-			onclick="location.href='${path}/notice/noticeForm.do'">글쓰기</button>
-
-
-		<!-- </div>
-
-		<div class="col-md-2"></div> -->
 	</div>
 </section>
 

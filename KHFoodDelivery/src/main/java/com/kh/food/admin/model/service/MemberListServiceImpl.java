@@ -25,6 +25,12 @@ public class MemberListServiceImpl implements MemberListService {
 		// TODO Auto-generated method stub
 		return dao.selectListOwner();
 	}
+
+//	@Override
+//	public int memberDel(int memberNum) {
+//		// TODO Auto-generated method stub
+//		return dao.memberDel(memberNum);
+//	}
 	
 	
 }

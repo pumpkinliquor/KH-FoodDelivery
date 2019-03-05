@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="ownerNoticeList" resultType="map">
-		SELECT * FROM NOTICE ORDER BY WRITEDATE DESC
+		SELECT * FROM OWNERNOTICE ORDER BY OWNERWRITEDATE DESC
 	</select>
 	
 	<select id="selectConfirmIdEmail" resultType="map" parameterType="map">
@@ -24,4 +24,8 @@
 	<update id="updateTempPw" parameterType="map">
 		update owner set ownerPw = #{ownerPw} where ownerId = #{ownerId} and ownerEmail = #{ownerEmail}
 	</update>
+	
+	<select id="ownerCheckId" parameterType="string" resultType="_int">
+		select count(*) from owner where ownerId = #{ownerId}
+	</select>
 </mapper>

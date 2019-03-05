@@ -165,8 +165,8 @@ pageEncoding="UTF-8"%>
 							<c:forEach var="notice" items="${selectNoticeList }" begin="0" end="4" step="1" varStatus="vs">
 							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/noticeList.do'">
 								<td>${vs.count }</td>
-								<td><a href="#">${notice.NOTICETITLE }</a></td>
-								<td>${notice.WRITEDATE }</td>
+								<td><a href="#">${notice.OWNERNOTICETITLE }</a></td>
+								<td>${notice.OWNERWRITEDATE }</td>
 							</tr>
 							</c:forEach>
 						</tbody>

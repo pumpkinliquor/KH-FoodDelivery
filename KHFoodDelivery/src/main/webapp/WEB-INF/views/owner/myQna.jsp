@@ -24,6 +24,7 @@ pageEncoding="UTF-8"%>
 						<th>번호</th>
 						<th>제목</th>
 						<th>날짜</th>
+						<th>분류</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -32,6 +33,7 @@ pageEncoding="UTF-8"%>
 							<td>${vs.count }</td>
 							<td><a href="${path }/owner/oneVSoneView.do?qnaCode=${my.QNACODE}">${my.QNATITLE }</a></td>
 							<td>${my.WRITEDATE }</td>
+							<td>${my.QNACATEGORY }
 						</tr>
 					</c:forEach>
 				</tbody>
