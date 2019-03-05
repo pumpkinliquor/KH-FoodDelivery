@@ -35,16 +35,38 @@
 			<div class="col-sm-2"></div>
 		</div>
 		<hr/>
-		<div class="row">
-			<div class="col-sm-1"></div>
-			<div class="col-sm-10">
-				<textarea rows="3" cols="100" class="form-control" style="resize:none;"></textarea>
-			</div>
-			<div class="col-sm-1">
-				<button>등록</button>
-			</div>
-		</div>
-	</div>
+        <label for="reviewContext">댓글</label>
+        <form name="commentInsertForm" action="${path }/owner/qnaReviewForm.do">
+            <div class="input-group">
+               <input type="hidden" name="qnaCode" value="${views.QNACODE}"/>
+               <input type="hidden" name="ownerNum" value="${sessionScope.ownerNum }"/>
+               <input type="text" class="form-control" id="reviewContext" name="reviewContext" style="margin-right:1em;" placeholder="내용을 입력하세요.">
+               <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">등록</button>
+               </span>
+              </div>
+        </form>
+        <div class="commentList" style="margin-top:2em;">
+        	<c:forEach var="comment" items="${commentList}">
+		        <table class="table table-bordered">
+			        	<th>
+			        	<small>
+				            <span class='info'><strong style='color:#220706;'>${comment.OWNERID }</strong></span>
+				            <span class='line'>|</span>
+				            <span class='reviewdate'>${comment.WRITEDATE }</span>
+				            <span style="float:right;" class="reviewBtn">
+				            <button class="UpdBtn" onclick="location.href='${path}/owner/reviewUpdate.do'" type="button">수정</button>
+				            <button class="delBtn" onclick="location.href='${path}/owner/reviewDelete.do'" type="button">삭제</button>
+				            </span>
+			            </small>
+			            </th>
+			            <tr>
+			            <td>${comment.REVIEWCONTEXT }</td>
+			            </tr>
+		        </table>
+            </c:forEach>
+        </div>
+    </div>
 </section>
 
 

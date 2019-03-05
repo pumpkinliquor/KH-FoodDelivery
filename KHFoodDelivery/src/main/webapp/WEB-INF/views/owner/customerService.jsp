@@ -153,8 +153,8 @@ pageEncoding="UTF-8"%>
 							<button type="submit" id="oneVSoneWrite1" class="oneVSoneWrite1" onclick="location.href='${path}/owner/noticeList.do'">더보기</button>
 					    </div>
 				    </div>
-					<table class="table table-bordered table-hover">
-						<thead>
+					<table class="table table-bordered">
+						<thead style="cursor:pointer;" onclick="location.href='${path}/owner/noticeList.do'">
 							<tr>
 								<th width="11%">번호</th>
 								<th width="65%">제목</th>
@@ -163,7 +163,7 @@ pageEncoding="UTF-8"%>
 						</thead>
 						<tbody>
 							<c:forEach var="notice" items="${selectNoticeList }" begin="0" end="4" step="1" varStatus="vs">
-							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/customService.do'">
+							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/noticeList.do'">
 								<td>${vs.count }</td>
 								<td><a href="#">${notice.NOTICETITLE }</a></td>
 								<td>${notice.WRITEDATE }</td>
@@ -181,8 +181,8 @@ pageEncoding="UTF-8"%>
 							<button type="submit" id="oneVSoneWrite2" class="oneVSoneWrite2" onclick="location.href='${path}/owner/oneVSoneList.do'">더보기</button>
 					    </div>
 				    </div>
-					<table class="table table-bordered table-hover">
-						<thead>
+					<table class="table table-bordered">
+						<thead style="cursor:pointer;" onclick="location.href='${path}/owner/oneVSoneList.do'">
 							<tr>
 								<th width="12%">번호</th>
 								<th width="15%">문의자</th>
@@ -192,10 +192,10 @@ pageEncoding="UTF-8"%>
 						</thead>
 						<tbody>
 							<c:forEach var="qna" items="${selectQnaList }" begin="0" end="4" step="1" varStatus="vs">
-							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/customService.do'">
+							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/oneVSoneList.do'">
 								<td>${vs.count }</td>
 								<td>${qna.OWNERID }</td>
-								<td><a href="#">${qna.QNATITLE }</a></td>
+								<td><a href="${path}/owner/oneVSoneView.do?qnaCode=${qna.QNACODE}">${qna.QNATITLE }</a></td>
 								<td>${qna.WRITEDATE }</td>
 							</tr>
 							</c:forEach>

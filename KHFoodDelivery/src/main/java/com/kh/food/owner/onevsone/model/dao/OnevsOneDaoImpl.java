@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
+
 @Repository
 public class OnevsOneDaoImpl implements OnevsOneDao {
 
@@ -36,6 +38,16 @@ public class OnevsOneDaoImpl implements OnevsOneDao {
 	@Override
 	public List<Map<String, String>> qnaSearch(Map<String, String> map) {
 		return session.selectList("oneVSone.qnaSearch", map);
+	}
+
+	@Override
+	public int qnaReviewForm(OwnerQnaReview oqr) {
+		return session.insert("oneVSone.qnaReview", oqr);
+	}
+
+	@Override
+	public List<Map<String, String>> commentList(int qnaCode) {
+		return session.selectList("oneVSone.commentList", qnaCode);
 	}
 
 //	@Override
