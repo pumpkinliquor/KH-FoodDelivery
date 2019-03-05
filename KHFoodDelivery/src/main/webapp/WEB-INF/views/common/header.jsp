@@ -26,129 +26,10 @@
 
 <header>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c&libraries=services"></script>
-  
- <!-- 
-   
-   <p id="demo4">버튼을 누르면 좌표가 업데이트 됩니다.:</p>
 
-   <button onclick="getLocation4()">좌표 구하기!!</button> -->
-
-
-
-
-
-   <p id="text1"></p>
-
-   <p id="text2"></p>
-
-
-
-
-
-
-   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAxKkvDomtIADwV-xpX3P8e1THU9ZAG-O0&sensor=true"> </script>
-
-
-
-
-
-   <script>
-
-   var x4 = document.getElementById("demo4");
-
-   //demo4라고 이름 붙여진 문단에 내용 추가나 변경 등을 수행하기 위해 변수에 담습니다.
-
-
-
-   function getLocation4() {
-
-   if (navigator.geolocation) {
-
-   //브라우져가 geolocation을 지원하는지 확인한 후 
-
-   navigator.geolocation.watchPosition(showPosition4);
-
-   //지원할 경우에 watchPosition 메소드를 실행합니다. watchPosition은 변화되는 좌표를 계속적으로 업데이트 해줍니다.
-
-
-
-
-
-   } else {
-
-   x4.innerHTML = "이 브라우저는 위치추적이 지원되지 않습니다.";
-
-   //지원되지 않는 브라우져의 경우에는 사용자에게 알려주게 됩니다. 여기서 x4는 위에서 얻어온 demo4문단입니다.
-
-   }
-
-   }
-
-
-
-   function showPosition4(position) {
-
-   var forLatlng = document.getElementById("text1");
-
-   var forAddress = document.getElementById("text2");
-
-   //body의 두 문단을 하나는 좌표를 위해, 하나는 주소를 위해 사용하기 위해 변수로 얻습니다.
-
-   forLatlng.innerHTML = ": Latitude: " + position.coords.latitude+ "_$tag_Longitude: " + position.coords.longitude;
-
-
-
-
-   var geocoder = new google.maps.Geocoder();
-
-   //geocoder를 사용하기 위해 변수를 선언하고 구글 맵 api에서 객체를 얻어 옵니다.
-
-
-   var latlng = new google.maps.LatLng(position.coords.latitude,
-
-   position.coords.longitude);
-
-   //위도와 경도를 구글 맵스의 geocoder에서 사용할 형식으로 변환합니다.
-
-   geocoder.geocode({'latLng' : latlng}, function(results, status) 
-
-   {
-
-
-
-   /*
-
-   좌표를 주소로 변환 시키는 geocoder를 실행합니다.
-
-   만약 성공적으로 변환이 되었다면, status라는 상태변수가 참이 되어 아래의 코드들이 실행됩니다.
-
-   */
-
-   if (results[1]) {
-   	 $('#location').val(results[3].formatted_address);
-   forAddress.innerHTML = results[3].formatted_address;
-
-   //만약 반환된 결과값이 비어있지 않으면 innerHTML을 이용해 결과값을 출력합니다.
 
    
-
-   } else {
-
-   alert("Geocoder failed due to: " + status);
-
-   //만약 geocoder가 실패시 알림창을 출력합니다.
-
-   }
-
-
-   });
-
-
-
-   }
-
-   
-/* 		
+	<script>
     $(document).ready(function () {
 		$("#positionBtn").click(function(){
   			 function getLocation() {
@@ -216,7 +97,7 @@
 }); 
      
    
-    */
+   
    
    
    
@@ -282,6 +163,10 @@
 			}
 		});
 	});
+	//배달의민족 클릭시 메인으로
+	function mainpage(){
+		location.href="${path }";
+	}
 	
 	
 	</script>
@@ -298,7 +183,7 @@
                 <div class="row" style="margin:0;">           
                 <div class="col-sm-12 headerDiv2">
                     <div class="content">
-  							<h2>배달의 민족</h2>
+  							<h2 onclick="mainpage();">배달의 민족</h2>
                     </div>
                 </div>
                 <div class="col-sm-12">

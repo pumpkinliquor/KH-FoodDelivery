@@ -4,6 +4,9 @@
 	<insert id="insertMember" parameterType="member">
 		insert into owner values(SEQ_MEMBERNUM.nextval , #{memberId},#{memberPw},#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},sysdate,#{gender},#{mileage},#{isAdmin},#{rlongitude},#{atitude})
 	</insert>
-
+	
+	<select id="checkId" parameterType="String" resultType="_int">
+		select count(*) from member where memberId=#{userId}
+	</select>
 
 </mapper>
