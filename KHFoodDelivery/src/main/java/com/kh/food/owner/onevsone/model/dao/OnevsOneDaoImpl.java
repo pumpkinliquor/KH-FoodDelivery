@@ -50,6 +50,16 @@ public class OnevsOneDaoImpl implements OnevsOneDao {
 		return session.selectList("oneVSone.commentList", qnaCode);
 	}
 
+	@Override
+	public int qnaReviewUpdate(Map<String,Object> reviewUp) {
+		return session.update("oneVSone.qnaUpdate", reviewUp);
+	}
+
+	@Override
+	public int qnaReviewDelete(int qnaReviewCode) {
+		return session.delete("oneVSone.qnaDelete", qnaReviewCode);
+	}
+
 //	@Override
 //	public int qnaFormEnd(Map<String,Object> qna) {
 //		return session.insert("oneVSone.insertQna", qna);

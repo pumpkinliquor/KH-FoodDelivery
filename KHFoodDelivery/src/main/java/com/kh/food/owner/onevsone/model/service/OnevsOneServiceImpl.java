@@ -50,6 +50,16 @@ public class OnevsOneServiceImpl implements OnevsOneService {
 		return dao.commentList(qnaCode);
 	}
 
+	@Override
+	public int qnaReviewUpdate(Map<String,Object> reviewUp) {
+		return dao.qnaReviewUpdate(reviewUp);
+	}
+
+	@Override
+	public int qnaReviewDelete(int qnaReviewCode) {
+		return dao.qnaReviewDelete(qnaReviewCode);
+	}
+
 //	@Override
 //	public int qnaFormEnd(Map<String,Object> qna) throws Exception {
 //		int result=0;
