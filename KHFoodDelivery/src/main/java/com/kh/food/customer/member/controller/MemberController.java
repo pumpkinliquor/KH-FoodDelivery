@@ -28,10 +28,10 @@ public class MemberController {
 	
 	
 	@RequestMapping("/member/checkId.do")
-	public ModelAndView checkId(String userId,ModelAndView mv) throws UnsupportedEncodingException{
+	public ModelAndView checkId(String memberId,ModelAndView mv) throws UnsupportedEncodingException{
 		
 		Map map=new HashMap();
-		boolean isId=service.checkId(userId)==0?false:true;
+		boolean isId=service.checkId(memberId)==0?false:true;
 		map.put("isId",isId);
 		
 	
@@ -47,6 +47,12 @@ public class MemberController {
 		
 	}
 	
+
+	@RequestMapping("/customer/login.do")
+	public String login()
+	{
+		return "customer/login";
+	}
 	
 	
 	
@@ -58,13 +64,17 @@ public class MemberController {
 		return "customer/memberEnroll";
 	}
 	
+	
+	
 	@RequestMapping("/member/memberEnrollEnd.do")
 	public String memberEnrollEnd(Member m,Model model)
 	{
 		System.out.println(m);
 		String rawPw=m.getMemberPw();
+		System.out.println("암호화전"+rawPw);
 		
 		m.setMemberPw(pwEncoder.encode(rawPw));
+		
 		int result=service.memberEnroll(m);
 		String msg="";
 		String loc="/";
@@ -74,6 +84,7 @@ public class MemberController {
 		}
 		else {
 			msg="회원가입 실패하였습니다.";
+			
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("loc",loc);

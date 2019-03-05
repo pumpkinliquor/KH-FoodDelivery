@@ -22,23 +22,23 @@ pageEncoding="UTF-8"%>
        
 </style>      
       <div id="enroll-container">
-         <form action="${path }/member/memberEnrollEnd.do" method="post" >
-            <span class="guide ok">이 아이디는 사용할 수 있음 </span>
-            <span class="guide error">이 아이디는 사용할 수 없음 </span>
+        <form name="enroll" action="${path }/member/memberEnrollEnd.do" method="post" onsubmit="return validate();" >
+            <span class="guide ok">사용 가능한 아이디입니다. </span>
+            <span class="guide error">아이디가 존재합니다. </span>
             <input type="hidden" name="checkId" value="0"/>
-       <input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="userId" id="userId_" required>
+       <input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="memberId" id="memberId" required>
             <script>
             	$(function(){
-            		$("#userId_").keyup(function(){
-            			var userId=$("#userId_").val().trim();
-            			if(userId.length<4)
+            		$("#memberId").keyup(function(){
+            			var memberId=$("#memberId").val().trim();
+            			if(memberId.length<4)
             			{
             				$(".guide").hide();
             				return;
             			}
             			$.ajax({
             				url:"${path}/member/checkId.do",
-            				data:{"userId":userId},
+            				data:{"memberId":memberId},
             				success:function(data){
             					console.log(data);
             					console.log(data.num+" : "+typeof data.num);
@@ -53,6 +53,7 @@ pageEncoding="UTF-8"%>
             						$(".guide.error").hide();
             					
             					}else{
+            						
             						$(".guide.error").show();
             						$(".guide.ok").hide();
             						
@@ -64,8 +65,9 @@ pageEncoding="UTF-8"%>
             
             
             </script>
-            <input type="password" class="form-control" placeholder="비밀번호" name="memberPw" id="memberPw2" required>
+            <input type="password" class="form-control" placeholder="비밀번호" name="memberPw" id="memberPw" required>
             <input type="password" class="form-control" placeholder="비밀번호확인"name="memberPw2" id="memberPw2" required>
+        
             <input type="text" class="form-control" placeholder="이름" name="memberName" id="memberName" required>
              <input type="text" class="form-control" placeholder="닉네임" name="nickName" id="nickName" required>
             <input type="number" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth" maxlength="6" oninput="maxLengthCheck(this)">
@@ -77,13 +79,18 @@ pageEncoding="UTF-8"%>
                <option value="M">남</option>
                <option value="F">여</option>
             </select>
-         
-         
+         	  <input type=text" class="form-control" placeholder="경도(일단입력(String))" name="longitude" id="longitude" required>
+            <input type="text" class="form-control" placeholder="위도(일단 입력(String))"name="latitude" id="latitude" required>
+     		
             <br />
+            
             <input type="submit" class="btn btn-outline-secondary" value="가입" >&nbsp;
             <input type="reset" class="btn btn-outline-secondary" value="취소">
          </form>
       </div>
+      
+ 
+     
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
