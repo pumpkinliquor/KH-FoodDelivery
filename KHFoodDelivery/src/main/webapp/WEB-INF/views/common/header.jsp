@@ -176,12 +176,14 @@
         <div class="newsletter">
               <div class="headerDiv1">
                <c:if test="${sessionScope.logined==null }">
-                   <button class="btn btn-default my-2 my-sm-0" onclick="location.href='${path}/customer/login.do'">로그인</button>        
-                   <button class="btn btn-default my-2 my-sm-0" onclick="location.href='${path}/member/memberEnroll.do'">회원가입</button>   
+                 <a href="${path }/customer/login.do">로그인</a>
+                    <a href="${path }/member/memberEnroll.do">회원가입</a>
+                   
               </c:if> 
                <c:if test="${sessionScope.logined!=null}">
-                <button class="btn btn-default my-2 my-sm-0" onclick="location.href='${path}/customer/logout.do'">로그아웃</button>  
-                <button class="btn btn-default my-2 my-sm-0" onclick="location.href='#'">마이페이지</button>  
+               <a href="${path }/customer/logout.do">로그아웃</a>
+               <a href="#">마이페이지</a>
+               
           
               </c:if> 
               </div>
