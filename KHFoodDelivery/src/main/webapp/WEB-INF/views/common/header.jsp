@@ -170,14 +170,22 @@
 	
 	
 	</script>
+
+
 		 <div id='centerAddr1'></div>
-
-
         <div class="newsletter">
               <div class="headerDiv1">
-                    <a href="${path }/customer/login.do/">로그인</a>        
-                    <a href="#">회원가입</a>
-              		<a href="#">로그아웃</a>
+               <c:if test="${sessionScope.logined==null }">
+                 <a href="${path }/customer/login.do">로그인</a>
+                    <a href="${path }/member/memberEnroll.do">회원가입</a>
+                   
+              </c:if> 
+               <c:if test="${sessionScope.logined!=null}">
+               <a href="${path }/customer/logout.do">로그아웃</a>
+               <a href="#">마이페이지</a>
+               
+          
+              </c:if> 
               </div>
                 <div id="container">             
                 <div class="row" style="margin:0;">           

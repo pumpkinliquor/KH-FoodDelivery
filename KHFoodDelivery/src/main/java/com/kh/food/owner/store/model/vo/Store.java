@@ -1,6 +1,7 @@
 package com.kh.food.owner.store.model.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.kh.food.owner.member.model.vo.Owner;
 
@@ -21,14 +22,16 @@ public class Store implements Serializable
 	private double longitude;
 	private double atitude;
 	private int isConfirm;
+	private Date appDate;
 	private Owner onwer;
+	private String formatAppDate;
 	
 	
 	public Store() {}
 	
 	public Store(int businessCode, int businessNum, String businessName, String businessPhone, String storeName,
 			String storePhone, String storeAddress, String storeCategory, String storeImage, int minPrice,
-			String storeProfile, double longitude, double atitude, int isConfirm, Owner onwer) {
+			String storeProfile, double longitude, double atitude, int isConfirm, Owner onwer, Date appDate, String formatAppDate) {
 		super();
 		this.businessCode = businessCode;
 		this.businessNum = businessNum;
@@ -45,6 +48,8 @@ public class Store implements Serializable
 		this.atitude = atitude;
 		this.isConfirm = isConfirm;
 		this.onwer = onwer;
+		this.appDate = appDate;
+		this.formatAppDate = formatAppDate;
 	}
 
 	public int getBusinessCode() {
@@ -171,14 +176,29 @@ public class Store implements Serializable
 		return serialVersionUID;
 	}
 
+	
+	public Date getAppDate() {
+		return appDate;
+	}
+
+	public void setAppDate(Date appDate) {
+		this.appDate = appDate;
+	}
+	
+	public String getFormatAppDate() {
+		return formatAppDate;
+	}
+
+	public void setFormatAppDate(String formatAppDate) {
+		this.formatAppDate = formatAppDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Store [businessCode=" + businessCode + ", businessNum=" + businessNum + ", businessName=" + businessName
 				+ ", businessPhone=" + businessPhone + ", storeName=" + storeName + ", storePhone=" + storePhone
 				+ ", storeAddress=" + storeAddress + ", storeCategory=" + storeCategory + ", storeImage=" + storeImage
 				+ ", minPrice=" + minPrice + ", storeProfile=" + storeProfile + ", longitude=" + longitude
-				+ ", atitude=" + atitude + ", isConfirm=" + isConfirm + ", onwer=" + onwer + "]";
-	}
-	
-	
+				+ ", atitude=" + atitude + ", isConfirm=" + isConfirm + ", appDate=" + appDate + ", onwer=" + onwer + "]";
+	}	
 }

@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="java.util.List, com.kh.food.owner.store.model.vo.Store" %>
+<%-- <%
+	List<Store> appStoreList = (List)request.getAttribute("appStoreList");  
+%> --%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 
@@ -18,9 +22,14 @@
 </style>
 
 <script> 
-	function fn_modal(){
+	function fn_modal(num){		
 		$('#storeModal').modal();
+		$.ajax({
+			url: "${path}/admin/selectAppStore.do?no=num",
+			data: {}
+		});		
 	}
+	
 	function fn_appConfirm(no){
 		location.href="${path}/admin/confirmApp.do?no="+no;
 	}
@@ -43,14 +52,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach begin="1" end="5">						
-						<tr class="pnt" onclick="fn_modal()">
-							<td>치킨</td>
-							<td>배민</td>
-							<td>주홍범</td>
-							<td>서울특별시 강남구 역삼동</td>
-							<td>2019-02-26</td>
-						</tr>						
+					<c:forEach items="${appStoreList}" var="store">
+						<c:if test="${store.isConfirm eq 0}">
+							<tr class="pnt" onclick="fn_modal(${store.businessCode})">
+								<td>${store.storeCategory }</td>
+								<td>${store.storeName }</td>
+								<td>${store.businessName }</td>
+								<td>${store.storeAddress }</td>
+								<td>${store.formatAppDate }</td>
+							</tr>
+						</c:if>						
 					</c:forEach>
 				</tbody>
 			</table>
@@ -78,7 +89,7 @@
 				<table class="table">
 					<tr>
 						<th>업종</th>
-						<td>치킨</td>						
+						<td><c:out value=""/></td>						
 					</tr>
 					<tr>
 						<th>점포명</th>
