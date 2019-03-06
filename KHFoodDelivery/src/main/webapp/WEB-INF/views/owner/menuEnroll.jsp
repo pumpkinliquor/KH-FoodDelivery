@@ -102,21 +102,21 @@ left: 0;
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form>
+                                        <form action="${path }/owner/enrollMenu.do">
                                           <div class="form-group row">
                                             <label for="username" class="col-4 col-form-label">메뉴명</label> 
                                             <div class="col-8">
-                                              <input id="username" name="username" placeholder="" class="form-control here" required="required" type="text">
+                                              <input id="menuName" name="menuName" placeholder="" class="form-control here" required="required" type="text">
                                             </div>
                                           </div>                                  
                                           <div class="form-group row">
                                             <label for="select" class="col-4 col-form-label">메뉴카테고리</label> 
                                             <div class="col-8">
-                                              <select id="select" name="select" class="custom-select">
-                                                <option value="admin">커피류</option>
-                                                <option value="admin">에이드류</option>
-                                                <option value="admin">플래치노류</option>
-                                                <option value="admin">디저트</option>
+                                              <select id="select" name="menuCategoryCode" class="custom-select">
+                                                <option value="1">커피류</option>
+                                                <option value="2">에이드류</option>
+                                                <option value="3">플래치노류</option>
+                                                <option value="4">디저트</option>
                                               
                                               </select>
                                             </div>
@@ -124,13 +124,13 @@ left: 0;
                                           <div class="form-group row">
                                             <label for="website" class="col-4 col-form-label">가격</label> 
                                             <div class="col-8">
-                                              <input id="website" name="website" placeholder="" class="form-control here" type="text">
+                                              <input id="menuPrice" name="menuPrice" placeholder="" class="form-control here" type="text">
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label for="publicinfo" class="col-4 col-form-label">메뉴설명</label> 
                                             <div class="col-8">
-                                              <textarea id="publicinfo" name="publicinfo" cols="40" rows="4" class="form-control"></textarea>
+                                              <textarea id="menuContent" name="menuContent" cols="40" rows="4" class="form-control"></textarea>
                                             </div>
                                           </div>
                                           <div class="form-group row">
@@ -139,7 +139,7 @@ left: 0;
                                                 <label class="custom-file-upload form-control">
                                                   <i class="fa fa-cloud-upload"></i> Upload Document
                                                 </label>
-                                                <input class="file-upload" name="file_name" type="file">
+                                                <input class="file-upload" name="menuImage" type="file">
                                               </div>
                                           </div> 
                                           <div class="form-group row">
@@ -166,11 +166,11 @@ left: 0;
                               </div>
                               <div class="row">
                                   <div class="col-md-12">
-                                      <form>
+                                      <form action="${path }/owner/enrollCategory.do" method="post">
                                         <div class="form-group row">
-                                          <label for="username" class="col-4 col-form-label">카테고리명</label> 
+                                          <label for="menuCategory" class="col-4 col-form-label">카테고리명</label> 
                                           <div class="col-8">
-                                            <input id="username" name="username" placeholder="" class="form-control here" required="required" type="text">
+                                            <input id="menuCategory" name="menuCategory" placeholder="" class="form-control here" required="required" type="text">
                                           </div>
                                         </div>                                  
                                         <div class="form-group row">
