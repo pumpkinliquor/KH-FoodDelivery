@@ -1,20 +1,19 @@
 package com.kh.food.customer.member.controller;
 
 import java.io.UnsupportedEncodingException;
-
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.customer.member.model.service.MemberService;
@@ -23,6 +22,9 @@ import com.kh.food.customer.member.model.vo.Member;
 @Controller
 public class MemberController {
 
+	
+	private Logger logger=Logger.getLogger(MemberController.class);
+	
 	@Autowired
 	BCryptPasswordEncoder pwEncoder;
 	@Autowired
@@ -74,7 +76,7 @@ public class MemberController {
 	
 	
 	@RequestMapping("/member/login.do")
-	public ModelAndView login(String id,String pw, HttpSession session) {
+	public ModelAndView login(String id,String pw,HttpSession session) {
 		
 		ModelAndView mv =new ModelAndView();
 		
@@ -90,7 +92,9 @@ public class MemberController {
 			
 			if(pwEncoder.matches(pw,result.get("MEMBERPW"))) {
 				msg="로그인 성공";
-				mv.addObject("Id",result.get("MEMBERID"));
+				session.setAttribute("logined", result.get("MEMBERID"));
+			
+				
 			}else {
 				msg="패스워드가 일치하지 않습니다.";
 			}
@@ -101,6 +105,25 @@ public class MemberController {
 		mv.addObject("loc",loc);
 		mv.setViewName("common/msg");
 		
+		return mv;
+	}
+	
+	@RequestMapping("/customer/logout.do")
+	public ModelAndView logout(HttpSession session) {
+		
+		ModelAndView mv= new ModelAndView();
+		String msg="";
+		String loc="/";
+		if(session!=null)
+		{
+			session.invalidate();
+			msg="로그아웃 되었습니다.";
+		}else {
+			msg="로그아웃 실패";
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
 		return mv;
 	}
 		
@@ -145,6 +168,11 @@ public class MemberController {
 		return "customer/test";
 	}
 
+	
+	@RequestMapping("/customer/searchmenuView")
+	public String menuView() {
+		return "customer/searchMenu";
+	}
 	
 	
 }
