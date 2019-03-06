@@ -90,7 +90,7 @@ public class MemberController {
 			
 			if(pwEncoder.matches(pw,result.get("MEMBERPW"))) {
 				msg="로그인 성공";
-				mv.addObject("Id",result.get("MEMBERID"));
+				session.setAttribute("logined", result.get("MEMBERID"));
 			}else {
 				msg="패스워드가 일치하지 않습니다.";
 			}

@@ -86,7 +86,7 @@ font-size: 20px;
 	height:42px;
 }
 </style>
-<!-- <script>
+ <script>
 		function login(){
 			
 			var id = $('#id').val().trim().length;
@@ -102,7 +102,7 @@ font-size: 20px;
 
 		}
 
-</script> -->
+</script> 
 
 <section>
     <div class="container">
@@ -117,18 +117,19 @@ font-size: 20px;
                    <div class="col-md-4 mx-auto">
                       <div class="myform form ">
                       
-                         <form  method="post" name="login" action="${path }/member/login.do" class="login">
+                         <form  method="post"  onsubmit="return login();" action="${pageContext.request.contextPath}/member/login.do">
                          
                             <div class="form-group">
                                <input type="text" name="id"  class="form-control my-input" id="id" placeholder="id">
                             </div>
                             <div class="form-group">
-                               <input type="password" name="password"  class="form-control my-input" id="pw" placeholder="password">
+                               <input type="password" name="pw"  class="form-control my-input" id="pw" placeholder="password">
                             </div>
                             
                             <div class="text-center loginDiv_1">
                                <input type="submit" value="로그인" class="btn btn-primary"/>
                             </div>
+                       
                          </form>
                          
                          
