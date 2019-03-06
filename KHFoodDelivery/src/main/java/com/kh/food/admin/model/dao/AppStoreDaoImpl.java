@@ -14,17 +14,21 @@ public class AppStoreDaoImpl implements AppStoreDao {
 	@Autowired
 	SqlSessionTemplate session;
 	
-
 	// 입점 승인 메소드
 	@Override
 	public int updateStoreConfirm(int no) {
 		return session.update("store.updateStoreConfirm", no);
 	}
 
-
 	// 입점 신청 리스트
 	@Override
-	public List<Store> appStoreList() {
-		return session.selectList("store.appStoreList");
+	public List<Store> selectAppStoreList() {
+		return session.selectList("store.selectAppStoreList");
 	}
+
+	// 입점 신청 선택하여 모달 띄우기
+	@Override
+	public Store selectAppStore(int no) {
+		return session.selectOne("store.selectAppStore", no);
+	}	
 }

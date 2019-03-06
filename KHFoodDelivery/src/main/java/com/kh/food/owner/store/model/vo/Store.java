@@ -24,13 +24,14 @@ public class Store implements Serializable
 	private int isConfirm;
 	private Date appDate;
 	private Owner onwer;
+	private String formatAppDate;
 	
 	
 	public Store() {}
 	
 	public Store(int businessCode, int businessNum, String businessName, String businessPhone, String storeName,
 			String storePhone, String storeAddress, String storeCategory, String storeImage, int minPrice,
-			String storeProfile, double longitude, double atitude, int isConfirm, Owner onwer, Date appDate) {
+			String storeProfile, double longitude, double atitude, int isConfirm, Owner onwer, Date appDate, String formatAppDate) {
 		super();
 		this.businessCode = businessCode;
 		this.businessNum = businessNum;
@@ -48,6 +49,7 @@ public class Store implements Serializable
 		this.isConfirm = isConfirm;
 		this.onwer = onwer;
 		this.appDate = appDate;
+		this.formatAppDate = formatAppDate;
 	}
 
 	public int getBusinessCode() {
@@ -182,6 +184,14 @@ public class Store implements Serializable
 	public void setAppDate(Date appDate) {
 		this.appDate = appDate;
 	}
+	
+	public String getFormatAppDate() {
+		return formatAppDate;
+	}
+
+	public void setFormatAppDate(String formatAppDate) {
+		this.formatAppDate = formatAppDate;
+	}
 
 	@Override
 	public String toString() {
@@ -190,7 +200,5 @@ public class Store implements Serializable
 				+ ", storeAddress=" + storeAddress + ", storeCategory=" + storeCategory + ", storeImage=" + storeImage
 				+ ", minPrice=" + minPrice + ", storeProfile=" + storeProfile + ", longitude=" + longitude
 				+ ", atitude=" + atitude + ", isConfirm=" + isConfirm + ", appDate=" + appDate + ", onwer=" + onwer + "]";
-	}
-	
-	
+	}	
 }
