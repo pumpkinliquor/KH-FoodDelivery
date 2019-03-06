@@ -109,15 +109,22 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/customer/logout.do")
-	public String logout(HttpSession session) {
+	public ModelAndView logout(HttpSession session) {
 		
-		
+		ModelAndView mv= new ModelAndView();
+		String msg="";
+		String loc="/";
 		if(session!=null)
 		{
 			session.invalidate();
+			msg="로그아웃 되었습니다.";
+		}else {
+			msg="로그아웃 실패";
 		}
-		
-		return "redirect:/homepage.jsp";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
 	}
 		
 	
@@ -161,6 +168,11 @@ public class MemberController {
 		return "customer/test";
 	}
 
+	
+	@RequestMapping("/customer/searchmenuView")
+	public String menuView() {
+		return "customer/searchMenu";
+	}
 	
 	
 }

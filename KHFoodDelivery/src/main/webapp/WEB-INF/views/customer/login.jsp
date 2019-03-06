@@ -92,12 +92,14 @@ font-size: 20px;
 			var id = $('#id').val().trim().length;
     		var pw = $('#pw').val().trim().length;  
     		
-			if(id==0 || pw==0){
+			if(id==0 || pw==0 ){
 				
-				alert("아이디와 비밀번호를 입력해주세요");
+				alert("아이디와 비밀번호를 입력해주세요.");
 				
 				return false;
+		
 			}
+				
 			return true;
 
 		}
