@@ -16,4 +16,5 @@ public interface OnevsOneService {
 	int qnaReviewUpdate(Map<String,Object> reviewUp);
 	int qnaReviewDelete(int qnaReviewCode);
 	int qnaFormEnd(Map<String,Object> qna, List<OwnerQnaAttachment> files);
+	List<Map<String,String>> ownerAttach(int qnaCode);
 }

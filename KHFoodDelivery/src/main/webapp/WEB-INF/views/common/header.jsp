@@ -151,6 +151,7 @@
   
 
 
+<<<<<<< HEAD
    //헤더 고정 
    $(function(){
       $(window).scroll(function(){
@@ -168,8 +169,6 @@
       location.href="${path }";
    }
    
-   
-   </script>
 
 
        <div id='centerAddr1'></div>

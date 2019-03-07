@@ -51,7 +51,7 @@
 				<p>분류 : ${views.QNACATEGORY }
 			</div>
 			<div class="col-sm-2">
-				<button class="btn btn-default">삭제</button>			
+				<button class="btn btn-default">삭제</button>
 			</div>	
 		</div>
 		<br/>	
@@ -59,9 +59,13 @@
 			<div class="col-sm-12">
 				${views.QNACONTENT }
 			</div>
-			<div class="col-sm-2"></div>
 		</div>
 		<hr/>
+		<c:forEach items="${attach}" var="a" varStatus="vs">
+        <button type="button" class="btn btn-outline-success btn-block" onclick="fileDownload('${a.ORIGINALFILENAME}','${a.RENAMEDFILENAME}');">
+            첨부파일${vs.count} - ${a.ORIGINALFILENAME}
+        </button>
+    	</c:forEach>
 		<div class="rounded" style="border:1px solid rgb(173, 173, 173); padding-bottom:1em; padding-right:1em; padding-left:1em; padding-top:1em;">
         <label for="reviewContext">댓글</label>
         <form name="commentInsertForm" action="${path }/owner/qnaReviewForm.do">

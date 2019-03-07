@@ -65,5 +65,10 @@ public class OnevsOneDaoImpl implements OnevsOneDao {
 	public int insertAttach(OwnerQnaAttachment a) {
 		return session.insert("oneVSone.insertAttach", a);
 	}
+	
+	@Override
+	public List<Map<String,String>> ownerAttach(int qnaCode) {
+		return session.selectList("oneVSone.ownerAttach", qnaCode);
+	}
 
 }

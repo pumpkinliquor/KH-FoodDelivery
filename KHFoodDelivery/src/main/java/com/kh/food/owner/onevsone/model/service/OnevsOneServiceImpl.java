@@ -80,5 +80,10 @@ public class OnevsOneServiceImpl implements OnevsOneService {
 		return result;
 	}
 
+	@Override
+	public List<Map<String, String>> ownerAttach(int qnaCode) {
+		return dao.ownerAttach(qnaCode);
+	}
+
 
 }
