@@ -3,7 +3,9 @@ package com.kh.food.owner.onevsone.controller;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -237,6 +239,7 @@ public class OnevsOneController {
 //		System.out.println(oriName+reName);
 		BufferedInputStream bis=null;
 		ServletOutputStream sos=null;
+		boolean fileCheck=true;
 		String dir=request.getSession().getServletContext().getRealPath("resources/upload/owner/ownerAttach");
 		File savedFile=new File(dir+"/"+reName); //경로
 		try {
@@ -261,17 +264,50 @@ public class OnevsOneController {
 				sos.write(read);
 			}
 		}
+		catch (FileNotFoundException e) {
+			fileCheck=false;
+			e.printStackTrace();
+		}
 		catch (IOException e) {
+			e.printStackTrace();
+		}
+		catch (NullPointerException e) {
+			fileCheck=false;
 			e.printStackTrace();
 		}
 		finally {
 			try {
-			sos.close();
-			bis.close();
+				sos.close();
+				bis.close();
 			}
-			catch(IOException e){
+			catch (FileNotFoundException e) {
+				fileCheck=false;
 				e.printStackTrace();
 			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+			catch (NullPointerException e) {
+				fileCheck=false;
+				e.printStackTrace();
+			}
+		}
+		if(fileCheck==false) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = null;
+			try {
+				out=response.getWriter();
+			}
+			catch (NullPointerException e) {
+				e.printStackTrace();
+			}
+			catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+			out.println("<script>alert('선택 하신 파일을 찾을 수 없습니다.'); history.go(-1);</script>");
 		}
 	}
 }

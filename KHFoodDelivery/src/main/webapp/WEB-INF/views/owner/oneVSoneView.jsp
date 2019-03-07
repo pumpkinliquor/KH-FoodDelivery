@@ -64,7 +64,7 @@
 		<script>
 		//파일다운로드
 		function fileDownLoad(oriName, reName){
-			if(oriName==""||reName==""){
+			if(oriName==null||reName==null){
 				alert("첨부파일을 다운로드 할 수 없습니다.");
 				return false;
 			}
