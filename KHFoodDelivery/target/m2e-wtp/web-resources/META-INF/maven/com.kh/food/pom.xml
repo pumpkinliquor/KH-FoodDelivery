@@ -24,14 +24,17 @@
 				<exclusion>
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
+
 				</exclusion>
 			</exclusions>
+
 		</dependency>
-		<dependency>
+		<dependency> 
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+
 		
 		
 		<!-- gson, json -->
@@ -41,6 +44,7 @@
 			<version>2.8.5</version>
 		</dependency>
 		
+
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 		<dependency>
 		    <groupId>org.springframework</groupId>

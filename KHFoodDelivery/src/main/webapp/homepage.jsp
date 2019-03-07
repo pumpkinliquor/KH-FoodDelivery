@@ -12,7 +12,7 @@ div.menu7,div.menu8,div.menu9{position: relative; display:inline-block;  border 
 div.main a{text-decoration:none; color:black;}
 img.i{max-width:100%; max-height: 100%; margin-bottom:-9.9305px;margin-left:14%;vertical-align: middle;}
 div.main{text-align:center;}
-div.container{margin-bottom:4%; margin-top:-10%;}
+
 </style>
 <section>
 
