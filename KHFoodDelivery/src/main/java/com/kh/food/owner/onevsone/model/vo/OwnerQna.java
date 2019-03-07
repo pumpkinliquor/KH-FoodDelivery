@@ -76,9 +76,8 @@ public class OwnerQna {
 
 	@Override
 	public String toString() {
-		return "OwnerQna [qnaCode=" + qnaCode + ", ownerNum=" + ownerNum + ", qnaCategory=" + qnaCategory + ", qnaContent=" + qnaContent
-				+ ", qnaTitle=" + qnaTitle + "]";
+		return "OwnerQna [qnaCode=" + qnaCode + ", ownerNum=" + ownerNum + ", writeDate=" + writeDate + ", qnaCategory="
+				+ qnaCategory + ", qnaContent=" + qnaContent + ", qnaTitle=" + qnaTitle + "]";
 	}
-	
 	
 }

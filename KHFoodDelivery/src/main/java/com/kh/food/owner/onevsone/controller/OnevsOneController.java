@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.owner.onevsone.model.service.OnevsOneService;
@@ -30,60 +31,32 @@ public class OnevsOneController {
 		return mv;
 	}
 	
-	@RequestMapping("/owner/oneVSoneQ.do")
+	@RequestMapping("/owner/oneVSoneForm.do")
 	public ModelAndView oneVSoneQ() {
 		ModelAndView mv=new ModelAndView();
-		
-		
 		mv.setViewName("owner/oneVSoneForm");
-		
 		return mv;
 	}
 	
-//	@RequestMapping("/owner/oneVSoneFormEnd.do")
-//	public ModelAndView oneVSoneFormEnd(HttpServletRequest request, String ownerId, String qnaCategory, String qnaTitle, String qnaContent, MultipartFile[] upFile) {
-//		
-//		ModelAndView mv=new ModelAndView();
-//		
-//		Map<String,Object> qna=new HashMap<String,Object>();
-//		int ownerNum=2;
-//		ArrayList<OwnerQna> files=new ArrayList<OwnerQna>();
-//		
-//		
-//		String saveDir=request.getSession().getServletContext().getRealPath("/resources/upload/ownerQna");
-//		
-//		for(MultipartFile f : upFile) {
-//			if(!f.isEmpty()) { //파일이 비어있지 않을때
-//				//파일명을 생성(rename)
-//				String originalFileName=f.getOriginalFilename();
-//				String ext=originalFileName.substring(originalFileName.lastIndexOf(".")); //확장자까지
-//				//rename규칙을 설정
-//				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
-//				int randomV=(int)(Math.random()*1000);
-//				String reNamedFileName=sdf.format(System.currentTimeMillis())+"_"+randomV+ext;
-//				try {
-//					f.transferTo(new File(saveDir+"/"+reNamedFileName));
-//				}
-//				catch(IllegalStateException | IOException e) {
-//					e.printStackTrace();
-//				}
-//				OwnerQna oq=new OwnerQna();
-//				oq.setReNamedFileName(reNamedFileName);
-//				oq.setOriginalFileName(originalFileName);
-//				files.add(oq);
-//			}
-//		}
-//		
-//		qna.put("id", ownerId);
-//		qna.put("num", ownerNum);
-//		qna.put("category", qnaCategory);
-//		qna.put("title", qnaTitle);
-//		qna.put("content", qnaContent);
-//		qna.put("files", files);
-//		
-//		System.out.println(qna);
-//		
-//		int result=service.qnaFormEnd(qna);
+	@RequestMapping("/owner/oneVSoneFormEnd.do")
+	public ModelAndView oneVSoneFormEnd(HttpServletRequest request, 
+			String qnaCategory, String qnaTitle, String qnaContent, MultipartFile[] files) {
+		
+		int ownerNum=(int) request.getSession().getAttribute("ownerNum");
+		
+		Map<String,Object> qna=new HashMap<String,Object>();
+		
+		qna.put("ownerNum", ownerNum);
+		qna.put("qnaCategory", qnaCategory);
+		qna.put("qnaTitle", qnaTitle);
+		qna.put("qnaContent", qnaContent);
+		
+		System.out.println(qna);
+		
+		ModelAndView mv=new ModelAndView();
+		
+		
+//		int result=service.qnaFormEnd();
 //		
 //		String msg="";
 //		String loc="/owner/oneVSoneList.do";
@@ -100,9 +73,9 @@ public class OnevsOneController {
 //		
 //		mv.setViewName("common/msg");
 //		
-//		return mv;
-//		
-//	}
+		return mv;
+		
+	}
 	
 	@RequestMapping("/owner/myOneVSone.do")
 	public ModelAndView myOneVSone(String ownerId, ModelAndView mv) {
@@ -148,8 +121,8 @@ public class OnevsOneController {
 	
 	@RequestMapping("/owner/qnaReviewForm.do")
 	public ModelAndView qnaReviewForm(ModelAndView mv, int qnaCode, int ownerNum, String reviewContext) throws Exception{
-		System.out.println(qnaCode+ownerNum+reviewContext);
 		
+//		System.out.println(qnaCode+ownerNum+reviewContext);
 		
 		OwnerQnaReview oqr=new OwnerQnaReview(0,qnaCode,ownerNum,null,reviewContext);
 		

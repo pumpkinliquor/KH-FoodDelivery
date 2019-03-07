@@ -14,7 +14,7 @@ $(function(){
    });
 });
 function validate(){
-    var content = $("[name=qnaContent]").val();
+    var content = $("#qnaContent").val();
     if(content.trim().length==0){
         alert("내용을 입력하세요");
         return false;
@@ -35,7 +35,6 @@ function validate(){
 			        		<th>작성자</th>
 			        		<td>
 				        		<input type="text" id="ownerId" class="form-control" value="${sessionScope.ownerId }" readonly/>
-				        		<input type="hidden" name="ownerNum" value="${sessionScope.ownerNum }"/>
 			        		</td>
 			        	</tr>
 			        	<tr>
@@ -52,11 +51,11 @@ function validate(){
 			        	</tr>
 			            <tr>
 			                <th>제목</th>
-			                <td><input type="text" placeholder="제목 " name="qnaTitle" class="form-control"/></td>
+			                <td><input type="text" placeholder="제목 " name="qnaTitle" class="form-control" required></td>
 			            </tr>
 			            <tr>
 			                <th>내용</th>
-			                <td><textarea cols="10" placeholder="내용" name="qnaContent" class="form-control" style="resize:none; height:15em;"></textarea></td>
+			                <td><textarea cols="10" placeholder="내용" id="qnaContent" name="qnaContent" class="form-control" style="resize:none; height:15em;" required></textarea></td>
 			            </tr>
 			            <tr>
 			                <th>
