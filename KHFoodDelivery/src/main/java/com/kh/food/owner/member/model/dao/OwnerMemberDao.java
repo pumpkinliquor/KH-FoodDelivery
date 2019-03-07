@@ -11,5 +11,6 @@ public interface OwnerMemberDao {
 	Map<String, String> selectSearchId(Map<String, String> map);
 	Map<String, String> selectConfirmIdEmail(Map<String, String> map);
 	int updateTempPw(Map<String, String> map);
+	int ownerCheckId(String ownerId);
 	
 }

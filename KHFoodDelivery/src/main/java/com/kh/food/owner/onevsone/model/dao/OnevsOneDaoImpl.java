@@ -7,6 +7,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
+import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
+
 @Repository
 public class OnevsOneDaoImpl implements OnevsOneDao {
 
@@ -29,20 +32,43 @@ public class OnevsOneDaoImpl implements OnevsOneDao {
 	}
 
 	@Override
-	public int selectOwnerForm(String ownerId) {
-		return session.selectOne("oneVSone.selectOwnerForm", ownerId);
-	}
-
-	@Override
 	public List<Map<String, String>> qnaSearch(Map<String, String> map) {
 		return session.selectList("oneVSone.qnaSearch", map);
 	}
 
-//	@Override
-//	public int qnaFormEnd(Map<String,Object> qna) {
-//		return session.insert("oneVSone.insertQna", qna);
-//	}
-//	
-//	
+	@Override
+	public int qnaReviewForm(OwnerQnaReview oqr) {
+		return session.insert("oneVSone.qnaReview", oqr);
+	}
+
+	@Override
+	public List<Map<String, String>> commentList(int qnaCode) {
+		return session.selectList("oneVSone.commentList", qnaCode);
+	}
+
+	@Override
+	public int qnaReviewUpdate(Map<String,Object> reviewUp) {
+		return session.update("oneVSone.qnaUpdate", reviewUp);
+	}
+
+	@Override
+	public int qnaReviewDelete(int qnaReviewCode) {
+		return session.delete("oneVSone.qnaDelete", qnaReviewCode);
+	}
+
+	@Override
+	public int insertQna(Map<String,Object> qna) {
+		return session.insert("oneVSone.insertQna", qna);
+	}
+	
+	@Override
+	public int insertAttach(OwnerQnaAttachment a) {
+		return session.insert("oneVSone.insertAttach", a);
+	}
+	
+	@Override
+	public List<Map<String,String>> ownerAttach(int qnaCode) {
+		return session.selectList("oneVSone.ownerAttach", qnaCode);
+	}
 
 }

@@ -16,16 +16,13 @@ public class Member {
 	private Date memberEnrollDate;
 	private String gender;
 	private String mileage;
+	private int longitude;
+	private int latitude;
 	private int isAdmin;
-	private String rlongitude;
-	private String atitude;
-	
-	
-
-
+	private String profileImage;
 	public Member(int memberNum, String memberId, String memberPw, String memberName, String memberAddress,
 			String memberBirth, String memberPhone, String memberEmail, String nickName, Date memberEnrollDate,
-			String gender, String mileage, int isAdmin, String rlongitude, String atitude) {
+			String gender, String mileage, int longitude, int latitude, int isAdmin, String profileImage) {
 		super();
 		this.memberNum = memberNum;
 		this.memberId = memberId;
@@ -39,263 +36,119 @@ public class Member {
 		this.memberEnrollDate = memberEnrollDate;
 		this.gender = gender;
 		this.mileage = mileage;
+		this.longitude = longitude;
+		this.latitude = latitude;
 		this.isAdmin = isAdmin;
-		this.rlongitude = rlongitude;
-		this.atitude = atitude;
+		this.profileImage = profileImage;
 	}
-
-	
-
-
-
+	public Member() {
+		super();
+	}
 	public int getMemberNum() {
 		return memberNum;
 	}
-
-
-
-
-
 	public void setMemberNum(int memberNum) {
 		this.memberNum = memberNum;
 	}
-
-
-
-
-
 	public String getMemberId() {
 		return memberId;
 	}
-
-
-
-
-
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-
-
-
-
-
 	public String getMemberPw() {
 		return memberPw;
 	}
-
-
-
-
-
 	public void setMemberPw(String memberPw) {
 		this.memberPw = memberPw;
 	}
-
-
-
-
-
 	public String getMemberName() {
 		return memberName;
 	}
-
-
-
-
-
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
-
-
-
-
-
 	public String getMemberAddress() {
 		return memberAddress;
 	}
-
-
-
-
-
 	public void setMemberAddress(String memberAddress) {
 		this.memberAddress = memberAddress;
 	}
-
-
-
-
-
 	public String getMemberBirth() {
 		return memberBirth;
 	}
-
-
-
-
-
 	public void setMemberBirth(String memberBirth) {
 		this.memberBirth = memberBirth;
 	}
-
-
-
-
-
 	public String getMemberPhone() {
 		return memberPhone;
 	}
-
-
-
-
-
 	public void setMemberPhone(String memberPhone) {
 		this.memberPhone = memberPhone;
 	}
-
-
-
-
-
 	public String getMemberEmail() {
 		return memberEmail;
 	}
-
-
-
-
-
 	public void setMemberEmail(String memberEmail) {
 		this.memberEmail = memberEmail;
 	}
-
-
-
-
-
 	public String getNickName() {
 		return nickName;
 	}
-
-
-
-
-
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
-
-
-
-
-
 	public Date getMemberEnrollDate() {
 		return memberEnrollDate;
 	}
-
-
-
-
-
 	public void setMemberEnrollDate(Date memberEnrollDate) {
 		this.memberEnrollDate = memberEnrollDate;
 	}
-
-
-
-
-
 	public String getGender() {
 		return gender;
 	}
-
-
-
-
-
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
-
-
-
-
 	public String getMileage() {
 		return mileage;
 	}
-
-
-
-
-
 	public void setMileage(String mileage) {
 		this.mileage = mileage;
 	}
-
-
-
-
-
+	public int getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(int longitude) {
+		this.longitude = longitude;
+	}
+	public int getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(int latitude) {
+		this.latitude = latitude;
+	}
 	public int getIsAdmin() {
 		return isAdmin;
 	}
-
-
-
-
-
 	public void setIsAdmin(int isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-
-
-
-
-
-	public String getRlongitude() {
-		return rlongitude;
+	public String getProfileImage() {
+		return profileImage;
 	}
-
-
-
-
-
-	public void setRlongitude(String rlongitude) {
-		this.rlongitude = rlongitude;
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
 	}
-
-
-
-
-
-	public String getAtitude() {
-		return atitude;
-	}
-
-
-
-
-
-	public void setAtitude(String atitude) {
-		this.atitude = atitude;
-	}
-
-
-
-
-
 	@Override
 	public String toString() {
 		return "Member [memberNum=" + memberNum + ", memberId=" + memberId + ", memberPw=" + memberPw + ", memberName="
 				+ memberName + ", memberAddress=" + memberAddress + ", memberBirth=" + memberBirth + ", memberPhone="
-				+ memberPhone + ", memberEmail=" + memberEmail + ", memberEnrollDate=" + memberEnrollDate + ", gender="
-				+ gender + ", mileage=" + mileage + ", isAdmin=" + isAdmin + ", rlongitude=" + rlongitude + ", atitude="
-				+ atitude + "]";
+				+ memberPhone + ", memberEmail=" + memberEmail + ", nickName=" + nickName + ", memberEnrollDate="
+				+ memberEnrollDate + ", gender=" + gender + ", mileage=" + mileage + ", longitude=" + longitude
+				+ ", latitude=" + latitude + ", isAdmin=" + isAdmin + ", profileImage=" + profileImage + "]";
 	}
+	
 	
 	
 	

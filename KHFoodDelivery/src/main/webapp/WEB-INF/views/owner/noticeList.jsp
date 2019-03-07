@@ -5,7 +5,12 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
+<c:if test="${sessionScope.ownerId!='admin' }">
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
+</c:if>
+<c:if test="${sessionScope.ownerId=='admin' }">
+<jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
+</c:if>
 
 <style>
 #topTable {
@@ -53,26 +58,15 @@ pageEncoding="UTF-8"%>
 				<c:forEach var="owner" items="${ownerNoticeList }" varStatus="vs">
 				<tr style="cursor:pointer;" onclick="location.href='${path}/owner/noticeList.do'">
 					<td>${vs.count }</td>
-					<td><a href="#">${owner.NOTICETITLE }</a></td>
-					<td>${owner.WRITEDATE }</td>
+					<td><a href="#">${owner.OWNERNOTICETITLE }</a></td>
+					<td>${owner.OWNERWRITEDATE }</td>
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		
-		<div class="row">
-		<div class="col-sm-3"></div>
-		<div class="col-sm-6 pageBar_div1">페이지바</div>
-		<div class="col-sm-3"></div>
+		<div class="pageBar" style="text-align:center;">
+			페이지바
 		</div>
-		
-		<button type="button" class="btn btn-light float-right"
-			onclick="location.href='${path}/notice/noticeForm.do'">글쓰기</button>
-
-
-		<!-- </div>
-
-		<div class="col-md-2"></div> -->
 	</div>
 </section>
 

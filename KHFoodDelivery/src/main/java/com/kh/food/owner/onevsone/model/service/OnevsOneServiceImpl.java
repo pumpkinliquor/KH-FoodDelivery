@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.food.owner.onevsone.model.dao.OnevsOneDao;
+import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
+import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
 
 @Service
 public class OnevsOneServiceImpl implements OnevsOneService {
@@ -30,25 +32,58 @@ public class OnevsOneServiceImpl implements OnevsOneService {
 	}
 
 	@Override
-	public int selectOwnerForm(String ownerId) {
-		return dao.selectOwnerForm(ownerId);
-	}
-
-	@Override
 	public List<Map<String, String>> qnaSearch(Map<String, String> map) {
 		return dao.qnaSearch(map);
 	}
 
-//	@Override
-//	public int qnaFormEnd(Map<String,Object> qna) throws Exception {
-//		int result=0;
-//		try {
-//			result=dao.qnaFormEnd(qna);
-//			if(result==0) {
-//				throw new Exception();
-//			}
-//		}
-//		return result;
-//	}
+	@Override
+	public int qnaReviewForm(OwnerQnaReview oqr) {
+		return dao.qnaReviewForm(oqr);
+	}
+
+	@Override
+	public List<Map<String, String>> commentList(int qnaCode) {
+		return dao.commentList(qnaCode);
+	}
+
+	@Override
+	public int qnaReviewUpdate(Map<String,Object> reviewUp) {
+		return dao.qnaReviewUpdate(reviewUp);
+	}
+
+	@Override
+	public int qnaReviewDelete(int qnaReviewCode) {
+		return dao.qnaReviewDelete(qnaReviewCode);
+	}
+
+	@Override
+	public int qnaFormEnd(Map<String, Object> qna, List<OwnerQnaAttachment> files){
+		int result=0;
+		try {
+			result=dao.insertQna(qna);
+			if(result==0) {
+				throw new Exception();
+			}
+			for(OwnerQnaAttachment a : files) {
+				a.setQnaCode(Integer.parseInt((String) qna.get("qnaCode")));
+				result=dao.insertAttach(a);
+				if(result==0) {
+					throw new Exception("업로드 실패");
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public List<Map<String, String>> ownerAttach(int qnaCode) {
+		return dao.ownerAttach(qnaCode);
+	}
+
 
 }

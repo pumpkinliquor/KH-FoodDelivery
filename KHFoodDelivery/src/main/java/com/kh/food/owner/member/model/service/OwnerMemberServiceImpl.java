@@ -49,6 +49,12 @@ public class OwnerMemberServiceImpl implements OwnerMemberService {
 		return dao.updateTempPw(map);
 	}
 
+	@Override
+	public int ownerCheckId(String ownerId) {
+		
+		return dao.ownerCheckId(ownerId);
+	}
+
 	
 	
 }

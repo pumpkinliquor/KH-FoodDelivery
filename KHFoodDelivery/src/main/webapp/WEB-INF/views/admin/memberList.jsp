@@ -62,6 +62,16 @@ thead#tableHead {
 
 		$("[data-toggle=tooltip]").tooltip();
 	});
+	
+	/* $(#memListDelBtn).click(function){
+		if(confirm("회원을 삭제하시겠습니까?")){
+			$("input[name=checkList]:checked").each(function(){
+			var 	
+			})
+			
+		}
+	}
+ */
 </script>
 
 
@@ -96,12 +106,12 @@ thead#tableHead {
 				 <c:forEach items="${list }"  var="m" >
 				 <tbody>
 				<tr>
-					<td><input type="checkbox" class="checkthis" /></td>
-					<td class="pnt" onclick="fn_memListmodal()">${m.MEMBERNUM}</td>
-					<td class="pnt" onclick="fn_memListmodal()">${m.MEMBERID}</td>
-					<td class="pnt" onclick="fn_memListmodal()">${m.MEMBERNAME}</td>
-					<td class="pnt" onclick="fn_memListmodal()">${m.MEMBEREMAIL}</td>
-					<td class="pnt" onclick="fn_memListmodal()">${m.MEMBERENROLLDATE}</td>
+					<td><input type="checkbox" class="checkthis" name="checkList" /></td>
+					<td class="pnt" onclick="fn_memListmodal()" name="memberNum">${m.MEMBERNUM}</td>
+					<td class="pnt" onclick="fn_memListmodal()" >${m.MEMBERID}</td>
+					<td class="pnt" onclick="fn_memListmodal()" >${m.MEMBERNAME}</td>
+					<td class="pnt" onclick="fn_memListmodal()" >${m.MEMBEREMAIL}</td>
+					<td class="pnt" onclick="fn_memListmodal()" >${m.MEMBERENROLLDATE}</td>
 				</tr>
 			</tbody>
 			</c:forEach>
@@ -139,7 +149,7 @@ thead#tableHead {
 					<tr>
 						<td colspan='2' align="center">
 							<button type="button" class="btn btn-outline-success"
-								onclick="fn_memListDelCan()">삭제</button>
+								onclick="fn_memListDelCan()" id="memlistDel">삭제</button>
 							<button type="button" class="btn btn-outline-danger"
 								data-dismiss="modal">취소</button>
 						</td>
@@ -164,6 +174,7 @@ thead#tableHead {
 			</div>
 			<div class="modal-body">
 				<table class="table">
+				
 					<tr>
 						<th>프로필</th>
 						<td><img src="${path }/resources/images/place.png"
@@ -172,30 +183,30 @@ thead#tableHead {
 					</tr>
 					<tr>
 						<th>주소</th>
-						<td>강남</td>
+						<td>${MEMBERADDRESS}</td>
 					</tr>
 					<tr>
 						<th>생년월일</th>
-						<td>951114</td>
+						<td>${MEMBERBIRTH}</td>
 					</tr>
 					<tr>
 						<th>전화번호</th>
-						<td>01011111111</td>
+						<td>${MEMBERPHONE}</td>
 					</tr>
 					<tr>
 						<th>가입날짜</th>
-						<td>2019.02.27</td>
+						<td>${MEMBERENROLLDATE}</td>
 					</tr>
 					<tr>
 						<th>성별</th>
-						<td>여</td>
+						<td>${MEMBERGENDER}</td>
 					</tr>
 					<tr>
 						<th>마일리지</th>
-						<td>1114점</td>
+						<td>${MILEAGE}</td>
 					</tr>
 
-
+			
 				</table>
 			</div>
 			<div class="modal-footer">

@@ -86,7 +86,25 @@ font-size: 20px;
 	height:42px;
 }
 </style>
+ <script>
+		function login(){
+			
+			var id = $('#id').val().trim().length;
+    		var pw = $('#pw').val().trim().length;  
+    		
+			if(id==0 || pw==0 ){
+				
+				alert("아이디와 비밀번호를 입력해주세요.");
+				
+				return false;
+		
+			}
+				
+			return true;
 
+		}
+
+</script> 
 
 <section>
     <div class="container">
@@ -100,16 +118,23 @@ font-size: 20px;
                 <div class="row">
                    <div class="col-md-4 mx-auto">
                       <div class="myform form ">
-                         <form action="${path }" method="post" name="login">
+                      
+                         <form  method="post"  onsubmit="return login();" action="${pageContext.request.contextPath}/member/login.do">
+                         
                             <div class="form-group">
-                               <input type="text" name="id"  class="form-control my-input" id="name" placeholder="id">
+                               <input type="text" name="id"  class="form-control my-input" id="id" placeholder="id">
                             </div>
                             <div class="form-group">
-                               <input type="password" name="password"  class="form-control my-input" id="password" placeholder="password">
+                               <input type="password" name="pw"  class="form-control my-input" id="pw" placeholder="password">
                             </div>
+                            
                             <div class="text-center loginDiv_1">
-                               <button type="submit" class=" btn btn-block send-button tx-tfm">로그인</button>
+                               <input type="submit" value="로그인" class="btn btn-primary"/>
                             </div>
+                       
+                         </form>
+                         
+                         
                             <div class="text-center">
 							<a id="kakao-login-btn"></a>
 							<a href="http://developers.kakao.com/logout"></a>
@@ -127,7 +152,6 @@ font-size: 20px;
                             </div>
                             <p class="small mt-3">By signing up, you are indicating that you have read and agree to the <a href="#" class="ps-hero__content__link">Terms of Use</a> and <a href="#">Privacy Policy</a>.
                             </p>
-                         </form>
                       </div>
                    </div>
                 </div>

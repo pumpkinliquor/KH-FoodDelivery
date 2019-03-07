@@ -1,6 +1,7 @@
 package com.kh.food.owner.store.model.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.kh.food.owner.member.model.vo.Owner;
 
@@ -8,7 +9,7 @@ public class Store implements Serializable
 {
 	private static final long serialVersionUID = -1235548025037450382L;
 	private int businessCode;
-	private int businessNum;
+	private String businessNum;
 	private String businessName;
 	private String businessPhone;
 	private String storeName;
@@ -21,14 +22,16 @@ public class Store implements Serializable
 	private double longitude;
 	private double atitude;
 	private int isConfirm;
-	private Owner onwer;
+	private Date appDate;
+	private Owner owner;
+	private String formatAppDate;
 	
 	
 	public Store() {}
 	
-	public Store(int businessCode, int businessNum, String businessName, String businessPhone, String storeName,
+	public Store(int businessCode, String businessNum, String businessName, String businessPhone, String storeName,
 			String storePhone, String storeAddress, String storeCategory, String storeImage, int minPrice,
-			String storeProfile, double longitude, double atitude, int isConfirm, Owner onwer) {
+			String storeProfile, double longitude, double atitude, int isConfirm, Owner owner, Date appDate, String formatAppDate) {
 		super();
 		this.businessCode = businessCode;
 		this.businessNum = businessNum;
@@ -44,7 +47,9 @@ public class Store implements Serializable
 		this.longitude = longitude;
 		this.atitude = atitude;
 		this.isConfirm = isConfirm;
-		this.onwer = onwer;
+		this.owner = owner;
+		this.appDate = appDate;
+		this.formatAppDate = formatAppDate;
 	}
 
 	public int getBusinessCode() {
@@ -55,11 +60,11 @@ public class Store implements Serializable
 		this.businessCode = businessCode;
 	}
 
-	public int getBusinessNum() {
+	public String getBusinessNum() {
 		return businessNum;
 	}
 
-	public void setBusinessNum(int businessNum) {
+	public void setBusinessNum(String businessNum) {
 		this.businessNum = businessNum;
 	}
 
@@ -159,16 +164,33 @@ public class Store implements Serializable
 		this.isConfirm = isConfirm;
 	}
 
-	public Owner getOnwer() {
-		return onwer;
+	public Owner getOwner() {
+		return owner;
 	}
 
-	public void setOnwer(Owner onwer) {
-		this.onwer = onwer;
+	public void setOwner(Owner owner) {
+		this.owner = owner;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	
+	public Date getAppDate() {
+		return appDate;
+	}
+
+	public void setAppDate(Date appDate) {
+		this.appDate = appDate;
+	}
+	
+	public String getFormatAppDate() {
+		return formatAppDate;
+	}
+
+	public void setFormatAppDate(String formatAppDate) {
+		this.formatAppDate = formatAppDate;
 	}
 
 	@Override
@@ -177,8 +199,6 @@ public class Store implements Serializable
 				+ ", businessPhone=" + businessPhone + ", storeName=" + storeName + ", storePhone=" + storePhone
 				+ ", storeAddress=" + storeAddress + ", storeCategory=" + storeCategory + ", storeImage=" + storeImage
 				+ ", minPrice=" + minPrice + ", storeProfile=" + storeProfile + ", longitude=" + longitude
-				+ ", atitude=" + atitude + ", isConfirm=" + isConfirm + ", onwer=" + onwer + "]";
-	}
-	
-	
+				+ ", atitude=" + atitude + ", isConfirm=" + isConfirm + ", appDate=" + appDate + ", owner=" + owner + "]";
+	}	
 }

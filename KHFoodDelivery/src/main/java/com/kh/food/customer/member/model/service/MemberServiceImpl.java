@@ -1,5 +1,7 @@
 package com.kh.food.customer.member.model.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,21 @@ public class MemberServiceImpl implements MemberService {
 	public int memberEnroll(Member m) {
 		
 		return dao.memberEnroll(m);
+	}
+	
+	@Override
+	public int checkId(String memberId) {
+		return dao.checkId(memberId);
+	}
+	
+	@Override
+	public int checkNick(String nickName) {
+		return dao.checkNick(nickName);
+	}
+
+	@Override
+	public Map<String,String> login(Map<String,String> map){
+		return dao.login(map);
 	}
 
 	

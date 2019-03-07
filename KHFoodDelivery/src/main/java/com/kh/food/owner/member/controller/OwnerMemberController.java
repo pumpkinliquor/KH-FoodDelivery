@@ -1,10 +1,12 @@
 package com.kh.food.owner.member.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.food.owner.member.model.service.OwnerMemberService;
 import com.kh.food.owner.member.model.vo.Owner;
 
-@SessionAttributes("ownerId")
+@SessionAttributes({"ownerId","ownerNum"})
 @Controller
 public class OwnerMemberController {
 	
@@ -70,7 +72,7 @@ public class OwnerMemberController {
 	{
 		ModelAndView mv = new ModelAndView();
 		logger.debug("아이디찾기"+ownerName + " : " + ownerEmail);
-		Map<String,String> map = new HashMap<>();
+		Map<String,String> map = new HashMap();
 		map.put("ownerName", ownerName);
 		map.put("ownerEmail", ownerEmail);
 		map = service.selectSearchId(map);
@@ -109,7 +111,7 @@ public class OwnerMemberController {
 		ModelAndView mv = new ModelAndView();
 		logger.debug("오너이메일"+ownerEmail);
 		
-		Map<String,String> map = new HashMap<>();
+		Map<String,String> map = new HashMap();
 		map.put("ownerId", ownerId);
 		map.put("ownerEmail", ownerEmail);
 		
@@ -201,7 +203,8 @@ public class OwnerMemberController {
 			/*if(ownerPw.equals(o.getOwnerPw()))*/
 			if(pwEncoder.matches(ownerPw, o.getOwnerPw()))
 			{
-				
+			
+			mv.addObject("ownerNum",o.getOwnerNum());
 			mv.addObject("ownerId",o.getOwnerId());
 			msg =  ownerId + "님 환영합니다";
 			
@@ -234,5 +237,15 @@ public class OwnerMemberController {
 		}
 		
 		return "redirect:/owner/ownerMain.do";
+	}
+	
+	//아이디 중복체크
+	@RequestMapping("/owner/ownerCheckId.do")
+	public void ownerCheckId(String ownerId,HttpServletResponse response) throws IOException 
+	{
+		logger.debug("아이디중복체크");
+		boolean isId = service.ownerCheckId(ownerId)==0?false:true;
+		logger.debug(String.valueOf(isId));
+		response.getWriter().print(isId);
 	}
 }
