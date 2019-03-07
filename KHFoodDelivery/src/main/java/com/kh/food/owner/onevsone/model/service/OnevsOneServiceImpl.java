@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.food.owner.onevsone.model.dao.OnevsOneDao;
+import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
 
 @Service
@@ -53,6 +54,30 @@ public class OnevsOneServiceImpl implements OnevsOneService {
 	@Override
 	public int qnaReviewDelete(int qnaReviewCode) {
 		return dao.qnaReviewDelete(qnaReviewCode);
+	}
+
+	@Override
+	public int qnaFormEnd(Map<String, Object> qna, List<OwnerQnaAttachment> files){
+		int result=0;
+		try {
+			result=dao.insertQna(qna);
+			if(result==0) {
+				throw new Exception();
+			}
+			for(OwnerQnaAttachment a : files) {
+				a.setQnaCode(Integer.parseInt((String) qna.get("qnaCode")));
+				result=dao.insertAttach(a);
+				if(result==0) {
+					throw new Exception("업로드 실패");
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 

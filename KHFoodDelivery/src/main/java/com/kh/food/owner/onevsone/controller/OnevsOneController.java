@@ -1,5 +1,9 @@
 package com.kh.food.owner.onevsone.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.owner.onevsone.model.service.OnevsOneService;
+import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
 
 @Controller
@@ -48,12 +52,12 @@ public class OnevsOneController {
 			
 	
 	@RequestMapping("/owner/oneVSoneFormEnd.do")
-	public void oneVSoneFormEnd(HttpServletRequest request, 
-			 String qnaCategory, String qnaTitle, String qnaContent, MultipartFile[] files) {
+	public ModelAndView oneVSoneFormEnd(HttpServletRequest request, 
+			 String qnaCategory, String qnaTitle, String qnaContent, MultipartFile[] upFile) {
 		
+		ModelAndView mv=new ModelAndView();
+
 		int ownerNum=(int) request.getSession().getAttribute("ownerNum");
-		System.out.println("request"+request.getParameter("qnaCategory"));
-		
 		
 		Map<String,Object> qna=new HashMap<String,Object>();
 		
@@ -61,31 +65,50 @@ public class OnevsOneController {
 		qna.put("qnaCategory", qnaCategory);
 		qna.put("qnaTitle", qnaTitle);
 		qna.put("qnaContent", qnaContent);
-		System.out.println("1:1문의 Form에서 컨트롤러 BEGIN");
-		System.out.println(qna);
-		System.out.println("1:1문의 Form에서 컨트롤러 END");
 		
-		ModelAndView mv=new ModelAndView();
+		ArrayList<OwnerQnaAttachment> files=new ArrayList<OwnerQnaAttachment>();
 		
+		//저장경료
+		String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/ownerQna");
 		
-//		int result=service.qnaFormEnd();
-//		
-//		String msg="";
-//		String loc="/owner/oneVSoneList.do";
-//		
-//		if(result>0) {
-//			msg="성공";
-//		}
-//		else {
-//			msg="실패";
-//		}
-//		
-//		mv.addObject("msg", msg);
-//		mv.addObject("loc", loc);
-//		
-//		mv.setViewName("common/msg");
-//		
-		/*return mv;*/
+		for(MultipartFile f : upFile) {
+			if(!f.isEmpty()) {
+				String oriFileName=f.getOriginalFilename();
+				String ext=oriFileName.substring(oriFileName.lastIndexOf("."));
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+				int randomV=(int)(Math.random()*1000);
+				String reName=sdf.format(System.currentTimeMillis())+"_"+randomV+ext;
+				try {
+					f.transferTo(new File(saveDir+"/"+reName));
+				}
+				catch(IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}
+				OwnerQnaAttachment att=new OwnerQnaAttachment();
+				att.setReNamedFileName(reName);
+				att.setOriginalFileName(oriFileName);
+				files.add(att);
+			}
+		}
+		
+		int result=service.qnaFormEnd(qna, files);
+		
+		String msg="";
+		String loc="/owner/oneVSoneList.do";
+		
+		if(result>0) {
+			msg="성공";
+		}
+		else {
+			msg="실패";
+		}
+		
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		
+		mv.setViewName("common/msg");
+		
+		return mv;
 		
 	}
 	
