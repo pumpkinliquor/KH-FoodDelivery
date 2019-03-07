@@ -51,4 +51,22 @@ public class AppStoreController {
 			
 		return store;
 	}
+	
+	@RequestMapping("/admin/confirmApp.do")
+	public ModelAndView updateStoreConfirm(@RequestParam("no") int no) {
+		ModelAndView mv = new ModelAndView();
+		int result = service.updateStoreConfirm(no);
+		String msg = "";
+		String loc = "/admin/appStoreList.do";
+		if (result > 0) {
+			msg = "승인 완료!";
+		}
+		else {
+			msg = "승인 실패...";
+		}
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
 }
