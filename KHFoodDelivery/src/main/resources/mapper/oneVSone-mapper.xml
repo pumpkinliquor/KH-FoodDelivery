@@ -38,4 +38,13 @@
 	<delete id="qnaDelete" parameterType="_int">
 		DELETE FROM OWNER_QNA_REVIEW WHERE QNAREVIEWCODE=#{qnaReviewCode}
 	</delete>
+	
+	<insert id="insertQna" parameterType="map">
+		INSERT INTO OWNER_QNA VALUES(SEQ_O_QNACODE.NEXTVAL,#{ownerNum}, SYSDATE, #{qnaCategory}, #{qnaContent}, #{qnaTitle})
+		<selectKey keyProperty="qnaCode" resultType="string" order="AFTER">SELECT SEQ_O_QNACODE.CURRVAL FROM DUAL</selectKey>
+	</insert>
+	
+	<insert id="insertAttach" parameterType="ownerAtt">
+		INSERT INTO OWNER_QNA_ATTACHMENT VALUES(SEQ_O_QNA_FILEUPLOAD.NEXTVAL, #{qnaCode}, #{originalFileName}, #{reNamedFileName}, SYSDATE, DEFAULT)
+	</insert>
 </mapper>

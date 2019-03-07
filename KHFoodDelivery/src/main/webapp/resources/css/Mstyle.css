@@ -8,7 +8,7 @@ div.container{padding-top:8%; padding-bottom:8%;}
 /********** header **********/
 header {}
 /* header div#header-container {height:100px;}
-header div#header-container h2 	{margin:30px 10px 0px 10px;} */
+header div#header-container h2    {margin:30px 10px 0px 10px;} */
 
 /********** section **********/
 section {position:relative; min-height:621px;}
@@ -16,8 +16,8 @@ section {position:relative; min-height:621px;}
 
 /********** footer **********/
 footer {position:relative; width:100%; overflow:hidden;}
-footer		{background-color:#f8f	9fa; background-clip:content-box; clear:both; height:95px; text-align:center;}
-footer p 	{margin-top:30px;}
+footer      {background-color:#f8f   9fa; background-clip:content-box; clear:both; height:95px; text-align:center;}
+footer p    {margin-top:30px;}
 
 
 /* 헤더 */
@@ -26,24 +26,30 @@ footer p 	{margin-top:30px;}
 background-color: #4D4D4D;
 height: 200px;
 width:100%;
-z-index: 9;
+z-index:1;
+margin-bottom:-10%; 
+
 }
 
-
+div.headerDiv1{margin-bottom:20px;}
+div.headerDiv1 a{color:color: #ffffff; text-decoration:none;}  
 .newsletter .content {
 max-width: 650px;
 margin: 0 auto;
 text-align: center;
 position: relative;
-z-index: 2; }
+z-index: 2; 
+}
+  div.content1{color: #ffffff;margin-bottom: 40px;text-align: center; margin-top:-1%;height: 50px;}
 .newsletter .content h2 {
 color: #ffffff;
 margin-bottom: 40px; }
 .newsletter .content .form-control {
 height: 50px;
-border-color: #ffffff;
+border-color: #ffffff;   
 border-radius:0;
 }
+div.headerDiv1 a{color:white;}
 .newsletter .content.form-control:focus {
 box-shadow: none;
 border: 2px solid #243c4f;
@@ -72,13 +78,13 @@ font-weight:600;
 }
 
 div.headerDiv1{
-	text-align:right; 
-	padding-right:10%;
-    background-color: white;
+   text-align:right; 
+   padding-right:10%;
     height: 10px;
+   color: #fff;  
    
-
 }
+
 
 
 /* 끝 */

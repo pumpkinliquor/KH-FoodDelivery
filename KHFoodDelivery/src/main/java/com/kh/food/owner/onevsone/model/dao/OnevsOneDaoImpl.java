@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
 
 @Repository
@@ -28,11 +29,6 @@ public class OnevsOneDaoImpl implements OnevsOneDao {
 	@Override
 	public Map<String, String> oneVSoneView(int qnaCode) {
 		return session.selectOne("oneVSone.oneVSoneView", qnaCode);
-	}
-
-	@Override
-	public int selectOwnerForm(String ownerId) {
-		return session.selectOne("oneVSone.selectOwnerForm", ownerId);
 	}
 
 	@Override
@@ -60,11 +56,19 @@ public class OnevsOneDaoImpl implements OnevsOneDao {
 		return session.delete("oneVSone.qnaDelete", qnaReviewCode);
 	}
 
-//	@Override
-//	public int qnaFormEnd(Map<String,Object> qna) {
-//		return session.insert("oneVSone.insertQna", qna);
-//	}
-//	
-//	
+	@Override
+	public int insertQna(Map<String,Object> qna) {
+		return session.insert("oneVSone.insertQna", qna);
+	}
+	
+	@Override
+	public int insertAttach(OwnerQnaAttachment a) {
+		return session.insert("oneVSone.insertAttach", a);
+	}
+	
+	@Override
+	public List<Map<String,String>> ownerAttach(int qnaCode) {
+		return session.selectList("oneVSone.ownerAttach", qnaCode);
+	}
 
 }

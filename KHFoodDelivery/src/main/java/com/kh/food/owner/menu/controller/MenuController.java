@@ -56,7 +56,7 @@ public class MenuController {
 	public ModelAndView enrollCategory(String menuCategory)
 	{
 		/*logger.debug("메뉴카테고리"+menuCategory);*/
-		Map<String,String> map = new HashMap<>();
+		Map<String,String> map = new HashMap();
 		map.put("menuCategory", menuCategory);
 		ModelAndView mv = new ModelAndView();
 		int result = service.enrollCategory(map);

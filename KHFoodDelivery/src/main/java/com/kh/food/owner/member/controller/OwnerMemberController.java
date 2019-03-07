@@ -72,7 +72,7 @@ public class OwnerMemberController {
 	{
 		ModelAndView mv = new ModelAndView();
 		logger.debug("아이디찾기"+ownerName + " : " + ownerEmail);
-		Map<String,String> map = new HashMap<>();
+		Map<String,String> map = new HashMap();
 		map.put("ownerName", ownerName);
 		map.put("ownerEmail", ownerEmail);
 		map = service.selectSearchId(map);
@@ -111,7 +111,7 @@ public class OwnerMemberController {
 		ModelAndView mv = new ModelAndView();
 		logger.debug("오너이메일"+ownerEmail);
 		
-		Map<String,String> map = new HashMap<>();
+		Map<String,String> map = new HashMap();
 		map.put("ownerId", ownerId);
 		map.put("ownerEmail", ownerEmail);
 		

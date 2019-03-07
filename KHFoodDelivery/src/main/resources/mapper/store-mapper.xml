@@ -8,10 +8,15 @@
 	</update>
 	
 	<!-- 입점 신청 리스트 -->
-	<select id="appStoreList" resultType="store">
+	<select id="selectAppStoreList" resultType="store">
 		SELECT * FROM STORE ORDER BY appDate DESC
 	</select>
 	
+	<!-- 입점 신청 store 모달 띄우기 -->
+	<select id="selectAppStore" resultType="store">
+		SELECT * FROM STORE
+	</select>
+		
 	<!-- resultMap : Store -->
 	<resultMap type="map" id="store"></resultMap>
 	

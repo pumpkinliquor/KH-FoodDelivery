@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ page import="java.util.List, com.kh.food.owner.store.model.vo.Store" %>
+<%-- <%@ page import="java.util.List, com.kh.food.owner.store.model.vo.Store" %> --%>
 <%-- <%
 	List<Store> appStoreList = (List)request.getAttribute("appStoreList");  
 %> --%>
@@ -18,16 +18,29 @@
 	.pnt { cursor: pointer; }
 	tr#btnGroup td{
 		margin-top: 15px;
-	}	
+	}
+	
 </style>
 
 <script> 
 	function fn_modal(num){		
-		$('#storeModal').modal();
+		console.log(num);
 		$.ajax({
-			url: "${path}/admin/selectAppStore.do?no=num",
-			data: {}
-		});		
+			type: "POST",
+			url: "${path}/admin/selectAppStore.do?no=" + num,
+			data: JSON,
+			success: function(data){
+				$('#storeModal').modal();
+				$('#mdCategory').val(data.storeCategory);
+				$('#mdName').val(data.storeName)
+				$('#mdOwner').val(data.businessName);
+				$('#mdPhone').val(data.storePhone);
+				$('#mdAddress').val(data.storeAddress);
+				$('#mdAppDate').val(data.formatAppDate);
+				$('#mdProfile').val(data.storeProfile);
+				$('#mdBsCode').val(data.businessCode);
+			}
+		});
 	}
 	
 	function fn_appConfirm(no){
@@ -85,41 +98,43 @@
 				<h4 class="modal-title">가게 정보</h4>
 				<button type="button" class="close" data-dismiss="modal">×</button>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body" style="height: 1000px;">
 				<table class="table">
 					<tr>
 						<th>업종</th>
-						<td><c:out value=""/></td>						
+						<td><input class="form-control" type="text" id="mdCategory" readonly/></td>						
 					</tr>
 					<tr>
 						<th>점포명</th>
-						<td>배민</td>
+						<td><input class="form-control" type="text" id="mdName" readonly/></td>
 					</tr>
 					<tr>
 						<th>점주명</th>
-						<td>주홍범</td>
+						<td><input class="form-control" type="text" id="mdOwner" readonly/></td>
 					</tr>
 					<tr>
 						<th>연락처</th>
-						<td>010-1234-1234</td>
+						<td><input class="form-control" type="text" id="mdPhone" readonly/></td>
 					</tr>
 					<tr>
 						<th>주소</th>
-						<td>서울특별시 강남구 역삼동</td>
+						<td><input class="form-control" type="text" id="mdAddress" readonly/></td>
 					</tr>
 					<tr>
 						<th>입점 신청일</th>
-						<td>2019-02-26</td>
+						<td><input class="form-control" type="text" id="mdAppDate" readonly/></td>
 					</tr>	
 					<tr>
-						<th>가게 소개</th>
-						<td>ㅎㅎ</td>
-						<!-- <textarea>ㅎㅎ</textarea> -->
+						<th>가게 소개</th>					
+						<td><textarea cols="10" rows="4" class="form-control" id="mdProfile" style="resize: none" readonly></textarea></td> 
 					</tr>
 					<tr id="btnGroup">
 						<td colspan='2' align="center">
-							<button type="button" class="btn btn-outline-success" onclick="fn_appConfirm()">승인</button>
-							<button type="button" class="btn btn-outline-danger" data-dismiss="modal">거절</button>
+							<form action="${path}/admin/confirmApp.do" method="post">
+								<input type="hidden" name="no" id="mdBsCode"/>
+								<input type="submit" class="btn btn-outline-success" value="승인"/>
+								<button type="button" class="btn btn-outline-danger" data-dismiss="modal">거절</button>
+							</form>
 						</td>
 					</tr>
 				</table>
