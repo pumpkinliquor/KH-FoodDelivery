@@ -74,7 +74,7 @@
 				</table>
 			</c:if>
 			<c:if test="${empty oneVSoneList }">
-				<h3 style="text-align:center; margin-top:5em;">검색하신 결과가 없습니다.</h3>
+				<h3 style="text-align:center; margin-top:5em;">목록 결과가 없습니다.</h3>
 			</c:if>
 		</div>
 	</div>
