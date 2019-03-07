@@ -31,11 +31,6 @@ public class OnevsOneDaoImpl implements OnevsOneDao {
 	}
 
 	@Override
-	public int selectOwnerForm(String ownerId) {
-		return session.selectOne("oneVSone.selectOwnerForm", ownerId);
-	}
-
-	@Override
 	public List<Map<String, String>> qnaSearch(Map<String, String> map) {
 		return session.selectList("oneVSone.qnaSearch", map);
 	}

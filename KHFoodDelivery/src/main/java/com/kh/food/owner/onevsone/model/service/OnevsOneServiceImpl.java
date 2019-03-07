@@ -31,11 +31,6 @@ public class OnevsOneServiceImpl implements OnevsOneService {
 	}
 
 	@Override
-	public int selectOwnerForm(String ownerId) {
-		return dao.selectOwnerForm(ownerId);
-	}
-
-	@Override
 	public List<Map<String, String>> qnaSearch(Map<String, String> map) {
 		return dao.qnaSearch(map);
 	}
