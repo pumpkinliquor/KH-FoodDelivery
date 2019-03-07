@@ -197,7 +197,7 @@ div.newsletter,div.group{display:inline-block;}
                <a href="${path }/customer/logout.do">로그아웃</a>
                <a href="#">마이페이지</a>
                
-          
+             
               </c:if> 
               </div>
                     <div class="content1">
