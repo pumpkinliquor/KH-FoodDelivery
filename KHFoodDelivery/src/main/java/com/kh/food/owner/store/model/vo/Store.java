@@ -9,7 +9,7 @@ public class Store implements Serializable
 {
 	private static final long serialVersionUID = -1235548025037450382L;
 	private int businessCode;
-	private int businessNum;
+	private String businessNum;
 	private String businessName;
 	private String businessPhone;
 	private String storeName;
@@ -29,7 +29,7 @@ public class Store implements Serializable
 	
 	public Store() {}
 	
-	public Store(int businessCode, int businessNum, String businessName, String businessPhone, String storeName,
+	public Store(int businessCode, String businessNum, String businessName, String businessPhone, String storeName,
 			String storePhone, String storeAddress, String storeCategory, String storeImage, int minPrice,
 			String storeProfile, double longitude, double atitude, int isConfirm, Owner owner, Date appDate, String formatAppDate) {
 		super();
@@ -60,11 +60,11 @@ public class Store implements Serializable
 		this.businessCode = businessCode;
 	}
 
-	public int getBusinessNum() {
+	public String getBusinessNum() {
 		return businessNum;
 	}
 
-	public void setBusinessNum(int businessNum) {
+	public void setBusinessNum(String businessNum) {
 		this.businessNum = businessNum;
 	}
 

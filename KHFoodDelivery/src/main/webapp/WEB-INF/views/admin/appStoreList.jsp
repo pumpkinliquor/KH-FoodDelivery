@@ -18,13 +18,27 @@
 	.pnt { cursor: pointer; }
 	tr#btnGroup td{
 		margin-top: 15px;
-	}	
+	}
+	
 </style>
 
 <script> 
-	function fn_modal(num){		
-		$('#storeModal').modal();
-		
+	function fn_modal(num){				
+		$.ajax({
+			type: "POST",
+			url: "${path}/admin/selectAppStore.do?no=" + num,
+			data: JSON,
+			success: function(data){
+				$('#storeModal').modal();
+				$('#mdCategory').val(data.storeCategory);
+				$('#mdName').val(data.storeName)
+				$('#mdOwner').val(data.businessName);
+				$('#mdPhone').val(data.storePhone);
+				$('#mdAddress').val(data.storeAddress);
+				$('#mdAppDate').val(data.formatAppDate);
+				$('#mdProfile').val(data.storeProfile);
+			}
+		});
 	}
 	
 	function fn_appConfirm(no){
@@ -82,36 +96,35 @@
 				<h4 class="modal-title">가게 정보</h4>
 				<button type="button" class="close" data-dismiss="modal">×</button>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body" style="height: 1000px;">
 				<table class="table">
 					<tr>
 						<th>업종</th>
-						<td></td>						
+						<td><input class="form-control" type="text" id="mdCategory" readonly/></td>						
 					</tr>
 					<tr>
 						<th>점포명</th>
-						<td>배민</td>
+						<td><input class="form-control" type="text" id="mdName" readonly/></td>
 					</tr>
 					<tr>
 						<th>점주명</th>
-						<td>주홍범</td>
+						<td><input class="form-control" type="text" id="mdOwner" readonly/></td>
 					</tr>
 					<tr>
 						<th>연락처</th>
-						<td>010-1234-1234</td>
+						<td><input class="form-control" type="text" id="mdPhone" readonly/></td>
 					</tr>
 					<tr>
 						<th>주소</th>
-						<td>서울특별시 강남구 역삼동</td>
+						<td><input class="form-control" type="text" id="mdAddress" readonly/></td>
 					</tr>
 					<tr>
 						<th>입점 신청일</th>
-						<td>2019-02-26</td>
+						<td><input class="form-control" type="text" id="mdAppDate" readonly/></td>
 					</tr>	
 					<tr>
-						<th>가게 소개</th>
-						<td>ㅎㅎ</td>
-						<!-- <textarea>ㅎㅎ</textarea> -->
+						<th>가게 소개</th>					
+						<td><textarea cols="10" rows="4" class="form-control" id="mdProfile" style="resize: none" readonly></textarea></td> 
 					</tr>
 					<tr id="btnGroup">
 						<td colspan='2' align="center">
