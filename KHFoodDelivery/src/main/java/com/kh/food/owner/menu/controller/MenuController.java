@@ -37,8 +37,8 @@ public class MenuController {
 		ModelAndView mv = new ModelAndView();
 		List<Map<String,String>> category = service.selectMenuCategory();
 		List<Map<String,String>> menuList = service.selectMenuList();
-		logger.debug("카테고리리스트"+category);
-		logger.debug("메뉴리스트"+menuList);
+//		logger.debug("카테고리리스트"+category);
+//		logger.debug("메뉴리스트"+menuList);
 		mv.addObject("menuList",menuList);
 		mv.addObject("category",category);
 		mv.setViewName("owner/menuManage");
@@ -80,7 +80,7 @@ public class MenuController {
 	@RequestMapping("/owner/enrollMenu.do")
 	public ModelAndView insertMenu(Menu m)
 	{
-		logger.debug("메뉴등록" + m);
+//		logger.debug("메뉴등록" + m);
 		ModelAndView mv = new ModelAndView();
 		String msg="";
 		String loc="/owner/menuEnroll.do";
@@ -108,7 +108,7 @@ public class MenuController {
 	public ModelAndView deleteCategory(String menuCategory)
 	{	
 		logger.debug("카테고리삭제");
-		logger.debug("메뉴카테고리명"+menuCategory);
+//		logger.debug("메뉴카테고리명"+menuCategory);
 		ModelAndView mv = new ModelAndView();
 		String msg ="";
 		String loc = "/owner/menuManage.do";
@@ -128,6 +128,59 @@ public class MenuController {
 		mv.setViewName("common/msg");
 		return mv;
 		
+	}
+	
+	//메뉴 가격 수정
+	@RequestMapping("menu/updateMenuPrice.do")
+	public ModelAndView updateMenuPrice(int menuPrice,int menuCode)
+	{
+//		logger.debug("메뉴가격"+menuPrice);
+		ModelAndView mv = new ModelAndView();
+		String msg = "";
+		String loc = "/owner/menuManage.do";
+		Map<String,String> map = new HashMap<>();
+		map.put("menuPrice", String.valueOf(menuPrice));
+		map.put("menuCode",String.valueOf(menuCode));
+				
+		int result = service.updateMenuPrice(map);
+		if(result >0)
+		{
+			msg="수정 성공";
+		}
+		else
+		{
+			msg="수정 실패";
+		}
+		
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+		
+	}
+	
+	//메뉴삭제
+	@RequestMapping("menu/deleteMenu.do")
+	public ModelAndView deleteMenu(String menuCode)
+	{
+		ModelAndView mv = new ModelAndView();
+		logger.debug("삭제할메뉴코드"+menuCode);
+		String msg = "";
+		String loc = "/owner/menuManage.do";
+		int result = service.deleteMenu(menuCode);
+		if(result > 0 )
+		{
+			msg = "삭제 성공";
+		}
+		else
+		{
+			msg = "삭제 실패";
+		}
+		
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
 	}
 	
 }

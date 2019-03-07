@@ -40,6 +40,17 @@ public class MenuServiceImpl implements MenuService {
 	public List<Map<String, String>> selectMenuList() {
 		return dao.selectMenuList();
 	}
+
+	@Override
+	public int updateMenuPrice(Map<String, String> map) {
+		return dao.updateMenuPrice(map);
+	}
+
+	@Override
+	public int deleteMenu(String menuCode) {
+		// TODO Auto-generated method stub
+		return dao.deleteMenu(menuCode);
+	}
 	
 	
 	
