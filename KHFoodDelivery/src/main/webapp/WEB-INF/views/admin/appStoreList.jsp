@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ page import="java.util.List, com.kh.food.owner.store.model.vo.Store" %>
+<%-- <%@ page import="java.util.List, com.kh.food.owner.store.model.vo.Store" %> --%>
 <%-- <%
 	List<Store> appStoreList = (List)request.getAttribute("appStoreList");  
 %> --%>
@@ -24,10 +24,7 @@
 <script> 
 	function fn_modal(num){		
 		$('#storeModal').modal();
-		$.ajax({
-			url: "${path}/admin/selectAppStore.do?no=num",
-			data: {}
-		});		
+		
 	}
 	
 	function fn_appConfirm(no){
@@ -89,7 +86,7 @@
 				<table class="table">
 					<tr>
 						<th>업종</th>
-						<td><c:out value=""/></td>						
+						<td></td>						
 					</tr>
 					<tr>
 						<th>점포명</th>

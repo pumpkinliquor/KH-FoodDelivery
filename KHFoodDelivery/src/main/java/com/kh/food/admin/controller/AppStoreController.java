@@ -37,10 +37,10 @@ public class AppStoreController {
 		return mv;
 	}
 	
-	@RequestMapping("/admin/selectAppStore.do")
+	/*@RequestMapping("/admin/selectAppStore.do")
 	public Store selectAppStore(@RequestParam("no") int no) {		
 		Store store = service.selectAppStore(no);
 		
 		return store;
-	}
+	}*/
 }
