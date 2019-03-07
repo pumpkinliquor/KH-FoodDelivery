@@ -17,4 +17,5 @@ public interface OnevsOneDao {
 	int qnaReviewDelete(int qnaReviewCode);
 	int insertQna(Map<String,Object> qna);
 	int insertAttach(OwnerQnaAttachment a);
+	List<Map<String,String>> ownerAttach(int qnaCode);
 }

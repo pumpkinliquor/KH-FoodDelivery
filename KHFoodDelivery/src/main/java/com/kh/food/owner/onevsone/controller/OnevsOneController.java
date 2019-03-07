@@ -130,6 +130,7 @@ public class OnevsOneController {
 	public ModelAndView oneVSoneView(int qnaCode, ModelAndView mv) {
 		
 		Map<String,String> views=service.oneVSoneView(qnaCode);
+		List<Map<String,String>> attach=service.ownerAttach(qnaCode);
 		List<Map<String,String>> commentList=service.commentList(qnaCode);
 		
 		mv.addObject("views", views);
