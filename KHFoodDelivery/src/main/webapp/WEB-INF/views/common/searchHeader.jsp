@@ -176,7 +176,7 @@ div.newsletter div.search1{text-align:center; margin-top:0.25%;}
 button{outline:0; border:0;}
 div.newsletter div.search1 .btn{background-color:#F6F6F6;}
 div.newsletter div.search1 .btn:hover{background-color:#8C8C8C; color:white;}
-div.group{text-align:center; box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);background-color:#F6F6F6; margin-top:1%;} 
+div.group{text-align:center; box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);background-color:#F6F6F6; margin-top:1%; padding:0; display:none;} 
 div.newsletter,div.group{display:inline-block;}
 </style>
 
@@ -219,7 +219,7 @@ div.newsletter,div.group{display:inline-block;}
                 
                 </div> 
                 </div>
-                	<div class="group col-md-12 col-lg-12">
+                	<div class="group col-md-12 col-lg-12 ">
 				    <div class="btn-group btn-group-lg search1"  >
 				  <button type="button" class="btn btn-default">돈까스</button>
 				  <button type="button" class="btn btn-default">프랜차이즈</button>
