@@ -27,7 +27,7 @@
 	<div style="text-align:center; margin-bottom:5em;">
 		<h2 style="font-weight:bold;">사장님 1:1 문의게시판</h2>
 	</div>
-	<div class="btn btn-default writeQnaBtn" onclick="location.href='${path}/owner/oneVSoneQ.do?ownerId=${sessionScope.ownerId }'">문의하기</div>
+	<div class="btn btn-default writeQnaBtn" onclick="location.href='${path}/owner/oneVSoneForm.do'">문의하기</div>
 	<div class="search">
    		<div class="row">
    			<div class="col-md-12">
@@ -74,7 +74,7 @@
 				</table>
 			</c:if>
 			<c:if test="${empty oneVSoneList }">
-				<h3 style="text-align:center; margin-top:5em;">검색하신 결과가 없습니다.</h3>
+				<h3 style="text-align:center; margin-top:5em;">목록 결과가 없습니다.</h3>
 			</c:if>
 		</div>
 	</div>
