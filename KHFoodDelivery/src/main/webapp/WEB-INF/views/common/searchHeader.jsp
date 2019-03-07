@@ -171,7 +171,13 @@
 	
 	</script>
 <style>
-div.newsletter div.search1{text-align:center;	 margin-top:0.25%;}   
+​
+div.newsletter div.search1{text-align:center; margin-top:0.25%;}   
+button{outline:0; border:0;}
+div.newsletter div.search1 .btn{background-color:#F6F6F6;}
+div.newsletter div.search1 .btn:hover{background-color:#8C8C8C; color:white;}
+div.group{text-align:center; box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);background-color:#F6F6F6; margin-top:1%;} 
+div.newsletter,div.group{display:inline-block;}
 </style>
 
 
@@ -211,14 +217,21 @@ div.newsletter div.search1{text-align:center;	 margin-top:0.25%;}
                     </div>
                 </div>
                 
+                </div> 
                 </div>
-                </div>
-                <br/>
-				    <div class="btn-group btn-group-lg search1" role="group" >
-				  <button type="button" class="btn btn-default">Left</button>
-				  <button type="button" class="btn btn-default">Middle</button>
-				  <button type="button" class="btn btn-default">Right</button>
-					</div>               
+                	<div class="group col-md-12 col-lg-12">
+				    <div class="btn-group btn-group-lg search1"  >
+				  <button type="button" class="btn btn-default">돈까스</button>
+				  <button type="button" class="btn btn-default">프랜차이즈</button>
+				  <button type="button" class="btn btn-default">치킨</button>
+				  <button type="button" class="btn btn-default">피자</button>
+				  <button type="button" class="btn btn-default">중국집</button>
+				  <button type="button" class="btn btn-default">한식</button>
+				  <button type="button" class="btn btn-default">족발/보쌈</button>
+				  <button type="button" class="btn btn-default">분식</button>
+				  <button type="button" class="btn btn-default">디저트</button>
+					</div>     
+					</div>          
        </div>
                  <div id="map" style="width:300px;height:300px;"></div>
  
