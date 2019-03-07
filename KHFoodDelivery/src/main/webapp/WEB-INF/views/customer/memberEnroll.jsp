@@ -178,6 +178,7 @@ pageEncoding="UTF-8"%>
             </select>
          	<input type=text" class="form-control" placeholder="경도(일단입력(String))" name="longitude" id="longitude" required>
             <input type="text" class="form-control" placeholder="위도(일단 입력(String))"name="latitude" id="latitude" required>
+        
      		
             <br />
             

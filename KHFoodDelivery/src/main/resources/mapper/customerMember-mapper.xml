@@ -6,7 +6,7 @@
      <resultMap id="member" type="map">
 	</resultMap>
 	<insert id="insertMember" parameterType="member" >
-		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},#{memberPw},#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},sysdate,#{gender},null,#{longitude},#{latitude},default,default)
+		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},#{memberPw},#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},sysdate,#{gender},null,#{longitude},#{latitude},null,null)
 	</insert>
 	
 	<select id="checkId" parameterType="String" resultType="_int">
