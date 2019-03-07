@@ -23,7 +23,7 @@ public class Store implements Serializable
 	private double atitude;
 	private int isConfirm;
 	private Date appDate;
-	private Owner onwer;
+	private Owner owner;
 	private String formatAppDate;
 	
 	
@@ -31,7 +31,7 @@ public class Store implements Serializable
 	
 	public Store(int businessCode, int businessNum, String businessName, String businessPhone, String storeName,
 			String storePhone, String storeAddress, String storeCategory, String storeImage, int minPrice,
-			String storeProfile, double longitude, double atitude, int isConfirm, Owner onwer, Date appDate, String formatAppDate) {
+			String storeProfile, double longitude, double atitude, int isConfirm, Owner owner, Date appDate, String formatAppDate) {
 		super();
 		this.businessCode = businessCode;
 		this.businessNum = businessNum;
@@ -47,7 +47,7 @@ public class Store implements Serializable
 		this.longitude = longitude;
 		this.atitude = atitude;
 		this.isConfirm = isConfirm;
-		this.onwer = onwer;
+		this.owner = owner;
 		this.appDate = appDate;
 		this.formatAppDate = formatAppDate;
 	}
@@ -164,12 +164,12 @@ public class Store implements Serializable
 		this.isConfirm = isConfirm;
 	}
 
-	public Owner getOnwer() {
-		return onwer;
+	public Owner getOwner() {
+		return owner;
 	}
 
-	public void setOnwer(Owner onwer) {
-		this.onwer = onwer;
+	public void setOwner(Owner owner) {
+		this.owner = owner;
 	}
 
 	public static long getSerialversionuid() {
@@ -199,6 +199,6 @@ public class Store implements Serializable
 				+ ", businessPhone=" + businessPhone + ", storeName=" + storeName + ", storePhone=" + storePhone
 				+ ", storeAddress=" + storeAddress + ", storeCategory=" + storeCategory + ", storeImage=" + storeImage
 				+ ", minPrice=" + minPrice + ", storeProfile=" + storeProfile + ", longitude=" + longitude
-				+ ", atitude=" + atitude + ", isConfirm=" + isConfirm + ", appDate=" + appDate + ", onwer=" + onwer + "]";
+				+ ", atitude=" + atitude + ", isConfirm=" + isConfirm + ", appDate=" + appDate + ", owner=" + owner + "]";
 	}	
 }

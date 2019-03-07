@@ -8,7 +8,7 @@
 	</update>
 	
 	<!-- 입점 신청 리스트 -->
-	<select id="appStoreList" resultType="store">
+	<select id="selectAppStoreList" resultType="store">
 		SELECT * FROM STORE ORDER BY appDate DESC
 	</select>
 	
