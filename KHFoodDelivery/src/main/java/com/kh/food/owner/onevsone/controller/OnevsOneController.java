@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,11 +39,21 @@ public class OnevsOneController {
 		return mv;
 	}
 	
+//	@RequestMapping("/owner/oneVSoneFormEnd.do")
+//	public ModelAndView oneVSoneFormEnd(@RequestParam("ab") String ab) {
+//		ModelAndView mv=new ModelAndView();	
+//		System.out.println(ab);
+//		return mv;
+//	}
+			
+	
 	@RequestMapping("/owner/oneVSoneFormEnd.do")
-	public ModelAndView oneVSoneFormEnd(HttpServletRequest request, 
-			String qnaCategory, String qnaTitle, String qnaContent, MultipartFile[] files) {
+	public void oneVSoneFormEnd(HttpServletRequest request, 
+			 String qnaCategory, String qnaTitle, String qnaContent, MultipartFile[] files) {
 		
 		int ownerNum=(int) request.getSession().getAttribute("ownerNum");
+		System.out.println("request"+request.getParameter("qnaCategory"));
+		
 		
 		Map<String,Object> qna=new HashMap<String,Object>();
 		
@@ -50,8 +61,9 @@ public class OnevsOneController {
 		qna.put("qnaCategory", qnaCategory);
 		qna.put("qnaTitle", qnaTitle);
 		qna.put("qnaContent", qnaContent);
-		
+		System.out.println("1:1문의 Form에서 컨트롤러 BEGIN");
 		System.out.println(qna);
+		System.out.println("1:1문의 Form에서 컨트롤러 END");
 		
 		ModelAndView mv=new ModelAndView();
 		
@@ -73,7 +85,7 @@ public class OnevsOneController {
 //		
 //		mv.setViewName("common/msg");
 //		
-		return mv;
+		/*return mv;*/
 		
 	}
 	

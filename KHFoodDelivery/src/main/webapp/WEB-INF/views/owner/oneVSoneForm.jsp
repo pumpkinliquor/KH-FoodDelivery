@@ -28,7 +28,7 @@ function validate(){
 		<h2 style="font-weight:bold;">1:1문의</h2>
 	</div>
 	<div class="col-md-12">
-		<form name="qnaFrm" action="${path }/owner/oneVSoneFormEnd.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
+		<form name="qnaFrm" action="${path }/owner/oneVSoneFormEnd.do" method="post" enctype="multipart/form-data">
 			<table class="table table-bordered">
 			    <tbody>
 			        	<tr>
