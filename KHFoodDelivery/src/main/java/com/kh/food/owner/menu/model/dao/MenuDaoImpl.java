@@ -40,6 +40,17 @@ public class MenuDaoImpl implements MenuDao {
 	public List<Map<String, String>> selectMenuList() {
 		return sqlSession.selectList("menu.selectMenuList");
 	}
+
+	@Override
+	public int updateMenuPrice(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("menu.updateMenuPrice",map);
+	}
+
+	@Override
+	public int deleteMenu(String menuCode) {
+		return sqlSession.delete("menu.deleteMenu",menuCode);
+	}
 	
 	
 }

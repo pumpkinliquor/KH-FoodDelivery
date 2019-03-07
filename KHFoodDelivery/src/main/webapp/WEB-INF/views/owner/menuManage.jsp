@@ -94,11 +94,11 @@ pageEncoding="UTF-8"%>
                                                     <h5>${c.MENUCATEGORY}</h5>            
                                                     <c:forEach items="${menuList}" var="m" varStatus="status1">
                                                     <c:if test="${c.MENUCATEGORYCODE eq m.MENUCATEGORYCODE}">
-                                                    <tr style="cursor:pointer;">
+                                                    <tr style="cursor:pointer;" onclick="updateMenu()" data-toggle="modal" data-target="#myModal">
                                                         <td width="44%" >${m.MENUNAME }</td>
                                                         <td width="32%"><input type="text"  value="${m.MENUPRICE}" class="menu11" placeholder=""></td>
-                                                        <td width="12%"><button onclick="updatePrice(${m.MENUPRICE})" class="btn btn-default remove">수정</button></td>
-                                                        <td width="12%"><button class="btn btn-default">삭제</button></td>
+                                                        <td width="12%"><button onclick="updatePrice(this,${m.MENUCODE})" class="btn btn-default remove">수정</button></td>
+                                                        <td width="12%"><button onclick="deleteMenu(${m.MENUCODE});" class="btn btn-default">삭제</button></td>
                                                     </tr>
                   									</c:if>
                                                     </c:forEach>
@@ -118,11 +118,39 @@ pageEncoding="UTF-8"%>
             </div>
 	
 	
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">Modal 제목</h4>
+			      </div>
+			      <div class="modal-body">
+			       	
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			      </div>
+			    </div>
+			  </div>
+			 </div>
+	
 			<script>
 				
-				function updatePrice(price)
+				function updatePrice(e,menuCode)
 				{
-					location.href="${path}/menu/updateMenuPrice?menuPrice="+price;
+					var price = $(e).parent().prev().children().val();
+					location.href="${path}/menu/updateMenuPrice.do?menuPrice="+price+"&menuCode="+menuCode;
+				}
+				
+				function deleteMenu(menuCode)
+				{
+					location.href="${path}/menu/deleteMenu.do?menuCode="+menuCode;
+				}
+				
+				function updateMenu()
+				{
+					console.log("업데이트메뉴 들어왔니?");
 				}
 			</script>
 </section>
