@@ -4,7 +4,7 @@
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>   
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/searchHeader.jsp"/>
 <style>
 section{margin:0;padding:0;}
 
@@ -12,7 +12,7 @@ section{margin:0;padding:0;}
 
 
 <section>
-	<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3"><a href="" ><div class="category-title">전체보기</div></a></div>
+	
 	
 	
 

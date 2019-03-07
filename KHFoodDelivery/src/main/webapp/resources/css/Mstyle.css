@@ -26,24 +26,30 @@ footer p 	{margin-top:30px;}
 background-color: #4D4D4D;
 height: 200px;
 width:100%;
-z-index: 9;
+z-index:1;
+margin-bottom:-10%; 
+
 }
 
-
+div.headerDiv1{margin-bottom:20px;}
+div.headerDiv1 a{color:color: #ffffff; text-decoration:none;}  
 .newsletter .content {
 max-width: 650px;
 margin: 0 auto;
 text-align: center;
 position: relative;
-z-index: 2; }
+z-index: 2; 
+}
+  div.content1{color: #ffffff;margin-bottom: 40px;text-align: center; margin-top:-1%;height: 50px;}
 .newsletter .content h2 {
 color: #ffffff;
 margin-bottom: 40px; }
 .newsletter .content .form-control {
 height: 50px;
-border-color: #ffffff;
+border-color: #ffffff;   
 border-radius:0;
 }
+div.headerDiv1 a{color:white;}
 .newsletter .content.form-control:focus {
 box-shadow: none;
 border: 2px solid #243c4f;
@@ -74,11 +80,11 @@ font-weight:600;
 div.headerDiv1{
 	text-align:right; 
 	padding-right:10%;
-    background-color: white;
     height: 10px;
+   color: #fff;  
    
-
 }
+
 
 
 /* 끝 */

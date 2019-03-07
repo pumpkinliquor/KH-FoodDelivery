@@ -170,9 +170,13 @@
 	
 	
 	</script>
+<style>
+div.newsletter div.search1{text-align:center;	 margin-top:0.25%;}   
+</style>
 
 
-		 <div id='centerAddr1'></div>
+
+		 
         <div class="newsletter">
                 <div id="hd container">             
                 <div class="row" style="margin:0;">           
@@ -209,8 +213,14 @@
                 
                 </div>
                 </div>
+                <br/>
+				    <div class="btn-group btn-group-lg search1" role="group" >
+				  <button type="button" class="btn btn-default">Left</button>
+				  <button type="button" class="btn btn-default">Middle</button>
+				  <button type="button" class="btn btn-default">Right</button>
+					</div>               
        </div>
                  <div id="map" style="width:300px;height:300px;"></div>
-                         	
  
 </header>
+                         	
