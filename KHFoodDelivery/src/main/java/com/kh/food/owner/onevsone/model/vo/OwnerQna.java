@@ -6,8 +6,6 @@ public class OwnerQna {
 	private int qnaCode;
 	private int ownerNum;
 	private Date writeDate;
-	private String originalFileName;
-	private String reNamedFileName;
 	private String qnaCategory;
 	private String qnaContent;
 	private String qnaTitle;
@@ -16,14 +14,12 @@ public class OwnerQna {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OwnerQna(int qnaCode, int ownerNum, Date writeDate, String originalFileName, String reNamedFileName,
+	public OwnerQna(int qnaCode, int ownerNum, Date writeDate, 
 			String qnaCategory, String qnaContent, String qnaTitle) {
 		super();
 		this.qnaCode = qnaCode;
 		this.ownerNum = ownerNum;
 		this.writeDate = writeDate;
-		this.originalFileName = originalFileName;
-		this.reNamedFileName = reNamedFileName;
 		this.qnaCategory = qnaCategory;
 		this.qnaContent = qnaContent;
 		this.qnaTitle = qnaTitle;
@@ -53,21 +49,6 @@ public class OwnerQna {
 		this.writeDate = writeDate;
 	}
 
-	public String getOriginalFileName() {
-		return originalFileName;
-	}
-
-	public void setOriginalFileName(String originalFileName) {
-		this.originalFileName = originalFileName;
-	}
-
-	public String getReNamedFileName() {
-		return reNamedFileName;
-	}
-
-	public void setReNamedFileName(String reNamedFileName) {
-		this.reNamedFileName = reNamedFileName;
-	}
 
 	public String getQnaCategory() {
 		return qnaCategory;
@@ -95,8 +76,7 @@ public class OwnerQna {
 
 	@Override
 	public String toString() {
-		return "OwnerQna [qnaCode=" + qnaCode + ", ownerNum=" + ownerNum + ", originalFileName=" + originalFileName
-				+ ", reNamedFileName=" + reNamedFileName + ", qnaCategory=" + qnaCategory + ", qnaContent=" + qnaContent
+		return "OwnerQna [qnaCode=" + qnaCode + ", ownerNum=" + ownerNum + ", qnaCategory=" + qnaCategory + ", qnaContent=" + qnaContent
 				+ ", qnaTitle=" + qnaTitle + "]";
 	}
 	

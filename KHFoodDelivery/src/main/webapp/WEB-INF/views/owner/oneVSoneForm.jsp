@@ -28,14 +28,14 @@ function validate(){
 		<h2 style="font-weight:bold;">1:1문의</h2>
 	</div>
 	<div class="col-md-12">
-		<form action="${path }/owner/oneVSoneFormEnd.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
+		<form name="qnaFrm" action="${path }/owner/oneVSoneFormEnd.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
 			<table class="table table-bordered">
 			    <tbody>
 			        	<tr>
 			        		<th>작성자</th>
 			        		<td>
-				        		<input type="text" name="ownerId" class="form-control" value="${sessionScope.ownerId }" required readonly/>
-				        		<input type="hidden" name="ownerNum" value="${ownerNum }"/>
+				        		<input type="text" id="ownerId" class="form-control" value="${sessionScope.ownerId }" readonly/>
+				        		<input type="hidden" name="ownerNum" value="${sessionScope.ownerNum }"/>
 			        		</td>
 			        	</tr>
 			        	<tr>
@@ -58,7 +58,6 @@ function validate(){
 			                <th>내용</th>
 			                <td><textarea cols="10" placeholder="내용" name="qnaContent" class="form-control" style="resize:none; height:15em;"></textarea></td>
 			            </tr>
-			            <div class="input-group mb-3" style="padding:0px;">
 			            <tr>
 			                <th>
 								<div class="input-group-prepend" style="padding:0px;">
@@ -85,7 +84,6 @@ function validate(){
 			                	</div>
 		                	</td>
 			            </tr>
-			            </div>
 			            <tr>
 			                <td colspan="2">
 			                    <input type="submit" value="문의하기" class="btn btn-outline-success" style="float:right;"/>

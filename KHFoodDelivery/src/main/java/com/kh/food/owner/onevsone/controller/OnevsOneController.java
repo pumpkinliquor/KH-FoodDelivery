@@ -31,14 +31,9 @@ public class OnevsOneController {
 	}
 	
 	@RequestMapping("/owner/oneVSoneQ.do")
-	public ModelAndView oneVSoneQ(String ownerId) {
+	public ModelAndView oneVSoneQ() {
 		ModelAndView mv=new ModelAndView();
 		
-		int ownerNum=service.selectOwnerForm(ownerId);
-		
-		mv.addObject("ownerNum", ownerNum);
-		
-//		System.out.println(ownerNum);
 		
 		mv.setViewName("owner/oneVSoneForm");
 		
