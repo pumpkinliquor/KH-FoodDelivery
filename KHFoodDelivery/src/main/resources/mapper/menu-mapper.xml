@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="menu">
+	<resultMap type="map" id="categoryMap"></resultMap>
+	<resultMap type="map" id="menuMap"></resultMap>
 	<insert id="insertCategory" parameterType="map">
-		insert into menu_category values(SEQ_menuCategoryCode.nextval , #{menuCategory} , 1)
+		insert into menu_category values(SEQ_menuCategoryCode.nextval , #{menuCategory} , 7)
 	</insert>
 	
 	<insert id="insertMenu" parameterType="menu">
-		insert into menu values(seq_menucode.nextval,1,#{menuCategoryCode},#{menuName},#{menuContent},#{menuPrice},#{menuImage},default)
+		insert into menu values(seq_menucode.nextval,7,#{menuCategoryCode},#{menuName},#{menuContent},#{menuPrice},#{menuImage},default)
 	</insert>
+	<delete id="deleteCategory" parameterType="string">
+		delete from menu_category where menucategorycode = #{menuCategory}
+	</delete>
+	<select id="selectMenuCategory" resultMap="categoryMap">
+		select * from menu_category order by menucategorycode asc
+	</select>
+	<select id="selectMenuList" resultMap="menuMap">
+		select * from menu 
+	</select>
 </mapper>

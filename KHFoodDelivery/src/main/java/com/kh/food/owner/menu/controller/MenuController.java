@@ -1,6 +1,7 @@
 package com.kh.food.owner.menu.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -21,15 +22,28 @@ public class MenuController {
 	MenuService service;
 	
 	@RequestMapping("/owner/menuEnroll.do")
-	public String menuEnroll()
+	public ModelAndView menuEnroll()
 	{
-		return "owner/menuEnroll";
+		ModelAndView mv = new ModelAndView();
+		List<Map<String,String>> category = service.selectMenuCategory();		
+		mv.addObject("category",category);
+		mv.setViewName("owner/menuEnroll");
+		return mv;
 	}
 	
 	@RequestMapping("/owner/menuManage.do")
-	public String menuManage()
+	public ModelAndView menuManage()
 	{
-		return "owner/menuManage";
+		ModelAndView mv = new ModelAndView();
+		List<Map<String,String>> category = service.selectMenuCategory();
+		List<Map<String,String>> menuList = service.selectMenuList();
+		logger.debug("카테고리리스트"+category);
+		logger.debug("메뉴리스트"+menuList);
+		mv.addObject("menuList",menuList);
+		mv.addObject("category",category);
+		mv.setViewName("owner/menuManage");
+		return mv;
+		
 	}
 	
 	@RequestMapping("/owner/menuSoldOut.do")
@@ -41,7 +55,7 @@ public class MenuController {
 	@RequestMapping("/owner/enrollCategory.do")
 	public ModelAndView enrollCategory(String menuCategory)
 	{
-		logger.debug("메뉴카테고리"+menuCategory);
+		/*logger.debug("메뉴카테고리"+menuCategory);*/
 		Map<String,String> map = new HashMap<>();
 		map.put("menuCategory", menuCategory);
 		ModelAndView mv = new ModelAndView();
@@ -66,6 +80,7 @@ public class MenuController {
 	@RequestMapping("/owner/enrollMenu.do")
 	public ModelAndView insertMenu(Menu m)
 	{
+		logger.debug("메뉴등록" + m);
 		ModelAndView mv = new ModelAndView();
 		String msg="";
 		String loc="/owner/menuEnroll.do";
@@ -87,4 +102,32 @@ public class MenuController {
 		mv.setViewName("common/msg");
 		return mv;
 	}
+	
+	//카테고리삭제
+	@RequestMapping("/menu/deleteCategory.do")
+	public ModelAndView deleteCategory(String menuCategory)
+	{	
+		logger.debug("카테고리삭제");
+		logger.debug("메뉴카테고리명"+menuCategory);
+		ModelAndView mv = new ModelAndView();
+		String msg ="";
+		String loc = "/owner/menuManage.do";
+		
+		int result = service.deleteCategory(menuCategory);
+		if(result>0)
+		{
+			msg = " 삭제성공";
+		}
+		else
+		{
+			msg = "삭제 실패";
+		}
+		
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+		
+	}
+	
 }

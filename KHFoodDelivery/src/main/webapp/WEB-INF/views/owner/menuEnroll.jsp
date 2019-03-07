@@ -69,14 +69,33 @@ left: 0;
 </style>
 
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
+<script>
+
+$(function(){
+	$(".menu").click(function(){
+		console.log("클릭에들어왔니?");
+		var menu = $(".menu").val();
+		$.ajax({
+			url:"${path}/owner/menuEnroll.do",
+			data:{"menu":menu},
+			success:function(data)
+			{
+				
+			}
+			
+		});
+	});
+});
+
+</script>
 <section>
 	<div class="container">
                 <div class="row">
                     <div class="col-md-3 ">
                          <div class="list-group ">
-                          <a href="${path }/owner/menuEnroll.do" class="list-group-item list-group-item-action active">메뉴/카테고리 등록</a>
-                          <a href="${path }/owner/menuManage.do" class="list-group-item list-group-item-action">메뉴관리</a>
-                          <a href="${path }/owner/menuSoldOut.do" class="list-group-item list-group-item-action">품절관리</a>
+                          <a href="${path }/owner/menuEnroll.do" class="list-group-item list-group-item-action active menu">메뉴/카테고리 등록</a>
+                          <a href="${path }/owner/menuManage.do" class="list-group-item list-group-item-action menu">메뉴관리</a>
+                          <a href="${path }/owner/menuSoldOut.do" class="list-group-item list-group-item-action menu">품절관리</a>
                           <a href="#" class="list-group-item list-group-item-action">Enquiry</a>
                           <a href="#" class="list-group-item list-group-item-action">Dealer</a>
                           <a href="#" class="list-group-item list-group-item-action">Media</a>
@@ -113,10 +132,9 @@ left: 0;
                                             <label for="select" class="col-4 col-form-label">메뉴카테고리</label> 
                                             <div class="col-8">
                                               <select id="select" name="menuCategoryCode" class="custom-select">
-                                                <option value="1">커피류</option>
-                                                <option value="2">에이드류</option>
-                                                <option value="3">플래치노류</option>
-                                                <option value="4">디저트</option>
+                                              	<c:forEach var="c" items="${category }">
+                                                <option value="${c.MENUCATEGORYCODE }">${c.MENUCATEGORY }</option>
+                                                </c:forEach>
                                               
                                               </select>
                                             </div>

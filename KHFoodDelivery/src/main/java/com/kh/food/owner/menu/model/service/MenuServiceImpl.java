@@ -1,5 +1,6 @@
 package com.kh.food.owner.menu.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,22 @@ public class MenuServiceImpl implements MenuService {
 
 		return dao.insertMenu(m);
 	}
+
+	@Override
+	public int deleteCategory(String menuCategory) {
+		return dao.deleteCategory(menuCategory);
+	}
+
+	@Override
+	public List<Map<String, String>> selectMenuCategory() {
+		return dao.selectMenuCategory();
+	}
+
+	@Override
+	public List<Map<String, String>> selectMenuList() {
+		return dao.selectMenuList();
+	}
+	
 	
 	
 }
