@@ -76,7 +76,7 @@ public class OnevsOneController {
 		ArrayList<OwnerQnaAttachment> files=new ArrayList<OwnerQnaAttachment>();
 		
 		//저장경료
-		String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/owner/ownerAttach");
+		String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/owner/qnaAttach");
 		
 		for(MultipartFile f : upFile) {
 			if(!f.isEmpty()) {
@@ -248,7 +248,7 @@ public class OnevsOneController {
 		BufferedInputStream bis=null;
 		ServletOutputStream sos=null;
 		boolean fileCheck=true;
-		String dir=request.getSession().getServletContext().getRealPath("resources/upload/owner/ownerAttach");
+		String dir=request.getSession().getServletContext().getRealPath("resources/upload/owner/qnaAttach");
 		File savedFile=new File(dir+"/"+reName); //경로
 		try {
 			FileInputStream fis=new FileInputStream(savedFile);

@@ -61,12 +61,13 @@ public class NoticeController {
 	
 	//회원공지사항 글쓰기 완료
 	@RequestMapping("/admin/noticeFormEnd.do")
-	public String noticeFormEnd(String noticeTitle, String noticeContent, MultipartFile[] upFile, HttpServletRequest request) {
+	public ModelAndView noticeFormEnd(String noticeTitle, String noticeContent, MultipartFile[] upFile, HttpServletRequest request) {
+		ModelAndView mv=new ModelAndView();
 		Map<String,String> notice=new HashMap();
 		notice.put("noticeTitle", noticeTitle);
 		notice.put("noticeContent", noticeContent);
 		ArrayList<NoticeAttachment> files= new ArrayList();
-		String savDir=request.getSession().getServletContext().getRealPath("/resources/upload/notice");
+		String savDir=request.getSession().getServletContext().getRealPath("/resources/upload/member/noticeAttach");
 		for(MultipartFile f:upFile)
 		{
 			if(!f.isEmpty()) {
@@ -93,6 +94,7 @@ public class NoticeController {
 			}
 		}
 		int result=service.insertMemberNotice(notice,files);
+		String loc="/admin/memberNoticeList.do";
 		String msg="";
 		if(result>0) {
 			msg="성공";
@@ -100,8 +102,13 @@ public class NoticeController {
 		}else {
 			msg="실패";
 		}
+		mv.addObject("loc", loc);
+		mv.addObject("msg", msg);
+		
+		mv.setViewName("common/msg");
+		
 		System.out.println(result);
-		return "redirect:/admin/memberNoticeList.do";
+		return mv;
 	}
 	
 	

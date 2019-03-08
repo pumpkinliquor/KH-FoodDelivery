@@ -53,7 +53,6 @@ function fn_validate(){
 			                <th>내용</th>
 			                <td><textarea cols="10" placeholder="내용"" name="noticeContent" class="form-control" style="resize:none; height:15em;"></textarea></td>
 			            </tr>
-			            <div class="input-group mb-3" style="padding:0px;">
 			            <tr>
 			                <th>
 								<div class="input-group-prepend" style="padding:0px;">
@@ -80,7 +79,6 @@ function fn_validate(){
 			                	</div>
 		                	</td>
 			            </tr>
-					</div>
 			            <tr>
 			                <td colspan="2">
 			                <button name="noticeListBtn" class="btn btn-default float-left" onclick="location.href='${path}/admin/memberNoticeList.do'">목록</button>
