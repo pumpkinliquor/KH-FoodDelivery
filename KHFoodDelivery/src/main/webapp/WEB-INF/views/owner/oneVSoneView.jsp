@@ -77,7 +77,7 @@
 		</script>
 		<div class="filesDiv" style="margin-bottom:5em; text-align:left;">
 		<c:forEach items="${attach}" var="a" varStatus="vs">
-        <button type="button" style="padding:0px; background-color:white; border:0px;" class="fileDownLoadBtn" onclick="fileDownLoad('${a.ORIGINALFILENAME}','${a.RENAMEDFILENAME}');">
+        <button type="button" style="padding:0px; background-color:white; cursor:pointer; border:0px;" class="fileDownLoadBtn" onclick="fileDownLoad('${a.ORIGINALFILENAME}','${a.RENAMEDFILENAME}');">
          	<img src="${path }/resources/images/owner/icons/attach_file_icon.png" width=17px;/> - ${a.ORIGINALFILENAME}
         </button>
     	</c:forEach>

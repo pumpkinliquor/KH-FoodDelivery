@@ -7,6 +7,10 @@
 		SELECT A.*, B.* FROM OWNER_QNA A INNER JOIN OWNER B ON A.OWNERNUM=B.OWNERNUM ORDER BY WRITEDATE DESC
 	</select>
 	
+	<select id="qnaCount" resultType="_int">
+		SELECT COUNT(*) FROM OWNER_QNA
+	</select>
+	
 	<select id="myQnaList" parameterType="string" resultType="map">
 		SELECT A.*, B.* FROM OWNER_QNA A INNER JOIN OWNER B ON A.OWNERNUM=B.OWNERNUM WHERE OWNERID=#{ownerId} ORDER BY WRITEDATE DESC
 	</select>

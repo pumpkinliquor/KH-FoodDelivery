@@ -7,7 +7,8 @@ import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
 
 public interface OnevsOneDao {
-	List<Map<String,String>> oneVSoneList();
+	List<Map<String,String>> oneVSoneList(int cPage, int numPerPage);
+	int qnaCount();
 	List<Map<String,String>> myQnaList(String ownerId);
 	Map<String,String> oneVSoneView(int qnaCode);
 	List<Map<String,String>> qnaSearch(Map<String,String> map);

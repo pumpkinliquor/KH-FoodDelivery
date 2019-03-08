@@ -20,9 +20,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.food.common.PagingFactory;
 import com.kh.food.owner.onevsone.model.service.OnevsOneService;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
@@ -34,10 +36,16 @@ public class OnevsOneController {
 	OnevsOneService service;
 	
 	@RequestMapping("/owner/oneVSoneList.do")
-	public ModelAndView oneVSoneList(ModelAndView mv) {
+	public ModelAndView oneVSoneList(ModelAndView mv, @RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
 		
-		List<Map<String,String>> oneVSoneList=service.oneVSoneList();
+		int numPerPage=5;
 		
+		int count=service.qnaCount();
+		
+		List<Map<String,String>> oneVSoneList=service.oneVSoneList(cPage, numPerPage);
+		
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/owner/oneVSoneList.do"));
+		mv.addObject("qnaCount", count);
 		mv.addObject("oneVSoneList", oneVSoneList);
 		mv.setViewName("owner/oneVSoneList");
 		return mv;
