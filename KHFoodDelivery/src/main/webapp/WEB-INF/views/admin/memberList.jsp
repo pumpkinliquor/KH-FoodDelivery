@@ -194,14 +194,24 @@
 	function fn_memListmodal(memberNum) {
 		
 		console.log(memberNum);
-		$('#memListModal').modal();
+		
 		$.ajax({
 			url:"${path}/admin/memberOne.do",	//요청보낼 서버 url주소
-			dataType:"Map",
+			dataType:"json",
 			data:{"memberNum":memberNum},	//요청과 함께 보낼 데이터
 			success:function(data)
 			{
 				console.log(data);
+				
+				$('#memAddress').val(data.MEMBERADDRESS);
+				$('#memBirth').val(data.MEMBERBIRTH);
+				$('#memPhone').val(data.MEMBERPHONE);
+				$('#memEnrolldate').val(data.MEMBERENROLLDATE);
+				$('#memGender').val(data.MEMBERGENDER);
+				$('#memMileage').val(data.MILEAGE);
+
+				//성공했을때 모달띄워줌
+				$('#memListModal').modal();
 			}
 			
 		}); 
@@ -236,7 +246,11 @@
 </div> -->
 
 
-
+<style>
+.memModal{
+	border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; width:350px;
+}
+</style>
 
 
 <div class="modal" id="memListModal" role="dialog">
@@ -249,7 +263,6 @@
 			</div>
 			<div class="modal-body">
 				<table class="table">
-				  <%-- <c:forEach items="${memMo }"  var="Mo" > --%>
 					<tr>
 						<th>프로필</th>
 						<td><img src="${path }/resources/images/place.png"
@@ -258,30 +271,29 @@
 					</tr>
 					<tr>
 						<th>주소</th>
-						<td>${MEMBERADDRESS}</td>
+						<td><textarea rows="3" cols="10" id="memAddress" class="memModal" readonly="readonly"></textarea></td>
 					</tr>
 					<tr>
 						<th>생년월일</th>
-						<td>${MEMBERBIRTH}</td>
+						<td><input type="text" id="memBirth" class="memModal" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>전화번호</th>
-						<td>${MEMBERPHONE}</td>
+						<td><input type="text" id="memPhone" class="memModal" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>가입날짜</th>
-						<td>${MEMBERENROLLDATE}</td>
+						<td><input type="text" id="memEnrolldate" class="memModal" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>성별</th>
-						<td>${MEMBERGENDER}</td>
+						<td><input type="text" id="memGender" class="memModal" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>마일리지</th>
-						<td>${MILEAGE}</td>
+						<td><input type="text" id="memMileage" class="memModal" readonly="readonly"></td>
 					</tr>
 
-				<%-- </c:forEach> --%>
 				</table>
 			</div>
 			<div class="modal-footer">
