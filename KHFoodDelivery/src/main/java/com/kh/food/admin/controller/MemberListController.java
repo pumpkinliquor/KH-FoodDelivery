@@ -42,21 +42,23 @@ public class MemberListController {
 	  }*/
 	  
 	  //회원 상세 정보
-	  
-		
 	  @RequestMapping("/admin/memberOne.do")
 	  @ResponseBody
-	  public Map<String,String> memberListModal(int memberNum) {
-		  System.out.println(memberNum);
+	  public Map memberListModal(int memberNum) {
 		 ModelAndView mv=new ModelAndView();
-		 Map<String,String> memMo=service.memberOne(memberNum);
-		 System.out.println("memMo는: "+memMo);		
+		 Map<String,String> memMo=service.memberOne(memberNum);	
 		 return memMo;
 		 }
 	  
 	  
 	  
-	  
+	  @RequestMapping("admin/ownerOne.do")
+	  @ResponseBody
+	  public Map ownerListModal(String ownerId){
+		  ModelAndView mv=new ModelAndView();
+		  Map<String,String> ownMo=service.ownerOne(ownerId);
+		  return ownMo;
+	  }
 	  
 	  //사장님리스트
 	  @RequestMapping("/admin/ownerList.do")

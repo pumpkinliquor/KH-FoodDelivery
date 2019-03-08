@@ -51,6 +51,22 @@ public class MenuServiceImpl implements MenuService {
 		// TODO Auto-generated method stub
 		return dao.deleteMenu(menuCode);
 	}
+
+	@Override
+	public Map selectOneMenu(String menuCode) {
+		// TODO Auto-generated method stub
+		return dao.selectOneMenu(menuCode);
+	}
+
+	@Override
+	public int updateMenu(Menu m) {
+		return dao.updateMenu(m);
+	}
+
+	@Override
+	public int updateMenuSoldOut(String menuCode) {
+		return dao.updateMenuSoldOut(menuCode);
+	}
 	
 	
 	

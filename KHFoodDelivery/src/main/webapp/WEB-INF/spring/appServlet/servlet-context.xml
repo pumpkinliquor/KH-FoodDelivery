@@ -37,16 +37,26 @@
 			<beans:bean id="ownerInterceptor" class="com.kh.food.common.OwnerInterceptor"/>
 		</interceptor>
 	</interceptors>
-	
-	<!-- JSON -->
-	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
-		<beans:property name="order" value="1"/>
-	</beans:bean>
-	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/>
-	 
+		 
 	 <!-- 파일업로드 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10485760"/> <!-- 10메가 -->
+	</beans:bean>
+	 
+	 
+	 
+	 <!--JSON처리를 위한 jsonview를 등록 -->
+	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="1"/>
+	</beans:bean>
+	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/> 
+	
+	<beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<beans:property name="messageConverters">
+			<beans:list>
+				<beans:bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></beans:bean>
+			</beans:list>
+		</beans:property>	
 	</beans:bean>
 	 
 </beans:beans>

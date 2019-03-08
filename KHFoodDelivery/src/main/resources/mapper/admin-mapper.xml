@@ -23,6 +23,11 @@
 	<select id="memberOne" resultType="Map" parameterType="_int">
 	select * from member where membernum=#{memberNum}
 	</select>
+	
+	<!-- 사장상세보기 -->
+	<select id="ownerOne" resultType="Map" parameterType="String">
+	select * from store s JOIN owner o On s.ownerid=o.ownerid where s.ownerid= #{ownerId}
+	</select>
 	 
 	 
 

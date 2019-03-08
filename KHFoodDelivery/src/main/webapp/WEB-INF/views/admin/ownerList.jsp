@@ -57,11 +57,11 @@
 				 <tbody>
 				<tr>
 					<td><input type="checkbox" class="checkthis" /></td>
-					<td class="pnt" onclick="fn_ownListmodal()">${o.OWNERNUM}</td>
-					<td class="pnt" onclick="fn_ownListmodal()">${o.OWNERID}</td>
-					<td class="pnt" onclick="fn_ownListmodal()">${o.STORENAME}</td>
-					<td class="pnt" onclick="fn_ownListmodal()">${o.STORECATEGORY}</td>
-					<td class="pnt" onclick="fn_ownListmodal()">${o.OWNERENROLLDATE}</td>
+					<td class="pnt" onclick="fn_ownListmodal('${o.OWNERID}')">${o.OWNERNUM}</td>
+					<td class="pnt" onclick="fn_ownListmodal('${o.OWNERID}')">${o.OWNERID}</td>
+					<td class="pnt" onclick="fn_ownListmodal('${o.OWNERID}')">${o.STORENAME}</td>
+					<td class="pnt" onclick="fn_ownListmodal('${o.OWNERID}')">${o.STORECATEGORY}</td>
+					<td class="pnt" onclick="fn_ownListmodal('${o.OWNERID}')">${o.OWNERENROLLDATE}</td>
 				</tr>
 			</tbody>
 			</c:forEach>
@@ -77,17 +77,37 @@
 
 
 <script>
-	function fn_memListmodal() {
-		$('#ownListModal').modal();
+	function fn_ownListmodal(ownerId) {
+		console.log(ownerId);
+		$.ajax({
+			url:"${path}/admin/ownerOne.do",			
+			dataType:"json",
+			data:{"ownerId":ownerId},
+			success:function(data)
+			{
+				console.log(data+"gg");
+				
+				$('#ownAddress').val(data.STOREADDRESS); 
+				$('#ownEmail').val(data.OWNEREMAIL);
+				$('#ownPhone').val(data.OWNERPHONE);
+				$('#ownEnrolldate').val(data.OWNERENROLLDATE);
+				$('#ownStoreName').val(data.STORENAME);
+				$('#ownStorePhone').val(data.STOREPHONE); 
+			
+				$('#ownListModal').modal();
+			}
+		});
+		
+		
 
-	};
+	}
 
-	function fn_memListDel() {
+	/* function fn_memListDel() {
 		$('#ownListDel').modal();
-	};
+	}; */
 </script>
 
-<div class="modal" id="ownListDel" role="dialog">
+<!-- <div class="modal" id="ownListDel" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">
@@ -108,13 +128,16 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
+
+<style>
+ .ownModal{
+ border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; width:350px;}
+</style>
 
 
 
-
-
-<div class="modal" id="memListModal" role="dialog">
+<div class="modal" id="ownListModal" role="dialog">
 	<div class="modal-dialog">
 		<!-- Modal content-->
 		<div class="modal-content">
@@ -131,28 +154,28 @@
 
 					</tr>
 					<tr>
-						<th>주소</th>
-						<td>강남</td>
+						<th>가게주소</th>
+						<td><textarea rows="3" cols="10" id="ownAddress" class="ownModal" readonly="readonly"></textarea></td>
 					</tr>
 					<tr>
-						<th>생년월일</th>
-						<td>951114</td>
+						<th>이메일</th>
+						<td><input type="text" id="ownEmail" class="ownModal" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>전화번호</th>
-						<td>01011111111</td>
+						<td><input type="text" id="ownPhone" class="ownModal" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>가입날짜</th>
-						<td>2019.02.27</td>
+						<td><input type="text" id="ownEnrolldate" class="ownModal" readonly="readonly"></td>
 					</tr>
 					<tr>
-						<th>성별</th>
-						<td>여</td>
+						<th>가게주소</th>
+						<td><input type="text" id="ownStoreName" class="ownModal" readonly="readonly"></td>
 					</tr>
 					<tr>
-						<th>마일리지</th>
-						<td>1114점</td>
+						<th>가게전화번호</th>
+						<td><input type="text" id="ownStorePhone" class="ownModal" readonly="readonly"></td>
 					</tr>
 
 

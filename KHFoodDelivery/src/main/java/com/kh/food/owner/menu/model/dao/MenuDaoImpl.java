@@ -51,6 +51,21 @@ public class MenuDaoImpl implements MenuDao {
 	public int deleteMenu(String menuCode) {
 		return sqlSession.delete("menu.deleteMenu",menuCode);
 	}
+
+	@Override
+	public Map selectOneMenu(String menuCode) {
+		return sqlSession.selectOne("menu.selectOneMenu",menuCode);
+	}
+
+	@Override
+	public int updateMenu(Menu m) {
+		return sqlSession.update("menu.updateMenu",m);
+	}
+
+	@Override
+	public int updateMenuSoldOut(String menuCode) {
+		return sqlSession.update("menu.updateMenuSoldOut",menuCode);
+	}
 	
 	
 }
