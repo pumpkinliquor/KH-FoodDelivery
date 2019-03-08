@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.common.PagingFactory;
 import com.kh.food.owner.onevsone.model.service.OnevsOneService;
+import com.kh.food.owner.onevsone.model.vo.OwnerQna;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
 
@@ -43,7 +44,7 @@ public class OnevsOneController {
 		int count=service.qnaCount();
 		
 		List<Map<String,String>> oneVSoneList=service.oneVSoneList(cPage, numPerPage);
-		
+
 		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/owner/oneVSoneList.do"));
 		mv.addObject("qnaCount", count);
 		mv.addObject("oneVSoneList", oneVSoneList);
@@ -120,14 +121,20 @@ public class OnevsOneController {
 	}
 	
 	@RequestMapping("/owner/myOneVSone.do")
-	public ModelAndView myOneVSone(String ownerId, ModelAndView mv) {
+	public ModelAndView myOneVSone(HttpServletRequest request, ModelAndView mv, @RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
 		
 //		System.out.println(ownerId);
 		
-		List<Map<String,String>> myQnaList=service.myQnaList(ownerId);
+		int numPerPage=5;
+		String ownerId=(String) request.getSession().getAttribute("ownerId");
+		int ownerNum=(int) request.getSession().getAttribute("ownerNum");
+		
+		int count=service.myQnaCount(ownerNum);
+		List<Map<String,String>> myQnaList=service.myQnaList(ownerId, cPage, numPerPage);
 		
 //		System.out.println(myQnaList);
-		
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/owner/myOneVSone.do"));
+		mv.addObject("myQnaCount", count);
 		mv.addObject("myQnaList", myQnaList);
 		mv.setViewName("owner/myQna");
 		return mv;
