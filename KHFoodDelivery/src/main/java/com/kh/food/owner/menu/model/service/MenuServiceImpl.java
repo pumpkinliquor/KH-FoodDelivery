@@ -62,6 +62,11 @@ public class MenuServiceImpl implements MenuService {
 	public int updateMenu(Menu m) {
 		return dao.updateMenu(m);
 	}
+
+	@Override
+	public int updateMenuSoldOut(String menuCode) {
+		return dao.updateMenuSoldOut(menuCode);
+	}
 	
 	
 	

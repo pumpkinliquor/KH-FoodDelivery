@@ -35,4 +35,8 @@
 	<update id="updateMenu" parameterType="menu" >
 		update menu set menuName = #{menuName} , menuPrice = #{menuPrice} , menuContent = #{menuContent} , menuImage = #{menuImage} where menuCode = #{menuCode}
 	</update>
+	
+	<update id="updateMenuSoldOut" parameterType="string">
+		update menu set menuSoldOut = 1 where menuCode = #{menuCode}
+	</update>
 </mapper>

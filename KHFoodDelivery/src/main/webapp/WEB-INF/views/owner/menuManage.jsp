@@ -241,6 +241,12 @@ pageEncoding="UTF-8"%>
 					}); 
 					
 				}
+				
+				$('#menuImage').change(function(){
+					/* console.log($('#menuImage').val())
+					console.log("파일 선택 들어왔니?"); */
+					$('label[id*="menuImage1"]').text($('#menuImage').val()); 
+				})
 			</script>
 </section>
 

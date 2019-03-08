@@ -25,4 +25,6 @@ public interface MenuDao {
 
 	int updateMenu(Menu m);
 
+	int updateMenuSoldOut(String menuCode);
+
 }

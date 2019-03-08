@@ -1,8 +1,11 @@
 package com.kh.food.owner.menu.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,12 +50,20 @@ public class MenuController {
 		
 	}
 	
+	//메뉴 품절 화면 진입
 	@RequestMapping("/owner/menuSoldOut.do")
-	public String menuSoldOut()
+	public ModelAndView menuSoldOut()
 	{
-		return "owner/menuSoldOut";
+		ModelAndView mv = new ModelAndView();
+		List<Map<String,String>> category = service.selectMenuCategory();
+		List<Map<String,String>> menuList = service.selectMenuList();
+		mv.addObject("menuList",menuList);
+		mv.addObject("category",category);
+		mv.setViewName("owner/menuSoldOut");
+		return mv;
 	}
 	
+	//카테고리 등록
 	@RequestMapping("/owner/enrollCategory.do")
 	public ModelAndView enrollCategory(String menuCategory)
 	{
@@ -78,6 +89,7 @@ public class MenuController {
 		
 	}
 	
+	//메뉴 등록
 	@RequestMapping("/owner/enrollMenu.do")
 	public ModelAndView insertMenu(Menu m)
 	{
@@ -218,5 +230,14 @@ public class MenuController {
 		mv.addObject("loc",loc);
 		mv.setViewName("common/msg");
 		return mv;
+	}
+	
+	//메뉴 품절 시키기
+	@RequestMapping("menu/updateMenuSoldOut.do")
+	public void updateMenuSoldOut(String menuCode,HttpServletResponse response) throws IOException
+	{
+		logger.debug("메뉴코드"+menuCode);
+		int result = service.updateMenuSoldOut(menuCode);
+		response.getWriter().print(result);
 	}
 }

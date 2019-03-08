@@ -24,6 +24,8 @@ public interface MenuService {
 	Map selectOneMenu(String menuCode);
 
 	int updateMenu(Menu m);
+
+	int updateMenuSoldOut(String menuCode);
 	
 	
 
