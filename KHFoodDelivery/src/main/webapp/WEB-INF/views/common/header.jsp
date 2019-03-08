@@ -23,7 +23,7 @@
 </head>
 
 <body>
-
+ 
 <header>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c&libraries=services"></script>
 
@@ -151,65 +151,65 @@
   
 
 
-<<<<<<< HEAD
-   //헤더 고정 
-   $(function(){
-      $(window).scroll(function(){
-         var num = $(this).scrollTop();
-      
-         if(num > 36){
-            $(".newsletter").css("position","fixed");
-         }else{
-            $(".newsletter").css("position","absolute");
-         }
-      });
-   });
-   //배달의민족 클릭시 메인으로
-   function mainpage(){
-      location.href="${path }";
-   }
-   
 
-
-       <div id='centerAddr1'></div>
-        <div class="newsletter">
-                <div id="hd container">             
-                <div class="row" style="margin:0;">           
-                <div class="col-sm-12 headerDiv2">
-              <div class="headerDiv1">
-               <c:if test="${sessionScope.logined==null }">
-                 <a href="${path }/customer/login.do">로그인</a>
-                    <a href="${path }/member/memberEnroll.do">회원가입</a>
-                   
-              </c:if> 
-               <c:if test="${sessionScope.logined!=null}">
-               <a href="${path }/customer/logout.do">로그아웃</a>
-               <a href="#">마이페이지</a>
-               
-          
-              </c:if> 
-              </div>
-                    <div class="content1">
-                       <h2 onclick="mainpage();"> <span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></h2>
-                    </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="content">
-                    <div class="input-group">
-                         <button id="positionBtn" onclick="getLocation4()" ><img id="locationImg" src="${path }/resources/images/place.png"></button>
-                      <input type="text" id="location" onclick="sample5_execDaumPostcode();"  class="form-control" value="" placeholder="주소 찾기를 원하시면 클릭해주세요">
-                         <span class="input-group-btn">
-                         <button class="btn" onclick="" type="submit">검색</button>
-
-                         </span>
-                    </div>
-                    </div>
-                </div>
-                
-                </div>
-                </div>
-       </div>
-                 <div id="map" style="width:300px;height:300px;"></div>
-                            
+$(function(){
+    $(window).scroll(function(){
+       var num = $(this).scrollTop();
+    
+       if(num > 36){
+          $(".newsletter").css("position","fixed");
+       }else{
+          $(".newsletter").css("position","absolute");
+       }
+    });
+ });
+ //배달의민족 클릭시 메인으로
+ function mainpage(){
+    location.href="${path }";
+ }
  
-</header>
+ 
+ </script>
+
+
+     <div id='centerAddr1'></div>
+      <div class="newsletter">
+              <div id="hd container">             
+              <div class="row" style="margin:0;">           
+              <div class="col-sm-12 headerDiv2">
+            <div class="headerDiv1">
+             <c:if test="${sessionScope.logined==null }">
+               <a href="${path }/customer/login.do">로그인</a>
+                  <a href="${path }/member/memberEnroll.do">회원가입</a>
+                 
+            </c:if> 
+             <c:if test="${sessionScope.logined!=null}">
+             <a href="${path }/customer/logout.do">로그아웃</a>
+             <a href="#">마이페이지</a>
+             
+        
+            </c:if> 
+            </div>
+                  <div class="content1">
+                     <h2 onclick="mainpage();"> <span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></h2>
+                  </div>
+              </div>
+              <div class="col-sm-12">
+                  <div class="content">
+                  <div class="input-group">
+                       <button id="positionBtn" onclick="getLocation4()" ><img id="locationImg" src="${path }/resources/images/place.png"></button>
+                    <input type="text" id="location" onclick="sample5_execDaumPostcode();"  class="form-control" value="" placeholder="주소 찾기를 원하시면 클릭해주세요">
+                       <span class="input-group-btn">
+                       <button class="btn" onclick="" type="submit">검색</button>
+
+                       </span>
+                  </div>
+                  </div>
+              </div>
+              
+              </div>
+              </div>
+     </div>
+               <div id="map" style="width:300px;height:300px;"></div>
+                          
+

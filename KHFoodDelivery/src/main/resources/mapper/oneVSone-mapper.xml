@@ -7,8 +7,12 @@
 		SELECT A.*, B.* FROM OWNER_QNA A INNER JOIN OWNER B ON A.OWNERNUM=B.OWNERNUM ORDER BY WRITEDATE DESC
 	</select>
 	
+	<select id="qnaCount" resultType="_int">
+		SELECT COUNT(*) FROM OWNER_QNA
+	</select>
+	
 	<select id="myQnaList" parameterType="string" resultType="map">
-		SELECT A.*, B.* FROM OWNER_QNA A INNER JOIN OWNER B ON A.OWNERNUM=B.OWNERNUM WHERE OWNERID=#{ownerId}
+		SELECT A.*, B.* FROM OWNER_QNA A INNER JOIN OWNER B ON A.OWNERNUM=B.OWNERNUM WHERE OWNERID=#{ownerId} ORDER BY WRITEDATE DESC
 	</select>
 	
 	<select id="oneVSoneView" parameterType="_int" resultType="map">
@@ -47,4 +51,8 @@
 	<insert id="insertAttach" parameterType="ownerAtt">
 		INSERT INTO OWNER_QNA_ATTACHMENT VALUES(SEQ_O_QNA_FILEUPLOAD.NEXTVAL, #{qnaCode}, #{originalFileName}, #{reNamedFileName}, SYSDATE, DEFAULT)
 	</insert>
+	
+	<select id="ownerAttach" parameterType="_int" resultType="map">
+		SELECT * FROM OWNER_QNA_ATTACHMENT WHERE QNACODE=#{qnaCode}
+	</select>
 </mapper>

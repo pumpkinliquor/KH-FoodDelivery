@@ -16,6 +16,10 @@ public interface MenuService {
 	List<Map<String, String>> selectMenuCategory();
 
 	List<Map<String, String>> selectMenuList();
+
+	int updateMenuPrice(Map<String, String> map);
+
+	int deleteMenu(String menuCode);
 	
 	
 

@@ -5,11 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
-<section>
 <style>
-.writeQnaBtn{
-	float:left;
-}
 .search{
 	float:right;
 	padding-bottom:1em;
@@ -23,11 +19,16 @@
 	width:13em;
 }
 </style>
+<section>
 <div class="container">
 	<div style="text-align:center; margin-bottom:5em;">
 		<h2 style="font-weight:bold;">사장님 1:1 문의게시판</h2>
 	</div>
-	<div class="btn btn-default writeQnaBtn" onclick="location.href='${path}/owner/oneVSoneForm.do'">문의하기</div>
+	<div style="text-align:center;">
+		<span>총 <span style="color:red; font-weight:bold; font-size:20px;">${qnaCount }</span>건의 게시물이 있습니다.</span>
+	</div>
+	<div class="btn btn-success allQnaBtn" onclick="location.href='${path}/owner/oneVSoneList.do'">전체보기</div>
+	<div class="btn btn-primary writeQnaBtn" onclick="location.href='${path}/owner/oneVSoneForm.do'">문의하기</div>
 	<div class="search">
    		<div class="row">
    			<div class="col-md-12">
@@ -72,6 +73,9 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<div class="paging">
+					${pageBar}
+				</div>
 			</c:if>
 			<c:if test="${empty oneVSoneList }">
 				<h3 style="text-align:center; margin-top:5em;">목록 결과가 없습니다.</h3>

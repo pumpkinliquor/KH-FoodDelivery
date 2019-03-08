@@ -3,6 +3,7 @@ package com.kh.food.owner.onevsone.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,8 +18,14 @@ public class OnevsOneDaoImpl implements OnevsOneDao {
 	SqlSessionTemplate session;
 	
 	@Override
-	public List<Map<String, String>> oneVSoneList() {
-		return session.selectList("oneVSone.oneVSoneList");
+	public List<Map<String, String>> oneVSoneList(int cPage, int numPerPage) {
+		RowBounds rows=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return session.selectList("oneVSone.oneVSoneList", null, rows);
+	}
+
+	@Override
+	public int qnaCount() {
+		return session.selectOne("oneVSone.qnaCount");
 	}
 
 	@Override
