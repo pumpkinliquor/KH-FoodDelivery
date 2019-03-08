@@ -65,7 +65,7 @@ function fn_memberNoticeDel(e){
 		</div>
 		<br>
 		<hr>
-		<button id="noticeListBtn" class="btn btn-default" >목록</button>
+		<button id="noticeListBtn" class="btn btn-default" onclick="">목록</button>
 	</div>
 </section>
 
