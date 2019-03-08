@@ -17,6 +17,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.websocket.Transformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +44,12 @@ public class OnevsOneController {
 		int count=service.qnaCount();
 		
 		List<Map<String,String>> oneVSoneList=service.oneVSoneList(cPage, numPerPage);
-		
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//		for(int i = 0; i<oneVSoneList.size(); i++) {
+//			oneVSoneList.get(i).set(df.format(oneVSoneList.get(i).get("WRITEDATE")));
+//		}
+
+
 		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/owner/oneVSoneList.do"));
 		mv.addObject("qnaCount", count);
 		mv.addObject("oneVSoneList", oneVSoneList);
@@ -120,14 +126,20 @@ public class OnevsOneController {
 	}
 	
 	@RequestMapping("/owner/myOneVSone.do")
-	public ModelAndView myOneVSone(String ownerId, ModelAndView mv) {
+	public ModelAndView myOneVSone(HttpServletRequest request, ModelAndView mv, @RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
 		
 //		System.out.println(ownerId);
 		
-		List<Map<String,String>> myQnaList=service.myQnaList(ownerId);
+		int numPerPage=5;
+		String ownerId=(String) request.getSession().getAttribute("ownerId");
+		int ownerNum=(int) request.getSession().getAttribute("ownerNum");
+		
+		int count=service.myQnaCount(ownerNum);
+		List<Map<String,String>> myQnaList=service.myQnaList(ownerId, cPage, numPerPage);
 		
 //		System.out.println(myQnaList);
-		
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/owner/myOneVSone.do"));
+		mv.addObject("myQnaCount", count);
 		mv.addObject("myQnaList", myQnaList);
 		mv.setViewName("owner/myQna");
 		return mv;

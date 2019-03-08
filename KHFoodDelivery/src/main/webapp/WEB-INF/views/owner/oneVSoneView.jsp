@@ -74,6 +74,11 @@
 				return true;
 			}
 		}
+		//로그인 예외처리
+		function loginException(){
+			alert('로그인 하십시오.');
+			location.href='${path}/owner/login.do';
+		}
 		</script>
 		<div class="filesDiv" style="margin-bottom:5em; text-align:left;">
 		<c:forEach items="${attach}" var="a" varStatus="vs">
@@ -103,11 +108,6 @@
         <div class="commentList" style="margin-top:2em;">
         	<c:forEach var="comment" items="${commentList}">
         		<script>
-        		//로그인 예외처리
-        		function loginException(){
-        			alert('로그인 하십시오.');
-        			location.href='${path}/owner/login.do';
-        		}
 				//모달창 띄우기
 			    $(function() {
 			        $("#modalBtn${comment.QNAREVIEWCODE}").click(function(){

@@ -40,51 +40,23 @@ pageEncoding="UTF-8"%>
                               </div>
                               <div class="row">
                                   <div class="col-md-12">
+                                  		<c:forEach items="${category}" var="c" varStatus="status">
                                             <table class="table table-hover board">
                                                 <tbody>
-                                                    <h5>메인메뉴</h5>
+                                                    <h5>${c.MENUCATEGORY}</h5>            
+                                                    <c:forEach items="${menuList}" var="m" varStatus="status1">
+                                                    <c:if test="${c.MENUCATEGORYCODE eq m.MENUCATEGORYCODE}">                     
                                                     <tr style="cursor:pointer;">
-                                                        <td >후라이드치킨</td>
-                                                        <td ><button class="btn btn-default">품절</button></td>
-                                                        <td ><button class="btn btn-default">품절취소</button></td>
-                                                    </tr>
-                                                    <tr style="cursor:pointer;">
-                                                        <td width="33%">양념치킨</td>
-                                                        <td width="12%"><button class="btn btn-default">품절</button></td>
+                                                        <td width="76%" >${m.MENUNAME }</td>                                               
+                                                        <td width="12%"><button onclick="fn_soldOut(${m.MENUCODE},this)" class="btn btn-default">품절</button></td>
                                                         <td width="12%"><button class="btn btn-default">품절취소</button></td>
                                                     </tr>
+                  									</c:if>
+                                                    </c:forEach>
                                                 </tbody>
                                             </table>
-                                            <table class="table table-hover board">
-                                                    <tbody>
-                                                        <h5>메인메뉴</h5>
-                                                        <tr style="cursor:pointer;">
-                                                            <td >후라이드치킨</td>
-                                                            <td ><button class="btn btn-default">품절</button></td>
-                                                            <td ><button class="btn btn-default">품절취소</button></td>
-                                                        </tr>
-                                                        <tr style="cursor:pointer;">
-                                                            <td width="33%">양념치킨</td>
-                                                            <td width="12%"><button class="btn btn-default">품절</button></td>
-                                                            <td width="12%"><button class="btn btn-default">품절취소</button></td>
-                                                        </tr>
-                                                    </tbody>
-                                            </table>
-                                            <table class="table table-hover board">
-                                                    <tbody>
-                                                        <h5>메인메뉴</h5>
-                                                        <tr style="cursor:pointer;">
-                                                            <td >후라이드치킨</td>
-                                                            <td ><button class="btn btn-default">품절</button></td>
-                                                            <td ><button class="btn btn-default">품절취소</button></td>
-                                                        </tr>
-                                                        <tr style="cursor:pointer;">
-                                                            <td width="33%">양념치킨</td>
-                                                            <td width="12%"><button class="btn btn-default">품절</button></td>
-                                                            <td width="12%"><button class="btn btn-default">품절취소</button></td>
-                                                        </tr>
-                                                    </tbody>
-                                            </table>
+                                         </c:forEach> 
+                                            
                                   </div>
                               </div>
                               
@@ -95,7 +67,26 @@ pageEncoding="UTF-8"%>
                     </div>
                 </div>
             </div>
-
+	
+	<script>
+		function fn_soldOut(menuCode,e){
+			console.log(e);
+			console.log("솔드아웃 들어왔니?");
+			$.ajax({
+				url:"${path}/menu/updateMenuSoldOut.do",
+				data: {"menuCode" : menuCode},
+				success : function(data)
+				{
+					console.log(data);
+					if(data == 1)
+						{
+							$(e).css("color","red");				
+						}
+				}
+			})
+		} 
+	
+	</script>
 
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

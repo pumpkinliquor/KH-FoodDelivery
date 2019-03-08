@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	import="java.util.*, java.sql.*" pageEncoding="UTF-8"%>
+	import="java.util.*, java.sql.*, java.text.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -54,11 +54,11 @@
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th>번호</th>
-							<th>작성자</th>
-							<th>제목</th>
-							<th>날짜</th>
-							<th>분류</th>
+							<th width=10%>번호</th>
+							<th width=10%>작성자</th>
+							<th width=50%>제목</th>
+							<th width=15%>날짜</th>
+							<th width=10%>분류</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -67,7 +67,7 @@
 								<td>${vs.count }</td>
 								<td>${one.OWNERID }</td>
 								<td><a href="${path }/owner/oneVSoneView.do?qnaCode=${one.QNACODE}">${one.QNATITLE }</a></td>
-								<td>${one.WRITEDATE }</td>
+								<td>${one.formatDate }</td>
 								<td>${one.QNACATEGORY }</td>
 							</tr>
 						</c:forEach>

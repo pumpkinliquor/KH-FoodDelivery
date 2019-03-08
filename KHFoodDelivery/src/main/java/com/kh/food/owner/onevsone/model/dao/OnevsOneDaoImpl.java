@@ -29,8 +29,14 @@ public class OnevsOneDaoImpl implements OnevsOneDao {
 	}
 
 	@Override
-	public List<Map<String, String>> myQnaList(String ownerId) {
-		return session.selectList("oneVSone.myQnaList", ownerId);
+	public List<Map<String, String>> myQnaList(String ownerId, int cPage, int numPerPage) {
+		RowBounds rows=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return session.selectList("oneVSone.myQnaList", ownerId, rows);
+	}
+	
+	@Override
+	public int myQnaCount(int ownerNum) {
+		return session.selectOne("oneVSone.myQnaCount", ownerNum);
 	}
 
 	@Override

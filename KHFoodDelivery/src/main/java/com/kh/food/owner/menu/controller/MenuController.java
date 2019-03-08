@@ -1,14 +1,18 @@
 package com.kh.food.owner.menu.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.owner.menu.model.service.MenuService;
@@ -46,12 +50,20 @@ public class MenuController {
 		
 	}
 	
+	//메뉴 품절 화면 진입
 	@RequestMapping("/owner/menuSoldOut.do")
-	public String menuSoldOut()
+	public ModelAndView menuSoldOut()
 	{
-		return "owner/menuSoldOut";
+		ModelAndView mv = new ModelAndView();
+		List<Map<String,String>> category = service.selectMenuCategory();
+		List<Map<String,String>> menuList = service.selectMenuList();
+		mv.addObject("menuList",menuList);
+		mv.addObject("category",category);
+		mv.setViewName("owner/menuSoldOut");
+		return mv;
 	}
 	
+	//카테고리 등록
 	@RequestMapping("/owner/enrollCategory.do")
 	public ModelAndView enrollCategory(String menuCategory)
 	{
@@ -77,6 +89,7 @@ public class MenuController {
 		
 	}
 	
+	//메뉴 등록
 	@RequestMapping("/owner/enrollMenu.do")
 	public ModelAndView insertMenu(Menu m)
 	{
@@ -183,4 +196,48 @@ public class MenuController {
 		return mv;
 	}
 	
+	//메뉴 하나 가져오기
+	@RequestMapping("owner/selectOneMenu.do")
+	@ResponseBody
+	public Map selectOneMenu(String menuCode)
+	{
+//		logger.debug("메뉴하나 가져왔니?" + menuCode);
+		Map menu = service.selectOneMenu(menuCode);
+//		logger.debug("menu"+menu);
+		return menu;
+	}
+	
+	//메뉴 수정 하기
+	@RequestMapping("owner/updateMenu.do")
+	public ModelAndView updateMenu(Menu m)
+	{
+		ModelAndView mv = new ModelAndView();
+		logger.debug("메뉴수정" + m);
+		String msg = "";
+		String loc = "/owner/menuManage.do";
+		
+		
+		int result = service.updateMenu(m);
+		if(result > 0)
+		{
+			msg = "수정 성공";
+		}
+		else
+		{
+			msg = "수정 실패";
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	//메뉴 품절 시키기
+	@RequestMapping("menu/updateMenuSoldOut.do")
+	public void updateMenuSoldOut(String menuCode,HttpServletResponse response) throws IOException
+	{
+		logger.debug("메뉴코드"+menuCode);
+		int result = service.updateMenuSoldOut(menuCode);
+		response.getWriter().print(result);
+	}
 }

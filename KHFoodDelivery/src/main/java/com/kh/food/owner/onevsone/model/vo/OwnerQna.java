@@ -2,6 +2,8 @@ package com.kh.food.owner.onevsone.model.vo;
 
 import java.sql.Date;
 
+import com.kh.food.owner.member.model.vo.Owner;
+
 public class OwnerQna {
 	private int qnaCode;
 	private int ownerNum;
@@ -9,13 +11,15 @@ public class OwnerQna {
 	private String qnaCategory;
 	private String qnaContent;
 	private String qnaTitle;
+	private String formatWriteDate;
+	private Owner owner;
 	
 	public OwnerQna() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OwnerQna(int qnaCode, int ownerNum, Date writeDate, 
-			String qnaCategory, String qnaContent, String qnaTitle) {
+	public OwnerQna(int qnaCode, int ownerNum, Date writeDate, String qnaCategory, String qnaContent, String qnaTitle,
+			String formatWriteDate, Owner owner) {
 		super();
 		this.qnaCode = qnaCode;
 		this.ownerNum = ownerNum;
@@ -23,6 +27,8 @@ public class OwnerQna {
 		this.qnaCategory = qnaCategory;
 		this.qnaContent = qnaContent;
 		this.qnaTitle = qnaTitle;
+		this.formatWriteDate = formatWriteDate;
+		this.owner = owner;
 	}
 
 	public int getQnaCode() {
@@ -49,7 +55,6 @@ public class OwnerQna {
 		this.writeDate = writeDate;
 	}
 
-
 	public String getQnaCategory() {
 		return qnaCategory;
 	}
@@ -74,10 +79,27 @@ public class OwnerQna {
 		this.qnaTitle = qnaTitle;
 	}
 
+	public String getFormatWriteDate() {
+		return formatWriteDate;
+	}
+
+	public void setFormatWriteDate(String formatWriteDate) {
+		this.formatWriteDate = formatWriteDate;
+	}
+
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
+
 	@Override
 	public String toString() {
 		return "OwnerQna [qnaCode=" + qnaCode + ", ownerNum=" + ownerNum + ", writeDate=" + writeDate + ", qnaCategory="
-				+ qnaCategory + ", qnaContent=" + qnaContent + ", qnaTitle=" + qnaTitle + "]";
+				+ qnaCategory + ", qnaContent=" + qnaContent + ", qnaTitle=" + qnaTitle + ", formatWriteDate="
+				+ formatWriteDate + ", owner=" + owner + "]";
 	}
-	
+
 }

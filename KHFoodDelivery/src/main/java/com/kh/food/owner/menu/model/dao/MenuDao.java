@@ -21,4 +21,10 @@ public interface MenuDao {
 
 	int deleteMenu(String menuCode);
 
+	Map selectOneMenu(String menuCode);
+
+	int updateMenu(Menu m);
+
+	int updateMenuSoldOut(String menuCode);
+
 }
