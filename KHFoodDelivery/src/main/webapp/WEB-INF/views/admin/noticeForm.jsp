@@ -8,8 +8,17 @@ pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 
 <script>
+$(function(){
+	$('[name=upFile]').on('change',function(){
+		var filename=this.files[0].name;
+		$(this).next('.custom-file-label').html(filename);
+	});
+});
+
+
+
 function fn_validate(){
-	var content =${"[name=noticeContent]".val();
+	var content =$("[name=noticeContent]").val();
 	if(content.trim().length==0){
 		alert("내용을 입력하세요.");
 		return false;
@@ -25,26 +34,25 @@ function fn_validate(){
 	<div class="row">
 		<div class="col-md-12">
 			<form
-				action="${path}/admin/noticeFormEnd.do" method="post">
+				action="${path}/admin/noticeFormEnd.do" method="post" enctype="multipart/form-data">
 				<table class="table table-bordered board" id="notice_table" name="notice_table">
 
 					<tbody>
 						<tr>
 			        		<th>작성자</th>
 			        		<td>
-				        		<input type="text" name="customerId" class="form-control" value="${sessionScope.customerId=='admin' }" required readonly/>
+				        		<input type="text" class="form-control" value="관리자" required readonly/>
 				        		
 			        		</td>
 			        	</tr>
 						  <tr>
 			                <th>제목</th>
-			                <td><input type="text" placeholder="제목 " name="noticeTitle" class="form-control"/></td>
+			                <td><input type="text" name="noticeTitle" "/></td>
 			            </tr>
 			            <tr>
 			                <th>내용</th>
-			                <td><textarea cols="10" placeholder="내용" name="noticeCont" class="form-control" style="resize:none; height:15em;"></textarea></td>
+			                <td><textarea cols="10" placeholder="내용"" name="noticeContent" class="form-control" style="resize:none; height:15em;"></textarea></td>
 			            </tr>
-			            <div class="input-group mb-3" style="padding:0px;">
 			            <tr>
 			                <th>
 								<div class="input-group-prepend" style="padding:0px;">
@@ -71,7 +79,6 @@ function fn_validate(){
 			                	</div>
 		                	</td>
 			            </tr>
-					</div>
 			            <tr>
 			                <td colspan="2">
 			                <button name="noticeListBtn" class="btn btn-default float-left" onclick="location.href='${path}/admin/memberNoticeList.do'">목록</button>

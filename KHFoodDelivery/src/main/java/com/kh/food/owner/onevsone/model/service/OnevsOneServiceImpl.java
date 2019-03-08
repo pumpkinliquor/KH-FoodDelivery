@@ -17,13 +17,23 @@ public class OnevsOneServiceImpl implements OnevsOneService {
 	OnevsOneDao dao;
 
 	@Override
-	public List<Map<String, String>> oneVSoneList() {
-		return dao.oneVSoneList();
+	public List<Map<String, String>> oneVSoneList(int cPage, int numPerPage) {
+		return dao.oneVSoneList(cPage, numPerPage);
+	}
+	
+	@Override
+	public int qnaCount() {
+		return dao.qnaCount();
 	}
 
 	@Override
-	public List<Map<String, String>> myQnaList(String ownerId) {
-		return dao.myQnaList(ownerId);
+	public List<Map<String, String>> myQnaList(String ownerId, int cPage, int numPerPage) {
+		return dao.myQnaList(ownerId, cPage, numPerPage);
+	}
+
+	@Override
+	public int myQnaCount(int ownerNum) {
+		return dao.myQnaCount(ownerNum);
 	}
 
 	@Override

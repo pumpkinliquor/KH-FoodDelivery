@@ -6,47 +6,10 @@
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
-<!-- <style>
-.pnt {
-	cursor: pointer;
-}
-
-img#memListProfile {
-	border-radius: 150px;
-	width: 50px;
-	height: 50px;
-}
-
-button#memListDelBtn {
-	background-color: transparent;
-	border-color: transparent;
-}
-
-img.memberListDelImg {
-	width: 25px;
-	height: 25px;
-}
-
-h4#memberListTitle {
-	display: inline;
-}
-
-div#btn-category {
-	float: right;
-}
-
-div#memberList {
-	margin-top: 15px;
-}
-
-thead#tableHead {
-	background-color: #4D4D4D;
-	color: rgba(255, 255, 255, .5);
-}
-</style> -->
-<!-- https://m.blog.naver.com/PostView.nhn?blogId=eunjin6132&logNo=150166786634&proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F -->
 <script>
-	$(document).ready(function() {
+
+
+	/* $(document).ready(function() {
 		$("#memberListTable #checkall").click(function() {
 			if ($("#memberListTable #checkall").is(':checked')) {
 				$("#memberListTable input[type=checkbox]").each(function() {
@@ -61,7 +24,7 @@ thead#tableHead {
 		});
 
 		$("[data-toggle=tooltip]").tooltip();
-	});
+	}); */
 	
 	/* $(#memListDelBtn).click(function){
 		if(confirm("회원을 삭제하시겠습니까?")){
@@ -72,6 +35,103 @@ thead#tableHead {
 		}
 	}
  */
+ 
+ 
+ /* 
+ function allChk(obj){
+	 var chkObj= document.getElementsByName("RowCheck");
+	 var rowCnt= chkObj.length-1;
+	 var check= obj.checked;
+	 if(check){
+		 for(var i=0; i<=rowCnt; i++){
+			 chkObj[i].checked= true;
+	 }
+ }else{
+	 for(var i=0; i<rowCnt; i++){
+		 if(chkObj[i].type =="checkbox"){
+			 chkObj[i].checked=false;
+		 }
+	 }
+ }
+	 
+ };
+ function fn_memListDel(){
+	 var memberId="";
+	 var memberChk= document.getElementsByName("RowCheck");
+	 var chked= false;
+	 var indexId= false;
+	 for(i=0; i<memberChk.length; i++){
+		 if(memberChk[i].checked){
+			 if(indexId){
+				 memberId=memberId+'-';
+			 }
+			 memberId=memberId+memberChk[i].value;
+			 indexId =true;
+		 }
+		 if(!indexId){
+			 alert("삭제할 회원을 체크하세요.");
+			 return;
+		 }
+		 document.memberList.delMemberId.value=meberId;
+		 
+		 var agree=confirm("삭제하시겠습니까?");
+		 	if(agree){
+		 		document.memberList.execute.value="memListDel";
+		 		document.memberList.submit();
+		 	}
+	 }
+ } */
+ 
+ 
+ function allChk(obj){
+     var chkObj = document.getElementsByName("RowCheck");
+     var rowCnt = chkObj.length - 1;
+     var check = obj.checked;
+     if (check) {﻿
+         for (var i=0; i<=rowCnt; i++){
+          if(chkObj[i].type == "checkbox")
+              chkObj[i].checked = true; 
+         }
+     } else {
+         for (var i=0; i<=rowCnt; i++) {
+          if(chkObj[i].type == "checkbox"){
+              chkObj[i].checked = false; 
+          }
+         }
+     }
+ } 
+
+﻿ ﻿ 
+
+//﻿2. 체크박스 선택된 것 삭제 처리 (N개) 
+  function fn_memListDel(){
+
+ var memberId = "";
+ var memberChk = document.getElementsByName("RowCheck");
+ var chked = false;
+ var indexid = false;
+ for(i=0; i < memberChk.length; i++){
+  if(memberChk[i].checked){
+   if(indexid){
+     memberId = memberId + '-';
+   }
+   memberId = memberId + memberChk[i].value;
+   indexid = true;
+  }
+ }
+ if(!indexid){
+  alert("삭제할 사용자를 체크해 주세요");
+  return;
+ }
+ document.userForm.memListDelBtn.value = memberId;       // 체크된 사용자 아이디를 '-'로 묶은 userid 를     
+
+ 
+ var agree=confirm("삭제 하시겠습니까?");
+    if (agree){
+  document.memberList.execute.value = "memberDel";
+    document.memberList.submit();
+    } 
+ }﻿
 </script>
 
 
@@ -90,11 +150,13 @@ thead#tableHead {
 			</ul>
 		</div>
 	</div>
+	
 	<div id="memberList">
+	<form action="${path }/admin/memberListEnd.do" method="post">
 		<table class="table table-hover" id="memberListTable">
 			<thead id="tableHead">
 				<tr>
-					<th><input type="checkbox" id="checkall" /></th>
+					<th><input type="checkbox" id="allCheck" onclick="allChk(this);" /></th>
 					<th>회원 번호</th>
 					<th>아이디</th>
 					<th>이름</th>
@@ -104,19 +166,21 @@ thead#tableHead {
 			</thead>
 			
 				 <c:forEach items="${list }"  var="m" >
+				 
 				 <tbody>
 				<tr>
-					<td><input type="checkbox" class="checkthis" name="checkList" /></td>
-					<td class="pnt" onclick="fn_memListmodal()" name="memberNum">${m.MEMBERNUM}</td>
-					<td class="pnt" onclick="fn_memListmodal()" >${m.MEMBERID}</td>
-					<td class="pnt" onclick="fn_memListmodal()" >${m.MEMBERNAME}</td>
-					<td class="pnt" onclick="fn_memListmodal()" >${m.MEMBEREMAIL}</td>
-					<td class="pnt" onclick="fn_memListmodal()" >${m.MEMBERENROLLDATE}</td>
+					<td><input type="checkbox" name="RowCheck" value="${m.MEMBERID }" /></td>
+					<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')" name="memberNum">${m.MEMBERNUM}</td>
+					<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')" >${m.MEMBERID}</td>
+					<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')" >${m.MEMBERNAME}</td>
+					<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')" >${m.MEMBEREMAIL}</td>
+					<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')" >${m.MEMBERENROLLDATE}</td>
 				</tr>
 			</tbody>
 			</c:forEach>
 		</table>
-		<button id="memListDelBtn" onclick="fn_memListDel();">
+		</form>
+		<button type="submit" id="memListDelBtn" onclick="fn_memListDel();">
 			<img src="${path}/resources/images/admin/deleteBtn.png"
 				class="memberListDelImg">
 		</button>
@@ -127,17 +191,28 @@ thead#tableHead {
 
 
 <script>
-	function fn_memListmodal() {
+	function fn_memListmodal(memberNum) {
+		
+		console.log(memberNum);
 		$('#memListModal').modal();
+		$.ajax({
+			url:"${path}/admin/memberOne.do",	//요청보낼 서버 url주소
+			dataType:"Map",
+			data:{"memberNum":memberNum},	//요청과 함께 보낼 데이터
+			success:function(data)
+			{
+				console.log(data);
+			}
+			
+		}); 
+	}
 
-	};
-
-	function fn_memListDel() {
+	/* function fn_memListDel() {
 		$('#memListDel').modal();
-	};
+	}; */
 </script>
 
-<div class="modal" id="memListDel" role="dialog">
+<!-- <div class="modal" id="memListDel" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">
@@ -158,7 +233,7 @@ thead#tableHead {
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 
 
 
@@ -174,7 +249,7 @@ thead#tableHead {
 			</div>
 			<div class="modal-body">
 				<table class="table">
-				
+				  <%-- <c:forEach items="${memMo }"  var="Mo" > --%>
 					<tr>
 						<th>프로필</th>
 						<td><img src="${path }/resources/images/place.png"
@@ -206,7 +281,7 @@ thead#tableHead {
 						<td>${MILEAGE}</td>
 					</tr>
 
-			
+				<%-- </c:forEach> --%>
 				</table>
 			</div>
 			<div class="modal-footer">
