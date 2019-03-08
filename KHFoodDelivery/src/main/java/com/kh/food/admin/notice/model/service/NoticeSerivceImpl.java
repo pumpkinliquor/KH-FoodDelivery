@@ -51,7 +51,7 @@ public class NoticeSerivceImpl implements NoticeService {
 			}
 			for(NoticeAttachment a : files)
 			{
-				a.setNoticeNum(Integer.parseInt(notice.get("noticeNum")));
+				a.setNoticeNum(Integer.parseInt((String) notice.get("noticeNum")));
 				result=dao.insertMemberNoticeAttach(a);
 				if(result==0) throw new Exception();
 			}
