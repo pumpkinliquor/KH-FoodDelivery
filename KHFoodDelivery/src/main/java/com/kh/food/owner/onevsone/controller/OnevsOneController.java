@@ -17,6 +17,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.websocket.Transformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.common.PagingFactory;
 import com.kh.food.owner.onevsone.model.service.OnevsOneService;
-import com.kh.food.owner.onevsone.model.vo.OwnerQna;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
 
@@ -44,6 +44,11 @@ public class OnevsOneController {
 		int count=service.qnaCount();
 		
 		List<Map<String,String>> oneVSoneList=service.oneVSoneList(cPage, numPerPage);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//		for(int i = 0; i<oneVSoneList.size(); i++) {
+//			oneVSoneList.get(i).set(df.format(oneVSoneList.get(i).get("WRITEDATE")));
+//		}
+
 
 		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/owner/oneVSoneList.do"));
 		mv.addObject("qnaCount", count);
