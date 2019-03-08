@@ -27,4 +27,12 @@
 	<delete id="deleteMenu" parameterType="string">
 		delete from menu where menucode = #{menuCode}
 	</delete>
+	
+	<select id="selectOneMenu" parameterType="string" resultType="map">
+		select * from menu where menucode = #{menuCode}
+	</select>
+	
+	<update id="updateMenu" parameterType="menu" >
+		update menu set menuName = #{menuName} , menuPrice = #{menuPrice} , menuContent = #{menuContent} , menuImage = #{menuImage} where menuCode = #{menuCode}
+	</update>
 </mapper>

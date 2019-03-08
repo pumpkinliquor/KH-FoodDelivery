@@ -155,7 +155,7 @@ $(function(){
                                             <label for="newpass" class="col-4 col-form-label">메뉴사진</label> 
                                               <div class="col-sm-8 wrap-input-container">
                                                 <label class="custom-file-upload form-control">
-                                                  <i class="fa fa-cloud-upload"></i> Upload Document
+                                                  Upload Document
                                                 </label>
                                                 <input class="file-upload" name="menuImage" type="file">
                                               </div>

@@ -20,6 +20,10 @@ public interface MenuService {
 	int updateMenuPrice(Map<String, String> map);
 
 	int deleteMenu(String menuCode);
+
+	Map selectOneMenu(String menuCode);
+
+	int updateMenu(Menu m);
 	
 	
 
