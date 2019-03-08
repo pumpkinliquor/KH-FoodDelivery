@@ -27,6 +27,14 @@
 	
 	<context:component-scan base-package="com.kh.food" />
 	
+	<!-- 사장님 사이트 인터셉터 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/owner/oneVSoneForm.do"/>
+			<beans:bean id="ownerInterceptor" class="com.kh.food.common.OwnerInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 	<!-- JSON -->
 	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="1"/>
