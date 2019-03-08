@@ -21,10 +21,10 @@ pageEncoding="UTF-8"%>
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>날짜</th>
-						<th>분류</th>
+						<th width=10%>번호</th>
+						<th width=65%>제목</th>
+						<th width=15%>날짜</th>
+						<th width=10%>분류</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -38,6 +38,9 @@ pageEncoding="UTF-8"%>
 					</c:forEach>
 				</tbody>
 			</table>
+			<div>
+				${pageBar}
+			</div>
 		</div>
 	</div>
 </div>

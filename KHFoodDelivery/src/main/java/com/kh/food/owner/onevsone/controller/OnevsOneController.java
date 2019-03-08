@@ -20,10 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.food.common.PagingFactory;
 import com.kh.food.owner.onevsone.model.service.OnevsOneService;
+import com.kh.food.owner.onevsone.model.vo.OwnerQna;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
 
@@ -34,10 +37,16 @@ public class OnevsOneController {
 	OnevsOneService service;
 	
 	@RequestMapping("/owner/oneVSoneList.do")
-	public ModelAndView oneVSoneList(ModelAndView mv) {
+	public ModelAndView oneVSoneList(ModelAndView mv, @RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
 		
-		List<Map<String,String>> oneVSoneList=service.oneVSoneList();
+		int numPerPage=5;
 		
+		int count=service.qnaCount();
+		
+		List<Map<String,String>> oneVSoneList=service.oneVSoneList(cPage, numPerPage);
+
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/owner/oneVSoneList.do"));
+		mv.addObject("qnaCount", count);
 		mv.addObject("oneVSoneList", oneVSoneList);
 		mv.setViewName("owner/oneVSoneList");
 		return mv;
@@ -68,7 +77,7 @@ public class OnevsOneController {
 		ArrayList<OwnerQnaAttachment> files=new ArrayList<OwnerQnaAttachment>();
 		
 		//저장경료
-		String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/owner/ownerAttach");
+		String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/owner/qnaAttach");
 		
 		for(MultipartFile f : upFile) {
 			if(!f.isEmpty()) {
@@ -112,14 +121,20 @@ public class OnevsOneController {
 	}
 	
 	@RequestMapping("/owner/myOneVSone.do")
-	public ModelAndView myOneVSone(String ownerId, ModelAndView mv) {
+	public ModelAndView myOneVSone(HttpServletRequest request, ModelAndView mv, @RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
 		
 //		System.out.println(ownerId);
 		
-		List<Map<String,String>> myQnaList=service.myQnaList(ownerId);
+		int numPerPage=5;
+		String ownerId=(String) request.getSession().getAttribute("ownerId");
+		int ownerNum=(int) request.getSession().getAttribute("ownerNum");
+		
+		int count=service.myQnaCount(ownerNum);
+		List<Map<String,String>> myQnaList=service.myQnaList(ownerId, cPage, numPerPage);
 		
 //		System.out.println(myQnaList);
-		
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/owner/myOneVSone.do"));
+		mv.addObject("myQnaCount", count);
 		mv.addObject("myQnaList", myQnaList);
 		mv.setViewName("owner/myQna");
 		return mv;
@@ -240,7 +255,7 @@ public class OnevsOneController {
 		BufferedInputStream bis=null;
 		ServletOutputStream sos=null;
 		boolean fileCheck=true;
-		String dir=request.getSession().getServletContext().getRealPath("resources/upload/owner/ownerAttach");
+		String dir=request.getSession().getServletContext().getRealPath("resources/upload/owner/qnaAttach");
 		File savedFile=new File(dir+"/"+reName); //경로
 		try {
 			FileInputStream fis=new FileInputStream(savedFile);

@@ -7,7 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -23,7 +23,7 @@ import com.kh.food.customer.member.model.vo.Member;
 public class MemberController {
 
 	
-	private Logger logger=Logger.getLogger(MemberController.class);
+
 	
 	@Autowired
 	BCryptPasswordEncoder pwEncoder;
