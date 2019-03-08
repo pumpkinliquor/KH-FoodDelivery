@@ -30,7 +30,23 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 	
-	
+	@RequestMapping("/member/memberInfoChange.do")
+	public ModelAndView memberInfoChange(ModelAndView mv)
+	{
+		mv.setViewName("customer/memberInfoChange");
+		return mv;
+	}
+
+	@RequestMapping("/customer/mypage.do")
+	public ModelAndView myPage(int memberNum) {
+		ModelAndView mv =new ModelAndView();
+		int result = service.selectMember(memberNum);
+		
+		
+		mv.setViewName("customer/myPage");
+		return mv;
+		
+	}
 	@RequestMapping("/member/checkId.do")
 	public ModelAndView checkId(String memberId,ModelAndView mv) throws UnsupportedEncodingException{
 		
@@ -173,6 +189,8 @@ public class MemberController {
 	public String menuView() {
 		return "customer/searchMenu";
 	}
+	
+	
 	
 	
 }

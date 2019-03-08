@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
+    pageEncoding="UTF-8"
+	import="java.util.*, java.sql.* , com.kh.food.customer.member.model.vo.*"     
+%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%
+	Member member = (Member)request.getAttribute("member");
+%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -185,7 +191,7 @@ $(function(){
             </c:if> 
              <c:if test="${sessionScope.logined!=null}">
              <a href="${path }/customer/logout.do">로그아웃</a>
-             <a href="#">마이페이지</a>
+             <a href="${path }/customer/mypage.do?memberNum=${member.memberNum}">마이페이지</a>
              
         
             </c:if> 
@@ -210,6 +216,6 @@ $(function(){
               </div>
               </div>
      </div>
-               <div id="map" style="width:300px;height:300px;"></div>
+               <div id="map" style="width:300px;height:200px; position:relative;"></div>
                           
 

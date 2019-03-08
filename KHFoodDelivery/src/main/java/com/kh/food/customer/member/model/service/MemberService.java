@@ -10,4 +10,5 @@ public interface MemberService {
 	int checkId(String memberId);
 	Map<String,String> login(Map<String,String> map);
 	int checkNick(String nickName);
+	int selectMember(int memberNum);
 }

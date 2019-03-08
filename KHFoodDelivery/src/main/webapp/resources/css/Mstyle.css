@@ -152,4 +152,16 @@ font-size: 26px;
 h2{
 font-size: 20px;
 } */
+
+/*  마이페이지 */
+
+.img-circle {
+    border-radius: 50%;
+    display: block;
+    max-width: 100%;
+}
+    
+    
+} 
+
 }
