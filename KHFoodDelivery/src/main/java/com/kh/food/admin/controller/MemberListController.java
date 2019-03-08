@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.admin.model.service.MemberListService;
@@ -40,7 +41,18 @@ public class MemberListController {
 		  return "redirect:/admin/memberList.do";
 	  }*/
 	  
+	  //회원 상세 정보
 	  
+		
+	  @RequestMapping("/admin/memberOne.do")
+	  @ResponseBody
+	  public Map<String,String> memberListModal(int memberNum) {
+		  System.out.println(memberNum);
+		 ModelAndView mv=new ModelAndView();
+		 Map<String,String> memMo=service.memberOne(memberNum);
+		 System.out.println("memMo는: "+memMo);		
+		 return memMo;
+		 }
 	  
 	  
 	  

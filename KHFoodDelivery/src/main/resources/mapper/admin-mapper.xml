@@ -14,8 +14,18 @@
 	 select * from owner o, store s where o.ownerid=s.ownerid order by ownernum desc
 	 </select>
 	 
+	  <!-- 회원삭제 -->
+	 <delete id="deleteMember" parameterType="String" >
+	 delete from member where memberid=#{MEMBERID}
+	 </delete>
+	 
+	<!-- 회원상세보기 -->
+	<select id="memberOne" resultType="Map" parameterType="_int">
+	select * from member where membernum=#{memberNum}
+	</select>
 	 
 	 
+
 	 
 	 
 	 
@@ -42,9 +52,17 @@
 	
 	<!-- 회원공지사항 등록 -->
 	<insert id="insertMemberNotice" parameterType="Map">
-	insert into notice values(seq_noticenum.nextval, #{noticeTitle},sysdate,default, default,#{noticeContent})
+	insert into notice values(seq_noticenum.nextval, #{noticeTitle},sysdate,#{noticeContent})
 	<selectKey keyProperty="noticeNum" resultType="_int" order="AFTER">
 		select seq_noticenum.currval from dual
 	</selectKey>
 	</insert>
+	<insert id="insertMemberNoticeAttach" parameterType="com.kh.food.admin.notice.attachment.vo.NoticeAttachment">
+	insert into NOTICE_ATTACHMENT values(SEQ_NOTICEATTACHMENTNO.NEXTVAL,#{noticeNum},#{originalFileName},#{renamedFileName},default,default)
+	</insert>
+	
+	<!-- 회원공지사항 수정 -->
+	<select id="updateNotice" parameterType="_int">
+	select * from notice where noticenum=#{noticeNum}
+	</select>
 </mapper>
