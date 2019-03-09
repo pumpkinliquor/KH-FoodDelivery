@@ -67,7 +67,7 @@
 								<td>${vs.count }</td>
 								<td>${one.OWNERID }</td>
 								<td><a href="${path }/owner/oneVSoneView.do?qnaCode=${one.QNACODE}">${one.QNATITLE }</a></td>
-								<td>${one.formatDate }</td>
+								<td>${one.WRITEDATE }</td>
 								<td>${one.QNACATEGORY }</td>
 							</tr>
 						</c:forEach>
