@@ -150,7 +150,7 @@ pageEncoding="UTF-8"%>
 							<label for="oneVSoneWrite1" class="control-label" style="font-size:30px; font-weight:bold; cursor:pointer;">공지사항</label>
 						</div>
 						<div id="write">
-							<button type="submit" id="oneVSoneWrite1" class="oneVSoneWrite1" onclick="location.href='${path}/owner/noticeList.do'">더보기</button>
+							<button type="submit" id="oneVSoneWrite1" class="oneVSoneWrite1" onclick="location.href='${path}/owner/ownerNoticeList.do'">더보기</button>
 					    </div>
 				    </div>
 					<table class="table table-bordered">
@@ -163,7 +163,7 @@ pageEncoding="UTF-8"%>
 						</thead>
 						<tbody>
 							<c:forEach var="notice" items="${selectNoticeList }" begin="0" end="4" step="1" varStatus="vs">
-							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/noticeList.do'">
+							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/ownerNoticeList.do'">
 								<td>${vs.count }</td>
 								<td><a href="#">${notice.OWNERNOTICETITLE }</a></td>
 								<td>${notice.OWNERWRITEDATE }</td>

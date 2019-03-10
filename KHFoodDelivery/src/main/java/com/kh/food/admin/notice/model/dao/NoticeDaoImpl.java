@@ -31,7 +31,11 @@ public class NoticeDaoImpl implements NoticeDao {
 			return sqlSession.selectOne("admin.selectMemberNotice",noticeNum);
 		}
 		//회원공지사항 파일 뷰 필요
-		
+		@Override
+		public List<Map<String, String>> selectAttach(int noticeNum) {
+			// TODO Auto-generated method stub
+			return sqlSession.selectList("admin.selectAttach", noticeNum);
+		}
 
 		//회원공지사항 삭제
 			@Override
@@ -40,7 +44,9 @@ public class NoticeDaoImpl implements NoticeDao {
 				return sqlSession.delete("admin.deleteMemberNotice", noticeNum);
 			}
 
-		//회원공지사항 등록
+		
+
+			//회원공지사항 등록
 			@Override
 			public int insertMemberNotice(Map<String, String> notice) {
 				// TODO Auto-generated method stub
@@ -64,12 +70,7 @@ public class NoticeDaoImpl implements NoticeDao {
 
 		
 
-		//사장
-		@Override
-		public List<Map<String, String>> ownerNoticeList() {
-			return sqlSession.selectList("ownerMember.ownerNoticeList");
-		}
-	
+		
 	
 	
 	

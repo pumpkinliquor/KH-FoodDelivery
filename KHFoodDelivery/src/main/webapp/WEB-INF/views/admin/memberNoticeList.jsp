@@ -26,7 +26,7 @@
            <%--  <tr class="pnt" id="mnTarget" onclick="fn_noticeView(${mn.NOTICENUM});"> --%>
               <tr>
                <td>${mn.NOTICENUM }</td>
-               <td id="noticeTitleTd"><a href="${path}/admin/noticeView.do?noticeNum=${mn.NOTICENUM}">${mn.NOTICETITLE}</a></td>
+               <td id="noticeTitleTd"><a href="${path}/admin/memberNoticeView.do?noticeNum=${mn.NOTICENUM}">${mn.NOTICETITLE}</a></td>
                <td>${mn.WRITEDATE}</td>
             </tr>
 
@@ -37,7 +37,7 @@
 
 
       <button type="button" class="btn btn-light float-right"
-         onclick="location.href='${path}/admin/noticeForm.do'">글쓰기</button>
+         onclick="location.href='${path}/admin/memberNoticeForm.do'">글쓰기</button>
 
 
    </div>

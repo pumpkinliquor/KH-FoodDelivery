@@ -52,13 +52,6 @@ public class MemberListController {
 	  
 	  
 	  
-	  @RequestMapping("admin/ownerOne.do")
-	  @ResponseBody
-	  public Map ownerListModal(String ownerId){
-		  ModelAndView mv=new ModelAndView();
-		  Map<String,String> ownMo=service.ownerOne(ownerId);
-		  return ownMo;
-	  }
 	  
 	  //사장님리스트
 	  @RequestMapping("/admin/ownerList.do")
@@ -68,6 +61,15 @@ public class MemberListController {
 		 mv.addObject("list",list);
 		 mv.setViewName("admin/ownerList");
 		 return mv;
+	  }
+	  
+	//사장 상세 정보
+	  @RequestMapping("admin/ownerOne.do")
+	  @ResponseBody
+	  public Map ownerListModal(String ownerId){
+		  ModelAndView mv=new ModelAndView();
+		  Map<String,String> ownMo=service.ownerOne(ownerId);
+		  return ownMo;
 	  }
 	  
 }

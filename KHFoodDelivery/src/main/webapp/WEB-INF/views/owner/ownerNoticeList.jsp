@@ -1,4 +1,4 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 import="java.util.*, java.sql.*" 
 pageEncoding="UTF-8"%>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -55,19 +55,23 @@ pageEncoding="UTF-8"%>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="owner" items="${ownerNoticeList }" varStatus="vs">
+				<c:forEach var="on" items="${list }">
 				<tr style="cursor:pointer;" onclick="location.href='${path}/owner/noticeList.do'">
-					<td>${vs.count }</td>
-					<td><a href="#">${owner.OWNERNOTICETITLE }</a></td>
-					<td>${owner.OWNERWRITEDATE }</td>
+					<td>${on.OWNERNOTICENUM }</td>
+					<td id="noticeTitleId"><a href="${path }/owner/ownerNoticeView.do?ownerNoticeNum=${on.OWNERNOTICENUM}">${on.OWNERNOTICETITLE }</a></td>
+					<td>${on.OWNERWRITEDATE }</td>
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<c:if test="${sessionScope.ownerId=='admin' }">
+		  <button type="button" class="btn btn-light float-right"
+         onclick="location.href='${path}/admin/ownerNoticeForm.do'">글쓰기</button>
+		</c:if>
 		<div class="pageBar" style="text-align:center;">
 			페이지바
 		</div>
 	</div>
 </section>
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include> --%>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

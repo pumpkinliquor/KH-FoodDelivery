@@ -9,6 +9,7 @@ public interface NoticeService {
 
 	List<Map<String,String>> selectMemberNoticeList();
 	Map<String,String> selectMemberNotice(int noticeNum);
+	List<Map<String,String>>selectAttach(int noticeNum);
 	int deleteMemberNotice(int noticeNum);
 	int insertMemberNotice(Map<String,String> notice, List<NoticeAttachment> files);
 	int updateNotice(int noticeNum);
