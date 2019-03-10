@@ -39,7 +39,7 @@ public class OnevsOneController {
 	@RequestMapping("/owner/oneVSoneList.do")
 	public ModelAndView oneVSoneList(ModelAndView mv, @RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
 		
-		int numPerPage=5;
+		int numPerPage=10;
 		
 		int count=service.qnaCount();
 		
@@ -130,7 +130,7 @@ public class OnevsOneController {
 		
 //		System.out.println(ownerId);
 		
-		int numPerPage=5;
+		int numPerPage=10;
 		String ownerId=(String) request.getSession().getAttribute("ownerId");
 		int ownerNum=(int) request.getSession().getAttribute("ownerNum");
 		

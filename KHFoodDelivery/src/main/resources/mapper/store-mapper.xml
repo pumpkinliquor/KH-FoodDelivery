@@ -16,6 +16,10 @@
 	<select id="selectAppStore" resultType="store">
 		SELECT * FROM STORE
 	</select>
+	
+	<insert id="addStore" parameterType="map">
+		INSERT INTO STORE VALUES(SEQ_BUSINESSCODE.NEXTVAL, #{ownerId}, #{businessName}, #{businessPhone}, #{storeName}, #{storePhone}, #{storeAddress}, #{storeCategory}, #{oriImageName}, #{minPrice}, #{storeProfile}, DEFAULT, SYSDATE, #{businessNum}, 5, 5)
+	</insert>
 		
 	<!-- resultMap : Store -->
 	<resultMap type="map" id="store"></resultMap>
