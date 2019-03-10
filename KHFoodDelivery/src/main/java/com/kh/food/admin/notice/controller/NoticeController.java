@@ -1,14 +1,21 @@
 package com.kh.food.admin.notice.controller;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,12 +48,14 @@ public class NoticeController {
 	}
 	
 	//회원공지사항 뷰
-		@RequestMapping("/admin/noticeView.do")
+		@RequestMapping("/admin/memberNoticeView.do")
 		public ModelAndView noticeView(int noticeNum) {
 			ModelAndView mv=new ModelAndView();
 			Map<String,String> map=service.selectMemberNotice(noticeNum);
+			List<Map<String,String>> attach=service.selectAttach(noticeNum);
 			mv.addObject("notice",map);
-			mv.setViewName("admin/noticeView");
+			mv.addObject("attach",attach);
+			mv.setViewName("admin/memberNoticeView");
 			return mv;
 		}
 	
@@ -54,13 +63,13 @@ public class NoticeController {
 		
 	
 	//회원공지사항 글쓰기페이지 이동
-	@RequestMapping("/admin/noticeForm.do")
+	@RequestMapping("/admin/memberNoticeForm.do")
 	public String noticeInsert() {
-		return "admin/noticeForm";
+		return "admin/memberNoticeForm";
 	}
 	
 	//회원공지사항 글쓰기 완료
-	@RequestMapping("/admin/noticeFormEnd.do")
+	@RequestMapping("/admin/memberNoticeFormEnd.do")
 	public ModelAndView noticeFormEnd(String noticeTitle, String noticeContent, MultipartFile[] upFile, HttpServletRequest request) {
 		ModelAndView mv=new ModelAndView();
 		Map<String,String> notice=new HashMap();
@@ -106,10 +115,93 @@ public class NoticeController {
 		mv.addObject("msg", msg);
 		
 		mv.setViewName("common/msg");
-		
-		System.out.println(result);
 		return mv;
 	}
+	
+	
+	//파일다운로드
+	@RequestMapping("/admin/fileDownLoad.do")
+	public void fileDownLoad(String oriName, String reName, HttpServletRequest request, HttpServletResponse response) {
+//		System.out.println(oriName+reName);
+		BufferedInputStream bis=null;
+		ServletOutputStream sos=null;
+		boolean fileCheck=true;
+		String dir=request.getSession().getServletContext().getRealPath("resources/upload/member/noticeAttach");
+		File savedFile=new File(dir+"/"+reName); //경로
+		try {
+			FileInputStream fis=new FileInputStream(savedFile);
+			bis=new BufferedInputStream(fis);
+			sos=response.getOutputStream();
+			String resFileName=""; //파일명처리하기 (인코딩)
+			boolean isMSIE=request.getHeader("user-agent").indexOf("MSIE")!=-1||request.getHeader("user-agent").indexOf("Trident")!=-1;
+			if(isMSIE) {
+				resFileName=URLEncoder.encode(oriName, "UTF-8");
+				resFileName=resFileName.replaceAll("\\+", "%20");
+			}
+			else {
+				resFileName=new String(oriName.getBytes("UTF-8"), "ISO-8859-1"); //이렇게 해야 한글이 안깨짐
+			}
+			response.setContentType("application/octet-stream;charset=utf-8");
+			response.setHeader("Content-Disposition", "attachment;filename=\""+resFileName+"\"");
+			response.setContentLength((int)savedFile.length()); //파일길이설정
+			
+			int read=0;
+			while((read=bis.read())!=-1) {
+				sos.write(read);
+			}
+		}
+		catch (FileNotFoundException e) {
+			fileCheck=false;
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		catch (NullPointerException e) {
+			fileCheck=false;
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				sos.close();
+				bis.close();
+			}
+			catch (FileNotFoundException e) {
+				fileCheck=false;
+				e.printStackTrace();
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+			catch (NullPointerException e) {
+				fileCheck=false;
+				e.printStackTrace();
+			}
+		}
+		if(fileCheck==false) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = null;
+			try {
+				out=response.getWriter();
+			}
+			catch (NullPointerException e) {
+				e.printStackTrace();
+			}
+			catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+			out.println("<script>alert('선택 하신 파일을 찾을 수 없습니다.'); history.go(-1);</script>");
+		}
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	//회원공지사항 수정폼이동
@@ -128,23 +220,5 @@ public class NoticeController {
 		}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//사장님 공지사항 리스트
-	
-	
-	
-	/*@RequestMapping("/admin/ownerNoticeList.do")
-	public String ownerNoticeList() {
-		return "admin/ownerNoticeList";
-	}*/
-	
+
 }

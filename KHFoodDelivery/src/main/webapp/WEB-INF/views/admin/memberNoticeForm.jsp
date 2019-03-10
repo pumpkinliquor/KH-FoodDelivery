@@ -34,7 +34,7 @@ function fn_validate(){
 	<div class="row">
 		<div class="col-md-12">
 			<form
-				action="${path}/admin/noticeFormEnd.do" method="post" enctype="multipart/form-data">
+				action="${path}/admin/memberNoticeFormEnd.do" method="post" enctype="multipart/form-data">
 				<table class="table table-bordered board" id="notice_table" name="notice_table">
 
 					<tbody>
@@ -81,8 +81,7 @@ function fn_validate(){
 			            </tr>
 			            <tr>
 			                <td colspan="2">
-			                <button name="noticeListBtn" class="btn btn-default float-left" onclick="location.href='${path}/admin/memberNoticeList.do'">목록</button>
-			                    <input type="submit" value="등록" class="btn btn-outline-success float-right" onclick="fn_validate()"/>
+			                   <input type="submit" value="등록" class="btn btn-outline-success float-right" onclick="fn_validate()"/>
 			                </td>
 			            </tr>
 			    </tbody>

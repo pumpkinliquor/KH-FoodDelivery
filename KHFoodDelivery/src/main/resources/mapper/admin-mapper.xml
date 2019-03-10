@@ -37,11 +37,12 @@
 	 
 	 
 	 
-	 <!-- 공지사항 -->
+	  <!-- 공지사항 --> 
 	 
 	 <!-- 회원공지사항리스트 -->
 	<select id="selectMemberNoticeList" resultType="Map">
-	select * from notice order by noticenum desc
+	select a.*,(select count(*) from notice_attachment where noticenum=a.noticenum)
+	 as attachcount from notice a order by noticenum desc
 	</select> 
 	
 	
@@ -49,6 +50,11 @@
 	<select id="selectMemberNotice" parameterType="_int" resultType="Map">
 	select * from notice where noticenum=#{noticeNum}
 	</select>
+	<select id="selectAttach" parameterType="_int" resultType="Map">
+	select * from notice_attachment where noticenum=#{noticeNum}
+	</select>
+	
+	
 	
 	<!-- 회원공지사항 삭제 -->
 	<delete id="deleteMemberNotice" parameterType="_int">
@@ -69,5 +75,16 @@
 	<!-- 회원공지사항 수정 -->
 	<select id="updateNotice" parameterType="_int">
 	select * from notice where noticenum=#{noticeNum}
+	</select>
+	
+	
+	
+	<!-- 사장 공지사항 리스트 -->
+	<select id="selectOwnerNoticeList" resultType="Map">
+	select * from ownernotice
+	</select>
+	<!-- 사장 공지사항 뷰 -->
+	<select id="selectOwnerNotice" resultType="Map" parameterType="_int">
+	select * from ownernotice where ownernoticenum=#{ownerNoticeNum}
 	</select>
 </mapper>

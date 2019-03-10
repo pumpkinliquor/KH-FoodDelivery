@@ -12,6 +12,7 @@ div#noticeContectDiv{
 }
 </style>
 <script>
+//게시글 삭제
 function fn_memberNoticeDel(e){
 	
 	var num = $(e).val();
@@ -21,11 +22,26 @@ function fn_memberNoticeDel(e){
 }
 
 
- function fn_memberNoticeUp(e){
+//파일다운로드
+function fileDownLoad(oriName,reName){
+	if(oriName==null||reName==null){
+		alert("첨부파일을 다운로드 할 수 없습니다.");
+		return false;
+	}
+	if(confirm(oriName+"을(를) 다운로드 하시겠습니까?")){
+		oriName=encodeURIComponent(oriName);
+		location.href="${path}/admin/fileDownLoad.do?oriName="+oriName+"&reName"+reName;
+		return true;
+	}
+}
+
+
+
+/*  function fn_memberNoticeUp(e){
 	var num2=$(e).val();
 	location.href="${path}/admin/memNoticeUpdate.do?noticeNum="+num2;
 	
-}
+} */
 
 
 </script>
@@ -39,15 +55,18 @@ function fn_memberNoticeDel(e){
 			</div>
 			<div class="col-sm-2">		
 			</div>
-			<div class="col-sm-3">
-				<p>&nbsp;&nbsp;&nbsp;글 번호 <b>${notice.NOTICENUM }</b> 작성자 <b>관리자</b></p>
+			<div class="col-sm-2">
+				<p>글 번호 <b>${notice.NOTICENUM }</b></p>
+			</div>
+			<div class="col-sm-2">
+				<p>작성자 <b>관리자</b></p>
 			</div>
 			<div class="col-sm-3">
 				<p>${notice.WRITEDATE }</p>
 			</div>
 			<div class="col-sm-1">
 			</div>
-			<div class="col-sm-2">
+			<div class="col-sm-1">
 			</div>
 			<div class="col-sm-1"></div>
 			<div class="col-sm-2">			
@@ -61,11 +80,16 @@ function fn_memberNoticeDel(e){
 			<div class="col-sm-12" id="noticeContectDiv">
 				${notice.NOTICECONTENT}
 			</div>
+			<div><c:forEach items="${attach}" var="a" varStatus="vs">
+        <button type="button" style="padding:0px; background-color:white; cursor:pointer; border:0px;" class="fileDownLoadBtn" onclick="fileDownLoad('${a.ORIGINALFILENAME}','${a.RENAMEDFILENAME}');">
+         	<img src="${path }/resources/images/owner/icons/attach_file_icon.png" width=17px;/> - ${a.ORIGINALFILENAME}
+        </button>
+    	</c:forEach></div>
 			<div class="col-sm-2"></div>
 		</div>
 		<br>
 		<hr>
-		<button id="noticeListBtn" class="btn btn-default" onclick="">목록</button>
+		<button id="noticeListBtn" class="btn btn-default" onclick="location.href='${path}/admin/memberNoticeList.do'">목록</button>
 	</div>
 </section>
 

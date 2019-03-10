@@ -30,6 +30,13 @@ public class NoticeSerivceImpl implements NoticeService {
 		return dao.selectMemberNotice(noticeNum);
 	}
 
+	//회원공지사항 사진뷰
+	@Override
+	public List<Map<String, String>> selectAttach(int noticeNum) {
+		// TODO Auto-generated method stub
+		return dao.selectAttach(noticeNum);
+	}
+
 	//회원공지사항 삭제
 	@Override
 	public int deleteMemberNotice(int noticeNum) {
