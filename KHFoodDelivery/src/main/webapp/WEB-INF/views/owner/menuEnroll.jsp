@@ -121,13 +121,13 @@ $(function(){
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form action="${path }/owner/enrollMenu.do">
+                                        <form action="${path }/owner/enrollMenu1.do" method="post" enctype="multipart/form-data">
                                           <div class="form-group row">
                                             <label for="username" class="col-4 col-form-label">메뉴명</label> 
                                             <div class="col-8">
                                               <input id="menuName" name="menuName" placeholder="" class="form-control here" required="required" type="text">
                                             </div>
-                                          </div>                                  
+                                          </div>                                      
                                           <div class="form-group row">
                                             <label for="select" class="col-4 col-form-label">메뉴카테고리</label> 
                                             <div class="col-8">
@@ -138,8 +138,8 @@ $(function(){
                                               
                                               </select>
                                             </div>
-                                          </div>
-                                          <div class="form-group row">
+                                          </div>    
+										  <div class="form-group row">
                                             <label for="website" class="col-4 col-form-label">가격</label> 
                                             <div class="col-8">
                                               <input id="menuPrice" name="menuPrice" placeholder="" class="form-control here" type="text">
@@ -159,7 +159,7 @@ $(function(){
                                                 </label>
                                                 <input id="menuImage" class="file-upload" name="menuImage" type="file">
                                               </div>
-                                          </div> 
+                                          </div>                                
                                           <div class="form-group row">
                                             <div class="offset-4 col-8">
                                               <button name="submit" type="submit" class="btn btn-primary">등록</button>

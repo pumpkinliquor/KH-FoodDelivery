@@ -21,9 +21,9 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public int insertMenu(Menu m) {
+	public int insertMenu(Map<String,String> map) {
 
-		return dao.insertMenu(m);
+		return dao.insertMenu(map);
 	}
 
 	@Override
@@ -66,6 +66,11 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public int updateMenuSoldOut(String menuCode) {
 		return dao.updateMenuSoldOut(menuCode);
+	}
+
+	@Override
+	public int updateCancleSoldOut(String menuCode) {
+		return dao.updateCancleSoldOut(menuCode);
 	}
 	
 	

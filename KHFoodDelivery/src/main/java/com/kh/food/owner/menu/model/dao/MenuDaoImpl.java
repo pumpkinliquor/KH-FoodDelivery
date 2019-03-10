@@ -22,8 +22,8 @@ public class MenuDaoImpl implements MenuDao {
 	}
 
 	@Override
-	public int insertMenu(Menu m) {
-		return sqlSession.insert("menu.insertMenu",m);
+	public int insertMenu(Map<String,String> map) {
+		return sqlSession.insert("menu.insertMenu",map);
 	}
 
 	@Override
@@ -65,6 +65,11 @@ public class MenuDaoImpl implements MenuDao {
 	@Override
 	public int updateMenuSoldOut(String menuCode) {
 		return sqlSession.update("menu.updateMenuSoldOut",menuCode);
+	}
+
+	@Override
+	public int updateCancleSoldOut(String menuCode) {
+		return sqlSession.update("menu.updateCancleSoldOut",menuCode);
 	}
 	
 	

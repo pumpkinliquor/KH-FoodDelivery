@@ -6,6 +6,12 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
+<style>
+.soldBtn{
+	color: red;
+}
+
+</style>
 <section>
 
         <div class="container">
@@ -47,9 +53,19 @@ pageEncoding="UTF-8"%>
                                                     <c:forEach items="${menuList}" var="m" varStatus="status1">
                                                     <c:if test="${c.MENUCATEGORYCODE eq m.MENUCATEGORYCODE}">                     
                                                     <tr style="cursor:pointer;">
-                                                        <td width="76%" >${m.MENUNAME }</td>                                               
-                                                        <td width="12%"><button onclick="fn_soldOut(${m.MENUCODE},this)" class="btn btn-default">품절</button></td>
-                                                        <td width="12%"><button class="btn btn-default">품절취소</button></td>
+                                                        <td width="76%" >${m.MENUNAME }</td>
+                                                        <c:if test="${m.MENUSOLDOUT eq 1 }">                                               
+                                                        <td width="12%"><button onclick="fn_soldOut(${m.MENUCODE},this)" class="btn btn-default soldBtn">품절</button></td>
+                                                        </c:if>
+                                                        <c:if test="${m.MENUSOLDOUT eq 0 }">
+                                                        <td width="12%"><button onclick="fn_soldOut(${m.MENUCODE},this)" class="btn btn-default">품절</button></td>                            
+                                                        </c:if>
+                                                        <c:if test="${m.MENUSOLDOUT eq 1 }">
+                                                        <td width="12%"><button class="btn btn-default" onclick="fn_noSoldOut(${m.MENUCODE},this);">품절취소</button></td>
+                                                    	</c:if>
+                                                    	<c:if test="${m.MENUSOLDOUT eq 0 }">
+                                                    	<td width="12%"><button class="btn btn-default soldBtn" onclick="fn_noSoldOut(${m.MENUCODE},this);">품절취소</button></td>
+                                                    	</c:if>
                                                     </tr>
                   									</c:if>
                                                     </c:forEach>
@@ -70,21 +86,36 @@ pageEncoding="UTF-8"%>
 	
 	<script>
 		function fn_soldOut(menuCode,e){
-			console.log(e);
-			console.log("솔드아웃 들어왔니?");
 			$.ajax({
 				url:"${path}/menu/updateMenuSoldOut.do",
 				data: {"menuCode" : menuCode},
 				success : function(data)
 				{
-					console.log(data);
 					if(data == 1)
 						{
-							$(e).css("color","red");				
+							$(e).css("color","red");
+							$(e).parent().next().children().css("color","black");
 						}
 				}
 			})
 		} 
+		
+		function fn_noSoldOut(menuCode,e){
+			console.log("솔드아웃 취소 들어왔니?");
+			$.ajax({
+				url:"${path}/menu/updateCancelSoldOut.do",
+				data: {"menuCode" : menuCode},
+				success : function(data)
+				{
+					console.log(data);
+					if(data ==1 )
+						{
+							$(e).css("color","red");
+							$(e).parent().prev().children().css("color","black");
+						}
+				}
+			})
+		}
 	
 	</script>
 
