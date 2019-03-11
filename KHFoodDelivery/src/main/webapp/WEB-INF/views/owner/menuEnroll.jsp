@@ -69,14 +69,33 @@ left: 0;
 </style>
 
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
+<script>
+
+$(function(){
+	$(".menu").click(function(){
+		console.log("클릭에들어왔니?");
+		var menu = $(".menu").val();
+		$.ajax({
+			url:"${path}/owner/menuEnroll.do",
+			data:{"menu":menu},
+			success:function(data)
+			{
+				
+			}
+			
+		});
+	});
+});
+
+</script>
 <section>
 	<div class="container">
                 <div class="row">
                     <div class="col-md-3 ">
                          <div class="list-group ">
-                          <a href="${path }/owner/menuEnroll.do" class="list-group-item list-group-item-action active">메뉴/카테고리 등록</a>
-                          <a href="${path }/owner/menuManage.do" class="list-group-item list-group-item-action">메뉴관리</a>
-                          <a href="${path }/owner/menuSoldOut.do" class="list-group-item list-group-item-action">품절관리</a>
+                          <a href="${path }/owner/menuEnroll.do" class="list-group-item list-group-item-action active menu">메뉴/카테고리 등록</a>
+                          <a href="${path }/owner/menuManage.do" class="list-group-item list-group-item-action menu">메뉴관리</a>
+                          <a href="${path }/owner/menuSoldOut.do" class="list-group-item list-group-item-action menu">품절관리</a>
                           <a href="#" class="list-group-item list-group-item-action">Enquiry</a>
                           <a href="#" class="list-group-item list-group-item-action">Dealer</a>
                           <a href="#" class="list-group-item list-group-item-action">Media</a>
@@ -102,26 +121,25 @@ left: 0;
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form action="${path }/owner/enrollMenu.do">
+                                        <form action="${path }/owner/enrollMenu1.do" method="post" enctype="multipart/form-data">
                                           <div class="form-group row">
                                             <label for="username" class="col-4 col-form-label">메뉴명</label> 
                                             <div class="col-8">
                                               <input id="menuName" name="menuName" placeholder="" class="form-control here" required="required" type="text">
                                             </div>
-                                          </div>                                  
+                                          </div>                                      
                                           <div class="form-group row">
                                             <label for="select" class="col-4 col-form-label">메뉴카테고리</label> 
                                             <div class="col-8">
                                               <select id="select" name="menuCategoryCode" class="custom-select">
-                                                <option value="1">커피류</option>
-                                                <option value="2">에이드류</option>
-                                                <option value="3">플래치노류</option>
-                                                <option value="4">디저트</option>
+                                              	<c:forEach var="c" items="${category }">
+                                                <option value="${c.MENUCATEGORYCODE }">${c.MENUCATEGORY }</option>
+                                                </c:forEach>
                                               
                                               </select>
                                             </div>
-                                          </div>
-                                          <div class="form-group row">
+                                          </div>    
+										  <div class="form-group row">
                                             <label for="website" class="col-4 col-form-label">가격</label> 
                                             <div class="col-8">
                                               <input id="menuPrice" name="menuPrice" placeholder="" class="form-control here" type="text">
@@ -136,12 +154,12 @@ left: 0;
                                           <div class="form-group row">
                                             <label for="newpass" class="col-4 col-form-label">메뉴사진</label> 
                                               <div class="col-sm-8 wrap-input-container">
-                                                <label class="custom-file-upload form-control">
-                                                  <i class="fa fa-cloud-upload"></i> Upload Document
+                                                <label id="menuImage1" class="custom-file-upload form-control">
+                                                  Upload Document
                                                 </label>
-                                                <input class="file-upload" name="menuImage" type="file">
+                                                <input id="menuImage" class="file-upload" name="menuImage" type="file">
                                               </div>
-                                          </div> 
+                                          </div>                                
                                           <div class="form-group row">
                                             <div class="offset-4 col-8">
                                               <button name="submit" type="submit" class="btn btn-primary">등록</button>
@@ -196,7 +214,13 @@ left: 0;
 </section>
 
 
+<script>
+$('#menuImage').change(function(){
+	$('label[id*="menuImage1"]').text($('#menuImage').val()); 
+})
 
+
+</script>
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

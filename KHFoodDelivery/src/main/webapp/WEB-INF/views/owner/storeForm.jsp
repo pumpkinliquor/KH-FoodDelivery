@@ -6,23 +6,67 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=키값받아오기"></script>
+<script>
+$(function(){
+   $('[name=storeImage]').on('change',function(){
+      var filename=this.files[0].name;
+      $(this).next('.custom-file-label').html(filename);
+   });
+});
+
+function execDaumPostcode(){
+	new daum.Postcode({
+		oncomplete: function(data){
+			// 팝업에서 검색결과 항목을 클릭했을 때 실행할 코드를 작성하는 부분
+			
+			// 도로명 주소의 노출 규칙에 따라 주소를 조합.
+			// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기한다.
+			var fullRoadAddr=data.roadAddress; // 도로명 주소 변수
+			var extraRoadAddr=''; // 도로명 조합형 주소 변수
+			
+			// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+			// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+			if(data.bname!==''&&/[동|로|가]$/g.test(data.bname)){
+				extraRoadAddr+=data.bname;
+			}
+			// 건물명이 있고, 공동주택일 경우 추가한다.
+			if(data.buildingName!==''&&data.apartment==='Y'){
+				extraRoadAddr+=(extraRoadAddr!==''?', '+data.buildingName:data.buildingName);
+			}
+			// 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+			if(extraRoadAddr!==''){
+				extraRoadAddr=' ('+extraRoadAddr+')';
+			}
+			// 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+			if(fullRoadAddr!==''){
+				fullRoadAddr+=extraRoadAddr;
+			}
+			// 우편번호와 주소 정보를 해당 필드에 넣는다.
+			document.getElementById('zip').value=data.zonecode; // 5자리 새우편번호 사용
+			document.getElementById('addr1').value=fullRoadAddr; // 선택 주소
+			document.getElementById('addr2').focus(); // 상세 주소
+		}
+	}).open();
+}
+</script>
 <style>
     div#update-container{
 		background-color:white;
 		width:80%; 
-		margin:0 auto; 
+		margin:0 auto;
 		text-align:center;
 		}
     div#update-container input, div#update-container select {margin-bottom:10px;}
 </style>
-</head>
-<body>
+<section>
 	<div class="container">
 		<div style="text-align:center; margin-bottom:5em;">
 		<h2 style="font-weight:bold;">1:1문의</h2>
 	</div>
 	<div class="col-md-12">
-		<form name="qnaFrm" action="${path }/owner/oneVSoneFormEnd.do" method="post" onsubmit="return validate();" enctype="multipart/form-data">
+		<form action="${path }/owner/storeFormEnd.do" method="post" enctype="multipart/form-data">
 			<table class="table table-bordered">
 			    <tbody>
 			        	<tr>
@@ -69,7 +113,12 @@ pageEncoding="UTF-8"%>
 			            </tr>
 			             <tr>
 			                <th>주소</th>
-			                <td><input type="text" name="storeAddress" class="form-control" required></td>
+			                <td>
+			                	<button onclick="execDaumPostcode();" class="btn btn-default" style="float:left; margin-right:1em; ">주소찾기</button>
+			                	<input type="text" id="zip" class="form-control" style="width:7em;" value=""/>
+			                	<input type="text" id="addr1" name="frontAddress" class="form-control" style="width:30em; margin-top:1em;" value=""/>
+			                	<input type="text" id="addr2" name="backAddress" class="form-control" style="width:30em; margin-top:1em;" value=""/>
+			                </td>
 			            </tr>
 			             <tr>
 			                <th>배달 최저금액</th>
@@ -82,12 +131,12 @@ pageEncoding="UTF-8"%>
 			            <tr>
 			                <th>
 								<div class="input-group-prepend" style="padding:0px;">
-			                    	<label for="upFile"><span class="input-group-text">첨부파일#1</span></label>
+			                    	<label for="upFile"><span class="input-group-text">메인이미지</span></label>
 				                </div>
 							</th>
 			                <td>
            	 					<div class="custom-file">
-				                    <input type="file" class="custom-file-input" name="upFile" id="upFile1">
+				                    <input type="file" class="custom-file-input" name="storeImage" id="upFile">
 				                    <label class="custom-file-label" for="upFile">파일을 선택하세요</label>
 		               	 		</div>
 		                	</td>
@@ -102,4 +151,5 @@ pageEncoding="UTF-8"%>
 		</form>
 	</div>
     </div>
+</section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

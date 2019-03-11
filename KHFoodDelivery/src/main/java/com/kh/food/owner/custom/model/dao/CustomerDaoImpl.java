@@ -23,4 +23,9 @@ public class CustomerDaoImpl implements CustomerDao {
 		return session.selectList("ownerMember.ownerNoticeList");
 	}
 
+	@Override
+	public int storeFormEnd(Map<String, Object> store) {
+		return session.insert("store.addStore", store);
+	}
+
 }

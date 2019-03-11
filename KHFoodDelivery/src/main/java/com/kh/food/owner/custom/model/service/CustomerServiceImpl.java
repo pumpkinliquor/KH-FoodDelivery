@@ -23,7 +23,11 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<Map<String, String>> selectNoticeList() {
 		return dao.selectNoticeList();
 	}
-	
+
+	@Override
+	public int storeFormEnd(Map<String, Object> store) {
+		return dao.storeFormEnd(store);
+	}
 	
 
 }

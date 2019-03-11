@@ -20,5 +20,9 @@
 	<select id="login" parameterType="map" resultMap="member">
 		select * from member where memberId=#{id}
 	</select>
+	<select id="selectMember" parameterType="_int" resultType="_int" >
+		select * from member where memberNum=#{memberNum}
+	</select>
+	
 
 </mapper>

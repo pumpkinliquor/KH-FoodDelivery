@@ -7,7 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -23,14 +23,30 @@ import com.kh.food.customer.member.model.vo.Member;
 public class MemberController {
 
 	
-	private Logger logger=Logger.getLogger(MemberController.class);
+
 	
 	@Autowired
 	BCryptPasswordEncoder pwEncoder;
 	@Autowired
 	MemberService service;
 	
-	
+	@RequestMapping("/member/memberInfoChange.do")
+	public ModelAndView memberInfoChange(ModelAndView mv)
+	{
+		mv.setViewName("customer/memberInfoChange");
+		return mv;
+	}
+
+	@RequestMapping("/customer/mypage.do")
+	public ModelAndView myPage(int memberNum) {
+		ModelAndView mv =new ModelAndView();
+		int result = service.selectMember(memberNum);
+		
+		
+		mv.setViewName("customer/myPage");
+		return mv;
+		
+	}
 	@RequestMapping("/member/checkId.do")
 	public ModelAndView checkId(String memberId,ModelAndView mv) throws UnsupportedEncodingException{
 		
@@ -173,6 +189,8 @@ public class MemberController {
 	public String menuView() {
 		return "customer/searchMenu";
 	}
+	
+	
 	
 	
 }

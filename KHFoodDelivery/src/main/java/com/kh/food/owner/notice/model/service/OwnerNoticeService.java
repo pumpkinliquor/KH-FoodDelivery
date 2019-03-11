@@ -5,4 +5,5 @@ import java.util.Map;
 
 public interface OwnerNoticeService {
 	List<Map<String,String>> ownerNoticeList();
+	Map<String,String>selectOwnerNotice(int ownerNoticeNum);
 }

@@ -14,19 +14,35 @@
 	 select * from owner o, store s where o.ownerid=s.ownerid order by ownernum desc
 	 </select>
 	 
+	  <!-- 회원삭제 -->
+	 <delete id="deleteMember" parameterType="String" >
+	 delete from member where memberid=#{MEMBERID}
+	 </delete>
+	 
+	<!-- 회원상세보기 -->
+	<select id="memberOne" resultType="Map" parameterType="_int">
+	select * from member where membernum=#{memberNum}
+	</select>
+	
+	<!-- 사장상세보기 -->
+	<select id="ownerOne" resultType="Map" parameterType="String">
+	select * from store s JOIN owner o On s.ownerid=o.ownerid where s.ownerid= #{ownerId}
+	</select>
+	 
+	 
+
 	 
 	 
 	 
 	 
 	 
 	 
-	 
-	 
-	 <!-- 공지사항 -->
+	  <!-- 공지사항 --> 
 	 
 	 <!-- 회원공지사항리스트 -->
 	<select id="selectMemberNoticeList" resultType="Map">
-	select * from notice order by noticenum desc
+	select a.*,(select count(*) from notice_attachment where noticenum=a.noticenum)
+	 as attachcount from notice a order by noticenum desc
 	</select> 
 	
 	
@@ -34,6 +50,11 @@
 	<select id="selectMemberNotice" parameterType="_int" resultType="Map">
 	select * from notice where noticenum=#{noticeNum}
 	</select>
+	<select id="selectAttach" parameterType="_int" resultType="Map">
+	select * from notice_attachment where noticenum=#{noticeNum}
+	</select>
+	
+	
 	
 	<!-- 회원공지사항 삭제 -->
 	<delete id="deleteMemberNotice" parameterType="_int">
@@ -42,9 +63,28 @@
 	
 	<!-- 회원공지사항 등록 -->
 	<insert id="insertMemberNotice" parameterType="Map">
-	insert into notice values(seq_noticenum.nextval, #{noticeTitle},sysdate,default, default,#{noticeContent})
-	<selectKey keyProperty="noticeNum" resultType="_int" order="AFTER">
+	insert into notice values(seq_noticenum.nextval, #{noticeTitle},sysdate,#{noticeContent})
+	<selectKey keyProperty="noticeNum" resultType="string" order="AFTER">
 		select seq_noticenum.currval from dual
 	</selectKey>
 	</insert>
+	<insert id="insertMemberNoticeAttach" parameterType="com.kh.food.admin.notice.attachment.vo.NoticeAttachment">
+	insert into NOTICE_ATTACHMENT values(SEQ_NOTICEATTACHMENTNO.NEXTVAL,#{noticeNum},#{originalFileName},#{renamedFileName},default,default)
+	</insert>
+	
+	<!-- 회원공지사항 수정 -->
+	<select id="updateNotice" parameterType="_int">
+	select * from notice where noticenum=#{noticeNum}
+	</select>
+	
+	
+	
+	<!-- 사장 공지사항 리스트 -->
+	<select id="selectOwnerNoticeList" resultType="Map">
+	select * from ownernotice
+	</select>
+	<!-- 사장 공지사항 뷰 -->
+	<select id="selectOwnerNotice" resultType="Map" parameterType="_int">
+	select * from ownernotice where ownernoticenum=#{ownerNoticeNum}
+	</select>
 </mapper>

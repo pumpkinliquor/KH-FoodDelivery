@@ -11,8 +11,16 @@ import com.kh.food.customer.member.model.vo.Member;
 @Service
 public class MemberServiceImpl implements MemberService {
 
+	
+
 	@Autowired
 	MemberDao dao;
+	
+	@Override
+	public int selectMember(int memberNum) {
+		// TODO Auto-generated method stub
+		return dao.selectMember(memberNum);
+	}
 	
 	@Override
 	public int memberEnroll(Member m) {

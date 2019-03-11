@@ -23,7 +23,8 @@
 </style>
 
 <script> 
-	function fn_modal(num){				
+	function fn_modal(num){		
+		console.log(num);
 		$.ajax({
 			type: "POST",
 			url: "${path}/admin/selectAppStore.do?no=" + num,
@@ -37,6 +38,7 @@
 				$('#mdAddress').val(data.storeAddress);
 				$('#mdAppDate').val(data.formatAppDate);
 				$('#mdProfile').val(data.storeProfile);
+				$('#mdBsCode').val(data.businessCode);
 			}
 		});
 	}
@@ -128,8 +130,11 @@
 					</tr>
 					<tr id="btnGroup">
 						<td colspan='2' align="center">
-							<button type="button" class="btn btn-outline-success" onclick="fn_appConfirm()">½ÂÀÎ</button>
-							<button type="button" class="btn btn-outline-danger" data-dismiss="modal">°ÅÀý</button>
+							<form action="${path}/admin/confirmApp.do" method="post">
+								<input type="hidden" name="no" id="mdBsCode"/>
+								<input type="submit" class="btn btn-outline-success" value="½ÂÀÎ"/>
+								<button type="button" class="btn btn-outline-danger" data-dismiss="modal">°ÅÀý</button>
+							</form>
 						</td>
 					</tr>
 				</table>

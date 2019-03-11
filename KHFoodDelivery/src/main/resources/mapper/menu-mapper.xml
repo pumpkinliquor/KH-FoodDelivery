@@ -1,11 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="menu">
+	<resultMap type="map" id="categoryMap"></resultMap>
+	<resultMap type="map" id="menuMap"></resultMap>
 	<insert id="insertCategory" parameterType="map">
-		insert into menu_category values(SEQ_menuCategoryCode.nextval , #{menuCategory} , 1)
+		insert into menu_category values(SEQ_menuCategoryCode.nextval , #{menuCategory} , 12)
 	</insert>
 	
-	<insert id="insertMenu" parameterType="menu">
-		insert into menu values(seq_menucode.nextval,1,#{menuCategoryCode},#{menuName},#{menuContent},#{menuPrice},#{menuImage},default)
+	<insert id="insertMenu" parameterType="map">
+		insert into menu values(seq_menucode.nextval,12,#{menuCategoryCode},#{menuName},#{menuContent},#{menuPrice},#{menuImage},default)
 	</insert>
+	<delete id="deleteCategory" parameterType="string">
+		delete from menu_category where menucategorycode = #{menuCategory}
+	</delete>
+	<select id="selectMenuCategory" resultMap="categoryMap">
+		select * from menu_category order by menucategorycode asc
+	</select>
+	<select id="selectMenuList" resultMap="menuMap">
+		select * from menu 
+	</select>
+	
+	<update id="updateMenuPrice" parameterType="map">
+			update menu set menuprice = #{menuPrice} where menucode = #{menuCode}
+	</update>
+	
+	<delete id="deleteMenu" parameterType="string">
+		delete from menu where menucode = #{menuCode}
+	</delete>
+	
+	<select id="selectOneMenu" parameterType="string" resultType="map">
+		select * from menu where menucode = #{menuCode}
+	</select>
+	
+	<update id="updateMenu" parameterType="menu" >
+		update menu set menuName = #{menuName} , menuPrice = #{menuPrice} , menuContent = #{menuContent} , menuImage = #{menuImage} where menuCode = #{menuCode}
+	</update>
+	
+	<update id="updateMenuSoldOut" parameterType="string">
+		update menu set menuSoldOut = 1 where menuCode = #{menuCode}
+	</update>
+	
+	<update id="updateCancleSoldOut" parameterType="string">
+		update menu set menuSoldOut = 0 where menuCode = #{menuCode}
+	</update>
+	
 </mapper>

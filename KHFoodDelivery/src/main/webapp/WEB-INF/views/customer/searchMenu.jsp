@@ -13,9 +13,14 @@ section{margin:0;padding:0;}
 
 <section>
 	
+
 	<c:forEach var="i" begin="1" end="10" step="1">
 	<div class="store">zzz</div>
 	</c:forEach>
+
+	
+	<div><a href="#">병오형 이걸로 우선 테스트 해보세요....</a></div>
+	
 
  
 

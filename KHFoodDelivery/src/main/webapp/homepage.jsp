@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include> 
 <style>
 div.menu1,div.menu2,div.menu3{position: relative; display:inline-block; border :1px solid #BDBDBD;margin:7px;   text-align:center; overflow: hidden;width: 100%;box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5); }
 div.menu4,div.menu5,div.menu6{position: relative; display:inline-block;  border :1px solid #BDBDBD;margin:7px;  text-align:center; overflow: hidden;width: 100%;box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5); }

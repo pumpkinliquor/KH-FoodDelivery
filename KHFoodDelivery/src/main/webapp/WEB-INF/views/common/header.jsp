@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
+    pageEncoding="UTF-8"
+	import="java.util.*, java.sql.* , com.kh.food.customer.member.model.vo.*"     
+%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%
+	Member member = (Member)request.getAttribute("member");
+%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -23,77 +29,77 @@
 </head>
 
 <body>
-
+ 
 <header>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c&libraries=services"></script>
 
 
    
-	<script>
+   <script>
     $(document).ready(function () {
-		$("#positionBtn").click(function(){
-  			 function getLocation() {
-			       if (navigator.geolocation) { // GPS를 지원하면
-			           navigator.geolocation.getCurrentPosition(function(position) {
-			            var latitude = position.coords.latitude;
-			        	var longitude = position.coords.longitude;
-			        	  
-			        	
-			          
-			        	 alert("아직 구현안됨 지도 클릭!"); 
-			        	 
-			      
-			        	
-						 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-			        	 mapOption = {
-			        	    center: new daum.maps.LatLng(latitude, longitude), // 지도의 중심좌표
-			        	    level: 3 // 지도의 확대 레벨
-			        	};   
+      $("#positionBtn").click(function(){
+            function getLocation() {
+                if (navigator.geolocation) { // GPS를 지원하면
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                     var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                      
+                    
+                   
+                     alert("아직 구현안됨 지도 클릭!"); 
+                     
+               
+                    
+                      var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                     mapOption = {
+                        center: new daum.maps.LatLng(latitude, longitude), // 지도의 중심좌표
+                        level: 3 // 지도의 확대 레벨
+                    };   
 
-			        	
-						 	//지도를 생성합니다    
-			        	var map = new daum.maps.Map(mapContainer, mapOption); 
+                    
+                      //지도를 생성합니다    
+                    var map = new daum.maps.Map(mapContainer, mapOption); 
 
-			        	
-						 	//주소-좌표 변환 객체를 생성합니다
-		        	var geocoder = new daum.maps.services.Geocoder();
+                    
+                      //주소-좌표 변환 객체를 생성합니다
+                 var geocoder = new daum.maps.services.Geocoder();
 
-			        	//지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
-			         	daum.maps.event.addListener(map, 'click', function(mouseEvent) {
-			        	searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
-			        	    if (status === daum.maps.services.Status.OK) {
-			        	    	
-			        	    	 var infoDiv = document.getElementById('centerAddr1');
-			        	    	 
-			        	    	 $('#location').val(result[0].address.address_name);
-			        	    	 infoDiv.innerHTML = '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
-			        	     
-			        	    }   
-			        	});
-			        	});
+                    //지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
+                     daum.maps.event.addListener(map, 'click', function(mouseEvent) {
+                    searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+                        if (status === daum.maps.services.Status.OK) {
+                           
+                            var infoDiv = document.getElementById('centerAddr1');
+                            
+                            $('#location').val(result[0].address.address_name);
+                            infoDiv.innerHTML = '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+                         
+                        }   
+                    });
+                    });
   
 
-				
-					function searchDetailAddrFromCoords(coords, callback) {
-					    // 좌표로 법정동 상세 주소 정보를 요청합니다
-					    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
-					  
-					}
-	   					
+            
+               function searchDetailAddrFromCoords(coords, callback) {
+                   // 좌표로 법정동 상세 주소 정보를 요청합니다
+                   geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+                 
+               }
+                     
 
-				         }, function(error) {
-				           console.error(error);
-				         }, {
-				           enableHighAccuracy: true,
-				           maximumAge: 0,
-				           timeout: Infinity
-				         });
-			       } else {
-			         alert('GPS를 지원하지 않습니다');
-			       }
-			     }
-			     getLocation();	
-		}); 
+                     }, function(error) {
+                       console.error(error);
+                     }, {
+                       enableHighAccuracy: true,
+                       maximumAge: 0,
+                       timeout: Infinity
+                     });
+                } else {
+                  alert('GPS를 지원하지 않습니다');
+                }
+              }
+              getLocation();   
+      }); 
 }); 
      
    
@@ -151,66 +157,65 @@
   
 
 
-	//헤더 고정 
-	$(function(){
-		$(window).scroll(function(){
-			var num = $(this).scrollTop();
-		
-			if(num > 36){
-				$(".newsletter").css("position","fixed");
-			}else{
-				$(".newsletter").css("position","absolute");
-			}
-		});
-	});
-	//배달의민족 클릭시 메인으로
-	function mainpage(){
-		location.href="${path }";
-	}
-	
-	
-	</script>
-   
 
-		 <div id='centerAddr1'></div>
-        <div class="newsletter">
-                <div id="hd container">             
-                <div class="row" style="margin:0;">           
-                <div class="col-sm-12 headerDiv2">
-              <div class="headerDiv1">
-               <c:if test="${sessionScope.logined==null }">
-                 <a href="${path }/customer/login.do">로그인</a>
-                    <a href="${path }/member/memberEnroll.do">회원가입</a>
-                   
-              </c:if> 
-               <c:if test="${sessionScope.logined!=null}">
-               <a href="${path }/customer/logout.do">로그아웃</a>
-               <a href="#">마이페이지</a>
-               
-          
-              </c:if> 
-              </div>
-                    <div class="content1">
-  							<h2 onclick="mainpage();"> <span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></h2>
-                    </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="content">
-                    <div class="input-group">
-                         <button id="positionBtn" onclick="getLocation4()" ><img id="locationImg" src="${path }/resources/images/place.png"></button>
-                      <input type="text" id="location" onclick="sample5_execDaumPostcode();"  class="form-control" value="" placeholder="주소 찾기를 원하시면 클릭해주세요">
-                         <span class="input-group-btn">
-                         <button class="btn" onclick="" type="submit">검색</button>
-
-                         </span>
-                    </div>
-                    </div>
-                </div>
-                
-                </div>
-                </div>
-       </div>
-                 <div id="map" style="width:300px;height:300px;"></div>
-                         	
+$(function(){
+    $(window).scroll(function(){
+       var num = $(this).scrollTop();
+    
+       if(num > 36){
+          $(".newsletter").css("position","fixed");
+       }else{
+          $(".newsletter").css("position","absolute");
+       }
+    });
+ });
+ //배달의민족 클릭시 메인으로
+ function mainpage(){
+    location.href="${path }";
+ }
  
-</header>
+ 
+ </script>
+
+
+     <div id='centerAddr1'></div>
+      <div class="newsletter">
+              <div id="hd container">             
+              <div class="row" style="margin:0;">           
+              <div class="col-sm-12 headerDiv2">
+            <div class="headerDiv1">
+             <c:if test="${sessionScope.logined==null }">
+               <a href="${path }/customer/login.do">로그인</a>
+                  <a href="${path }/member/memberEnroll.do">회원가입</a>
+                 
+            </c:if> 
+             <c:if test="${sessionScope.logined!=null}">
+             <a href="${path }/customer/logout.do">로그아웃</a>
+             <a href="${path }/customer/mypage.do?memberNum=${member.memberNum}">마이페이지</a>
+             
+        
+            </c:if> 
+            </div>
+                  <div class="content1">
+                     <h2 onclick="mainpage();"> <span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></h2>
+                  </div>
+              </div>
+              <div class="col-sm-12">
+                  <div class="content">
+                  <div class="input-group">
+                       <button id="positionBtn" onclick="getLocation4()" ><img id="locationImg" src="${path }/resources/images/place.png"></button>
+                    <input type="text" id="location" onclick="sample5_execDaumPostcode();"  class="form-control" value="" placeholder="주소 찾기를 원하시면 클릭해주세요">
+                       <span class="input-group-btn">
+                       <button class="btn" onclick="" type="submit">검색</button>
+
+                       </span>
+                  </div>
+                  </div>
+              </div>
+              
+              </div>
+              </div>
+     </div>
+               <div id="map" style="width:300px;height:200px; position:relative;"></div>
+                          
+
