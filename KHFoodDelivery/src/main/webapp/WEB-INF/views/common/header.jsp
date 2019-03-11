@@ -195,7 +195,7 @@ $(function(){
              
         
             </c:if> 
-            <div>${member.memberNum}</div>
+            
             </div>
                   <div class="content1">
                      <h2 onclick="mainpage();"> <span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></h2>

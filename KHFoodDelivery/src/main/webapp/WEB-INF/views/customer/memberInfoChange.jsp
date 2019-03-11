@@ -15,11 +15,9 @@ pageEncoding="UTF-8"%>
 .img-circle {
     border-radius: 50%;
    	width:150px;
-   	height:150px;
-  
-
-  
+   	height:150px; 
 } 
+.btn{background-color:skyblue; color:white; margin-top:5%;}
 
 </style>
 <script>
@@ -48,6 +46,8 @@ function fileUpload(){
 	$("#file").click();
 }
 
+
+
 </script>
 	
 	
@@ -61,10 +61,11 @@ function fileUpload(){
  	
 <div class="container">
 <div class="text-center">
-  			<img onclick="fileUpload()" style="cursor: pointer;" title="profile image" class="avatar img-circle img-thumbnail" alt="avatar" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+  			<img onclick="fileUpload()" style="cursor: pointer;" title="profile image" class="avatar img-circle img-thumbnail" alt="avatar" src="${path}/resources/images/customer/mypage/user.jpg"/>
  			<h6></h6>
  			<div class="text">
- 			<a>황장운님</a> <a>아이디</a> <a>닉네임</a>
+ 		
+ 			<a>아이디</a> <a>닉네임</a>
  			<input type="file" class="btn btn-primary" id="file" name="file" style="display: none ;">
  			</div>
  			<hr>
@@ -73,9 +74,9 @@ function fileUpload(){
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
+              <a href="${path}/member/memberInfoChange.do" class="list-group-item list-group-item-action active">회원정보변경</a>
               <a href="${path }/customer/mypage.do" class="list-group-item list-group-item-action" style="z-index:0;">나의 주문내역</a>
               <a href="#" class="list-group-item list-group-item-action">즐겨찾는매장</a>
-              <a href="${path}/member/memberInfoChange.do" class="list-group-item list-group-item-action active">회원정보변경</a>
               <a href="#" class="list-group-item list-group-item-action">나의 문의내역</a>
               <a href="#" class="list-group-item list-group-item-action">회원탈퇴</a>     
             </div> 
@@ -84,57 +85,61 @@ function fileUpload(){
 			
  			 <div class="row">
 		                <div class="col-md-12">
-		                    <form>
+		                    <form name="update" action="${path}/member/update.do" method="post" onsubmit="return update();" >
                               <div class="form-group row">
                                 <label for="username" class="col-4 col-form-label">아이디</label> 
                                 <div class="col-8">
-                                  <input id="username" name="username" placeholder="Username" class="form-control here" required="required" type="text">
+                                  <input id="username" name="memberId" id="memberId"value="${member.memberId}" class="form-control here" required="required" type="text" readonly >
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="name" class="col-4 col-form-label">이름</label> 
                                 <div class="col-8">
-                                  <input id="name" name="name" placeholder="First Name" class="form-control here" type="text">
+                                  <input id="name" name="memberName" id="memberName"value="${member.memberName}" class="form-control here" type="text" readonly>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="lastname" class="col-4 col-form-label">닉네임</label> 
                                 <div class="col-8">
-                                  <input id="lastname" name="lastname" placeholder="Last Name" class="form-control here" type="text">
+                                  <input id="lastname" name="nickName" id="nickName"value="${member.nickName}" class="form-control here" type="text">
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="text" class="col-4 col-form-label">생년월일</label> 
                                 <div class="col-8">
-                                  <input id="text" name="text" placeholder="Nick Name" class="form-control here" required="required" type="text">
+                                  <input id="text" name="formatBirth" id="formatBirth"value="${member.formatBirth}"class="form-control here" required="required" type="text">
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="select" class="col-4 col-form-label">이메일</label> 
                                 <div class="col-8">
-                                  <input id="email" name="email" placeholder="Email" class="form-control here" required="required" type="text">
+                                  <input id="email"id="memberEmail" name="memberEmail" value="${member.memberEmail}" class="form-control here" required="required" type="text">
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="email" class="col-4 col-form-label">전화번호</label> 
                                 <div class="col-8">
-                                  <input id="email" name="email" placeholder="Email" class="form-control here" required="required" type="text">
+                                  <input id="email" name="memberPhone" id="memberPhone" value="${member.memberPhone}" class="form-control here" required="required" type="text">
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="website" class="col-4 col-form-label">주소</label> 
                                 <div class="col-8">
-                                  <input id="website" name="website" placeholder="website" class="form-control here" type="text">
+                                  <input id="website" name="memberAddress" id="memberAddress"value="${member.memberAddress}" class="form-control here" type="text">
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="publicinfo" class="col-4 col-form-label">성별</label> 
-                                <div class="col-8">
-                                    <input id="website" name="website" placeholder="website" class="form-control here" type="text">
-                                </div>
+                                <select class="form-control" name="gender" id="gender" required>
+					            <option value="" disabled selected>성별</option>
+					            <option value="M" ${member.gender=='M'?'selected':'' }>남</option>
+					            <option value="F" ${member.gender=='F'?'selected':'' }>여</option>
+					            </select>
+										            
                               </div>
                               
-                              
+                              <input type="submit" class="btn btn-default" value="수정하기"/>&nbsp;
+                              <input type="reset" class="btn btn-default" value="취소"/>
                             </form>
 		                </div>
 		            </div>
