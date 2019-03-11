@@ -19,8 +19,7 @@ section{margin:0;padding:0;}
 	</c:forEach>
 
 	
-	<div><a href="#">병오형 이걸로 우선 테스트 해보세요....</a></div>
-	
+
 
  
 

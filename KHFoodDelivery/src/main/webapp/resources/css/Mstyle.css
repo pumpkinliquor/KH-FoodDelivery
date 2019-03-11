@@ -121,6 +121,9 @@ transition: border .1s linear;
 .header-title{
 margin: 5rem 0;
 }
+body, header nav{
+	min-width: 370px;
+}
 
 .login-or {
 position: relative;
