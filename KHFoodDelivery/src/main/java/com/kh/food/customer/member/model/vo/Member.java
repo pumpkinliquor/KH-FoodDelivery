@@ -9,7 +9,7 @@ public class Member {
 	private String memberPw;
 	private String memberName;
 	private String memberAddress;
-	private String memberBirth;
+	private Date memberBirth;
 	private String memberPhone;
 	private String memberEmail;
 	private String nickName;
@@ -20,9 +20,11 @@ public class Member {
 	private int latitude;
 	private int isAdmin;
 	private String profileImage;
+	private String formatBirth;
 	public Member(int memberNum, String memberId, String memberPw, String memberName, String memberAddress,
-			String memberBirth, String memberPhone, String memberEmail, String nickName, Date memberEnrollDate,
-			String gender, String mileage, int longitude, int latitude, int isAdmin, String profileImage) {
+			Date memberBirth, String memberPhone, String memberEmail, String nickName, Date memberEnrollDate,
+			String gender, String mileage, int longitude, int latitude, int isAdmin, String profileImage,
+			String formatBirth) {
 		super();
 		this.memberNum = memberNum;
 		this.memberId = memberId;
@@ -40,6 +42,7 @@ public class Member {
 		this.latitude = latitude;
 		this.isAdmin = isAdmin;
 		this.profileImage = profileImage;
+		this.formatBirth = formatBirth;
 	}
 	public Member() {
 		super();
@@ -74,10 +77,10 @@ public class Member {
 	public void setMemberAddress(String memberAddress) {
 		this.memberAddress = memberAddress;
 	}
-	public String getMemberBirth() {
+	public Date getMemberBirth() {
 		return memberBirth;
 	}
-	public void setMemberBirth(String memberBirth) {
+	public void setMemberBirth(Date memberBirth) {
 		this.memberBirth = memberBirth;
 	}
 	public String getMemberPhone() {
@@ -140,17 +143,26 @@ public class Member {
 	public void setProfileImage(String profileImage) {
 		this.profileImage = profileImage;
 	}
+	public String getFormatBirth() {
+		return formatBirth;
+	}
+	public void setFormatBirth(String formatBirth) {
+		this.formatBirth = formatBirth;
+	}
+	
+
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Member [memberNum=" + memberNum + ", memberId=" + memberId + ", memberPw=" + memberPw + ", memberName="
 				+ memberName + ", memberAddress=" + memberAddress + ", memberBirth=" + memberBirth + ", memberPhone="
 				+ memberPhone + ", memberEmail=" + memberEmail + ", nickName=" + nickName + ", memberEnrollDate="
 				+ memberEnrollDate + ", gender=" + gender + ", mileage=" + mileage + ", longitude=" + longitude
-				+ ", latitude=" + latitude + ", isAdmin=" + isAdmin + ", profileImage=" + profileImage + "]";
+				+ ", latitude=" + latitude + ", isAdmin=" + isAdmin + ", profileImage=" + profileImage
+				+ ", formatBirth=" + formatBirth + "]";
 	}
-	
-	
-	
-	
 	
 }

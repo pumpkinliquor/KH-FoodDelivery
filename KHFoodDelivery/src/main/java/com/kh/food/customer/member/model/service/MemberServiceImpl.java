@@ -17,7 +17,7 @@ public class MemberServiceImpl implements MemberService {
 	MemberDao dao;
 	
 	@Override
-	public int selectMember(String memberId) {
+	public Member selectMember(String memberId) {
 		// TODO Auto-generated method stub
 		return dao.selectMember(memberId);
 	}
@@ -41,6 +41,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Map<String,String> login(Map<String,String> map){
 		return dao.login(map);
+	}
+	@Override
+	public int update(Member m) {
+		return dao.update(m);
 	}
 
 	
