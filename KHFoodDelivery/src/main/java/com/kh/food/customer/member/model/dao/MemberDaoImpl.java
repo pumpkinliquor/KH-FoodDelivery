@@ -16,8 +16,8 @@ public class MemberDaoImpl implements MemberDao {
 	SqlSessionTemplate sqlSession;
 
 	@Override
-	public int selectMember(int memberNum) {
-		return sqlSession.selectOne("member.selectMember",memberNum);
+	public Member selectMember(String memberId) {
+		return sqlSession.selectOne("member.selectMember",memberId);
 	}
 
 	@Override
@@ -40,6 +40,10 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Map<String,String> login(Map<String,String> map){
 		return sqlSession.selectOne("member.login",map);
+	}
+	@Override
+	public int update(Member m) {
+		return sqlSession.update("member.update",m);
 	}
 	
 }

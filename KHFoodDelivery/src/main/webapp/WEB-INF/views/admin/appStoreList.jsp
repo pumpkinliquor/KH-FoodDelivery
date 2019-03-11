@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -51,17 +51,17 @@
 <section>
 	<div class="container">	
 		<div>
-			<h4>юта║ ╫ец╩ гЖх╡</h4>
+			<h4>Л·┘Л═░ Л▀═Л╡╜ М≤└М≥╘</h4>
 		</div>
 		<div>
 			<table class="table table-hover">
 				<thead id="tableHead">
 					<tr>			
-						<th>╬Ва╬</th>
-						<th>а║фВ╦М</th>
-						<th>а║аж╦М</th>
-						<th>аж╪р</th>
-						<th>юта║ ╫ец╩юо</th>
+						<th>Л≈┘Л╒┘</th>
+						<th>Л═░М▐╛К╙┘</th>
+						<th>Л═░Лё╪К╙┘</th>
+						<th>Лё╪Л├▄</th>
+						<th>Л·┘Л═░ Л▀═Л╡╜Л²╪</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -89,58 +89,58 @@
 
 
 
-<!-- ╦П╢ч ╠╦гЖ -->
+<!-- К╙╗К▀╛ Й╣╛М≤└ -->
 <div class="modal" id="storeModal" role="dialog">
 	<div class="modal-dialog">
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">╟║╟т а╓╨╦</h4>
-				<button type="button" class="close" data-dismiss="modal">║©</button>
+				<h4 class="modal-title">Й╟─Й╡▄ Л═∙КЁ╢</h4>
+				<button type="button" class="close" data-dismiss="modal">ц≈</button>
 			</div>
 			<div class="modal-body" style="height: 1000px;">
 				<table class="table">
 					<tr>
-						<th>╬Ва╬</th>
+						<th>Л≈┘Л╒┘</th>
 						<td><input class="form-control" type="text" id="mdCategory" readonly/></td>						
 					</tr>
 					<tr>
-						<th>а║фВ╦М</th>
+						<th>Л═░М▐╛К╙┘</th>
 						<td><input class="form-control" type="text" id="mdName" readonly/></td>
 					</tr>
 					<tr>
-						<th>а║аж╦М</th>
+						<th>Л═░Лё╪К╙┘</th>
 						<td><input class="form-control" type="text" id="mdOwner" readonly/></td>
 					</tr>
 					<tr>
-						<th>©╛╤ТцЁ</th>
+						<th>Л≈╟К²╫Л╡≤</th>
 						<td><input class="form-control" type="text" id="mdPhone" readonly/></td>
 					</tr>
 					<tr>
-						<th>аж╪р</th>
+						<th>Лё╪Л├▄</th>
 						<td><input class="form-control" type="text" id="mdAddress" readonly/></td>
 					</tr>
 					<tr>
-						<th>юта║ ╫ец╩юо</th>
+						<th>Л·┘Л═░ Л▀═Л╡╜Л²╪</th>
 						<td><input class="form-control" type="text" id="mdAppDate" readonly/></td>
 					</tr>	
 					<tr>
-						<th>╟║╟т ╪р╟Ё</th>					
+						<th>Й╟─Й╡▄ Л├▄Й╟°</th>					
 						<td><textarea cols="10" rows="4" class="form-control" id="mdProfile" style="resize: none" readonly></textarea></td> 
 					</tr>
 					<tr id="btnGroup">
 						<td colspan='2' align="center">
 							<form action="${path}/admin/confirmApp.do" method="post">
 								<input type="hidden" name="no" id="mdBsCode"/>
-								<input type="submit" class="btn btn-outline-success" value="╫бюн"/>
-								<button type="button" class="btn btn-outline-danger" data-dismiss="modal">╟еюЩ</button>
+								<input type="submit" class="btn btn-outline-success" value="Л┼╧Л²╦"/>
+								<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Й╠╟Л═┬</button>
 							</form>
 						</td>
 					</tr>
 				</table>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">╢щ╠Б</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">К▀╚Й╦╟</button>
 			</div>
 		</div>  
 	</div>

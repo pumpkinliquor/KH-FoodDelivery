@@ -61,7 +61,7 @@ function fileUpload(){
   			<img onclick="fileUpload()" style="cursor: pointer;" title="profile image" class="avatar img-circle img-thumbnail" alt="avatar" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
  			<h6></h6>
  			<div class="text">
- 			<a>황장운님</a> <a>아이디</a> <a>닉네임</a>
+ 			<a>${member.memberName }</a> <a>${member.memberId }</a> <a>${member.nickName }</a>
  			<input type="file" class="btn btn-primary" id="file" name="file" style="display: none ;">
  			</div>
  			<hr>

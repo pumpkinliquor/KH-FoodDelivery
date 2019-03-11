@@ -1,6 +1,6 @@
 package com.kh.food.owner.onevsone.model.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.kh.food.owner.member.model.vo.Owner;
 

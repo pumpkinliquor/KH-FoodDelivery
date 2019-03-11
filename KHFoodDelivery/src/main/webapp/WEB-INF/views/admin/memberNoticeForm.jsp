@@ -51,7 +51,7 @@ function fn_validate(){
 			            </tr>
 			            <tr>
 			                <th>내용</th>
-			                <td><textarea cols="10" placeholder="내용"" name="noticeContent" class="form-control" style="resize:none; height:15em;"></textarea></td>
+			                <td><textarea cols="10" placeholder="내용"" name="Content" class="form-control" style="resize:none; height:15em;"></textarea></td>
 			            </tr>
 			            <tr>
 			                <th>

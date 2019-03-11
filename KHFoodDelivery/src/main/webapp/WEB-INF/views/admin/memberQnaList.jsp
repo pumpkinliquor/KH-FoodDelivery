@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -26,14 +26,14 @@
 </style>
 
 <script>
-	function fn_qnaView(){
-		location.href="${path}/admin/memberQnaView.do";
+	function fn_qnaView(no){
+		location.href="${path}/admin/memberQnaView.do?no="+no;		
 	}
 </script>
 
 <section>
 	<div class="container">	
-		<h4 id="titleText">È¸¿ø ¹®ÀÇ ³»¿ª </h4>
+		<h4 id="titleText">íšŒì› ë¬¸ì˜ ë‚´ì—­ </h4>
 		
 		<div class="row">			
 			<div class="col-sm-6">
@@ -41,9 +41,9 @@
 					<form class="form-controll navbar-right" role="search" action="" method="get">
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä"/>
+								<input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”"/>
 								<span class="input-group-btn">
-									<button type="submit" class="btn btn-default" id="searchBar">°Ë»ö</button>
+									<button type="submit" class="btn btn-default" id="searchBar">ê²€ìƒ‰</button>
 								</span>
 							</div>
 						</div>
@@ -56,19 +56,19 @@
 						<table id="table-sort">
 							<tbody>
 								<tr>
-									<th>´äº¯</th>
-									<td><input type="radio" id="radio1" name="radios" value="all" checked/><label for="radio1">ÀüÃ¼</label></td>
-									<td><input type="radio" id="radio2" name="radios" value="complete"/><label for="radio2">¿Ï·á</label></td>
-									<td><input type="radio" id="radio3" name="radios" value="incomplete"/><label for="radio3">´ë±â</label></td>														
+									<th>ë‹µë³€</th>
+									<td><input type="radio" id="radio1" name="radios" value="all" checked/><label for="radio1">ì „ì²´</label></td>
+									<td><input type="radio" id="radio2" name="radios" value="complete"/><label for="radio2">ì™„ë£Œ</label></td>
+									<td><input type="radio" id="radio3" name="radios" value="incomplete"/><label for="radio3">ëŒ€ê¸°</label></td>														
 								</tr>
 								<tr>
-									<th>Ä«Å×°í¸®</th>
-									<td><input type="checkbox" id="chk1" checked/><label for="chk1">ÀüÃ¼</label></td>
-									<td><input type="checkbox" id="chk2"/><label for="chk2">°áÁ¦</label></td>
-									<td><input type="checkbox" id="chk3"/><label for="chk3">È¸¿ø</label></td>
-									<td><input type="checkbox" id="chk4"/><label for="chk4">ÁÖ¹®</label></td>
-									<td><input type="checkbox" id="chk5"/><label for="chk5">Æ÷ÀÎÆ®</label></td>
-									<td><input type="checkbox" id="chk6"/><label for="chk6">¸®ºä</label></td>
+									<th>ì¹´í…Œê³ ë¦¬</th>
+									<td><input type="checkbox" id="chk1" checked/><label for="chk1">ì „ì²´</label></td>
+									<td><input type="checkbox" id="chk2"/><label for="chk2">ê²°ì œ</label></td>
+									<td><input type="checkbox" id="chk3"/><label for="chk3">íšŒì›</label></td>
+									<td><input type="checkbox" id="chk4"/><label for="chk4">ì£¼ë¬¸</label></td>
+									<td><input type="checkbox" id="chk5"/><label for="chk5">í¬ì¸íŠ¸</label></td>
+									<td><input type="checkbox" id="chk6"/><label for="chk6">ë¦¬ë·°</label></td>
 								</tr>
 							</tbody>
 						</table>
@@ -82,22 +82,26 @@
 				<table class="table table-hover" id="qnaTable">
 					<thead id="tableHead">
 						<tr>	
-							<th>Ä«Å×°í¸®</th>	
-							<th style="width: 60%">Á¦¸ñ</th>
-							<th>ÀÛ¼ºÀÚ</th>
-							<th>³¯Â¥</th>	
-							<th>´äº¯¿©ºÎ</th>						
+							<th>ì¹´í…Œê³ ë¦¬</th>	
+							<th style="width: 60%">ì œëª©</th>
+							<th>ì‘ì„±ì</th>
+							<th>ë‚ ì§œ</th>	
+							<th>ë‹µë³€ì—¬ë¶€</th>						
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach begin="1" end="5">
-							<tr class="pnt" onclick="fn_qnaView()">
-								<td>°áÁ¦</td>
-								<td>¾È³ç</td>
-								<td>ÁÖÈ«¹ü</td>
-								<td>2019-02-26</td> 
-								<td><img src="${path }/resources/images/admin/complete.png" width="30px" height="30px"/></td>
-								<%-- <td><img src="${path }/resources/images/admin/incomplete.png" width="30px" height="30px"/></td> --%>
+						<c:forEach items="${mqList}" var="mq">
+							<tr class="pnt" onclick="fn_qnaView(${mq.qnaCode})">
+								<td>${mq.qnaCategory }</td>
+								<td>${mq.qnaTitle }</td>
+								<td>${mq.memberId }</td>
+								<td>${mq.formatWriteDate }</td>
+								<c:if test="${mq.isRe eq 0}">
+									<td><img src="${path }/resources/images/admin/incomplete.png" width="30px" height="30px"/></td>
+								</c:if>
+								<c:if test="${mq.isRe > 0 }">
+									<td><img src="${path }/resources/images/admin/complete.png" width="30px" height="30px"/></td>
+								</c:if>
 							</tr>				
 						</c:forEach>
 					</tbody>

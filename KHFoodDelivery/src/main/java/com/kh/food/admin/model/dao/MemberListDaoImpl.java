@@ -32,13 +32,20 @@ public class MemberListDaoImpl implements MemberListDao {
 		return sqlSession.selectOne("admin.memberOne",memberNum);
 	}
 
+	@Override
+	public Map<String, String> ownerOne(int businessCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.ownerOne", businessCode);
+	}
+
 	
 	//사장상세보기
-	@Override
-	public Map<String, String> ownerOne(String ownerId) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("admin.ownerOne", ownerId);
-	}
+	
+	/*
+	 * @Override public Map<String, String> ownerOne(int BusinessCode) { // TODO
+	 * Auto-generated method stub return sqlSession.selectOne("admin.ownerOne",
+	 * BusinessCode); }
+	 */
 
 	
 	

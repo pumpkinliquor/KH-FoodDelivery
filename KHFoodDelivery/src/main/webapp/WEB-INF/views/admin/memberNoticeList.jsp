@@ -5,7 +5,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
+
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
+
  <div class="container">
       <div>
          <h4>공지사항</h4>

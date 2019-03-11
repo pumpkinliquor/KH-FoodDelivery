@@ -35,12 +35,17 @@ public class MemberListServiceImpl implements MemberListService {
 		return dao.memberOne(memberNum);
 	}
 
-	//사장 상세보기
 	@Override
-	public Map<String, String> ownerOne(String ownerId) {
+	public Map<String, String> ownerOne(int businessCode) {
 		// TODO Auto-generated method stub
-		return dao.ownerOne(ownerId);
+		return dao.ownerOne(businessCode);
 	}
+
+	//사장 상세보기
+	/*
+	 * @Override public Map<String, String> ownerOne(int businessCode) { // TODO
+	 * Auto-generated method stub return dao.ownerOne(businessCode); }
+	 */
 
 	
 	
