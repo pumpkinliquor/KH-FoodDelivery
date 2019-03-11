@@ -13,26 +13,24 @@
 				<h4>제목 . ~~~~~~~~~~~~ 문의드립니다.</h4>
 			</div>
 			<div class="col-sm-2">
-				<button>목록으로</button>				
+			</div>
+			<div class="col-sm-2">
+				<p>카테고리 <b>결제</b></p>
 			</div>
 			<div class="col-sm-2">
 				<p>작성자 <b>주홍범</b></p>
 			</div>
-			<div class="col-sm-2">
+			<div class="col-sm-3">
 				<p>2019-02-28 12:14</p>
 			</div>
+			<div class="col-sm-3">				
+			</div>			
 			<div class="col-sm-2">
-				<p>조회 12회</p>
-			</div>
-			<div class="col-sm-2">
-				<p>댓글 12건</p>
-			</div>
-			<div class="col-sm-2"></div>
-			<div class="col-sm-2">
-				<button>수정</button>
-				<button>삭제</button>			
+				<button class="btn">수정</button>
+				<button class="btn">삭제</button>			
 			</div>	
 		</div>
+		<hr/>
 		<br/>	
 		<div class="row">			
 			<div class="col-sm-12">
@@ -42,13 +40,11 @@
 			<div class="col-sm-2"></div>
 		</div>
 		<hr/>
-		<div class="row">
-			<div class="col-sm-1"></div>
-			<div class="col-sm-10">
-				<textarea rows="3" cols="100"></textarea>
+		<div class="row">			
+			<div class="col-sm-12">
+				<textarea rows="3" cols="100" class="form-control"></textarea>
 				<button>등록</button>
-			</div>
-			<div class="col-sm-1"></div>
+			</div>			
 		</div>
 	</div>
 </section>

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.food.admin.model.dao.QnaMngDao;
-import com.kh.food.owner.onevsone.model.vo.MemberQna;
 import com.kh.food.owner.onevsone.model.vo.OwnerQna;
+import com.kh.food.qna.model.vo.MemberQna;
 
 @Service
 public class QnaMngServiceImpl implements QnaMngService {
