@@ -66,9 +66,9 @@ public class MemberListController {
 	//사장 상세 정보
 	  @RequestMapping("admin/ownerOne.do")
 	  @ResponseBody
-	  public Map ownerListModal(String ownerId){
+	  public Map ownerListModal(int businessCode){
 		  ModelAndView mv=new ModelAndView();
-		  Map<String,String> ownMo=service.ownerOne(ownerId);
+		  Map<String,String> ownMo=service.ownerOne(businessCode);
 		  return ownMo;
 	  }
 	  

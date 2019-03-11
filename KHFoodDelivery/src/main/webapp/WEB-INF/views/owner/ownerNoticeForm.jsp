@@ -34,7 +34,7 @@ function fn_validate(){
 	<div class="row">
 		<div class="col-md-12">
 			<form
-				action="${path}/admin/memberNoticeFormEnd.do" method="post" enctype="multipart/form-data">
+				action="${path}/owner/ownerNoticeFormEnd.do" method="post" enctype="multipart/form-data">
 				<table class="table table-bordered board" id="notice_table" name="notice_table">
 
 					<tbody>
