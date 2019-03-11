@@ -38,9 +38,9 @@ public class MemberController {
 	}
 
 	@RequestMapping("/customer/mypage.do")
-	public ModelAndView myPage(int memberNum) {
+	public ModelAndView myPage(String memberId) {
 		ModelAndView mv =new ModelAndView();
-		int result = service.selectMember(memberNum);
+		int result = service.selectMember(memberId);
 		
 		
 		mv.setViewName("customer/myPage");
@@ -110,7 +110,7 @@ public class MemberController {
 				msg="로그인 성공";
 				session.setAttribute("logined", result.get("MEMBERID"));
 			
-				
+			
 			}else {
 				msg="패스워드가 일치하지 않습니다.";
 			}
