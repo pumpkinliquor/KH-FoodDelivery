@@ -35,11 +35,8 @@ public class QnaMngController {
 		for(int i = 0; i < mqList.size(); i++) {
 			mqList.get(i).setFormatWriteDate(df.format(mqList.get(i).getWriteDate()));
 		}
-		mv.addObject("mqList", mqList);
 		
-		// 답변 여부
-		
-		
+		mv.addObject("mqList", mqList);		
 		mv.setViewName("admin/memberQnaList");
 		return mv;
 	}

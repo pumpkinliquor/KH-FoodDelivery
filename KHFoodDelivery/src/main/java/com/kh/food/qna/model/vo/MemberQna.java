@@ -16,14 +16,15 @@ public class MemberQna implements Serializable {
 	private String qnaTitle;
 	private Member member;
 	private String formatWriteDate;
+	private int isRe;
 	
 	public MemberQna() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberQna(int qnaCode, Date writeDate, String memberId, String qnaCategory,
-			String qnaContent, String qnaTitle, Member member, String formatWriteDate) {
+	public MemberQna(int qnaCode, Date writeDate, String memberId, String qnaCategory, String qnaContent,
+			String qnaTitle, Member member, String formatWriteDate, int isRe) {
 		super();
 		this.qnaCode = qnaCode;
 		this.writeDate = writeDate;
@@ -33,6 +34,7 @@ public class MemberQna implements Serializable {
 		this.qnaTitle = qnaTitle;
 		this.member = member;
 		this.formatWriteDate = formatWriteDate;
+		this.isRe = isRe;
 	}
 
 	public static long getSerialVersionUID() {
@@ -107,13 +109,18 @@ public class MemberQna implements Serializable {
 		this.formatWriteDate = formatWriteDate;
 	}
 
+	public int getIsRe() {
+		return isRe;
+	}
+
+	public void setIsRe(int isRe) {
+		this.isRe = isRe;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberQna [qnaCode=" + qnaCode + ", writeDate=" + writeDate + ", memberId=" + memberId
-				+ ", qnaCategory=" + qnaCategory + ", qnaContent=" + qnaContent + ", qnaTitle=" + qnaTitle
-				+ ", member=" + member + ", formatWriteDate=" + formatWriteDate + "]";
+				+ ", qnaCategory=" + qnaCategory + ", qnaContent=" + qnaContent + ", qnaTitle=" + qnaTitle + ", member="
+				+ member + ", formatWriteDate=" + formatWriteDate + ", isRe=" + isRe + "]";
 	}
-
-	
-	
 }

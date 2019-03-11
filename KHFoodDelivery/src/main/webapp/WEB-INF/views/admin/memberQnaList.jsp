@@ -96,8 +96,12 @@
 								<td>${mq.qnaTitle }</td>
 								<td>${mq.memberId }</td>
 								<td>${mq.formatWriteDate }</td>
-								<td><img src="${path }/resources/images/admin/complete.png" width="30px" height="30px"/></td>
-								<%-- <td><img src="${path }/resources/images/admin/incomplete.png" width="30px" height="30px"/></td> --%>
+								<c:if test="${mq.isRe eq 0}">
+									<td><img src="${path }/resources/images/admin/incomplete.png" width="30px" height="30px"/></td>
+								</c:if>
+								<c:if test="${mq.isRe > 0 }">
+									<td><img src="${path }/resources/images/admin/complete.png" width="30px" height="30px"/></td>
+								</c:if>
 							</tr>				
 						</c:forEach>
 					</tbody>
