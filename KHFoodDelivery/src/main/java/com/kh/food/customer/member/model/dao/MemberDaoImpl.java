@@ -1,5 +1,6 @@
 package com.kh.food.customer.member.model.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.owner.store.model.vo.Store;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -14,6 +16,11 @@ public class MemberDaoImpl implements MemberDao {
 	
 	@Autowired
 	SqlSessionTemplate sqlSession;
+	
+	@Override
+	public List<Store> selectStore(String category){
+		return  sqlSession.selectList("member.selectStore",category);
+	}
 
 	@Override
 	public Member selectMember(String memberId) {

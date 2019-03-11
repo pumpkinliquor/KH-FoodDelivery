@@ -67,6 +67,7 @@
 				<form action="${path }/admin/insertMemberQnaRe.do" method="post">		
 					<div class="col-sm-11">
 						<textarea rows="3" cols="100" style="resize: none" class="form-control" name="context"></textarea>
+						<input type="hidden" name="qnaNo" value="${mq.qnaCode }"/>
 					</div>
 					<div class="col-sm-1" style="margin-top: 20px">
 						<input type="submit" class="btn" value="등록"/>

@@ -1,6 +1,7 @@
 package com.kh.food.admin.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,15 @@ public class QnaMngDaoImpl implements QnaMngDao {
 		return session.selectOne("qna.selectMemberQna", no);
 	}
 
+	// 회원 문의 답변 보기
 	@Override
 	public MemberQnaReview selectMemberQnaReview(int no) {
 		return session.selectOne("qna.selectMemberQnaReview", no);
+	}
+
+	// 회원 문의 답변 등록
+	@Override
+	public int insertMemberQnaRe(Map map) {
+		return session.insert("qna.insertMemberQnaReview", map);
 	}	
 }

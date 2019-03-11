@@ -1,8 +1,10 @@
 package com.kh.food.customer.member.model.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.owner.store.model.vo.Store;
 
 public interface MemberDao {
 
@@ -12,4 +14,5 @@ public interface MemberDao {
 	int checkNick(String nickName);
 	Member selectMember(String memberId);
 	int update(Member m);
+	List<Store> selectStore(String category);
 }

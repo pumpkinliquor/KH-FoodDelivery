@@ -12,11 +12,15 @@
 		SELECT mq.*, m.memberId FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum) WHERE qnaCode = #{no}
 	</select>
 
-	<!-- 회원 문의 답변 -->
+	<!-- 회원 문의 답변 보기 -->
 	<select id="selectMemberQnaReview" parameterType="_int" resultType="memberQnaReview">
 		SELECT * FROM MEMBER_QNA_REVIEW WHERE qnaCode = #{no}
 	</select>
-
+	
+	<!-- 회원 문의 답변 등록 -->
+	<insert id="insertMemberQnaReview" parameterType="map">
+		INSERT INTO MEMBER_QNA_REVIEW VALUES(#{no}, DEFAULT, #{context})
+	</insert>
 
 	<!-- resultMap : MemberQna -->
 	<resultMap type="map" id="memberQna"></resultMap>	

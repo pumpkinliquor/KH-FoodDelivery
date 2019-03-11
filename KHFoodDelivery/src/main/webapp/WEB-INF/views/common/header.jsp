@@ -156,7 +156,7 @@
     }
   
 
-
+/* 
 
 $(function(){
     $(window).scroll(function(){
@@ -168,7 +168,7 @@ $(function(){
           $(".newsletter").css("position","absolute");
        }
     });
- });
+ }); */
  //배달의민족 클릭시 메인으로
  function mainpage(){
     location.href="${path }";
@@ -178,7 +178,7 @@ $(function(){
  </script>
 
 
-     <div id='centerAddr1'></div>
+       
       <div class="newsletter">
               <div id="hd container">             
               <div class="row" style="margin:0;">           

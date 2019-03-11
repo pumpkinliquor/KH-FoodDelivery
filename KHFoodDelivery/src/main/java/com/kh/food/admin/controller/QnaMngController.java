@@ -1,9 +1,13 @@
 package com.kh.food.admin.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
@@ -79,11 +83,35 @@ public class QnaMngController {
 	
 	// 회원 문의 댓글 등록
 	@RequestMapping("/admin/insertMemberQnaRe.do")
-	public ModelAndView insertMemberQnaRe(@RequestParam("context") String context, HttpServletResponse response) {
+	public ModelAndView insertMemberQnaRe(@RequestParam("context") String context,
+										  @RequestParam("qnaNo") int no,
+			HttpServletRequest request, HttpServletResponse response) {
+		// 한글 인코딩
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		response.setCharacterEncoding("UTF-8");
-		ModelAndView mv = new ModelAndView();
 		
-		logger.debug("댓글 : " + context);
+		ModelAndView mv = new ModelAndView();
+		Map map = new HashMap();
+		map.put("context", context);
+		map.put("no", no);
+		
+		int result = service.insertMemberQnaRe(map);
+		String msg = "";
+		String loc = "/admin/memberQnaView.do";
+		
+		if(result > 0) {
+			msg = "답변 완료!";			
+		} else {
+			msg = "답변 등록 실패...";
+		}
+		
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		mv.setViewName("common/msg");
 		
 		return mv;
 	}

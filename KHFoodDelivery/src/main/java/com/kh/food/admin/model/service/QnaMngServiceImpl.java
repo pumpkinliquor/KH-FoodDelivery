@@ -1,6 +1,7 @@
 package com.kh.food.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,10 +35,15 @@ public class QnaMngServiceImpl implements QnaMngService {
 		return dao.selectMemberQna(no);
 	}
 
-	// 회원 문의 답변
+	// 회원 문의 답변 보기
 	@Override
 	public MemberQnaReview selectMemberQnaReview(int no) {
 		return dao.selectMemberQnaReview(no);
 	}
 
+	// 회원 문의 답변 등록
+	@Override
+	public int insertMemberQnaRe(Map map) {
+		return dao.insertMemberQnaRe(map);
+	}
 }

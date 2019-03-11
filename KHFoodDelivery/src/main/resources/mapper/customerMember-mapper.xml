@@ -2,9 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
      
-     
+
+	 
      <resultMap id="member" type="map">
 	</resultMap>
+	 <resultMap id="store" type="map">
+	</resultMap>
+	
 	   <resultMap id="member1" type="member">
 	</resultMap>
 	<insert id="insertMember" parameterType="member" >
@@ -15,20 +19,25 @@
 		select count(*) from member where memberId=#{memberId}
 	</select>
 	
-	<select id="checkNick" parameterType="String" resultType="_int">
+	<select id="checkNick" parameterType="string" resultType="_int">
 		select count(*) from member where nickName=#{nickName}
 	</select>
 	
 	<select id="login" parameterType="map" resultMap="member">
 		select * from member where memberId=#{id}
 	</select>
-	<select id="selectMember" parameterType="String" resultMap="member1" >
+	<select id="selectMember" parameterType="string" resultMap="member1" >
 		select * from member where memberId=#{memberId}
 	</select>
 	<update id="update" parameterType="member">
 		update member set NICKNAME=#{nickName},MEMBERBIRTH=#{formatBirth},MEMBEREMAIL=#{memberEmail},MEMBERPHONE=#{memberPhone},MEMBERADDRESS=#{memberAddress},MEMBERENROLLDATE=default,MEMBERGENDER=#{gender} where MEMBERID=#{memberId}
 		
 	</update>
+	
+	<select id="selectStore" parameterType="string" resultType="store">
+		select* from store where STORECATEGORY=#{category} and ISCONFIRM=1
+	
+	</select>
 	
 
 </mapper>
