@@ -50,11 +50,7 @@ public class AppStoreController {
 	@ResponseBody
 	public Store selectAppStore(@RequestParam("no") int no) {	
 		
-		logger.debug("파라미터 : "+no);
-		
-		Store store = service.selectAppStore(no);
-		
-		logger.debug("DB 접근 후");
+		Store store = service.selectAppStore(no);				
 		
 		// 입점 신청 날짜 포맷 (패턴 : yyyy-MM-dd)
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");		
