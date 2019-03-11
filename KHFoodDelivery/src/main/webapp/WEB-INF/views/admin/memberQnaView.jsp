@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -19,18 +19,18 @@
 			<div class="col-sm-2">
 			</div>
 			<div class="col-sm-2">
-				<p>Ä«Å×°í¸® <b>${mq.qnaCategory }</b></p>
+				<p>ì¹´í…Œê³ ë¦¬ <b>${mq.qnaCategory }</b></p>
 			</div>
 			<div class="col-sm-2">
-				<p>ÀÛ¼ºÀÚ <b>${mq.memberId }</b></p>
+				<p>ì‘ì„±ì <b>${mq.memberId }</b></p>
 			</div>
 			<div class="col-sm-3">
-				<p>ÀÛ¼ºÀÏ<b>${mq.formatWriteDate }</b></p>
+				<p>ì‘ì„±ì¼<b>${mq.formatWriteDate }</b></p>
 			</div>
 			<div class="col-sm-4">				
 			</div>			
 			<div class="col-sm-1">
-				<button class="btn">»èÁ¦</button>			
+				<button class="btn">ì‚­ì œ</button>			
 			</div>	
 		</div>
 		<hr/>
@@ -46,14 +46,14 @@
 			<hr/>		
 			<div class="row">
 				<div class="col-sm-1">
-					<p><b>°ü¸®ÀÚ</b></p>
+					<p><b>ê´€ë¦¬ì</b></p>
 				</div>
 				<div class="col-sm-9">
 					<p>${mqr.formatWriteDate }</p>
 				</div>
 				<div class="col-sm-2">
-					<button class="btn float-right">»èÁ¦</button>
-					<button class="btn float-right">¼öÁ¤</button>
+					<button class="btn float-right">ì‚­ì œ</button>
+					<button class="btn float-right">ìˆ˜ì •</button>
 				</div>
 				<div class="col-sm-12">
 					<p>${mqr.reviewContext }</p>
@@ -63,17 +63,18 @@
 		
 		<c:if test="${empty mqr }">
 			<hr/>
-			<div class="row">			
-				<div class="col-sm-11">
-					<textarea rows="3" cols="100" style="resize: none" class="form-control"></textarea>
-				</div>
-				<div class="col-sm-1" style="margin-top: 20px">
-					<button class="btn">µî·Ï</button>
-				</div>			
+			<div class="row">
+				<form action="${path }/admin/insertMemberQnaRe.do" method="post">		
+					<div class="col-sm-11">
+						<textarea rows="3" cols="100" style="resize: none" class="form-control" name="context"></textarea>
+					</div>
+					<div class="col-sm-1" style="margin-top: 20px">
+						<input type="submit" class="btn" value="ë“±ë¡"/>
+					</div>
+				</form>			
 			</div>
 		</c:if>
 	</div>
 </section>
-
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

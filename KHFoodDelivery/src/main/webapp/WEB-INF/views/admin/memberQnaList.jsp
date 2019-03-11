@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -33,7 +33,7 @@
 
 <section>
 	<div class="container">	
-		<h4 id="titleText">ȸ�� ���� ���� </h4>
+		<h4 id="titleText">회원 문의 내역 </h4>
 		
 		<div class="row">			
 			<div class="col-sm-6">
@@ -41,9 +41,9 @@
 					<form class="form-controll navbar-right" role="search" action="" method="get">
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="������ �Է��ϼ���"/>
+								<input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="제목을 입력하세요"/>
 								<span class="input-group-btn">
-									<button type="submit" class="btn btn-default" id="searchBar">�˻�</button>
+									<button type="submit" class="btn btn-default" id="searchBar">검색</button>
 								</span>
 							</div>
 						</div>
@@ -56,19 +56,19 @@
 						<table id="table-sort">
 							<tbody>
 								<tr>
-									<th>�亯</th>
-									<td><input type="radio" id="radio1" name="radios" value="all" checked/><label for="radio1">��ü</label></td>
-									<td><input type="radio" id="radio2" name="radios" value="complete"/><label for="radio2">�Ϸ�</label></td>
-									<td><input type="radio" id="radio3" name="radios" value="incomplete"/><label for="radio3">���</label></td>														
+									<th>답변</th>
+									<td><input type="radio" id="radio1" name="radios" value="all" checked/><label for="radio1">전체</label></td>
+									<td><input type="radio" id="radio2" name="radios" value="complete"/><label for="radio2">완료</label></td>
+									<td><input type="radio" id="radio3" name="radios" value="incomplete"/><label for="radio3">대기</label></td>														
 								</tr>
 								<tr>
-									<th>ī�װ���</th>
-									<td><input type="checkbox" id="chk1" checked/><label for="chk1">��ü</label></td>
-									<td><input type="checkbox" id="chk2"/><label for="chk2">����</label></td>
-									<td><input type="checkbox" id="chk3"/><label for="chk3">ȸ��</label></td>
-									<td><input type="checkbox" id="chk4"/><label for="chk4">�ֹ�</label></td>
-									<td><input type="checkbox" id="chk5"/><label for="chk5">����Ʈ</label></td>
-									<td><input type="checkbox" id="chk6"/><label for="chk6">����</label></td>
+									<th>카테고리</th>
+									<td><input type="checkbox" id="chk1" checked/><label for="chk1">전체</label></td>
+									<td><input type="checkbox" id="chk2"/><label for="chk2">결제</label></td>
+									<td><input type="checkbox" id="chk3"/><label for="chk3">회원</label></td>
+									<td><input type="checkbox" id="chk4"/><label for="chk4">주문</label></td>
+									<td><input type="checkbox" id="chk5"/><label for="chk5">포인트</label></td>
+									<td><input type="checkbox" id="chk6"/><label for="chk6">리뷰</label></td>
 								</tr>
 							</tbody>
 						</table>
@@ -82,11 +82,11 @@
 				<table class="table table-hover" id="qnaTable">
 					<thead id="tableHead">
 						<tr>	
-							<th>ī�װ���</th>	
-							<th style="width: 60%">����</th>
-							<th>�ۼ���</th>
-							<th>��¥</th>	
-							<th>�亯����</th>						
+							<th>카테고리</th>	
+							<th style="width: 60%">제목</th>
+							<th>작성자</th>
+							<th>날짜</th>	
+							<th>답변여부</th>						
 						</tr>
 					</thead>
 					<tbody>

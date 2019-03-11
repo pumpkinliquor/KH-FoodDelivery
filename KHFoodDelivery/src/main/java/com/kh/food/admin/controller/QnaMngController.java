@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +74,17 @@ public class QnaMngController {
 		
 		mv.addObject("mq", mq);
 		mv.setViewName("admin/memberQnaView");
+		return mv;
+	}
+	
+	// 회원 문의 댓글 등록
+	@RequestMapping("/admin/insertMemberQnaRe.do")
+	public ModelAndView insertMemberQnaRe(@RequestParam("context") String context, HttpServletResponse response) {
+		response.setCharacterEncoding("UTF-8");
+		ModelAndView mv = new ModelAndView();
+		
+		logger.debug("댓글 : " + context);
+		
 		return mv;
 	}
 }
