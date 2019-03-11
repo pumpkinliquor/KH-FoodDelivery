@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.food.owner.onevsone.model.vo.OwnerQna;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.qna.model.vo.MemberQnaReview;
 
 @Repository
 public class QnaMngDaoImpl implements QnaMngDao {
@@ -32,5 +33,9 @@ public class QnaMngDaoImpl implements QnaMngDao {
 	public MemberQna selectMemberQna(int no) {
 		return session.selectOne("qna.selectMemberQna", no);
 	}
-	
+
+	@Override
+	public MemberQnaReview selectMemberQnaReview(int no) {
+		return session.selectOne("qna.selectMemberQnaReview", no);
+	}	
 }

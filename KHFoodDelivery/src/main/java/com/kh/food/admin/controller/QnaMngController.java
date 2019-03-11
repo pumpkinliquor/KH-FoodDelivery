@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.admin.model.service.QnaMngService;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.qna.model.vo.MemberQnaReview;
 
 @Controller	
 public class QnaMngController {
@@ -51,10 +52,23 @@ public class QnaMngController {
 	@RequestMapping("/admin/memberQnaView.do")
 	public ModelAndView memberQnaView(@RequestParam("no") int no) {
 		ModelAndView mv = new ModelAndView();
+		
+		// 문의 글 
 		MemberQna mq = service.selectMemberQna(no);
 		// 문의 날짜 포맷
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		mq.setFormatWriteDate(df.format(mq.getWriteDate()));
+		
+		
+		// 문의 답변
+		try {
+			MemberQnaReview mqr = service.selectMemberQnaReview(no);
+			// 답변 날짜 포맷
+			mqr.setFormatWriteDate(df.format(mqr.getWriteDate()));
+			mv.addObject("mqr", mqr);
+		} catch(NullPointerException e) {
+			e.printStackTrace();
+		}
 		
 		mv.addObject("mq", mq);
 		mv.setViewName("admin/memberQnaView");
