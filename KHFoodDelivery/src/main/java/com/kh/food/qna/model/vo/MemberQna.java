@@ -1,4 +1,4 @@
-package com.kh.food.owner.onevsone.model.vo;
+package com.kh.food.qna.model.vo;
 
 import java.io.Serializable;
 import java.util.Date;
