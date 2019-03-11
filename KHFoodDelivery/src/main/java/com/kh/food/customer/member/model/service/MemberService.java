@@ -1,8 +1,10 @@
 package com.kh.food.customer.member.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.owner.store.model.vo.Store;
 
 public interface MemberService {
 
@@ -12,4 +14,5 @@ public interface MemberService {
 	int checkNick(String nickName);
 	Member selectMember(String memberId);
 	int update(Member m);
+	List<Store> selectStore(String category);
 }

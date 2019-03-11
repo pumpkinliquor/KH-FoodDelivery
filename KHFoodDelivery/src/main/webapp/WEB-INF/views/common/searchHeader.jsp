@@ -154,7 +154,7 @@
 
 
    //헤더 고정 
-   $(function(){
+/*    $(function(){
       $(window).scroll(function(){
          var num = $(this).scrollTop();
       
@@ -164,7 +164,7 @@
             $(".newsletter").css("position","absolute");
          }
       });
-   });
+   }); */
    //배달의민족 클릭시 메인으로
    function mainpage(){
       location.href="${path }";
@@ -173,9 +173,9 @@
    
    </script>
 <style>
- 
+
 div.newsletter div.search1{text-align:center; margin-top:0.25%;}   
-button{outline:0; border:0;}
+button{outline:0;}  
 div.newsletter div.search1 .btn{background-color:#F6F6F6;}
 div.newsletter div.search1 .btn:hover{background-color:#8C8C8C; color:white;}
 div.group{text-align:center; box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);background-color:#F6F6F6; margin-top:1%; padding:0; display:none;}
@@ -189,7 +189,7 @@ div.newsletter,div.group{display:inline-block;}
 }
 @media (min-width:843px){
 	div.group1{
-	background-color:yellow;
+	
 	display:none;
 	}
 	
@@ -236,22 +236,22 @@ div.newsletter,div.group{display:inline-block;}
                 </div> 
                 </div>
                 <div class="group1  col-md-12 col-lg-12">
-                	 <select class="form-control" name="gender" id="gender" required>
-					            <option value="" disabled selected>메뉴검색</option>
-					            <option value="M">돈까스</option>
-					            <option value="F">프랜차이즈</option>
-					            <option value="M">치킨</option>
-					            <option value="M">피자</option>
-					            <option value="M">중국집</option>
-					            <option value="M">한식</option>
-					            <option value="M">족발/보쌈</option>
-					            <option value="M">분식</option>
-					            <option value="M">디저트</option>
+                	 <select class="form-control" name="menuSearch" id="menuSearch" onchange="window.open(value,'_self');">
+					            <option  disabled selected>메뉴검색</option>
+					            <option value="#">돈까스</option> 
+					            <option value="Fre">프랜차이즈</option>
+					            <option value="chi">치킨</option>
+					            <option value="pizza">피자</option>
+					            <option value="china">중국집</option>
+					            <option value="korea">한식</option>
+					            <option value="jok">족발/보쌈</option>
+					            <option value="bunsik">분식</option>
+					            <option value="desert">디저트</option>
 					            </select>
                 
                 </div>
                    <div class="group col-md-12 col-lg-12">
-                <div class="btn-group btn-group-lg search1"  >
+                <div class="btn-group btn-group-lg search1"  > 
               <button type="button" class="btn btn-default">돈까스</button>
               <button type="button" class="btn btn-default">프랜차이즈</button>
               <button type="button" class="btn btn-default">치킨</button>
