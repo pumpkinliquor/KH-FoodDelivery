@@ -87,7 +87,9 @@ function fn_ownerNoticeDel(e){
 			<div class="col-sm-12" id="noticeContectDiv">
 				${notice.OWNERNOTICECONTENT}
 			</div>
-			<div>
+			
+			<div class="col-sm-12">
+			
 			<c:forEach items="${attach}" var="a" varStatus="vs">
         <button type="button" style="padding:0px; background-color:white; cursor:pointer; border:0px;" class="fileDownLoadBtn" onclick="fileDownLoad('${a.OWNERORIGINALFILENAME}','${a.OWNERRENAMEDFILENAME}');">
          	<img src="${path }/resources/images/owner/icons/attach_file_icon.png" width=17px;/> - ${a.OWNERORIGINALFILENAME}

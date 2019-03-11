@@ -106,6 +106,6 @@
 	</selectKey>
 	</insert>
 	<insert id="insertOwnerNoticeAttach" parameterType="com.kh.food.owner.notice.attachment.vo.OwnerNoticeAttachment">
-	insert into OWNERNOTICE_ATTACHMENT values(SEQ_OWNERNOTICEATTACHMENTNO.NEXTVAL,#{ownerNoticeNum},#{ownerOriginalFileName},#{ownerRenamedFileName},default,default)
+	insert into OWNERNOTICE_ATTACHMENT values(seq_ownernoticeattachmentno.NEXTVAL,#{ownerNoticeNum},#{ownerOriginalFileName},#{ownerRenamedFileName},default,default)
 	</insert>
 </mapper>

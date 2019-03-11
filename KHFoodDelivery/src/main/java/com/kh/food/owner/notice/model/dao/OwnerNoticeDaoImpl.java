@@ -40,6 +40,7 @@ public class OwnerNoticeDaoImpl implements OwnerNoticeDao {
 	@Override
 	public int insertOwnerNoticeAttach(OwnerNoticeAttachment a) {
 		// TODO Auto-generated method stub
+		System.out.println("attach: "+a);
 		return sqlSession.insert("admin.insertOwnerNoticeAttach",a);
 	}
 	
