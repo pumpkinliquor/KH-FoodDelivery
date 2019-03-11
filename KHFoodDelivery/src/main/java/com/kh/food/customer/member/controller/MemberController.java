@@ -5,21 +5,21 @@ import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.customer.member.model.service.MemberService;
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.owner.store.model.vo.Store;
 
 @Controller
 public class MemberController {
@@ -43,6 +43,8 @@ public class MemberController {
 		mv.setViewName("customer/memberInfoChange");
 		return mv;
 	}
+	
+	
 
 	
 	
@@ -227,8 +229,17 @@ public class MemberController {
 
 	
 	@RequestMapping("/customer/searchmenuView")
-	public String menuView() {
-		return "customer/searchMenu";
+	public ModelAndView menuView(String category) {
+		
+		List<Store> list=service.selectStore(category);
+		
+		ModelAndView mv=new ModelAndView();
+		
+		mv.addObject("list",list);
+		mv.setViewName("customer/searchMenu");
+		
+		
+		return mv;
 	}
 	
 	

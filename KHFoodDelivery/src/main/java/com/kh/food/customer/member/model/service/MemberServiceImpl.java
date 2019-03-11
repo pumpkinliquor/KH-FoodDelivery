@@ -1,5 +1,6 @@
 package com.kh.food.customer.member.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.food.customer.member.model.dao.MemberDao;
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.owner.store.model.vo.Store;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -15,6 +17,11 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	MemberDao dao;
+	
+	@Override
+	public List<Store> selectStore(String category){
+		return dao.selectStore(category);
+	}
 	
 	@Override
 	public Member selectMember(String memberId) {
