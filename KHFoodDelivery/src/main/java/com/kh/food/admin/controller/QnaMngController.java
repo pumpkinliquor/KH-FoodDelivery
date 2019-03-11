@@ -4,9 +4,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.admin.model.service.QnaMngService;
@@ -15,6 +18,8 @@ import com.kh.food.qna.model.vo.MemberQna;
 @Controller	
 public class QnaMngController {
 
+	private Logger logger = LoggerFactory.getLogger(QnaMngController.class);
+	
 	@Autowired
 	QnaMngService service;
 	
@@ -47,7 +52,15 @@ public class QnaMngController {
 	
 	// 회원 문의 보기
 	@RequestMapping("/admin/memberQnaView.do")
-	public String memberQnaView() {
-		return "admin/memberQnaView";
+	public ModelAndView memberQnaView(@RequestParam("no") int no) {
+		ModelAndView mv = new ModelAndView();
+		MemberQna mq = service.selectMemberQna(no);
+		// 문의 날짜 포맷
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		mq.setFormatWriteDate(df.format(mq.getWriteDate()));
+		
+		mv.addObject("mq", mq);
+		mv.setViewName("admin/memberQnaView");
+		return mv;
 	}
 }

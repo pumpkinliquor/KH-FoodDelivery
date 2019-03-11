@@ -9,4 +9,5 @@ public interface QnaMngDao {
 	
 	List<MemberQna> selectMemberQnaList();		// 회원 문의 리스트
 	List<OwnerQna> selectOwnerQnaList();		// 사장 문의 리스트
+	MemberQna selectMemberQna(int no);			// 회원 문의 보기
 }

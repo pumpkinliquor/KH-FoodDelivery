@@ -26,4 +26,11 @@ public class QnaMngDaoImpl implements QnaMngDao {
 	public List<OwnerQna> selectOwnerQnaList() {
 		return null;
 	}
+
+	// 회원 문의 보기
+	@Override
+	public MemberQna selectMemberQna(int no) {
+		return session.selectOne("qna.selectMemberQna", no);
+	}
+	
 }

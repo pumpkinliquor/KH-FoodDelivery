@@ -27,5 +27,10 @@ public class QnaMngServiceImpl implements QnaMngService {
 		return dao.selectOwnerQnaList();
 	}
 
-	
+	// 회원 문의 보기
+	@Override
+	public MemberQna selectMemberQna(int no) {
+		return dao.selectMemberQna(no);
+	}
+
 }

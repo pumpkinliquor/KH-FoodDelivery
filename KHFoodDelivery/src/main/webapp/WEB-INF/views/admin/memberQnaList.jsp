@@ -26,8 +26,8 @@
 </style>
 
 <script>
-	function fn_qnaView(){
-		location.href="${path}/admin/memberQnaView.do";
+	function fn_qnaView(no){
+		location.href="${path}/admin/memberQnaView.do?no="+no;		
 	}
 </script>
 
@@ -91,7 +91,7 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${mqList}" var="mq">
-							<tr class="pnt" onclick="fn_qnaView()">
+							<tr class="pnt" onclick="fn_qnaView(${mq.qnaCode})">
 								<td>${mq.qnaCategory }</td>
 								<td>${mq.qnaTitle }</td>
 								<td>${mq.memberId }</td>

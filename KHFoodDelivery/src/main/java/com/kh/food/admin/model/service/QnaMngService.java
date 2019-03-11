@@ -9,4 +9,5 @@ public interface QnaMngService {
 	
 	List<MemberQna> selectMemberQnaList();
 	List<OwnerQna> selectOwnerQnaList();
+	MemberQna selectMemberQna(int no);
 }

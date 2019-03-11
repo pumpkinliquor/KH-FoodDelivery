@@ -6,6 +6,11 @@
 	<select id="selectMemberQnaList" resultType="memberQna">
 		SELECT mq.*, m.memberId FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum)
 	</select>
+	
+	<!-- 회원 문의 보기 -->
+	<select id="selectMemberQna" parameterType="_int" resultType="memberQna">
+		SELECT mq.*, m.memberId FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum) WHERE qnaCode = #{no}
+	</select>
 
 	<!-- resultMap : MemberQna -->
 	<resultMap type="map" id="memberQna"></resultMap>
