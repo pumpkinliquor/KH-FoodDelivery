@@ -5,7 +5,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
+
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
+
 <style>
 div#noticeContectDiv{
 	min-height: 200px;
@@ -80,11 +82,13 @@ function fileDownLoad(oriName,reName){
 			<div class="col-sm-12" id="noticeContectDiv">
 				${notice.NOTICECONTENT}
 			</div>
-			<div><c:forEach items="${attach}" var="a" varStatus="vs">
+			<div>
+			<c:forEach items="${attach}" var="a" varStatus="vs">
         <button type="button" style="padding:0px; background-color:white; cursor:pointer; border:0px;" class="fileDownLoadBtn" onclick="fileDownLoad('${a.ORIGINALFILENAME}','${a.RENAMEDFILENAME}');">
          	<img src="${path }/resources/images/owner/icons/attach_file_icon.png" width=17px;/> - ${a.ORIGINALFILENAME}
         </button>
-    	</c:forEach></div>
+    	</c:forEach>
+    	</div>
 			<div class="col-sm-2"></div>
 		</div>
 		<br>

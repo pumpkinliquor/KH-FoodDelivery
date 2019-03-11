@@ -4,10 +4,23 @@
 
 	<!-- 회원 문의 리스트 -->
 	<select id="selectMemberQnaList" resultType="memberQna">
-		SELECT mq.*, m.memberId FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum)
+		SELECT mq.*, m.memberId, (SELECT COUNT(*) FROM MEMBER_QNA_REVIEW r JOIN MEMBER_QNA ON(r.qnaCode = mq.qnaCode)) AS isRe FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum)
+	</select>
+	
+	<!-- 회원 문의 보기 -->
+	<select id="selectMemberQna" parameterType="_int" resultType="memberQna">
+		SELECT mq.*, m.memberId FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum) WHERE qnaCode = #{no}
 	</select>
 
+	<!-- 회원 문의 답변 -->
+	<select id="selectMemberQnaReview" parameterType="_int" resultType="memberQnaReview">
+		SELECT * FROM MEMBER_QNA_REVIEW WHERE qnaCode = #{no}
+	</select>
+
+
 	<!-- resultMap : MemberQna -->
-	<resultMap type="map" id="memberQna"></resultMap>
+	<resultMap type="map" id="memberQna"></resultMap>	
+	<!-- resultMap : MemberQnaReview -->
+	<resultMap type="map" id="memberQnaReview"></resultMap>
 
 </mapper>

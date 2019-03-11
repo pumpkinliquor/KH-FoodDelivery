@@ -101,7 +101,7 @@ public class MenuController {
 	{
 		
 		ModelAndView mv = new ModelAndView();
-		String saveDir = request.getSession().getServletContext().getRealPath("/resources/upload/owner");
+		String saveDir = request.getSession().getServletContext().getRealPath("/resources/upload/owner/menu");
 		logger.debug("파일이름"+menuImage.getOriginalFilename());
 		
 		Map<String,String> map = new HashMap<>();

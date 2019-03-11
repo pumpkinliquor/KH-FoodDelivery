@@ -57,11 +57,11 @@
 				 <tbody>
 				<tr>
 					<td><input type="checkbox" class="checkthis" /></td>
-					<td class="pnt" onclick="fn_ownListmodal('${o.OWNERID}')">${o.OWNERNUM}</td>
-					<td class="pnt" onclick="fn_ownListmodal('${o.OWNERID}')">${o.OWNERID}</td>
-					<td class="pnt" onclick="fn_ownListmodal('${o.OWNERID}')">${o.STORENAME}</td>
-					<td class="pnt" onclick="fn_ownListmodal('${o.OWNERID}')">${o.STORECATEGORY}</td>
-					<td class="pnt" onclick="fn_ownListmodal('${o.OWNERID}')">${o.OWNERENROLLDATE}</td>
+					<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.BUSINESSCODE}</td>
+					<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.OWNERID}</td>
+					<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.STORENAME}</td>
+					<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.STORECATEGORY}</td>
+					<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.BUSINESSNAME}</td>
 				</tr>
 			</tbody>
 			</c:forEach>
@@ -77,23 +77,23 @@
 
 
 <script>
-	function fn_ownListmodal(ownerId) {
-		console.log(ownerId);
+	function fn_ownListmodal(businessCode) {
+		console.log(businessCode);
 		$.ajax({
 			url:"${path}/admin/ownerOne.do",			
 			dataType:"json",
-			data:{"ownerId":ownerId},
+			data:{"businessCode":businessCode},
 			success:function(data)
 			{
 				console.log(data+"gg");
 				
-				$('#ownAddress').val(data.STOREADDRESS); 
-				$('#ownEmail').val(data.OWNEREMAIL);
-				$('#ownPhone').val(data.OWNERPHONE);
-				$('#ownEnrolldate').val(data.OWNERENROLLDATE);
-				$('#ownStoreName').val(data.STORENAME);
-				$('#ownStorePhone').val(data.STOREPHONE); 
-			
+				$('#ownBusinessName').val(data.BUSINESSNAME); 
+	/* 			$('#ownEmail').val(data.OWNEREMAIL);
+				$('#ownPhone').val(data.OWNERPHONE); */
+				$('#ownBusinessPhone').val(data.BUSINESSPHONE);
+				$('#ownStorePhone').val(data.STOREPHONE);
+				$('#ownStoreAddress').val(data.STOREADDRESS); 
+				$('#ownBusinessNum').val(data.BUSINESSNUM);
 				$('#ownListModal').modal();
 			}
 		});
@@ -133,6 +133,7 @@
 <style>
  .ownModal{
  border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; width:350px;}
+ 
 </style>
 
 
@@ -154,30 +155,27 @@
 
 					</tr>
 					<tr>
-						<th>가게주소</th>
-						<td><textarea rows="3" cols="10" id="ownAddress" class="ownModal" readonly="readonly"></textarea></td>
+						<th>사업주명</th>
+						<td><input type="text" id="ownBusinessName" class="ownModal" readonly="readonly"></td>
 					</tr>
 					<tr>
-						<th>이메일</th>
-						<td><input type="text" id="ownEmail" class="ownModal" readonly="readonly"></td>
+						<th>사업자연락처</th>
+						<td><input type="text" id="ownBusinessPhone" class="ownModal" readonly="readonly"></td>
 					</tr>
+					
 					<tr>
-						<th>전화번호</th>
-						<td><input type="text" id="ownPhone" class="ownModal" readonly="readonly"></td>
-					</tr>
-					<tr>
-						<th>가입날짜</th>
-						<td><input type="text" id="ownEnrolldate" class="ownModal" readonly="readonly"></td>
-					</tr>
-					<tr>
-						<th>가게주소</th>
-						<td><input type="text" id="ownStoreName" class="ownModal" readonly="readonly"></td>
-					</tr>
-					<tr>
-						<th>가게전화번호</th>
+						<th>가게연락처</th>
 						<td><input type="text" id="ownStorePhone" class="ownModal" readonly="readonly"></td>
 					</tr>
-
+					<tr>
+						<th>가게주소</th>
+						<td><textarea rows="3" cols="10" id="ownStoreAddress" class="ownModal" readonly="readonly"></textarea></td>
+					</tr>
+					 <tr>
+						<th>사업자번호</th>
+						<td><input type="text" id="ownBusinessNum" class="ownModal" readonly="readonly"></td>
+					</tr>
+					
 
 				</table>
 			</div>
