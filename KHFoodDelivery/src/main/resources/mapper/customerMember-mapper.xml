@@ -5,6 +5,8 @@
      
      <resultMap id="member" type="map">
 	</resultMap>
+	   <resultMap id="member1" type="member">
+	</resultMap>
 	<insert id="insertMember" parameterType="member" >
 		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},#{memberPw},#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},sysdate,#{gender},null,#{longitude},#{latitude},default,default)
 	</insert>
@@ -20,9 +22,13 @@
 	<select id="login" parameterType="map" resultMap="member">
 		select * from member where memberId=#{id}
 	</select>
-	<select id="selectMember" parameterType="_int" resultType="_int" >
-		select * from member where memberNum=#{memberNum}
+	<select id="selectMember" parameterType="String" resultMap="member1" >
+		select * from member where memberId=#{memberId}
 	</select>
+	<update id="update" parameterType="member">
+		update member set NICKNAME=#{nickName},MEMBERBIRTH=#{formatBirth},MEMBEREMAIL=#{memberEmail},MEMBERPHONE=#{memberPhone},MEMBERADDRESS=#{memberAddress},MEMBERENROLLDATE=default,MEMBERGENDER=#{gender} where MEMBERID=#{memberId}
+		
+	</update>
 	
 
 </mapper>

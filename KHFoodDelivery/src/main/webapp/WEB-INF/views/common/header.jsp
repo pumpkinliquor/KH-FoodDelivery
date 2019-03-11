@@ -191,10 +191,11 @@ $(function(){
             </c:if> 
              <c:if test="${sessionScope.logined!=null}">
              <a href="${path }/customer/logout.do">로그아웃</a>
-             <a href="${path }/customer/mypage.do?memberNum=${member.memberNum}">마이페이지</a>
+             <a href="${path }/customer/mypage.do?memberId=${sessionScope.logined}">마이페이지</a>
              
         
             </c:if> 
+            
             </div>
                   <div class="content1">
                      <h2 onclick="mainpage();"> <span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></h2>
@@ -217,5 +218,7 @@ $(function(){
               </div>
      </div>
                <div id="map" style="width:300px;height:200px; position:relative;"></div>
+               
+               </header>
                           
 

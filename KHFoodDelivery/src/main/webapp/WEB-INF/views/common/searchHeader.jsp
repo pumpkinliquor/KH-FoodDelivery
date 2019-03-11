@@ -20,12 +20,14 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-</head>
+
 
 <body>
 
-<header>
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c&libraries=services"></script>
+
+
 
 
    
@@ -176,8 +178,22 @@ div.newsletter div.search1{text-align:center; margin-top:0.25%;}
 button{outline:0; border:0;}
 div.newsletter div.search1 .btn{background-color:#F6F6F6;}
 div.newsletter div.search1 .btn:hover{background-color:#8C8C8C; color:white;}
-div.group{text-align:center; box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);background-color:#F6F6F6; margin-top:1%; padding:0; display:none;} 
+div.group{text-align:center; box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);background-color:#F6F6F6; margin-top:1%; padding:0; display:none;}
+div.group1{margin-top:1%;text-align:center;box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);padding:0;background-color:#F6F6F6;} 
 div.newsletter,div.group{display:inline-block;}
+@media (max-width:843px){
+	div.group{
+	display:none;
+	}
+	
+}
+@media (min-width:843px){
+	div.group1{
+	background-color:yellow;
+	display:none;
+	}
+	
+}
 </style>
 
 
@@ -219,7 +235,22 @@ div.newsletter,div.group{display:inline-block;}
                 
                 </div> 
                 </div>
-                   <div class="group col-md-12 col-lg-12 ">
+                <div class="group1  col-md-12 col-lg-12">
+                	 <select class="form-control" name="gender" id="gender" required>
+					            <option value="" disabled selected>메뉴검색</option>
+					            <option value="M">돈까스</option>
+					            <option value="F">프랜차이즈</option>
+					            <option value="M">치킨</option>
+					            <option value="M">피자</option>
+					            <option value="M">중국집</option>
+					            <option value="M">한식</option>
+					            <option value="M">족발/보쌈</option>
+					            <option value="M">분식</option>
+					            <option value="M">디저트</option>
+					            </select>
+                
+                </div>
+                   <div class="group col-md-12 col-lg-12">
                 <div class="btn-group btn-group-lg search1"  >
               <button type="button" class="btn btn-default">돈까스</button>
               <button type="button" class="btn btn-default">프랜차이즈</button>
@@ -234,6 +265,6 @@ div.newsletter,div.group{display:inline-block;}
                </div>          
        </div>
                  <div id="map" style="width:300px;height:300px;"></div>
- 
-</header>
+ </head>
+
                             

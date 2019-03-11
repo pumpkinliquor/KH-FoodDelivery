@@ -26,8 +26,8 @@
 </style>
 
 <script>
-	function fn_qnaView(){
-		location.href="${path}/admin/memberQnaView.do";
+	function fn_qnaView(no){
+		location.href="${path}/admin/memberQnaView.do?no="+no;		
 	}
 </script>
 
@@ -90,14 +90,18 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach begin="1" end="5">
-							<tr class="pnt" onclick="fn_qnaView()">
-								<td>°áÁ¦</td>
-								<td>¾È³ç</td>
-								<td>ÁÖÈ«¹ü</td>
-								<td>2019-02-26</td> 
-								<td><img src="${path }/resources/images/admin/complete.png" width="30px" height="30px"/></td>
-								<%-- <td><img src="${path }/resources/images/admin/incomplete.png" width="30px" height="30px"/></td> --%>
+						<c:forEach items="${mqList}" var="mq">
+							<tr class="pnt" onclick="fn_qnaView(${mq.qnaCode})">
+								<td>${mq.qnaCategory }</td>
+								<td>${mq.qnaTitle }</td>
+								<td>${mq.memberId }</td>
+								<td>${mq.formatWriteDate }</td>
+								<c:if test="${mq.isRe eq 0}">
+									<td><img src="${path }/resources/images/admin/incomplete.png" width="30px" height="30px"/></td>
+								</c:if>
+								<c:if test="${mq.isRe > 0 }">
+									<td><img src="${path }/resources/images/admin/complete.png" width="30px" height="30px"/></td>
+								</c:if>
 							</tr>				
 						</c:forEach>
 					</tbody>

@@ -2,6 +2,8 @@ package com.kh.food.customer.member.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,23 +32,62 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 	
+	
+	
+	
 	@RequestMapping("/member/memberInfoChange.do")
 	public ModelAndView memberInfoChange(ModelAndView mv)
 	{
+	
+		
 		mv.setViewName("customer/memberInfoChange");
 		return mv;
 	}
 
+	
+	
+	
 	@RequestMapping("/customer/mypage.do")
-	public ModelAndView myPage(int memberNum) {
+	public ModelAndView myPage(String memberId) {
 		ModelAndView mv =new ModelAndView();
-		int result = service.selectMember(memberNum);
+		Member member = service.selectMember(memberId);
+		DateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+		member.setFormatBirth(df.format(member.getMemberBirth()));
+		System.out.println("객체"+member);
 		
-		
-		mv.setViewName("customer/myPage");
+		mv.addObject("member",member);
+		mv.setViewName("customer/memberInfoChange");
 		return mv;
 		
 	}
+	@RequestMapping("/member/update.do")
+	public ModelAndView update(Member m) {
+		
+		System.out.println(m);
+		int result=service.update(m);
+		String msg="";
+		String loc="";
+		
+		if(result>0) {
+			msg="회원정보 수정 완료.";
+			loc="/";
+		}else {
+			msg="회원정보 수정 실패";
+			loc="/customer/mypage.do?memberId="+m.getMemberId();
+		}
+		ModelAndView mv=new ModelAndView();
+		
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+		
+		
+	}
+	
+	
+	
+	
 	@RequestMapping("/member/checkId.do")
 	public ModelAndView checkId(String memberId,ModelAndView mv) throws UnsupportedEncodingException{
 		
@@ -110,7 +151,7 @@ public class MemberController {
 				msg="로그인 성공";
 				session.setAttribute("logined", result.get("MEMBERID"));
 			
-				
+			
 			}else {
 				msg="패스워드가 일치하지 않습니다.";
 			}

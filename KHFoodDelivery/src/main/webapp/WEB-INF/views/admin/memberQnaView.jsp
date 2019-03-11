@@ -10,45 +10,40 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-10">
-				<h4>Á¦¸ñ . ~~~~~~~~~~~~ ¹®ÀÇµå¸³´Ï´Ù.</h4>
+				<h4>${mq.qnaTitle }</h4>
 			</div>
 			<div class="col-sm-2">
-				<button>¸ñ·ÏÀ¸·Î</button>				
 			</div>
 			<div class="col-sm-2">
-				<p>ÀÛ¼ºÀÚ <b>ÁÖÈ«¹ü</b></p>
+				<p>Ä«Å×°í¸® <b>${mq.qnaCategory }</b></p>
 			</div>
 			<div class="col-sm-2">
-				<p>2019-02-28 12:14</p>
+				<p>ÀÛ¼ºÀÚ <b>${mq.memberId }</b></p>
 			</div>
-			<div class="col-sm-2">
-				<p>Á¶È¸ 12È¸</p>
+			<div class="col-sm-3">
+				<p>${mq.formatWriteDate }</p>
 			</div>
+			<div class="col-sm-3">				
+			</div>			
 			<div class="col-sm-2">
-				<p>´ñ±Û 12°Ç</p>
-			</div>
-			<div class="col-sm-2"></div>
-			<div class="col-sm-2">
-				<button>¼öÁ¤</button>
-				<button>»èÁ¦</button>			
+				<button class="btn">¼öÁ¤</button>
+				<button class="btn">»èÁ¦</button>			
 			</div>	
 		</div>
+		<hr/>
 		<br/>	
 		<div class="row">			
 			<div class="col-sm-12">
-				±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä
-				±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä±Ã±ÝÇØ¿ä
+				<p>${mq.qnaContent }</p>
 			</div>
 			<div class="col-sm-2"></div>
 		</div>
 		<hr/>
-		<div class="row">
-			<div class="col-sm-1"></div>
-			<div class="col-sm-10">
-				<textarea rows="3" cols="100"></textarea>
+		<div class="row">			
+			<div class="col-sm-12">
+				<textarea rows="3" cols="100" class="form-control"></textarea>
 				<button>µî·Ï</button>
-			</div>
-			<div class="col-sm-1"></div>
+			</div>			
 		</div>
 	</div>
 </section>

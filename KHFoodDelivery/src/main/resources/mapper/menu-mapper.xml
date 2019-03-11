@@ -4,11 +4,11 @@
 	<resultMap type="map" id="categoryMap"></resultMap>
 	<resultMap type="map" id="menuMap"></resultMap>
 	<insert id="insertCategory" parameterType="map">
-		insert into menu_category values(SEQ_menuCategoryCode.nextval , #{menuCategory} , 7)
+		insert into menu_category values(SEQ_menuCategoryCode.nextval , #{menuCategory} , 12)
 	</insert>
 	
-	<insert id="insertMenu" parameterType="menu">
-		insert into menu values(seq_menucode.nextval,7,#{menuCategoryCode},#{menuName},#{menuContent},#{menuPrice},#{menuImage},default)
+	<insert id="insertMenu" parameterType="map">
+		insert into menu values(seq_menucode.nextval,12,#{menuCategoryCode},#{menuName},#{menuContent},#{menuPrice},#{menuImage},default)
 	</insert>
 	<delete id="deleteCategory" parameterType="string">
 		delete from menu_category where menucategorycode = #{menuCategory}
@@ -39,4 +39,9 @@
 	<update id="updateMenuSoldOut" parameterType="string">
 		update menu set menuSoldOut = 1 where menuCode = #{menuCode}
 	</update>
+	
+	<update id="updateCancleSoldOut" parameterType="string">
+		update menu set menuSoldOut = 0 where menuCode = #{menuCode}
+	</update>
+	
 </mapper>
