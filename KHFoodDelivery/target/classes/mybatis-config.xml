@@ -6,6 +6,7 @@
 		<typeAlias type="com.kh.food.owner.member.model.vo.Owner" alias="ownermember"/>	
 		<typeAlias type="com.kh.food.customer.member.model.vo.Member" alias="member"/>
 		<typeAlias type="com.kh.food.owner.onevsone.model.vo.OwnerQna" alias="ownerqna"/>
+		<typeAlias type="com.kh.food.qna.model.vo.MemberQna" alias="memberQna"/>
 		<typeAlias type="com.kh.food.owner.onevsone.model.vo.OwnerQnaReview" alias="oqr"/>
 		<typeAlias type="com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment" alias="ownerAtt"/>
 		<typeAlias type="com.kh.food.owner.menu.model.vo.Menu" alias="menu"/>
