@@ -13,8 +13,8 @@
 	</select>
 	
 	<!-- 입점 신청 store 모달 띄우기 -->
-	<select id="selectAppStore" resultType="store">
-		SELECT * FROM STORE
+	<select id="selectAppStore" resultType="store" parameterType="_int">
+		SELECT * FROM STORE WHERE businessCode = #{no}
 	</select>
 	
 	<insert id="addStore" parameterType="map">

@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.admin.model.service.AppStoreService;
+import com.kh.food.owner.member.controller.OwnerMemberController;
 import com.kh.food.owner.store.model.vo.Store;
 
 
 @Controller
 public class AppStoreController {
 
+	private Logger logger = LoggerFactory.getLogger(AppStoreController.class);
+	
 	@Autowired
 	AppStoreService service;
 
@@ -43,8 +48,14 @@ public class AppStoreController {
 	
 	@RequestMapping("/admin/selectAppStore.do")
 	@ResponseBody
-	public Store selectAppStore(@RequestParam("no") int no) {		
+	public Store selectAppStore(@RequestParam("no") int no) {	
+		
+		logger.debug("파라미터 : "+no);
+		
 		Store store = service.selectAppStore(no);
+		
+		logger.debug("DB 접근 후");
+		
 		// 입점 신청 날짜 포맷 (패턴 : yyyy-MM-dd)
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");		
 		store.setFormatAppDate(df.format(store.getAppDate()));
