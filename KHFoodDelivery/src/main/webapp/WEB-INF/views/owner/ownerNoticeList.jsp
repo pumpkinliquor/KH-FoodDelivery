@@ -56,7 +56,7 @@ pageEncoding="UTF-8"%>
 			</thead>
 			<tbody>
 				<c:forEach var="on" items="${list }">
-				<tr style="cursor:pointer;" onclick="location.href='${path}/owner/noticeList.do'">
+				<tr style="cursor:pointer;" onclick="location.href='${path}/owner/ownerNoticeList.do'">
 					<td>${on.OWNERNOTICENUM }</td>
 					<td id="noticeTitleId"><a href="${path }/owner/ownerNoticeView.do?ownerNoticeNum=${on.OWNERNOTICENUM}">${on.OWNERNOTICETITLE }</a></td>
 					<td>${on.OWNERWRITEDATE }</td>
@@ -66,7 +66,7 @@ pageEncoding="UTF-8"%>
 		</table>
 		<c:if test="${sessionScope.ownerId=='admin' }">
 		  <button type="button" class="btn btn-light float-right"
-         onclick="location.href='${path}/admin/ownerNoticeForm.do'">글쓰기</button>
+         onclick="location.href='${path}/owner/ownerNoticeForm.do'">글쓰기</button>
 		</c:if>
 		<div class="pageBar" style="text-align:center;">
 			페이지바

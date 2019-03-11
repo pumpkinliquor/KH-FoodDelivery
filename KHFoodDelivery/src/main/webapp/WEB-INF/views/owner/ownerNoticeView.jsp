@@ -18,27 +18,27 @@ div#noticeContectDiv{
 </style>
 <script>
 //게시글 삭제
-function fn_memberNoticeDel(e){
+function fn_ownerNoticeDel(e){
 	
 	var num = $(e).val();
 	
-	location.href="${path}/admin/memberNoticeDel.do?noticeNum="+num;
+	location.href="${path}/owner/ownerNoticeDel.do?ownerNoticeNum="+num;
 	alert("삭제되었습니다.");
 }
 
 
 //파일다운로드
-function fileDownLoad(oriName,reName){
+ function fileDownLoad(oriName,reName){
 	if(oriName==null||reName==null){
 		alert("첨부파일을 다운로드 할 수 없습니다.");
 		return false;
 	}
 	if(confirm(oriName+"을(를) 다운로드 하시겠습니까?")){
 		oriName=encodeURIComponent(oriName);
-		location.href="${path}/admin/fileDownLoad.do?oriName="+oriName+"&reName"+reName;
+		location.href="${path}/owner/noticeFileDownLoad.do?oriName="+oriName+"&reName"+reName;
 		return true;
 	}
-}
+} 
 
 
 
@@ -74,9 +74,11 @@ function fileDownLoad(oriName,reName){
 			<div class="col-sm-1">
 			</div>
 			<div class="col-sm-1"></div>
-			<div class="col-sm-2">			
-				<button id="noticeCancelkBtn" name="noticeCancelkBtn" class="btn btn-default float-right" value="${notice.OWNERNOTICENUM }" onclick="fn_memberNoticeDel(this)">삭제</button>
+			<div class="col-sm-2">		
+			<c:if test="${sessionScope.ownerId=='admin' }">	
+				<button id="noticeCancelkBtn" name="noticeCancelkBtn" class="btn btn-default float-right" value="${notice.OWNERNOTICENUM }" onclick="fn_ownerNoticeDel(this)">삭제</button>
 				<button id="noticeUpBtn"  class="btn btn-default float-right" value="${notice.OWNERNOTICENUM }" onclick="fn_memberNoticeUp(this)">수정</button>
+			</c:if>
 			</div>	
 		</div>
 		<hr/>
@@ -86,17 +88,17 @@ function fileDownLoad(oriName,reName){
 				${notice.OWNERNOTICECONTENT}
 			</div>
 			<div>
-			<%-- <c:forEach items="${notice}" var="a" varStatus="vs">
-        <button type="button" style="padding:0px; background-color:white; cursor:pointer; border:0px;" class="fileDownLoadBtn" onclick="fileDownLoad('${a.ORIGINALFILENAME}','${a.RENAMEDFILENAME}');">
-         	<img src="${path }/resources/images/owner/icons/attach_file_icon.png" width=17px;/> - ${a.ORIGINALFILENAME}
+			<c:forEach items="${attach}" var="a" varStatus="vs">
+        <button type="button" style="padding:0px; background-color:white; cursor:pointer; border:0px;" class="fileDownLoadBtn" onclick="fileDownLoad('${a.OWNERORIGINALFILENAME}','${a.OWNERRENAMEDFILENAME}');">
+         	<img src="${path }/resources/images/owner/icons/attach_file_icon.png" width=17px;/> - ${a.OWNERORIGINALFILENAME}
         </button>
-    	</c:forEach> --%>
+    	</c:forEach>
     	</div>
 			<div class="col-sm-2"></div>
 		</div>
 		<br>
 		<hr>
-		<button id="noticeListBtn" class="btn btn-default" onclick="location.href='${path}/admin/ownerNoticeList.do'">목록</button>
+		<button id="noticeListBtn" class="btn btn-default" onclick="location.href='${path}/owner/ownerNoticeList.do'">목록</button>
 	</div>
 </section>
 

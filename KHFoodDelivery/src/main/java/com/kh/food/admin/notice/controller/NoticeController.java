@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.food.admin.controller.MemberListController;
+
 import com.kh.food.admin.notice.attachment.vo.NoticeAttachment;
 import com.kh.food.admin.notice.model.service.NoticeService;
 
@@ -122,7 +122,6 @@ public class NoticeController {
 	//파일다운로드
 	@RequestMapping("/admin/fileDownLoad.do")
 	public void fileDownLoad(String oriName, String reName, HttpServletRequest request, HttpServletResponse response) {
-//		System.out.println(oriName+reName);
 		BufferedInputStream bis=null;
 		ServletOutputStream sos=null;
 		boolean fileCheck=true;
