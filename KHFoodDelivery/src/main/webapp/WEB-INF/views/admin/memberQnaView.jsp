@@ -11,11 +11,17 @@
 </style>
 
 <script>
+	/* 댓글 삭제 */
 	function fn_deleteReview(){
 		location.href="${path}/admin/deleteMemberQnaReview.do?no=${mq.qnaCode}";
 	}
+	/* 댓글 수정 */
 	function fn_updateReview(){
 		location.href="${path}/admin/updateMemberQnaReview.do?no=${mq.qnaCode}";
+	}
+	/* 문의 글 삭제 */
+	function fn_deleteQna(){
+		location.href="${path}/admin/deleteMemberQna.do?no=${mq.qnaCode}";
 	}
 </script>
 
@@ -39,7 +45,7 @@
 			<div class="col-sm-4">				
 			</div>			
 			<div class="col-sm-1">
-				<button class="btn">삭제</button>			
+				<button type="button" class="btn" onclick="fn_deleteQna()">삭제</button>			
 			</div>	
 		</div>
 		<hr/>

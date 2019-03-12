@@ -16,5 +16,6 @@ public interface QnaMngDao {
 	int insertMemberQnaReview(Map map);					// 회원 문의 답변 등록
 	int deleteMemberQnaReview(int no);					// 회원 문의 답변 삭제
 	int updateMemberQnaReview(Map map);					// 회원 문의 답변 삭제
-	List<MemberQna> searchMemberQna(String keyword);	// 회원 문의 검색
+	List<MemberQna> searchMemberQna(Map map);	// 회원 문의 검색
+	int deleteMemberQna(int no);						// 회원 문의글 삭제
 }
