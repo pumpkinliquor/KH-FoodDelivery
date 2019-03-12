@@ -61,7 +61,13 @@ public class QnaMngServiceImpl implements QnaMngService {
 
 	// 회원 문의 검색
 	@Override
-	public List<MemberQna> searchMemberQna(String keyword) {
-		return dao.searchMemberQna(keyword);
+	public List<MemberQna> searchMemberQna(Map map) {
+		return dao.searchMemberQna(map);
+	}
+
+	// 회원 문의글 삭제
+	@Override
+	public int deleteMemberQna(int no) {
+		return dao.deleteMemberQna(no);
 	}
 }

@@ -42,6 +42,11 @@
 	 
 		  	select count(*) from store
 		  </select>
+		  
+		<delete id="drop" parameterType="member">
+			delete from member where MEMBERID=#{memberId}
+		
+		</delete>
 	
 
 </mapper>

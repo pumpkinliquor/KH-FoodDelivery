@@ -20,6 +20,10 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
+	public int drop(String memberId) {
+		return dao.drop(memberId);
+	}
+	@Override
 	public int selectMenuCount() {
 		return dao.selectMenuCount();
 	}

@@ -24,6 +24,10 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
+	public int drop(String memberId) {
+		return sqlSession.delete("member.drop",memberId);
+	}
+	@Override
 	public List<Store> selectStore(String category,int cPage,int numPerPage){
 		RowBounds rb=new RowBounds((cPage-1)*numPerPage,numPerPage);
 		return  sqlSession.selectList("member.selectStore",category,rb);

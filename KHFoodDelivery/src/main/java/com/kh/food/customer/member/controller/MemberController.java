@@ -37,13 +37,13 @@ public class MemberController {
 	
 	
 	
-	//회원종보 수정 폼
-	@RequestMapping("/member/memberInfoChange.do")
+	//나의주문내역
+	@RequestMapping("/member/orderList.do")
 	public ModelAndView memberInfoChange(ModelAndView mv)
 	{
 	
 		
-		mv.setViewName("customer/memberInfoChange");
+		mv.setViewName("customer/orderList");
 		return mv;
 	}
 	
@@ -61,10 +61,36 @@ public class MemberController {
 		System.out.println("객체"+member);
 		
 		mv.addObject("member",member);
-		mv.setViewName("customer/memberInfoChange");
+		mv.setViewName("customer/mypage");
 		return mv;
 		
 	}
+	
+	//회원탈퇴
+	@RequestMapping("/member/drop.do")
+	public ModelAndView drop(String memberId,HttpSession session) {
+		int result= service.drop(memberId);
+		String msg="";
+		String loc="";
+		
+		if(result>0) {
+			msg="탈퇴하였습니다.";
+			loc="/";
+			if(session!=null)
+			{
+				session.invalidate();}
+		}else {
+			msg="탈퇴실패";
+			loc="${path }";
+		}
+		ModelAndView mv= new ModelAndView();
+		
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
 	//회원정보 수정
 	@RequestMapping("/member/update.do")
 	public ModelAndView update(Member m) {
@@ -162,6 +188,7 @@ public class MemberController {
 			
 			}else {
 				msg="패스워드가 일치하지 않습니다.";
+				loc="/customer/login.do";
 			}
 		}else {
 			msg="아이디가 존재하지 않습니다.";

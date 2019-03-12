@@ -16,6 +16,5 @@ public interface MemberService {
 	int update(Member m);
 	List<Store> selectStore(String category,int cPage,int numPerPage);
 	int selectMenuCount();
-//	List<Stroe> menuInfo(int )
-	
+	int drop(String memberId);
 }
