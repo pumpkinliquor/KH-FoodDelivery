@@ -36,7 +36,8 @@
 	
 	<select id="selectStore" parameterType="string" resultType="store">
 	
-		  	
+		
+		  
 		  	
 		select* from store where STORECATEGORY=#{category} and ISCONFIRM=1
 	

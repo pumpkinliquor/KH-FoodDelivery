@@ -3,6 +3,7 @@ package com.kh.food.owner.onevsone.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.food.owner.member.model.vo.Owner;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
 
@@ -20,4 +21,10 @@ public interface OnevsOneDao {
 	int insertQna(Map<String,Object> qna);
 	int insertAttach(OwnerQnaAttachment a);
 	List<Map<String,String>> ownerAttach(int qnaCode);
+	int qnaDelete(int qnaCode);
+	Owner selectMyPage(int ownerNum);
+	int updateMyPage(Map<String,Object> owner);
+	int selectQnaCount(int ownerNum);
+	int selectReCount(int ownerNum);
+	int selectOwnerReCount(int ownerNum);
 }

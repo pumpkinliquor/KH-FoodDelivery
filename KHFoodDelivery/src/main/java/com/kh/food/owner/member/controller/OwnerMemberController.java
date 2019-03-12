@@ -191,6 +191,7 @@ public class OwnerMemberController {
 		ModelAndView mv = new ModelAndView();
 		logger.debug("ownerId"+ownerId + "ownerPW" + ownerPw);
 		
+		
 		Owner o = service.selectLogin(ownerId);
 		String msg ="";
 		String loc = "/owner/ownerMain.do";
@@ -208,6 +209,7 @@ public class OwnerMemberController {
 			mv.addObject("ownerId",o.getOwnerId());
 			msg =  ownerId + "님 환영합니다";
 			
+			int lastDate=service.lastDate(o.getOwnerNum());
 			}
 			//비밀번호가 틀릴때
 			else

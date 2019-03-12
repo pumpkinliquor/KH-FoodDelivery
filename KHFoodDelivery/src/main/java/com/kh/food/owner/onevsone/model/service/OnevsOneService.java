@@ -3,6 +3,7 @@ package com.kh.food.owner.onevsone.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.food.owner.member.model.vo.Owner;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
 
@@ -19,4 +20,10 @@ public interface OnevsOneService {
 	int qnaReviewDelete(int qnaReviewCode);
 	int qnaFormEnd(Map<String,Object> qna, List<OwnerQnaAttachment> files);
 	List<Map<String,String>> ownerAttach(int qnaCode);
+	int qnaDelete(int qnaCode);
+	Owner selectMyPage(int ownerNum);
+	int updateMyPage(Map<String,Object> owner);
+	int selectQnaCount(int ownerNum);
+	int selectReCount(int ownerNum);
+	int selectOwnerReCount(int ownerNum);
 }

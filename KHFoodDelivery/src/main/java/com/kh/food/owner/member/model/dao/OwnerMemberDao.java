@@ -12,5 +12,5 @@ public interface OwnerMemberDao {
 	Map<String, String> selectConfirmIdEmail(Map<String, String> map);
 	int updateTempPw(Map<String, String> map);
 	int ownerCheckId(String ownerId);
-	
+	int lastDate(int ownerNum);
 }
