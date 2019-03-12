@@ -59,6 +59,8 @@ public class PagingFactory {
 		return pageBar;
 	}
 	
+	
+	//메인에서 가게 찾기  때문에 매개변수 추가해서 따로 하나 생성
 	public static String getPageBar2(String category,int totalCon, int cPage, int numPerPage, String url) {
 		String pageBar="";
 		int pageBarSize=5;
