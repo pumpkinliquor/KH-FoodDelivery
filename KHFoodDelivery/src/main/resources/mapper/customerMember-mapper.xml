@@ -35,9 +35,17 @@
 	</update>
 	
 	<select id="selectStore" parameterType="string" resultType="store">
+	
+		  	
+		  	
 		select* from store where STORECATEGORY=#{category} and ISCONFIRM=1
 	
 	</select>
+	
+	 <select id="selectMenuCount" resultType="_int">
+	 
+		  	select count(*) from store
+		  </select>
 	
 
 </mapper>

@@ -14,5 +14,6 @@ public interface MemberService {
 	int checkNick(String nickName);
 	Member selectMember(String memberId);
 	int update(Member m);
-	List<Store> selectStore(String category);
+	List<Store> selectStore(String category,int cPage,int numPerPage);
+	int selectMenuCount();
 }
