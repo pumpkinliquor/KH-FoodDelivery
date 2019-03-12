@@ -252,6 +252,15 @@ public class MemberController {
 		return mv;
 	}
 	
+	@RequestMapping("/customer/menuInfo")
+	public ModelAndView infoMenu(ModelAndView mv,String storeName)
+	{
+		mv.setViewName("customer/menuInfo");
+		return mv;
+	}
+	
+	
+	
 	
 	
 	
