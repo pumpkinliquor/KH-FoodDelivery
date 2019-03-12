@@ -25,15 +25,15 @@
 <body>
 
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c&libraries=services"></script>
-
+<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c&libraries=services"></script>
+ -->
 
 
 
    
    <script>
     $(document).ready(function () {
-      $("#positionBtn").click(function(){
+/*       $("#positionBtn").click(function(){
             function getLocation() {
                 if (navigator.geolocation) { // GPS를 지원하면
                     navigator.geolocation.getCurrentPosition(function(position) {
@@ -149,7 +149,7 @@
                 });
             }
          }).open(); 
-    }
+    } */
   
 
 
