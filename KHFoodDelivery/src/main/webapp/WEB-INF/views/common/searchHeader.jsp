@@ -20,12 +20,34 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
 
-
+div.newsletter div.search1{text-align:center; margin-top:0.25%;}   
+button{outline:0;}  
+div.newsletter div.search1 .btn{background-color:#F6F6F6;}
+div.newsletter div.search1 .btn:hover{background-color:#8C8C8C; color:white;}
+div.group{text-align:center; box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);background-color:#F6F6F6; margin-top:1%; padding:0; display:none;}
+div.group1{margin-top:1%;text-align:center;box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);padding:0;background-color:#F6F6F6;} 
+div.newsletter,div.group{display:inline-block;}
+ @media (max-width:843px){
+	div.group{
+	display:none;
+	}
+	
+}
+@media (min-width:843px){
+	div.group1{
+	
+	display:none;
+	}
+	
+} 
+</style>
+</head>
 <body>
 
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c&libraries=services"></script> 
 
 
 
@@ -68,7 +90,7 @@
                             var infoDiv = document.getElementById('centerAddr1');
                             
                             $('#location').val(result[0].address.address_name);
-                            infoDiv.innerHTML = '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+                            /* infoDiv.innerHTML = '<div>지번 주소 : ' + result[0].address.address_name + '</div>'; */
                          
                         }   
                     });
@@ -133,7 +155,7 @@
                 }
  
                 // 주소 정보를 해당 필드에 넣는다.
-                document.getElementById("location").value = fullAddr;
+              $('#location').val(fullAddr);
                 // 주소로 상세 정보를 검색
                 geocoder.addressSearch(data.address, function(results, status) {
                     // 정상적으로 검색이 완료됐으면
@@ -172,29 +194,7 @@
    
    
    </script>
-<style>
 
-div.newsletter div.search1{text-align:center; margin-top:0.25%;}   
-button{outline:0;}  
-div.newsletter div.search1 .btn{background-color:#F6F6F6;}
-div.newsletter div.search1 .btn:hover{background-color:#8C8C8C; color:white;}
-div.group{text-align:center; box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);background-color:#F6F6F6; margin-top:1%; padding:0; display:none;}
-div.group1{margin-top:1%;text-align:center;box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);padding:0;background-color:#F6F6F6;} 
-div.newsletter,div.group{display:inline-block;}
-@media (max-width:843px){
-	div.group{
-	display:none;
-	}
-	
-}
-@media (min-width:843px){
-	div.group1{
-	
-	display:none;
-	}
-	
-}
-</style>
 
 
 
@@ -239,14 +239,14 @@ div.newsletter,div.group{display:inline-block;}
                 	 <select class="form-control" name="menuSearch" id="menuSearch" onchange="window.open(value,'_self');">
 					            <option  disabled selected>메뉴검색</option>
 					            <option value="#">돈까스</option> 
-					            <option value="Fre">프랜차이즈</option>
-					            <option value="chi">치킨</option>
-					            <option value="pizza">피자</option>
-					            <option value="china">중국집</option>
-					            <option value="korea">한식</option>
-					            <option value="jok">족발/보쌈</option>
-					            <option value="bunsik">분식</option>
-					            <option value="desert">디저트</option>
+					            <option value="#">프랜차이즈</option>
+					            <option value="#">치킨</option>
+					            <option value="#">피자</option>
+					            <option value="#">중국집</option>
+					            <option value="#">한식</option>
+					            <option value="#">족발/보쌈</option>
+					            <option value="#">분식</option>
+					            <option value="#">디저트</option>
 					            </select>
                 
                 </div>
@@ -265,6 +265,6 @@ div.newsletter,div.group{display:inline-block;}
                </div>          
        </div>
                  <div id="map" style="width:300px;height:300px;"></div>
- </head>
+ 
 
                             

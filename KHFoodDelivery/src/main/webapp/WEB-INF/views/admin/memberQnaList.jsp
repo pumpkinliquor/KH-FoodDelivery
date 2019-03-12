@@ -38,12 +38,12 @@
 		<div class="row">			
 			<div class="col-sm-6">
 				<div class="input-group" id="qna-search">
-					<form class="form-controll navbar-right" role="search" action="" method="get">
+					<form class="form-controll navbar-right" role="search" action="${path }/admin/searchMemberQna.do" method="get">
 						<div class="form-group">
 							<div class="input-group">
 								<input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="제목을 입력하세요"/>
 								<span class="input-group-btn">
-									<button type="submit" class="btn btn-default" id="searchBar">검색</button>
+									<input type="submit" class="btn btn-default" id="searchBar" value="검색"/>
 								</span>
 							</div>
 						</div>

@@ -30,8 +30,8 @@
 
 <body>
  
-<header>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c&libraries=services"></script>
+ <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c&libraries=services"></script> 
+
 
 
    
@@ -71,8 +71,8 @@
                            
                             var infoDiv = document.getElementById('centerAddr1');
                             
-                            $('#location').val(result[0].address.address_name);
-                            infoDiv.innerHTML = '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+                            $('#location').val(result[0].address.address_name); 
+                          /*   infoDiv.innerHTML = '<div>지번 주소 : ' + result[0].address.address_name + '</div>'; */
                          
                         }   
                     });
@@ -132,12 +132,14 @@
                     if(data.buildingName !== ''){
                         extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                     }
+                    
                     // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
                     fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
                 }
  
                 // 주소 정보를 해당 필드에 넣는다.
-                document.getElementById("location").value = fullAddr;
+                $('#location').val(fullAddr); 
+                /* document.getElementById("location").value = fullAddr; */
                 // 주소로 상세 정보를 검색
                 geocoder.addressSearch(data.address, function(results, status) {
                     // 정상적으로 검색이 완료됐으면
@@ -156,8 +158,8 @@
     }
   
 
+ 
 /* 
-
 $(function(){
     $(window).scroll(function(){
        var num = $(this).scrollTop();
@@ -168,7 +170,7 @@ $(function(){
           $(".newsletter").css("position","absolute");
        }
     });
- }); */
+ });  */
  //배달의민족 클릭시 메인으로
  function mainpage(){
     location.href="${path }";
@@ -219,6 +221,6 @@ $(function(){
      </div>
                <div id="map" style="width:300px;height:200px; position:relative;"></div>
                
-               </header>
+              
                           
 

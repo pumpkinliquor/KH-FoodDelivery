@@ -1,6 +1,7 @@
 package com.kh.food.customer.member.controller;
 
 import java.io.UnsupportedEncodingException;
+
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -15,11 +16,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.customer.member.model.service.MemberService;
 import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.owner.store.model.vo.Store;
+import com.kh.food.common.PagingFactory;
 
 @Controller
 public class MemberController {
@@ -34,7 +37,7 @@ public class MemberController {
 	
 	
 	
-	
+	//회원종보 수정 폼
 	@RequestMapping("/member/memberInfoChange.do")
 	public ModelAndView memberInfoChange(ModelAndView mv)
 	{
@@ -48,7 +51,7 @@ public class MemberController {
 
 	
 	
-	
+	//마이페이지
 	@RequestMapping("/customer/mypage.do")
 	public ModelAndView myPage(String memberId) {
 		ModelAndView mv =new ModelAndView();
@@ -62,6 +65,7 @@ public class MemberController {
 		return mv;
 		
 	}
+	//회원정보 수정
 	@RequestMapping("/member/update.do")
 	public ModelAndView update(Member m) {
 		
@@ -89,7 +93,7 @@ public class MemberController {
 	
 	
 	
-	
+	//아이디 체크
 	@RequestMapping("/member/checkId.do")
 	public ModelAndView checkId(String memberId,ModelAndView mv) throws UnsupportedEncodingException{
 		
@@ -108,6 +112,7 @@ public class MemberController {
 		
 		
 	}
+	//닉네임 체크
 	@RequestMapping("/member/checkNick.do")
 	public ModelAndView checkNick(String nickName,ModelAndView mv) throws UnsupportedEncodingException{
 		
@@ -126,14 +131,15 @@ public class MemberController {
 		
 		
 	}
-
+	
+	//로그인 폼
 	@RequestMapping("/customer/login.do")
 	public String login()
 	{
 		return "customer/login";
 	}
 	
-	
+	//로그인
 	@RequestMapping("/member/login.do")
 	public ModelAndView login(String id,String pw,HttpSession session) {
 		
@@ -166,7 +172,7 @@ public class MemberController {
 		
 		return mv;
 	}
-	
+	//로그아웃
 	@RequestMapping("/customer/logout.do")
 	public ModelAndView logout(HttpSession session) {
 		
@@ -187,7 +193,7 @@ public class MemberController {
 	}
 		
 	
-	
+	//회원가입 폼
 	@RequestMapping("/member/memberEnroll.do")
 	public String memberEnroll()
 	{
@@ -195,7 +201,7 @@ public class MemberController {
 	}
 	
 	
-	
+	//회원가입완료
 	@RequestMapping("/member/memberEnrollEnd.do")
 	public String memberEnrollEnd(Member m,Model model)
 	{
@@ -221,26 +227,30 @@ public class MemberController {
 		return "common/msg";
 	}
 	
+	//테스트용
 	@RequestMapping("/map/test.do")
 	public String map()
 	{
 		return "customer/test";
 	}
 
-	
+	//가게 출력
 	@RequestMapping("/customer/searchmenuView")
-	public ModelAndView menuView(String category) {
-		
-		List<Store> list=service.selectStore(category);
+	public ModelAndView menuView(String category,@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage) {
 		
 		ModelAndView mv=new ModelAndView();
+		int numPerPage=8;
+		int count=service.selectMenuCount();
+		List<Store> list=service.selectStore(category,cPage,numPerPage);
 		
+		
+		mv.addObject("pageBar",PagingFactory.getPageBar2(category,count, cPage, numPerPage, "/food/customer/searchmenuView"));
 		mv.addObject("list",list);
 		mv.setViewName("customer/searchMenu");
 		
 		
 		return mv;
-	}
+	}	
 	
 	
 	
