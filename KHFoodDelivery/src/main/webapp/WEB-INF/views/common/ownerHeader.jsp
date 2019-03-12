@@ -49,7 +49,7 @@
         </c:if> 
         <c:if test="${sessionScope.ownerId != null }"> 
           <a href="${path }/owner/logout.do">로그아웃</a>
-          <a href="#">마이페이지</a>
+          <a href="${path }/owner/myPage.do">마이페이지</a>
          </c:if>
     </div>
   

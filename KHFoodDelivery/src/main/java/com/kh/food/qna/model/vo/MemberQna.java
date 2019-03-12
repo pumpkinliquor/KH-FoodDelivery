@@ -20,7 +20,6 @@ public class MemberQna implements Serializable {
 	
 	public MemberQna() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public MemberQna(int qnaCode, Date writeDate, String memberId, String qnaCategory, String qnaContent,

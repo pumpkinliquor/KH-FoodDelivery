@@ -63,7 +63,7 @@ function execDaumPostcode(){
 <section>
 	<div class="container">
 		<div style="text-align:center; margin-bottom:5em;">
-		<h2 style="font-weight:bold;">1:1문의</h2>
+		<h2 style="font-weight:bold;">업체 등록 신청</h2>
 	</div>
 	<div class="col-md-12">
 		<form action="${path }/owner/storeFormEnd.do" method="post" enctype="multipart/form-data">
@@ -84,8 +84,8 @@ function execDaumPostcode(){
 			                <td><input type="tel" name="businessPhone" class="form-control" required></td>
 			            </tr>
 			             <tr>
-			                <th>사업자 번호</th>
-			                <td><input type="text" name="businessNum" class="form-control" required></td>
+			                <th>사업자 등록 번호</th>
+			                <td><input type="text" name="businessNum" class="form-control" placeholder="123-45-67890 형식에 맞춰서 입력" required></td>
 			            </tr>
 			        	<tr>
 			        		<th>카테고리</th>
@@ -143,7 +143,7 @@ function execDaumPostcode(){
 			            </tr>
 			            <tr>
 			                <td colspan="2">
-			                    <input type="submit" value="문의하기" class="btn btn-outline-success" style="float:right;"/>
+			                    <input type="submit" value="신청" class="btn btn-outline-success" style="float:right;"/>
 			                </td>
 			            </tr>
 			    </tbody>
