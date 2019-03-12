@@ -41,8 +41,8 @@ div.container span.ok1 {color:blue;}
 							<td>${owner.ownerPhone }</td>
 						</tr>
 						<tr>
-							<th width=40%><small>최종접속일시</small></th>
-							<td>${owner.lastConnetionDate }</td>
+							<th width=40%><small>최종접속일</small></th>
+							<td>${owner.lastConnectionDate }</td>
 						</tr>
 						<tr>
 							<th width=40%><small>이름</small></th>
@@ -62,7 +62,7 @@ div.container span.ok1 {color:blue;}
 							<td>${owner.ownerEmail }</td>
 						</tr>
 						<tr>
-							<th width=40%><small>회원가입일시</small></th>
+							<th width=40%><small>회원가입일</small></th>
 							<td>${owner.ownerEnrollDate }</td>
 						</tr>
 					</table>
