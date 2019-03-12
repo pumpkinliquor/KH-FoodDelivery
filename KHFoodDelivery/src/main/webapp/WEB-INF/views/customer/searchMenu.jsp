@@ -24,7 +24,7 @@ section{background-color:#F6F6F6;}
 	 <div class="store col-lg-5"> 
 	 
 	<div>
-	<a href="${path }/customer/menuInfo.do?storeName=${i.storeName}">이름: ${i.storeName}</a><br/>
+	<a href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">이름: ${i.storeName}</a><br/>
 	<a href="#">가게 번호: ${i.storePhone}</a><br/>
 	<a href="#">가게 주소: ${i.storeAddress}</a><br/>
 	<a href="#">이미지: ${i.storeImage}</a><br/>
