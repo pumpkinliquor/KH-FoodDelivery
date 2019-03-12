@@ -11,12 +11,13 @@ public class Owner {
 	private String ownerPhone;
 	private String ownerEmail;
 	private Date ownerEnrollDate;
+	private Date lastConnectionDate;
 	
 	public Owner () {}
 	
 	
 	public Owner(int ownerNum, String ownerId, String ownerPw, String ownerName, String ownerPhone, String ownerEmail,
-			Date ownerEnrollDate) {
+			Date ownerEnrollDate, Date lastConnectionDate) {
 		super();
 		this.ownerNum = ownerNum;
 		this.ownerId = ownerId;
@@ -25,8 +26,19 @@ public class Owner {
 		this.ownerPhone = ownerPhone;
 		this.ownerEmail = ownerEmail;
 		this.ownerEnrollDate = ownerEnrollDate;
+		this.lastConnectionDate = lastConnectionDate;
 	}
 
+
+
+	public Date getLastConnectionDate() {
+		return lastConnectionDate;
+	}
+
+
+	public void setLastConnectionDate(Date lastConnectionDate) {
+		this.lastConnectionDate = lastConnectionDate;
+	}
 
 
 	public int getOwnerNum() {
@@ -103,7 +115,7 @@ public class Owner {
 	public String toString() {
 		return "Owner [ownerNum=" + ownerNum + ", ownerId=" + ownerId + ", ownerPw=" + ownerPw + ", ownerName="
 				+ ownerName + ", ownerPhone=" + ownerPhone + ", ownerEmail=" + ownerEmail + ", ownerEnrollDate="
-				+ ownerEnrollDate + "]";
+				+ ownerEnrollDate + ", lastConnectionDate=" + lastConnectionDate + "]";
 	}
 	
 	

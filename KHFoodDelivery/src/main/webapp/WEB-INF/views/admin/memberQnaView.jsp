@@ -10,6 +10,15 @@
 	div#context-area{ min-height: 200px; }
 </style>
 
+<script>
+	function fn_deleteReview(){
+		location.href="${path}/admin/deleteMemberQnaReview.do?no=${mq.qnaCode}";
+	}
+	function fn_updateReview(){
+		location.href="${path}/admin/updateMemberQnaReview.do?no=${mq.qnaCode}";
+	}
+</script>
+
 <section>
 	<div class="container">
 		<div class="row">
@@ -50,10 +59,10 @@
 				</div>
 				<div class="col-sm-9">
 					<p>${mqr.formatWriteDate }</p>
-				</div>
+				</div>				
 				<div class="col-sm-2">
-					<button class="btn float-right">삭제</button>
-					<button class="btn float-right">수정</button>
+					<button class="btn float-right" onclick="fn_deleteReview()">삭제</button>
+					<button class="btn float-right" onclick="fn_updateReview()">수정</button>
 				</div>
 				<div class="col-sm-12">
 					<p>${mqr.reviewContext }</p>

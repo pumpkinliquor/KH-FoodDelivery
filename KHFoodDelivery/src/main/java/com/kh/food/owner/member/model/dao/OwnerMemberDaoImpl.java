@@ -45,6 +45,9 @@ public class OwnerMemberDaoImpl implements OwnerMemberDao {
 		return sqlSession.selectOne("ownerMember.ownerCheckId",ownerId);
 	}
 
-	
+	@Override
+	public int lastDate(int ownerNum) {
+		return sqlSession.update("ownerMember.lastDate", ownerNum);
+	}
 	
 }

@@ -3,6 +3,7 @@ package com.kh.food.customer.member.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,8 +19,18 @@ public class MemberDaoImpl implements MemberDao {
 	SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<Store> selectStore(String category){
-		return  sqlSession.selectList("member.selectStore",category);
+	public int selectMenuCount() {
+		return sqlSession.selectOne("member.selectMenuCount");
+	}
+	
+	@Override
+	public int drop(String memberId) {
+		return sqlSession.delete("member.drop",memberId);
+	}
+	@Override
+	public List<Store> selectStore(String category,int cPage,int numPerPage){
+		RowBounds rb=new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return  sqlSession.selectList("member.selectStore",category,rb);
 	}
 
 	@Override
