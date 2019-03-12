@@ -43,7 +43,19 @@ public class QnaMngDaoImpl implements QnaMngDao {
 
 	// 회원 문의 답변 등록
 	@Override
-	public int insertMemberQnaRe(Map map) {
+	public int insertMemberQnaReview(Map map) {
 		return session.insert("qna.insertMemberQnaReview", map);
+	}
+
+	// 회원 문의 답변 삭제
+	@Override
+	public int deleteMemberQnaReview(int no) {
+		return session.delete("qna.deleteMemberQnaReview", no);
+	}
+
+	// 회원 문의 답변 수정
+	@Override
+	public int updateMemberQnaReview(Map map) {
+		return session.update("qna.deleteMemberQnaReview", map);
 	}	
 }

@@ -48,12 +48,6 @@ public class QnaMngController {
 		return mv;
 	}
 	
-	// 사장님 문의 내역 리스트
-	@RequestMapping("/admin/ownerQnaList.do")
-	public String ownerQnaList() {
-		return "admin/ownerQnaList";
-	}
-	
 	// 회원 문의 보기
 	@RequestMapping("/admin/memberQnaView.do")
 	public ModelAndView memberQnaView(@RequestParam("no") int no) {
@@ -99,9 +93,9 @@ public class QnaMngController {
 		map.put("context", context);
 		map.put("no", no);
 		
-		int result = service.insertMemberQnaRe(map);
+		int result = service.insertMemberQnaReview(map);
 		String msg = "";
-		String loc = "/admin/memberQnaView.do";
+		String loc = "/admin/memberQnaView.do?no="+no;
 		
 		if(result > 0) {
 			msg = "답변 완료!";			
@@ -113,6 +107,65 @@ public class QnaMngController {
 		mv.addObject("loc", loc);
 		mv.setViewName("common/msg");
 		
+		return mv;
+	}
+
+	// 회원 문의 답변 삭제
+	@RequestMapping("/admin/deleteMemberQnaReview.do")
+	public ModelAndView deleteMemberQnaReview(@RequestParam("no") int no) {
+		ModelAndView mv = new ModelAndView();		
+		int result = service.deleteMemberQnaReview(no);
+		String msg = "";
+		String loc = "/admin/memberQnaView.do?no="+no;
+		
+		if(result > 0) {
+			msg = "답변 삭제 완료!";
+		} else {
+			msg = "답변 삭제 실패...";
+		}
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}	
+	
+	// 회원 문의 답변 수정
+	@RequestMapping("/admin/updateMemberQnaReview.do")
+	public ModelAndView updateMemberQnaReview(@RequestParam("no") int no, @RequestParam("updateContext") String context) {
+		ModelAndView mv = new ModelAndView();
+		Map map = new HashMap();
+		map.put("no", no);
+		map.put("context", context);
+		int result = service.updateMemberQnaReview(map);
+		String msg = "";
+		String loc = "/admin/memberQnaView.do?no="+no;
+		
+		if(result > 0) {
+			msg = "답변 삭제 완료!";
+		} else {
+			msg = "답변 삭제 실패...";
+		}
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}	
+	
+	// 사장님 문의 내역 리스트
+	@RequestMapping("/admin/ownerQnaList.do")
+	public ModelAndView ownerQnaList() {
+		ModelAndView mv = new ModelAndView();
+		
+		// 회원 문의 리스트
+		List<MemberQna> mqList = service.selectMemberQnaList();
+		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		for(int i = 0; i < mqList.size(); i++) {
+			mqList.get(i).setFormatWriteDate(df.format(mqList.get(i).getWriteDate()));
+		}
+		
+		mv.addObject("mqList", mqList);		
+		mv.setViewName("admin/memberQnaList");
 		return mv;
 	}
 }
