@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.food.owner.member.model.vo.Owner;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
 
@@ -66,7 +67,7 @@ public class OnevsOneDaoImpl implements OnevsOneDao {
 
 	@Override
 	public int qnaReviewDelete(int qnaReviewCode) {
-		return session.delete("oneVSone.qnaDelete", qnaReviewCode);
+		return session.delete("oneVSone.qnaReviewDelete", qnaReviewCode);
 	}
 
 	@Override
@@ -82,6 +83,36 @@ public class OnevsOneDaoImpl implements OnevsOneDao {
 	@Override
 	public List<Map<String,String>> ownerAttach(int qnaCode) {
 		return session.selectList("oneVSone.ownerAttach", qnaCode);
+	}
+
+	@Override
+	public int qnaDelete(int qnaCode) {
+		return session.delete("oneVSone.qnaDelete", qnaCode);
+	}
+
+	@Override
+	public Owner selectMyPage(int ownerNum) {
+		return session.selectOne("oneVSone.selectMyPage", ownerNum);
+	}
+
+	@Override
+	public int updateMyPage(Map<String, Object> owner) {
+		return session.update("oneVSone.updateMyPage", owner);
+	}
+
+	@Override
+	public int selectQnaCount(int ownerNum) {
+		return session.selectOne("oneVSone.selectQnaCount", ownerNum);
+	}
+	
+	@Override
+	public int selectReCount(int ownerNum) {
+		return session.selectOne("oneVSone.selectReCount", ownerNum);
+	}
+
+	@Override
+	public int selectOwnerReCount(int ownerNum) {
+		return session.selectOne("oneVSone.selectOwnerReCount", ownerNum);
 	}
 
 }

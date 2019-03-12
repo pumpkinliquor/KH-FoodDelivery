@@ -51,7 +51,7 @@
 				<p>분류 : ${views.QNACATEGORY }
 			</div>
 			<div class="col-sm-2">
-				<button class="btn btn-default">삭제</button>
+				<button onclick="qnaDelete(${views.QNACODE});" class="btn btn-default">삭제</button>
 			</div>	
 		</div>
 		<br/>	
@@ -72,6 +72,13 @@
 				oriName=encodeURIComponent(oriName); //한글일 가능성 때문 
 				location.href="${path}/owner/fileDownLoad.do?oriName="+oriName+"&reName="+reName;
 				return true;
+			}
+		}
+		//게시물 삭제
+		function qnaDelete(qnaCode){
+			if(confirm("정말 삭제하시겠습니까?")){
+			location.href="${path}/owner/qnaDelete.do?qnaCode="+qnaCode;
+			return true;
 			}
 		}
 		//로그인 예외처리

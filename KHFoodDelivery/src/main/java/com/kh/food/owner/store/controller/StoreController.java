@@ -2,7 +2,6 @@ package com.kh.food.owner.store.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,10 +63,10 @@ public class StoreController {
 			String loc="/owner/storeForm.do";
 			
 			if(result>0) {
-				msg="성공";
+				msg="업체 등록 신청을 완료하였습니다.";
 			}
 			else {
-				msg="실패";
+				msg="업체 등록 신청을 실패하였습니다.";
 			}
 			
 			mv.addObject("msg", msg);

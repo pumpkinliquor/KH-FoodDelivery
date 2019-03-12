@@ -43,7 +43,7 @@
 		UPDATE OWNER_QNA_REVIEW SET WRITEDATE=SYSDATE, REVIEWCONTEXT=#{updateContext} WHERE QNAREVIEWCODE=#{reQnaReviewCode}
 	</update>
 	
-	<delete id="qnaDelete" parameterType="_int">
+	<delete id="qnaReviewDelete" parameterType="_int">
 		DELETE FROM OWNER_QNA_REVIEW WHERE QNAREVIEWCODE=#{qnaReviewCode}
 	</delete>
 	
@@ -58,5 +58,29 @@
 	
 	<select id="ownerAttach" parameterType="_int" resultType="map">
 		SELECT * FROM OWNER_QNA_ATTACHMENT WHERE QNACODE=#{qnaCode}
+	</select>
+	
+	<delete id="qnaDelete" parameterType="_int">
+		DELETE FROM OWNER_QNA WHERE QNACODE=#{qnaCode}
+	</delete>
+	
+	<select id="selectMyPage" parameterType="_int" resultType="ownermember">
+		SELECT * FROM OWNER WHERE OWNERNUM=#{ownerNum}
+	</select>
+	
+	<update id="updateMyPage" parameterType="map">
+		UPDATE OWNER SET OWNERID=#{ownerId}, OWNERNAME=#{ownerName}, OWNERPW=#{ownerRePw}, OWNERPHONE=#{ownerPhone}, OWNEREMAIL=#{ownerEmail} WHERE OWNERNUM=#{ownerNum}
+	</update>
+	
+	<select id="selectQnaCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM OWNER_QNA WHERE OWNERNUM=#{ownerNum}
+	</select>
+	
+	<select id="selectReCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM OWNER_QNA_REVIEW WHERE OWNERNUM=#{ownerNum}
+	</select>
+	
+	<select id="selectOwnerReCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM OWNER_REVIEW A LEFT JOIN OWNER B ON B.OWNERNUM=A.REVIEWNUM WHERE B.OWNERNUM=#{ownerNum}
 	</select>
 </mapper>
