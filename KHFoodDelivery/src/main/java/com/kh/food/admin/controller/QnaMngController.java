@@ -3,6 +3,7 @@ package com.kh.food.admin.controller;
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +43,7 @@ public class QnaMngController {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		for(int i = 0; i < mqList.size(); i++) {
 			mqList.get(i).setFormatWriteDate(df.format(mqList.get(i).getWriteDate()));
-		}
+		}		
 		
 		mv.addObject("mqList", mqList);		
 		mv.setViewName("admin/memberQnaList");
@@ -51,10 +52,26 @@ public class QnaMngController {
 	
 	// 회원 문의 검색
 	@RequestMapping("/admin/searchMemberQna.do")
-	public ModelAndView searchMemberQna(@RequestParam("keyword") String keyword) {
+	public ModelAndView searchMemberQna(@RequestParam("keyword") String keyword,
+										@RequestParam("isRe") String isRe,
+										@RequestParam("category") String[] category) {
 		ModelAndView mv = new ModelAndView();
 		
-		List<MemberQna> mqList = service.searchMemberQna(keyword);
+		logger.debug("keyword :" + keyword);
+		logger.debug("isRe :" + isRe);
+		logger.debug("category :" + category[0]);		
+		
+		List<String> categoryList = new ArrayList();		
+		for(int i = 0; i < category.length; i++) {
+			categoryList.add(category[i]);		
+		}
+		
+		Map map = new HashMap();
+		map.put("keyword", keyword);
+		map.put("isRe", isRe);
+		map.put("category", categoryList);
+		
+		List<MemberQna> mqList = service.searchMemberQna(map);
 		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		for(int i = 0; i < mqList.size(); i++) {
@@ -77,7 +94,6 @@ public class QnaMngController {
 		// 문의 날짜 포맷
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		mq.setFormatWriteDate(df.format(mq.getWriteDate()));
-		
 		
 		// 문의 답변
 		try {
@@ -112,9 +128,9 @@ public class QnaMngController {
 		map.put("context", context);
 		map.put("no", no);
 		
-		service.insertMemberQnaReview(map);
-
-		mv.setViewName("redirect:/admin/memberQnaView.do?no=" + no);
+		int result = service.insertMemberQnaReview(map);		
+		
+		mv.setViewName("redirect:/admin/memberQnaView.do?no=" + no);	
 		
 		return mv;
 	}
@@ -140,6 +156,16 @@ public class QnaMngController {
 		mv.setViewName("redirect:/admin/memberQnaView.do?no=" + no);
 		return mv;
 	}	
+	
+	// 회원 문의글 삭제
+	@RequestMapping("/admin/deleteMemberQna.do")
+	public ModelAndView deleteMemberQna(@RequestParam("no") int no) {
+		ModelAndView mv = new ModelAndView();
+		
+		service.deleteMemberQna(no);
+		mv.setViewName("redirect:/admin/memberQnaList.do");
+		return mv;
+	}
 	
 	// 사장님 문의 내역 리스트
 	@RequestMapping("/admin/ownerQnaList.do")

@@ -61,8 +61,13 @@ public class QnaMngDaoImpl implements QnaMngDao {
 
 	// 회원 문의 검색
 	@Override
-	public List<MemberQna> searchMemberQna(String keyword) {
-		return session.selectList("qna.searchMemberQna", keyword);
+	public List<MemberQna> searchMemberQna(Map map) {
+		return session.selectList("qna.searchMemberQna", map);
 	}
-	
+
+	// 회원 문의글 삭제
+	@Override
+	public int deleteMemberQna(int no) {
+		return session.delete("qna.deleteMemberQna", no);
+	}
 }
