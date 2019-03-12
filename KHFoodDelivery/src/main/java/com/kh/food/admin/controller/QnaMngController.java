@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.admin.model.service.QnaMngService;
+import com.kh.food.owner.onevsone.model.vo.OwnerQna;
 import com.kh.food.qna.model.vo.MemberQna;
 import com.kh.food.qna.model.vo.MemberQnaReview;
 
@@ -45,6 +46,24 @@ public class QnaMngController {
 		
 		mv.addObject("mqList", mqList);		
 		mv.setViewName("admin/memberQnaList");
+		return mv;
+	}
+	
+	// 회원 문의 검색
+	@RequestMapping("/admin/searchMemberQna.do")
+	public ModelAndView searchMemberQna(@RequestParam("keyword") String keyword) {
+		ModelAndView mv = new ModelAndView();
+		
+		List<MemberQna> mqList = service.searchMemberQna(keyword);
+		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		for(int i = 0; i < mqList.size(); i++) {
+			mqList.get(i).setFormatWriteDate(df.format(mqList.get(i).getWriteDate()));
+		}
+				
+		mv.addObject("mqList", mqList);		
+		mv.setViewName("admin/memberQnaList");
+				
 		return mv;
 	}
 	
@@ -93,19 +112,9 @@ public class QnaMngController {
 		map.put("context", context);
 		map.put("no", no);
 		
-		int result = service.insertMemberQnaReview(map);
-		String msg = "";
-		String loc = "/admin/memberQnaView.do?no="+no;
-		
-		if(result > 0) {
-			msg = "답변 완료!";			
-		} else {
-			msg = "답변 등록 실패...";
-		}
-		
-		mv.addObject("msg", msg);
-		mv.addObject("loc", loc);
-		mv.setViewName("common/msg");
+		service.insertMemberQnaReview(map);
+
+		mv.setViewName("redirect:/admin/memberQnaView.do?no=" + no);
 		
 		return mv;
 	}
@@ -114,18 +123,9 @@ public class QnaMngController {
 	@RequestMapping("/admin/deleteMemberQnaReview.do")
 	public ModelAndView deleteMemberQnaReview(@RequestParam("no") int no) {
 		ModelAndView mv = new ModelAndView();		
-		int result = service.deleteMemberQnaReview(no);
-		String msg = "";
-		String loc = "/admin/memberQnaView.do?no="+no;
-		
-		if(result > 0) {
-			msg = "답변 삭제 완료!";
-		} else {
-			msg = "답변 삭제 실패...";
-		}
-		mv.addObject("msg", msg);
-		mv.addObject("loc", loc);
-		mv.setViewName("common/msg");
+		service.deleteMemberQnaReview(no);
+
+		mv.setViewName("redirect:/admin/memberQnaView.do?no=" + no);
 		return mv;
 	}	
 	
@@ -136,18 +136,8 @@ public class QnaMngController {
 		Map map = new HashMap();
 		map.put("no", no);
 		map.put("context", context);
-		int result = service.updateMemberQnaReview(map);
-		String msg = "";
-		String loc = "/admin/memberQnaView.do?no="+no;
-		
-		if(result > 0) {
-			msg = "답변 삭제 완료!";
-		} else {
-			msg = "답변 삭제 실패...";
-		}
-		mv.addObject("msg", msg);
-		mv.addObject("loc", loc);
-		mv.setViewName("common/msg");
+		service.updateMemberQnaReview(map);				
+		mv.setViewName("redirect:/admin/memberQnaView.do?no=" + no);
 		return mv;
 	}	
 	
@@ -156,16 +146,16 @@ public class QnaMngController {
 	public ModelAndView ownerQnaList() {
 		ModelAndView mv = new ModelAndView();
 		
-		// 회원 문의 리스트
-		List<MemberQna> mqList = service.selectMemberQnaList();
+		// 사장 문의 리스트
+		List<OwnerQna> oqList = service.selectOwnerQnaList();
 		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		for(int i = 0; i < mqList.size(); i++) {
-			mqList.get(i).setFormatWriteDate(df.format(mqList.get(i).getWriteDate()));
+		for(int i = 0; i < oqList.size(); i++) {
+			oqList.get(i).setFormatWriteDate(df.format(oqList.get(i).getWriteDate()));
 		}
 		
-		mv.addObject("mqList", mqList);		
-		mv.setViewName("admin/memberQnaList");
+		mv.addObject("oqList", oqList);		
+		mv.setViewName("admin/ownerQnaList");
 		return mv;
 	}
 }

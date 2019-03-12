@@ -58,4 +58,10 @@ public class QnaMngServiceImpl implements QnaMngService {
 	public int updateMemberQnaReview(Map map) {
 		return dao.updateMemberQnaReview(map);
 	}
+
+	// 회원 문의 검색
+	@Override
+	public List<MemberQna> searchMemberQna(String keyword) {
+		return dao.searchMemberQna(keyword);
+	}
 }
