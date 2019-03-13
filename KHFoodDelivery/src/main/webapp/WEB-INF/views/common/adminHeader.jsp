@@ -13,7 +13,7 @@
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/sweetalert.css" />
-	<script type="text/javascript" src="${path }/resources/js/sweetalert.min.js'/>"></script>
+	<script type="text/javascript" src="${path }/resources/js/sweetalert.js'/>"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>finalproject</title>
 </head>

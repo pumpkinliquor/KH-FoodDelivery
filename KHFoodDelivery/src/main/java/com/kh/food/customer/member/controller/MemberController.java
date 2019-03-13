@@ -274,10 +274,22 @@ public class MemberController {
 		mv.addObject("pageBar",PagingFactory.getPageBar2(category,count, cPage, numPerPage, "/food/customer/searchmenuView"));
 		mv.addObject("list",list);
 		mv.setViewName("customer/searchMenu");
-		
+	
 		
 		return mv;
 	}	
+	
+	@RequestMapping("/customer/menuInfo")
+	public ModelAndView infoMenu(ModelAndView mv,int businessCode)
+	{
+		
+//		List<Store> list=service.menuInfo(businessCode);
+		mv.setViewName("customer/menuInfo");
+		
+		return mv;
+	}
+	
+	
 	
 	
 	

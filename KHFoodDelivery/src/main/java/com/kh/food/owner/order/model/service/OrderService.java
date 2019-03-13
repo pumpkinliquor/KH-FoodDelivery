@@ -6,5 +6,7 @@ import java.util.Map;
 public interface OrderService {
 
 	List<Map<String, String>> selectOrderList();
+
+	List<Map<String,String>> selectPayOrderNum(String payOrderNum);
 	
 }

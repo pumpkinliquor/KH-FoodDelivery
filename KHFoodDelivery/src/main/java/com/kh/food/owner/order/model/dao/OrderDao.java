@@ -7,4 +7,6 @@ public interface OrderDao {
 
 	List<Map<String, String>> selectOrderList();
 
+	List<Map<String,String>> selectPayOrderNum(String payOrderNum);
+
 }
