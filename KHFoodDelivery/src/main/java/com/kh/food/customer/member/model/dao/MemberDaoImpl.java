@@ -18,6 +18,12 @@ public class MemberDaoImpl implements MemberDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
+	
+	@Override
+	public List<Store> menuInfo(int businessCode) {
+		return sqlSession.selectList("member.selectStore2",businessCode);
+	}
+
 	@Override
 	public int selectMenuCount() {
 		return sqlSession.selectOne("member.selectMenuCount");

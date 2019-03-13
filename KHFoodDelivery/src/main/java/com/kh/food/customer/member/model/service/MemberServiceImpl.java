@@ -20,6 +20,11 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
+	public List<Store> menuInfo(int businessCode) {
+		return dao.menuInfo(businessCode);
+	}
+	
+	@Override
 	public int drop(String memberId) {
 		return dao.drop(memberId);
 	}

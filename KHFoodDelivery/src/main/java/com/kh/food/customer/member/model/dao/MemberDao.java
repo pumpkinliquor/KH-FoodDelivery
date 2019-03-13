@@ -17,4 +17,5 @@ public interface MemberDao {
 	List<Store> selectStore(String category,int cPage,int numPerPage);
 	int selectMenuCount();
 	int drop(String memberId);
+	List<Store> menuInfo(int businessCode);
 }

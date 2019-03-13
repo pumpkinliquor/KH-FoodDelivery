@@ -264,7 +264,7 @@ div.newsletter,div.group{display:inline-block;}
                </div>     
                </div>          
        </div>
-                 <div id="map" style="width:300px;height:300px;"></div>
+                <!--  <div id="map" style="width:300px;height:300px;"></div> -->
  
 
                             
