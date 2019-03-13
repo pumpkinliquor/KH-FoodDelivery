@@ -9,21 +9,24 @@ public class Member {
 	private String memberPw;
 	private String memberName;
 	private String memberAddress;
-	private Date memberBirth;
+	private String memberBirth;
 	private String memberPhone;
 	private String memberEmail;
 	private String nickName;
 	private Date memberEnrollDate;
-	private String memberGender;
+	private char memberGender;
 	private String mileage;
 	private int longitude;
 	private int atitude;
 	private int isAdmin;
 	private String profileImage;
 	private String formatBirth;
+	public Member() {
+		super();
+	}
 	public Member(int memberNum, String memberId, String memberPw, String memberName, String memberAddress,
-			Date memberBirth, String memberPhone, String memberEmail, String nickName, Date memberEnrollDate,
-			String memberGender, String mileage, int longitude, int atitude, int isAdmin, String profileImage,
+			String memberBirth, String memberPhone, String memberEmail, String nickName, Date memberEnrollDate,
+			char memberGender, String mileage, int longitude, int atitude, int isAdmin, String profileImage,
 			String formatBirth) {
 		super();
 		this.memberNum = memberNum;
@@ -43,9 +46,6 @@ public class Member {
 		this.isAdmin = isAdmin;
 		this.profileImage = profileImage;
 		this.formatBirth = formatBirth;
-	}
-	public Member() {
-		super();
 	}
 	public int getMemberNum() {
 		return memberNum;
@@ -77,10 +77,10 @@ public class Member {
 	public void setMemberAddress(String memberAddress) {
 		this.memberAddress = memberAddress;
 	}
-	public Date getMemberBirth() {
+	public String getMemberBirth() {
 		return memberBirth;
 	}
-	public void setMemberBirth(Date memberBirth) {
+	public void setMemberBirth(String memberBirth) {
 		this.memberBirth = memberBirth;
 	}
 	public String getMemberPhone() {
@@ -107,10 +107,10 @@ public class Member {
 	public void setMemberEnrollDate(Date memberEnrollDate) {
 		this.memberEnrollDate = memberEnrollDate;
 	}
-	public String getGender() {
+	public char getMemberGender() {
 		return memberGender;
 	}
-	public void setGender(String memberGender) {
+	public void setMemberGender(char memberGender) {
 		this.memberGender = memberGender;
 	}
 	public String getMileage() {
@@ -125,10 +125,10 @@ public class Member {
 	public void setLongitude(int longitude) {
 		this.longitude = longitude;
 	}
-	public int getLatitude() {
+	public int getAtitude() {
 		return atitude;
 	}
-	public void setLatitude(int atitude) {
+	public void setAtitude(int atitude) {
 		this.atitude = atitude;
 	}
 	public int getIsAdmin() {
@@ -149,20 +149,17 @@ public class Member {
 	public void setFormatBirth(String formatBirth) {
 		this.formatBirth = formatBirth;
 	}
-	
-
-	
-	
-	
-	
 	@Override
 	public String toString() {
 		return "Member [memberNum=" + memberNum + ", memberId=" + memberId + ", memberPw=" + memberPw + ", memberName="
 				+ memberName + ", memberAddress=" + memberAddress + ", memberBirth=" + memberBirth + ", memberPhone="
 				+ memberPhone + ", memberEmail=" + memberEmail + ", nickName=" + nickName + ", memberEnrollDate="
-				+ memberEnrollDate + ", gender=" + memberGender + ", mileage=" + mileage + ", longitude=" + longitude
-				+ ", latitude=" + atitude + ", isAdmin=" + isAdmin + ", profileImage=" + profileImage
+				+ memberEnrollDate + ", memberGender=" + memberGender + ", mileage=" + mileage + ", longitude="
+				+ longitude + ", atitude=" + atitude + ", isAdmin=" + isAdmin + ", profileImage=" + profileImage
 				+ ", formatBirth=" + formatBirth + "]";
 	}
+	
+	
+
 	
 }

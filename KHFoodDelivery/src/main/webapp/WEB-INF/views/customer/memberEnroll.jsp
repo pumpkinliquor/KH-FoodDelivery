@@ -211,13 +211,13 @@ pageEncoding="UTF-8"%>
             <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" >
             <input type="tel" class="form-control" placeholder="전화번호 (예:01012345678)" name="memberPhone" id="memberPhone" maxlength="11"/>
             <input type="text" class="form-control" onclick="address();" placeholder="주소" name="memberAddress" id="memberAddress"/>
-            <select class="form-control" name="memberGender" >
+              <select class="form-control" name="memberGender" required>
                <option value="" disabled selected>성별</option>
                <option value="M">남</option>
                <option value="F">여</option>
             </select>
          	<input type="text" class="form-control" placeholder="경도(일단입력(int))" name="longitude" id="longitude"/>
-            <input type="text" class="form-control" placeholder="위도(일단 입력(int))"name="atitude" id="atitude"/> 
+            <input type="text" class="form-control" placeholder="위도(일단 입력(int))" name="atitude" id="atitude"/> 
      																					
             <br />
             
