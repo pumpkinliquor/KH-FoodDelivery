@@ -31,7 +31,7 @@ pageEncoding="UTF-8"%>
 
             	//비밀번호 확인
             		$('#memberPw2').blur(function(){
-            			memberPw = $("#memberPw_").val();
+            			memberPw = $("#memberPw").val();
             			var passwordRules =  /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
             			
             			console.log("패스워드룰"+passwordRules.test(memberPw));
@@ -44,7 +44,7 @@ pageEncoding="UTF-8"%>
              		   		
              		   		}
              		   	}
-            			if($('#memberPw_').val() != $('#memberPw2').val()){
+            			if($('#memberPw').val() != $('#memberPw2').val()){
             		    	if($('#memberPw2').val()!=''){
             			    alert("비밀번호가 일치하지 않습니다.");
             		    	    $('#memberPw2').val('');
@@ -68,8 +68,8 @@ pageEncoding="UTF-8"%>
 	            
 	            
             	$(function(){
-            		$("#memberId_").keyup(function(){
-            			memberId=$("#memberId_").val().trim();
+            		$("#memberId").keyup(function(){
+            			memberId=$("#memberId").val().trim();
             			if(memberId.length<4)
             			{
             				
@@ -196,36 +196,33 @@ pageEncoding="UTF-8"%>
             </script>
       <div id="enroll-container">
         <form name="enroll" action="${path}/member/memberEnrollEnd.do" method="post" onsubmit="return validate();">
+       <input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="memberId" id="memberId"/>
             <span class="guide ok">사용 가능한 아이디입니다. </span>
             <span class="guide error">아이디가 존재합니다. </span>
-            
-       <input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="memberId" id="memberId_" required>
-       
-           
-            <input type="password" class="form-control" placeholder="비밀번호" name="memberPw" id="memberPw_" required>
-            <input type="password" class="form-control" placeholder="비밀번호확인"name="memberPw2" id="memberPw2" required>
+            <input type="password" class="form-control" placeholder="비밀번호" name="memberPw" id="memberPw"/>
+            <input type="password" class="form-control" placeholder="비밀번호확인"name="memberPw2" id="memberPw2"/>
             	<span class="guide1 ok1">비밀번호가 일치합니다. </span>
         
-            <input type="text" class="form-control" placeholder="이름" name="memberName" id="memberName" required>
-             <input type="text" class="form-control" placeholder="닉네임" name="nickName" id="nickName" required>
+            <input type="text" class="form-control" placeholder="이름" name="memberName" id="memberName"/>
+             <input type="text" class="form-control" placeholder="닉네임" name="nickName" id="nickName"/>
              <span class="guide2 ok2">사용 가능한 닉네임입니다. </span>
             <span class="guide2 error2">닉네임이 존재합니다. </span>
-            <input type="number" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth" maxlength="6" oninput="maxLengthCheck(this)" required>
-            <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" required>
-            <input type="tel" class="form-control" placeholder="전화번호 (예:01012345678)" name="memberPhone" id="memberPhone" maxlength="11" required>
-            <input type="text" class="form-control" onclick="address();" placeholder="주소" name="memberAddress" id="memberAddress" required>
-            <select class="form-control" name="gender" required>
+            <input type="date" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth"  min="1900-01-01"/>
+            <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" >
+            <input type="tel" class="form-control" placeholder="전화번호 (예:01012345678)" name="memberPhone" id="memberPhone" maxlength="11"/>
+            <input type="text" class="form-control" onclick="address();" placeholder="주소" name="memberAddress" id="memberAddress"/>
+            <select class="form-control" name="memberGender" >
                <option value="" disabled selected>성별</option>
                <option value="M">남</option>
                <option value="F">여</option>
             </select>
-         	<input type=text" class="form-control" placeholder="경도(일단입력(int))" name="longitude" id="longitude" required>
-            <input type="text" class="form-control" placeholder="위도(일단 입력(int))"name="latitude" id="latitude" required> 
-     		
+         	<input type="text" class="form-control" placeholder="경도(일단입력(int))" name="longitude" id="longitude"/>
+            <input type="text" class="form-control" placeholder="위도(일단 입력(int))"name="atitude" id="atitude"/> 
+     																					
             <br />
             
-            <input type="submit" class="btn btn-outline-secondary" value="가입" >&nbsp;
-            <input type="reset" class="btn btn-outline-secondary" value="취소">
+            <input  type="submit" class="btn btn-outline-secondary" value="가입"/>&nbsp;
+            <input type="reset" class="btn btn-outline-secondary" value="취소"/>
          </form>
       </div>
       

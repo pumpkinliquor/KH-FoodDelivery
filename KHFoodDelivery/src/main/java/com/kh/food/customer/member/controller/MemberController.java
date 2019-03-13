@@ -232,10 +232,10 @@ public class MemberController {
 	
 	//회원가입완료
 	@RequestMapping("/member/memberEnrollEnd.do")
-	public String memberEnrollEnd(Member m,Model model)
+	public ModelAndView memberEnrollEnd(Member m)
 	{
 		
-		logger.debug("왜 안들어오니?");
+		ModelAndView mv=new ModelAndView();
 		System.out.println(m);
 		String rawPw=m.getMemberPw();
 		System.out.println("암호화전"+rawPw);
@@ -253,9 +253,30 @@ public class MemberController {
 			msg="회원가입 실패하였습니다.";
 			
 		}
-		model.addAttribute("msg",msg);
-		model.addAttribute("loc",loc);
-		return "common/msg";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	
+	//테스트
+	
+	@RequestMapping("/customer/test.do")
+	public String test()
+	{
+		return "customer/test";
+	}
+	
+	@RequestMapping("/customer/test1.do")
+	public String test1()
+	{
+		return "customer/test1";
+	}
+	@RequestMapping("/customer/test2.do")
+	public String test2()
+	{
+		return "customer/test2";
 	}
 	
 	//테스트용
@@ -287,7 +308,9 @@ public class MemberController {
 	public ModelAndView infoMenu(ModelAndView mv,int businessCode)
 	{
 		
-//		List<Store> list=service.menuInfo(businessCode);
+		List<Store> list=service.menuInfo(businessCode);
+		
+		mv.addObject("list",list);
 		mv.setViewName("customer/menuInfo");
 		
 		return mv;
