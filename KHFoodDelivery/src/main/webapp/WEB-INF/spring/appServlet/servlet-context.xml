@@ -18,6 +18,8 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	
+	
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -44,19 +46,19 @@
 	</beans:bean>
 	 
 	 
-	 
-	 <!--JSON처리를 위한 jsonview를 등록 -->
+<!-- json 처리를 위한 jsonView 등록 -->
 	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="1"/>
 	</beans:bean>
-	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/> 
+	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/>
 	
+	<!-- jackson 처리를 위한 객체 등록 -->	
 	<beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-		<beans:property name="messageConverters">
+		<beans:property name="messageConverters"> <!-- s붙이면 list가능 -->
 			<beans:list>
 				<beans:bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></beans:bean>
 			</beans:list>
-		</beans:property>	
+		</beans:property>
 	</beans:bean>
 	 
 </beans:beans>

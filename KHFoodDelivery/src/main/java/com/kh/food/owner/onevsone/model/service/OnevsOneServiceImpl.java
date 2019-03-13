@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.food.owner.member.model.vo.Owner;
 import com.kh.food.owner.onevsone.model.dao.OnevsOneDao;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
@@ -95,5 +96,33 @@ public class OnevsOneServiceImpl implements OnevsOneService {
 		return dao.ownerAttach(qnaCode);
 	}
 
+	@Override
+	public int qnaDelete(int qnaCode) {
+		return dao.qnaDelete(qnaCode);
+	}
 
+	@Override
+	public Owner selectMyPage(int ownerNum) {
+		return dao.selectMyPage(ownerNum);
+	}
+
+	@Override
+	public int updateMyPage(Map<String, Object> owner) {
+		return dao.updateMyPage(owner);
+	}
+
+	@Override
+	public int selectQnaCount(int ownerNum) {
+		return dao.selectQnaCount(ownerNum);
+	}
+
+	@Override
+	public int selectReCount(int ownerNum) {
+		return dao.selectReCount(ownerNum);
+	}
+
+	@Override
+	public int selectOwnerReCount(int ownerNum) {
+		return dao.selectOwnerReCount(ownerNum);
+	}
 }

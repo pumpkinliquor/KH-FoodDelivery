@@ -6,34 +6,41 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/WEB-INF/views/common/searchHeader.jsp"/>
 <style>
-div.store{border:1px solid black;}
-div.store a{text-decoration:none; color:black;}
+div.store{border:1px solid #E4E4E4; background-color:#FFFFFF;margin:6px;position: relative; display:inline-block;}
+div.store a{text-decoration:none; color:black; text-align:left;}  
+div.me{margin-top:-8%;} 
+body{background-color:#F6F6F6;}
+div.a{text-align:center;}
+div.me div.a .option{text-align:center;}
 </style>
    
 
 <section>
 
-<div class="container">
-
-	 <div class="store row">
+<div class="me container">
+	<div class="a">
+	<a class="option">간신배 등록 음식점</a>
+	<br/><br/>
+	
 	
 	<c:forEach items="${list}" var="i" >
-	<div><a href="#">이름: ${i.storeName}</a><br/>
-	<a href="#">가게 번호: ${i.storePhone}</a><br/>
-	<a href="#">가게 주소: ${i.storeAddress}</a><br/>
-	<a href="#">이미지: ${i.storeImage}</a><br/>
-	<a href="#">프로필:  ${i.storeProfile}</a><br/>
-	<a href="#">사장번호: ${i.businessPhone}</a><br/>
+	 <div class="store col-lg-5">
+	  
+	<div>
+	<a href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">이름: ${i.storeName}</a><br/>
+	<a href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">가게 번호: ${i.storePhone}</a><br/>
+	<a href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">가게 주소: ${i.storeAddress}</a><br/>
+	<a href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">이미지: ${i.storeImage}</a><br/>
+	<a href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">프로필:  ${i.storeProfile}</a><br/>
+	<a href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">사장번호: ${i.businessPhone}</a><br/>
 	
 	</div>
+</div>
 	</c:forEach>
-	
-
- 
-
+	</div>
 
 </div>
-</div>
+${pageBar}
 </section>
 
 

@@ -4,8 +4,11 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import ="java.sql.*" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-
+<%  
+	List<Map<String,String>> orderList = (List<Map<String,String>>)request.getAttribute("orderList");
+%>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 <style>
 .search{
@@ -55,31 +58,28 @@ pageEncoding="UTF-8"%>
 						</tr>
 					</thead>
 					<tbody>
-							<tr style="cursor:pointer;" onclick="fn_detailOrder();">
-								<td class="td1">1</td>
-								<td class="td1">2019-03-11/ 10:34</td>
-								<td class="td1">아이스 아메리카노 외 3잔</td>
-								<td class="td1">김일호</td>
-								<td class="td1">2000</td>
-								<td class="td1">16000</td>
-								<td class="td1">카카오페이</td>
+						<c:set var="sum" value="0"/>
+						<c:forEach var="o" items="${orderList}" varStatus="status">
+													<% for(int i=0; i<orderList.size(); i++){%>
+														
+													<% }%>
+							<c:if test="${orderList[status.index].PAYORDERNUM ne orderList[status.index+1].PAYORDERNUM}">			
+							<tr style="cursor:pointer;" onclick="fn_detailOrder(${o.PAYORDERNUM});">						
+								<td class="td1"><c:out value="${status.count}"/></td>
+								<td class="td1">${o.PAYDATE}</td>
+								<td class="td1">${o.MENUNAME}</td>
+								<td class="td1">${o.MEMBERNAME}</td>
+								<td class="td1"></td>							
+								<td class="td1"></td>
+								<td class="td1">${o.PAYORDERMETHOD}</td>							
 								<td><button class="btn btn-default statusBtn">주문접수</button><button class="btn btn-default statusBtn">배달중</button><button class="btn btn-default statusBtn">배달완료</button><button class="btn btn-default statusBtn">주문취소</button></td>
 							</tr>
+							</c:if>
 							
-							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/oneVSoneView.do?qnaCode=${one.QNACODE}'">
+						</c:forEach>							
+						<tr style="cursor:pointer;" onclick="location.href='${path}/owner/oneVSoneView.do?qnaCode=${one.QNACODE}'">
 								<td class="td1">1</td>
-								<td class="td1">2019-03-11/ 10:34</td>
-								<td class="td1">아이스 아메리카노 외 3잔</td>
-								<td class="td1">김일호</td>
-								<td class="td1">2000</td>
-								<td class="td1">16000</td>
-								<td class="td1">카카오페이</td>
-								<td><button class="btn btn-default statusBtn">주문접수</button><button class="btn btn-default statusBtn">배달중</button><button class="btn btn-default statusBtn">배달완료</button><button class="btn btn-default statusBtn">주문취소</button></td>
-							</tr>
-							
-							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/oneVSoneView.do?qnaCode=${one.QNACODE}'">
-								<td class="td1">1</td>
-								<td class="td1">2019-03-11/ 10:34</td>
+								<td class="td1">2019-03-11/ 10:aa34</td>
 								<td class="td1">아이스 아메리카노 외 3잔</td>
 								<td class="td1">김일호</td>
 								<td class="td1">2000</td>
@@ -135,7 +135,7 @@ pageEncoding="UTF-8"%>
                                                         <td width="12%">5600원</td>
                                                     </tr>
                                                     <tr style="cursor:pointer;">
-                                                        <td width="44%" >주문금액</td>                                                 
+                                                        <td class="orderPrice" width="44%" >주문금액</td>                                                 
                                                         <td width="12%">18400원</td>
                                                     </tr>
                                                     <tr style="cursor:pointer;">
@@ -148,15 +148,15 @@ pageEncoding="UTF-8"%>
                                                     </tr>
                                                     <tr style="cursor:pointer;">
                                                         <td width="70%">결제방법</td>                                                 
-                                                        <td width="30%">네이버페이</td>
+                                                        <td class="orderMethd" width="30%">네이버페이</td>
                                                     </tr>
                                                     <tr style="cursor:pointer;">
                                                         <td width="70%">주문자</td>                                                 
-                                                        <td width="30%">김일호</td>
+                                                        <td class="orderName" width="30%"></td>
                                                     </tr>
                                                     <tr style="cursor:pointer;">
                                                         <td width="70%">결제일</td>                                                 
-                                                        <td width="30%">2019-03-11-12:47</td>
+                                                        <td class="orderDate" width="30%"></td>
                                                     </tr>
                                                     
                                                 </tbody>
@@ -173,7 +173,7 @@ pageEncoding="UTF-8"%>
                                                     </tr>
                                                     <tr style="cursor:pointer;">
                                                         <td width="10%" >요청사항</td>                                                 
-                                                        <td width="80%">문을 크게 두드리지 말아주세요 집에 아기가 있어요. 아기가 울지도 몰라요</td>
+                                                        <td class="orderRequest" width="80%">문을 크게 두드리지 말아주세요 집에 아기가 있어요. 아기가 울지도 몰라요</td>
                                                     </tr>
                                                 </tbody>
                                             </table> 
@@ -199,11 +199,24 @@ pageEncoding="UTF-8"%>
 
 
 <script>
-function fn_detailOrder(){
+function fn_detailOrder(payOrderNum){
 	
-	$('#myModal').modal();
+	$.ajax({
+			url:"${path}/owner/selectPayOrderNum.do",
+			data: {"payOrderNum":payOrderNum},
+			success : function(data)
+			{
+				console.log(data);
+				console.log(data[0].PAYDATE);
+				$('.orderName').text(data[0].MEMBERNAME);
+				$('.orderDate').text(data[0].PAYDATE);
+				$('.orderRequest').text(data[0].PAYREQUEST);
+				$('#myModal').modal();
+			}
+		
+	});
 }
 
 
 </script>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include> 

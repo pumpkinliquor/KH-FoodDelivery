@@ -55,6 +55,11 @@ public class OwnerMemberServiceImpl implements OwnerMemberService {
 		return dao.ownerCheckId(ownerId);
 	}
 
+	@Override
+	public int lastDate(int ownerNum) {
+		return dao.lastDate(ownerNum);
+	}
+
 	
 	
 }

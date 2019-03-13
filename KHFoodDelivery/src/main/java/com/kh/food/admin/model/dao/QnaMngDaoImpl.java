@@ -26,7 +26,7 @@ public class QnaMngDaoImpl implements QnaMngDao {
 	// 사장 문의 리스트
 	@Override
 	public List<OwnerQna> selectOwnerQnaList() {
-		return null;
+		return session.selectList("qna.selectOwnerQnaList");
 	}
 
 	// 회원 문의 보기
@@ -43,7 +43,31 @@ public class QnaMngDaoImpl implements QnaMngDao {
 
 	// 회원 문의 답변 등록
 	@Override
-	public int insertMemberQnaRe(Map map) {
+	public int insertMemberQnaReview(Map map) {
 		return session.insert("qna.insertMemberQnaReview", map);
-	}	
+	}
+
+	// 회원 문의 답변 삭제
+	@Override
+	public int deleteMemberQnaReview(int no) {
+		return session.delete("qna.deleteMemberQnaReview", no);
+	}
+
+	// 회원 문의 답변 수정
+	@Override
+	public int updateMemberQnaReview(Map map) {
+		return session.update("qna.deleteMemberQnaReview", map);
+	}
+
+	// 회원 문의 검색
+	@Override
+	public List<MemberQna> searchMemberQna(Map map) {
+		return session.selectList("qna.searchMemberQna", map);
+	}
+
+	// 회원 문의글 삭제
+	@Override
+	public int deleteMemberQna(int no) {
+		return session.delete("qna.deleteMemberQna", no);
+	}
 }

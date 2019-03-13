@@ -17,8 +17,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.websocket.Transformation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.common.PagingFactory;
+import com.kh.food.owner.member.model.vo.Owner;
 import com.kh.food.owner.onevsone.model.service.OnevsOneService;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
@@ -33,6 +34,9 @@ import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
 @Controller
 public class OnevsOneController {
 
+	@Autowired
+	BCryptPasswordEncoder pwEncoder;
+	
 	@Autowired
 	OnevsOneService service;
 	
@@ -44,7 +48,7 @@ public class OnevsOneController {
 		int count=service.qnaCount();
 		
 		List<Map<String,String>> oneVSoneList=service.oneVSoneList(cPage, numPerPage);
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 //		for(int i = 0; i<oneVSoneList.size(); i++) {
 //			oneVSoneList.get(i).set(df.format(oneVSoneList.get(i).get("WRITEDATE")));
 //		}
@@ -329,5 +333,85 @@ public class OnevsOneController {
 			}
 			out.println("<script>alert('선택 하신 파일을 찾을 수 없습니다.'); history.go(-1);</script>");
 		}
+	}
+	
+	@RequestMapping("/owner/qnaDelete.do")
+	public ModelAndView qnaDelete(ModelAndView mv, int qnaCode) {
+		
+		System.out.println(qnaCode);
+		
+		int result=service.qnaDelete(qnaCode);
+		String msg="";
+		String loc="/owner/oneVSoneList.do";
+		
+		if(result>0) {
+			msg="성공";
+		}
+		else {
+			msg="실패";
+		}
+		
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		
+		mv.setViewName("common/msg");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/owner/myPage.do")
+	public ModelAndView myPage(HttpServletRequest request, ModelAndView mv) {
+		int ownerNum=(int) request.getSession().getAttribute("ownerNum");
+		
+		Owner owner=service.selectMyPage(ownerNum);
+		
+		int qnaCount=service.selectQnaCount(ownerNum);
+		int reviewCount=service.selectReCount(ownerNum);
+		int ownerReviewCount=service.selectOwnerReCount(ownerNum);
+		
+		mv.addObject("owner", owner);
+		mv.addObject("qnaCount", qnaCount);
+		mv.addObject("ownerReviewCount", ownerReviewCount);
+		mv.addObject("reviewCount", reviewCount);
+		
+		mv.setViewName("owner/ownerMyPage");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/owner/myPageUpdate.do")
+	public ModelAndView updateMyPage(HttpServletRequest request, ModelAndView mv, String ownerId, String ownerPw, String ownerName, String ownerPhone, String ownerEmail) {
+		
+		
+		String ownerRePw=pwEncoder.encode(ownerPw);
+		int ownerNum=(int) request.getSession().getAttribute("ownerNum");
+		Map<String,Object> owner=new HashMap<>();
+		
+		owner.put("ownerNum", ownerNum);
+		owner.put("ownerId", ownerId);
+		owner.put("ownerRePw", ownerRePw);
+		owner.put("ownerName", ownerName);
+		owner.put("ownerPhone", ownerPhone);
+		owner.put("ownerEmail", ownerEmail);
+		System.out.println(owner);
+		
+		int result=service.updateMyPage(owner);
+		
+		String msg="";
+		String loc="/owner/myPage.do";
+		
+		if(result>0) {
+			msg="성공";
+		}
+		else {
+			msg="실패";
+		}
+		
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		
+		mv.setViewName("common/msg");
+		
+		return mv;
 	}
 }

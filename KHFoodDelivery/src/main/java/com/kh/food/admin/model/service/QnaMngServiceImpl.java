@@ -43,7 +43,31 @@ public class QnaMngServiceImpl implements QnaMngService {
 
 	// 회원 문의 답변 등록
 	@Override
-	public int insertMemberQnaRe(Map map) {
-		return dao.insertMemberQnaRe(map);
+	public int insertMemberQnaReview(Map map) {
+		return dao.insertMemberQnaReview(map);
+	}
+
+	// 회원 문의 답변 삭제
+	@Override
+	public int deleteMemberQnaReview(int no) {
+		return dao.deleteMemberQnaReview(no);
+	}
+
+	// 회원 문의 답변 수정
+	@Override
+	public int updateMemberQnaReview(Map map) {
+		return dao.updateMemberQnaReview(map);
+	}
+
+	// 회원 문의 검색
+	@Override
+	public List<MemberQna> searchMemberQna(Map map) {
+		return dao.searchMemberQna(map);
+	}
+
+	// 회원 문의글 삭제
+	@Override
+	public int deleteMemberQna(int no) {
+		return dao.deleteMemberQna(no);
 	}
 }

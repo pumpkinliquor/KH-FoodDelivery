@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="qna">
 
+	<!-- resultMap : MemberQna -->
+	<resultMap type="map" id="memberQna"></resultMap>	
+	<!-- resultMap : MemberQnaReview -->
+	<resultMap type="map" id="memberQnaReview"></resultMap>
+	<!-- resultMap: OwnerQna -->
+	<resultMap type="map" id="ownerQna"></resultMap>
+
 	<!-- 회원 문의 리스트 -->
 	<select id="selectMemberQnaList" resultType="memberQna">
 		SELECT mq.*, m.memberId, (SELECT COUNT(*) FROM MEMBER_QNA_REVIEW r JOIN MEMBER_QNA ON(r.qnaCode = mq.qnaCode)) AS isRe FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum)
@@ -22,9 +29,47 @@
 		INSERT INTO MEMBER_QNA_REVIEW VALUES(#{no}, DEFAULT, #{context})
 	</insert>
 
-	<!-- resultMap : MemberQna -->
-	<resultMap type="map" id="memberQna"></resultMap>	
-	<!-- resultMap : MemberQnaReview -->
-	<resultMap type="map" id="memberQnaReview"></resultMap>
-
+	<!-- 회원 문의 답변 삭제 -->
+	<delete id="deleteMemberQnaReview" parameterType="_int">
+		DELETE FROM MEMBER_QNA_REVIEW WHERE qnaCode = #{no}
+	</delete>
+	
+	<!-- 회원 문의 답변 수정 -->
+	<update id="updateMemberQnaReview" parameterType="map">
+		UPDATE MEMBER_QNA_REVIEW SET reviewContext = #{context} WHERE qnaCode = #{no}
+	</update>
+	
+	<!-- 회원 문의 검색 -->
+	<select id="searchMemberQna" parameterType="map" resultType="memberQna">
+		SELECT mq.*, m.memberId, (SELECT COUNT(*) FROM MEMBER_QNA_REVIEW r JOIN MEMBER_QNA ON(r.qnaCode = mq.qnaCode)) AS isRe 
+		FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum) 
+		WHERE 
+			qnaTitle LIKE '%'||#{keyword}||'%'
+		AND 
+			<choose>
+				<when test="isRe eq 0">
+					(SELECT COUNT(*) FROM MEMBER_QNA_REVIEW r JOIN MEMBER_QNA ON(r.qnaCode = mq.qnaCode)) = 0
+				</when>
+				<when test="isRe eq 1">
+					(SELECT COUNT(*) FROM MEMBER_QNA_REVIEW r JOIN MEMBER_QNA ON(r.qnaCode = mq.qnaCode)) > 0
+				</when>
+				<otherwise>
+					1 = 1
+				</otherwise>
+			</choose>
+		AND
+			<foreach collection="category" item="cate" index="i" open="(" close=")" separator="OR">
+				qnaCategory = #{cate}
+			</foreach>
+	</select>
+	
+	<!-- 회원 문의글 삭제 -->
+	<delete id="deleteMemberQna" parameterType="_int">
+		DELETE FROM MEMBER_QNA WHERE qnaCode=#{no}
+	</delete>	
+	
+	<!-- 사장 문의 리스트 -->
+	<select id="selectOwnerQnaList" resultType="ownerQna">
+		SELECT oq.*, o.ownerId, (SELECT COUNT(*) FROM OWNER_QNA_REVIEW r JOIN OWNER_QNA ON(r.qnaCode = oq.qnaCode)) AS isRe FROM OWNER_QNA oq JOIN OWNER o ON(oq.ownerNum = o.ownerNum)
+	</select>
 </mapper>

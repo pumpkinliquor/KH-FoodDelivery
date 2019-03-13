@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
    	height:150px; 
 } 
 .btn{background-color:skyblue; color:white; margin-top:5%;}
-
+#drop{float:right;}
 </style>
 <script>
 $(document).ready(function() {
@@ -46,19 +46,17 @@ function fileUpload(){
 	$("#file").click();
 }
 
+function dropMember(){
+	if(!confirm("정말 탈퇴하시겠습니까?")){
+		return;
+	}
+	location.href="${path}/member/drop.do?memberId=${sessionScope.logined}";
+	
+}
 
 
 </script>
-	
-	
-			
- 			
- 	
- 	
- 	
- 	
- 	
- 	
+
 <div class="container">
 <div class="text-center">
   			<img onclick="fileUpload()" style="cursor: pointer;" title="profile image" class="avatar img-circle img-thumbnail" alt="avatar" src="${path}/resources/images/customer/mypage/user.jpg"/>
@@ -74,18 +72,17 @@ function fileUpload(){
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
-              <a href="${path}/member/memberInfoChange.do" class="list-group-item list-group-item-action active">회원정보변경</a>
-              <a href="${path }/customer/mypage.do" class="list-group-item list-group-item-action" style="z-index:0;">나의 주문내역</a>
+              <a href="${path}/customer/mypage.do?memberId=${sessionScope.logined}"  class="list-group-item list-group-item-action active">회원정보변경</a>
+              <a href="${path }/member/orderList.do" class="list-group-item list-group-item-action" style="z-index:0;">나의 주문내역</a>
               <a href="#" class="list-group-item list-group-item-action">즐겨찾는매장</a>
               <a href="#" class="list-group-item list-group-item-action">나의 문의내역</a>
-              <a href="#" class="list-group-item list-group-item-action">회원탈퇴</a>     
             </div> 
 		</div>
 		<div class="col-md-9 ">
 			
  			 <div class="row">
 		                <div class="col-md-12">
-		                    <form name="update" action="${path}/member/update.do" method="post" onsubmit="return update();" >
+		                    <form name="update" action="${path}/member/update.do" method="post" >
                               <div class="form-group row">
                                 <label for="username" class="col-4 col-form-label">아이디</label> 
                                 <div class="col-8">
@@ -130,7 +127,7 @@ function fileUpload(){
                               </div>
                               <div class="form-group row">
                                 <label for="publicinfo" class="col-4 col-form-label">성별</label> 
-                                <select class="form-control" name="gender" id="gender" required>
+                                <select class="form-control" name="memberGender" id="memberGender" required>
 					            <option value="" disabled selected>성별</option>
 					            <option value="M" ${member.gender=='M'?'selected':'' }>남</option>
 					            <option value="F" ${member.gender=='F'?'selected':'' }>여</option>
@@ -140,6 +137,9 @@ function fileUpload(){
                               
                               <input type="submit" class="btn btn-default" value="수정하기"/>&nbsp;
                               <input type="reset" class="btn btn-default" value="취소"/>
+                              
+                              
+                            <input type="button" onclick="dropMember();" class="btn btn-default" id="drop" value="탈퇴"/>
                             </form>
 		                </div>
 		            </div>
