@@ -127,7 +127,7 @@ function dropMember(){
                               </div>
                               <div class="form-group row">
                                 <label for="publicinfo" class="col-4 col-form-label">성별</label> 
-                                <select class="form-control" name="gender" id="gender" required>
+                                <select class="form-control" name="memberGender" id="memberGender" required>
 					            <option value="" disabled selected>성별</option>
 					            <option value="M" ${member.gender=='M'?'selected':'' }>남</option>
 					            <option value="F" ${member.gender=='F'?'selected':'' }>여</option>
