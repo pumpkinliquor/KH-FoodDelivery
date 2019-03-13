@@ -6,5 +6,4 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
   
-여기는 리뷰!!
-
+여기는 정보!!

@@ -259,6 +259,26 @@ public class MemberController {
 		return mv;
 	}
 	
+	
+	//테스트
+	
+	@RequestMapping("/customer/test.do")
+	public String test()
+	{
+		return "customer/test";
+	}
+	
+	@RequestMapping("/customer/test1.do")
+	public String test1()
+	{
+		return "customer/test1";
+	}
+	@RequestMapping("/customer/test2.do")
+	public String test2()
+	{
+		return "customer/test2";
+	}
+	
 	//테스트용
 	@RequestMapping("/map/test.do")
 	public String map()
@@ -288,7 +308,9 @@ public class MemberController {
 	public ModelAndView infoMenu(ModelAndView mv,int businessCode)
 	{
 		
-//		List<Store> list=service.menuInfo(businessCode);
+		List<Store> list=service.menuInfo(businessCode);
+		
+		mv.addObject("list",list);
 		mv.setViewName("customer/menuInfo");
 		
 		return mv;
