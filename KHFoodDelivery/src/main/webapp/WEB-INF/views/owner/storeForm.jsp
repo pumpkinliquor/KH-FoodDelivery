@@ -77,15 +77,15 @@ function execDaumPostcode(){
 			        	</tr>
 			        	 <tr>
 			                <th>사업자 이름</th>
-			                <td><input type="text" name="businessName" class="form-control" required></td>
+			                <td><input type="text" name="businessName" placeholder="10글자 미만으로 입력하세요." class="form-control" required></td>
 			            </tr>
 			             <tr>
 			                <th>사업자 연락처</th>
-			                <td><input type="tel" name="businessPhone" class="form-control" required></td>
+			                <td><input type="tel" name="businessPhone" placeholder="010-1234-5678" class="form-control" required></td>
 			            </tr>
 			             <tr>
 			                <th>사업자 등록 번호</th>
-			                <td><input type="text" name="businessNum" class="form-control" placeholder="123-45-67890 형식에 맞춰서 입력" required></td>
+			                <td><input type="text" name="businessNum" class="form-control" placeholder="123-45-67890 형식에 맞춰서 입력하세요." required></td>
 			            </tr>
 			        	<tr>
 			        		<th>카테고리</th>
@@ -105,24 +105,24 @@ function execDaumPostcode(){
 			        	</tr>
 			            <tr>
 			                <th>업체명</th>
-			                <td><input type="text" name="storeName" class="form-control" required></td>
+			                <td><input type="text" name="storeName" placeholder="25글자 미만으로 입력하세요." class="form-control" required></td>
 			            </tr>
 			             <tr>
 			                <th>업체 연락처</th>
-			                <td><input type="tel" name="storePhone" class="form-control" required></td>
+			                <td><input type="tel" name="storePhone" placeholder="02-123-4567 or 02-1234-5678" class="form-control" required></td>
 			            </tr>
 			             <tr>
 			                <th>주소</th>
 			                <td>
 			                	<button onclick="execDaumPostcode();" class="btn btn-default" style="float:left; margin-right:1em; ">주소찾기</button>
-			                	<input type="text" id="zip" class="form-control" style="width:7em;" value=""/>
-			                	<input type="text" id="addr1" name="frontAddress" class="form-control" style="width:30em; margin-top:1em;" value=""/>
-			                	<input type="text" id="addr2" name="backAddress" class="form-control" style="width:30em; margin-top:1em;" value=""/>
+			                	<input type="text" id="zip" class="form-control" style="width:7em;" placeholder="우편주소" value=""/>
+			                	<input type="text" id="addr1" name="frontAddress" placeholder="기본주소" class="form-control" style="width:30em; margin-top:1em;" value=""/>
+			                	<input type="text" id="addr2" name="backAddress" placeholder="상세주소" class="form-control" style="width:30em; margin-top:1em;" value=""/>
 			                </td>
 			            </tr>
 			             <tr>
 			                <th>배달 최저금액</th>
-			                <td><input type="number" name="minPrice" class="form-control" required></td>
+			                <td><input type="number" name="minPrice" placeholder="배달 시 최저주문금액을 적어주세요." class="form-control" required></td>
 			            </tr>
 			            <tr>
 			                <th>업체소개</th>
