@@ -54,22 +54,22 @@ public class QnaMngController {
 	@RequestMapping("/admin/searchMemberQna.do")
 	public ModelAndView searchMemberQna(@RequestParam("keyword") String keyword,
 										@RequestParam("isRe") String isRe,
-										@RequestParam("category") String[] category) {
+										@RequestParam("category") String category) {
 		ModelAndView mv = new ModelAndView();
 		
 		logger.debug("keyword :" + keyword);
 		logger.debug("isRe :" + isRe);
-		logger.debug("category :" + category[0]);		
+		logger.debug("category :" + category);		
 		
-		List<String> categoryList = new ArrayList();		
+		/*List<String> categoryList = new ArrayList();		
 		for(int i = 0; i < category.length; i++) {
 			categoryList.add(category[i]);		
-		}
+		}*/
 		
 		Map map = new HashMap();
 		map.put("keyword", keyword);
 		map.put("isRe", isRe);
-		map.put("category", categoryList);
+		map.put("category", category);
 		
 		List<MemberQna> mqList = service.searchMemberQna(map);
 		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)

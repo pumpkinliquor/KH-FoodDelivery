@@ -19,10 +19,6 @@
 </head>
 <body> 
 	<header>
-		<div class="headerDiv1">
-            <a href="#">로그인</a>
-            <a href="#">회원가입</a>
-        </div>
 		<nav class="navbar navbar-expand-sm  navbar-dark ">  
 			<!-- Links -->
 			<ul class="navbar-nav container ">

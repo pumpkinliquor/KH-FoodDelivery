@@ -58,9 +58,17 @@
 				</otherwise>
 			</choose>
 		AND
-			<foreach collection="category" item="cate" index="i" open="(" close=")" separator="OR">
+			<choose>
+				<when test="category eq '전체'">
+					1 = 1
+				</when>
+				<otherwise>
+					qnaCategory = #{category}
+				</otherwise>
+			</choose>
+			<!-- <foreach collection="category" item="cate" index="i" open="(" close=")" separator="OR">
 				qnaCategory = #{cate}
-			</foreach>
+			</foreach> -->
 	</select>
 	
 	<!-- 회원 문의글 삭제 -->
