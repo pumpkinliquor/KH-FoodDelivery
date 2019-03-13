@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberNotice">
+
+ <!-- 회원공지사항리스트 -->
+	<select id="selectMemberNoticeList" resultType="Map">
+	select a.*,(select count(*) from notice_attachment where noticenum=a.noticenum)
+	 as attachcount from notice a order by noticenum desc
+	</select> 
+	
+	<!-- 페이징 -->
+	<select id="notCount" resultType="_int">
+	select count(*) from notice
+	</select>
+	
+	<!-- 회원공지사항 뷰 -->
+	<select id="selectMemberNotice" parameterType="_int" resultType="Map">
+	select * from notice where noticenum=#{noticeNum}
+	</select>
+	<select id="selectAttach" parameterType="_int" resultType="Map">
+	select * from notice_attachment where noticenum=#{noticeNum}
+	</select>
+	
+	
+	
+	<!-- 회원공지사항 삭제 -->
+	<delete id="deleteMemberNotice" parameterType="_int">
+	delete from notice where noticenum=#{noticeNum}
+	</delete>
+	
+	<!-- 회원공지사항 등록 -->
+	<insert id="insertMemberNotice" parameterType="Map">
+	insert into notice values(seq_noticeNum.nextval, #{noticeTitle},sysdate,#{noticeContent})
+	<selectKey keyProperty="noticeNum" resultType="string" order="AFTER">
+		select seq_noticenum.currval from dual
+	</selectKey>
+	</insert>
+	<insert id="insertMemberNoticeAttach" parameterType="com.kh.food.admin.notice.attachment.vo.NoticeAttachment">
+	insert into NOTICE_ATTACHMENT values(SEQ_NOTICEATTACHMENTNO.NEXTVAL,#{noticeNum},#{originalFileName},#{renamedFileName},default,default)
+	</insert>
+	
+	<!-- 회원공지사항 수정 -->
+	<update id="memberNoticeUpdateEnd" parameterType="map">
+	update notice set noticetitle=#{noticeTitle }, noticeContent=#{noticeContent} where noticenum=#{noticeNum}	
+	</update>
+	
+	<update id="memberNoticeAUpdateEnd" parameterType="com.kh.food.admin.notice.attachment.vo.NoticeAttachment">
+	update notice_attachment set originalfilename=#{originalFileName}, renamedfilename=#{renamedFileName} where noticenum=#{noticeNum}
+	</update>
+</mapper>

@@ -31,7 +31,7 @@
 					<a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">공지사항</a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="${path }/admin/memberNoticeList.do">회원 공지사항</a>
-						<a class="dropdown-item" href="${path }/owner/noticeList.do">사장님 공지사항</a>
+						<a class="dropdown-item" href="${path }/owner/ownerNoticeList.do">사장님 공지사항</a>
 					</div>
 				</li>
 				<li class="nav-item">
