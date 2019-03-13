@@ -1,6 +1,6 @@
 package com.kh.food.customer.member.model.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Member {
 
@@ -14,16 +14,16 @@ public class Member {
 	private String memberEmail;
 	private String nickName;
 	private Date memberEnrollDate;
-	private String gender;
+	private String memberGender;
 	private String mileage;
 	private int longitude;
-	private int latitude;
+	private int atitude;
 	private int isAdmin;
 	private String profileImage;
 	private String formatBirth;
 	public Member(int memberNum, String memberId, String memberPw, String memberName, String memberAddress,
 			Date memberBirth, String memberPhone, String memberEmail, String nickName, Date memberEnrollDate,
-			String gender, String mileage, int longitude, int latitude, int isAdmin, String profileImage,
+			String memberGender, String mileage, int longitude, int atitude, int isAdmin, String profileImage,
 			String formatBirth) {
 		super();
 		this.memberNum = memberNum;
@@ -36,10 +36,10 @@ public class Member {
 		this.memberEmail = memberEmail;
 		this.nickName = nickName;
 		this.memberEnrollDate = memberEnrollDate;
-		this.gender = gender;
+		this.memberGender = memberGender;
 		this.mileage = mileage;
 		this.longitude = longitude;
-		this.latitude = latitude;
+		this.atitude = atitude;
 		this.isAdmin = isAdmin;
 		this.profileImage = profileImage;
 		this.formatBirth = formatBirth;
@@ -108,10 +108,10 @@ public class Member {
 		this.memberEnrollDate = memberEnrollDate;
 	}
 	public String getGender() {
-		return gender;
+		return memberGender;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setGender(String memberGender) {
+		this.memberGender = memberGender;
 	}
 	public String getMileage() {
 		return mileage;
@@ -126,10 +126,10 @@ public class Member {
 		this.longitude = longitude;
 	}
 	public int getLatitude() {
-		return latitude;
+		return atitude;
 	}
-	public void setLatitude(int latitude) {
-		this.latitude = latitude;
+	public void setLatitude(int atitude) {
+		this.atitude = atitude;
 	}
 	public int getIsAdmin() {
 		return isAdmin;
@@ -160,8 +160,8 @@ public class Member {
 		return "Member [memberNum=" + memberNum + ", memberId=" + memberId + ", memberPw=" + memberPw + ", memberName="
 				+ memberName + ", memberAddress=" + memberAddress + ", memberBirth=" + memberBirth + ", memberPhone="
 				+ memberPhone + ", memberEmail=" + memberEmail + ", nickName=" + nickName + ", memberEnrollDate="
-				+ memberEnrollDate + ", gender=" + gender + ", mileage=" + mileage + ", longitude=" + longitude
-				+ ", latitude=" + latitude + ", isAdmin=" + isAdmin + ", profileImage=" + profileImage
+				+ memberEnrollDate + ", gender=" + memberGender + ", mileage=" + mileage + ", longitude=" + longitude
+				+ ", latitude=" + atitude + ", isAdmin=" + isAdmin + ", profileImage=" + profileImage
 				+ ", formatBirth=" + formatBirth + "]";
 	}
 	
