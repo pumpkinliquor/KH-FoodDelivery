@@ -39,7 +39,7 @@
 				$('#mdAppDate').val(data.formatAppDate);
 				$('#mdProfile').val(data.storeProfile);
 				$('#mdBsCode').val(data.businessCode);
-				$('#mdImage').append('<img src="${path}/resources/upload/owner/storeMainImage/'+data.storeImage+'" style="width:330px;"/>');
+				$('#mdImage').empty().append('<img src="${path}/resources/upload/owner/storeMainImage/'+data.storeImage+'" style="width:330px;"/>');
 			}
 		});
 	}
