@@ -23,14 +23,7 @@ pageEncoding="UTF-8"%>
 	    
        
 </style>      
-      <div id="enroll-container">
-        <form name="enroll" action="${path }/member/memberEnrollEnd.do" method="post" onsubmit="return validate();" >
-            <span class="guide ok">사용 가능한 아이디입니다. </span>
-            <span class="guide error">아이디가 존재합니다. </span>
-            <input type="hidden" name="checkId" value="0"/>
-       <input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="memberId" id="memberId" required>
-       
-            <script>
+ <script>
             var id="";
             var memberId="";
             var nick="";
@@ -38,7 +31,7 @@ pageEncoding="UTF-8"%>
 
             	//비밀번호 확인
             		$('#memberPw2').blur(function(){
-            			memberPw = $("#memberPw").val();
+            			memberPw = $("#memberPw_").val();
             			var passwordRules =  /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
             			
             			console.log("패스워드룰"+passwordRules.test(memberPw));
@@ -51,7 +44,7 @@ pageEncoding="UTF-8"%>
              		   		
              		   		}
              		   	}
-            			if($('#memberPw').val() != $('#memberPw2').val()){
+            			if($('#memberPw_').val() != $('#memberPw2').val()){
             		    	if($('#memberPw2').val()!=''){
             			    alert("비밀번호가 일치하지 않습니다.");
             		    	    $('#memberPw2').val('');
@@ -63,7 +56,7 @@ pageEncoding="UTF-8"%>
             		   else{
             			   $(".guide1.ok1").show();
             		   }
-            		})  	   
+            		});  	   
             	});
 
 
@@ -75,8 +68,8 @@ pageEncoding="UTF-8"%>
 	            
 	            
             	$(function(){
-            		$("#memberId").keyup(function(){
-            			memberId=$("#memberId").val().trim();
+            		$("#memberId_").keyup(function(){
+            			memberId=$("#memberId_").val().trim();
             			if(memberId.length<4)
             			{
             				
@@ -89,7 +82,6 @@ pageEncoding="UTF-8"%>
             				success:function(data){          
             					console.log(data.isId);
             					id=data.isId;
-            					console.log(id);       					
             					if(data.isId==false){
             						$(".guide.ok").show();
             						$(".guide.error").hide();
@@ -157,7 +149,7 @@ pageEncoding="UTF-8"%>
             		
             	}
             	
-            	 function address() {
+             	 function address() {
                      new daum.Postcode({ 
                         oncomplete: function(data) {
                             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -177,12 +169,12 @@ pageEncoding="UTF-8"%>
                                 }
                                 
                                 // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-                                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                                 fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : ''); 
                             }
              
                             // 주소 정보를 해당 필드에 넣는다.
                             $('#memberAddress').val(fullAddr); 
-                            /* document.getElementById("location").value = fullAddr; */
+                             /* document.getElementById("location").value = fullAddr;  */
                             // 주소로 상세 정보를 검색
                             geocoder.addressSearch(data.address, function(results, status) {
                                 // 정상적으로 검색이 완료됐으면
@@ -199,10 +191,18 @@ pageEncoding="UTF-8"%>
                         }
                      }).open(); 
                 }
-            
+             
             
             </script>
-            <input type="password" class="form-control" placeholder="비밀번호" name="memberPw" id="memberPw" required>
+      <div id="enroll-container">
+        <form name="enroll" action="${path}/member/memberEnrollEnd.do" method="post" onsubmit="return validate();">
+            <span class="guide ok">사용 가능한 아이디입니다. </span>
+            <span class="guide error">아이디가 존재합니다. </span>
+            
+       <input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="memberId" id="memberId_" required>
+       
+           
+            <input type="password" class="form-control" placeholder="비밀번호" name="memberPw" id="memberPw_" required>
             <input type="password" class="form-control" placeholder="비밀번호확인"name="memberPw2" id="memberPw2" required>
             	<span class="guide1 ok1">비밀번호가 일치합니다. </span>
         
@@ -220,8 +220,7 @@ pageEncoding="UTF-8"%>
                <option value="F">여</option>
             </select>
          	<input type=text" class="form-control" placeholder="경도(일단입력(int))" name="longitude" id="longitude" required>
-            <input type="text" class="form-control" placeholder="위도(일단 입력(int))"name="latitude" id="latitude" required>
-   
+            <input type="text" class="form-control" placeholder="위도(일단 입력(int))"name="latitude" id="latitude" required> 
      		
             <br />
             

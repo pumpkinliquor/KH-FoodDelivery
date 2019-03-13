@@ -18,6 +18,12 @@ public class OrderServiceImpl implements OrderService {
 	public List<Map<String, String>> selectOrderList() {
 		return dao.selectOrderList();
 	}
+
+	@Override
+	public List<Map<String,String>> selectPayOrderNum(String payOrderNum) {
+		return dao.selectPayOrderNum(payOrderNum);
+	}
+	
 	
 	
 }
