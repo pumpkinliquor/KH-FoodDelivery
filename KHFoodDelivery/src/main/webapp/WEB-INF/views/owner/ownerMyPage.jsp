@@ -33,7 +33,8 @@ div.container span.ok1 {color:blue;}
 		<h2 style="font-weight:bold;">사장님 마이페이지</h2>
 	</div>
 		<div class="col-sm-12">
-			<div class="row">
+			<div class="row" style="border:1px solid black; padding-bottom:2em; padding-top:4em;">
+			<div class="col-sm-1"></div>
 				<div class="col-sm-5">
 					<table class="table">
 						<tr>
@@ -50,7 +51,6 @@ div.container span.ok1 {color:blue;}
 						</tr>
 					</table>
 				</div>
-				<div class="col-sm-2"></div>
 				<div class="col-sm-5">
 					<table class="table">
 						<tr>
@@ -67,9 +67,10 @@ div.container span.ok1 {color:blue;}
 						</tr>
 					</table>
 				</div>
-				<div class="col-sm-12" style="text-align: right; margin-top: 5em;">
-					<button class="btn btn-default" type="button" id="modalBtn">정보수정</button>
-				</div>
+			<div class="col-sm-1"></div>
+			</div>
+			<div class="col-sm-12" style="text-align: right; margin-top: 5em;">
+				<button class="btn btn-default" type="button" id="modalBtn">정보수정</button>
 			</div>
 		</div>
 		<script>

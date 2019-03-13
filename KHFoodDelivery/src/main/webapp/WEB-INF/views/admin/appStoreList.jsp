@@ -39,6 +39,7 @@
 				$('#mdAppDate').val(data.formatAppDate);
 				$('#mdProfile').val(data.storeProfile);
 				$('#mdBsCode').val(data.businessCode);
+				$('#mdImage').append('<img src="${path}/resources/upload/owner/storeMainImage/'+data.storeImage+'" style="width:330px;"/>');
 			}
 		});
 	}
@@ -127,6 +128,10 @@
 					<tr>
 						<th>가게 소개</th>					
 						<td><textarea cols="10" rows="4" class="form-control" id="mdProfile" style="resize: none" readonly></textarea></td> 
+					</tr>
+					<tr>
+						<th>업소이미지</th>					
+						<td id="mdImage"></td> 
 					</tr>
 					<tr id="btnGroup">
 						<td colspan='2' align="center">
