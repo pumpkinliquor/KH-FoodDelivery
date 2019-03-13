@@ -7,21 +7,16 @@
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
 <script>
-	$(document).ready(function() {
-		$("#ownerListTable #owncheckall").click(function() {
-			if ($("#ownerListTable #owncheckall").is(':checked')) {
-				$("#ownerListTable input[type=checkbox]").each(function() {
-					$(this).prop("checked", true);
-				});
-
-			} else {
-				$("#ownerListTable input[type=checkbox]").each(function() {
-					$(this).prop("checked", false);
-				});
-			}
-		});
-
-		$("[data-toggle=tooltip]").tooltip();
+	$(function(){
+		$("#ownAllCheck").click(function(){
+			if($("#ownAllCheck").prop("checked")){
+				$("input[type]=checkbox").prop("checked",true);
+			
+		}
+		else{
+			$("input[type=checkbox]").prop("checked",false);
+		}
+		})
 	});
 </script>
 
@@ -41,10 +36,11 @@
 		</div>
 	</div>
 	<div id="ownerList">
+		<form action="${path }/admin/ownDel.do" id="ownDel" method="post">
 		<table class="table table-hover" id="ownerListTable">
 			<thead id="tableHead">
 				<tr>
-					<th><input type="checkbox" id="owncheckall" /></th>
+					<th><input type="checkbox" id="ownAllCheck" /></th>
 					<th>사장님 번호</th>
 					<th>아이디</th>
 					<th>가게 이름</th>
@@ -56,7 +52,7 @@
 				 <c:forEach items="${list }"  var="o" >
 				 <tbody>
 				<tr>
-					<td><input type="checkbox" class="checkthis" /></td>
+					<td><input type="checkbox" class="checkthis" name="rowCheck" value="${o.OWNERNUM }"/></td>
 					<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.BUSINESSCODE}</td>
 					<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.OWNERID}</td>
 					<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.STORENAME}</td>
@@ -66,12 +62,16 @@
 			</tbody>
 			</c:forEach>
 		</table>
-		<button id="ownerDelBtn" onclick="fn_ownListDel();">
+		<button type="submit" id="ownerDelBtn">
 			<img src="${path}/resources/images/admin/deleteBtn.png"
 				class="ownerListDelImg">
 		</button>
-
+	</form>
 	</div>
+	<div class="paging">
+	${pageBar}
+	</div>
+	
 </div>
 
 
@@ -85,11 +85,8 @@
 			data:{"businessCode":businessCode},
 			success:function(data)
 			{
-				console.log(data+"gg");
-				
+				$("#ownStoreProfile").attr("src","resources/owner"+data.STOREPROFILE);
 				$('#ownBusinessName').val(data.BUSINESSNAME); 
-	/* 			$('#ownEmail').val(data.OWNEREMAIL);
-				$('#ownPhone').val(data.OWNERPHONE); */
 				$('#ownBusinessPhone').val(data.BUSINESSPHONE);
 				$('#ownStorePhone').val(data.STOREPHONE);
 				$('#ownStoreAddress').val(data.STOREADDRESS); 
@@ -102,38 +99,25 @@
 
 	}
 
-	/* function fn_memListDel() {
-		$('#ownListDel').modal();
-	}; */
 </script>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
-<!-- <div class="modal" id="ownListDel" role="dialog">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body">
-				<table class="table">
-					<tr>
 
-						<td>정말 삭제하시겠습니까?</td>
-					</tr>
-					<tr>
-						<td colspan='2' align="center">
-							<button type="button" class="btn btn-outline-success"
-								onclick="fn_ownListDelCan()">삭제</button>
-							<button type="button" class="btn btn-outline-danger"
-								data-dismiss="modal">취소</button>
-						</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div>
-</div> -->
+
+
+
+
 
 <style>
- .ownModal{
- border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; width:350px;}
- 
+ #ownListModal{
+ border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;}
+ #ownStoreAddress{
+ resize:none;
+ }
+
+.form-control{
+ background-color:#e9ecef;
+ }
 </style>
 
 
@@ -150,30 +134,29 @@
 				<table class="table">
 					<tr>
 						<th>프로필</th>
-						<td><img src="${path }/resources/images/place.png"
-							id="memListProfile"></td>
+						<td><img src=""	id="ownStoreProfile"></td>
 
 					</tr>
 					<tr>
 						<th>사업주명</th>
-						<td><input type="text" id="ownBusinessName" class="ownModal" readonly="readonly"></td>
+						<td><input type="text" id="ownBusinessName" class="form-control" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>사업자연락처</th>
-						<td><input type="text" id="ownBusinessPhone" class="ownModal" readonly="readonly"></td>
+						<td><input type="text" id="ownBusinessPhone" class="form-control" readonly="readonly"></td>
 					</tr>
 					
 					<tr>
 						<th>가게연락처</th>
-						<td><input type="text" id="ownStorePhone" class="ownModal" readonly="readonly"></td>
+						<td><input type="text" id="ownStorePhone" class="form-control" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>가게주소</th>
-						<td><textarea rows="3" cols="10" id="ownStoreAddress" class="ownModal" readonly="readonly"></textarea></td>
+						<td><textarea rows="3" cols="10" id="ownStoreAddress" class="form-control" readonly="readonly"></textarea></td>
 					</tr>
 					 <tr>
 						<th>사업자번호</th>
-						<td><input type="text" id="ownBusinessNum" class="ownModal" readonly="readonly"></td>
+						<td><input type="text" id="ownBusinessNum" class="form-control" readonly="readonly"></td>
 					</tr>
 					
 
@@ -185,4 +168,3 @@
 		</div>
 	</div>
 </div>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

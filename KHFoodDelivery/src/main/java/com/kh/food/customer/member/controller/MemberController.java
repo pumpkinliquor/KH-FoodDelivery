@@ -1,7 +1,6 @@
 package com.kh.food.customer.member.controller;
 
 import java.io.UnsupportedEncodingException;
-
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -11,6 +10,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,15 +20,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.food.common.PagingFactory;
 import com.kh.food.customer.member.model.service.MemberService;
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
-import com.kh.food.common.PagingFactory;
 
 @Controller
 public class MemberController {
 
-	
+	private Logger logger = LoggerFactory.getLogger(MemberController.class);
 
 	
 	@Autowired
@@ -128,8 +130,7 @@ public class MemberController {
 		map.put("isId",isId);
 
 		
-		mv.addAllObjects(map); //map 으로 된거 통째로 넣어줌
-		mv.addObject("char",URLEncoder.encode("문자열","UTF-8"));
+		mv.addAllObjects(map); 
 		mv.addObject("num",1);
 			
 		mv.setViewName("jsonView");
@@ -230,8 +231,10 @@ public class MemberController {
 	
 	//회원가입완료
 	@RequestMapping("/member/memberEnrollEnd.do")
-	public String memberEnrollEnd(Member m,Model model)
+	public ModelAndView memberEnrollEnd(Member m)
 	{
+		
+		ModelAndView mv=new ModelAndView();
 		System.out.println(m);
 		String rawPw=m.getMemberPw();
 		System.out.println("암호화전"+rawPw);
@@ -249,9 +252,37 @@ public class MemberController {
 			msg="회원가입 실패하였습니다.";
 			
 		}
-		model.addAttribute("msg",msg);
-		model.addAttribute("loc",loc);
-		return "common/msg";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	
+	//테스트
+	
+	@RequestMapping("/customer/test.do")
+	public String test()
+	{
+		return "customer/test";
+	}
+	
+	@RequestMapping("/customer/test1.do")
+	public ModelAndView test1(ModelAndView mv, int businessCode)
+	{
+		System.out.println(businessCode);
+//		System.out.println(menuCategoryCode);
+		List<Map<String,String>> menuCategory=service.selectCategoryList(businessCode);
+//		List<Map<String,String>> menuList=service.selectMenuList(menuCategoryCode, businessCode);
+//		mv.addObject("menuList", menuList);
+		mv.addObject("categoryList", menuCategory);
+		mv.setViewName("customer/test1");
+		return mv;
+	}
+	@RequestMapping("/customer/test2.do")
+	public String test2()
+	{
+		return "customer/test2";
 	}
 	
 	//테스트용
@@ -279,11 +310,14 @@ public class MemberController {
 		return mv;
 	}	
 	
-	@RequestMapping("/customer/menuInfo")
+	@RequestMapping("/customer/menuInfo.do")
 	public ModelAndView infoMenu(ModelAndView mv,int businessCode)
 	{
 		
-//		List<Store> list=service.menuInfo(businessCode);
+		List<Store> list=service.menuInfo(businessCode);
+		
+		mv.addObject("businessCode", businessCode);
+		mv.addObject("list",list);
 		mv.setViewName("customer/menuInfo");
 		
 		return mv;

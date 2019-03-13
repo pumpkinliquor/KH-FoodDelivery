@@ -17,6 +17,16 @@ public class MemberListDaoImpl implements MemberListDao {
 	public List<Map<String,String>> selectListMember(){
 	return sqlSession.selectList("admin.selectListMember");
 	}
+	
+	
+	//회원 페이징
+	@Override
+	public int memCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.memCount");
+	}
+
+
 
 	//사장리스트
 	@Override
@@ -24,6 +34,16 @@ public class MemberListDaoImpl implements MemberListDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("admin.selectListOwner");
 	}
+	
+	
+	//사장 페이징
+	@Override
+	public int ownCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.ownCount");
+	}
+
+
 
 	//회원상세보기
 	@Override
@@ -32,30 +52,38 @@ public class MemberListDaoImpl implements MemberListDao {
 		return sqlSession.selectOne("admin.memberOne",memberNum);
 	}
 
+	//사장 상세보기
 	@Override
 	public Map<String, String> ownerOne(int businessCode) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("admin.ownerOne", businessCode);
 	}
 
-	
-	//사장상세보기
-	
-	/*
-	 * @Override public Map<String, String> ownerOne(int BusinessCode) { // TODO
-	 * Auto-generated method stub return sqlSession.selectOne("admin.ownerOne",
-	 * BusinessCode); }
-	 */
-
-	
-	
-
-	
-	/*@Override
-	public int memberDel(int memberNum) {
+	//회원 삭제
+	@Override
+	public int memberDel(String[] rowCheck) {
 		// TODO Auto-generated method stub
-		return sqlSession.delete("admin.memberDel", memberNum);
-	}*/
+		for(int i=0; i<rowCheck.length; i++) {
+			int memberNum=Integer.parseInt(rowCheck[i]);
+			sqlSession.delete("admin.memberDel",memberNum );			
+		}
+		return 0;
+	}
+
+	//사장 삭제
+	@Override
+	public int ownerDel(String[] rowCheck) {
+		// TODO Auto-generated method stub
+		for(int i=0; i<rowCheck.length; i++) {
+			int ownerNum=Integer.parseInt(rowCheck[i]);
+			sqlSession.delete("admin.ownerDel",ownerNum);
+		}
+		return 0;
+	}
+
 	
+	
+	
+
 	
 }

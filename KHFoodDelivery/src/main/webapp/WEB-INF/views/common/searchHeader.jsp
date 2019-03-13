@@ -48,19 +48,17 @@ div.newsletter,div.group{display:inline-block;}
 
 
 
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c&libraries=services"></script>
- -->
+
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c&libraries=services"></script> 
 
->>>>>>> branch 'master' of https://github.com/pumpkinliquor/KH-FoodDelivery.git
 
 
 
    
    <script>
     $(document).ready(function () {
-/*       $("#positionBtn").click(function(){
+    	$("#positionBtn").click(function(){
             function getLocation() {
                 if (navigator.geolocation) { // GPS를 지원하면
                     navigator.geolocation.getCurrentPosition(function(position) {
@@ -170,13 +168,14 @@ div.newsletter,div.group{display:inline-block;}
  
                         // 해당 주소에 대한 좌표를 받아서
                         var coords = new daum.maps.LatLng(result.y, result.x);
+                        console.log(coords);
                        
                      
                     }
                 });
             }
          }).open(); 
-    } */
+    } 
   
 
 
@@ -257,19 +256,62 @@ div.newsletter,div.group{display:inline-block;}
                 </div>
                    <div class="group col-md-12 col-lg-12">
                 <div class="btn-group btn-group-lg search1"  > 
-              <button type="button" class="btn btn-default">돈까스</button>
-              <button type="button" class="btn btn-default">프랜차이즈</button>
-              <button type="button" class="btn btn-default">치킨</button>
-              <button type="button" class="btn btn-default">피자</button>
-              <button type="button" class="btn btn-default">중국집</button>
-              <button type="button" class="btn btn-default">한식</button>
-              <button type="button" class="btn btn-default">족발/보쌈</button>
-              <button type="button" class="btn btn-default">분식</button>
-              <button type="button" class="btn btn-default">디저트</button>
+              <button type="button" class="btn btn-default" onclick="don();">돈까스</button>
+              <button type="button" class="btn btn-default" onclick="fre();">프랜차이즈</button>
+              <button type="button" class="btn btn-default" onclick="chi();">치킨</button>
+              <button type="button" class="btn btn-default" onclick="piz();">피자</button>
+              <button type="button" class="btn btn-default" onclick="chi();">중국집</button>
+              <button type="button" class="btn btn-default" onclick="kor();">한식</button>
+              <button type="button" class="btn btn-default" onclick="jok();">족발/보쌈</button>
+              <button type="button" class="btn btn-default" onclick="base();">분식</button>
+              <button type="button" class="btn btn-default" onclick="des();">디저트</button>
                </div>     
                </div>          
        </div>
-                 <div id="map" style="width:300px;height:300px;"></div>
+
+                 <div id="map" style="width:300px;height:300px;"></div> 
+
+                 <script>
+                 	function don(){
+                 		location.href="${path}/customer/searchmenuView?category=돈까스"; 
+                 	}
+                 	
+                 	function fre(){
+                 		location.href="${path}/customer/searchmenuView?category=프랜차이즈"; 
+                 	}
+                 	
+                 	function chi(){
+                 		location.href="${path}/customer/searchmenuView?category=치킨"; 
+                 	}
+                 	
+                 	function piz(){
+                 		location.href="${path}/customer/searchmenuView?category=피자"; 
+                 	}
+                 	
+                 	function chi(){
+                 		location.href="${path}/customer/searchmenuView?category=중국집"; 
+                 	}
+                 	
+                 	function kor(){
+                 		location.href="${path}/customer/searchmenuView?category=한식"; 
+                 	}
+                 	
+                 	function jok(){
+                 		location.href="${path}/customer/searchmenuView?category=족발/보쌈"; 
+                 	}
+                 	
+                 	function base(){
+                 		location.href="${path}/customer/searchmenuView?category=분식"; 
+                 	}
+                 	
+                 	function des(){
+                 		location.href="${path}/customer/searchmenuView?category=디저트"; 
+                 	}
+                 
+                 
+                 
+                 </script>
+
  
 
                             
