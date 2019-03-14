@@ -23,7 +23,7 @@
 	</select>
 	
 	<insert id="addStore" parameterType="map">
-		INSERT INTO STORE VALUES(SEQ_BUSINESSCODE.NEXTVAL, #{ownerId}, #{businessName}, #{businessPhone}, #{storeName}, #{storePhone}, #{storeAddress}, #{storeCategory}, #{oriImageName}, #{minPrice}, #{storeProfile}, DEFAULT, SYSDATE, #{businessNum}, 5, 5)
+		INSERT INTO STORE VALUES(SEQ_BUSINESSCODE.NEXTVAL, #{ownerId}, #{businessName}, #{businessPhone}, #{storeName}, #{storePhone}, #{storeAddress}, #{storeCategory}, #{reName}, #{minPrice}, #{storeProfile}, DEFAULT, SYSDATE, #{businessNum}, 5, 5)
 	</insert>
 		
 	<!-- resultMap : Store -->

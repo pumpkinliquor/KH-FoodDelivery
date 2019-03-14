@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.food.owner.order.model.dao.OrderDao;
+import com.kh.food.owner.order.model.vo.Pay;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -15,7 +16,7 @@ public class OrderServiceImpl implements OrderService {
 	OrderDao dao;
 
 	@Override
-	public List<Map<String, String>> selectOrderList() {
+	public List<Pay> selectOrderList() {
 		return dao.selectOrderList();
 	}
 

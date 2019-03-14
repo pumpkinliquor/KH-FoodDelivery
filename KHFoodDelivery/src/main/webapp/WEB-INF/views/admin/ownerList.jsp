@@ -41,11 +41,11 @@
 					<thead id="tableHead">
 						<tr>
 							<th><input type="checkbox" id="ownAllCheck" /></th>
-							<th>사장님 번호</th>
-							<th>아이디</th>
-							<th>점포명</th>
-							<th>업종</th>
-							<th>가게 번호</th>
+							<th width="13%">사장님 번호</th>
+							<th width="20%">아이디</th>
+							<th width="30%">점포명</th>
+							<th width="17%">업종</th>
+							<th width="20%">가게 번호</th>
 						</tr>
 					</thead>
 

@@ -60,37 +60,29 @@ pageEncoding="UTF-8"%>
 					</thead>
 					<tbody>
 					
-					<%-- <c:forEach var="o" items="${orderList}" varStatus="status">
-								<% for(int i=0; i<orderList.size(); i++){%>
-										<%for(int j=0; j<orderList.size(); j++) { %>
-											<%if(orderList.get(i).containsKey("PAYORDERNUM") == orderList.get(j).containsKey("PAYORDERNUM")){ %>
-												<% sum = sum + orderList.get} %>
-										<%} %>
-								<% }%>
-							<c:if test="${orderList[status.index].PAYORDERNUM ne orderList[status.index+1].PAYORDERNUM}">			
-							<tr style="cursor:pointer;" onclick="fn_detailOrder(${o.PAYORDERNUM});">						
+					<c:forEach var="o" items="${list}" varStatus="status">		
+							<tr style="cursor:pointer;" onclick="fn_detailOrder(${o.payOrderNum});">						
 								<td class="td1"><c:out value="${status.count}"/></td>
-								<td class="td1">${o.PAYDATE}</td>
-								<td class="td1">${o.MENUNAME}</td>
-								<td class="td1">${o.MEMBERNAME}</td>
+								<td class="td1">${o.formatDate}</td>
+								<td class="td1">${o.menuName}</td>
+								<td class="td1">${o.memberName}</td>
 								<td class="td1"></td>							
 								<td class="td1"></td>
-								<td class="td1">${o.PAYORDERMETHOD}</td>							
+								<td class="td1">${o.payOrderMethod}</td>							
 								<td><button class="btn btn-default statusBtn">주문접수</button><button class="btn btn-default statusBtn">배달중</button><button class="btn btn-default statusBtn">배달완료</button><button class="btn btn-default statusBtn">주문취소</button></td>
 							</tr>
-							</c:if>
 							
-						</c:forEach> --%>
+					</c:forEach> 
 						
-						<% for(int i=0; i<orderList.size(); i++){%>				
+						<%-- <% for(int i=0; i<orderList.size(); i++){%>				
 							<%for(int j=0; j<orderList.size(); j++) {%>
-								<%-- <c:choose > --%>
-									<%-- <c:when test='<%=orderList.get(i).get("PAYORDERNUM")==orderList.get(j).get("PAYORDERNUM")%>'></c:when> --%>
+								<c:choose >
+									<c:when test='<%=orderList.get(i).get("PAYORDERNUM")==orderList.get(j).get("PAYORDERNUM")%>'></c:when>
 								 <%if(orderList.get(i).get("PAYORDERNUM")==orderList.get(j).get("PAYORDERNUM")){%>				
 								
 								<%} else{%> 
-							<%-- 	<c:otherwise> --%>
-								<tr style="cursor:pointer;" onclick="fn_detailOrder();">						
+								<c:otherwise>
+								<tr style="cursor:pointer;" onclick="fn_detailOrder(<%=orderList.get(i).get("PAYORDERNUM")%>);">						
 								<td class="td1"><c:out value="<%=i+1%>"/></td>
 								<td class="td1"><c:out value='<%=orderList.get(i).get("PRICE")%>'/></td>
 								<td class="td1"><c:out value='<%=orderList.get(0).get("MEMBERNAME")%>'/></td>
@@ -101,11 +93,11 @@ pageEncoding="UTF-8"%>
 								<td><button class="btn btn-default statusBtn">주문접수</button><button class="btn btn-default statusBtn">배달중</button><button class="btn btn-default statusBtn">배달완료</button><button class="btn btn-default statusBtn">주문취소</button></td>
 								</tr>
 								 <%} %> 
-								<%-- </c:otherwise> --%>
+								</c:otherwise>
 								
-							<%-- 	</c:choose> --%>
+								</c:choose>
 							<%} %>
-						<% }%>	
+						<% }%>	 --%>
 						<tr style="cursor:pointer;" onclick="location.href='${path}/owner/oneVSoneView.do?qnaCode=${one.QNACODE}'">
 								<td class="td1">1</td>
 								<td class="td1">2019-03-11/ 10:aa34</td>
