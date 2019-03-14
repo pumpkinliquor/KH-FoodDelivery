@@ -271,7 +271,6 @@ div.newsletter,div.group{display:inline-block;}
 
                  <div id="map" style="width:300px;height:300px;"></div> 
 
-                 <div id="map" style="width:300px;height:300px;"></div>
                  <script>
                  	function don(){
                  		location.href="${path}/customer/searchmenuView?category=돈까스"; 

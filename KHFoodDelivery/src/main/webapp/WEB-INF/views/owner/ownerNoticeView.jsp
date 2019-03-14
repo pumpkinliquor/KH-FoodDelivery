@@ -28,25 +28,17 @@ function fn_ownerNoticeDel(e){
 
 
 //파일다운로드
- function fileDownLoad(oriName,reName){
+function fileDownLoad(oriName, reName){
 	if(oriName==null||reName==null){
 		alert("첨부파일을 다운로드 할 수 없습니다.");
 		return false;
 	}
 	if(confirm(oriName+"을(를) 다운로드 하시겠습니까?")){
-		oriName=encodeURIComponent(oriName);
-		location.href="${path}/owner/noticeFileDownLoad.do?oriName="+oriName+"&reName"+reName;
+		oriName=encodeURIComponent(oriName); //한글일 가능성 때문 
+		location.href="${path}/owner/noticefileDownLoad.do?oriName="+oriName+"&reName="+reName;
 		return true;
 	}
-} 
-
-
-
-/*  function fn_memberNoticeUp(e){
-	var num2=$(e).val();
-	location.href="${path}/admin/memNoticeUpdate.do?noticeNum="+num2;
-	
-} */
+}
 
 
 </script>

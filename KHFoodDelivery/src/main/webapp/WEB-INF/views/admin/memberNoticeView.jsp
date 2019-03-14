@@ -21,29 +21,22 @@ function fn_memberNoticeDel(e){
 	
 	location.href="${path}/admin/memberNoticeDel.do?noticeNum="+num;
 	alert("삭제되었습니다.");
-}
+};
 
 
 //파일다운로드
-function fileDownLoad(oriName,reName){
+function fileDownLoad(oriName, reName){
 	if(oriName==null||reName==null){
 		alert("첨부파일을 다운로드 할 수 없습니다.");
 		return false;
 	}
 	if(confirm(oriName+"을(를) 다운로드 하시겠습니까?")){
-		oriName=encodeURIComponent(oriName);
-		location.href="${path}/admin/fileDownLoad.do?oriName="+oriName+"&reName"+reName;
+		oriName=encodeURIComponent(oriName); //한글일 가능성 때문 
+		location.href="${path}/admin/memberfileDownLoad.do?oriName="+oriName+"&reName="+reName;
 		return true;
 	}
 }
 
-
-
-/*  function fn_memberNoticeUp(e){
-	var num2=$(e).val();
-	location.href="${path}/admin/memNoticeUpdate.do?noticeNum="+num2;
-	
-} */
 
 
 </script>
@@ -73,7 +66,12 @@ function fileDownLoad(oriName,reName){
 			<div class="col-sm-1"></div>
 			<div class="col-sm-2">			
 				<button id="noticeCancelkBtn" name="noticeCancelkBtn" class="btn btn-default float-right" value="${notice.NOTICENUM }" onclick="fn_memberNoticeDel(this)">삭제</button>
-				<button id="noticeUpBtn"  class="btn btn-default float-right" value="${notice.NOTICENUM }" onclick="fn_memberNoticeUp(this)">수정</button>
+				<form action="${path }/admin/memNoticeUpdate.do" enctype="multipart/form-data" method="post">
+				<input value="${notice.NOTICENUM }" type="hidden" name="noticeNum">
+				<button id="noticeUpBtn"  class="btn btn-default float-right">수정</button>
+	
+				</form>
+				
 			</div>	
 		</div>
 		<hr/>
@@ -95,6 +93,7 @@ function fileDownLoad(oriName,reName){
 		<hr>
 		<button id="noticeListBtn" class="btn btn-default" onclick="location.href='${path}/admin/memberNoticeList.do'">목록</button>
 	</div>
+	
 </section>
 
 

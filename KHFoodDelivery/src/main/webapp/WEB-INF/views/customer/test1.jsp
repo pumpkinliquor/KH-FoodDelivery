@@ -6,215 +6,59 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
 <script>
-$(function () {
-    $("dd:not(:first)").css("display", "none"); //first dd 빼고 나머지 dd를 none으로 해라
+	$(function() {
+		$("dd:not(:first)").css("display", "none"); //first dd 빼고 나머지 dd를 none으로 해라
 
-    $("dl dt").click(function () {
-        if ($("+dd", this).css("display") == "none") {
-            $(this).siblings("dd").slideUp("slow");
-            $("+dd", this).slideDown("slow");
-        }
-    });
-}); 
+		$("dl dt").click(function() {
+			if ($("+dd", this).css("display") == "none") {
+				$(this).siblings("dd").slideUp("slow");
+				$("+dd", this).slideDown("slow");
+			}
+		});
+	});
 </script>
-  <div id="menubox">
-                    <dl>
-                        <dt>인기메뉴</dt>
-                        <dd>
-
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <div class="mnl">
-                                        <p>감자전<br /><a>12,000원</a></p>
-                                    </div>
-
-
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <img class="mnlogo" src="8.jpg"><br />
-                                </div>
-
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <div class="mnl">
-                                        <p>낚지볶음<br /><a>18,000원</a></p>
-                                    </div>
-
-
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <img class="mnlogo" src="9.jpg"><br />
-                                </div>
-
-                            </div>
-                            <hr>
-
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <div class="mnl">
-                                        <p>달걍양배추토스트<br /><a>5,000원</a></p>
-                                    </div>
-
-
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <img class="mnlogo" src="7.jpg"><br />
-                                </div>
-
-                            </div>
-                            <hr>
-                            <div class="row">
-                                    <div class="col-sm-9">
-                                        <div class="mnl">
-                                            <p>부대찌개<br /><a>16,000원</a></p>
-                                        </div>
-    
-    
-                                    </div>
-    
-                                    <div class="col-sm-3">
-                                        <img class="mnlogo" src="6.jpg"><br />
-                                    </div>
-    
-                            </div>
-                            
-                        </dd>
-                        <dt>족발 / 보쌈 메뉴</dt>
-                        <dd>
-                                <div class="row">
-                                        <div class="col-sm-9">
-                                            <div class="mnl">
-                                                <p>감자전<br /><a>12,000원</a></p>
-                                            </div>
-        
-        
-                                        </div>
-        
-                                        <div class="col-sm-3">
-                                            <img class="mnlogo" src="8.jpg"><br />
-                                        </div>
-        
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            <div class="mnl">
-                                                <p>낚지볶음<br /><a>18,000원</a></p>
-                                            </div>
-        
-        
-                                        </div>
-        
-                                        <div class="col-sm-3">
-                                            <img class="mnlogo" src="9.jpg"><br />
-                                        </div>
-        
-                                    </div>
-                                    <hr>
-        
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            <div class="mnl">
-                                                <p>달걍양배추토스트<br /><a>5,000원</a></p>
-                                            </div>
-        
-        
-                                        </div>
-        
-                                        <div class="col-sm-3">
-                                            <img class="mnlogo" src="7.jpg"><br />
-                                        </div>
-        
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                            <div class="col-sm-9">
-                                                <div class="mnl">
-                                                    <p>부대찌개<br /><a>16,000원</a></p>
-                                                </div>
-            
-            
-                                            </div>
-            
-                                            <div class="col-sm-3">
-                                                <img class="mnlogo" src="6.jpg"><br />
-                                            </div>
-            
-                                    </div>
-                        </dd>
-                        <dt>요리류 / 안주류</dt>
-                        <dd>
-                                <div class="row">
-                                        <div class="col-sm-9">
-                                            <div class="mnl">
-                                                <p>감자전<br /><a>12,000원</a></p>
-                                            </div>
-        
-        
-                                        </div>
-        
-                                        <div class="col-sm-3">
-                                            <img class="mnlogo" src="8.jpg"><br />
-                                        </div>
-        
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            <div class="mnl">
-                                                <p>낚지볶음<br /><a>18,000원</a></p>
-                                            </div>
-        
-        
-                                        </div>
-        
-                                        <div class="col-sm-3">
-                                            <img class="mnlogo" src="9.jpg"><br />
-                                        </div>
-        
-                                    </div>
-                                    <hr>
-        
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            <div class="mnl">
-                                                <p>달걍양배추토스트<br /><a>5,000원</a></p>
-                                            </div>
-        
-        
-                                        </div>
-        
-                                        <div class="col-sm-3">
-                                            <img class="mnlogo" src="7.jpg"><br />
-                                        </div>
-        
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                            <div class="col-sm-9">
-                                                <div class="mnl">
-                                                    <p>부대찌개<br /><a>16,000원</a></p>
-                                                </div>
-            
-            
-                                            </div>
-            
-                                            <div class="col-sm-3">
-                                                <img class="mnlogo" src="6.jpg"><br />
-                                            </div>
-            
-                                    </div>
-                        </dd>
-                    </dl>
-                
-                    
-                </div>
-           
+<div id="menubox">
+	<dl>
+		<dt>인기메뉴</dt>
+		<dd>
+			<c:forEach begin="0" end="5" step="1">
+			<div class="row">
+				<div class="col-sm-9">
+					<div class="mnl">
+						<p>
+							감자전<br /> <a>12,000원</a>
+						</p>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<img class="mnlogo" src="8.jpg"><br />
+				</div>
+			</div>
+			<hr>
+			</c:forEach>
+		</dd>
+		<c:forEach var="category" items="${categoryList}">
+		<dt><a href="${path}/customer/test1.do?menuCategoryCode=${category.MENUCATEGORYCODE}" style="color:black;">${category.MENUCATEGORY }</a></dt>
+		<c:forEach var="menu" items="${menuList }">
+		<dd>
+			<div class="row">
+				<div class="col-sm-9">
+					<div class="mnl">
+						<p>
+							${menu.MENUNAME }<br /> <a>${menu.MENUPRICE }</a>
+						</p>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<img class="mnlogo" src="8.jpg"><br />
+				</div>
+			</div>
+			<hr>
+		</dd>
+		</c:forEach>
+		</c:forEach>
+	</dl>
+</div>
 
 
-          
+

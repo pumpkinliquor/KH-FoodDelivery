@@ -186,9 +186,6 @@
 	
  cursor:pointer;
 }
-.container{
-	margin-top: 20px;
-}
 
 
 </style>
@@ -213,17 +210,27 @@
 		$(document).ready(function(){
         	
         	$("#test2").click(function(){
-        		
+        		var businessCode=${businessCode}
         		$.ajax({
-        			
         			type: "post",
-        			url: "${path}/customer/test1.do",	
+        			url: "${path}/customer/test1.do",
+        			data : {"businessCode" : businessCode},
         			success: function test(a){$("#callback").html(a);}
         		});
         	});
         	
         });
 		
+		window.onload=function(){
+			var businessCode=${businessCode}
+    		$.ajax({
+    			type: "post",
+    			url: "${path}/customer/test1.do",
+    			data : {"businessCode" : businessCode},
+    			success: function test(a){$("#callback").html(a);}
+    		});
+		}
+			
 		$(document).ready(function(){
         	
         	$("#test3").click(function(){

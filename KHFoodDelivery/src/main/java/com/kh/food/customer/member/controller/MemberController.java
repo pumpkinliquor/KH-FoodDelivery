@@ -1,7 +1,6 @@
 package com.kh.food.customer.member.controller;
 
 import java.io.UnsupportedEncodingException;
-
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,11 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.food.common.PagingFactory;
 import com.kh.food.customer.member.model.service.MemberService;
 import com.kh.food.customer.member.model.vo.Member;
-import com.kh.food.owner.controller.OwnerContoller;
+import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
-import com.kh.food.common.PagingFactory;
 
 @Controller
 public class MemberController {
@@ -269,9 +268,16 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/customer/test1.do")
-	public String test1()
+	public ModelAndView test1(ModelAndView mv, int businessCode)
 	{
-		return "customer/test1";
+		System.out.println(businessCode);
+//		System.out.println(menuCategoryCode);
+		List<Map<String,String>> menuCategory=service.selectCategoryList(businessCode);
+//		List<Map<String,String>> menuList=service.selectMenuList(menuCategoryCode, businessCode);
+//		mv.addObject("menuList", menuList);
+		mv.addObject("categoryList", menuCategory);
+		mv.setViewName("customer/test1");
+		return mv;
 	}
 	@RequestMapping("/customer/test2.do")
 	public String test2()
@@ -304,12 +310,13 @@ public class MemberController {
 		return mv;
 	}	
 	
-	@RequestMapping("/customer/menuInfo")
+	@RequestMapping("/customer/menuInfo.do")
 	public ModelAndView infoMenu(ModelAndView mv,int businessCode)
 	{
 		
 		List<Store> list=service.menuInfo(businessCode);
 		
+		mv.addObject("businessCode", businessCode);
 		mv.addObject("list",list);
 		mv.setViewName("customer/menuInfo");
 		

@@ -219,7 +219,7 @@ $(function(){
               </div>
               </div>
      </div>
-               <div id="map" style="width:300px;height:200px; position:relative;"></div>
+               <div id="map" style="width:300px;height:300px; position:relative;"></div>
                
               
                           

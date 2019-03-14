@@ -44,4 +44,5 @@
 		update menu set menuSoldOut = 0 where menuCode = #{menuCode}
 	</update>
 	
+	
 </mapper>

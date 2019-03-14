@@ -20,9 +20,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.food.common.PagingFactory;
 import com.kh.food.owner.notice.attachment.vo.OwnerNoticeAttachment;
 import com.kh.food.owner.notice.model.service.OwnerNoticeService;
 
@@ -36,9 +38,12 @@ public class OwnerNoticeController {
 	
 	//사장 공지사항 리스트
 	@RequestMapping("/owner/ownerNoticeList.do")
-	public ModelAndView noticeList(ModelAndView mv) {
+	public ModelAndView noticeList(ModelAndView mv, @RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
+		int numPerPage=10;
 		
+		int count = service.ownNotCount();
 		List<Map<String, String>> list=service.ownerNoticeList();
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/owner/ownerNoticeList.do"));
 		mv.addObject("list", list);	
 		mv.setViewName("owner/ownerNoticeList");
 		return mv;
@@ -121,8 +126,8 @@ public class OwnerNoticeController {
 	  
 	 
 	
-	//파일다운로드
-		@RequestMapping("/owner/noticeFileDownLoad.do")
+	  	//파일다운로드
+		@RequestMapping("/owner/noticefileDownLoad.do")
 		public void fileDownLoad(String oriName, String reName, HttpServletRequest request, HttpServletResponse response) {
 			BufferedInputStream bis=null;
 			ServletOutputStream sos=null;

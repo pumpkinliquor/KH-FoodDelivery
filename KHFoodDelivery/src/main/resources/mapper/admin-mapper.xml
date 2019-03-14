@@ -8,12 +8,21 @@
 	<select id="selectListMember" resultType="Map">
 	select * from member order by membernum desc
 	</select>
+	
+	<!-- 회원 페이징 -->
+	 <select id="memCount" resultType="_int">
+	 select count(*) from member
+	 </select>
 	 
 	 <!-- 사장님 리스트 -->
 	 <select id="selectListOwner" resultType="Map">
 	 select * from owner o, store s where o.ownerid=s.ownerid order by ownernum desc
 	 </select>
 	 
+	 <!-- 사장 페이징 -->
+	 <select id="ownCount" resultType="_int">
+	 select count(*) from owner
+	 </select>
 	  <!-- 회원삭제 -->
 	 <delete id="deleteMember" parameterType="String" >
 	 delete from member where memberid=#{MEMBERID}
@@ -28,84 +37,15 @@
 	<select id="ownerOne" resultType="Map" parameterType="_int">
 	select * from store where businesscode= #{businessCode}
 	</select>
-	 
-	 
-
-	 
-	 
-	 
-	 
-	 
-	 
-	  <!-- 공지사항 --> 
-	 
-	 <!-- 회원공지사항리스트 -->
-	<select id="selectMemberNoticeList" resultType="Map">
-	select a.*,(select count(*) from notice_attachment where noticenum=a.noticenum)
-	 as attachcount from notice a order by noticenum desc
-	</select> 
 	
-	
-	<!-- 회원공지사항 뷰 -->
-	<select id="selectMemberNotice" parameterType="_int" resultType="Map">
-	select * from notice where noticenum=#{noticeNum}
-	</select>
-	<select id="selectAttach" parameterType="_int" resultType="Map">
-	select * from notice_attachment where noticenum=#{noticeNum}
-	</select>
-	
-	
-	
-	<!-- 회원공지사항 삭제 -->
-	<delete id="deleteMemberNotice" parameterType="_int">
-	delete from notice where noticenum=#{noticeNum}
+	<!-- 회원 삭제 -->
+	<delete id="memberDel" parameterType="_int">
+	delete from member where membernum=#{memberNum}
 	</delete>
-	
-	<!-- 회원공지사항 등록 -->
-	<insert id="insertMemberNotice" parameterType="Map">
-	insert into notice values(seq_noticenum.nextval, #{noticeTitle},sysdate,#{noticeContent})
-	<selectKey keyProperty="noticeNum" resultType="string" order="AFTER">
-		select seq_noticenum.currval from dual
-	</selectKey>
-	</insert>
-	<insert id="insertMemberNoticeAttach" parameterType="com.kh.food.admin.notice.attachment.vo.NoticeAttachment">
-	insert into NOTICE_ATTACHMENT values(SEQ_NOTICEATTACHMENTNO.NEXTVAL,#{noticeNum},#{originalFileName},#{renamedFileName},default,default)
-	</insert>
-	
-	<!-- 회원공지사항 수정 -->
-	<select id="updateNotice" parameterType="_int">
-	select * from notice where noticenum=#{noticeNum}
-	</select>
-	
-	
-	
-	<!-- 사장 공지사항 리스트 -->
-	<select id="selectOwnerNoticeList" resultType="Map">
-	select a.*,(select count(*) from ownernotice_attachment where ownernoticenum=a.ownernoticenum) as
-	attachcount from ownernotice a order by ownernoticenum desc
-	</select>
-	<!-- 사장 공지사항 뷰 -->
-	<select id="selectOwnerNotice" resultType="Map" parameterType="_int">
-	select * from ownernotice where ownernoticenum=#{ownerNoticeNum}
-	</select>
-	<select id="selectOwnerAttach" resultType="Map" parameterType="_int">
-	select * from ownernotice_attachment where ownernoticenum=#{ownerNoticeNum}
-	</select>
-	
-	<!-- 사장 공지사항 삭제 -->
-	<delete id="deleteOwnerNotice" parameterType="_int">
-	delete from ownernotice where ownernoticenum=#{ownerNoticeNum}
+	 
+	 <!-- 사장 삭제 -->
+	<delete id="ownerDel" parameterType="_int">
+	delete from owner where ownernum=#{ownerNum}
 	</delete>
-	
-	
-	<!-- 사장 공지사항 등록 -->
-	<insert id="insertOwnerNotice" parameterType="Map">
-	insert into ownernotice values(seq_ownernoticenum.nextval, #{noticeTitle},sysdate,#{noticeContent})
-	<selectKey keyProperty="ownerNoticeNum" resultType="string" order="AFTER">
-		select seq_ownernoticenum.currval from dual
-	</selectKey>
-	</insert>
-	<insert id="insertOwnerNoticeAttach" parameterType="com.kh.food.owner.notice.attachment.vo.OwnerNoticeAttachment">
-	insert into OWNERNOTICE_ATTACHMENT values(seq_ownernoticeattachmentno.NEXTVAL,#{ownerNoticeNum},#{ownerOriginalFileName},#{ownerRenamedFileName},default,default)
-	</insert>
+	 
 </mapper>
