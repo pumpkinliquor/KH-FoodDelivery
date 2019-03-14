@@ -137,7 +137,7 @@ function execDaumPostcode(){
 			                <td>
            	 					<div class="custom-file">
 				                    <input type="file" class="custom-file-input" name="storeImage" id="upFile">
-				                    <label class="custom-file-label" for="upFile">파일을 선택하세요</label>
+				                    <label class="custom-file-label" for="upFile">반드시 이미지를 넣어주세요.</label>
 		               	 		</div>
 		                	</td>
 			            </tr>

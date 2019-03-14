@@ -130,7 +130,7 @@
 						<td><textarea cols="10" rows="4" class="form-control" id="mdProfile" style="resize: none" readonly></textarea></td> 
 					</tr>
 					<tr>
-						<th>업소이미지</th>					
+						<th>업소이미지</th>
 						<td id="mdImage"></td> 
 					</tr>
 					<tr id="btnGroup">
