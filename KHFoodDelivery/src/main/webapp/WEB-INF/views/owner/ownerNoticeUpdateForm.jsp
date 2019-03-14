@@ -34,7 +34,7 @@ function fn_validate(){
 	<div class="row">
 		<div class="col-md-12">
 			<form
-				action="${path}/owner/ownerNoticeFormEnd.do" method="post" enctype="multipart/form-data">
+				action="${path}/owner/ownerNoticeUpdateEnd.do" method="post" enctype="multipart/form-data">
 				<table class="table table-bordered board" id="notice_table" name="notice_table">
 
 					<tbody>
@@ -47,11 +47,11 @@ function fn_validate(){
 			        	</tr>
 						  <tr>
 			                <th>제목</th>
-			                <td><input type="text" name="noticeTitle"/></td>
+			                <td><input type="text" name="noticeTitle" value="${notice.OWNERNOTICETITLE }"/></td>
 			            </tr>
 			            <tr>
 			                <th>내용</th>
-			                <td><textarea cols="10" placeholder="내용"" name="noticeContent" class="form-control" style="resize:none; height:15em;"></textarea></td>
+			                <td><textarea cols="10" name="noticeContent" class="form-control" style="resize:none; height:15em;">${notice.OWNERNOTICECONTENT }</textarea></td>
 			            </tr>
 			            <tr>
 			                <th>
@@ -81,12 +81,12 @@ function fn_validate(){
 			            </tr>
 			            <tr>
 			                <td colspan="2">
-			                   <input type="submit" value="등록" class="btn btn-outline-success float-right" onclick="fn_validate()"/>
+			                   <input type="submit" value="수정" class="btn btn-outline-success float-right" onclick="fn_validate()"/>
 			                </td>
 			            </tr>
 			    </tbody>
 			</table>
-
+				<input type="hidden" value="${notice.OWNERNOTICENUM }" name="ownerNoticeNum">
 			</form>
 
 		</div>

@@ -58,10 +58,9 @@ public class MemberController {
 	@RequestMapping("/customer/mypage.do")
 	public ModelAndView myPage(String memberId) {
 		ModelAndView mv =new ModelAndView();
+
 		Member member = service.selectMember(memberId);
-		DateFormat df=new SimpleDateFormat("yyyy-MM-dd");
-		member.setFormatBirth(df.format(member.getMemberBirth()));
-		System.out.println("객체"+member);
+		
 		
 		mv.addObject("member",member);
 		mv.setViewName("customer/mypage");
@@ -232,15 +231,15 @@ public class MemberController {
 	
 	//회원가입완료
 	@RequestMapping("/member/memberEnrollEnd.do")
-	public ModelAndView memberEnrollEnd(Member m)
+	public String memberEnrollEnd(Member m,Model mo)
 	{
 		
-		ModelAndView mv=new ModelAndView();
-		System.out.println(m);
+		
 		String rawPw=m.getMemberPw();
 		System.out.println("암호화전"+rawPw);
 		
 		m.setMemberPw(pwEncoder.encode(rawPw));
+		System.out.println(m);
 		
 		int result=service.memberEnroll(m);
 		String msg="";
@@ -253,10 +252,9 @@ public class MemberController {
 			msg="회원가입 실패하였습니다.";
 			
 		}
-		mv.addObject("msg",msg);
-		mv.addObject("loc",loc);
-		mv.setViewName("common/msg");
-		return mv;
+		mo.addAttribute("msg",msg);
+		mo.addAttribute("loc",loc);
+		return "common/msg"; 
 	}
 	
 	

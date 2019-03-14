@@ -14,19 +14,21 @@ public class Member {
 	private String memberEmail;
 	private String nickName;
 	private Date memberEnrollDate;
-	private char memberGender;
+	private String memberGender;
 	private String mileage;
 	private int longitude;
 	private int atitude;
 	private int isAdmin;
 	private String profileImage;
 	private String formatBirth;
+	
 	public Member() {
 		super();
 	}
+	
 	public Member(int memberNum, String memberId, String memberPw, String memberName, String memberAddress,
 			String memberBirth, String memberPhone, String memberEmail, String nickName, Date memberEnrollDate,
-			char memberGender, String mileage, int longitude, int atitude, int isAdmin, String profileImage,
+			String memberGender, String mileage, int longitude, int atitude, int isAdmin, String profileImage,
 			String formatBirth) {
 		super();
 		this.memberNum = memberNum;
@@ -107,10 +109,10 @@ public class Member {
 	public void setMemberEnrollDate(Date memberEnrollDate) {
 		this.memberEnrollDate = memberEnrollDate;
 	}
-	public char getMemberGender() {
+	public String getMemberGender() {
 		return memberGender;
 	}
-	public void setMemberGender(char memberGender) {
+	public void setMemberGender(String memberGender) {
 		this.memberGender = memberGender;
 	}
 	public String getMileage() {

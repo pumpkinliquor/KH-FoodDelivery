@@ -21,8 +21,9 @@
 	 
 	 <!-- 사장 페이징 -->
 	 <select id="ownCount" resultType="_int">
-	 select count(*) from owner
+	  select count(*) from owner o, store s where o.ownerid=s.ownerid
 	 </select>
+	 
 	  <!-- 회원삭제 -->
 	 <delete id="deleteMember" parameterType="String" >
 	 delete from member where memberid=#{MEMBERID}

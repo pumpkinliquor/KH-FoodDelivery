@@ -48,7 +48,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int memberEnroll(Member m) {
-		
+		System.out.println("dao"+m);
 		return sqlSession.insert("member.insertMember",m);
 	}
 	

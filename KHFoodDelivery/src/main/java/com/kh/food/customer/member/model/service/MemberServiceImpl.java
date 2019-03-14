@@ -48,7 +48,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int memberEnroll(Member m) {
-		
+		System.out.println("서비스"+m);
 		return dao.memberEnroll(m);
 	}
 	

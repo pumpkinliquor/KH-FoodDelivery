@@ -56,7 +56,7 @@ public class QnaMngDaoImpl implements QnaMngDao {
 	// 회원 문의 답변 수정
 	@Override
 	public int updateMemberQnaReview(Map map) {
-		return session.update("qna.deleteMemberQnaReview", map);
+		return session.update("qna.updateMemberQnaReview", map);
 	}
 
 	// 회원 문의 검색
@@ -70,4 +70,16 @@ public class QnaMngDaoImpl implements QnaMngDao {
 	public int deleteMemberQna(int no) {
 		return session.delete("qna.deleteMemberQna", no);
 	}
+
+	// 문의 count
+	@Override
+	public int selectMemberQnaCount() {
+		return session.selectOne("qna.selectMemberQnaCount");
+	}
+
+	// 검색 문의 count
+	@Override
+	public int selectSearchMemberQnaCount(Map map) {
+		return session.selectOne("qna.selectSearchMemberQnaCount", map);
+	}	
 }

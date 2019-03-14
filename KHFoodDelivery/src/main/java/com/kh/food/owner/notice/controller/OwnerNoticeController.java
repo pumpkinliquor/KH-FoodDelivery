@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.food.admin.notice.attachment.vo.NoticeAttachment;
 import com.kh.food.common.PagingFactory;
 import com.kh.food.owner.notice.attachment.vo.OwnerNoticeAttachment;
 import com.kh.food.owner.notice.model.service.OwnerNoticeService;
@@ -42,7 +43,7 @@ public class OwnerNoticeController {
 		int numPerPage=10;
 		
 		int count = service.ownNotCount();
-		List<Map<String, String>> list=service.ownerNoticeList();
+		List<Map<String, String>> list=service.ownerNoticeList(cPage,numPerPage);
 		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/owner/ownerNoticeList.do"));
 		mv.addObject("list", list);	
 		mv.setViewName("owner/ownerNoticeList");
@@ -202,4 +203,56 @@ public class OwnerNoticeController {
 				out.println("<script>alert('선택 하신 파일을 찾을 수 없습니다.'); history.go(-1);</script>");
 			}
 		}
+		
+		
+		
+		//사장 공지사항 수정폼 이동
+		@RequestMapping("/owner/ownerNoticeUpdate.do")
+		public ModelAndView ownerNoticeUpdate(int ownerNoticeNum) {
+			ModelAndView mv=new ModelAndView();
+			Map<String,String> map=service.selectOwnerNotice(ownerNoticeNum);
+			List<Map<String,String>> attach=service.selectOwnerAttach(ownerNoticeNum);
+			mv.addObject("notice",map);
+			mv.addObject("attach",attach);
+			mv.setViewName("owner/ownerNoticeUpdateForm");
+			return mv;
+		}
+		
+		//사장 공지사항 수정 완료
+		@RequestMapping("/owner/ownerNoticeUpdateEnd.do")
+		public String noticeUpdateEnd(String noticeTitle,String noticeContent,int ownerNoticeNum, MultipartFile[] upFile, HttpServletRequest request) {
+		Map<String,Object> map=new HashMap();
+		map.put("noticeTitle", noticeTitle);
+		map.put("noticeContent", noticeContent);
+		map.put("ownerNoticeNum",ownerNoticeNum);
+		ArrayList<OwnerNoticeAttachment> files=new ArrayList();
+		String savDir=request.getSession().getServletContext().getRealPath("/resources/upload/owner/notAttach");
+		for(MultipartFile f:upFile)
+		{
+			if(!f.isEmpty()) {
+				//파일명 생성하기(rename)
+				String orifileName=f.getOriginalFilename();
+				String ext=orifileName.substring(orifileName.lastIndexOf("."));
+				//rename 규칙설정
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+				int rdv=(int)(Math.random()*1000);
+				String reName=sdf.format(System.currentTimeMillis())+"_"+rdv+ext;
+				
+				//파일저장하기
+				try {
+					f.transferTo(new File(savDir+"/"+reName));
+					
+				}catch(IllegalStateException | IOException e)
+				{
+					e.printStackTrace();
+				}
+				OwnerNoticeAttachment att=new OwnerNoticeAttachment();
+				att.setOwnerRenamedFileName(reName);
+				att.setOwnerOriginalFileName(orifileName);
+				files.add(att);
+			}
+		}
+		int result = service.ownerNoticeUpdateEnd(map,files); 
+		return "redirect:ownerNoticeList.do";
+}
 }
