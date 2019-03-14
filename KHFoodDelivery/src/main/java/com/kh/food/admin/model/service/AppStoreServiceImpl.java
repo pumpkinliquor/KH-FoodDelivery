@@ -30,5 +30,11 @@ public class AppStoreServiceImpl implements AppStoreService{
 	@Override
 	public Store selectAppStore(int no) {
 		return dao.selectAppStore(no);
+	}
+
+	// 입점 신청 count
+	@Override
+	public int appStoreCount() {
+		return dao.appStoreCount();
 	}	
 }

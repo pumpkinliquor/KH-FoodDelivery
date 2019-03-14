@@ -12,8 +12,6 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/sweetalert.css" />
-	<script type="text/javascript" src="${path }/resources/js/sweetalert.js'/>"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>finalproject</title>
 </head>

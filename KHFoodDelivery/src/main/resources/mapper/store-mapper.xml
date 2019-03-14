@@ -17,6 +17,11 @@
 		SELECT * FROM STORE WHERE businessCode = #{no}
 	</select>
 	
+	<!-- 입점 신청 Count -->
+	<select id="selectAppStoreCount" resultType="_int">
+		SELECT COUNT(*) FROM STORE WHERE isConfirm = 0
+	</select>
+	
 	<insert id="addStore" parameterType="map">
 		INSERT INTO STORE VALUES(SEQ_BUSINESSCODE.NEXTVAL, #{ownerId}, #{businessName}, #{businessPhone}, #{storeName}, #{storePhone}, #{storeAddress}, #{storeCategory}, #{oriImageName}, #{minPrice}, #{storeProfile}, DEFAULT, SYSDATE, #{businessNum}, 5, 5)
 	</insert>

@@ -70,4 +70,16 @@ public class QnaMngServiceImpl implements QnaMngService {
 	public int deleteMemberQna(int no) {
 		return dao.deleteMemberQna(no);
 	}
+
+	// 문의 count
+	@Override
+	public int selectMemberQnaCount() {
+		return dao.selectMemberQnaCount();
+	}
+
+	// 검색 문의 count
+	@Override
+	public int selectSearchMemberQnaCount(Map map) {
+		return dao.selectSearchMemberQnaCount(map);
+	}	
 }
