@@ -69,7 +69,10 @@ function fileDownLoad(oriName, reName){
 			<div class="col-sm-2">		
 			<c:if test="${sessionScope.ownerId=='admin' }">	
 				<button id="noticeCancelkBtn" name="noticeCancelkBtn" class="btn btn-default float-right" value="${notice.OWNERNOTICENUM }" onclick="fn_ownerNoticeDel(this)">삭제</button>
-				<button id="noticeUpBtn"  class="btn btn-default float-right" value="${notice.OWNERNOTICENUM }" onclick="fn_memberNoticeUp(this)">수정</button>
+				<form action="${path }/owner/ownerNoticeUpdate.do" enctype="multipart/form-data" method="post">
+				<input type="hidden" value="${notice.OWNERNOTICENUM }" name="ownerNoticeNum">
+				<button id="noticeUpBtn"  class="btn btn-default float-right" value="${notice.OWNERNOTICENUM }">수정</button>
+				</form>
 			</c:if>
 			</div>	
 		</div>

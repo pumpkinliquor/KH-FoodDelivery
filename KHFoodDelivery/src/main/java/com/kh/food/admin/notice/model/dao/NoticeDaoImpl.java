@@ -3,6 +3,7 @@ package com.kh.food.admin.notice.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,19 +18,28 @@ public class NoticeDaoImpl implements NoticeDao {
 	SqlSessionTemplate sqlSession;
 	
 	//회원공지사항리스트
-		@Override
-		public List<Map<String, String>> selectMemberNoticeList() {
-			// TODO Auto-generated method stub
-			
-			return sqlSession.selectList("memberNotice.selectMemberNoticeList");
-		}
-
+	@Override
+	public List<Map<String, String>> selectMemberNoticeList(int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		RowBounds rows=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("memberNotice.selectMemberNoticeList",null,rows);
+	}
+	
+	/*
+	 * @Override public List<Map<String, String>> selectMemberNoticeList() { // TODO
+	 * Auto-generated method stub
+	 * 
+	 * return sqlSession.selectList("memberNotice.selectMemberNoticeList"); }
+	 */
 		//페이징
 		@Override
 		public int notCount() {
 			// TODO Auto-generated method stub
 			return sqlSession.selectOne("memberNotice.notCount");
 		}
+
+
+		
 
 
 		//회원공지사항 뷰
@@ -67,20 +77,21 @@ public class NoticeDaoImpl implements NoticeDao {
 				return sqlSession.insert("memberNotice.insertMemberNoticeAttach", a);
 			}
 
-			
+			//회원공지사항 수정 파일
 			@Override
 			public int memberNoticeAUpdateEnd(NoticeAttachment a) {
 				// TODO Auto-generated method stub
+				System.out.println("dao 사진 : "+ a);
 				return sqlSession.update("memberNotice.memberNoticeAUpdateEnd", a);
 			}
 
-	
-	 @Override
-	 public int memberNoticeUpdateEnd(Map<String, Object> map) { 
-		 // TODO Auto-generated method stub 
-	  System.out.println("dao : " +map );
-	  return sqlSession.update("memberNotice.memberNoticeUpdateEnd",map); 
-	  }
+			//회원공지사항 수정
+			@Override
+			public int memberNoticeUpdateEnd(Map<String, Object> map) { 
+				// TODO Auto-generated method stub 
+				System.out.println("dao 글: " +map );
+				return sqlSession.update("memberNotice.memberNoticeUpdateEnd",map); 
+			}
 	 
 
 			

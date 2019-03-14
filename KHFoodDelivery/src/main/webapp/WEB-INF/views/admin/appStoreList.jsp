@@ -24,12 +24,12 @@
 
 <script> 
 	function fn_modal(num){		
-		console.log(num);
 		$.ajax({
 			type: "POST",
 			url: "${path}/admin/selectAppStore.do?no=" + num,
 			data: JSON,
 			success: function(data){
+				console.log(data);
 				$('#storeModal').modal();
 				$('#mdCategory').val(data.storeCategory);
 				$('#mdName').val(data.storeName)
@@ -80,6 +80,9 @@
 				</tbody>
 			</table>
 		</div>
+		<div class="paging">
+			${pageBar}
+		</div>
 	</div>
 </section>
 
@@ -99,7 +102,7 @@
 				<h4 class="modal-title">가게 정보</h4>
 				<button type="button" class="close" data-dismiss="modal">×</button>
 			</div>
-			<div class="modal-body" style="height: 1000px;">
+			<div class="modal-body" style="height: auto;">
 				<table class="table">
 					<tr>
 						<th>업종</th>
@@ -130,7 +133,7 @@
 						<td><textarea cols="10" rows="4" class="form-control" id="mdProfile" style="resize: none" readonly></textarea></td> 
 					</tr>
 					<tr>
-						<th>업소이미지</th>					
+						<th>업소이미지</th>
 						<td id="mdImage"></td> 
 					</tr>
 					<tr id="btnGroup">

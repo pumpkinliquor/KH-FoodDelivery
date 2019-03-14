@@ -1,5 +1,6 @@
 package com.kh.food.customer.member.model.vo;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class Member {
@@ -14,19 +15,16 @@ public class Member {
 	private String memberEmail;
 	private String nickName;
 	private Date memberEnrollDate;
-	private char memberGender;
+	private String memberGender;
 	private String mileage;
 	private int longitude;
 	private int atitude;
 	private int isAdmin;
 	private String profileImage;
 	private String formatBirth;
-	public Member() {
-		super();
-	}
 	public Member(int memberNum, String memberId, String memberPw, String memberName, String memberAddress,
 			String memberBirth, String memberPhone, String memberEmail, String nickName, Date memberEnrollDate,
-			char memberGender, String mileage, int longitude, int atitude, int isAdmin, String profileImage,
+			String memberGender, String mileage, int longitude, int atitude, int isAdmin,String profileImage,
 			String formatBirth) {
 		super();
 		this.memberNum = memberNum;
@@ -46,6 +44,9 @@ public class Member {
 		this.isAdmin = isAdmin;
 		this.profileImage = profileImage;
 		this.formatBirth = formatBirth;
+	}
+	public Member() {
+		super();
 	}
 	public int getMemberNum() {
 		return memberNum;
@@ -107,10 +108,10 @@ public class Member {
 	public void setMemberEnrollDate(Date memberEnrollDate) {
 		this.memberEnrollDate = memberEnrollDate;
 	}
-	public char getMemberGender() {
+	public String getMemberGender() {
 		return memberGender;
 	}
-	public void setMemberGender(char memberGender) {
+	public void setMemberGender(String memberGender) {
 		this.memberGender = memberGender;
 	}
 	public String getMileage() {
@@ -155,11 +156,13 @@ public class Member {
 				+ memberName + ", memberAddress=" + memberAddress + ", memberBirth=" + memberBirth + ", memberPhone="
 				+ memberPhone + ", memberEmail=" + memberEmail + ", nickName=" + nickName + ", memberEnrollDate="
 				+ memberEnrollDate + ", memberGender=" + memberGender + ", mileage=" + mileage + ", longitude="
-				+ longitude + ", atitude=" + atitude + ", isAdmin=" + isAdmin + ", profileImage=" + profileImage
-				+ ", formatBirth=" + formatBirth + "]";
+				+ longitude + ", atitude=" + atitude + ", isAdmin=" + isAdmin + ", profileImage="
+				+ profileImage + ", formatBirth=" + formatBirth + "]";
 	}
 	
 	
-
 	
+	
+	
+		
 }

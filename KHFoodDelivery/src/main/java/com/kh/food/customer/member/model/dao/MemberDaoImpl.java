@@ -48,7 +48,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int memberEnroll(Member m) {
-		
+		System.out.println("dao"+m);
 		return sqlSession.insert("member.insertMember",m);
 	}
 	
@@ -77,12 +77,12 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList("member.selectCategoryList", businessCode);
 	}
 
-//	@Override
-//	public List<Map<String, String>> selectMenuList(int menuCategoryCode, int businessCode) {
-//		Map<String,Object> codes=new HashMap<>();
-//		codes.put("menuCategoryCode", menuCategoryCode);
-//		codes.put("businessCode", businessCode);
-//		return sqlSession.selectList("member.selectMenuList",codes);
-//	}
-//	
+	@Override
+	public List<Map<String, String>> selectMenuList(int menuCategoryCode, int businessCode) {
+		Map<String,Object> codes=new HashMap<>();
+		codes.put("menuCategoryCode", menuCategoryCode);
+		codes.put("businessCode", businessCode);
+		return sqlSession.selectList("member.selectMenuList",codes);
+	}
+	
 }

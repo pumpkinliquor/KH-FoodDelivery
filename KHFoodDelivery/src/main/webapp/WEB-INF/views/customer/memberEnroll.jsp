@@ -9,10 +9,12 @@ pageEncoding="UTF-8"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
  <style>
-      div#enroll-container{width:400px; margin:0 auto; text-align:center;}
+      div#enroll-container{width:400px; margin:0 auto;}
       div#enroll-container input, div#enroll-container select {margin-bottom:10px;}
+     
 	
-	
+	 div#enroll-container .btn-ser{position:absolute;display:inline;
+      margin-left: 78%; }
     /*중복아이디체크관련*/
     div#enroll-container{position:relative; padding:0px;}
     div#enroll-container span.guide {display:none;font-size: 12px;position:absolute; top:12px; right:10px;}
@@ -28,7 +30,19 @@ pageEncoding="UTF-8"%>
             var memberId="";
             var nick="";
             $(function(){
-
+            	
+            	
+            	
+            	$('#memberPhone').bind("keyup", function(event) {
+            	    var regNumber = /^[0-9]*$/;
+            	    var temp = $('#memberPhone').val();
+            	    if(!regNumber.test(temp))
+            	    {
+            	        alert('숫자만 입력하세요');
+            	        $('#memberPhone').val(temp.replace(/[^0-9]/g,""));
+            	    }
+            	});
+            	
             	//비밀번호 확인
             		$('#memberPw2').blur(function(){
             			memberPw = $("#memberPw").val();
@@ -128,7 +142,7 @@ pageEncoding="UTF-8"%>
             	});
             	function validate(){
             		
-            		
+            	
             		
             		if(id==true)
             			{
@@ -194,7 +208,9 @@ pageEncoding="UTF-8"%>
              
             
             </script>
-      <div id="enroll-container">
+           
+       
+      <div id="enroll-container" class="col-sm-12">
         <form name="enroll" action="${path}/member/memberEnrollEnd.do" method="post" onsubmit="return validate();">
        <input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="memberId" id="memberId"/>
             <span class="guide ok">사용 가능한 아이디입니다. </span>
@@ -210,14 +226,17 @@ pageEncoding="UTF-8"%>
             <input type="date" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth"  min="1900-01-01"/>
             <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" >
             <input type="tel" class="form-control" placeholder="전화번호 (예:01012345678)" name="memberPhone" id="memberPhone" maxlength="11"/>
-            <input type="text" class="form-control" onclick="address();" placeholder="주소" name="memberAddress" id="memberAddress"/>
+             
+             <input type="button" class="btn-ser btn btn-default" onclick="address();" value="주소검색"/>
+             
+            <input type="text" class="add form-control"  placeholder="주소" name="memberAddress" id="memberAddress"/>
               <select class="form-control" name="memberGender" required>
                <option value="" disabled selected>성별</option>
                <option value="M">남</option>
                <option value="F">여</option>
             </select>
-         	<input type="text" class="form-control" placeholder="경도(일단입력(int))" name="longitude" id="longitude"/>
-            <input type="text" class="form-control" placeholder="위도(일단 입력(int))" name="atitude" id="atitude"/> 
+             <input type="hidden" name="profileImage" value="user.jpg"/>
+  
      																					
             <br />
             
@@ -225,6 +244,8 @@ pageEncoding="UTF-8"%>
             <input type="reset" class="btn btn-outline-secondary" value="취소"/>
          </form>
       </div>
+      
+     
       
   
  

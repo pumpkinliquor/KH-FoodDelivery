@@ -8,6 +8,10 @@
 
 <style>
 	div#context-area{ min-height: 200px; }
+	button {
+		background-color: transparent;
+		border-color: transparent;
+	}
 </style>
 
 <script>
@@ -17,7 +21,7 @@
 	}
 	/* 댓글 수정 */
 	function fn_updateReview(){
-		location.href="${path}/admin/updateMemberQnaReview.do?no=${mq.qnaCode}";
+		$('#reviewUpdateModal').modal();		
 	}
 	/* 문의 글 삭제 */
 	function fn_deleteQna(){
@@ -42,10 +46,11 @@
 			<div class="col-sm-3">
 				<p>작성일<b>${mq.formatWriteDate }</b></p>
 			</div>
-			<div class="col-sm-4">				
+			<div class="col-sm-3">				
 			</div>			
-			<div class="col-sm-1">
-				<button type="button" class="btn" onclick="fn_deleteQna()">삭제</button>			
+			<div class="col-sm-2">			
+				<button type="button" class="btn" onclick="fn_deleteQna()">삭제</button>
+				<button type="button" class="btn" onclick="location.href='${path}/admin/memberQnaList.do'">목록으로</button>			
 			</div>	
 		</div>
 		<hr/>
@@ -78,8 +83,8 @@
 		
 		<c:if test="${empty mqr }">
 			<hr/>
-			<div class="row">
-				<form action="${path }/admin/insertMemberQnaRe.do" method="post">		
+			<form action="${path }/admin/insertMemberQnaRe.do" method="post">		
+				<div class="row">
 					<div class="col-sm-11">
 						<textarea rows="3" cols="100" style="resize: none" class="form-control" name="context"></textarea>
 						<input type="hidden" name="qnaNo" value="${mq.qnaCode }"/>
@@ -87,10 +92,37 @@
 					<div class="col-sm-1" style="margin-top: 20px">
 						<input type="submit" class="btn" value="등록"/>
 					</div>
-				</form>			
-			</div>
+				</div>
+			</form>			
 		</c:if>
 	</div>
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+
+
+<!-- 모달 구현 -->
+<div class="modal" id="reviewUpdateModal" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">댓글 수정</h4>
+				<button type="button" class="close" data-dismiss="modal">×</button>
+			</div>
+			<form action="${path}/admin/updateMemberQnaReview.do?no=${mq.qnaCode}" method="post">
+				<div class="modal-body" style="height: 200px;">
+					<table class="table">
+						<tr>
+							<th style="vertical-align: middle">댓글</th>
+							<td><textarea name="updateContext" class="form-control" style="resize: none" rows="6">${mqr.reviewContext }</textarea></td>						
+						</tr>						
+					</table>
+				</div>
+				<div class="modal-footer">
+					<input type="submit" class="btn btn-outline-success" value="수정"/>
+				</div>
+			</form>
+		</div>  
+	</div>
+</div>

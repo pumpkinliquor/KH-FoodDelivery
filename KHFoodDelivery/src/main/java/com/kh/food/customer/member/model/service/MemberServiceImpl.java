@@ -48,7 +48,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int memberEnroll(Member m) {
-		
+		System.out.println("서비스"+m);
 		return dao.memberEnroll(m);
 	}
 	
@@ -76,10 +76,10 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectCategoryList(businessCode);
 	}
 
-//	@Override
-//	public List<Map<String, String>> selectMenuList(int menuCategoryCode,int businessCode) {
-//		return dao.selectMenuList(menuCategoryCode, businessCode);
-//	}
+	@Override
+	public List<Map<String, String>> selectMenuList(int menuCategoryCode,int businessCode) {
+		return dao.selectMenuList(menuCategoryCode, businessCode);
+	}
 
 
 	

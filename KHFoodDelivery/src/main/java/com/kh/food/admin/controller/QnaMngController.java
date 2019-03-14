@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.admin.model.service.QnaMngService;
+import com.kh.food.common.PagingFactory;
 import com.kh.food.owner.onevsone.model.vo.OwnerQna;
 import com.kh.food.qna.model.vo.MemberQna;
 import com.kh.food.qna.model.vo.MemberQnaReview;
@@ -34,9 +35,10 @@ public class QnaMngController {
 	
 	// 회원 문의 내역 리스트
 	@RequestMapping("/admin/memberQnaList.do")
-	public ModelAndView memberQnaList() {
+	public ModelAndView memberQnaList(@RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
 		ModelAndView mv = new ModelAndView();
-		
+		int numPerPage = 5;
+		int count = service.selectMemberQnaCount();
 		// 회원 문의 리스트
 		List<MemberQna> mqList = service.selectMemberQnaList();
 		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)
@@ -46,6 +48,7 @@ public class QnaMngController {
 		}		
 		
 		mv.addObject("mqList", mqList);		
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/memberQnaList.do"));
 		mv.setViewName("admin/memberQnaList");
 		return mv;
 	}
@@ -54,24 +57,23 @@ public class QnaMngController {
 	@RequestMapping("/admin/searchMemberQna.do")
 	public ModelAndView searchMemberQna(@RequestParam("keyword") String keyword,
 										@RequestParam("isRe") String isRe,
-										@RequestParam("category") String[] category) {
+										@RequestParam("category") String category,
+										@RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
 		ModelAndView mv = new ModelAndView();
+		int numPerPage = 5;
 		
-		logger.debug("keyword :" + keyword);
-		logger.debug("isRe :" + isRe);
-		logger.debug("category :" + category[0]);		
-		
-		List<String> categoryList = new ArrayList();		
+		/*List<String> categoryList = new ArrayList();		
 		for(int i = 0; i < category.length; i++) {
 			categoryList.add(category[i]);		
-		}
+		}*/
 		
 		Map map = new HashMap();
 		map.put("keyword", keyword);
 		map.put("isRe", isRe);
-		map.put("category", categoryList);
+		map.put("category", category);
 		
 		List<MemberQna> mqList = service.searchMemberQna(map);
+		int count = service.selectSearchMemberQnaCount(map);
 		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		for(int i = 0; i < mqList.size(); i++) {
@@ -79,8 +81,8 @@ public class QnaMngController {
 		}
 				
 		mv.addObject("mqList", mqList);		
-		mv.setViewName("admin/memberQnaList");
-				
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/memberQnaList.do"));
+		mv.setViewName("admin/memberQnaList");				
 		return mv;
 	}
 	
@@ -148,11 +150,14 @@ public class QnaMngController {
 	// 회원 문의 답변 수정
 	@RequestMapping("/admin/updateMemberQnaReview.do")
 	public ModelAndView updateMemberQnaReview(@RequestParam("no") int no, @RequestParam("updateContext") String context) {
+		logger.debug("수정 ");
+		logger.debug("번호" + no);
+		logger.debug("메시지 : " + context);
 		ModelAndView mv = new ModelAndView();
 		Map map = new HashMap();
 		map.put("no", no);
 		map.put("context", context);
-		service.updateMemberQnaReview(map);				
+		service.updateMemberQnaReview(map);		
 		mv.setViewName("redirect:/admin/memberQnaView.do?no=" + no);
 		return mv;
 	}	

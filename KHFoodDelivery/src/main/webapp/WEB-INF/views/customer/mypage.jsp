@@ -58,16 +58,6 @@ function dropMember(){
 </script>
 
 <div class="container">
-<div class="text-center">
-  			<img onclick="fileUpload()" style="cursor: pointer;" title="profile image" class="avatar img-circle img-thumbnail" alt="avatar" src="${path}/resources/images/customer/mypage/user.jpg"/>
- 			<h6></h6>
- 			<div class="text">
- 		
- 			<a>아이디</a> <a>닉네임</a>
- 			<input type="file" class="btn btn-primary" id="file" name="file" style="display: none ;">
- 			</div>
- 			<hr>
- 			</div>
  			
 	<div class="row">
 		<div class="col-md-3 ">
@@ -81,10 +71,19 @@ function dropMember(){
 		<div class="col-md-9 ">
 			
  			 <div class="row">
-		                <div class="col-md-12">
-		                    <form name="update" action="${path}/member/update.do" method="post" >
+		         <div class="col-md-12">
+		              <form name="update" action="${path}/member/update.do" method="post" enctype="multipart/form-data">
+						  <div class="text-center">
+				  			
+				  			<img onclick="fileUpload()" style="cursor: pointer;" name="file" title="profile image" class="avatar img-circle img-thumbnail" alt="avatar" src="${path}/resources/upload/member/profile/${member.profileImage}"/>
+				 			<input type="file" class="btn btn-primary" id="file" name="profileImg" style="display: none ;">
+				 			 
+			 				
+			 			<hr>
+			 			</div>
                               <div class="form-group row">
-                                <label for="username" class="col-4 col-form-label">아이디</label> 
+                               
+                                <label for="username" class="col-4 col-form-label">아이디</label>
                                 <div class="col-8">
                                   <input id="username" name="memberId" id="memberId"value="${member.memberId}" class="form-control here" required="required" type="text" readonly >
                                 </div>
@@ -104,7 +103,7 @@ function dropMember(){
                               <div class="form-group row">
                                 <label for="text" class="col-4 col-form-label">생년월일</label> 
                                 <div class="col-8">
-                                  <input id="text" name="formatBirth" id="formatBirth"value="${member.formatBirth}"class="form-control here" required="required" type="text">
+                                  <input id="text" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" type="text">
                                 </div>
                               </div>
                               <div class="form-group row">
@@ -125,15 +124,15 @@ function dropMember(){
                                   <input id="website" name="memberAddress" id="memberAddress"value="${member.memberAddress}" class="form-control here" type="text">
                                 </div>
                               </div>
-                              <div class="form-group row">
+                               <div class="form-group row">
                                 <label for="publicinfo" class="col-4 col-form-label">성별</label> 
                                 <select class="form-control" name="memberGender" id="memberGender" required>
 					            <option value="" disabled selected>성별</option>
-					            <option value="M" ${member.gender=='M'?'selected':'' }>남</option>
-					            <option value="F" ${member.gender=='F'?'selected':'' }>여</option>
+					            <option value="M" ${member.memberGender=='M'?'selected':''}>남</option>
+					            <option value="F" ${member.memberGender=='F'?'selected':'' }>여</option>
 					            </select>
 										            
-                              </div>
+                              </div> 
                               
                               <input type="submit" class="btn btn-default" value="수정하기"/>&nbsp;
                               <input type="reset" class="btn btn-default" value="취소"/>

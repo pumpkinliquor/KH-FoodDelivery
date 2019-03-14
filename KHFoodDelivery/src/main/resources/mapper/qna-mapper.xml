@@ -11,7 +11,7 @@
 
 	<!-- 회원 문의 리스트 -->
 	<select id="selectMemberQnaList" resultType="memberQna">
-		SELECT mq.*, m.memberId, (SELECT COUNT(*) FROM MEMBER_QNA_REVIEW r JOIN MEMBER_QNA ON(r.qnaCode = mq.qnaCode)) AS isRe FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum)
+		SELECT mq.*, m.memberId, (SELECT COUNT(*) FROM MEMBER_QNA_REVIEW r JOIN MEMBER_QNA ON(r.qnaCode = mq.qnaCode)) AS isRe FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum) ORDER BY isRe ASC, writeDate DESC, qnaCategory DESC 
 	</select>
 	
 	<!-- 회원 문의 보기 -->
@@ -58,9 +58,18 @@
 				</otherwise>
 			</choose>
 		AND
-			<foreach collection="category" item="cate" index="i" open="(" close=")" separator="OR">
+			<choose>
+				<when test="category eq '전체'">
+					1 = 1
+				</when>
+				<otherwise>
+					qnaCategory = #{category}
+				</otherwise>
+			</choose>
+		ORDER BY isRe ASC, writeDate DESC, qnaCategory DESC
+			<!-- <foreach collection="category" item="cate" index="i" open="(" close=")" separator="OR">
 				qnaCategory = #{cate}
-			</foreach>
+			</foreach> -->
 	</select>
 	
 	<!-- 회원 문의글 삭제 -->
@@ -70,6 +79,42 @@
 	
 	<!-- 사장 문의 리스트 -->
 	<select id="selectOwnerQnaList" resultType="ownerQna">
-		SELECT oq.*, o.ownerId, (SELECT COUNT(*) FROM OWNER_QNA_REVIEW r JOIN OWNER_QNA ON(r.qnaCode = oq.qnaCode)) AS isRe FROM OWNER_QNA oq JOIN OWNER o ON(oq.ownerNum = o.ownerNum)
+		SELECT oq.*, o.ownerId, (SELECT COUNT(*) FROM OWNER_QNA_REVIEW r JOIN OWNER_QNA ON(r.qnaCode = oq.qnaCode)) AS isRe FROM OWNER_QNA oq JOIN OWNER o ON(oq.ownerNum = o.ownerNum) ORDER BY isRe ASC, writeDate DESC, qnaCategory DESC
+	</select>
+	
+	<!-- 문의 count -->
+	<select id="selectMemberQnaCount" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER_QNA
+	</select>
+	
+	<!-- 검색 문의 count -->
+	<select id="selectSearchMemberQnaCount" resultType="_int" parameterType="map">
+		SELECT COUNT(*) 
+		FROM (	SELECT mq.*, m.memberId, (SELECT COUNT(*) FROM MEMBER_QNA_REVIEW r JOIN MEMBER_QNA ON(r.qnaCode = mq.qnaCode)) AS isRe 
+				FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum) 
+				WHERE 
+					qnaTitle LIKE '%'||#{keyword}||'%'
+				AND 
+					<choose>
+						<when test="isRe eq 0">
+							(SELECT COUNT(*) FROM MEMBER_QNA_REVIEW r JOIN MEMBER_QNA ON(r.qnaCode = mq.qnaCode)) = 0
+						</when>
+						<when test="isRe eq 1">
+							(SELECT COUNT(*) FROM MEMBER_QNA_REVIEW r JOIN MEMBER_QNA ON(r.qnaCode = mq.qnaCode)) > 0
+						</when>
+						<otherwise>
+							1 = 1
+						</otherwise>
+					</choose>
+				AND
+					<choose>
+						<when test="category eq '전체'">
+							1 = 1
+						</when>
+						<otherwise>
+							qnaCategory = #{category}
+						</otherwise>
+					</choose>
+		)		
 	</select>
 </mapper>

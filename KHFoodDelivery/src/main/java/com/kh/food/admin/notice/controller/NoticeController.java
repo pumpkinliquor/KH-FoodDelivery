@@ -43,10 +43,9 @@ public class NoticeController {
 	public ModelAndView memberNoticeList(@RequestParam(value="cPage", required=false, defaultValue="0") int cPage)
 	{
 		int numPerPage=10;
-		
-		int count = service.notCount();
 		ModelAndView mv=new ModelAndView();
-		List<Map<String,String>>list=service.selectMemberNoticeList();
+		int count = service.notCount();
+		List<Map<String,String>>list=service.selectMemberNoticeList(cPage,numPerPage);
 		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/memberNoticeList.do"));
 		mv.addObject("list",list);
 		mv.setViewName("admin/memberNoticeList");
@@ -260,19 +259,11 @@ public class NoticeController {
 			}
 		}
 		int result = service.memberNoticeUpdateEnd(map,files); 
-		System.out.println("컨트롤러 map" +map);
-		System.out.println(result+" :리절트");
-		String msg="";
-		String loc="";
-		if(result>0) 
-		{
-			msg="글을 수정하였습니다.";
-			loc="admin/memberNoticeList.do";
-		}
-		else {
-			msg="실패";
-			loc="admin/memberNoticeList.do";
-		}
+		/*
+		 * String msg=""; String loc=""; if(result>0) { msg="글을 수정하였습니다.";
+		 * loc="admin/memberNoticeList.do"; } else { msg="실패";
+		 * loc="admin/memberNoticeList.do"; }
+		 */
 		return "redirect:memberNoticeList.do";
 	}
 	 

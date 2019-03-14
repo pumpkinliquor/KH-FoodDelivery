@@ -1,13 +1,14 @@
 package com.kh.food.customer.member.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -18,12 +19,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.common.PagingFactory;
 import com.kh.food.customer.member.model.service.MemberService;
 import com.kh.food.customer.member.model.vo.Member;
-import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 
 @Controller
@@ -41,10 +43,13 @@ public class MemberController {
 	
 	//나의주문내역
 	@RequestMapping("/member/orderList.do")
-	public ModelAndView memberInfoChange(ModelAndView mv)
+	public ModelAndView memberOrderList(String memberId)
 	{
-	
+		ModelAndView mv=new ModelAndView();
 		
+		Member member = service.selectMember(memberId);
+		
+		mv.addObject("member",member);
 		mv.setViewName("customer/orderList");
 		return mv;
 	}
@@ -57,10 +62,9 @@ public class MemberController {
 	@RequestMapping("/customer/mypage.do")
 	public ModelAndView myPage(String memberId) {
 		ModelAndView mv =new ModelAndView();
+
 		Member member = service.selectMember(memberId);
-		DateFormat df=new SimpleDateFormat("yyyy-MM-dd");
-		member.setFormatBirth(df.format(member.getMemberBirth()));
-		System.out.println("객체"+member);
+		
 		
 		mv.addObject("member",member);
 		mv.setViewName("customer/mypage");
@@ -95,8 +99,27 @@ public class MemberController {
 	
 	//회원정보 수정
 	@RequestMapping("/member/update.do")
-	public ModelAndView update(Member m) {
+	public ModelAndView update(Member m, HttpServletRequest request, MultipartFile profileImg) {
 		
+		System.out.println(m);
+		logger.debug(""+profileImg);
+		//파일 업데이트
+		String savDir=request.getSession().getServletContext().getRealPath("/resources/upload/member/profile");
+		
+		if(!profileImg.isEmpty()) {
+			//파일명 생성
+			String oriFileName=profileImg.getOriginalFilename();
+			
+			//파일 저장하기
+			try {
+				profileImg.transferTo(new File(savDir+"/"+oriFileName));
+			}catch(IllegalStateException |IOException e) {
+				e.printStackTrace();
+			}
+			
+			String filename=oriFileName;
+			m.setProfileImage(filename);
+		}
 		System.out.println(m);
 		int result=service.update(m);
 		String msg="";
@@ -231,15 +254,15 @@ public class MemberController {
 	
 	//회원가입완료
 	@RequestMapping("/member/memberEnrollEnd.do")
-	public ModelAndView memberEnrollEnd(Member m)
+	public String memberEnrollEnd(Member m,Model mo)
 	{
 		
-		ModelAndView mv=new ModelAndView();
-		System.out.println(m);
+		
 		String rawPw=m.getMemberPw();
 		System.out.println("암호화전"+rawPw);
 		
 		m.setMemberPw(pwEncoder.encode(rawPw));
+		System.out.println(m);
 		
 		int result=service.memberEnroll(m);
 		String msg="";
@@ -252,10 +275,9 @@ public class MemberController {
 			msg="회원가입 실패하였습니다.";
 			
 		}
-		mv.addObject("msg",msg);
-		mv.addObject("loc",loc);
-		mv.setViewName("common/msg");
-		return mv;
+		mo.addAttribute("msg",msg);
+		mo.addAttribute("loc",loc);
+		return "common/msg"; 
 	}
 	
 	
@@ -267,18 +289,34 @@ public class MemberController {
 		return "customer/test";
 	}
 	
+	
+	
+	
 	@RequestMapping("/customer/test1.do")
 	public ModelAndView test1(ModelAndView mv, int businessCode)
 	{
-		System.out.println(businessCode);
-//		System.out.println(menuCategoryCode);
+//		System.out.println(businessCode);
 		List<Map<String,String>> menuCategory=service.selectCategoryList(businessCode);
-//		List<Map<String,String>> menuList=service.selectMenuList(menuCategoryCode, businessCode);
-//		mv.addObject("menuList", menuList);
+		mv.addObject("businessCode", businessCode);
 		mv.addObject("categoryList", menuCategory);
 		mv.setViewName("customer/test1");
 		return mv;
 	}
+	@RequestMapping("/customer/test1End.do")
+	@ResponseBody
+	public List test1End(ModelAndView mv, int menuCategoryCode, int businessCode) {
+		System.out.println("비즈니스코드"+businessCode);
+		System.out.println("메뉴카테고리코드"+menuCategoryCode);
+		List<Map<String,String>> menuList=service.selectMenuList(menuCategoryCode, businessCode);
+		for(int i=0; i<menuList.size(); i++) {
+			System.out.println(menuList.get(i));
+		}
+		return menuList;
+	}
+	
+	
+	
+	
 	@RequestMapping("/customer/test2.do")
 	public String test2()
 	{
@@ -299,6 +337,7 @@ public class MemberController {
 		ModelAndView mv=new ModelAndView();
 		int numPerPage=8;
 		int count=service.selectMenuCount();
+		
 		List<Store> list=service.selectStore(category,cPage,numPerPage);
 		
 		
