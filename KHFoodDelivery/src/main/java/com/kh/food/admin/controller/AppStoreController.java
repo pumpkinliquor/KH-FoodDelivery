@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.admin.model.service.AppStoreService;
+import com.kh.food.common.PagingFactory;
 import com.kh.food.owner.member.controller.OwnerMemberController;
 import com.kh.food.owner.store.model.vo.Store;
 
@@ -28,24 +29,32 @@ public class AppStoreController {
 	@Autowired
 	AppStoreService service;
 
+	// 입점 신청 리스트
 	@RequestMapping("/admin/appStoreList.do")
-	public ModelAndView appStoreList(HttpServletRequest request) {
+	public ModelAndView appStoreList(@RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
+		
 		ModelAndView mv = new ModelAndView();
+		int numPerPage=10;
+		int count = service.appStoreCount();
 		
 		List<Store> appStoreList = service.selectAppStoreList();
 		
 		// 입점 신청 날짜 포맷 (패턴 : yyyy-MM-dd)
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		
 		for(int i = 0; i < appStoreList.size(); i++) {
 			appStoreList.get(i).setFormatAppDate(df.format(appStoreList.get(i).getAppDate()));
 		}
 		
 		mv.addObject("appStoreList", appStoreList);
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/appStoreList.do"));
 		mv.setViewName("admin/appStoreList");		
 		return mv;
 		
 	}
 	
+	
+	// 입점 신청 정보 JSON 반환
 	@RequestMapping("/admin/selectAppStore.do")
 	@ResponseBody
 	public Store selectAppStore(@RequestParam("no") int no) {	
@@ -59,6 +68,7 @@ public class AppStoreController {
 		return store;
 	}
 	
+	// 입점 승인
 	@RequestMapping("/admin/confirmApp.do")
 	public ModelAndView updateStoreConfirm(@RequestParam("no") int no) {
 		ModelAndView mv = new ModelAndView();

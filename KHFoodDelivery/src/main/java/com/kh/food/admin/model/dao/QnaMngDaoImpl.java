@@ -70,4 +70,16 @@ public class QnaMngDaoImpl implements QnaMngDao {
 	public int deleteMemberQna(int no) {
 		return session.delete("qna.deleteMemberQna", no);
 	}
+
+	// 문의 count
+	@Override
+	public int selectMemberQnaCount() {
+		return session.selectOne("qna.selectMemberQnaCount");
+	}
+
+	// 검색 문의 count
+	@Override
+	public int selectSearchMemberQnaCount(Map map) {
+		return session.selectOne("qna.selectSearchMemberQnaCount", map);
+	}	
 }

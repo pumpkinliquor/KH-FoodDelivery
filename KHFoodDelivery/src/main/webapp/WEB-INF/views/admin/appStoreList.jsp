@@ -79,6 +79,9 @@
 				</tbody>
 			</table>
 		</div>
+		<div class="paging">
+			${pageBar}
+		</div>
 	</div>
 </section>
 
@@ -98,7 +101,7 @@
 				<h4 class="modal-title">가게 정보</h4>
 				<button type="button" class="close" data-dismiss="modal">×</button>
 			</div>
-			<div class="modal-body" style="height: 1000px;">
+			<div class="modal-body" style="height: auto;">
 				<table class="table">
 					<tr>
 						<th>업종</th>

@@ -14,8 +14,8 @@
 	table#qnaTable{ table-layout: fixed; word-wrap: break-word; }
 	table#qnaTable th, table#qnaTable td{ text-align: center; vertical-align: middle; }
 	div#qna-category{display: inline; margin-top: 20px;}
-	select{display: inline; margin: auto;}
-	div#qna-search{display: inline; width: 40%; margin-top: 20px; float: right;}
+	select{display: inline; margin-top: 20px;}
+	div#qna-search{display: inline; margin-top: 20px; float: right;}
 	div#qna-sort{ float: left; margin-top: 20px;}
 	table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
 	table#table-sort th{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); border: 1px solid #444444; padding: 0; }
@@ -35,8 +35,8 @@
 		<h4 id="titleText">회원 문의 내역 </h4>
 		
 		<form class="form-controll navbar-right" role="search" action="${path }/admin/searchMemberQna.do" method="post">
-			<div class="row">				
-				<div class="col-sm-12">
+		<div class="row">
+		<div class="col-sm-4">
 					<div id="qna-sort">
 						<div class="btn-group" data-toggle="buttons">
 							<label class="btn btn-secondary active">
@@ -50,8 +50,11 @@
 							</label>
 						</div>
 					</div>
-					<div id="qna-category">
-						<select class="form-control" name="category">
+		</div>
+		<div class="col-sm-3"></div>
+		<div class="col-sm-1">
+					<div id="qna-category" class="form-group">
+						<select class="form-control" name="category" style="width: auto">
 							<option value="전체">전체</option>
 							<option value="결제">결제</option>
 							<option value="회원">회원</option>
@@ -60,6 +63,8 @@
 							<option value="리뷰">리뷰</option>
 						</select>	
 					</div>	
+		</div>
+		<div class="col-sm-4">
 					<div class="input-group" id="qna-search">			
 						<div class="form-group">						
 							<div class="input-group">														
@@ -70,10 +75,9 @@
 							</div>
 						</div>
 					</div>
-				</div>		
-			</div>
+		</div>		
+		</div>
 		</form>
-			
 			
 		<div id="qnaList">
 			<table class="table table-hover" id="qnaTable">
@@ -103,6 +107,9 @@
 					</c:forEach>
 				</tbody>
 			</table>
+		</div>
+		<div class="paging">
+			${pageBar}
 		</div>
 	</div>
 </section>
