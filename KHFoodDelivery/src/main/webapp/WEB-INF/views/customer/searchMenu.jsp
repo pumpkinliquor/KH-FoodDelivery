@@ -10,7 +10,7 @@ div.store{border:1px solid #E4E4E4; background-color:#FFFFFF;margin:6px;position
 div.store a{text-decoration:none; color:black; text-align:left;}  
 div.me{margin-top:-8%;} 
 body{background-color:#F6F6F6;}
-div.a{text-align:center;}
+
 div.me div.a .option{text-align:center;}
 </style>
    

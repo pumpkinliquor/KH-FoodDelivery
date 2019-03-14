@@ -58,10 +58,11 @@ function fileUpload(){
  	
 <div class="container">
 <div class="text-center">
-  			<img onclick="fileUpload()" style="cursor: pointer;" title="profile image" class="avatar img-circle img-thumbnail" alt="avatar" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
- 			<h6></h6>
+  		<img onclick="fileUpload()" style="cursor: pointer;" name="file" title="profile image" class="avatar img-circle img-thumbnail" alt="avatar" src="${path}/resources/upload/member/profile/${member.profileImage}"/>
+				 			
+ 			
  			<div class="text">
- 			<a>${member.memberName }</a> <a>${member.memberId }</a> <a>${member.nickName }</a>
+ 			
  			<input type="file" class="btn btn-primary" id="file" name="file" style="display: none ;">
  			</div>
  			<hr>
@@ -70,7 +71,7 @@ function fileUpload(){
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
-              <a href="${path }/member/orderList.do" class="list-group-item list-group-item-action active" style="z-index:0;">나의 주문내역</a>
+              <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action active" style="z-index:0;">나의 주문내역</a>
               <a href="#" class="list-group-item list-group-item-action">즐겨찾는매장</a>
               <a href="${path}/customer/mypage.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action">회원정보변경</a>
               <a href="#" class="list-group-item list-group-item-action">나의 문의내역</a>

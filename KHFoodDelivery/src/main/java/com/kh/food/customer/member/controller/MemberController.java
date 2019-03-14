@@ -43,10 +43,13 @@ public class MemberController {
 	
 	//나의주문내역
 	@RequestMapping("/member/orderList.do")
-	public ModelAndView memberInfoChange(ModelAndView mv)
+	public ModelAndView memberOrderList(String memberId)
 	{
-	
+		ModelAndView mv=new ModelAndView();
 		
+		Member member = service.selectMember(memberId);
+		
+		mv.addObject("member",member);
 		mv.setViewName("customer/orderList");
 		return mv;
 	}
@@ -334,6 +337,7 @@ public class MemberController {
 		ModelAndView mv=new ModelAndView();
 		int numPerPage=8;
 		int count=service.selectMenuCount();
+		
 		List<Store> list=service.selectStore(category,cPage,numPerPage);
 		
 		
