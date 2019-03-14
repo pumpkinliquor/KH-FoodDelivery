@@ -22,14 +22,14 @@ public class QnaMngDaoImpl implements QnaMngDao {
 	@Override
 	public List<MemberQna> selectMemberQnaList(int cPage, int numPerPage) {
 		RowBounds rb = new RowBounds((cPage - 1) * numPerPage, numPerPage);
-		return session.selectList("qna.selectMemberQnaList", rb);
+		return session.selectList("qna.selectMemberQnaList", null, rb);
 	}
 
 	// 사장 문의 리스트
 	@Override
 	public List<OwnerQna> selectOwnerQnaList(int cPage, int numPerPage) {
 		RowBounds rb = new RowBounds((cPage - 1) * numPerPage, numPerPage);
-		return session.selectList("qna.selectOwnerQnaList", rb);
+		return session.selectList("qna.selectOwnerQnaList", null, rb);
 	}
 
 	// 회원 문의 보기
