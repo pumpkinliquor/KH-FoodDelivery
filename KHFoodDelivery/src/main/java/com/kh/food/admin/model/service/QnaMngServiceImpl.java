@@ -19,14 +19,14 @@ public class QnaMngServiceImpl implements QnaMngService {
 	
 	// 회원 문의 리스트
 	@Override
-	public List<MemberQna> selectMemberQnaList() {
-		return dao.selectMemberQnaList();
+	public List<MemberQna> selectMemberQnaList(int cPage, int numPerPage) {
+		return dao.selectMemberQnaList(cPage, numPerPage);
 	}
 
 	// 사장 문의 리스트
 	@Override
-	public List<OwnerQna> selectOwnerQnaList() {
-		return dao.selectOwnerQnaList();
+	public List<OwnerQna> selectOwnerQnaList(int cPage, int numPerPage) {
+		return dao.selectOwnerQnaList(cPage, numPerPage);
 	}
 
 	// 회원 문의 보기
@@ -61,8 +61,8 @@ public class QnaMngServiceImpl implements QnaMngService {
 
 	// 회원 문의 검색
 	@Override
-	public List<MemberQna> searchMemberQna(Map map) {
-		return dao.searchMemberQna(map);
+	public List<MemberQna> searchMemberQna(Map map, int cPage, int numPerPage) {
+		return dao.searchMemberQna(map, cPage, numPerPage);
 	}
 
 	// 회원 문의글 삭제
