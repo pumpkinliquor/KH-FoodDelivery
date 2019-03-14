@@ -1,7 +1,12 @@
 package com.kh.food.owner.order.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,13 +28,14 @@ public class OrderController {
 	
 	//주문관리 화면진입
 	@RequestMapping("owner/orderService.do")
-	public ModelAndView selectOrderList()
+	public ModelAndView selectOrderList(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException
 	{
 		List<Map<String,String>> orderList = service.selectOrderList();
 		logger.debug("주문내역"+orderList);
 /*		int orderCount = service.selectOrderCount();*/		
 		
 		ModelAndView mv = new ModelAndView();
+//		request.setAttribute("orderList1", orderList);
 		mv.addObject("orderList",orderList);
 		mv.setViewName("owner/ownerOrderList");
 		return mv;

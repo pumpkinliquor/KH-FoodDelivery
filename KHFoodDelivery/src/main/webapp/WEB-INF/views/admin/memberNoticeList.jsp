@@ -40,7 +40,9 @@
 
       <button type="button" class="btn btn-light float-right"
          onclick="location.href='${path}/admin/memberNoticeForm.do'">글쓰기</button>
-
+	<div class="paging">
+	${pageBar}
+	</div>
 
    </div>
 

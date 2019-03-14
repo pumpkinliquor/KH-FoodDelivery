@@ -23,6 +23,12 @@ public class OwnerNoticeServiceImpl implements OwnerNoticeService {
 		return dao.ownerNoticeList();
 	}
 
+	@Override
+	public int ownNotCount() {
+		// TODO Auto-generated method stub
+		return dao.ownNotCount();
+	}
+
 	//사장공지사항 뷰
 	@Override
 	public Map<String, String> selectOwnerNotice(int ownerNoticeNum) {

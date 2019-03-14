@@ -3,53 +3,90 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<c:set var="path" value="${pageContext.request.contextPath }" />
+<c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
+
+<script>
+$(function(){
+	$('[name=upFile]').on('change',function(){
+		var filename=this.files[0].name;
+		$(this).next('.custom-file-label').html(filename);
+	});
+});
+
+
+
+function fn_validate(){
+	var content =$("[name=noticeContent]").val();
+	if(content.trim().length==0){
+		alert("내용을 입력하세요.");
+		return false;
+	}
+	return true;
+	}
+	
+	
+</script>
+
 
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
 			<form
-				action="${pageContext.request.contextPath}/admin/noticeUpdateForm.do"
-				method="post">
-				<table class="table table-bordered board" id="notice_table"
-					name="notice_table">
+				action="${path}/admin/memberNoticeUpdateEnd.do" method="post" enctype="multipart/form-data">
+				
+				<table class="table table-bordered board" id="notice_table" name="notice_table">
 
 					<tbody>
-						<!-- <form action="" method="post" encType="multiplart/form-data" name="board_form"> -->
 						<tr>
-							<th colspan="2">제목</th>
-							<td><input type="text" value="내용" name="noticeTitle"
-								class="form-control" /></td>
-							<th>작성자</th>
-							<td><input type="text" class="form-control"
-								name="noticeWriter" readonly="readonly" value="관리자" /></td>
-						</tr>
-						<tr aria-rowspan="3">
-							<th>첨부파일</th>
-							<td colspan="2"><input type="file" name="NoticeupFile"
-								id="NoticeupFile1"> <input type="file"
-								name="NoticeupFile" id="NoticeupFile1"></td>
-							<th>첨부파일</th>
-							<td colspan="2"><input type="file" name="NoticeupFile"
-								id="NoticeupFile1"> <input type="file"
-								name="NoticeupFile" id="NoticeupFile1"></td>
-					</tbody>
-				</table>
-				<div id="Noticetinymce-form">
-					<fieldset class="form-group">
-						<textarea class="form-control" value="내용" id="noticeEditor"
-							rows="10" name="noticeContent">
- 						 </textarea>
-					</fieldset>
-				</div>
-
-
-				<button name="noticeCancelkBtn" class="btn btn-default float-left"
-					onclick="location.href='${path}/admin/noticeList.do'">취소</button>
-				<button type="submit" onclick="return validate();"
-					class="btn btn-default float-right">수정</button>
-
+			        		<th>작성자</th>
+			        		<td>
+				        		<input type="text" class="form-control" value="관리자" required readonly/>
+				        		
+			        		</td>
+			        	</tr>
+						  <tr>
+			                <th>제목</th>
+			                <td><input type="text" name="noticeTitle" value="${notice.NOTICETITLE}"/> </td>
+			            </tr>
+			            <tr>
+			                <th>내용</th>
+			                <td><textarea cols="10" name="noticeContent" class="form-control" style="resize:none; height:15em;">${notice.NOTICECONTENT }</textarea></td>
+			            </tr>
+			            <tr>
+			                <th>
+								<div class="input-group-prepend" style="padding:0px;">
+			                    	<span class="input-group-text">첨부파일1</span>
+				                </div>
+							</th>
+			                <td>
+           	 					<div class="custom-file">
+				                    <input type="file" class="custom-file-input" name="upFile" id="upFile1">
+				                    <label class="custom-file-label" for="upFile1">파일을 선택하세요.</label>
+		               	 		</div>
+		                	</td>
+			            </tr>
+			            <tr>
+			                <th>
+								<div class="input-group-prepend" style="padding:0px;">
+			                    	<span class="input-group-text">첨부파일2</span>
+			                	</div>
+							</th>
+			                <td>
+			                	<div class="custom-file">
+				                    <input type="file" class="custom-file-input" name="upFile" id="upFile2">
+				                    <label class="custom-file-label" for="upFile2">파일을 선택하세요.</label>
+			                	</div>
+		                	</td>
+			            </tr>
+			            <tr>
+			                <td colspan="2">
+			                   <input type="submit" value="등록" class="btn btn-outline-success float-right" onclick="fn_validate()"/>
+			                </td>
+			            </tr>
+			    </tbody>
+			</table>
+<input type="hidden" name="noticeNum" value="${notice.NOTICENUM }">
 			</form>
 
 		</div>

@@ -21,27 +21,35 @@ public class NoticeDaoImpl implements NoticeDao {
 		public List<Map<String, String>> selectMemberNoticeList() {
 			// TODO Auto-generated method stub
 			
-			return sqlSession.selectList("admin.selectMemberNoticeList");
+			return sqlSession.selectList("memberNotice.selectMemberNoticeList");
 		}
+
+		//페이징
+		@Override
+		public int notCount() {
+			// TODO Auto-generated method stub
+			return sqlSession.selectOne("memberNotice.notCount");
+		}
+
 
 		//회원공지사항 뷰
 		@Override
 		public Map<String, String> selectMemberNotice(int noticeNum) {
 			// TODO Auto-generated method stub
-			return sqlSession.selectOne("admin.selectMemberNotice",noticeNum);
+			return sqlSession.selectOne("memberNotice.selectMemberNotice",noticeNum);
 		}
 		//회원공지사항 파일 뷰 필요
 		@Override
 		public List<Map<String, String>> selectAttach(int noticeNum) {
 			// TODO Auto-generated method stub
-			return sqlSession.selectList("admin.selectAttach", noticeNum);
+			return sqlSession.selectList("memberNotice.selectAttach", noticeNum);
 		}
 
 		//회원공지사항 삭제
 			@Override
 			public int deleteMemberNotice(int noticeNum) {
 				// TODO Auto-generated method stub
-				return sqlSession.delete("admin.deleteMemberNotice", noticeNum);
+				return sqlSession.delete("memberNotice.deleteMemberNotice", noticeNum);
 			}
 
 		
@@ -50,23 +58,55 @@ public class NoticeDaoImpl implements NoticeDao {
 			@Override
 			public int insertMemberNotice(Map<String, String> notice) {
 				// TODO Auto-generated method stub
-				return sqlSession.insert("admin.insertMemberNotice", notice);
+				return sqlSession.insert("memberNotice.insertMemberNotice", notice);
 			}
 			//회원공지사항 파일 등록
 			@Override
 			public int insertMemberNoticeAttach(NoticeAttachment a) {
 				// TODO Auto-generated method stub
-				return sqlSession.insert("admin.insertMemberNoticeAttach", a);
+				return sqlSession.insert("memberNotice.insertMemberNoticeAttach", a);
 			}
+
+			
+			@Override
+			public int memberNoticeAUpdateEnd(NoticeAttachment a) {
+				// TODO Auto-generated method stub
+				return sqlSession.update("memberNotice.memberNoticeAUpdateEnd", a);
+			}
+
+	
+	 @Override
+	 public int memberNoticeUpdateEnd(Map<String, Object> map) { 
+		 // TODO Auto-generated method stub 
+	  System.out.println("dao : " +map );
+	  return sqlSession.update("memberNotice.memberNoticeUpdateEnd",map); 
+	  }
+	 
+
+			
+			
+			
+
+			
+			
+
+			
+
+	/*
+	 * //회원공지사항 수정
+	 * 
+	 * @Override public int memberNoticeUpdateEnd(int noticeNum) { // TODO
+	 * Auto-generated method stub System.out.println("수정: " + noticeNum); return
+	 * sqlSession.update("memberNotice.memberNoticeUpdateEnd",noticeNum); }
+	 * 
+	 * //회원공지사항 수정 사진
+	 * 
+	 * @Override public int memberNoticeAUpdateEnd(int noticeNum) { // TODO
+	 * Auto-generated method stub return
+	 * sqlSession.update("memberNotice.memberNoticeAUpdate", noticeNum); }
+	 */
 		
 			
-		
-
-		@Override
-			public int updateNotice(int noticeNum) {
-				// TODO Auto-generated method stub
-				return sqlSession.selectOne("admin.updateNotice", noticeNum);
-			}
 
 		
 

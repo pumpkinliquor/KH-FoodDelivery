@@ -68,9 +68,9 @@ pageEncoding="UTF-8"%>
 		  <button type="button" class="btn btn-light float-right"
          onclick="location.href='${path}/owner/ownerNoticeForm.do'">글쓰기</button>
 		</c:if>
-		<div class="pageBar" style="text-align:center;">
-			페이지바
-		</div>
+		<div class="paging">
+					${pageBar}
+				</div>
 	</div>
 </section>
 

@@ -22,12 +22,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 
 import com.kh.food.admin.notice.attachment.vo.NoticeAttachment;
 import com.kh.food.admin.notice.model.service.NoticeService;
+import com.kh.food.common.PagingFactory;
 
 @Controller
 public class NoticeController {
@@ -38,10 +40,14 @@ public class NoticeController {
 	
 	//회원 공지사항리스트
 	@RequestMapping("/admin/memberNoticeList.do")
-	public ModelAndView memberNoticeList()
+	public ModelAndView memberNoticeList(@RequestParam(value="cPage", required=false, defaultValue="0") int cPage)
 	{
+		int numPerPage=10;
+		
+		int count = service.notCount();
 		ModelAndView mv=new ModelAndView();
 		List<Map<String,String>>list=service.selectMemberNoticeList();
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/memberNoticeList.do"));
 		mv.addObject("list",list);
 		mv.setViewName("admin/memberNoticeList");
 		return mv;
@@ -76,7 +82,7 @@ public class NoticeController {
 		notice.put("noticeTitle", noticeTitle);
 		notice.put("noticeContent", noticeContent);
 		ArrayList<NoticeAttachment> files= new ArrayList();
-		String savDir=request.getSession().getServletContext().getRealPath("/resources/upload/member/noticeAttach");
+		String savDir=request.getSession().getServletContext().getRealPath("/resources/upload/member/notAttach");
 		for(MultipartFile f:upFile)
 		{
 			if(!f.isEmpty()) {
@@ -106,7 +112,7 @@ public class NoticeController {
 		String loc="/admin/memberNoticeList.do";
 		String msg="";
 		if(result>0) {
-			msg="성공";
+			msg="글 등록이 완료되었습니다.";
 			
 		}else {
 			msg="실패";
@@ -120,12 +126,12 @@ public class NoticeController {
 	
 	
 	//파일다운로드
-	@RequestMapping("/admin/fileDownLoad.do")
+	@RequestMapping("/admin/memberfileDownLoad.do")
 	public void fileDownLoad(String oriName, String reName, HttpServletRequest request, HttpServletResponse response) {
 		BufferedInputStream bis=null;
 		ServletOutputStream sos=null;
 		boolean fileCheck=true;
-		String dir=request.getSession().getServletContext().getRealPath("resources/upload/member/noticeAttach");
+		String dir=request.getSession().getServletContext().getRealPath("resources/upload/member/notAttach");
 		File savedFile=new File(dir+"/"+reName); //경로
 		try {
 			FileInputStream fis=new FileInputStream(savedFile);
@@ -205,10 +211,71 @@ public class NoticeController {
 	
 	//회원공지사항 수정폼이동
 		@RequestMapping("/admin/memNoticeUpdate.do")
-		public String noticeUpdate(int noticeNum) {
-			int result=service.updateNotice(noticeNum);
-			return "admin/noticeForm";
+		public ModelAndView noticeUpdate(int noticeNum) {
+			
+			ModelAndView mv=new ModelAndView();
+			Map<String,String> map=service.selectMemberNotice(noticeNum);
+			List<Map<String,String>> attach=service.selectAttach(noticeNum);
+			mv.addObject("notice",map);
+			mv.addObject("attach",attach);
+			mv.setViewName("admin/memberNoticeUpdateForm");
+			
+			return mv;
 		}
+		
+		
+		//회원공지사항 수정완료
+	
+	  @RequestMapping("/admin/memberNoticeUpdateEnd.do") 
+	public String noticeUpdateEnd(String noticeTitle,String noticeContent, int noticeNum, MultipartFile[] upFile, HttpServletRequest request) {
+		Map<String,Object> map=new HashMap();
+		map.put("noticeTitle",noticeTitle);
+		map.put("noticeContent", noticeContent);
+		map.put("noticeNum", noticeNum);
+		ArrayList<NoticeAttachment> files= new ArrayList();
+		String savDir=request.getSession().getServletContext().getRealPath("/resources/upload/member/notAttach");
+		for(MultipartFile f:upFile)
+		{
+			if(!f.isEmpty()) {
+				//파일명 생성하기(rename)
+				String orifileName=f.getOriginalFilename();
+				String ext=orifileName.substring(orifileName.lastIndexOf("."));
+				//rename 규칙설정
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+				int rdv=(int)(Math.random()*1000);
+				String reName=sdf.format(System.currentTimeMillis())+"_"+rdv+ext;
+				
+				//파일저장하기
+				try {
+					f.transferTo(new File(savDir+"/"+reName));
+					
+				}catch(IllegalStateException | IOException e)
+				{
+					e.printStackTrace();
+				}
+				NoticeAttachment att=new NoticeAttachment();
+				att.setRenamedFileName(reName);
+				att.setOriginalFileName(orifileName);
+				files.add(att);
+			}
+		}
+		int result = service.memberNoticeUpdateEnd(map,files); 
+		System.out.println("컨트롤러 map" +map);
+		System.out.println(result+" :리절트");
+		String msg="";
+		String loc="";
+		if(result>0) 
+		{
+			msg="글을 수정하였습니다.";
+			loc="admin/memberNoticeList.do";
+		}
+		else {
+			msg="실패";
+			loc="admin/memberNoticeList.do";
+		}
+		return "redirect:memberNoticeList.do";
+	}
+	 
 		
 		
 		//회원공지사항 삭제

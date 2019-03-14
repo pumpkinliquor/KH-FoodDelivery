@@ -5,133 +5,19 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
 <script>
-
-
-	/* $(document).ready(function() {
-		$("#memberListTable #checkall").click(function() {
-			if ($("#memberListTable #checkall").is(':checked')) {
-				$("#memberListTable input[type=checkbox]").each(function() {
-					$(this).prop("checked", true);
-				});
-
-			} else {
-				$("#memberListTable input[type=checkbox]").each(function() {
-					$(this).prop("checked", false);
-				});
+	$(function(){
+		$("#allCheck").click(function(){
+			if ( $("#allCheck").prop("checked")){
+				$("input[type=checkbox]").prop("checked",true);﻿
 			}
-		});
-
-		$("[data-toggle=tooltip]").tooltip();
-	}); */
-	
-	/* $(#memListDelBtn).click(function){
-		if(confirm("회원을 삭제하시겠습니까?")){
-			$("input[name=checkList]:checked").each(function(){
-			var 	
-			})
-			
-		}
-	}
- */
- 
- 
- /* 
- function allChk(obj){
-	 var chkObj= document.getElementsByName("RowCheck");
-	 var rowCnt= chkObj.length-1;
-	 var check= obj.checked;
-	 if(check){
-		 for(var i=0; i<=rowCnt; i++){
-			 chkObj[i].checked= true;
-	 }
- }else{
-	 for(var i=0; i<rowCnt; i++){
-		 if(chkObj[i].type =="checkbox"){
-			 chkObj[i].checked=false;
-		 }
-	 }
- }
-	 
- };
- function fn_memListDel(){
-	 var memberId="";
-	 var memberChk= document.getElementsByName("RowCheck");
-	 var chked= false;
-	 var indexId= false;
-	 for(i=0; i<memberChk.length; i++){
-		 if(memberChk[i].checked){
-			 if(indexId){
-				 memberId=memberId+'-';
-			 }
-			 memberId=memberId+memberChk[i].value;
-			 indexId =true;
-		 }
-		 if(!indexId){
-			 alert("삭제할 회원을 체크하세요.");
-			 return;
-		 }
-		 document.memberList.delMemberId.value=meberId;
-		 
-		 var agree=confirm("삭제하시겠습니까?");
-		 	if(agree){
-		 		document.memberList.execute.value="memListDel";
-		 		document.memberList.submit();
-		 	}
-	 }
- } */
- 
- 
- function allChk(obj){
-     var chkObj = document.getElementsByName("RowCheck");
-     var rowCnt = chkObj.length - 1;
-     var check = obj.checked;
-     if (check) {﻿
-         for (var i=0; i<=rowCnt; i++){
-          if(chkObj[i].type == "checkbox")
-              chkObj[i].checked = true; 
-         }
-     } else {
-         for (var i=0; i<=rowCnt; i++) {
-          if(chkObj[i].type == "checkbox"){
-              chkObj[i].checked = false; 
-          }
-         }
-     }
- } 
-
-﻿ ﻿ 
-
-//﻿2. 체크박스 선택된 것 삭제 처리 (N개) 
-  function fn_memListDel(){
-
- var memberId = "";
- var memberChk = document.getElementsByName("RowCheck");
- var chked = false;
- var indexid = false;
- for(i=0; i < memberChk.length; i++){
-  if(memberChk[i].checked){
-   if(indexid){
-     memberId = memberId + '-';
-   }
-   memberId = memberId + memberChk[i].value;
-   indexid = true;
-  }
- }
- if(!indexid){
-  alert("삭제할 사용자를 체크해 주세요");
-  return;
- }
- document.userForm.memListDelBtn.value = memberId;       // 체크된 사용자 아이디를 '-'로 묶은 userid 를     
-
- 
- var agree=confirm("삭제 하시겠습니까?");
-    if (agree){
-  document.memberList.execute.value = "memberDel";
-    document.memberList.submit();
-    } 
- }﻿
+			else{
+				$("input[type=checkbox]").prop("checked",false);
+			}
+		})
+	});
 </script>
 
 
@@ -150,41 +36,48 @@
 			</ul>
 		</div>
 	</div>
-	
-	<div id="memberList">
-	<form action="${path }/admin/memberListEnd.do" method="post">
-		<table class="table table-hover" id="memberListTable">
-			<thead id="tableHead">
-				<tr>
-					<th><input type="checkbox" id="allCheck" onclick="allChk(this);" /></th>
-					<th>회원 번호</th>
-					<th>아이디</th>
-					<th>이름</th>
-					<th>이메일</th>
-					<th>가입날짜</th>
-				</tr>
-			</thead>
-			
-				 <c:forEach items="${list }"  var="m" >
-				 
-				 <tbody>
-				<tr>
-					<td><input type="checkbox" name="RowCheck" value="${m.MEMBERID }" /></td>
-					<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')" name="memberNum">${m.MEMBERNUM}</td>
-					<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')" >${m.MEMBERID}</td>
-					<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')" >${m.MEMBERNAME}</td>
-					<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')" >${m.MEMBEREMAIL}</td>
-					<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')" >${m.MEMBERENROLLDATE}</td>
-				</tr>
-			</tbody>
-			</c:forEach>
-		</table>
-		</form>
-		<button type="submit" id="memListDelBtn" onclick="fn_memListDel();">
-			<img src="${path}/resources/images/admin/deleteBtn.png"
-				class="memberListDelImg">
-		</button>
 
+	<div id="memberList">
+	
+		<form action="${path }/admin/memDel.do" id="memDel" method="post">
+			<table class="table table-hover" id="memberListTable">
+				<thead id="tableHead">
+					<tr>
+						<th><input type="checkbox" id="allCheck"
+							 /></th>
+						<th>회원 번호</th>
+						<th>아이디</th>
+						<th>이름</th>
+						<th>이메일</th>
+						<th>가입날짜</th>
+					</tr>
+				</thead>
+
+				<c:forEach items="${list }" var="m">
+
+					<tbody>
+						<tr>
+							<td><input type="checkbox" name="rowCheck"
+								value="${m.MEMBERNUM }" /></td>
+							<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')"
+								name="memberNum">${m.MEMBERNUM}</td>
+							<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')">${m.MEMBERID}</td>
+							<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')">${m.MEMBERNAME}</td>
+							<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')">${m.MEMBEREMAIL}</td>
+							<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')">${m.MEMBERENROLLDATE}</td>
+						</tr>
+					</tbody>
+				</c:forEach>
+			</table>
+			<button type="submit" id="memListDelBtn">
+				<img src="${path}/resources/images/admin/deleteBtn.png"
+					class="memberListDelImg">
+			</button>
+				
+		</form>
+	</div>
+	<div class="paging">
+	${pageBar}
 	</div>
 </div>
 
@@ -192,63 +85,59 @@
 
 <script>
 	function fn_memListmodal(memberNum) {
-		
+
 		console.log(memberNum);
-		
-		$.ajax({
-			url:"${path}/admin/memberOne.do",	//요청보낼 서버 url주소
-			dataType:"json",
-			data:{"memberNum":memberNum},	//요청과 함께 보낼 데이터
-			success:function(data)
-			{
-				console.log(data);
-				
-				$('#memAddress').val(data.MEMBERADDRESS);
-				$('#memBirth').val(data.MEMBERBIRTH);
-				$('#memPhone').val(data.MEMBERPHONE);
-				$('#memEnrolldate').val(data.MEMBERENROLLDATE);
-				$('#memGender').val(data.MEMBERGENDER);
-				$('#memMileage').val(data.MILEAGE);
 
-				//성공했을때 모달띄워줌
-				$('#memListModal').modal();
-			}
-			
-		}); 
+				$.ajax({
+					url : "${path}/admin/memberOne.do", //요청보낼 서버 url주소
+					dataType : "json",
+					data : {
+						"memberNum" : memberNum
+					}, //요청과 함께 보낼 데이터
+					success : function(data) {
+						console.log(data);
+
+						var profileImgAddr = data['MEMBERIMAGE'];
+
+						$('#memProfile')
+								.attr('src',
+										'${path}/resources/upload/member/notAttach/20190312_143759897_82.jpg');
+						$('#memAddress').val(data.MEMBERADDRESS);
+						$('#memBirth').val(data.MEMBERBIRTH);
+						$('#memPhone').val(data.MEMBERPHONE);
+						$('#memEnrolldate').val(data.MEMBERENROLLDATE);
+						$('#memGender').val(data.MEMBERGENDER);
+						$('#memMileage').val(data.MILEAGE);
+
+						//성공했을때 모달띄워줌
+						$('#memListModal').modal();
+					}
+
+				});
 	}
-
-	/* function fn_memListDel() {
-		$('#memListDel').modal();
-	}; */
 </script>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
-<!-- <div class="modal" id="memListDel" role="dialog">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body">
-				<table class="table">
-					<tr>
 
-						<td>정말 삭제하시겠습니까?</td>
-					</tr>
-					<tr>
-						<td colspan='2' align="center">
-							<button type="button" class="btn btn-outline-success"
-								onclick="fn_memListDelCan()" id="memlistDel">삭제</button>
-							<button type="button" class="btn btn-outline-danger"
-								data-dismiss="modal">취소</button>
-						</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div>
-</div> -->
 
+
+<!------------- 모달------------->
 
 <style>
-.memModal{
-	border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; width:350px;
+#memListModal {
+	border: none;
+	border-right: 0px;
+	border-top: 0px;
+	boder-left: 0px;
+	boder-bottom: 0px;;
+}
+
+#memAddress {
+	resize: none;
+}
+
+.form-control {
+	background-color: #e9ecef;
 }
 </style>
 
@@ -265,33 +154,39 @@
 				<table class="table">
 					<tr>
 						<th>프로필</th>
-						<td><img src="${path }/resources/images/place.png"
-							id="memListProfile"></td>
+						<td><img id="#memProfile"></td>
+
 
 					</tr>
 					<tr>
 						<th>주소</th>
-						<td><textarea rows="3" cols="10" id="memAddress" class="memModal" readonly="readonly"></textarea></td>
+						<td><textarea rows="3" cols="10" id="memAddress"
+								class="form-control" readonly="readonly"></textarea></td>
 					</tr>
 					<tr>
 						<th>생년월일</th>
-						<td><input type="text" id="memBirth" class="memModal" readonly="readonly"></td>
+						<td><input type="text" id="memBirth" class="form-control"
+							readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>전화번호</th>
-						<td><input type="text" id="memPhone" class="memModal" readonly="readonly"></td>
+						<td><input type="text" id="memPhone" class="form-control"
+							readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>가입날짜</th>
-						<td><input type="text" id="memEnrolldate" class="memModal" readonly="readonly"></td>
+						<td><input type="text" id="memEnrolldate"
+							class="form-control" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>성별</th>
-						<td><input type="text" id="memGender" class="memModal" readonly="readonly"></td>
+						<td><input type="text" id="memGender" class="form-control"
+							readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>마일리지</th>
-						<td><input type="text" id="memMileage" class="memModal" readonly="readonly"></td>
+						<td><input type="text" id="memMileage" class="form-control"
+							readonly="readonly"></td>
 					</tr>
 
 				</table>
@@ -302,4 +197,3 @@
 		</div>
 	</div>
 </div>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.food.customer.member.model.dao.MemberDao;
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 
 @Service
@@ -18,6 +19,11 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao dao;
 	
+	
+	@Override
+	public List<Store> menuInfo(int businessCode) {
+		return dao.menuInfo(businessCode);
+	}
 	
 	@Override
 	public int drop(String memberId) {
@@ -64,6 +70,17 @@ public class MemberServiceImpl implements MemberService {
 	public int update(Member m) {
 		return dao.update(m);
 	}
+
+	@Override
+	public List<Map<String,String>> selectCategoryList(int businessCode) {
+		return dao.selectCategoryList(businessCode);
+	}
+
+//	@Override
+//	public List<Map<String, String>> selectMenuList(int menuCategoryCode,int businessCode) {
+//		return dao.selectMenuList(menuCategoryCode, businessCode);
+//	}
+
 
 	
 	
