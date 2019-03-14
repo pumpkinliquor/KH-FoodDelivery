@@ -21,9 +21,9 @@
 
 				<thead id="noticeThead">
 					<tr id="topTable">
-						<th>번호</th>
-						<th>제목</th>
-						<th>날짜</th>
+						<th width="20%">번호</th>
+						<th width="60%">제목</th>
+						<th width="20%">날짜</th>
 
 					</tr>
 				</thead>
