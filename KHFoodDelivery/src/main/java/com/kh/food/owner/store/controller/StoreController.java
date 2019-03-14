@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,16 +49,22 @@ public class StoreController {
 //			System.out.println(storeAddress);
 			String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/owner/storeMainImage");
 			
+			
 			if(!storeImage.isEmpty()) {
+				//파일명을 생성
 				String oriFileName=storeImage.getOriginalFilename();
+				String ext = oriFileName.substring(oriFileName.lastIndexOf("."));
+				//rename 규칙 설정
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+				int rdv = (int)(Math.random()*1000);
+				String reName = sdf.format(System.currentTimeMillis())+"_"+rdv+ext;
 				try {
-					storeImage.transferTo(new File(saveDir+"/"+oriFileName));
+					storeImage.transferTo(new File(saveDir+"/"+reName));
 				}
 				catch(IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
-				String oriImageName=oriFileName;
-				store.put("oriImageName",oriImageName);
+				store.put("reName",reName);
 			}
 			else {
 				response.setContentType("text/html;charset=UTF-8");
