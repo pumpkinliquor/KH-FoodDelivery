@@ -16,12 +16,11 @@ public class MemberListServiceImpl implements MemberListService {
 	
 	//회원 리스트
 	@Override
-	public List<Map<String,String>> selectListMember()
-	{
-	return dao.selectListMember();
+	public List<Map<String, String>> selectListMember(int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return dao.selectListMember(cPage,numPerPage);
 	}
 
-	
 	
 	
 	@Override
@@ -33,11 +32,14 @@ public class MemberListServiceImpl implements MemberListService {
 
 
 
-	//사장 리스트
+	
+
+
+
 	@Override
-	public List<Map<String, String>> selectListOwner() {
+	public List<Map<String, String>> selectListOwner(int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
-		return dao.selectListOwner();
+		return dao.selectListOwner(cPage,numPerPage);
 	}
 
 	

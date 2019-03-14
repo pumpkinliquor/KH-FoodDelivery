@@ -104,7 +104,7 @@ function dropMember(){
                               <div class="form-group row">
                                 <label for="text" class="col-4 col-form-label">생년월일</label> 
                                 <div class="col-8">
-                                  <input id="text" name="formatBirth" id="formatBirth"value="${member.formatBirth}"class="form-control here" required="required" type="text">
+                                  <input id="text" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" type="text">
                                 </div>
                               </div>
                               <div class="form-group row">
@@ -125,15 +125,15 @@ function dropMember(){
                                   <input id="website" name="memberAddress" id="memberAddress"value="${member.memberAddress}" class="form-control here" type="text">
                                 </div>
                               </div>
-                              <div class="form-group row">
+                               <div class="form-group row">
                                 <label for="publicinfo" class="col-4 col-form-label">성별</label> 
                                 <select class="form-control" name="memberGender" id="memberGender" required>
 					            <option value="" disabled selected>성별</option>
-					            <option value="M" ${member.gender=='M'?'selected':'' }>남</option>
-					            <option value="F" ${member.gender=='F'?'selected':'' }>여</option>
+					            <option value="M" ${member.memberGender=='M'?'selected':''}>남</option>
+					            <option value="F" ${member.memberGender=='F'?'selected':''}>여</option>
 					            </select>
 										            
-                              </div>
+                              </div> 
                               
                               <input type="submit" class="btn btn-default" value="수정하기"/>&nbsp;
                               <input type="reset" class="btn btn-default" value="취소"/>
