@@ -14,5 +14,8 @@ public interface OwnerNoticeDao {
 	int deleteOwnerNotice(int ownerNoticeNum);
 	int insertOwnerNotice(Map<String,String> notice); 
 	int insertOwnerNoticeAttach(OwnerNoticeAttachment a);
+	
+	int ownerNoticeUpdateEnd(Map<String,Object> map);
+	int ownerNoticeAUpdateEnd(OwnerNoticeAttachment a);
 	 
 }

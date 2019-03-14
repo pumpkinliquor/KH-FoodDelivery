@@ -73,14 +73,14 @@ public class MemberListController {
 	  //사장님리스트
 	  @RequestMapping("/admin/ownerList.do")
 	  public ModelAndView ownerList(@RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
-		  int numPerPage=10;
-			
-			int count = service.ownCount();
-		  ModelAndView mv=new ModelAndView();
-		 List<Map<String,String>> list=service.selectListOwner();
-		 mv.addObject("list",list);
-		 mv.setViewName("admin/ownerList");
-		 return mv;
+		int numPerPage=10;
+		int count = service.ownCount();
+		ModelAndView mv=new ModelAndView();
+		List<Map<String,String>> list=service.selectListOwner();
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/ownerList.do"));
+		mv.addObject("list",list);
+		mv.setViewName("admin/ownerList");
+		return mv;
 	  }
 	  
 	//사장 상세 정보

@@ -12,5 +12,7 @@ public interface OwnerNoticeService {
 	List<Map<String,String>>selectOwnerAttach(int ownerNoticeNum);
 	int deleteOwnerNotice(int ownerNoticeNum);
 	int insertOwnerNotice(Map<String,String>notice,List<OwnerNoticeAttachment> files);
-	 
+	
+	
+	int ownerNoticeUpdateEnd(Map<String,Object> map, List<OwnerNoticeAttachment> files);
 }

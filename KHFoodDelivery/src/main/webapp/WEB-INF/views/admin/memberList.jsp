@@ -20,7 +20,7 @@
 	});
 </script>
 
-
+<section>
 <div class="container">
 	<div id="memberList-title">
 		<h4 id="memberListTitle">리스트</h4>
@@ -49,7 +49,7 @@
 						<th>아이디</th>
 						<th>이름</th>
 						<th>이메일</th>
-						<th>가입날짜</th>
+						<th>주소</th>
 					</tr>
 				</thead>
 
@@ -64,7 +64,7 @@
 							<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')">${m.MEMBERID}</td>
 							<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')">${m.MEMBERNAME}</td>
 							<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')">${m.MEMBEREMAIL}</td>
-							<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')">${m.MEMBERENROLLDATE}</td>
+							<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')">${m.MEMBERADDRESS}</td>
 						</tr>
 					</tbody>
 				</c:forEach>
@@ -80,7 +80,7 @@
 	${pageBar}
 	</div>
 </div>
-
+</section>
 
 
 <script>
@@ -95,13 +95,9 @@
 						"memberNum" : memberNum
 					}, //요청과 함께 보낼 데이터
 					success : function(data) {
-						console.log(data);
-
-						var profileImgAddr = data['MEMBERIMAGE'];
-
-						$('#memProfile')
-								.attr('src',
-										'${path}/resources/upload/member/notAttach/20190312_143759897_82.jpg');
+						$('#memProfile').empty().append('<img src="${path}/resources/customer/mypage/'
+												+ data.PROFILEIMAGE
+												+ '" style="margin-left: auto; margin-right: auto; display: block; width:70px; height:70px; border-radius:100%;"/>');
 						$('#memAddress').val(data.MEMBERADDRESS);
 						$('#memBirth').val(data.MEMBERBIRTH);
 						$('#memPhone').val(data.MEMBERPHONE);
@@ -154,7 +150,7 @@
 				<table class="table">
 					<tr>
 						<th>프로필</th>
-						<td><img id="#memProfile"></td>
+						<td id="#memProfile"></td>
 
 
 					</tr>

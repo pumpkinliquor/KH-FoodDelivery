@@ -64,7 +64,7 @@ public class NoticeSerivceImpl implements NoticeService {
 			}
 			for(NoticeAttachment a : files)
 			{
-				a.setNoticeNum(Integer.parseInt((String) notice.get("noticeNum")));
+				a.setNoticeNum(Integer.parseInt( notice.get("noticeNum").toString()));
 				result=dao.insertMemberNoticeAttach(a);
 				if(result==0) throw new Exception();
 			}
@@ -78,21 +78,21 @@ public class NoticeSerivceImpl implements NoticeService {
 		return result;
 	}
 
+	
+	//회원공지사항 수정
 	@Override
 	public int memberNoticeUpdateEnd(Map<String, Object> map, List<NoticeAttachment> files) {
 		// TODO Auto-generated method stub
 		int result=0;
 		try {
 			result=dao.memberNoticeUpdateEnd(map);
-			System.out.println("맵2 : "+result);
 			if(result==0)
 			{
 				throw new Exception();
 			}
 			for(NoticeAttachment a : files)
 			{
-				System.out.println("dd : "+map.get("noticeNum"));
-				a.setNoticeNum(Integer.parseInt((String)map.get("noticeNum")));
+				a.setNoticeNum(Integer.parseInt(map.get("noticeNum").toString()));
 				result=dao.memberNoticeAUpdateEnd(a);
 				if(result==0) throw new Exception();
 			}
@@ -106,28 +106,5 @@ public class NoticeSerivceImpl implements NoticeService {
 		return result;
 	}
 
-	
-	
-	
-
-	
-
-	/*
-	 * @Override public int memberNoticeAUpdateEnd(List<NoticeAttachment> files) {
-	 * // TODO Auto-generated method stub return 0; }
-	 */
-
-	
-
-	
-
-
-	/*
-	 * @Override public int updateNotice(int noticeNum) { // TODO Auto-generated
-	 * method stub return dao.updateNotice(noticeNum); }
-	 */
-
-
-	
 	
 }

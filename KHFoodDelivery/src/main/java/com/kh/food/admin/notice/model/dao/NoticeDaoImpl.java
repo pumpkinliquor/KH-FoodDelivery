@@ -67,20 +67,21 @@ public class NoticeDaoImpl implements NoticeDao {
 				return sqlSession.insert("memberNotice.insertMemberNoticeAttach", a);
 			}
 
-			
+			//회원공지사항 수정 파일
 			@Override
 			public int memberNoticeAUpdateEnd(NoticeAttachment a) {
 				// TODO Auto-generated method stub
+				System.out.println("dao 사진 : "+ a);
 				return sqlSession.update("memberNotice.memberNoticeAUpdateEnd", a);
 			}
 
-	
-	 @Override
-	 public int memberNoticeUpdateEnd(Map<String, Object> map) { 
-		 // TODO Auto-generated method stub 
-	  System.out.println("dao : " +map );
-	  return sqlSession.update("memberNotice.memberNoticeUpdateEnd",map); 
-	  }
+			//회원공지사항 수정
+			@Override
+			public int memberNoticeUpdateEnd(Map<String, Object> map) { 
+				// TODO Auto-generated method stub 
+				System.out.println("dao 글: " +map );
+				return sqlSession.update("memberNotice.memberNoticeUpdateEnd",map); 
+			}
 	 
 
 			

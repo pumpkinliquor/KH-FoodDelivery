@@ -260,19 +260,11 @@ public class NoticeController {
 			}
 		}
 		int result = service.memberNoticeUpdateEnd(map,files); 
-		System.out.println("컨트롤러 map" +map);
-		System.out.println(result+" :리절트");
-		String msg="";
-		String loc="";
-		if(result>0) 
-		{
-			msg="글을 수정하였습니다.";
-			loc="admin/memberNoticeList.do";
-		}
-		else {
-			msg="실패";
-			loc="admin/memberNoticeList.do";
-		}
+		/*
+		 * String msg=""; String loc=""; if(result>0) { msg="글을 수정하였습니다.";
+		 * loc="admin/memberNoticeList.do"; } else { msg="실패";
+		 * loc="admin/memberNoticeList.do"; }
+		 */
 		return "redirect:memberNoticeList.do";
 	}
 	 

@@ -59,6 +59,21 @@ public class OwnerNoticeDaoImpl implements OwnerNoticeDao {
 		return sqlSession.selectList("ownerNotice.selectOwnerAttach", ownerNoticeNum);
 	}
 
+
+	//사장공지사항 수정 글
+	@Override
+	public int ownerNoticeUpdateEnd(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("ownerNotice.ownerNoticeUpdateEnd", map);
+	}
+
+	//사장공지사항 수정 파일
+	@Override
+	public int ownerNoticeAUpdateEnd(OwnerNoticeAttachment a) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("ownerNotice.ownerNoticeAUpdateEnd", a);
+	}
+
 	
 	
 	
