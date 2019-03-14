@@ -57,10 +57,9 @@ public class MemberController {
 	@RequestMapping("/customer/mypage.do")
 	public ModelAndView myPage(String memberId) {
 		ModelAndView mv =new ModelAndView();
+
 		Member member = service.selectMember(memberId);
-		DateFormat df=new SimpleDateFormat("yyyy-MM-dd");
-		member.setFormatBirth(df.format(member.getMemberBirth()));
-		System.out.println("객체"+member);
+		
 		
 		mv.addObject("member",member);
 		mv.setViewName("customer/mypage");
