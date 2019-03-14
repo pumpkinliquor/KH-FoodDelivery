@@ -28,7 +28,18 @@ pageEncoding="UTF-8"%>
             var memberId="";
             var nick="";
             $(function(){
-
+            	
+            	
+            	$('#memberPhone').bind("keyup", function(event) {
+            	    var regNumber = /^[0-9]*$/;
+            	    var temp = $('#memberPhone').val();
+            	    if(!regNumber.test(temp))
+            	    {
+            	        alert('숫자만 입력하세요');
+            	        $('#memberPhone').val(temp.replace(/[^0-9]/g,""));
+            	    }
+            	});
+            	
             	//비밀번호 확인
             		$('#memberPw2').blur(function(){
             			memberPw = $("#memberPw").val();
@@ -128,7 +139,7 @@ pageEncoding="UTF-8"%>
             	});
             	function validate(){
             		
-            		
+            	
             		
             		if(id==true)
             			{
@@ -216,8 +227,7 @@ pageEncoding="UTF-8"%>
                <option value="M">남</option>
                <option value="F">여</option>
             </select>
-         	<input type="text" class="form-control" placeholder="경도(일단입력(int))" name="longitude" id="longitude"/>
-            <input type="text" class="form-control" placeholder="위도(일단 입력(int))" name="atitude" id="atitude"/> 
+  
      																					
             <br />
             

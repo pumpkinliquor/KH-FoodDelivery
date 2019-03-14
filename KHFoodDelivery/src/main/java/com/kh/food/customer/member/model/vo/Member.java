@@ -21,9 +21,11 @@ public class Member {
 	private int isAdmin;
 	private String profileImage;
 	private String formatBirth;
+	
 	public Member() {
 		super();
 	}
+	
 	public Member(int memberNum, String memberId, String memberPw, String memberName, String memberAddress,
 			String memberBirth, String memberPhone, String memberEmail, String nickName, Date memberEnrollDate,
 			char memberGender, String mileage, int longitude, int atitude, int isAdmin, String profileImage,
