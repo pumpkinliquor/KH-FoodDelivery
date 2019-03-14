@@ -148,11 +148,14 @@ public class QnaMngController {
 	// 회원 문의 답변 수정
 	@RequestMapping("/admin/updateMemberQnaReview.do")
 	public ModelAndView updateMemberQnaReview(@RequestParam("no") int no, @RequestParam("updateContext") String context) {
+		logger.debug("수정 ");
+		logger.debug("번호" + no);
+		logger.debug("메시지 : " + context);
 		ModelAndView mv = new ModelAndView();
 		Map map = new HashMap();
 		map.put("no", no);
 		map.put("context", context);
-		service.updateMemberQnaReview(map);				
+		service.updateMemberQnaReview(map);		
 		mv.setViewName("redirect:/admin/memberQnaView.do?no=" + no);
 		return mv;
 	}	

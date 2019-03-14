@@ -24,7 +24,6 @@
 
 <script> 
 	function fn_modal(num){		
-		console.log(num);
 		$.ajax({
 			type: "POST",
 			url: "${path}/admin/selectAppStore.do?no=" + num,

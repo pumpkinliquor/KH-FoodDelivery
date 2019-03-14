@@ -55,7 +55,7 @@
 							<option value="전체">전체</option>
 							<option value="결제">결제</option>
 							<option value="회원">회원</option>
-							<option value="포인트">주문</option>
+							<option value="주문">주문</option>
 							<option value="포인트">포인트</option>
 							<option value="리뷰">리뷰</option>
 						</select>	
