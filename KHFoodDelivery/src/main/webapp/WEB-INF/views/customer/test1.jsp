@@ -11,12 +11,12 @@ div .menuCategoryStyle {
 </style>
 <script>
 	$(function() {
-		$("dd:not(:first)").css("display", "none"); //first dd 빼고 나머지 dd를 none으로 해라
+		$("dd:not(:first)").css("display", "none"); //선택 dd 빼고 나머지 dd를 none으로 해라
 
 		$("dl dt").click(function() {
 			if ($("+dd", this).css("display") == "none") {
-				$(this).siblings("dd").slideUp("slow");
-				$("+dd", this).slideDown("slow");
+				$(this).siblings("dd").slideUp("fast");
+				$("+dd", this).slideDown("fast");
 			}
 		});
 	});
