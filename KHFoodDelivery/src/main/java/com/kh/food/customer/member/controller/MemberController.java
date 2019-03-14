@@ -1,13 +1,14 @@
 package com.kh.food.customer.member.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -19,12 +20,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.common.PagingFactory;
 import com.kh.food.customer.member.model.service.MemberService;
 import com.kh.food.customer.member.model.vo.Member;
-import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 
 @Controller
@@ -95,8 +96,27 @@ public class MemberController {
 	
 	//회원정보 수정
 	@RequestMapping("/member/update.do")
-	public ModelAndView update(Member m) {
+	public ModelAndView update(Member m, HttpServletRequest request, MultipartFile profileImg) {
 		
+		System.out.println(m);
+		logger.debug(""+profileImg);
+		//파일 업데이트
+		String savDir=request.getSession().getServletContext().getRealPath("/resources/upload/member/profile");
+		
+		if(!profileImg.isEmpty()) {
+			//파일명 생성
+			String oriFileName=profileImg.getOriginalFilename();
+			
+			//파일 저장하기
+			try {
+				profileImg.transferTo(new File(savDir+"/"+oriFileName));
+			}catch(IllegalStateException |IOException e) {
+				e.printStackTrace();
+			}
+			
+			String filename=oriFileName;
+			m.setProfileImage(filename);
+		}
 		System.out.println(m);
 		int result=service.update(m);
 		String msg="";

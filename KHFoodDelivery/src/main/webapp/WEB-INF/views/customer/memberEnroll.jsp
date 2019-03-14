@@ -230,12 +230,12 @@ pageEncoding="UTF-8"%>
              <input type="button" class="btn-ser btn btn-default" onclick="address();" value="주소검색"/>
              
             <input type="text" class="add form-control"  placeholder="주소" name="memberAddress" id="memberAddress"/>
-             
               <select class="form-control" name="memberGender" required>
                <option value="" disabled selected>성별</option>
                <option value="M">남</option>
                <option value="F">여</option>
             </select>
+             <input type="hidden" name="profileImage" value="user.jpg"/>
   
      																					
             <br />
