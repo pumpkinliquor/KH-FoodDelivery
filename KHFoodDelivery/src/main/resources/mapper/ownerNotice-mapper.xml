@@ -43,4 +43,12 @@
 	<insert id="insertOwnerNoticeAttach" parameterType="com.kh.food.owner.notice.attachment.vo.OwnerNoticeAttachment">
 	insert into OWNERNOTICE_ATTACHMENT values(seq_ownernoticeattachmentno.NEXTVAL,#{ownerNoticeNum},#{ownerOriginalFileName},#{ownerRenamedFileName},default,default)
 	</insert>
+	
+	<update id="ownerNoticeUpdateEnd" parameterType="map">
+	update ownernotice set OWNERNOTICETITLE=#{noticeTitle},OWNERNOTICECONTENT=#{noticeContent} where OWNERNOTICENUM=#{ownerNoticeNum}
+	</update>
+	
+	<update id="ownerNoticeAUpdateEnd" parameterType="com.kh.food.owner.notice.attachment.vo.OwnerNoticeAttachment">
+	update ownernotice_attachment set OWNERORIGINALFILENAME=#{ownerOriginalFileName}, OWNERRENAMEDFILENAME=#{ownerRenamedFileName} where ownernoticenum=#{ownerNoticeNum}
+	</update>
 </mapper>

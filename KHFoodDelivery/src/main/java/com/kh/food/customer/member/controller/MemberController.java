@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,9 +19,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.common.PagingFactory;
@@ -288,18 +286,34 @@ public class MemberController {
 		return "customer/test";
 	}
 	
+	
+	
+	
 	@RequestMapping("/customer/test1.do")
 	public ModelAndView test1(ModelAndView mv, int businessCode)
 	{
-		System.out.println(businessCode);
-//		System.out.println(menuCategoryCode);
+//		System.out.println(businessCode);
 		List<Map<String,String>> menuCategory=service.selectCategoryList(businessCode);
-//		List<Map<String,String>> menuList=service.selectMenuList(menuCategoryCode, businessCode);
-//		mv.addObject("menuList", menuList);
+		mv.addObject("businessCode", businessCode);
 		mv.addObject("categoryList", menuCategory);
 		mv.setViewName("customer/test1");
 		return mv;
 	}
+	@RequestMapping("/customer/test1End.do")
+	@ResponseBody
+	public List test1End(ModelAndView mv, int menuCategoryCode, int businessCode) {
+		System.out.println("비즈니스코드"+businessCode);
+		System.out.println("메뉴카테고리코드"+menuCategoryCode);
+		List<Map<String,String>> menuList=service.selectMenuList(menuCategoryCode, businessCode);
+		for(int i=0; i<menuList.size(); i++) {
+			System.out.println(menuList.get(i));
+		}
+		return menuList;
+	}
+	
+	
+	
+	
 	@RequestMapping("/customer/test2.do")
 	public String test2()
 	{

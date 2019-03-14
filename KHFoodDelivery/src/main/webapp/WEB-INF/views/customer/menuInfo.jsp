@@ -126,7 +126,6 @@
     }
 #menubox dd :hover{
     cursor:pointer;
-    text-decoration:underline;
 }
 
 #menubox dd a{
@@ -208,17 +207,16 @@
         	
         });
 		$(document).ready(function(){
-        	
         	$("#test2").click(function(){
-        		var businessCode=${businessCode}
+        		var businessCode=${businessCode};
         		$.ajax({
         			type: "post",
         			url: "${path}/customer/test1.do",
         			data : {"businessCode" : businessCode},
         			success: function test(a){$("#callback").html(a);}
         		});
+        		
         	});
-        	
         });
 		
 		window.onload=function(){
@@ -258,7 +256,7 @@
                         <span>${i.storeName }</span>
                     </div>
                     <div class="restaurant-content">
-                        <div class="logo"><img class="mainlogo" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" /></div>
+                        <div class="logo"><img class="mainlogo" src="${path }/resources/upload/owner/storeMainImage/${i.storeImage }" /></div>
                         <ul class="list">
                             <li>별점</li>
                             <li>최소주문금액 <span>${i.minPrice}원</span></li>

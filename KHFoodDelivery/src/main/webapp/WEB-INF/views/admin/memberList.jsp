@@ -20,17 +20,17 @@
 	});
 </script>
 
-
+<section>
 <div class="container">
 	<div id="memberList-title">
-		<h4 id="memberListTitle">리스트</h4>
+		<h4 id="memberListTitle">회원 리스트</h4>
 		<div class="btn-group" id="btn-category">
 			<button class="btn btn-default dropdown-toggle"
 				data-toggle="dropdown" aria-expanded="false">
 				목록<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu">
-				<li><a href="#">회원</a></li>
+				<li><a href="${path }/admin/memberList.do">회원</a></li>
 				<li><a href="${path}/admin/ownerList.do">사장님</a></li>
 				<li class="divider"></li>
 			</ul>
@@ -49,7 +49,7 @@
 						<th>아이디</th>
 						<th>이름</th>
 						<th>이메일</th>
-						<th>가입날짜</th>
+						<th>주소</th>
 					</tr>
 				</thead>
 
@@ -64,7 +64,7 @@
 							<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')">${m.MEMBERID}</td>
 							<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')">${m.MEMBERNAME}</td>
 							<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')">${m.MEMBEREMAIL}</td>
-							<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')">${m.MEMBERENROLLDATE}</td>
+							<td class="pnt" onclick="fn_memListmodal('${m.MEMBERNUM }')">${m.MEMBERADDRESS}</td>
 						</tr>
 					</tbody>
 				</c:forEach>
@@ -80,7 +80,7 @@
 	${pageBar}
 	</div>
 </div>
-
+</section>
 
 
 <script>
@@ -95,19 +95,17 @@
 						"memberNum" : memberNum
 					}, //요청과 함께 보낼 데이터
 					success : function(data) {
-						console.log(data);
-
-						var profileImgAddr = data['MEMBERIMAGE'];
-
-						$('#memProfile')
-								.attr('src',
-										'${path}/resources/upload/member/notAttach/20190312_143759897_82.jpg');
+						$('#memProfile').empty().append('<img src="${path}/resources/images/customer/mypage/'
+								+ data.PROFILEIMAGE
+								+ '" style="margin-left: auto; margin-right: auto; display: block; width:70px; height:70px; border-radius:100%;"/>');
+						
+						$('#memNickName').val(data.NICKNAME);
 						$('#memAddress').val(data.MEMBERADDRESS);
 						$('#memBirth').val(data.MEMBERBIRTH);
 						$('#memPhone').val(data.MEMBERPHONE);
 						$('#memEnrolldate').val(data.MEMBERENROLLDATE);
 						$('#memGender').val(data.MEMBERGENDER);
-						$('#memMileage').val(data.MILEAGE);
+						
 
 						//성공했을때 모달띄워줌
 						$('#memListModal').modal();
@@ -154,15 +152,16 @@
 				<table class="table">
 					<tr>
 						<th>프로필</th>
-						<td><img id="#memProfile"></td>
+						<td id="memProfile"></td>
 
 
 					</tr>
 					<tr>
-						<th>주소</th>
-						<td><textarea rows="3" cols="10" id="memAddress"
-								class="form-control" readonly="readonly"></textarea></td>
+						<th>닉네임</th>
+						<td><input type="text" id="memNickName" class="form-control"
+							readonly="readonly"></td>
 					</tr>
+					
 					<tr>
 						<th>생년월일</th>
 						<td><input type="text" id="memBirth" class="form-control"
@@ -173,20 +172,21 @@
 						<td><input type="text" id="memPhone" class="form-control"
 							readonly="readonly"></td>
 					</tr>
-					<tr>
-						<th>가입날짜</th>
-						<td><input type="text" id="memEnrolldate"
-							class="form-control" readonly="readonly"></td>
-					</tr>
+					
 					<tr>
 						<th>성별</th>
 						<td><input type="text" id="memGender" class="form-control"
 							readonly="readonly"></td>
 					</tr>
 					<tr>
-						<th>마일리지</th>
-						<td><input type="text" id="memMileage" class="form-control"
-							readonly="readonly"></td>
+						<th>가입날짜</th>
+						<td><input type="text" id="memEnrolldate"
+							class="form-control" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td><textarea rows="3" cols="10" id="memAddress"
+								class="form-control" readonly="readonly"></textarea></td>
 					</tr>
 
 				</table>

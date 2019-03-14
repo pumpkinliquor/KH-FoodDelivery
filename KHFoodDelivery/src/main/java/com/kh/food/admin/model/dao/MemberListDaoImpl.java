@@ -3,6 +3,7 @@ package com.kh.food.admin.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,12 +14,18 @@ public class MemberListDaoImpl implements MemberListDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	//회원리스트
-	public List<Map<String,String>> selectListMember(){
-	return sqlSession.selectList("admin.selectListMember");
+	//회원리스트	
+	@Override
+	public List<Map<String, String>> selectListMember(int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		RowBounds rows=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("admin.selectListMember",null,rows);
 	}
+
+
 	
-	
+
+
 	//회원 페이징
 	@Override
 	public int memCount() {
@@ -30,11 +37,11 @@ public class MemberListDaoImpl implements MemberListDao {
 
 	//사장리스트
 	@Override
-	public List<Map<String, String>> selectListOwner() {
+	public List<Map<String, String>> selectListOwner(int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("admin.selectListOwner");
+		RowBounds rows=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("admin.selectListOwner",null,rows);
 	}
-	
 	
 	//사장 페이징
 	@Override

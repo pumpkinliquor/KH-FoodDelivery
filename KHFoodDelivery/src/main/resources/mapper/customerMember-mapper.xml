@@ -54,7 +54,7 @@
 		select b.menucategorycode, b.menucategory from menu a inner join menu_category b on a.menucategorycode=b.menucategorycode where a.businesscode=#{businessCode} group by b.menucategorycode, b.menucategory
 	</select>
 	
-	<!-- <select id="selectMenuList" parameterType="_int" resultType="map">
-		select * from menu where menucategorycode=#{menuCategoryCode} AND businesscode=#{businessCode}
-	</select> -->
+	<select id="selectMenuList" parameterType="map" resultMap="member">
+		select * from menu where MENUCATEGORYCODE=#{menuCategoryCode} AND BUSINESSCODE=#{businessCode}
+	</select>
 </mapper>
