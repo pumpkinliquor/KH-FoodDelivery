@@ -17,16 +17,18 @@ public class OwnerNoticeServiceImpl implements OwnerNoticeService {
 
 	//사장 공지사항리스트
 	@Override
-	public List<Map<String, String>> ownerNoticeList() {
+	public List<Map<String, String>> ownerNoticeList(int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
-		return dao.ownerNoticeList();
+		return dao.ownerNoticeList(cPage,numPerPage);
 	}
-
+	
 	@Override
 	public int ownNotCount() {
 		// TODO Auto-generated method stub
 		return dao.ownNotCount();
 	}
+
+	
 
 	//사장공지사항 뷰
 	@Override

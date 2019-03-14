@@ -3,6 +3,7 @@ package com.kh.food.owner.notice.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,18 +15,22 @@ public class OwnerNoticeDaoImpl implements OwnerNoticeDao {
 
 	@Autowired
 	SqlSessionTemplate sqlSession;
-	@Override
-	public List<Map<String, String>> ownerNoticeList() {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("ownerNotice.selectOwnerNoticeList");
-	}
 	
+	@Override
+	public List<Map<String, String>> ownerNoticeList(int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		RowBounds rows=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("ownerNotice.selectOwnerNoticeList",null,rows);
+	}
 	
 	@Override
 	public int ownNotCount() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("ownerNotice.ownNotCount");
 	}
+
+
+	
 
 
 	@Override

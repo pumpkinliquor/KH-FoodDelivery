@@ -43,7 +43,7 @@ public class OwnerNoticeController {
 		int numPerPage=10;
 		
 		int count = service.ownNotCount();
-		List<Map<String, String>> list=service.ownerNoticeList();
+		List<Map<String, String>> list=service.ownerNoticeList(cPage,numPerPage);
 		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/owner/ownerNoticeList.do"));
 		mv.addObject("list", list);	
 		mv.setViewName("owner/ownerNoticeList");

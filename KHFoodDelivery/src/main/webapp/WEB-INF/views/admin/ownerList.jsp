@@ -20,21 +20,21 @@
 	});
 </script>
 <section>
-	<div class="container">
-		<div id="ownerList-title">
-			<h4 id="onwerListTitle">리스트</h4>
-			<div class="btn-group" id="btn-category">
-				<button class="btn btn-default dropdown-toggle"
-					data-toggle="dropdown" aria-expanded="false">
-					목록<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="${path }/admin/memberList.do">회원</a></li>
-					<li><a href="#">사장님</a></li>
-					<li class="divider"></li>
-				</ul>
-			</div>
+<div class="container">
+	<div id="ownerList-title">
+		<h4 id="ownerListTitle">사장님 리스트</h4>
+		<div class="btn-group" id="btn-category">
+			<button class="btn btn-default dropdown-toggle"
+				data-toggle="dropdown" aria-expanded="false">
+				목록<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li><a href="${path }/admin/memberList.do">회원</a></li>
+				<li><a href="${path}/admin/ownerList.do">사장님</a></li>
+				<li class="divider"></li>
+			</ul>
 		</div>
+	</div>
 		<div id="ownerList">
 			<form action="${path }/admin/ownDel.do" id="ownDel" method="post">
 				<table class="table table-hover" id="ownerListTable">

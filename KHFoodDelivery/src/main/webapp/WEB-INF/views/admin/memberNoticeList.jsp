@@ -47,7 +47,7 @@
 
 		</div>
 	</div>
-	<div class="paging">${pageBar}</div>
+		<div class="paging">${pageBar}</div>
 	</section>
 
 

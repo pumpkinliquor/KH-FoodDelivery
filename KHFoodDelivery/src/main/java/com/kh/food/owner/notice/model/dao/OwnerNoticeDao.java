@@ -7,7 +7,7 @@ import com.kh.food.owner.notice.attachment.vo.OwnerNoticeAttachment;
 
 public interface OwnerNoticeDao {
 	
-	List<Map<String,String>>ownerNoticeList();
+	List<Map<String,String>>ownerNoticeList(int cPage,int numPerPage);
 	int ownNotCount();
 	Map<String,String>selectOwnerNotice(int ownerNoticeNum);
 	List<Map<String,String>>selectOwnerAttach(int ownerNoticeNum);

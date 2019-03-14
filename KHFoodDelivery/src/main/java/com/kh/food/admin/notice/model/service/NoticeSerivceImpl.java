@@ -18,9 +18,9 @@ public class NoticeSerivceImpl implements NoticeService {
 	
 	//회원공지사항 리스트
 	@Override
-	public List<Map<String, String>> selectMemberNoticeList() {
+	public List<Map<String, String>> selectMemberNoticeList(int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
-		return dao.selectMemberNoticeList();
+		return dao.selectMemberNoticeList(cPage,numPerPage);
 	}
 
 	@Override

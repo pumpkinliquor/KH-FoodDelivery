@@ -5,10 +5,10 @@ import java.util.Map;
 
 public interface MemberListService {
 
-	List<Map<String,String>> selectListMember(); //회원 리스트
+	List<Map<String,String>> selectListMember(int cPage,int numPerPage); //회원 리스트
 	int memCount();
 	
-	List<Map<String,String>> selectListOwner(); //사장님 리스트
+	List<Map<String,String>> selectListOwner(int cPage,int numPerPage); //사장님 리스트
 	int ownCount();
 
 	Map<String,String> memberOne(int memberNum); //회원 상세보기

@@ -35,7 +35,7 @@ public class MemberListController {
 	  int numPerPage=10;
 		
 		int count = service.memCount();
-	  List<Map<String,String>> list=service.selectListMember();
+	  List<Map<String,String>> list=service.selectListMember(cPage,numPerPage);
 	  mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/memberList.do"));
 	  mv.addObject("list",list);
 	  mv.setViewName("admin/memberList"); 
@@ -76,7 +76,7 @@ public class MemberListController {
 		int numPerPage=10;
 		int count = service.ownCount();
 		ModelAndView mv=new ModelAndView();
-		List<Map<String,String>> list=service.selectListOwner();
+		List<Map<String,String>> list=service.selectListOwner(cPage,numPerPage);
 		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/ownerList.do"));
 		mv.addObject("list",list);
 		mv.setViewName("admin/ownerList");

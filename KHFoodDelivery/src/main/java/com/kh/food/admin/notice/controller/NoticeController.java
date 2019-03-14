@@ -43,10 +43,9 @@ public class NoticeController {
 	public ModelAndView memberNoticeList(@RequestParam(value="cPage", required=false, defaultValue="0") int cPage)
 	{
 		int numPerPage=10;
-		
-		int count = service.notCount();
 		ModelAndView mv=new ModelAndView();
-		List<Map<String,String>>list=service.selectMemberNoticeList();
+		int count = service.notCount();
+		List<Map<String,String>>list=service.selectMemberNoticeList(cPage,numPerPage);
 		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/memberNoticeList.do"));
 		mv.addObject("list",list);
 		mv.setViewName("admin/memberNoticeList");
