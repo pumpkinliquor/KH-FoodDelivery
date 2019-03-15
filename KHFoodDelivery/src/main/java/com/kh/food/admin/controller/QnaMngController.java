@@ -88,7 +88,10 @@ public class QnaMngController {
 		for(int i = 0; i < mqList.size(); i++) {
 			mqList.get(i).setFormatWriteDate(df.format(mqList.get(i).getWriteDate()));
 		}
-				
+
+		for(MemberQna q : mqList) {
+			logger.debug("" + q);
+		}
 		mv.addObject("mqList", mqList);		
 		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/searchMemberQna.do"));
 		mv.setViewName("admin/memberQnaList");				

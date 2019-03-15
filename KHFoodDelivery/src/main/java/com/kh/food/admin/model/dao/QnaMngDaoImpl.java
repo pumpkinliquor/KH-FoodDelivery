@@ -152,5 +152,21 @@ public class QnaMngDaoImpl implements QnaMngDao {
 	public int selectSearchOwnerQnaCount(Map map) {
 		return session.selectOne("qna.selectSearchOwnerQnaCount", map);
 	}
+
+
+	
+	// 관리자 메인용
+	
+	@Override
+	public List<MemberQna> selectMemberQnaList() {
+		return session.selectList("qna.selectMemberQnaList");
+	}
+
+	@Override
+	public List<OwnerQna> selectOwnerQnaList() {
+		return session.selectList("qna.selectOwnerQnaList");
+	}
+	
+	
 	
 }
