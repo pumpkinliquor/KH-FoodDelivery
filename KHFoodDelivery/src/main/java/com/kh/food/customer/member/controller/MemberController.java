@@ -54,12 +54,12 @@ public class MemberController {
 	
 	//나의 문의내역
 	@RequestMapping("/member/qnaList.do")
-	public ModelAndView memberQna(String memberId,@RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
+	public ModelAndView memberQna(String memberId) {
 		ModelAndView mv = new ModelAndView();
 		int numPerPage=5;
-		int count=service.qnaMemberCount();
+
 		//문의 리스트
-		List<MemberQna> qnaList=service.selectmemberQna(memberId,cPage,numPerPage);
+		List<MemberQna> qnaList=service.selectmemberQna(memberId);
 		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)
 				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 				for(int i = 0; i < qnaList.size(); i++) {
@@ -67,7 +67,7 @@ public class MemberController {
 				}		
 				
 		
-		mv.addObject("pageBar",PagingFactory.getPageBar2(memberId,count, cPage, numPerPage, "/food/member/qnaList.do"));
+		
 		mv.addObject("qnaList",qnaList);
 		mv.setViewName("customer/qnaList");
 		return mv;
@@ -75,6 +75,19 @@ public class MemberController {
 		
 	}
 	
+	//문의내역 상세보기
+	@RequestMapping("/customer/memberQnaView.do")
+	public ModelAndView memberDetailQna(int no) {
+		ModelAndView mv= new ModelAndView();
+		
+	
+				MemberQna mq = service.memberDetailQna(no);
+				
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+				mq.setFormatWriteDate(df.format(mq.getWriteDate()));
+		
+		
+	}
 	//나의주문내역
 	@RequestMapping("/member/orderList.do")
 	public ModelAndView memberOrderList(String memberId)

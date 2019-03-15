@@ -9,9 +9,9 @@ import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
 
 public interface MemberDao {
-
-	List<MemberQna> selectmemberQna(String memberId,int cPage,int numPerPage);
-	int qnaMemberCount();
+	
+	MemberQna memberDetailQna(int no);
+	List<MemberQna> selectmemberQna(String memberId);
 	int memberEnroll(Member m);
 	int checkId(String memberId);
 	Map<String,String> login(Map<String,String> map);
