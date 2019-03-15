@@ -266,7 +266,7 @@
                     </div>
                 </div>
                 <div class="owner_massage">
-                    <strong>사장님말</strong>
+                    <strong>사장님말</strong><br>
                     <span>${i.storeProfile }</span>
                 </div>
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">

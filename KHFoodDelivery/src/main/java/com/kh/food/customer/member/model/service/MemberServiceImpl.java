@@ -81,6 +81,11 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectMenuList(menuCategoryCode, businessCode);
 	}
 
+	@Override
+	public Menu menuSelect(int menuCode) {
+		return dao.menuSelect(menuCode);
+	}
+
 
 	
 	

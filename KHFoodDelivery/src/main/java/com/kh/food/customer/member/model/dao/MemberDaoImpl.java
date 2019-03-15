@@ -84,5 +84,11 @@ public class MemberDaoImpl implements MemberDao {
 		codes.put("businessCode", businessCode);
 		return sqlSession.selectList("member.selectMenuList",codes);
 	}
+
+	@Override
+	public Menu menuSelect(int menuCode) {
+		return sqlSession.selectOne("menu.menuSelect", menuCode);
+	}
+	
 	
 }

@@ -31,7 +31,7 @@ div .menuCategoryStyle {
 				<div class="col-sm-9">
 					<div class="mnl">
 						<p>
-							<span style='font-weight:bold;'>교촌 간장치킨</span><br /> <span style='color:red;'>19500원</span>
+							교촌 간장치킨<br /> 19500원
 						</p>
 					</div>
 				</div>
@@ -46,10 +46,21 @@ div .menuCategoryStyle {
 		<dt id="categoryBtn${category.MENUCATEGORYCODE }">${category.MENUCATEGORY }</dt>
 		<dd>
 		<script>
-		// 메뉴 누르면 메뉴코드 보내주기(모달으로 보내야함).
-		function ohoh(no){
-			var menuCode=no;
-			location.href="${path}/customer/nono.do?menuCode="+menuCode;
+		//모달
+		function menuModal(no) {
+			$.ajax({
+				type:"POST",
+				url:"${path}/customer/menuSelect.do",
+				data:{"menuCode" : no},
+				dataType:"JSON",
+				success: function(data) {
+					console.log(data);
+					$('#menuSelectModal').modal();
+					$('#menuImage').empty().append('<img src="${path}/resources/upload/owner/menu/'+data.menuImage+'" style="width:100%; height:333px;"/>');
+					$('#menuTitle').empty().append(data.menuName);
+					$('#menuPrice').empty().append(data.menuPrice+"<span>원</span>");
+				}
+			});
 		}
 		// 에이젝스로 값보내기
 		$(document).ready(function(){
@@ -65,10 +76,10 @@ div .menuCategoryStyle {
         				console.log(data);
         				var html="<div>";
         				for(var i=0; i<data.length; i++){
-        				html+="<div class='row menuCategoryStyle' onclick='ohoh("+data[i].MENUCODE+");' id='menuCategoryId"+data[i].MENUCODE+"'>";
+        				html+="<div class='row menuCategoryStyle' onclick='menuModal("+data[i].MENUCODE+");' id='menuCategoryId"+data[i].MENUCODE+"'>";
         				html+="<div class='col-sm-9'>";
         				html+="<div class='mnl'>";
-        				html+="<p style='margin-top:8px; margin-bottom:8px;'><span style='font-weight:bold;'>"+data[i].MENUNAME+"</span><br/><span style='color:red;'>"+data[i].MENUPRICE+"원</span></p>";
+        				html+="<p style='margin-top:8px; margin-bottom:8px;'><span style='font-weight:bold;'>"+data[i].MENUNAME+"</span><br/><span style='color:black;'>"+data[i].MENUPRICE+"원</span></p>";
         				html+="</div>";
         				html+="</div>";
         				html+="<div class='col-sm-3'>";
@@ -89,6 +100,48 @@ div .menuCategoryStyle {
 		</dd>
 		</c:forEach>
 	</dl>
+</div>
+
+<!-- 모달 -->
+<div class="modal" id="menuSelectModal" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<form action="${path }/customer/menuInsert.do" id="menuInsertFrm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<p class="modal-title" id="menuTitle" style="font-weight:bold;"></p>
+				<button type="button" class="close" data-dismiss="modal">×</button>
+			</div>
+			<div class="modal-body" style="height: auto;">
+				<div class="menu-image" id="menuImage"></div>
+				<br/>
+				<h6 class="menu-priceM" style="float:left;">가격</h6>
+				<h6 class="menu-price" id="menuPrice" style="text-align:right;"></h6>
+				<br/>
+				<h6 class="menu-countM" style="float:left; margin-bottom:0px; margin-top:8px;">수량</h6>
+				<input type="number" id="menuCount" class="form-control" style="float:right; width:3em;"/>
+				<br/>
+				<br/>
+				<div style="background-color:rgb(231, 231, 231); height:5em; margin-top:2em;">
+				<h5 style="font-weight:bold; float:left; padding-left:1em; line-height:80px;">총 주문금액</h5>
+				<h5 style="float:right; padding-right:1em; line-height:80px;">18000원</h5>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class="container">
+				<div class="row">
+				<div class="col-sm-6" style="padding-left:0px; padding-right:0px;">
+				<button type="button" class="btn btn-success btn-lg btn-block">장바구니담기</button>
+				</div>
+				<div class="col-sm-6" style="padding-left:0px; padding-right:0px;">
+				<button type="button" class="btn btn-danger btn-lg btn-block">결제하기</button>
+				</div>
+				</div>
+				</div>
+			</div>
+		</div>  
+		</form>
+	</div>
 </div>
 
 
