@@ -25,6 +25,11 @@ public class MemberServiceImpl implements MemberService {
 	private JavaMailSender mailSender;
 	
 	@Override
+	public List<Store> selectAllStore(){
+		return dao.selectAllStore();
+	}
+	
+	@Override
 	public List<Store> menuInfo(int businessCode) {
 		return dao.menuInfo(businessCode);
 	}
@@ -80,7 +85,7 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectCategoryList(businessCode);
 	}
 
-	
+
 	//아이디찾기
 	@Override
 	public Map<String, String> selectSearchId(Map<String, String> map) {
@@ -107,7 +112,11 @@ public class MemberServiceImpl implements MemberService {
 //		return dao.selectMenuList(menuCategoryCode, businessCode);
 //	}
 
+	@Override
+	public List<Map<String, String>> selectMenuList(int menuCategoryCode,int businessCode) {
+		return dao.selectMenuList(menuCategoryCode, businessCode);
+	}
 
-	
+
 	
 }

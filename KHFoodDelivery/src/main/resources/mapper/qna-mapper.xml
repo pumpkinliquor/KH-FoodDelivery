@@ -11,7 +11,12 @@
 
 	<!-- 회원 문의 리스트 -->
 	<select id="selectMemberQnaList" resultType="memberQna">
-		SELECT mq.*, m.memberId, (SELECT COUNT(*) FROM MEMBER_QNA_REVIEW r JOIN MEMBER_QNA ON(r.qnaCode = mq.qnaCode)) AS isRe FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum) ORDER BY isRe ASC, writeDate DESC, qnaCategory DESC 
+		SELECT 
+			mq.*, m.memberId, (SELECT COUNT(*) FROM MEMBER_QNA_REVIEW r JOIN MEMBER_QNA ON(r.qnaCode = mq.qnaCode)) AS isRe 	<!-- isRe : 댓글 여부 (0 : 대기, 0 이상 : 완료 -->
+		FROM 
+			MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum) 
+		ORDER BY 
+			isRe ASC, writeDate DESC, qnaCategory DESC 
 	</select>
 	
 	<!-- 회원 문의 보기 -->
@@ -41,32 +46,35 @@
 	
 	<!-- 회원 문의 검색 -->
 	<select id="searchMemberQna" parameterType="map" resultType="memberQna">
-		SELECT mq.*, m.memberId, (SELECT COUNT(*) FROM MEMBER_QNA_REVIEW r JOIN MEMBER_QNA ON(r.qnaCode = mq.qnaCode)) AS isRe 
-		FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum) 
+		SELECT 
+			mq.*, m.memberId, (SELECT COUNT(*) FROM MEMBER_QNA_REVIEW r JOIN MEMBER_QNA ON(r.qnaCode = mq.qnaCode)) AS isRe 
+		FROM 
+			MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum) 
 		WHERE 
-			qnaTitle LIKE '%'||#{keyword}||'%'
+			qnaTitle LIKE '%'||#{keyword}||'%'		<!-- 키워드 조건 -->
 		AND 
 			<choose>
-				<when test="isRe eq 0">
+				<when test="isRe eq 0">		<!-- 답변 대기 -->
 					(SELECT COUNT(*) FROM MEMBER_QNA_REVIEW r JOIN MEMBER_QNA ON(r.qnaCode = mq.qnaCode)) = 0
 				</when>
-				<when test="isRe eq 1">
+				<when test="isRe eq 1">		<!-- 답변 완료 -->
 					(SELECT COUNT(*) FROM MEMBER_QNA_REVIEW r JOIN MEMBER_QNA ON(r.qnaCode = mq.qnaCode)) > 0
 				</when>
-				<otherwise>
+				<otherwise>					<!-- 전체 -->
 					1 = 1
 				</otherwise>
 			</choose>
 		AND
 			<choose>
-				<when test="category eq '전체'">
+				<when test="category eq '전체'">	<!-- 카테고리 전체 -->
 					1 = 1
 				</when>
 				<otherwise>
-					qnaCategory = #{category}
+					qnaCategory = #{category}	<!-- 선택 카테고리 -->
 				</otherwise>
 			</choose>
-		ORDER BY isRe ASC, writeDate DESC, qnaCategory DESC
+		ORDER BY 
+			isRe ASC, writeDate DESC, qnaCategory DESC
 			<!-- <foreach collection="category" item="cate" index="i" open="(" close=")" separator="OR">
 				qnaCategory = #{cate}
 			</foreach> -->

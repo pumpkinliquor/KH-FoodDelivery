@@ -12,7 +12,7 @@
 	   <resultMap id="member1" type="member">
 	</resultMap>
 	<insert id="insertMember" parameterType="member" >
-		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},#{memberPw},#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},default,#{memberGender},default,default,0,0,default)
+		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},#{memberPw},#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},default,#{memberGender},default,default,0,0,#{profileImage})
 	</insert>
 	
 	<select id="checkId" parameterType="String" resultType="_int">
@@ -30,7 +30,7 @@
 		select * from member where memberId=#{memberId}
 	</select>
 	<update id="update" parameterType="member">
-		update member set NICKNAME=#{nickName},MEMBERBIRTH=#{formatBirth},MEMBEREMAIL=#{memberEmail},MEMBERPHONE=#{memberPhone},MEMBERADDRESS=#{memberAddress},MEMBERENROLLDATE=default,MEMBERGENDER=#{memberGender} where MEMBERID=#{memberId}		
+		update member set NICKNAME=#{nickName},MEMBERBIRTH=#{formatBirth},MEMBEREMAIL=#{memberEmail},MEMBERPHONE=#{memberPhone},MEMBERADDRESS=#{memberAddress},MEMBERENROLLDATE=default,MEMBERGENDER=#{memberGender},PROFILEIMAGE=#{profileImage} where MEMBERID=#{memberId}		
 	</update>
 	
 	<select id="selectStore" parameterType="string" resultType="store">		  	
@@ -54,6 +54,7 @@
 		select b.menucategorycode, b.menucategory from menu a inner join menu_category b on a.menucategorycode=b.menucategorycode where a.businesscode=#{businessCode} group by b.menucategorycode, b.menucategory
 	</select>
 	
+
 	<!-- <select id="selectMenuList" parameterType="_int" resultType="map">
 		select * from menu where menucategorycode=#{menuCategoryCode} AND businesscode=#{businessCode}
 	</select> -->
@@ -70,4 +71,13 @@
 	<update id="updatePw" parameterType="map">
 	update member set memberpw=#{memberPw} where memberid=#{memberId} and memberemail =#{memberEmail}
 	</update>
+
+	<select id="selectMenuList" parameterType="map" resultMap="member">
+		select * from menu where MENUCATEGORYCODE=#{menuCategoryCode} AND BUSINESSCODE=#{businessCode}
+	</select>
+	
+	<select id="selectAllStore" resultType="store">
+		select * from store where ISCONFIRM=1
+	</select>
+
 </mapper>

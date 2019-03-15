@@ -40,7 +40,7 @@ public class QnaMngController {
 		int numPerPage = 5;
 		int count = service.selectMemberQnaCount();
 		// 회원 문의 리스트
-		List<MemberQna> mqList = service.selectMemberQnaList();
+		List<MemberQna> mqList = service.selectMemberQnaList(cPage, numPerPage);
 		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		for(int i = 0; i < mqList.size(); i++) {
@@ -72,7 +72,7 @@ public class QnaMngController {
 		map.put("isRe", isRe);
 		map.put("category", category);
 		
-		List<MemberQna> mqList = service.searchMemberQna(map);
+		List<MemberQna> mqList = service.searchMemberQna(map, cPage, numPerPage);
 		int count = service.selectSearchMemberQnaCount(map);
 		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -174,11 +174,11 @@ public class QnaMngController {
 	
 	// 사장님 문의 내역 리스트
 	@RequestMapping("/admin/ownerQnaList.do")
-	public ModelAndView ownerQnaList() {
+	public ModelAndView ownerQnaList(@RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
 		ModelAndView mv = new ModelAndView();
-		
+		int numPerPage = 5;
 		// 사장 문의 리스트
-		List<OwnerQna> oqList = service.selectOwnerQnaList();
+		List<OwnerQna> oqList = service.selectOwnerQnaList(cPage, numPerPage);
 		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		for(int i = 0; i < oqList.size(); i++) {

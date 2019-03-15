@@ -1,11 +1,15 @@
 package com.kh.food.owner.store.controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +31,7 @@ public class StoreController {
 	}
 	
 	@RequestMapping("/owner/storeFormEnd.do")
-	public ModelAndView storeFormEnd(HttpServletRequest request, ModelAndView mv, String businessName, String businessPhone, String businessNum, 
+	public ModelAndView storeFormEnd(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, String businessName, String businessPhone, String businessNum, 
 			String storeCategory, String storeName, String storePhone, String frontAddress, String backAddress, int minPrice, String storeProfile, MultipartFile storeImage) {
 			Map<String,Object> store=new HashMap<String,Object>();
 			String ownerId=(String) request.getSession().getAttribute("ownerId");
@@ -45,16 +49,39 @@ public class StoreController {
 //			System.out.println(storeAddress);
 			String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/owner/storeMainImage");
 			
+			
 			if(!storeImage.isEmpty()) {
+				//파일명을 생성
 				String oriFileName=storeImage.getOriginalFilename();
+				String ext = oriFileName.substring(oriFileName.lastIndexOf("."));
+				//rename 규칙 설정
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+				int rdv = (int)(Math.random()*1000);
+				String reName = sdf.format(System.currentTimeMillis())+"_"+rdv+ext;
 				try {
-					storeImage.transferTo(new File(saveDir+"/"+oriFileName));
+					storeImage.transferTo(new File(saveDir+"/"+reName));
 				}
 				catch(IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
-				String oriImageName=oriFileName;
-				store.put("oriImageName",oriImageName);
+				store.put("reName",reName);
+			}
+			else {
+				response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out = null;
+				try {
+					out=response.getWriter();
+				}
+				catch (NullPointerException e) {
+					e.printStackTrace();
+				}
+				catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
+				out.println("<script>alert('이미지를 넣지 않으셨습니다! 이미지를 넣어주세요.'); history.go(-1);</script>");
 			}
 			
 			int result=service.storeFormEnd(store);
