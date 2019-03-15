@@ -25,21 +25,12 @@ public class NoticeDaoImpl implements NoticeDao {
 		return sqlSession.selectList("memberNotice.selectMemberNoticeList",null,rows);
 	}
 	
-	/*
-	 * @Override public List<Map<String, String>> selectMemberNoticeList() { // TODO
-	 * Auto-generated method stub
-	 * 
-	 * return sqlSession.selectList("memberNotice.selectMemberNoticeList"); }
-	 */
 		//페이징
 		@Override
 		public int notCount() {
 			// TODO Auto-generated method stub
 			return sqlSession.selectOne("memberNotice.notCount");
 		}
-
-
-		
 
 
 		//회원공지사항 뷰
@@ -55,6 +46,7 @@ public class NoticeDaoImpl implements NoticeDao {
 			return sqlSession.selectList("memberNotice.selectAttach", noticeNum);
 		}
 
+		
 		//회원공지사항 삭제
 			@Override
 			public int deleteMemberNotice(int noticeNum) {

@@ -3,7 +3,10 @@ package com.kh.food.customer.member.model.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.kh.food.customer.member.model.dao.MemberDao;
@@ -18,7 +21,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	MemberDao dao;
-	
+	@Inject
+	private JavaMailSender mailSender;
 	
 	@Override
 	public List<Store> selectAllStore(){
@@ -81,12 +85,38 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectCategoryList(businessCode);
 	}
 
+
+	//아이디찾기
+	@Override
+	public Map<String, String> selectSearchId(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return dao.selectSearchId(map);
+	}
+
+	//비밀번호찾기
+	@Override
+	public Map<String, String> selectConfirmEmail(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return dao.selectConfirmEmail(map);
+	}
+
+	@Override
+	public int updatePw(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return dao.updatePw(map);
+	}
+	
+
 	@Override
 	public List<Map<String, String>> selectMenuList(int menuCategoryCode,int businessCode) {
 		return dao.selectMenuList(menuCategoryCode, businessCode);
 	}
 
 
-	
+	@Override
+	public Menu menuSelect(int menuCode) {
+		return dao.menuSelect(menuCode);
+	}
+
 	
 }

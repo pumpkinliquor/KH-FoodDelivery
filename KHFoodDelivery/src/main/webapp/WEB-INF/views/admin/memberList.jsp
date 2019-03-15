@@ -95,7 +95,7 @@
 						"memberNum" : memberNum
 					}, //요청과 함께 보낼 데이터
 					success : function(data) {
-						$('#memProfile').empty().append('<img src="${path}/resources/images/customer/mypage/'
+						$('#memProfile').empty().append('<img src="${path}/resources/upload/member/profile/'
 								+ data.PROFILEIMAGE
 								+ '" style="margin-left: auto; margin-right: auto; display: block; width:70px; height:70px; border-radius:100%;"/>');
 						

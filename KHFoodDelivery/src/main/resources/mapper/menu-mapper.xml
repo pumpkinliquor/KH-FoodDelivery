@@ -44,5 +44,8 @@
 		update menu set menuSoldOut = 0 where menuCode = #{menuCode}
 	</update>
 	
+	<select id="menuSelect" parameterType="_int" resultType="menu">
+		SELECT * FROM MENU WHERE MENUCODE=#{menuCode}
+	</select>
 	
 </mapper>

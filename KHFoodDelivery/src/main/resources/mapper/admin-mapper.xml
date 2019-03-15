@@ -16,7 +16,7 @@
 	 
 	 <!-- 사장님 리스트 -->
 	 <select id="selectListOwner" resultType="Map">
-	 select * from owner o, store s where o.ownerid=s.ownerid order by ownernum desc
+	 select * from owner o, store s where o.ownerid=s.ownerid order by storename
 	 </select>
 	 
 	 <!-- 사장 페이징 -->
