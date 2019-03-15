@@ -33,6 +33,9 @@ pageEncoding="UTF-8"%>
 .orderTable .td1{
 	padding-top:30px;
 }
+.orderTable{
+	text-align:center;
+}
 
 </style>
 <section>
@@ -49,11 +52,10 @@ pageEncoding="UTF-8"%>
 					<thead>
 						<tr>
 							<th width=7%>번호</th>
-							<th width=15%>주문일시</th>
-							<th width=25%>메뉴명</th>
-							<th width=8%>주문인</th>
-							<th width=7%>배달비</th>
-							<th width=8%>결제금액</th>
+							<th width=18%>주문일시</th>
+							<th width=27%>주문명</th>
+							<th width=9%>배달비</th>
+							<th width=9%>결제금액</th>
 							<th width=10%>결제방식</th>
 							<th width=20%>상태</th>
 						</tr>
@@ -64,10 +66,9 @@ pageEncoding="UTF-8"%>
 							<tr style="cursor:pointer;" onclick="fn_detailOrder(${o.payOrderNum});">						
 								<td class="td1"><c:out value="${status.count}"/></td>
 								<td class="td1">${o.formatDate}</td>
-								<td class="td1">${o.menuName}</td>
-								<td class="td1">${o.memberName}</td>
+								<td class="td1">${o.memberName}님의 주문입니다.</td>
 								<td class="td1"></td>							
-								<td class="td1"></td>
+								<td class="td1">${price[status.index].price}</td>
 								<td class="td1">${o.payOrderMethod}</td>							
 								<td><button class="btn btn-default statusBtn">주문접수</button><button class="btn btn-default statusBtn">배달중</button><button class="btn btn-default statusBtn">배달완료</button><button class="btn btn-default statusBtn">주문취소</button></td>
 							</tr>
@@ -102,7 +103,6 @@ pageEncoding="UTF-8"%>
 								<td class="td1">1</td>
 								<td class="td1">2019-03-11/ 10:aa34</td>
 								<td class="td1">아이스 아메리카노 외 3잔</td>
-								<td class="td1">김일호</td>
 								<td class="td1">2000</td>
 								<td class="td1">16000</td>
 								<td class="td1">카카오페이</td>
@@ -139,22 +139,10 @@ pageEncoding="UTF-8"%>
                                   </div>
                               </div>
                               <div class="row">
-                                  <div class="col-md-12">                                                
-                                            <table class="table table-hover board">
-                                                <tbody>          
+                                  <div class="col-md-12 " style="overflow-y:auto;overflow-x:hidden;height:550px;">                                                
+                                            <table class="table table-hover board menu">     
                                                     <!-- data-toggle="modal" data-target="#myModal" -->
-                                                    <tr style="cursor:pointer;">
-                                                        <td width="44%" >싸이버거 1개</td>                                                 
-                                                        <td width="12%">5600원</td>
-                                                    </tr>
-                                                    <tr style="cursor:pointer;">
-                                                        <td width="44%" >치킨커틀렛버거 1개</td>                                                 
-                                                        <td width="12%">5600원</td>
-                                                    </tr>
-                                                    <tr style="cursor:pointer;">
-                                                        <td width="44%" >싸이버거 1개</td>                                                 
-                                                        <td width="12%">5600원</td>
-                                                    </tr>
+
                                                     <tr style="cursor:pointer;">
                                                         <td class="orderPrice" width="44%" >주문금액</td>                                                 
                                                         <td width="12%">18400원</td>
@@ -180,7 +168,6 @@ pageEncoding="UTF-8"%>
                                                         <td class="orderDate" width="30%"></td>
                                                     </tr>
                                                     
-                                                </tbody>
                                             </table>                             
                                             <table class="table table-hover board">
                                                 <tbody>                  
@@ -229,12 +216,31 @@ function fn_detailOrder(payOrderNum){
 			{
 				console.log(data);
 				console.log(data[0].PAYDATE);
-				$('.orderName').text(data[0].MEMBERNAME);
+				/* for(var i=0; i<data.length; i++)
+				{
+					$('.menu').prepend("<tr style='cursor:pointer;'><td width='44%'>"+data[i].MENUNAME+"</td><td width='12%'>"+data[i].PRICE+"원</td></tr>")
+				} */
+			 	$('.orderName').text(data[0].MEMBERNAME);
 				$('.orderDate').text(data[0].PAYDATE);
 				$('.orderRequest').text(data[0].PAYREQUEST);
-				$('#myModal').modal();
+				
+				var html = "";
+				var sum = "";
+				for(var i=0; i<data.length; i++)
+				{	
+					html += "<tr style='cursor:pointer;'><td width='44%'>"+data[i].MENUNAME+"</td><td width='12%'>"+data[i].PRICE+"원</td></tr>";
+					sum = Number(sum) + Number(data[i].PRICE);
+				}
+				html += "<tr style='cursor:pointer;'><td width='44%'>주문금액</td><td width='12%'>"+sum+"원</td></tr>"
+				html += "<tr style='cursor:pointer;'><td width='44%'>배달비</td><td width='12%'>"+sum+"원</td></tr>"
+				html += "<tr style='cursor:pointer;'><td width='44%'>총결제금액</td><td width='12%'>"+sum+"원</td></tr>"
+				html += "<tr style='cursor:pointer;'><td width='44%'>결제방법</td><td width='12%'>"+data[0].PAYORDERMETHOD+"</td></tr>"
+				html += "<tr style='cursor:pointer;'><td width='44%'>주문자</td><td width='12%'>"+data[0].MEMBERNAME+"</td></tr>"
+				html += "<tr style='cursor:pointer;'><td width='44%'>결제일</td><td width='12%'>"+data[0].PAYDATE+"</td></tr>"			
+				$(".menu").html(html);
+				$('#myModal').modal(); 
+				
 			}
-		
 	});
 }
 

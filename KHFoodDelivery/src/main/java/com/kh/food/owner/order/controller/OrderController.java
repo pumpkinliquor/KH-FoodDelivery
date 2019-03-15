@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,8 +36,9 @@ public class OrderController {
 	
 	//주문관리 화면진입
 	@RequestMapping("owner/orderService.do")
-	public ModelAndView selectOrderList(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException
+	public ModelAndView selectOrderList(@RequestParam(value="cPage",required=false,defaultValue="0") int cPage) throws ServletException, IOException
 	{
+		int numPerPage = 5;
 //		List<Map<String,String>> orderList = service.selectOrderList();
 		List<Pay> orderList = service.selectOrderList();
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
@@ -49,7 +51,7 @@ public class OrderController {
 		ArrayList<Pay> list = new ArrayList<>();
 		int payOrderNum = 0;
 		int sum = 0;
-		logger.debug("사이즈"+orderList.size());
+		/*logger.debug("사이즈"+orderList.size());*/
 		for(int i=0; i<orderList.size(); i++)
 		{
 			if(i<orderList.size()-1) {
@@ -69,11 +71,11 @@ public class OrderController {
 			}
 			else
 			{
-				logger.debug("들어왔냐1");
+				/*logger.debug("들어왔냐1");*/
 				if(i!=0) {
 					if(orderList.get(i).getPayOrderNum()!=orderList.get(i-1).getPayOrderNum())
 					{
-						logger.debug("들어왔냐");
+						/*logger.debug("들어왔냐");*/
 						list.add(orderList.get(i));
 					}
 				}
@@ -118,13 +120,15 @@ public class OrderController {
 			{
 				if(orderList.get(j).getPayOrderNum() == price.get(i).getPayOrderNum())
 				{
-					sum = sum + orderList.get(i).getPrice();
-					logger.debug("합계"+sum);
+					logger.debug("합계전"+sum);
+					logger.debug("오더리스트가격"+orderList.get(j).getPrice()+"IIII"+i);
+					sum = sum + orderList.get(j).getPrice();
+					price.get(i).setPrice(sum);
+					logger.debug("합계후"+sum);
 				}
 				else
 				{
 					logger.debug("else문"+i+":::"+j);
-					price.get(i).setPrice(sum);
 					logger.debug("가격"+price.get(i).getPrice());
 					sum = 0 ;
 					count = j;
@@ -139,6 +143,7 @@ public class OrderController {
 //		request.setAttribute("orderList1", orderList);
 		mv.addObject("list",list);
 		mv.addObject("orderList",orderList);
+		mv.addObject("price",price);
 		mv.setViewName("owner/ownerOrderList");
 		return mv;
 			
