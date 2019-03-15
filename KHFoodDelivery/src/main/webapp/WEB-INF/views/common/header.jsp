@@ -114,7 +114,7 @@
        var geocoder = new daum.maps.services.Geocoder();
   
  
-    function sample5_execDaumPostcode() {
+    function execDaumPostcode() {
          new daum.Postcode({ 
             oncomplete: function(data) {
                 // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -149,6 +149,8 @@
  
                         // 해당 주소에 대한 좌표를 받아서
                         var coords = new daum.maps.LatLng(result.y, result.x);
+                        
+                        console.log(coords);
                        
                      
                     }
@@ -207,7 +209,7 @@ $(function(){
                   <div class="content">
                   <div class="input-group">
                        <button id="positionBtn" onclick="getLocation4()" ><img id="locationImg" src="${path }/resources/images/place.png"></button>
-                    <input type="text" id="location" onclick="sample5_execDaumPostcode();"  class="form-control" value="" placeholder="주소 찾기를 원하시면 클릭해주세요">
+                    <input type="text" id="location" onclick="execDaumPostcode();"  class="form-control" value="" placeholder="주소 찾기를 원하시면 클릭해주세요">
                        <span class="input-group-btn">
                        <button class="btn" onclick="" type="submit">검색</button>
 
