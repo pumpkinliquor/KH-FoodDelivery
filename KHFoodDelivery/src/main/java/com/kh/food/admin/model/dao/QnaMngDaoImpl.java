@@ -29,7 +29,6 @@ public class QnaMngDaoImpl implements QnaMngDao {
 	@Override
 	public List<MemberQna> selectMemberQnaList(int cPage, int numPerPage) {
 		RowBounds rb = new RowBounds((cPage - 1) * numPerPage, numPerPage);
-		logger.debug(cPage + " : " + numPerPage);
 		return session.selectList("qna.selectMemberQnaList", null, rb);
 	}
 
