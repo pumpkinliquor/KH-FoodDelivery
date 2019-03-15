@@ -85,6 +85,12 @@ font-size: 20px;
 	width:100%;
 	height:42px;
 }
+
+.search{
+background-color: transparent;
+	border-color: transparent;
+	color:gray;
+}
 </style>
  <script>
 		function login(){
@@ -111,7 +117,7 @@ font-size: 20px;
                 <div class="col-md-6 mx-auto text-center">
                    <div class="header-title">
                       <h1 class="wv-heading--title">
-                         Check out — it’s free!
+                        	환영합니다.로그인 해주세요!
                       </h1>
                    </div>
                 </div>
@@ -129,11 +135,10 @@ font-size: 20px;
                             </div>
                             
                             <div class="text-center loginDiv_1">
-                               <input type="submit" value="로그인" class="btn btn-primary"/>
+                               <input type="submit" value="로그인" class="btn btn-block send-button "/>
                             </div>
-                       
+                       		
                          </form>
-                         
                          
                             <div class="text-center">
 							<a id="kakao-login-btn"></a>
@@ -150,7 +155,7 @@ font-size: 20px;
                                <i class="fa fa-google"></i>회원가입
                                </a>
                             </div>
-                            <p class="small mt-3">By signing up, you are indicating that you have read and agree to the <a href="#" class="ps-hero__content__link">Terms of Use</a> and <a href="#">Privacy Policy</a>.
+                           <p class="small mt-3">아이디 또는 비밀번호가 기억이 안나시나요? 옆에 버튼을 눌러 찾을 수 있습니다.<a href="${path }/customer/idSearch.do" class="ps-hero__content__link">아이디찾기</a> or <a href="${path }/customer/pwSearch.do">비밀번호 찾기</a>
                             </p>
                       </div>
                    </div>

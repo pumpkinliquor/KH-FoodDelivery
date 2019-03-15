@@ -64,7 +64,6 @@ public class OrderController {
 				else
 				{
 					list.add(orderList.get(i));
-					list.get(i).setPrice(sum);
 					payOrderNum = orderList.get(i).getPayOrderNum();
 				}
 			}
@@ -108,19 +107,25 @@ public class OrderController {
 				}
 			}
 		}*/
+		logger.debug("orderList"+orderList);
+		logger.debug("list"+list);
 		logger.debug("price"+price);
+		logger.debug("price사이즈"+price.size());
 		int count = 0;
 		for(int i=0; i<price.size(); i++)
 		{
 			for(int j=count; j<orderList.size(); j++)
 			{
-				if(orderList.get(i).getPayOrderNum() == price.get(j).getPayOrderNum())
+				if(orderList.get(j).getPayOrderNum() == price.get(i).getPayOrderNum())
 				{
 					sum = sum + orderList.get(i).getPrice();
+					logger.debug("합계"+sum);
 				}
 				else
 				{
+					logger.debug("else문"+i+":::"+j);
 					price.get(i).setPrice(sum);
+					logger.debug("가격"+price.get(i).getPrice());
 					sum = 0 ;
 					count = j;
 					break;
@@ -129,7 +134,7 @@ public class OrderController {
 		}
 		logger.debug("가격내역"+price);
 		logger.debug("주문하나만내역"+list);
-		
+		logger.debug("오더리스트"+orderList);
 		ModelAndView mv = new ModelAndView();
 //		request.setAttribute("orderList1", orderList);
 		mv.addObject("list",list);

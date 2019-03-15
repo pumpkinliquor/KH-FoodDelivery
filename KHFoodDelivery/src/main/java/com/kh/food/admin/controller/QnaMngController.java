@@ -10,13 +10,17 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.admin.model.service.QnaMngService;
@@ -25,7 +29,8 @@ import com.kh.food.owner.onevsone.model.vo.OwnerQna;
 import com.kh.food.qna.model.vo.MemberQna;
 import com.kh.food.qna.model.vo.MemberQnaReview;
 
-@Controller	
+@Controller
+/*@SessionAttributes({"keyword", "isRe", "category"})*/
 public class QnaMngController {
 
 	private Logger logger = LoggerFactory.getLogger(QnaMngController.class);
@@ -55,25 +60,33 @@ public class QnaMngController {
 	
 	// 회원 문의 검색
 	@RequestMapping("/admin/searchMemberQna.do")
-	public ModelAndView searchMemberQna(@RequestParam("keyword") String keyword,
-										@RequestParam("isRe") String isRe,
-										@RequestParam("category") String category,
-										@RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
+	public ModelAndView searchMemberQna(@RequestParam(value="keyword", defaultValue=" ") String keyword,
+										@RequestParam(value="isRe", defaultValue="3") String isRe,
+										@RequestParam(value="category", defaultValue="전체") String category,
+										@RequestParam(value="isFirst", defaultValue="0") int isFirst,
+										@RequestParam(value="cPage", required=false, defaultValue="0") int cPage,
+										HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		int numPerPage = 5;
 		
-		/*List<String> categoryList = new ArrayList();		
+		/*List<String> categoryList = new ArrayList();
 		for(int i = 0; i < category.length; i++) {
 			categoryList.add(category[i]);		
 		}*/
 		
 		Map map = new HashMap();
-		map.put("keyword", keyword);
-		map.put("isRe", isRe);
-		map.put("category", category);
+		if(isFirst == 1) {						// 처음 검색했을 때 map 객체 안에 조건 저장	
+			map.put("keyword", keyword);
+			map.put("isRe", isRe);
+			map.put("category", category);
+			logger.debug("첫 검색" + keyword);
+			session.setAttribute("map", map);	// 맵을 세션에 저장
+		} else {								
+			map = (Map)session.getAttribute("map");		// 검색 후 페이징 했을 땐 세션에서 조건을 가져옴
+		}
 		
 		List<MemberQna> mqList = service.searchMemberQna(map, cPage, numPerPage);
-		int count = service.selectSearchMemberQnaCount(map);
+		int count = service.selectSearchMemberQnaCount((Map)session.getAttribute("map"));
 		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		for(int i = 0; i < mqList.size(); i++) {
@@ -81,7 +94,7 @@ public class QnaMngController {
 		}
 				
 		mv.addObject("mqList", mqList);		
-		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/memberQnaList.do"));
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/searchMemberQna.do"));
 		mv.setViewName("admin/memberQnaList");				
 		return mv;
 	}
