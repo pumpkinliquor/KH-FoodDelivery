@@ -8,7 +8,7 @@
 <style>
  div.store{border:1px solid #E4E4E4; background-color:#FFFFFF;margin:6px;position: relative; display:inline-block;}
  div.store a{text-decoration:none; color:black; text-align:left;}   
-/* div.me{margin-top:-8%;}  */
+ div.me{margin-top:-3%;}  
 body{background-color:#F6F6F6;} 
 
  div.me div.a .option{text-align:center;}  

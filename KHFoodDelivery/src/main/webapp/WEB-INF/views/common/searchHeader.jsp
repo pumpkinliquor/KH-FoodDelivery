@@ -257,7 +257,7 @@ div.newsletter,div.group{display:inline-block;}
                 </div>
                    <div class="group col-md-12 col-lg-12">
                 <div class="btn-group btn-group-lg search1">
-                <button type="button" class="btn btn-default" onclick="all();">전체보기</button> 
+               <button type="button" class="btn btn-default" onclick="allview();">전체보기</button> 
               <button type="button" class="btn btn-default" onclick="don();">돈까스</button>
               <button type="button" class="btn btn-default" onclick="fre();">프랜차이즈</button>
               <button type="button" class="btn btn-default" onclick="chi();">치킨</button>
@@ -274,7 +274,7 @@ div.newsletter,div.group{display:inline-block;}
                  <div id="map" style="width:300px;height:300px;"></div> 
 
                  <script>
-                 	function all(){
+                 	function allview(){
                  		location.href="${path}/customer/selectallstore.do";
                  	}
                  	function don(){
