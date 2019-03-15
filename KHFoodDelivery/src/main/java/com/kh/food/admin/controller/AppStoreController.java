@@ -37,7 +37,7 @@ public class AppStoreController {
 		int numPerPage=10;
 		int count = service.appStoreCount();
 		
-		List<Store> appStoreList = service.selectAppStoreList();
+		List<Store> appStoreList = service.selectAppStoreList(cPage,numPerPage);
 		
 		// 입점 신청 날짜 포맷 (패턴 : yyyy-MM-dd)
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");

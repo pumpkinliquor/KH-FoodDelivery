@@ -31,7 +31,7 @@ div .menuCategoryStyle {
 				<div class="col-sm-9">
 					<div class="mnl">
 						<p>
-							교촌 간장치킨<br /> 19500원
+							<span style='font-weight:bold;'>교촌 간장치킨</span><br /> <span style='color:red;'>19500원</span>
 						</p>
 					</div>
 				</div>
@@ -46,6 +46,11 @@ div .menuCategoryStyle {
 		<dt id="categoryBtn${category.MENUCATEGORYCODE }">${category.MENUCATEGORY }</dt>
 		<dd>
 		<script>
+		// 메뉴 누르면 메뉴코드 보내주기(모달으로 보내야함).
+		function ohoh(no){
+			var menuCode=no;
+			location.href="${path}/customer/nono.do?menuCode="+menuCode;
+		}
 		// 에이젝스로 값보내기
 		$(document).ready(function(){
 	        	$("#categoryBtn${category.MENUCATEGORYCODE}").click(function(){
@@ -60,10 +65,10 @@ div .menuCategoryStyle {
         				console.log(data);
         				var html="<div>";
         				for(var i=0; i<data.length; i++){
-        				html+="<div class='row menuCategoryStyle' onclick='' id='menuCategoryId"+data[i].MENUCODE+"'>";
+        				html+="<div class='row menuCategoryStyle' onclick='ohoh("+data[i].MENUCODE+");' id='menuCategoryId"+data[i].MENUCODE+"'>";
         				html+="<div class='col-sm-9'>";
         				html+="<div class='mnl'>";
-        				html+="<p style='margin-top:8px; margin-bottom:8px;'><span style='font-weight:bold;'>"+data[i].MENUNAME+"</span><br/><span style='color:black;'>"+data[i].MENUPRICE+"원</span></p>";
+        				html+="<p style='margin-top:8px; margin-bottom:8px;'><span style='font-weight:bold;'>"+data[i].MENUNAME+"</span><br/><span style='color:red;'>"+data[i].MENUPRICE+"원</span></p>";
         				html+="</div>";
         				html+="</div>";
         				html+="<div class='col-sm-3'>";

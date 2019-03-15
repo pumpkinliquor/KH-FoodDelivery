@@ -23,7 +23,7 @@
 <style>
 
 div.newsletter div.search1{text-align:center; margin-top:0.25%;}   
- button{outline:0;}   
+    
 div.newsletter div.search1 .btn{background-color:#F6F6F6;}
 div.newsletter div.search1 .btn:hover{background-color:#8C8C8C; color:white;}
 div.group{text-align:center; box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);background-color:#F6F6F6; margin-top:1%; padding:0; display:none;}
@@ -31,7 +31,7 @@ div.group1{margin-top:1%;text-align:center;box-shadow: 0px 0px 5px 1px rgba(0, 0
 div.newsletter,div.group{display:inline-block;}
  @media (max-width:843px){
 	div.group{
-	display:none;
+	 display:none; 
 	}
 	
 }
@@ -242,6 +242,7 @@ div.newsletter,div.group{display:inline-block;}
                 <div class="group1  col-md-12 col-lg-12">
                 	 <select class="form-control" name="menuSearch" id="menuSearch" onchange="window.open(value,'_self');">
 					            <option  disabled selected>메뉴검색</option>
+					            <option value="${path}/customer/selectallstore.do">전체보기</option>
 					            <option value="${path}/customer/searchmenuView?category=돈까스">돈까스</option> 
 					            <option value="${path}/customer/searchmenuView?category=프랜차이즈">프랜차이즈</option>
 					            <option value="${path}/customer/searchmenuView?category=치킨">치킨</option>
@@ -255,7 +256,8 @@ div.newsletter,div.group{display:inline-block;}
                 
                 </div>
                    <div class="group col-md-12 col-lg-12">
-                <div class="btn-group btn-group-lg search1"> 
+                <div class="btn-group btn-group-lg search1">
+               <button type="button" class="btn btn-default" onclick="allview();">전체보기</button> 
               <button type="button" class="btn btn-default" onclick="don();">돈까스</button>
               <button type="button" class="btn btn-default" onclick="fre();">프랜차이즈</button>
               <button type="button" class="btn btn-default" onclick="chi();">치킨</button>
@@ -272,6 +274,9 @@ div.newsletter,div.group{display:inline-block;}
                  <div id="map" style="width:300px;height:300px;"></div> 
 
                  <script>
+                 	function allview(){
+                 		location.href="${path}/customer/selectallstore.do";
+                 	}
                  	function don(){
                  		location.href="${path}/customer/searchmenuView?category=돈까스"; 
                  	}

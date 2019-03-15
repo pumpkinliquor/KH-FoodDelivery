@@ -22,6 +22,11 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	@Override
+	public List<Store> selectAllStore(){
+		return sqlSession.selectList("member.selectAllStore");
+	}
+	
+	@Override
 	public List<Store> menuInfo(int businessCode) {
 		return sqlSession.selectList("member.selectStore2",businessCode);
 	}

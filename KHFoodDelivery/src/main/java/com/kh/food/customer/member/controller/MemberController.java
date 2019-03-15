@@ -315,8 +315,6 @@ public class MemberController {
 	}
 	
 	
-	
-	
 	@RequestMapping("/customer/test2.do")
 	public String test2()
 	{
@@ -358,6 +356,19 @@ public class MemberController {
 		mv.addObject("businessCode", businessCode);
 		mv.addObject("list",list);
 		mv.setViewName("customer/menuInfo");
+		
+		return mv;
+	}
+	//업체 전체보기
+	@RequestMapping("/customer/selectallstore.do")
+	public ModelAndView allStore() {
+		
+		ModelAndView mv= new ModelAndView();
+		
+		List<Store> list =service.selectAllStore();
+		
+		mv.addObject("list",list);
+		mv.setViewName("customer/searchMenu");
 		
 		return mv;
 	}
