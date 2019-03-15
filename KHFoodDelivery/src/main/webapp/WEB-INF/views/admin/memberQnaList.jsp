@@ -69,6 +69,7 @@
 						<div class="form-group">						
 							<div class="input-group">														
 								<input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="제목을 입력하세요"/>
+								<input type="hidden" name="isFirst" value="1"/>
 								<span class="input-group-btn">
 									<input type="submit" class="btn btn-default" id="searchBar" value="검색"/>
 								</span>
