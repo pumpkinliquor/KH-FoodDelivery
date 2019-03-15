@@ -24,19 +24,21 @@ public class MemberServiceImpl implements MemberService {
 	MemberDao dao;
 
 	
+	
 	@Override
-	public List<MemberQna> selectmemberQna(String memberId,int cPage,int numPerPage){
-		return dao.selectmemberQna(memberId, cPage,numPerPage);
+	public MemberQna memberDetailQna(int no) {
+		return dao.memberDetailQna(no);
+	}
+	@Override
+	public List<MemberQna> selectmemberQna(String memberId){
+		return dao.selectmemberQna(memberId);
 	}
 
 	@Inject
 	private JavaMailSender mailSender;
 
 	
-	@Override
-	public int qnaMemberCount() {
-		return dao.qnaMemberCount();
-	}
+
 	@Override
 	public List<Store> selectAllStore(){
 		return dao.selectAllStore();

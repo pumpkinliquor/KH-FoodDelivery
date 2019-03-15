@@ -24,21 +24,25 @@
 
 <script>	
 	function fn_qnaView(no){
-		location.href="${path}/admin/memberQnaView.do?no="+no;		
+		location.href="${path}/customer/memberQnaView.do?no="+no;		
 	}		
 </script>
 
 <section>
+<div class="container">
+ 			
+	
 <div class="row">
 <div class="col-md-3 ">
 		     <div class="list-group ">
-              <a href="${path}/customer/mypage.do?memberId=${sessionScope.logined}"  class="list-group-item list-group-item-action active">회원정보변경</a>
-              <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action" style="z-index:0;">나의 주문내역</a>
+              <a href="${path}/customer/mypage.do?memberId=${sessionScope.logined}"  class="list-group-item list-group-item-action ">회원정보변경</a>
+              <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action "  style="z-index:0; ">나의 주문내역</a>
               <a href="#" class="list-group-item list-group-item-action">즐겨찾는매장</a>
-              <a href="${path }/member/qnaList.do?memberId=${sessionScope.logined}"  class="list-group-item list-group-item-action">나의 문의내역</a>
+              <a href="${path }/member/qnaList.do?memberId=${sessionScope.logined}"  class="list-group-item list-group-item-action active">나의 문의내역</a>
             </div> 
 		</div>
-	<div class="container">	
+	<div class="col-md-9">	
+	
 		<h4 id="titleText"> 문의 내역 </h4>
 		
 		<div id="qnaList">
@@ -67,6 +71,7 @@
 			${pageBar}
 		</div>
 		</div>
+	</div>
 	</div>
 </section>
 

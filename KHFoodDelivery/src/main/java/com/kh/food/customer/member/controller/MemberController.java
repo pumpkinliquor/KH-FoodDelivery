@@ -11,11 +11,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-
 import javax.mail.internet.MimeMessage;
-
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -26,6 +25,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -54,12 +54,12 @@ public class MemberController {
 	
 	//나의 문의내역
 	@RequestMapping("/member/qnaList.do")
-	public ModelAndView memberQna(String memberId,@RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
+	public ModelAndView memberQna(String memberId) {
 		ModelAndView mv = new ModelAndView();
 		int numPerPage=5;
-		int count=service.qnaMemberCount();
+
 		//문의 리스트
-		List<MemberQna> qnaList=service.selectmemberQna(memberId,cPage,numPerPage);
+		List<MemberQna> qnaList=service.selectmemberQna(memberId);
 		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)
 				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 				for(int i = 0; i < qnaList.size(); i++) {
@@ -67,7 +67,7 @@ public class MemberController {
 				}		
 				
 		
-		mv.addObject("pageBar",PagingFactory.getPageBar2(memberId,count, cPage, numPerPage, "/food/member/qnaList.do"));
+		
 		mv.addObject("qnaList",qnaList);
 		mv.setViewName("customer/qnaList");
 		return mv;
@@ -75,6 +75,19 @@ public class MemberController {
 		
 	}
 	
+	//문의내역 상세보기
+	@RequestMapping("/customer/memberQnaView.do")
+	public ModelAndView memberDetailQna(int no) {
+		ModelAndView mv= new ModelAndView();
+		
+	
+				MemberQna mq = service.memberDetailQna(no);
+				
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+				mq.setFormatWriteDate(df.format(mq.getWriteDate()));
+		return mv;
+		
+	}
 	//나의주문내역
 	@RequestMapping("/member/orderList.do")
 	public ModelAndView memberOrderList(String memberId)
@@ -339,12 +352,12 @@ public class MemberController {
 	@RequestMapping("/customer/test1End.do")
 	@ResponseBody
 	public List test1End(ModelAndView mv, int menuCategoryCode, int businessCode) {
-		System.out.println("비즈니스코드"+businessCode);
-		System.out.println("메뉴카테고리코드"+menuCategoryCode);
+//		System.out.println("비즈니스코드"+businessCode);
+//		System.out.println("메뉴카테고리코드"+menuCategoryCode);
 		List<Map<String,String>> menuList=service.selectMenuList(menuCategoryCode, businessCode);
-		for(int i=0; i<menuList.size(); i++) {
-			System.out.println(menuList.get(i));
-		}
+//		for(int i=0; i<menuList.size(); i++) {
+//			System.out.println(menuList.get(i));
+//		}
 		return menuList;
 	}
 	
@@ -416,7 +429,13 @@ public class MemberController {
 		return mv;
 	}
 	
-	
+	@RequestMapping("/customer/menuInsert.do")
+	public ModelAndView menuInsert(ModelAndView mv, int menuPrice, int menuCount, int plusMenuPrice) {
+		
+		System.out.println("가격 : "+menuPrice+"수량 : "+menuCount+"합계 : "+plusMenuPrice);
+		
+		return mv;
+	}
 	
 	
 	//아이디 찾기 이동
