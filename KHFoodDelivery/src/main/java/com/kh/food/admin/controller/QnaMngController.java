@@ -49,12 +49,6 @@ public class QnaMngController {
 			mqList.get(i).setFormatWriteDate(df.format(mqList.get(i).getWriteDate()));
 		}
 		
-		for(MemberQna q : mqList) {
-			logger.debug("" +q);
-		}
-		
-		logger.debug("count :" + count + " cPage : " + cPage + "numPerPage : " + numPerPage);
-		
 		mv.addObject("mqList", mqList);		
 		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/memberQnaList.do"));
 		mv.setViewName("admin/memberQnaList");
@@ -82,7 +76,6 @@ public class QnaMngController {
 			map.put("keyword", keyword);
 			map.put("isRe", isRe);
 			map.put("category", category);
-			logger.debug("첫 검색" + keyword);
 			session.setAttribute("map", map);	// 맵을 세션에 저장
 		} else {								
 			map = (Map)session.getAttribute("map");		// 검색 후 페이징 했을 땐 세션에서 조건을 가져옴
@@ -95,7 +88,10 @@ public class QnaMngController {
 		for(int i = 0; i < mqList.size(); i++) {
 			mqList.get(i).setFormatWriteDate(df.format(mqList.get(i).getWriteDate()));
 		}
-				
+
+		for(MemberQna q : mqList) {
+			logger.debug("" + q);
+		}
 		mv.addObject("mqList", mqList);		
 		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/searchMemberQna.do"));
 		mv.setViewName("admin/memberQnaList");				
@@ -166,9 +162,6 @@ public class QnaMngController {
 	// 회원 문의 답변 수정
 	@RequestMapping("/admin/updateMemberQnaReview.do")
 	public ModelAndView updateMemberQnaReview(@RequestParam("no") int no, @RequestParam("updateContext") String context) {
-		logger.debug("수정 ");
-		logger.debug("번호" + no);
-		logger.debug("메시지 : " + context);
 		ModelAndView mv = new ModelAndView();
 		Map map = new HashMap();
 		map.put("no", no);
@@ -229,11 +222,6 @@ public class QnaMngController {
 		ModelAndView mv = new ModelAndView();
 		int numPerPage = 5;
 		
-		logger.debug("키워드 : " + keyword);
-		logger.debug("isRe : " + isRe);
-		logger.debug("카테고리: " + category);
-		logger.debug("isFirst: " + isFirst);
-		
 		Map map1 = new HashMap();
 		if(isFirst == 1) {						// 처음 검색했을 때 map 객체 안에 조건 저장	
 			map1.put("keyword", keyword);
@@ -252,13 +240,6 @@ public class QnaMngController {
 			oqList.get(i).setFormatWriteDate(df.format(oqList.get(i).getWriteDate()));
 		}
 		
-		
-		logger.debug("count :" + count);
-		for(OwnerQna q : oqList) {
-			logger.debug(""+  q);
-		}
-		
-				
 		mv.addObject("oqList", oqList);		
 		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/searchOwnerQna.do"));
 		mv.setViewName("admin/ownerQnaList");				

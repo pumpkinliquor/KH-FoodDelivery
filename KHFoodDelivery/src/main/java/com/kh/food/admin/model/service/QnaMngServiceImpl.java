@@ -146,6 +146,18 @@ public class QnaMngServiceImpl implements QnaMngService {
 	@Override
 	public int selectSearchOwnerQnaCount(Map map) {
 		return dao.selectSearchOwnerQnaCount(map);
+	}
+	
+	
+	/* 관리자 메인용 */
+	@Override
+	public List<MemberQna> selectMemberQnaList() {
+		return dao.selectMemberQnaList();
+	}
+	
+	@Override
+	public List<OwnerQna> selectOwnerQnaList() {
+		return dao.selectOwnerQnaList();
 	}	
 	
 }

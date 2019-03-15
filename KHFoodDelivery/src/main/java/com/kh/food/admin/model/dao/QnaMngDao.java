@@ -34,4 +34,10 @@ public interface QnaMngDao {
 	int deleteOwnerQna(int no);													// 사장 문의글 삭제
 	int selectOwnerQnaCount();													// 사장 문의 count
 	int selectSearchOwnerQnaCount(Map map);										// 사장 검색 문의 count
+
+
+	
+	/* 관리자 메인용 */
+	List<MemberQna> selectMemberQnaList();										// 회원 문의 리스트
+	List<OwnerQna> selectOwnerQnaList();										// 사장 문의 리스트
 }

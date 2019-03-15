@@ -24,7 +24,7 @@ public interface QnaMngService {
 	
 	
 	/* 사장 문의 관련 service */
-	List<OwnerQna> selectOwnerQnaList(int cPage, int numPerPage);				// 회원 문의 리스트
+	List<OwnerQna> selectOwnerQnaList(int cPage, int numPerPage);				// 사장 문의 리스트
 	OwnerQna selectOwnerQna(int no);											// 사장 문의 보기
 	OwnerQnaReview selectOwnerQnaReview(int no);								// 사장 문의 답변 보기
 	int insertOwnerQnaReview(Map map);											// 사장 문의 답변 등록
@@ -34,4 +34,8 @@ public interface QnaMngService {
 	int deleteOwnerQna(int no);													// 사장 문의글 삭제
 	int selectOwnerQnaCount();													// 사장 문의 count
 	int selectSearchOwnerQnaCount(Map map);										// 사장 검색 문의 count
+	
+	/* 관리자 메인용 */
+	List<MemberQna> selectMemberQnaList();										// 회원 문의 리스트
+	List<OwnerQna> selectOwnerQnaList();										// 사장 문의 리스트
 }
