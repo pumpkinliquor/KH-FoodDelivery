@@ -23,14 +23,16 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	@Override
-	public List<MemberQna> selectmemberQna(String memberId,int cPage,int numPerPage){
-		RowBounds rb=new RowBounds((cPage-1)*numPerPage,numPerPage);
-		return sqlSession.selectList("member.memberQnaList",memberId,rb);
+	public List<MemberQna> selectmemberQna(String memberId){
+		
+		return sqlSession.selectList("member.memberQnaList",memberId);
 	}
 	
+
+	
 	@Override
-	public int qnaMemberCount() {
-		return sqlSession.selectOne("member.memberQnaCount");
+	public MemberQna memberDetailQna(int no) {
+		return sqlSession.selectOne("member.qnaDtail",no);
 	}
 	@Override
 	public List<Store> selectAllStore(){

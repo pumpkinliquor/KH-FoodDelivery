@@ -82,9 +82,6 @@
 	</select>
 
 	
-	<select id="memberQnaCount" resultType="_int">
-		select count(*) from member_qna
-	</select>
 	
 	<select id="memberQnaList"  parameterType="string" resultType="memberQna">
 		select mq.*, m.memberId from member_qna mq JOIN member m ON(mq.memberNum = m.memberNum) where MEMBERID=#{memberId}
