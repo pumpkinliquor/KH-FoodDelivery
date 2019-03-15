@@ -3,6 +3,7 @@ package com.kh.food.admin.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,14 +20,16 @@ public class QnaMngDaoImpl implements QnaMngDao {
 	
 	// 회원 문의 리스트
 	@Override
-	public List<MemberQna> selectMemberQnaList() {
-		return session.selectList("qna.selectMemberQnaList");
+	public List<MemberQna> selectMemberQnaList(int cPage, int numPerPage) {
+		RowBounds rb = new RowBounds((cPage - 1) * numPerPage, numPerPage);
+		return session.selectList("qna.selectMemberQnaList", null, rb);
 	}
 
 	// 사장 문의 리스트
 	@Override
-	public List<OwnerQna> selectOwnerQnaList() {
-		return session.selectList("qna.selectOwnerQnaList");
+	public List<OwnerQna> selectOwnerQnaList(int cPage, int numPerPage) {
+		RowBounds rb = new RowBounds((cPage - 1) * numPerPage, numPerPage);
+		return session.selectList("qna.selectOwnerQnaList", null, rb);
 	}
 
 	// 회원 문의 보기
@@ -61,8 +64,9 @@ public class QnaMngDaoImpl implements QnaMngDao {
 
 	// 회원 문의 검색
 	@Override
-	public List<MemberQna> searchMemberQna(Map map) {
-		return session.selectList("qna.searchMemberQna", map);
+	public List<MemberQna> searchMemberQna(Map map, int cPage, int numPerPage) {
+		RowBounds rb = new RowBounds((cPage - 1) * numPerPage, numPerPage);
+		return session.selectList("qna.searchMemberQna", map, rb);
 	}
 
 	// 회원 문의글 삭제

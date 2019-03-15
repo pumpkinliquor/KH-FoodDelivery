@@ -315,8 +315,6 @@ public class MemberController {
 	}
 	
 	
-	
-	
 	@RequestMapping("/customer/test2.do")
 	public String test2()
 	{

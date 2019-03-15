@@ -13,7 +13,9 @@ pageEncoding="UTF-8"%>
 	#menuImage{
 		display:none;
 	}
-	
+	.categoryDiv1{
+		margin-bottom:20px;
+	}
 
 	
 </style>
@@ -80,7 +82,7 @@ pageEncoding="UTF-8"%>
                             </div>
                         </div>
 
-                        <div class="card categoryDiv" scroll=auto style="overflow-x:hidden">
+                        <div class="card categoryDiv" style="overflow-y:auto;overflow-x:hidden;height:500px;">
                           <div class="card-body">
                               <div class="row">
                                   <div class="col-md-12">

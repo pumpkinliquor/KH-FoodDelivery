@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.food.owner.order.model.vo.Pay;
+
 @Repository
 public class OrderDaoImpl implements OrderDao {
 
@@ -14,7 +16,7 @@ public class OrderDaoImpl implements OrderDao {
 	SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<Map<String, String>> selectOrderList() {
+	public List<Pay> selectOrderList() {
 		return sqlSession.selectList("ownerOrder.selectOrderList");
 	}
 
