@@ -167,19 +167,23 @@ function address1() {
                               </div>
                                <div class="form-group row"> 
                                 <label for="website" class="col-4 col-form-label">주소</label> 
-                                <div class="addre col-8">
-                             	  <input type="button" class="btn-ser1 btn btn-default" onclick="address1();" value="주소검색"/>
+                                <div class="addre col-6">
                                   <input  name="memberAddress" id="memberAddress"value="${member.memberAddress}" class="form-control here" type="text">
                                 </div>
+                                <div class="addre col-2">
+                             	  <input type="button" class="btn-ser1 btn btn-default" onclick="address1();" value="주소검색"/>
+                                 </div>
+                                 
                               </div>
                                <div class="form-group row">
-                                <label for="publicinfo" class="col-4 col-form-label">성별</label> 
+                                <label for="publicinfo" class="col-4 col-form-label">성별</label>
+                                <div class="col-8"> 
                                 <select class="form-control" name="memberGender" id="memberGender" required>
 					            <option value="" disabled selected>성별</option>
 					            <option value="M" ${member.memberGender=='M'?'selected':''}>남</option>
 					            <option value="F" ${member.memberGender=='F'?'selected':'' }>여</option>
 					            </select>
-										            
+								</div>     
                               </div> 
                               
                               <input type="submit" class="btn btn-default" value="수정하기"/>&nbsp;
