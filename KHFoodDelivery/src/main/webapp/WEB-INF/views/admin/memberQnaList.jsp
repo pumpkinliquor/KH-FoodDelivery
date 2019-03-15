@@ -21,7 +21,6 @@
 	table#table-sort th{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); border: 1px solid #444444; padding: 0; }
 	table#table-sort td{ border: 1px solid #444444; padding: 0; }
 	input[type=checkbox], input[type=radio] {display: none; }
-		
 </style>
 
 <script>	
@@ -35,8 +34,8 @@
 		<h4 id="titleText">회원 문의 내역 </h4>
 		
 		<form class="form-controll navbar-right" role="search" action="${path }/admin/searchMemberQna.do" method="post">
-		<div class="row">
-		<div class="col-sm-4">
+			<div class="row">
+				<div class="col-sm-4">
 					<div id="qna-sort">
 						<div class="btn-group" data-toggle="buttons">
 							<label class="btn btn-secondary active">
@@ -50,9 +49,9 @@
 							</label>
 						</div>
 					</div>
-		</div>
-		<div class="col-sm-3"></div>
-		<div class="col-sm-1">
+				</div>
+				<div class="col-sm-3"></div>
+				<div class="col-sm-1">
 					<div id="qna-category" class="form-group">
 						<select class="form-control" name="category" style="width: auto">
 							<option value="전체">전체</option>
@@ -63,22 +62,24 @@
 							<option value="리뷰">리뷰</option>
 						</select>	
 					</div>	
-		</div>
-		<div class="col-sm-4">
+				</div>
+				<div class="col-sm-4">
 					<div class="input-group" id="qna-search">			
 						<div class="form-group">						
 							<div class="input-group">														
 								<input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="제목을 입력하세요"/>
+								<input type="hidden" name="isFirst" value="1"/>
 								<span class="input-group-btn">
 									<input type="submit" class="btn btn-default" id="searchBar" value="검색"/>
 								</span>
 							</div>
 						</div>
 					</div>
-		</div>		
-		</div>
+				</div>		
+			</div>
 		</form>
 			
+		<!-- 문의 테이블 -->
 		<div id="qnaList">
 			<table class="table table-hover" id="qnaTable">
 				<thead id="tableHead">

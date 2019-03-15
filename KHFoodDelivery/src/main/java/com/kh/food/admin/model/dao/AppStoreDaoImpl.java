@@ -39,4 +39,10 @@ public class AppStoreDaoImpl implements AppStoreDao {
 	public int appStoreCount() {
 		return session.selectOne("store.selectAppStoreCount");
 	}	
+	
+	// 입점 신청 리스트
+	@Override
+	public List<Store> selectAppStoreList() {
+		return session.selectList("store.selectAppStoreList");
+	}
 }

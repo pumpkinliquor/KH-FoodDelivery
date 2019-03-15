@@ -23,7 +23,7 @@
 <style>
 
 div.newsletter div.search1{text-align:center; margin-top:0.25%;}   
-    
+
 div.newsletter div.search1 .btn{background-color:#F6F6F6;}
 div.newsletter div.search1 .btn:hover{background-color:#8C8C8C; color:white;}
 div.group{text-align:center; box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);background-color:#F6F6F6; margin-top:1%; padding:0; display:none;}
@@ -57,6 +57,11 @@ div.newsletter,div.group{display:inline-block;}
 
    
    <script>
+
+	
+
+
+
     $(document).ready(function () {
     	$("#positionBtn").click(function(){
             function getLocation() {

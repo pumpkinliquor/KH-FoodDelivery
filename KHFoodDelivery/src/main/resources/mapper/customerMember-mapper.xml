@@ -3,7 +3,8 @@
 <mapper namespace="member">
      
 
-	 
+	 <resultMap id="memberQna" type="map">
+	 </resultMap>
      <resultMap id="member" type="map">
 	</resultMap>
 	 <resultMap id="store" type="map">
@@ -54,6 +55,24 @@
 		select b.menucategorycode, b.menucategory from menu a inner join menu_category b on a.menucategorycode=b.menucategorycode where a.businesscode=#{businessCode} group by b.menucategorycode, b.menucategory
 	</select>
 	
+
+	<!-- <select id="selectMenuList" parameterType="_int" resultType="map">
+		select * from menu where menucategorycode=#{menuCategoryCode} AND businesscode=#{businessCode}
+	</select> -->
+	
+	<!-- 아이디찾기 -->
+	<select id="selectSearchId" parameterType="map" resultType="map">
+	select * from member where membername=#{memberName} and memberemail=#{memberEmail}
+	</select>
+	
+	<!-- 비밀번호찾기 -->
+	<select id="selectConfirmEmail" resultType="map" parameterType="map">
+	select * from member where memberid=#{memberId} and memberemail=#{memberEmail}
+	</select>
+	<update id="updatePw" parameterType="map">
+	update member set memberpw=#{memberPw} where memberid=#{memberId} and memberemail =#{memberEmail}
+	</update>
+
 	<select id="selectMenuList" parameterType="map" resultMap="member">
 		select * from menu where MENUCATEGORYCODE=#{menuCategoryCode} AND BUSINESSCODE=#{businessCode}
 	</select>
@@ -61,4 +80,13 @@
 	<select id="selectAllStore" resultType="store">
 		select * from store where ISCONFIRM=1
 	</select>
+
+	
+	
+	<select id="memberQnaList"  parameterType="string" resultType="memberQna">
+		select mq.*, m.memberId from member_qna mq JOIN member m ON(mq.memberNum = m.memberNum) where MEMBERID=#{memberId}
+	</select>
+
+
+
 </mapper>
