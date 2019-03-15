@@ -142,7 +142,7 @@ $(function(){
 										  <div class="form-group row">
                                             <label for="website" class="col-4 col-form-label">가격</label> 
                                             <div class="col-8">
-                                              <input id="menuPrice" name="menuPrice" placeholder="" class="form-control here" type="text">
+                                              <input id="menuPrice" name="menuPrice" placeholder="" class="form-control here" type="number" required="required">
                                             </div>
                                           </div>
                                           <div class="form-group row">
