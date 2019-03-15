@@ -21,4 +21,5 @@ public interface MemberDao {
 	List<Store> menuInfo(int businessCode);
 	List<Map<String,String>> selectCategoryList(int businessCode);
 	List<Map<String,String>> selectMenuList(int menuCategoryCode, int businessCode);
+	List<Store> selectAllStore();
 }
