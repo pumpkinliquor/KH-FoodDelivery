@@ -157,8 +157,8 @@
 }
 .cart-empty{
     background: #fff;
-    text-align: center;
-    padding: 50px 0;
+    text-align: read;
+    padding: 20px 0;
     border: 1px solid #d9d9d9;
 }
 .clearfix
@@ -169,6 +169,7 @@
 }
 .cart-btn{
     margin-top: 10px;
+    cursor:pointer;
     text-align: center;
     color: #fff;
     background-color: #DC1400;
@@ -296,14 +297,23 @@
                     </div>
                     <div class="cart">
                         <div class="cart-empty">
-                            주문표에 담긴 메뉴가 없습니다.
+	                        <ul>
+	                        	<li style="list-style:none; float:left;">후라이드</li>
+	                        </ul>
+	                        <br>
+	                        <ul>
+	                        	<li style="list-style:none; float:left;"><button class="btn btn-default" type="button">x</button> 10,000원</li>
+	                        	<li style="list-style:none; margin-right:1em; text-align:right; padding-top:5px;"><a class="btn btn-minus">-</a>3<a class="btn btn-plus">+</a></li>
+	                        </ul>
                         </div>
-                        <div class="clearfix">
-
-                            배달요금 3,000원 별도
+                        <div class="clearfix" style="clear:both;">
+                           	최소주문금액 10,000원
                         </div>
-                        <div class="cart-btn clearfix">
-                            <a class="btu">주문하기</a>
+                        <div class="clearfix" style="background-color:ivory; color:red; font-weight:bold;">
+                           	합계 : 30,000원
+                        </div>
+                        <div class="cart-btn clearfix" style="clear:both;">
+                            <a onclick="" class="btu">주문하기</a>
                         </div>
                     </div>
                 </div>
