@@ -58,7 +58,9 @@ div .menuCategoryStyle {
 					$('#menuSelectModal').modal();
 					$('#menuImage').empty().append('<img src="${path}/resources/upload/owner/menu/'+data.menuImage+'" style="width:100%; height:333px;"/>');
 					$('#menuTitle').empty().append(data.menuName);
-					$('#menuPrice').empty().append(data.menuPrice+"<span>원</span>");
+					$('#menuTitle').val(data.menuTitle);
+					$('#menuPrice').empty().append(data.menuPrice);
+					$('#menuPrice').val(data.menuPrice);
 				}
 			});
 		}
@@ -102,6 +104,27 @@ div .menuCategoryStyle {
 	</dl>
 </div>
 
+<script>
+function cookiesInsert(){
+	var count=$('#menuCount').val();
+	if(count.trim().length==0||count==0){
+		alert('수량이 0 입니다.');
+		return false;
+	}
+	$("#menuInsertFrm").submit();
+	return true;
+}
+
+
+function plusCount() {
+	var price=$('#menuPrice').val();
+	var plus=$('#menuCount').val();
+	$('#plusMenuPrice').html(price*plus);
+	$('#plusMenuPrice').val(price*plus);
+}
+
+</script>
+
 <!-- 모달 -->
 <div class="modal" id="menuSelectModal" role="dialog">
 	<div class="modal-dialog">
@@ -110,6 +133,7 @@ div .menuCategoryStyle {
 		<div class="modal-content">
 			<div class="modal-header">
 				<p class="modal-title" id="menuTitle" style="font-weight:bold;"></p>
+				<input type="hidden" id="menuTitle" name="menuTitle" value=""/>
 				<button type="button" class="close" data-dismiss="modal">×</button>
 			</div>
 			<div class="modal-body" style="height: auto;">
@@ -117,21 +141,23 @@ div .menuCategoryStyle {
 				<br/>
 				<h6 class="menu-priceM" style="float:left;">가격</h6>
 				<h6 class="menu-price" id="menuPrice" style="text-align:right;"></h6>
+				<input type="hidden" id="menuPrice" name="menuPrice" value=""/>
 				<br/>
 				<h6 class="menu-countM" style="float:left; margin-bottom:0px; margin-top:8px;">수량</h6>
-				<input type="number" id="menuCount" class="form-control" style="float:right; width:3em;"/>
+				<input type="number" onkeyup="plusCount();" name="menuCount" id="menuCount" class="form-control" style="float:right; width:3em;"/>
 				<br/>
 				<br/>
 				<div style="background-color:rgb(231, 231, 231); height:5em; margin-top:2em;">
 				<h5 style="font-weight:bold; float:left; padding-left:1em; line-height:80px;">총 주문금액</h5>
-				<h5 style="float:right; padding-right:1em; line-height:80px;">18000원</h5>
+				<h5 style="float:right; padding-right:1em; line-height:80px;" id="plusMenuPrice"></h5>
+				<input type="hidden" id="plusMenuPrice" name="plusMenuPrice" value=""/>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<div class="container">
 				<div class="row">
 				<div class="col-sm-6" style="padding-left:0px; padding-right:0px;">
-				<button type="button" class="btn btn-success btn-lg btn-block">장바구니담기</button>
+				<button type="button" onclick="cookiesInsert();" class="btn btn-success btn-lg btn-block">장바구니담기</button>
 				</div>
 				<div class="col-sm-6" style="padding-left:0px; padding-right:0px;">
 				<button type="button" class="btn btn-danger btn-lg btn-block">결제하기</button>
