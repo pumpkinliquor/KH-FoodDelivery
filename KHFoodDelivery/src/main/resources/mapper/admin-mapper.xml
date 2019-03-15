@@ -46,7 +46,7 @@
 	 
 	 <!-- 사장 삭제 -->
 	<delete id="ownerDel" parameterType="_int">
-	delete from owner where ownernum=#{ownerNum}
+	delete from owner o, store s where o.ownerid=s.ownerid
 	</delete>
 	 
 </mapper>

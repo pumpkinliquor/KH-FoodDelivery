@@ -82,8 +82,8 @@ public class MemberListDaoImpl implements MemberListDao {
 	public int ownerDel(String[] rowCheck) {
 		// TODO Auto-generated method stub
 		for(int i=0; i<rowCheck.length; i++) {
-			int ownerNum=Integer.parseInt(rowCheck[i]);
-			sqlSession.delete("admin.ownerDel",ownerNum);
+			String ownerId=rowCheck[i];
+			sqlSession.delete("admin.ownerDel",ownerId);
 		}
 		return 0;
 	}

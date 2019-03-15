@@ -53,7 +53,7 @@
 						<tbody>
 							<tr>
 								<td><input type="checkbox" class="checkthis"
-									name="rowCheck" value="${o.OWNERNUM }" /></td>
+									name="rowCheck" value="${o.OWNERID }" /></td>
 								<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.BUSINESSCODE}</td>
 								<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.OWNERID}</td>
 								<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.STORENAME}</td>

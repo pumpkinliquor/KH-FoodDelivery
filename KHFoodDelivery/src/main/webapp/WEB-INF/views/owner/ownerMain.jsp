@@ -116,11 +116,12 @@ pageEncoding="UTF-8"%>
                     <div class="col-md-12 infoDiv2">
                         <div class="row">
                         <div class="col-md-6 col-sm-6 infoDiv3">
-                        <a>입점신청하기 간단한 정보를 입력하고 입점 등록 신청을 해보세요. 아주 쉬워요!</a>
+                        <a href="${path }/owner/menuEnroll.do">
+                        <p>사장님 가게의 메뉴를  쉽게 관리해보세요</p>
                         </div>
                         <div class="col-md-6 col-sm-6 infoDiv4">
                             <img src="${path }/resources/images/owner/main/등록.png" width="100px" height="100px">
-                        </div>
+                       </a> </div>
                         </div>
                     </div>
                 </div>
@@ -128,11 +129,12 @@ pageEncoding="UTF-8"%>
                     <div class="col-md-12 infoDiv2">
                         <div class="row">
                         <div class="col-md-6 col-sm-6 infoDiv3">
-                            <a href="${path }/owner/storeForm.do">입점신청하기 간단한 정보를 입력하고 입점 등록 신청을 해보세요. 아주 쉬워요!</a>
+                        <a href="${path }/owner/storeForm.do">
+                            <p>간단한 정보를 입력하고 입점 등록 신청을 해보세요. 아주 쉬워요!</p>
                         </div>
                         <div class="col-md-6 col-sm-6 infoDiv4">
                             <img src="${path }/resources/images/owner/main/정보수정.png" width="100px" height="100px">
-                        </div>
+                       </a> </div>
                         </div>
                     </div>
                 </div>
@@ -140,11 +142,12 @@ pageEncoding="UTF-8"%>
                     <div class="col-md-12 infoDiv2">
                         <div class="row">
                         <div class="col-md-6 col-sm-6 infoDiv3">
-                            <a>입점신청하기 간단한 정보를 입력하고 입점 등록 신청을 해보세요. 아주 쉬워요!</a>
+                            <a href="${path }/owner/menuEnroll.do">
+                            <p>사장님 가게의 매출을 통계를 통해 확인하세요! 통계주소는 아직~</p>
                         </div>
                         <div class="col-md-6 col-sm-6 infoDiv4">
                             <img src="${path }/resources/images/owner/main/매출.png" width="100px" height="100px">
-                        </div>
+                        </a></div>
                         </div>
                     </div>
                 </div>
