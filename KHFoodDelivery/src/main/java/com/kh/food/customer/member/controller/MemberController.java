@@ -432,9 +432,11 @@ public class MemberController {
 		ModelAndView mv=new ModelAndView();
 		Map<String,String> map=new HashMap();
 		map.put("memberId",memberId);
+		System.out.println("멤버이이디 받니 : "+memberId);
 		map.put("memberEmail",memberEmail);
+		System.out.println("멤버이메일받니 : "+memberEmail);
 		Map<String,String> idAndEmail=service.selectConfirmEmail(map);
-		System.out.println(idAndEmail);
+		
 		
 		String msg="";
 		String loc="";
@@ -458,6 +460,7 @@ public class MemberController {
 			
 			String newPw=pwEncoder.encode(sb);
 			map.put("memberPw",newPw);
+			System.out.println("랜덤" + newPw);
 			int result=service.updatePw(map);
 			
 			//임시비밀번호 디비 업데이트
@@ -470,7 +473,7 @@ public class MemberController {
 				String tomail=memberEmail;
 				String title="배달의민족 회원님의 임시 비밀번호입니다.";
 				String content="임시 비밀번호는 "+sb+ " 입니다.";
-				
+				System.out.println("임시비번 : " +sb);
 				try {
 					MimeMessage message=mailSender.createMimeMessage();
 					MimeMessageHelper messageHelper= new MimeMessageHelper(message, true, "UTF-8");
