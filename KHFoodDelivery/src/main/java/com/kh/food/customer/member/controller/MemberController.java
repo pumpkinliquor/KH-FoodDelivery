@@ -85,7 +85,7 @@ public class MemberController {
 				
 				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 				mq.setFormatWriteDate(df.format(mq.getWriteDate()));
-		
+		return mv;
 		
 	}
 	//나의주문내역
