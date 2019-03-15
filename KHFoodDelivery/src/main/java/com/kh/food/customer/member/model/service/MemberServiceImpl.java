@@ -107,16 +107,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 
-//	@Override
-//	public List<Map<String, String>> selectMenuList(int menuCategoryCode,int businessCode) {
-//		return dao.selectMenuList(menuCategoryCode, businessCode);
-//	}
-
 	@Override
 	public List<Map<String, String>> selectMenuList(int menuCategoryCode,int businessCode) {
 		return dao.selectMenuList(menuCategoryCode, businessCode);
 	}
 
+
+	@Override
+	public Menu menuSelect(int menuCode) {
+		return dao.menuSelect(menuCode);
+	}
 
 	
 }

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.food.owner.member.model.vo.Owner;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
-import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
 
 @Repository
 public class OnevsOneDaoImpl implements OnevsOneDao {
@@ -51,24 +50,10 @@ public class OnevsOneDaoImpl implements OnevsOneDao {
 	}
 
 	@Override
-	public int qnaReviewForm(OwnerQnaReview oqr) {
-		return session.insert("oneVSone.qnaReview", oqr);
-	}
-
-	@Override
 	public List<Map<String, String>> commentList(int qnaCode) {
 		return session.selectList("oneVSone.commentList", qnaCode);
 	}
 
-	@Override
-	public int qnaReviewUpdate(Map<String,Object> reviewUp) {
-		return session.update("oneVSone.qnaUpdate", reviewUp);
-	}
-
-	@Override
-	public int qnaReviewDelete(int qnaReviewCode) {
-		return session.delete("oneVSone.qnaReviewDelete", qnaReviewCode);
-	}
 
 	@Override
 	public int insertQna(Map<String,Object> qna) {

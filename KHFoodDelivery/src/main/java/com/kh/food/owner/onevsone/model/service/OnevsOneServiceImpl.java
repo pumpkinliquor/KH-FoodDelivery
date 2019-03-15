@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.kh.food.owner.member.model.vo.Owner;
 import com.kh.food.owner.onevsone.model.dao.OnevsOneDao;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
-import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
 
 @Service
 public class OnevsOneServiceImpl implements OnevsOneService {
@@ -47,25 +46,12 @@ public class OnevsOneServiceImpl implements OnevsOneService {
 		return dao.qnaSearch(map);
 	}
 
-	@Override
-	public int qnaReviewForm(OwnerQnaReview oqr) {
-		return dao.qnaReviewForm(oqr);
-	}
 
 	@Override
 	public List<Map<String, String>> commentList(int qnaCode) {
 		return dao.commentList(qnaCode);
 	}
 
-	@Override
-	public int qnaReviewUpdate(Map<String,Object> reviewUp) {
-		return dao.qnaReviewUpdate(reviewUp);
-	}
-
-	@Override
-	public int qnaReviewDelete(int qnaReviewCode) {
-		return dao.qnaReviewDelete(qnaReviewCode);
-	}
 
 	@Override
 	public int qnaFormEnd(Map<String, Object> qna, List<OwnerQnaAttachment> files){

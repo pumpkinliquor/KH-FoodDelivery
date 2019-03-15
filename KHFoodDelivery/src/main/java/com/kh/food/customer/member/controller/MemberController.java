@@ -33,6 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.food.common.PagingFactory;
 import com.kh.food.customer.member.model.service.MemberService;
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 
 @Controller
@@ -327,6 +328,15 @@ public class MemberController {
 	public String test2()
 	{
 		return "customer/test2";
+	}
+	
+	@RequestMapping("/customer/menuSelect.do")
+	@ResponseBody
+	public Menu menuSelect(int menuCode) {
+		
+		Menu menu=service.menuSelect(menuCode);
+		
+		return menu;
 	}
 	
 	//테스트용

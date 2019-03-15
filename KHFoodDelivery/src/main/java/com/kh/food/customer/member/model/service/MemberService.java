@@ -27,5 +27,6 @@ public interface MemberService {
 	int updatePw(Map<String, String> map);
 
 	List<Map<String,String>> selectMenuList(int menuCategoryCode,int businessCode);
+	Menu menuSelect(int menuCode);
 	List<Store> selectAllStore();
 }

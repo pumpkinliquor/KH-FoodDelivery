@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -7,57 +7,110 @@
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 
 <style>
-	h4#titleText{ display: inline; }
-	div#btn-category{ float: right; }
+	h4#titleText{ display: inline; }	
 	div#qnaList{ margin-top: 15px; }
 	thead#tableHead{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); }
 	.pnt{ cursor: pointer; }
 	table#qnaTable{ table-layout: fixed; word-wrap: break-word; }
-	table#qnaTable th, table#qnaTable td{ text-align: center; vertical-align: middle; }	
+	table#qnaTable th, table#qnaTable td{ text-align: center; vertical-align: middle; }
+	div#qna-category{display: inline; margin-top: 20px;}
+	select{display: inline; margin-top: 20px;}
+	div#qna-search{display: inline; margin-top: 20px; float: right;}
+	div#qna-sort{ float: left; margin-top: 20px;}
+	table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
+	table#table-sort th{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); border: 1px solid #444444; padding: 0; }
+	table#table-sort td{ border: 1px solid #444444; padding: 0; }
+	input[type=checkbox], input[type=radio] {display: none; }	
 </style>
 
+<script>	
+	function fn_qnaView(no){
+		location.href="${path}/admin/ownerQnaView.do?no="+no;		
+	}		
+</script>
+
 <section>
-	<div class="container">	
-		<div id="qna-title">
-			<h4 id="titleText">»çÀå´Ô ¹®ÀÇ ³»¿ª</h4>
-			<div class="btn-group" id="btn-category">
-				<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					ÀüÃ¼<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="#">ÀüÃ¼</a></li>
-					<li><a href="#">°áÁ¦</a></li>
-				    <li><a href="#">¼Õ´Ô</a></li>
-				    <li><a href="#">ÁÖ¹®</a></li>
-				    <li><a href="#">Æ÷ÀÎÆ®</a></li>				    
-				    <li><a href="#">¸®ºä</a></li>
-	  			</ul>
+	<div class="container">			
+		<h4 id="titleText">ì‚¬ì¥ë‹˜ ë¬¸ì˜ ë‚´ì—­</h4>
+		
+		<form class="form-controll navbar-right" role="search" action="${path }/admin/searchOwnerQna.do" method="post">
+			<div class="row">
+				<div class="col-sm-4">
+					<div id="qna-sort">
+						<div class="btn-group" data-toggle="buttons">
+							<label class="btn btn-secondary active">
+								<input type="radio" name="isRe" id="all" value="3" autocomplete="off" checked> ì „ì²´
+							</label>
+							<label class="btn btn-secondary">
+								<input type="radio" name="isRe" id="complete" value="1" autocomplete="off"> ì™„ë£Œ 
+							</label>
+							<label class="btn btn-secondary">
+								<input type="radio" name="isRe" id="incomplete" value="0" autocomplete="off"> ëŒ€ê¸° 
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3"></div>
+				<div class="col-sm-1">
+					<div id="qna-category" class="form-group">
+						<select class="form-control" name="category" style="width: auto">
+							<option value="ì „ì²´">ì „ì²´</option>
+							<option value="ê²°ì œ">ê²°ì œ</option>
+							<option value="ì†ë‹˜">ì†ë‹˜</option>
+							<option value="ì£¼ë¬¸">ì£¼ë¬¸</option>
+							<option value="í¬ì¸íŠ¸">í¬ì¸íŠ¸</option>
+							<option value="ë¦¬ë·°">ë¦¬ë·°</option>
+						</select>	
+					</div>	
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group" id="qna-search">			
+						<div class="form-group">						
+							<div class="input-group">														
+								<input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”"/>
+								<input type="hidden" name="isFirst" value="1"/>
+								<span class="input-group-btn">
+									<input type="submit" class="btn btn-default" id="searchBar" value="ê²€ìƒ‰"/>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>		
 			</div>
-		</div>
+		</form>
+
+		<!-- ë¬¸ì˜ ë‚´ì—­ í…Œì´ë¸” -->		
 		<div id="qnaList">
 			<table class="table table-hover" id="qnaTable">
 				<thead id="tableHead">
 					<tr>	
-						<th>Ä«Å×°í¸®</th>	
-						<th style="width: 60%">Á¦¸ñ</th>
-						<th>ÀÛ¼ºÀÚ</th>
-						<th>³¯Â¥</th>	
-						<th>´äº¯¿©ºÎ</th>						
+						<th>ì¹´í…Œê³ ë¦¬</th>	
+						<th style="width: 60%">ì œëª©</th>
+						<th>ì‘ì„±ì</th>
+						<th>ë‚ ì§œ</th>	
+						<th>ë‹µë³€ì—¬ë¶€</th>						
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach begin="1" end="5">
-						<tr class="pnt" onclick="fn_qnaView()">
-							<td>°áÁ¦</td>
-							<td>¾È³ç</td>
-							<td>ÁÖÈ«¹ü</td>
-							<td>2019-02-26</td> 
-							<td><img src="${path }/resources/images/admin/complete.png" width="30px" height="30px"/></td>
-							<%-- <td><img src="${path }/resources/images/admin/incomplete.png" width="30px" height="30px"/></td> --%>
+					<c:forEach items="${oqList}" var="oq">
+						<tr class="pnt" onclick="fn_qnaView(${oq.qnaCode})">
+							<td><c:out value="${oq.qnaCategory }"/></td>
+							<td><c:out value="${oq.qnaTitle }"/></td>
+							<td><c:out value="${oq.ownerId }"/></td>
+							<td><c:out value="${oq.formatWriteDate }"/></td>
+							<c:if test="${oq.isRe eq 0}">
+								<td><img src="${path }/resources/images/admin/incomplete.png" width="30px" height="30px"/></td>
+							</c:if>
+							<c:if test="${oq.isRe > 0 }">
+								<td><img src="${path }/resources/images/admin/complete.png" width="30px" height="30px"/></td>
+							</c:if>
 						</tr>				
 					</c:forEach>
 				</tbody>
 			</table>
+		</div>
+		<div class="paging">
+			${pageBar}
 		</div>
 	</div>
 </section>
