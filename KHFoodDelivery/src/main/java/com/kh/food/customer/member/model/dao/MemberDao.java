@@ -6,9 +6,12 @@ import java.util.Map;
 import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
+import com.kh.food.qna.model.vo.MemberQna;
 
 public interface MemberDao {
 
+	List<MemberQna> selectmemberQna(String memberId,int cPage,int numPerPage);
+	int qnaMemberCount();
 	int memberEnroll(Member m);
 	int checkId(String memberId);
 	Map<String,String> login(Map<String,String> map);

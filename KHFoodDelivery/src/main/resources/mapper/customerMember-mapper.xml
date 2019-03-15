@@ -3,7 +3,8 @@
 <mapper namespace="member">
      
 
-	 
+	 <resultMap id="memberQna" type="map">
+	 </resultMap>
      <resultMap id="member" type="map">
 	</resultMap>
 	 <resultMap id="store" type="map">
@@ -60,5 +61,13 @@
 	
 	<select id="selectAllStore" resultType="store">
 		select * from store where ISCONFIRM=1
+	</select>
+	
+	<select id="memberQnaCount" resultType="_int">
+		select count(*) from member_qna
+	</select>
+	
+	<select id="memberQnaList"  parameterType="string" resultType="memberQna">
+		select mq.*, m.memberId from member_qna mq JOIN member m ON(mq.memberNum = m.memberNum) where MEMBERID=#{memberId}
 	</select>
 </mapper>

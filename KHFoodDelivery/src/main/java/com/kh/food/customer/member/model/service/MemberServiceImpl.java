@@ -10,6 +10,7 @@ import com.kh.food.customer.member.model.dao.MemberDao;
 import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
+import com.kh.food.qna.model.vo.MemberQna;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -19,7 +20,15 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao dao;
 	
+	@Override
+	public List<MemberQna> selectmemberQna(String memberId,int cPage,int numPerPage){
+		return dao.selectmemberQna(memberId, cPage,numPerPage);
+	}
 	
+	@Override
+	public int qnaMemberCount() {
+		return dao.qnaMemberCount();
+	}
 	@Override
 	public List<Store> selectAllStore(){
 		return dao.selectAllStore();
