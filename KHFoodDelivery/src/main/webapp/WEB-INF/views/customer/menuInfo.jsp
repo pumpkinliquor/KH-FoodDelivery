@@ -184,6 +184,7 @@
 #test1 , #test2,#test3{
 	
  cursor:pointer;
+ 
 }
 
 
@@ -203,6 +204,7 @@
         			url: "${path}/customer/test.do",	
         			success: function test(a){$("#callback").html(a);}
         		});
+        		
         	});
         	
         });
@@ -214,8 +216,7 @@
         			url: "${path}/customer/test1.do",
         			data : {"businessCode" : businessCode},
         			success: function test(a){$("#callback").html(a);}
-        		});
-        		
+        		});       	
         	});
         });
 		
@@ -227,6 +228,7 @@
     			data : {"businessCode" : businessCode},
     			success: function test(a){$("#callback").html(a);}
     		});
+    		
 		}
 			
 		$(document).ready(function(){
@@ -239,10 +241,24 @@
         			url: "${path}/customer/test2.do",	
         			success: function test(a){$("#callback").html(a);}
         		});
+        		
+        		
         	});
         	
         });
-        
+		
+	 	$(document).ready(function () {
+	        $('.nav-link').hover(function () {
+	            $(this).css('background-color','#d9d9d9')
+	        },function(){
+	        	$(this).css('background-color','white')
+	        });
+	    	
+	    });
+	 	
+		
+	
+	
  </script>
  
     <div class="container">
