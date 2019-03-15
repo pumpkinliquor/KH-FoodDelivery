@@ -3,6 +3,6 @@
 <mapper namespace="ownerMain">
 
 	<select id="ownerNoticeList" resultType="map">
-	select * from ownernotice order by ownerwritedate
+	select * from ownernotice order by ownerwritedate desc
 	</select>
 </mapper>
