@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.food.common.PagingFactory;
 import com.kh.food.owner.order.model.service.OrderService;
 import com.kh.food.owner.order.model.vo.Pay;
 
@@ -41,76 +42,27 @@ public class OrderController {
 		int numPerPage = 5;
 //		List<Map<String,String>> orderList = service.selectOrderList();
 		List<Pay> orderList = service.selectOrderList();
+		List<Pay> orderOneList = service.selectOrderOneList(cPage,numPerPage);
+		int orderCount = service.selectOrderCount();
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
-		for(int i = 0; i < orderList.size(); i++) {
-			orderList.get(i).setFormatDate(df.format(orderList.get(i).getPayDate()));
+		for(int i = 0; i < orderOneList.size(); i++) {
+			orderOneList.get(i).setFormatDate(df.format(orderOneList.get(i).getPayDate()));
 		}
 		
+		logger.debug("주문하나내역"+orderOneList);
 		logger.debug("주문내역"+orderList);
-/*		int orderCount = service.selectOrderCount();*/		
 		ArrayList<Pay> list = new ArrayList<>();
-		int payOrderNum = 0;
 		int sum = 0;
 		/*logger.debug("사이즈"+orderList.size());*/
-		for(int i=0; i<orderList.size(); i++)
-		{
-			if(i<orderList.size()-1) {
-				if(orderList.get(i).getPayOrderNum()==orderList.get(i+1).getPayOrderNum())
-				{
-					if(payOrderNum != orderList.get(i).getPayOrderNum()) {
-					list.add(orderList.get(i));
-					payOrderNum = orderList.get(i).getPayOrderNum();
-					}
-					
-				}
-				else
-				{
-					list.add(orderList.get(i));
-					payOrderNum = orderList.get(i).getPayOrderNum();
-				}
-			}
-			else
-			{
-				/*logger.debug("들어왔냐1");*/
-				if(i!=0) {
-					if(orderList.get(i).getPayOrderNum()!=orderList.get(i-1).getPayOrderNum())
-					{
-						/*logger.debug("들어왔냐");*/
-						list.add(orderList.get(i));
-					}
-				}
-				else
-				{
-					list.add(orderList.get(i));
-				}
-			}
-		}
 		
 		ArrayList<Pay> price = new ArrayList<>();
-		for(int i=0; i<list.size(); i++)
+		for(int i=0; i<orderOneList.size(); i++)
 		{
-			price.add(list.get(i));
+			price.add(orderOneList.get(i));
 		}
 		
-		/*for(int i=0; i<orderList.size(); i++)
-		{
-			for(int j=i; j<list.size(); j++)
-			{
-				if(orderList.get(i).getPayOrderNum() == list.get(j).getPayOrderNum())
-				{
-					sum = sum + orderList.get(i).getPrice();
-				}
-				else
-				{
-					list.get(i).setPrice(sum);
-					sum = 0 ;
-					i=j;
-					break;
-				}
-			}
-		}*/
 		logger.debug("orderList"+orderList);
-		logger.debug("list"+list);
+		logger.debug("orderOneList"+orderOneList);
 		logger.debug("price"+price);
 		logger.debug("price사이즈"+price.size());
 		int count = 0;
@@ -137,14 +89,13 @@ public class OrderController {
 			}
 		}
 		logger.debug("가격내역"+price);
-		logger.debug("주문하나만내역"+list);
 		logger.debug("오더리스트"+orderList);
 		ModelAndView mv = new ModelAndView();
-//		request.setAttribute("orderList1", orderList);
-		mv.addObject("list",list);
+		mv.addObject("orderOneList",orderOneList);
 		mv.addObject("orderList",orderList);
 		mv.addObject("price",price);
 		mv.setViewName("owner/ownerOrderList");
+		mv.addObject("pageBar",PagingFactory.getPageBar(orderCount, cPage, numPerPage, "/food/owner/orderService.do"));
 		return mv;
 			
 	}

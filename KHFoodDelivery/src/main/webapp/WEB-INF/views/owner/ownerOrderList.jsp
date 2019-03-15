@@ -62,7 +62,7 @@ pageEncoding="UTF-8"%>
 					</thead>
 					<tbody>
 					
-					<c:forEach var="o" items="${list}" varStatus="status">		
+					<c:forEach var="o" items="${orderOneList}" varStatus="status">		
 							<tr style="cursor:pointer;" onclick="fn_detailOrder(${o.payOrderNum});">						
 								<td class="td1"><c:out value="${status.count}"/></td>
 								<td class="td1">${o.formatDate}</td>
@@ -74,40 +74,6 @@ pageEncoding="UTF-8"%>
 							</tr>
 							
 					</c:forEach> 
-						
-						<%-- <% for(int i=0; i<orderList.size(); i++){%>				
-							<%for(int j=0; j<orderList.size(); j++) {%>
-								<c:choose >
-									<c:when test='<%=orderList.get(i).get("PAYORDERNUM")==orderList.get(j).get("PAYORDERNUM")%>'></c:when>
-								 <%if(orderList.get(i).get("PAYORDERNUM")==orderList.get(j).get("PAYORDERNUM")){%>				
-								
-								<%} else{%> 
-								<c:otherwise>
-								<tr style="cursor:pointer;" onclick="fn_detailOrder(<%=orderList.get(i).get("PAYORDERNUM")%>);">						
-								<td class="td1"><c:out value="<%=i+1%>"/></td>
-								<td class="td1"><c:out value='<%=orderList.get(i).get("PRICE")%>'/></td>
-								<td class="td1"><c:out value='<%=orderList.get(0).get("MEMBERNAME")%>'/></td>
-								<td class="td1"><c:out value='<%=orderList.get(1).get("MEMBERNAME")%>'/></td>
-								<td class="td1"></td>							
-								<td class="td1"></td>
-								<td class="td1"></td>							
-								<td><button class="btn btn-default statusBtn">주문접수</button><button class="btn btn-default statusBtn">배달중</button><button class="btn btn-default statusBtn">배달완료</button><button class="btn btn-default statusBtn">주문취소</button></td>
-								</tr>
-								 <%} %> 
-								</c:otherwise>
-								
-								</c:choose>
-							<%} %>
-						<% }%>	 --%>
-						<tr style="cursor:pointer;" onclick="location.href='${path}/owner/oneVSoneView.do?qnaCode=${one.QNACODE}'">
-								<td class="td1">1</td>
-								<td class="td1">2019-03-11/ 10:aa34</td>
-								<td class="td1">아이스 아메리카노 외 3잔</td>
-								<td class="td1">2000</td>
-								<td class="td1">16000</td>
-								<td class="td1">카카오페이</td>
-								<td><button class="btn btn-default statusBtn">주문접수</button><button class="btn btn-default statusBtn">배달중</button><button class="btn btn-default statusBtn">배달완료</button><button class="btn btn-default statusBtn">주문취소</button></td>
-							</tr>
 					</tbody>
 				</table>
 				<div class="paging">
@@ -169,22 +135,7 @@ pageEncoding="UTF-8"%>
                                                     </tr>
                                                     
                                             </table>                             
-                                            <table class="table table-hover board">
-                                                <tbody>                  
-                                                    <tr style="cursor:pointer;">
-                                                        <td width="30%" >배달주소</td>                                                 
-                                                        <td width="70%">서울 강서구 가양동 1461 가양2단지 아파트 209동 1006호</td>
-                                                    </tr>
-                                                    <tr style="cursor:pointer;">
-                                                        <td width="30%" >전화번호</td>                                                 
-                                                        <td width="70%">01091634624</td>
-                                                    </tr>
-                                                    <tr style="cursor:pointer;">
-                                                        <td width="10%" >요청사항</td>                                                 
-                                                        <td class="orderRequest" width="80%">문을 크게 두드리지 말아주세요 집에 아기가 있어요. 아기가 울지도 몰라요</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table> 
+                                            ${pageBar }
                                   </div>
                               </div>
                               

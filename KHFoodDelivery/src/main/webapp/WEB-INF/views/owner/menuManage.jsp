@@ -57,7 +57,7 @@ pageEncoding="UTF-8"%>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form method="post" action="${path }/menu/deleteCategory.do">
+                                        <form method="post" action="${path }/menu/deleteCategory.do" onsubmit="return validate();">
                                           <div class="form-group row">
                                             <div class="col-8">
                                                 <select id="select" name="menuCategory" class="custom-select">
@@ -173,8 +173,8 @@ pageEncoding="UTF-8"%>
 									<div class="form-group row">
                                         <label for="newpass" class="col-4 col-form-label">메뉴사진</label> 
                                           <div class="col-sm-8 wrap-input-container">
-                                            <label id="menuImage1" for="menuImage" class="custom-file-upload form-control">Upload Document</label>
-                                                <input id="menuImage" class="file-upload" name="menuImage" type="file">
+                                            <label id="menuImage1" for="menuImage" class="custom-file-upload form-control">Upload Image</label>
+                                                <input id="menuImage" class="file-upload" name="menuImage" type="file" onchange="chk_file_type(this);" accept="image/gif,image/jpeg,image/png">
                                           </div>
                                     </div>      
 									<div class="form-group row">
@@ -244,11 +244,24 @@ pageEncoding="UTF-8"%>
 					
 				}
 				
-				$('#menuImage').change(function(){
-					/* console.log($('#menuImage').val())
-					console.log("파일 선택 들어왔니?"); */
-					$('label[id*="menuImage1"]').text($('#menuImage').val()); 
-				})
+				
+				function chk_file_type(el) {
+	
+				if(!/\.(jpeg|jpg|png|gif|bmp)$/i.test(el.value)){ 
+			
+			        alert('이미지 파일만 업로드 가능합니다.'); 
+			        $('label[id*="menuImage1"]').text('Upload Image');
+			        el.value = ''; 
+			        el.focus(); 
+			
+			    }
+				else
+					{
+						$('label[id*="menuImage1"]').text($('#menuImage').val()); 
+					}
+				}
+
+				
 			</script>
 </section>
 

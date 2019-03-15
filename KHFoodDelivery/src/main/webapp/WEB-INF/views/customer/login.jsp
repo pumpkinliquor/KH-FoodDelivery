@@ -170,7 +170,27 @@ background-color: transparent;
 							    Kakao.Auth.createLoginButton({
 							      container: '#kakao-login-btn',
 							      success: function(authObj) {
-							        alert(JSON.stringify(authObj));
+							    	  
+							    	  Kakao.API.request({
+							    		  url: '/v1/user/me',
+							              success: function(res) {
+													
+							                    alert(JSON.stringify(res));
+
+							                    alert(JSON.stringify(authObj));
+
+							                    console.log(res.id);
+
+							                    console.log(res.kaccount_email);
+							                    console.log(res.kgender);
+
+							                    console.log(res.properties['nickname']);
+
+							                    console.log(authObj.access_token);
+
+							                  }
+
+							                })
 							      },
 							      fail: function(err) {
 							         alert(JSON.stringify(err));
