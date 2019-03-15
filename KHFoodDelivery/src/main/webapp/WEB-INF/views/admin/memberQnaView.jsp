@@ -84,15 +84,16 @@
 		<c:if test="${empty mqr }">
 			<hr/>
 			<form action="${path }/admin/insertMemberQnaRe.do" method="post">		
-				<div class="row">
-					<div class="col-sm-11">
-						<textarea rows="3" cols="100" style="resize: none" class="form-control" name="context"></textarea>
-						<input type="hidden" name="qnaNo" value="${mq.qnaCode }"/>
-					</div>
-					<div class="col-sm-1" style="margin-top: 20px">
-						<input type="submit" class="btn" value="등록"/>
-					</div>
-				</div>
+				<div class="rounded row" style="border:1px solid rgb(173, 173, 173); padding-bottom:1em; padding-right:1em; padding-left:1em; padding-top:1em;">
+            		<div class="input-group col-sm-11">
+				       	<label for="reviewContext" style="margin-top:5px"> 댓글 </label> &nbsp;
+            			<input type="hidden" name="qnaNo" value="${mq.qnaCode }"/>
+               			<input type="text" class="form-control" name="context" style="margin-right:1em;" placeholder="내용을 입력하세요.">
+         			</div>
+         			<div class="col-sm-1">
+         				<input type="submit" class="btn" value="등록"/>
+         			</div>
+        		</div>
 			</form>			
 		</c:if>
 	</div>
