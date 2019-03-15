@@ -6,8 +6,9 @@
 	<resultMap type="map" id="memberQna"></resultMap>	
 	<!-- resultMap : MemberQnaReview -->
 	<resultMap type="map" id="memberQnaReview"></resultMap>
-	<!-- resultMap: OwnerQna -->
-	<resultMap type="map" id="ownerQna"></resultMap>
+
+	
+	<!-- 회원 문의 관련 Mapper -->
 
 	<!-- 회원 문의 리스트 -->
 	<select id="selectMemberQnaList" resultType="memberQna">
@@ -85,11 +86,6 @@
 		DELETE FROM MEMBER_QNA WHERE qnaCode=#{no}
 	</delete>	
 	
-	<!-- 사장 문의 리스트 -->
-	<select id="selectOwnerQnaList" resultType="ownerQna">
-		SELECT oq.*, o.ownerId, (SELECT COUNT(*) FROM OWNER_QNA_REVIEW r JOIN OWNER_QNA ON(r.qnaCode = oq.qnaCode)) AS isRe FROM OWNER_QNA oq JOIN OWNER o ON(oq.ownerNum = o.ownerNum) ORDER BY isRe ASC, writeDate DESC, qnaCategory DESC
-	</select>
-	
 	<!-- 문의 count -->
 	<select id="selectMemberQnaCount" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER_QNA
@@ -125,4 +121,125 @@
 					</choose>
 		)		
 	</select>
+	
+	
+	
+	
+	
+	<!-- 사장 문의 관련 Mapper -->
+
+
+	<!-- 사장 문의 리스트 -->
+	<select id="selectOwnerQnaList" resultType="com.kh.food.qna.model.vo.OwnerQna">
+		SELECT 
+			oq.*, o.ownerId, (SELECT COUNT(*) FROM OWNER_QNA_REVIEW r JOIN OWNER_QNA ON(r.qnaCode = oq.qnaCode)) AS isRe 	<!-- isRe : 댓글 여부 (0 : 대기, 0 이상 : 완료 -->
+		FROM 
+			OWNER_QNA oq JOIN OWNER o ON(oq.ownerNum = o.ownerNum) 
+		ORDER BY 
+			isRe ASC, writeDate DESC, qnaCategory DESC 
+	</select>
+	
+	<!-- 사장 문의 보기 -->
+	<select id="selectOwnerQna" parameterType="_int" resultType="com.kh.food.qna.model.vo.OwnerQna">
+		SELECT oq.*, o.ownerId FROM OWNER_QNA oq JOIN OWNER o ON(oq.ownerNum = o.ownerNum) WHERE qnaCode = #{no}
+	</select>
+
+	<!-- 사장 문의 답변 보기 -->
+	<select id="selectOwnerQnaReview" parameterType="_int" resultType="com.kh.food.qna.model.vo.OwnerQnaReview">
+		SELECT * FROM OWNER_QNA_REVIEW WHERE qnaCode = #{no}
+	</select>
+	
+	<!-- 사장 문의 답변 등록 -->
+	<insert id="insertOwnerQnaReview" parameterType="map">
+		INSERT INTO OWNER_QNA_REVIEW VALUES(#{no}, DEFAULT, #{context})
+	</insert>
+
+	<!-- 사장 문의 답변 삭제 -->
+	<delete id="deleteOwnerQnaReview" parameterType="_int">
+		DELETE FROM OWNER_QNA_REVIEW WHERE qnaCode = #{no}
+	</delete>
+	
+	<!-- 사장 문의 답변 수정 -->
+	<update id="updateOwnerQnaReview" parameterType="map">
+		UPDATE OWNER_QNA_REVIEW SET reviewContext = #{context} WHERE qnaCode = #{no}
+	</update>
+	
+	<!-- 사장 문의 검색 -->
+	<select id="searchOwnerQna" parameterType="map" resultType="com.kh.food.qna.model.vo.OwnerQna">
+		SELECT 
+			oq.*, o.ownerId, (SELECT COUNT(*) FROM OWNER_QNA_REVIEW r JOIN OWNER_QNA ON(r.qnaCode = oq.qnaCode)) AS isRe 
+		FROM 
+			OWNER_QNA oq JOIN OWNER o ON(oq.ownerNum = o.ownerNum) 
+		WHERE 
+			qnaTitle LIKE '%'||#{keyword}||'%'		<!-- 키워드 조건 -->
+		AND 
+			<choose>
+				<when test="isRe eq 0">		<!-- 답변 대기 -->
+					(SELECT COUNT(*) FROM OWNER_QNA_REVIEW r JOIN OWNER_QNA ON(r.qnaCode = oq.qnaCode)) = 0
+				</when>
+				<when test="isRe eq 1">		<!-- 답변 완료 -->
+					(SELECT COUNT(*) FROM OWNER_QNA_REVIEW r JOIN OWNER_QNA ON(r.qnaCode = oq.qnaCode)) > 0
+				</when>
+				<otherwise>					<!-- 전체 -->
+					1 = 1
+				</otherwise>
+			</choose>
+		AND
+			<choose>
+				<when test="category eq '전체'">	<!-- 카테고리 전체 -->
+					1 = 1
+				</when>
+				<otherwise>
+					qnaCategory = #{category}	<!-- 선택 카테고리 -->
+				</otherwise>
+			</choose>
+		ORDER BY 
+			isRe ASC, writeDate DESC, qnaCategory DESC
+			<!-- <foreach collection="category" item="cate" index="i" open="(" close=")" separator="OR">
+				qnaCategory = #{cate}
+			</foreach> -->
+	</select>
+	
+	<!-- 사장 문의글 삭제 -->
+	<delete id="deleteOwnerQna" parameterType="_int">
+		DELETE FROM OWNER_QNA WHERE qnaCode=#{no}
+	</delete>	
+	
+	<!-- 문의 count -->
+	<select id="selectOwnerQnaCount" resultType="_int">
+		SELECT COUNT(*) FROM OWNER_QNA
+	</select>
+	
+	<!-- 검색 문의 count -->
+	<select id="selectSearchOwnerQnaCount" resultType="_int" parameterType="map">
+		SELECT COUNT(*) 
+		FROM (	SELECT oq.*, o.ownerId, (SELECT COUNT(*) FROM OWNER_QNA_REVIEW r JOIN OWNER_QNA ON(r.qnaCode = oq.qnaCode)) AS isRe 
+				FROM OWNER_QNA oq JOIN OWNER o ON(oq.ownerNum = o.ownerNum) 
+				WHERE 
+					qnaTitle LIKE '%'||#{keyword}||'%'
+				AND 
+					<choose>
+						<when test="isRe eq 0">
+							(SELECT COUNT(*) FROM OWNER_QNA_REVIEW r JOIN OWNER_QNA ON(r.qnaCode = oq.qnaCode)) = 0
+						</when>
+						<when test="isRe eq 1">
+							(SELECT COUNT(*) FROM OWNER_QNA_REVIEW r JOIN OWNER_QNA ON(r.qnaCode = oq.qnaCode)) > 0
+						</when>
+						<otherwise>
+							1 = 1
+						</otherwise>
+					</choose>
+				AND
+					<choose>
+						<when test="category eq '전체'">
+							1 = 1
+						</when>
+						<otherwise>
+							qnaCategory = #{category}
+						</otherwise>
+					</choose>
+		)		
+	</select>	
+	
+	
 </mapper>

@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +37,7 @@ import com.kh.food.customer.member.model.service.MemberService;
 import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
+import com.kh.food.qna.model.vo.MemberQna;
 
 @Controller
 public class MemberController {
@@ -49,6 +52,28 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
+	//나의 문의내역
+	@RequestMapping("/member/qnaList.do")
+	public ModelAndView memberQna(String memberId,@RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
+		ModelAndView mv = new ModelAndView();
+		int numPerPage=5;
+		int count=service.qnaMemberCount();
+		//문의 리스트
+		List<MemberQna> qnaList=service.selectmemberQna(memberId,cPage,numPerPage);
+		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+				for(int i = 0; i < qnaList.size(); i++) {
+					qnaList.get(i).setFormatWriteDate(df.format(qnaList.get(i).getWriteDate()));
+				}		
+				
+		
+		mv.addObject("pageBar",PagingFactory.getPageBar2(memberId,count, cPage, numPerPage, "/food/member/qnaList.do"));
+		mv.addObject("qnaList",qnaList);
+		mv.setViewName("customer/qnaList");
+		return mv;
+		
+		
+	}
 	
 	//나의주문내역
 	@RequestMapping("/member/orderList.do")

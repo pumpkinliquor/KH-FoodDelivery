@@ -38,6 +38,10 @@
    <script>
     $(document).ready(function () {
       $("#positionBtn").click(function(){
+    	  
+    	  if(${sessionScope.logined==null}){
+    		  alert("로그인후 이용해주세요");
+    	  }else{
             function getLocation() {
                 if (navigator.geolocation) { // GPS를 지원하면
                     navigator.geolocation.getCurrentPosition(function(position) {
@@ -99,7 +103,9 @@
                 }
               }
               getLocation();   
+    	  }
       }); 
+      
 }); 
      
    
@@ -115,6 +121,12 @@
   
  
     function execDaumPostcode() {
+    	
+    	if(${sessionScope.logined==null}){
+    		alert("로그인후 이용해주세요");
+    	}else{
+    		
+    	
          new daum.Postcode({ 
             oncomplete: function(data) {
                 // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -157,6 +169,7 @@
                 });
             }
          }).open(); 
+    	}
     }
   
 
@@ -176,6 +189,14 @@ $(function(){
  //배달의민족 클릭시 메인으로
  function mainpage(){
     location.href="${path }";
+ }
+ 
+ function locationSearchStore(){
+	 if(${sessionScope.logined==null}){
+		 alert("로그인 후 이용해주세요");
+	 }else{
+		 location.href="${path}/customer/selectallstore.do";
+	 }
  }
  
  
@@ -211,7 +232,7 @@ $(function(){
                        <button id="positionBtn" onclick="getLocation4()" ><img id="locationImg" src="${path }/resources/images/place.png"></button>
                     <input type="text" id="location" onclick="execDaumPostcode();"  class="form-control" value="" placeholder="주소 찾기를 원하시면 클릭해주세요">
                        <span class="input-group-btn">
-                       <button class="btn" onclick="" type="submit">검색</button>
+                       <button class="btn" onclick="locationSearchStore();" type="submit">검색</button>
 
                        </span>
                   </div>

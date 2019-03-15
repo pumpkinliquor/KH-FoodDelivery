@@ -13,8 +13,7 @@ pageEncoding="UTF-8"%>
       div#enroll-container input, div#enroll-container select {margin-bottom:10px;}
      
 	
-	 div#enroll-container .btn-ser{position:absolute;display:inline;
-      margin-left: 78%; }
+	 div#enroll-container .btn-ser{position:absolute;display:inline;margin-left: 78%; }
     /*중복아이디체크관련*/
     div#enroll-container{position:relative; padding:0px;}
     div#enroll-container span.guide {display:none;font-size: 12px;position:absolute; top:12px; right:10px;}

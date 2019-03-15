@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
+import com.kh.food.qna.model.vo.MemberQna;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -21,6 +22,16 @@ public class MemberDaoImpl implements MemberDao {
 	SqlSessionTemplate sqlSession;
 	
 	
+	@Override
+	public List<MemberQna> selectmemberQna(String memberId,int cPage,int numPerPage){
+		RowBounds rb=new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("member.memberQnaList",memberId,rb);
+	}
+	
+	@Override
+	public int qnaMemberCount() {
+		return sqlSession.selectOne("member.memberQnaCount");
+	}
 	@Override
 	public List<Store> selectAllStore(){
 		return sqlSession.selectList("member.selectAllStore");
