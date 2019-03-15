@@ -57,7 +57,7 @@ public class QnaMngController {
 	
 	// 회원 문의 검색
 	@RequestMapping("/admin/searchMemberQna.do")
-	public ModelAndView searchMemberQna(@RequestParam(value="keyword", defaultValue=" ") String keyword,
+	public ModelAndView searchMemberQna(@RequestParam(value="keyword", defaultValue="") String keyword,
 										@RequestParam(value="isRe", defaultValue="3") String isRe,
 										@RequestParam(value="category", defaultValue="전체") String category,
 										@RequestParam(value="isFirst", defaultValue="0") int isFirst,
@@ -65,6 +65,9 @@ public class QnaMngController {
 										HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		int numPerPage = 5;
+		
+	
+		
 		
 		/*List<String> categoryList = new ArrayList();
 		for(int i = 0; i < category.length; i++) {
@@ -92,6 +95,12 @@ public class QnaMngController {
 		for(MemberQna q : mqList) {
 			logger.debug("" + q);
 		}
+		
+		logger.debug(keyword);
+		logger.debug(isRe);
+		logger.debug(category);
+		logger.debug(""+isFirst);
+		
 		mv.addObject("mqList", mqList);		
 		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/searchMemberQna.do"));
 		mv.setViewName("admin/memberQnaList");				
@@ -203,7 +212,7 @@ public class QnaMngController {
 	
 	// 사장 문의 검색
 	@RequestMapping("/admin/searchOwnerQna.do")
-	public ModelAndView searchOwnerQna(@RequestParam(value="keyword", defaultValue=" ") String keyword,
+	public ModelAndView searchOwnerQna(@RequestParam(value="keyword", defaultValue="") String keyword,
 										@RequestParam(value="isRe", defaultValue="3") String isRe,
 										@RequestParam(value="category", defaultValue="전체") String category,
 										@RequestParam(value="isFirst", defaultValue="0") int isFirst,
