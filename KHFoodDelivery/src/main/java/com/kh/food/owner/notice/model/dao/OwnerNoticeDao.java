@@ -18,4 +18,6 @@ public interface OwnerNoticeDao {
 	int ownerNoticeUpdateEnd(Map<String,Object> map);
 	int ownerNoticeAUpdateEnd(OwnerNoticeAttachment a);
 	 
+	
+	List<Map<String,String>>ownerNoticeList();
 }

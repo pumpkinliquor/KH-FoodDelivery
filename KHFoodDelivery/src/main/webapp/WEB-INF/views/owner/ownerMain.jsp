@@ -80,15 +80,15 @@ pageEncoding="UTF-8"%>
             <div class="row main_row1">
                 <div class="col-md-8">
                     <div class="col-md-12">
-                    <p id="p1">공지사항</p>
-                    <a href="${path}/owner/ownerNoticeList.do" id="noticePlus">+더보기</a>
+                    <h6 id="p1">공지사항</h6> 
+                    <a href="${path}/owner/ownerNoticeList.do" id="noticePlus" style="float:right">+더보기</a>
                     </div>
                     <div class="col-sm-12 noticeDiv1">
                     <table id="notice_ta" width="100%">
-                       <c:forEach var="notice" items="${list }" begin="0" end="2" step="1" varStatus="vs">
-							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/ownerNoticeList.do'">
+                       <c:forEach var="list" items="${list }" begin="0" end="2" step="1" varStatus="vs">
+							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/ownerNoticeView.do?ownerNoticeNum=${list.OWNERNOTICENUM }'">
 								
-								<td><a href="#">${notice.OWNERNOTICETITLE }</a></td>
+								<td><a href="#">${list.OWNERNOTICETITLE }</a></td>
 								
 							</tr>
 					  </c:forEach>
@@ -96,9 +96,14 @@ pageEncoding="UTF-8"%>
                     </div>
                 </div>
                 <div class="col-md-4">
+                   <c:if test="${sessionScope.ownerId== null }">
                     <div class="col-md-12">
+                    
                         <p>사장님 로그인 해주세요!</p>
                     </div>
+   
+                    
+                    
                     <div class="col-md-12">
                         <button id="loginBtn" onclick="location.href='${path }/owner/login.do'">로그인</button>
                     </div>
@@ -112,6 +117,27 @@ pageEncoding="UTF-8"%>
                         <button id="enrollBtn" onclick="location.href='${path }/owner/insertOwner.do'">회원가입</button>
                     </div>
                 </div>
+                </c:if>
+                
+                
+        
+      				<c:if test="${sessionScope.ownerId!=null }">
+                    <div class="col-md-12">
+                        <button id="loginBtn" onclick="location.href='${path }/owner/logout.do'">로그아웃</button>
+                    </div>
+                </c:if>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
             </div>
             <div class="row">
             <div class="col-md-12">
