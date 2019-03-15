@@ -57,4 +57,8 @@
 	<select id="selectMenuList" parameterType="map" resultMap="member">
 		select * from menu where MENUCATEGORYCODE=#{menuCategoryCode} AND BUSINESSCODE=#{businessCode}
 	</select>
+	
+	<select id="selectAllStore" resultType="store">
+		select * from store where ISCONFIRM=1
+	</select>
 </mapper>

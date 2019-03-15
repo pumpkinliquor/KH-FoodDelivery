@@ -21,6 +21,11 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
+	public List<Store> selectAllStore(){
+		return dao.selectAllStore();
+	}
+	
+	@Override
 	public List<Store> menuInfo(int businessCode) {
 		return dao.menuInfo(businessCode);
 	}
