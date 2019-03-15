@@ -93,12 +93,39 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList("member.selectCategoryList", businessCode);
 	}
 
+
+	//아이디찾기
+	@Override
+	public Map<String, String> selectSearchId(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.selectSearchId",map);
+		}
+
+	//비밀번호찾기
+	@Override
+	public Map<String, String> selectConfirmEmail(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.selectConfirmEmail",map);
+	}
+
+	@Override
+	public int updatePw(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("member.updatePw",map);
+	}
+
+	
 	@Override
 	public List<Map<String, String>> selectMenuList(int menuCategoryCode, int businessCode) {
 		Map<String,Object> codes=new HashMap<>();
 		codes.put("menuCategoryCode", menuCategoryCode);
 		codes.put("businessCode", businessCode);
 		return sqlSession.selectList("member.selectMenuList",codes);
+	}
+
+	@Override
+	public Menu menuSelect(int menuCode) {
+		return sqlSession.selectOne("menu.menuSelect", menuCode);
 	}
 	
 }

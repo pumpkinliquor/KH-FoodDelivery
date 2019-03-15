@@ -40,7 +40,7 @@ public class MemberListDaoImpl implements MemberListDao {
 	public List<Map<String, String>> selectListOwner(int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
 		RowBounds rows=new RowBounds((cPage-1)*numPerPage, numPerPage);
-		return sqlSession.selectList("admin.selectListOwner",null,rows);
+		return sqlSession.selectList("admin.selectListOwner",null, rows);
 	}
 	
 	//사장 페이징
