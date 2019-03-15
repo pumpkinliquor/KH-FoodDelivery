@@ -21,4 +21,8 @@ public interface MemberService {
 	List<Store> menuInfo(int businessCode);
 	List<Map<String,String>> selectCategoryList(int businessCode);
 //	List<Map<String,String>> selectMenuList(int menuCategoryCode,int businessCode);
+	
+	Map<String,String>selectSearchId(Map<String,String> map); //아이디찾기
+	Map<String,String>selectConfirmEmail(Map<String,String>map);
+	int updatePw(Map<String, String> map);
 }
