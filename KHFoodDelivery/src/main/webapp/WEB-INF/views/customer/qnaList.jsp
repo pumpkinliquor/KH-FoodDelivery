@@ -43,7 +43,7 @@
 		</div>
 	<div class="col-md-9">	
 	
-		<h4 id="titleText"> 문의 내역 </h4>
+		<h4 id="titleText">${sessionScope.logined}님 문의 내역 </h4>
 		
 		<div id="qnaList">
 			<table class="table table-hover" id="qnaTable">

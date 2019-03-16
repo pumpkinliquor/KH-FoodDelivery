@@ -73,7 +73,6 @@ left: 0;
 
 $(function(){
 	$(".menu").click(function(){
-		console.log("클릭에들어왔니?");
 		var menu = $(".menu").val();
 		$.ajax({
 			url:"${path}/owner/menuEnroll.do",
@@ -121,7 +120,7 @@ $(function(){
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form action="${path }/owner/enrollMenu1.do" method="post" enctype="multipart/form-data">
+                                        <form action="${path }/owner/enrollMenu1.do" method="post" enctype="multipart/form-data" onsubmit="return fn_enroll_validate();" >
                                           <div class="form-group row">
                                             <label for="username" class="col-4 col-form-label">메뉴명</label> 
                                             <div class="col-8">
@@ -155,9 +154,9 @@ $(function(){
                                             <label for="newpass" class="col-4 col-form-label">메뉴사진</label> 
                                               <div class="col-sm-8 wrap-input-container">
                                                 <label id="menuImage1" class="custom-file-upload form-control">
-                                                  Upload Document
+                                                  Upload Image
                                                 </label>
-                                                <input id="menuImage" class="file-upload" name="menuImage" type="file">
+                                                <input id="menuImage" class="file-upload" name="menuImage" type="file" onchange="chk_file_type(this);" accept="image/gif,image/jpeg,image/png"/>
                                               </div>
                                           </div>                                
                                           <div class="form-group row">
@@ -216,9 +215,35 @@ $(function(){
 
 <script>
 $('#menuImage').change(function(){
-	$('label[id*="menuImage1"]').text($('#menuImage').val()); 
+/* 	$('label[id*="menuImage1"]').text($('#menuImage').val());  */
 })
 
+function fn_enroll_validate()
+{
+	var menuImage = $('#menuImage').val();
+	if(menuImage.trim().length==0)
+		{
+			alert("사진 등록을 해주세요");
+			return false;
+		}
+	return true
+}
+
+function chk_file_type(el) {
+	
+	if(!/\.(jpeg|jpg|png|gif|bmp)$/i.test(el.value)){ 
+
+        alert('이미지 파일만 업로드 가능합니다.'); 
+        $('label[id*="menuImage1"]').text('Upload Image');
+        el.value = ''; 
+        el.focus(); 
+
+    }
+	else
+		{
+			$('label[id*="menuImage1"]').text($('#menuImage').val()); 
+		}
+	}
 
 </script>
 
