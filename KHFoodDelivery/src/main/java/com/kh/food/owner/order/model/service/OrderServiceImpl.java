@@ -35,6 +35,11 @@ public class OrderServiceImpl implements OrderService {
 		return dao.selectOrderCount();
 	}
 
+	@Override
+	public Map<String, String> selectTodayOrderCount() {
+		return dao.selectTodayOrderCount();
+	}
+
 	
 
 	

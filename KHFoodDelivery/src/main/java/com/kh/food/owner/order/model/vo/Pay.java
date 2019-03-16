@@ -8,7 +8,7 @@ public class Pay {
 	private int rNum;
 	private int payNum;
 	private int businessCode;
-	private Date payDate;
+	private String payDate;
 	private int menuCode;
 	private String sideCode;
 	private	String drinkCode;
@@ -23,16 +23,16 @@ public class Pay {
 	private String memberName;
 	private String memberPhone;
 	private String menuName;
-	private String formatDate;
+	private Date formatDate;
 	
 	public Pay() {}
 
 	
 	
-	public Pay(int payNum, int businessCode, Date payDate, int menuCode, String sideCode, String drinkCode,
+	public Pay(int payNum, int businessCode, String payDate, int menuCode, String sideCode, String drinkCode,
 			String tasteCode, int price, int count, int memberNum, String payOrderMethod, String payRequest,
 			int payOrderNum, String memberId, String memberName, String memberPhone, String menuName,
-			String formatDate) {
+			Date formatDate) {
 		super();
 		this.payNum = payNum;
 		this.businessCode = businessCode;
@@ -54,7 +54,7 @@ public class Pay {
 		this.formatDate = formatDate;
 	}
 	
-	public Pay(int payNum, int businessCode, Date payDate, int menuCode, String sideCode, String drinkCode,
+	public Pay(int payNum, int businessCode, String payDate, int menuCode, String sideCode, String drinkCode,
 			String tasteCode, int price, int count, int memberNum, String payOrderMethod, String payRequest,
 			int payOrderNum, String memberId, String memberName, String memberPhone, String menuName
 			) {
@@ -80,10 +80,10 @@ public class Pay {
 
 
 
-	public Pay(int rNum, int payNum, int businessCode, Date payDate, int menuCode, String sideCode, String drinkCode,
+	public Pay(int rNum, int payNum, int businessCode, String payDate, int menuCode, String sideCode, String drinkCode,
 			String tasteCode, int price, int count, int memberNum, String payOrderMethod, String payRequest,
 			int payOrderNum, String memberId, String memberName, String memberPhone, String menuName,
-			String formatDate) {
+			Date formatDate) {
 		super();
 		this.rNum = rNum;
 		this.payNum = payNum;
@@ -144,13 +144,13 @@ public class Pay {
 
 
 
-	public Date getPayDate() {
+	public String getPayDate() {
 		return payDate;
 	}
 
 
 
-	public void setPayDate(Date payDate) {
+	public void setPayDate(String payDate) {
 		this.payDate = payDate;
 	}
 
@@ -324,13 +324,13 @@ public class Pay {
 
 
 
-	public String getFormatDate() {
+	public Date getFormatDate() {
 		return formatDate;
 	}
 
 
 
-	public void setFormatDate(String formatDate) {
+	public void setFormatDate(Date formatDate) {
 		this.formatDate = formatDate;
 	}
 

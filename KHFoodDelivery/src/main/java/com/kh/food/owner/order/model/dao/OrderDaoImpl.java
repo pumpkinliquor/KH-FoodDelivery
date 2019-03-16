@@ -36,6 +36,11 @@ public class OrderDaoImpl implements OrderDao {
 	public int selectOrderCount() {
 		return sqlSession.selectOne("ownerOrder.selectOrderCount");
 	}
+
+	@Override
+	public Map<String, String> selectTodayOrderCount() {
+		return sqlSession.selectOne("ownerOrder.selectTodayOrderCount");
+	}
 	
 	
 	

@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,6 +39,7 @@ import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+
 
 @Controller
 public class MemberController {
@@ -551,6 +553,24 @@ public class MemberController {
 					loc="/customer/login.do";
 				}
 			}
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	//카카오 로그인
+	@RequestMapping("member/kakaoLogin.do")
+	public ModelAndView kakaoLogin(String id,HttpSession session)
+	{
+		logger.debug("카카오아이디"+id);
+		
+		ModelAndView mv = new ModelAndView();
+		String msg = "카카오 로그인 성공!";
+		String loc ="/";
+		
+		session.setAttribute("logined", id);
+		mv.addObject("logined",id);
 		mv.addObject("msg",msg);
 		mv.addObject("loc",loc);
 		mv.setViewName("common/msg");

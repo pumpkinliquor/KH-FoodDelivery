@@ -139,7 +139,9 @@ background-color: transparent;
                             </div>
                        		
                          </form>
-                         
+                         <form id="kakaoLoginForm" method="post" action="${path }/member/kakaoLogin.do">
+                         	<input type="hidden" id="kakaoId" name="id" value="">
+                         </form>
                             <div class="text-center">
 							<a id="kakao-login-btn"></a>
 							<a href="http://developers.kakao.com/logout"></a>
@@ -187,7 +189,11 @@ background-color: transparent;
 							                    console.log(res.properties['nickname']);
 
 							                    console.log(authObj.access_token);
-
+							                    $('#kakaoId').val(res.id);
+							                    $('#kakaoNick').val(res.properties['nickname']);
+							                    $('#myModal').modal();
+												/* $('#kakaoId').val(res.id);
+												$('#kakaoLoginForm').submit(); */
 							                  }
 
 							                })
@@ -198,6 +204,84 @@ background-color: transparent;
 							    });
 							  //]]>
 							</script>
+							
+							
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					
+				</div>
+				<div class="modal-body">
+
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-12">
+								<h4>추가 정보</h4>
+								<hr>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<form action="${path }/member/kakaoMemberEnroll.do" method="post" onsubmit="return fn_enroll_validate();">
+									<input type="hidden" id="kakaoId" name="id" value="">
+									<div class="form-group row">
+										<label for="username" class="col-4 col-form-label">메뉴이름</label>
+										<div class="col-8">
+											<input type="text" id="menuName" name="menuName"
+												placeholder="아이디" class="form-control here"
+												required="required"> <input type="hidden"
+												name="checkId" value="0" />
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="name" class="col-4 col-form-label">메뉴가격</label>
+										<div class="col-8">
+											<input type="text" id="menuPrice" name="menuPrice"
+												placeholder="" class="form-control here">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="lastname" class="col-4 col-form-label">메뉴설명</label>
+										<div class="col-8">
+											<textarea id="menuContent" name="menuContent" cols="40" rows="4" class="form-control"></textarea>
+										</div>
+									</div>
+									<div class="form-group row">
+                                        <label for="newpass" class="col-4 col-form-label">메뉴사진</label> 
+                                          <div class="col-sm-8 wrap-input-container">
+                                            <label id="menuImage1" for="menuImage" class="custom-file-upload form-control">Upload Image</label>
+                                                <input id="menuImage" class="file-upload" name="menuImage" type="file" onchange="chk_file_type(this);" accept="image/gif,image/jpeg,image/png">
+                                          </div>
+                                    </div>      
+									<div class="form-group row">
+										<div class="col-4"></div>
+										<div class="col-8">
+											 <input type="hidden" id="menuCode" name="menuCode">
+											<button id="ownerJoinBtn" name="submit" type="submit"
+												class="btn btn-primary">수정</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+
+					</div>
+
+
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </section>
 

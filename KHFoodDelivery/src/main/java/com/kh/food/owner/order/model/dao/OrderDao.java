@@ -15,4 +15,6 @@ public interface OrderDao {
 
 	int selectOrderCount();
 
+	Map<String, String> selectTodayOrderCount();
+
 }
