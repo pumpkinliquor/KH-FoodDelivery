@@ -79,10 +79,13 @@ function address1() {
                
                // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
                 fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : ''); 
+               	
            }
+           
 
            // 주소 정보를 해당 필드에 넣는다.
            $('#memberAddress').val(fullAddr); 
+           $('#adr2').val(data.zonecode);
             /* document.getElementById("location").value = fullAddr;  */
            // 주소로 상세 정보를 검색
            geocoder.addressSearch(data.address, function(results, status) {
@@ -123,8 +126,8 @@ function address1() {
 						  <div class="text-center">
 				  			
 				  			<img onclick="fileUpload()" style="cursor: pointer;" name="file" title="profile image" class="avatar img-circle img-thumbnail" alt="avatar" src="${path}/resources/upload/member/profile/${member.profileImage}"/>
-				 			<input type="file" class="btn btn-primary" id="file" name="profileImg" style="display: none ;">
-				 			 
+				 			<input type="file" class="btn btn-primary" id="file" name="profileImg" value="${member.profileImage}" style="display: none ;">
+				 			 <input type="hidden" name="profileImage" value="${member.profileImage}"/>
 			 				
 			 			<hr>
 			 			</div>
@@ -132,7 +135,7 @@ function address1() {
                                
                                 <label for="username" class="col-4 col-form-label">아이디</label>
                                 <div class="col-8">
-                                  <input id="username" name="memberId" id="memberId"value="${member.memberId}" class="form-control here" required="required" type="text" readonly >
+                                  <input  name="memberId" id="memberId"value="${member.memberId}" class="form-control here" required="required" type="text" readonly >
                                 </div>
                               </div>
                               <div class="form-group row">
@@ -150,28 +153,30 @@ function address1() {
                               <div class="form-group row">
                                 <label for="text" class="col-4 col-form-label">생년월일</label> 
                                 <div class="col-8">
-                                  <input id="text" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" type="text">
+                                  <input id="text" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" type="text"/>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="select" class="col-4 col-form-label">이메일</label> 
                                 <div class="col-8">
-                                  <input id="email"id="memberEmail" name="memberEmail" value="${member.memberEmail}" class="form-control here" required="required" type="text">
+                                  <input id="email"id="memberEmail" name="memberEmail" value="${member.memberEmail}" class="form-control here" required="required" type="text"/>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="email" class="col-4 col-form-label">전화번호</label> 
                                 <div class="col-8">
-                                  <input id="email" name="memberPhone" id="memberPhone" value="${member.memberPhone}" class="form-control here" required="required" type="text">
+                                  <input id="email" name="memberPhone" id="memberPhone" value="${member.memberPhone}" class="form-control here" required="required" type="text"  maxlength="11"/>
                                 </div>
                               </div>
                                <div class="form-group row"> 
                                 <label for="website" class="col-4 col-form-label">주소</label> 
                                 <div class="addre col-6">
-                                  <input  name="memberAddress" id="memberAddress"value="${member.memberAddress}" class="form-control here" type="text">
+                                	
+                                  <input  name="memberAddress1" id="memberAddress1"value="${member.memberAddress1}" class="form-control here" type="text"/>
+                                  <input  name="memberAddress2" id="memberAddress2"value="${member.memberAddress2}" class="form-control here" type="text"/>
                                 </div>
                                 <div class="addre col-2">
-                             	  <input type="button" class="btn-ser1 btn btn-default" onclick="address1();" value="주소검색"/>
+                             	  <input type="button" class="btn-ser1 btn btn-default" onclick="address1();" value="주소검색"/> 
                                  </div>
                                  
                               </div>
@@ -187,7 +192,14 @@ function address1() {
                               </div> 
                               
                               <input type="submit" class="btn btn-default" value="수정하기"/>&nbsp;
-                              <input type="reset" class="btn btn-default" value="취소"/>
+                              <input type="button" class="btn btn-default" value="취소" onclick="re();"/>
+                            
+                             <script>
+                             	function re(){
+                             		alert("메인화면으로 이동합니다");
+                             		location.href="${path}";
+                             	}
+                             </script>
                               
                               
                             <input type="button" onclick="dropMember();" class="btn btn-default" id="drop" value="탈퇴"/>

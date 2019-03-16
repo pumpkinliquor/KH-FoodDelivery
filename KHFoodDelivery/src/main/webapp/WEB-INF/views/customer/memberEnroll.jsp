@@ -186,7 +186,7 @@ pageEncoding="UTF-8"%>
                             }
              
                             // 주소 정보를 해당 필드에 넣는다.
-                            $('#memberAddress').val(fullAddr); 
+                            $('#memberAddress1').val(fullAddr); 
                              /* document.getElementById("location").value = fullAddr;  */
                             // 주소로 상세 정보를 검색
                             geocoder.addressSearch(data.address, function(results, status) {
@@ -228,7 +228,8 @@ pageEncoding="UTF-8"%>
              
              <input type="button" class="btn-ser btn btn-default" onclick="address();" value="주소검색"/>
              
-            <input type="text" class="add form-control"  placeholder="주소" name="memberAddress" id="memberAddress"/>
+            <input type="text" class="add form-control"  placeholder="주소" name="memberAddress1" id="memberAddress1"/>
+            <input type="text" class="form-control" placeholder="상세주소" name="memberAddress2" id="memberAddress2"/>
               <select class="form-control" name="memberGender" required>
                <option value="" disabled selected>성별</option>
                <option value="M">남</option>
