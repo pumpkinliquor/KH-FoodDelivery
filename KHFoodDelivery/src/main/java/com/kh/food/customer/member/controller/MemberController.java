@@ -318,10 +318,8 @@ public class MemberController {
 		m.setMemberPw(pwEncoder.encode(rawPw));
 		
 		
-		//상세 주소때문에 합침
-		String address=m.getMemberAddress1()+" "+m.getMemberAddress2();
-		m.setMemberAddress(address);
-		System.out.println(m.getMemberAddress1()+" "+m.getMemberAddress2());
+	
+		
 		
 		
 		int result=service.memberEnroll(m);

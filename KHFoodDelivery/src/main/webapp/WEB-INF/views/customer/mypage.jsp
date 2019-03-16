@@ -18,12 +18,45 @@ input.memberAddress{display:inline;}
    	width:150px;
    	height:150px; 
 } 
-
+    div.up{position:relative; padding:0px;}
+    div.up span.guide1 {display:none;font-size: 12px;position:absolute; top:5px; right:10px;}
+     div.up span.guide2 {display:none;font-size: 12px;position:absolute; top:5px; right:10px;}
+    div.upr span.ok,span.ok1,span.ok2{color:blue;}
+    div.up span.error,span.error2{color:red;}
 .btn{background-color:skyblue; color:white; margin-top:5%;}
 #drop{float:right;}
 .btn-ser1{margin-top:0;float:right;}           
 </style>
 <script>
+$(function(){
+	$("#nickName").keyup(function(){
+		nickName=$("#nickName").val().trim();
+
+		$.ajax({
+			url:"${path}/member/checkNick.do",
+			data:{"nickName":nickName},
+			success:function(data){          
+				console.log(data.isNick);
+				nick=data.isNick;
+				console.log(nick);       					
+				if(data.isNick==false){
+					$(".guide2.ok2").show();
+					$(".guide2.error2").hide();
+				
+				}else{
+					
+					$(".guide2.error2").show();
+					$(".guide2.ok2").hide();
+					
+				}
+				
+				
+			}
+		});
+	});
+});
+
+
 $(document).ready(function() {
 
     
@@ -105,9 +138,11 @@ function address1() {
 }
 
 
+
+
 </script>
 
-<div class="container">
+<div class="container up">
  			
 	<div class="row">
 		<div class="col-md-3 ">
@@ -118,6 +153,7 @@ function address1() {
               <a href="${path }/member/qnaList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action">나의 문의내역</a>
             </div> 
 		</div>
+		
 		<div class="col-md-9 ">
 			
  			 <div class="row">
@@ -147,13 +183,15 @@ function address1() {
                               <div class="form-group row">
                                 <label for="lastname" class="col-4 col-form-label">닉네임</label> 
                                 <div class="col-8">
-                                  <input id="lastname" name="nickName" id="nickName"value="${member.nickName}" class="form-control here" type="text">
+                                    <span class="guide2 ok2">사용 가능한 닉네임입니다. </span>
+            						<span class="guide2 error2">닉네임이 존재합니다. </span>
+                                  <input  name="nickName" id="nickName" value="${member.nickName}" class="form-control here" type="text"/>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="text" class="col-4 col-form-label">생년월일</label> 
                                 <div class="col-8">
-                                  <input id="text" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" type="text"/>
+                                  <input type="date" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" max="2019-03-29" min="1900-01-01"/>
                                 </div>
                               </div>
                               <div class="form-group row">
@@ -170,14 +208,18 @@ function address1() {
                               </div>
                                <div class="form-group row"> 
                                 <label for="website" class="col-4 col-form-label">주소</label> 
-                                <div class="addre col-6">
+                                <div class="addre col-7"> 
                                 	
-                                  <input  name="memberAddress1" id="memberAddress1"value="${member.memberAddress1}" class="form-control here" type="text"/>
-                                  <input  name="memberAddress2" id="memberAddress2"value="${member.memberAddress2}" class="form-control here" type="text"/>
-                                </div>
-                                <div class="addre col-2">
+                                  <input  name="memberAddress" id="memberAddress"value="${member.memberAddress}" class="form-control here" type="text"/>
+                                  </div>
+                                <div class="addre col-1">
                              	  <input type="button" class="btn-ser1 btn btn-default" onclick="address1();" value="주소검색"/> 
                                  </div>
+                                  <label for="website" class="col-4 col-form-label">상세주소</label> 
+                                  <div class="addre col-3"> 
+                               <input  name="memberAddress1" id="memberAddress1"value="${member.memberAddress1}" class="form-control here" type="text"/>
+                                  </div> 
+                                
                                  
                               </div>
                                <div class="form-group row">
