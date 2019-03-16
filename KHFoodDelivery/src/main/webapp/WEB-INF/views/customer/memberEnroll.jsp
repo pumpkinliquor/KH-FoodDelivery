@@ -222,13 +222,14 @@ pageEncoding="UTF-8"%>
              <input type="text" class="form-control" placeholder="닉네임" name="nickName" id="nickName"/>
              <span class="guide2 ok2">사용 가능한 닉네임입니다. </span>
             <span class="guide2 error2">닉네임이 존재합니다. </span>
-            <input type="date" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth"  min="1900-01-01"/>
+            <input type="date" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth" max="2019-03-29" min="1900-01-01"/>
             <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" >
             <input type="tel" class="form-control" placeholder="전화번호 (예:01012345678)" name="memberPhone" id="memberPhone" maxlength="11"/>
              
              <input type="button" class="btn-ser btn btn-default" onclick="address();" value="주소검색"/>
              
             <input type="text" class="add form-control"  placeholder="주소" name="memberAddress" id="memberAddress"/>
+            <input type="text" class="form-control" placeholder="상세주소" name="memberAddress1" id="memberAddress1"/>
               <select class="form-control" name="memberGender" required>
                <option value="" disabled selected>성별</option>
                <option value="M">남</option>

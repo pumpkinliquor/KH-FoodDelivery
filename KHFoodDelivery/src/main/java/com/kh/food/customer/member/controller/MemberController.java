@@ -54,6 +54,13 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
+	
+	
+	//고객 메인페이지
+	@RequestMapping("/cutomer/main")
+	public String mainPage() {
+		return "/food";
+	}
 	//나의 문의내역
 	@RequestMapping("/member/qnaList.do")
 	public ModelAndView memberQna(String memberId) {
@@ -114,7 +121,7 @@ public class MemberController {
 
 		Member member = service.selectMember(memberId);
 		
-		
+		System.out.println(member);
 		mv.addObject("member",member);
 		mv.setViewName("customer/mypage");
 		return mv;
@@ -311,7 +318,11 @@ public class MemberController {
 		System.out.println("암호화전"+rawPw);
 		
 		m.setMemberPw(pwEncoder.encode(rawPw));
-		System.out.println(m);
+		
+		
+	
+		
+		
 		
 		int result=service.memberEnroll(m);
 		String msg="";

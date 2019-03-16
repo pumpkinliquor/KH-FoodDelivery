@@ -191,7 +191,7 @@
 			<version>1.2</version>
 		</dependency>
 	
-		<!-- JsonView 등록 -->
+		<!-- jsonView 등록 -->
 		<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib-ext-spring -->
 		<dependency>
 		    <groupId>net.sf.json-lib</groupId>

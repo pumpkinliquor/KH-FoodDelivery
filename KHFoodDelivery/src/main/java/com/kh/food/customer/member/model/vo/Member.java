@@ -22,10 +22,12 @@ public class Member {
 	private int isAdmin;
 	private String profileImage;
 	private String formatBirth;
+	private String memberAddress1;
+
 	public Member(int memberNum, String memberId, String memberPw, String memberName, String memberAddress,
 			String memberBirth, String memberPhone, String memberEmail, String nickName, Date memberEnrollDate,
-			String memberGender, String mileage, int longitude, int atitude, int isAdmin,String profileImage,
-			String formatBirth) {
+			String memberGender, String mileage, int longitude, int atitude, int isAdmin, String profileImage,
+			String formatBirth, String memberAddress1) {
 		super();
 		this.memberNum = memberNum;
 		this.memberId = memberId;
@@ -44,6 +46,8 @@ public class Member {
 		this.isAdmin = isAdmin;
 		this.profileImage = profileImage;
 		this.formatBirth = formatBirth;
+		this.memberAddress1 = memberAddress1;
+	
 	}
 	public Member() {
 		super();
@@ -150,15 +154,26 @@ public class Member {
 	public void setFormatBirth(String formatBirth) {
 		this.formatBirth = formatBirth;
 	}
+	public String getMemberAddress1() {
+		return memberAddress1;
+	}
+	public void setMemberAddress1(String memberAddress1) {
+		this.memberAddress1 = memberAddress1;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [memberNum=" + memberNum + ", memberId=" + memberId + ", memberPw=" + memberPw + ", memberName="
 				+ memberName + ", memberAddress=" + memberAddress + ", memberBirth=" + memberBirth + ", memberPhone="
 				+ memberPhone + ", memberEmail=" + memberEmail + ", nickName=" + nickName + ", memberEnrollDate="
 				+ memberEnrollDate + ", memberGender=" + memberGender + ", mileage=" + mileage + ", longitude="
-				+ longitude + ", atitude=" + atitude + ", isAdmin=" + isAdmin + ", profileImage="
-				+ profileImage + ", formatBirth=" + formatBirth + "]";
+				+ longitude + ", atitude=" + atitude + ", isAdmin=" + isAdmin + ", profileImage=" + profileImage
+				+ ", formatBirth=" + formatBirth + ", memberAddress1=" + memberAddress1 + "]";
 	}
+	
+	
+	
+	
 	
 	
 	
