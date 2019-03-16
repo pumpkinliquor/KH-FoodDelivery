@@ -18,6 +18,8 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	
+	
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -27,15 +29,36 @@
 	
 	<context:component-scan base-package="com.kh.food" />
 	
-	<!-- JSON -->
+	<!-- 사장님 사이트 인터셉터 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/owner/oneVSoneForm.do"/>
+			<mapping path="/owner/myOneVSone.do"/>
+			<mapping path="/owner/storeForm.do"/>
+			<mapping path="/owner/oneVSoneView.do"/>
+			<beans:bean id="ownerInterceptor" class="com.kh.food.common.OwnerInterceptor"/>
+		</interceptor>
+	</interceptors>
+		 
+	 <!-- 파일업로드 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"/> <!-- 10메가 -->
+	</beans:bean>
+	 
+	 
+<!-- json 처리를 위한 jsonView 등록 -->
 	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="1"/>
 	</beans:bean>
 	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/>
-	 
-	 <!-- 파일업로드 -->
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="10485760"/> <!-- 10메가 -->
+	
+	<!-- jackson 처리를 위한 객체 등록 -->	
+	<beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<beans:property name="messageConverters"> <!-- s붙이면 list가능 -->
+			<beans:list>
+				<beans:bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></beans:bean>
+			</beans:list>
+		</beans:property>
 	</beans:bean>
 	 
 </beans:beans>

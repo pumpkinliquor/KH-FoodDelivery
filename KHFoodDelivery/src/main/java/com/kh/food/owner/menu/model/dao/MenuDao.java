@@ -9,7 +9,7 @@ public interface MenuDao {
 
 	int enrollCategory(Map<String, String> map);
 
-	int insertMenu(Menu m);
+	int insertMenu(Map<String, String> map);
 
 	int deleteCategory(String menuCategory);
 
@@ -20,5 +20,13 @@ public interface MenuDao {
 	int updateMenuPrice(Map<String, String> map);
 
 	int deleteMenu(String menuCode);
+
+	Map selectOneMenu(String menuCode);
+
+	int updateMenu(Menu m);
+
+	int updateMenuSoldOut(String menuCode);
+
+	int updateCancleSoldOut(String menuCode);
 
 }

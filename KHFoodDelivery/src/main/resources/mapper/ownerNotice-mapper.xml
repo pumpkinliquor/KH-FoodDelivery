@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ownerNotice">
+
+
+	  <!-- 공지사항 --> 
+	 
+	
+	
+	
+	
+	<!-- 사장 공지사항 리스트 -->
+	<select id="selectOwnerNoticeList" resultType="Map">
+	select a.*,(select count(*) from ownernotice_attachment where ownernoticenum=a.ownernoticenum) as
+	attachcount from ownernotice a order by ownernoticenum desc
+	</select>
+	
+	<!-- 페이징 -->
+	<select id="ownNotCount" resultType="_int">
+	select count(*) from ownernotice
+	</select>
+	<!-- 사장 공지사항 뷰 -->
+	<select id="selectOwnerNotice" resultType="Map" parameterType="_int">
+	select * from ownernotice where ownernoticenum=#{ownerNoticeNum}
+	</select>
+	<select id="selectOwnerAttach" resultType="Map" parameterType="_int">
+	select * from ownernotice_attachment where ownernoticenum=#{ownerNoticeNum}
+	</select>
+	
+	<!-- 사장 공지사항 삭제 -->
+	<delete id="deleteOwnerNotice" parameterType="_int">
+	delete from ownernotice where ownernoticenum=#{ownerNoticeNum}
+	</delete>
+	
+	
+	<!-- 사장 공지사항 등록 -->
+	<insert id="insertOwnerNotice" parameterType="Map">
+	insert into ownernotice values(seq_ownernoticenum.nextval, #{noticeTitle},sysdate,#{noticeContent})
+	<selectKey keyProperty="ownerNoticeNum" resultType="string" order="AFTER">
+		select seq_ownernoticenum.currval from dual
+	</selectKey>
+	</insert>
+	<insert id="insertOwnerNoticeAttach" parameterType="com.kh.food.owner.notice.attachment.vo.OwnerNoticeAttachment">
+	insert into OWNERNOTICE_ATTACHMENT values(seq_ownernoticeattachmentno.NEXTVAL,#{ownerNoticeNum},#{ownerOriginalFileName},#{ownerRenamedFileName},default,default)
+	</insert>
+	
+	<update id="ownerNoticeUpdateEnd" parameterType="map">
+	update ownernotice set OWNERNOTICETITLE=#{noticeTitle},OWNERNOTICECONTENT=#{noticeContent} where OWNERNOTICENUM=#{ownerNoticeNum}
+	</update>
+	
+	<update id="ownerNoticeAUpdateEnd" parameterType="com.kh.food.owner.notice.attachment.vo.OwnerNoticeAttachment">
+	update ownernotice_attachment set OWNERORIGINALFILENAME=#{ownerOriginalFileName}, OWNERRENAMEDFILENAME=#{ownerRenamedFileName} where ownernoticenum=#{ownerNoticeNum}
+	</update>
+</mapper>

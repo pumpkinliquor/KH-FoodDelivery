@@ -1,6 +1,7 @@
 package com.kh.food.customer.member.model.vo;
 
-import java.sql.Date;
+import java.util.Arrays;
+import java.util.Date;
 
 public class Member {
 
@@ -14,15 +15,17 @@ public class Member {
 	private String memberEmail;
 	private String nickName;
 	private Date memberEnrollDate;
-	private String gender;
+	private String memberGender;
 	private String mileage;
 	private int longitude;
-	private int latitude;
+	private int atitude;
 	private int isAdmin;
 	private String profileImage;
+	private String formatBirth;
 	public Member(int memberNum, String memberId, String memberPw, String memberName, String memberAddress,
 			String memberBirth, String memberPhone, String memberEmail, String nickName, Date memberEnrollDate,
-			String gender, String mileage, int longitude, int latitude, int isAdmin, String profileImage) {
+			String memberGender, String mileage, int longitude, int atitude, int isAdmin,String profileImage,
+			String formatBirth) {
 		super();
 		this.memberNum = memberNum;
 		this.memberId = memberId;
@@ -34,12 +37,13 @@ public class Member {
 		this.memberEmail = memberEmail;
 		this.nickName = nickName;
 		this.memberEnrollDate = memberEnrollDate;
-		this.gender = gender;
+		this.memberGender = memberGender;
 		this.mileage = mileage;
 		this.longitude = longitude;
-		this.latitude = latitude;
+		this.atitude = atitude;
 		this.isAdmin = isAdmin;
 		this.profileImage = profileImage;
+		this.formatBirth = formatBirth;
 	}
 	public Member() {
 		super();
@@ -104,11 +108,11 @@ public class Member {
 	public void setMemberEnrollDate(Date memberEnrollDate) {
 		this.memberEnrollDate = memberEnrollDate;
 	}
-	public String getGender() {
-		return gender;
+	public String getMemberGender() {
+		return memberGender;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setMemberGender(String memberGender) {
+		this.memberGender = memberGender;
 	}
 	public String getMileage() {
 		return mileage;
@@ -122,11 +126,11 @@ public class Member {
 	public void setLongitude(int longitude) {
 		this.longitude = longitude;
 	}
-	public int getLatitude() {
-		return latitude;
+	public int getAtitude() {
+		return atitude;
 	}
-	public void setLatitude(int latitude) {
-		this.latitude = latitude;
+	public void setAtitude(int atitude) {
+		this.atitude = atitude;
 	}
 	public int getIsAdmin() {
 		return isAdmin;
@@ -140,17 +144,25 @@ public class Member {
 	public void setProfileImage(String profileImage) {
 		this.profileImage = profileImage;
 	}
+	public String getFormatBirth() {
+		return formatBirth;
+	}
+	public void setFormatBirth(String formatBirth) {
+		this.formatBirth = formatBirth;
+	}
 	@Override
 	public String toString() {
 		return "Member [memberNum=" + memberNum + ", memberId=" + memberId + ", memberPw=" + memberPw + ", memberName="
 				+ memberName + ", memberAddress=" + memberAddress + ", memberBirth=" + memberBirth + ", memberPhone="
 				+ memberPhone + ", memberEmail=" + memberEmail + ", nickName=" + nickName + ", memberEnrollDate="
-				+ memberEnrollDate + ", gender=" + gender + ", mileage=" + mileage + ", longitude=" + longitude
-				+ ", latitude=" + latitude + ", isAdmin=" + isAdmin + ", profileImage=" + profileImage + "]";
+				+ memberEnrollDate + ", memberGender=" + memberGender + ", mileage=" + mileage + ", longitude="
+				+ longitude + ", atitude=" + atitude + ", isAdmin=" + isAdmin + ", profileImage="
+				+ profileImage + ", formatBirth=" + formatBirth + "]";
 	}
 	
 	
 	
 	
 	
+		
 }

@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,37 +16,51 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.admin.model.service.AppStoreService;
+import com.kh.food.common.PagingFactory;
+import com.kh.food.owner.member.controller.OwnerMemberController;
 import com.kh.food.owner.store.model.vo.Store;
 
 
 @Controller
 public class AppStoreController {
 
+	private Logger logger = LoggerFactory.getLogger(AppStoreController.class);
+	
 	@Autowired
 	AppStoreService service;
 
+	// 입점 신청 리스트
 	@RequestMapping("/admin/appStoreList.do")
-	public ModelAndView appStoreList(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView();
+	public ModelAndView appStoreList(@RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
 		
-		List<Store> appStoreList = service.selectAppStoreList();
+		ModelAndView mv = new ModelAndView();
+		int numPerPage=10;
+		int count = service.appStoreCount();
+		
+		List<Store> appStoreList = service.selectAppStoreList(cPage,numPerPage);
 		
 		// 입점 신청 날짜 포맷 (패턴 : yyyy-MM-dd)
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		
 		for(int i = 0; i < appStoreList.size(); i++) {
 			appStoreList.get(i).setFormatAppDate(df.format(appStoreList.get(i).getAppDate()));
 		}
 		
 		mv.addObject("appStoreList", appStoreList);
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/appStoreList.do"));
 		mv.setViewName("admin/appStoreList");		
 		return mv;
 		
 	}
 	
+	
+	// 입점 신청 정보 JSON 반환
 	@RequestMapping("/admin/selectAppStore.do")
 	@ResponseBody
-	public Store selectAppStore(@RequestParam("no") int no) {		
-		Store store = service.selectAppStore(no);
+	public Store selectAppStore(@RequestParam("no") int no) {	
+		
+		Store store = service.selectAppStore(no);				
+		
 		// 입점 신청 날짜 포맷 (패턴 : yyyy-MM-dd)
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");		
 		store.setFormatAppDate(df.format(store.getAppDate()));
@@ -52,6 +68,7 @@ public class AppStoreController {
 		return store;
 	}
 	
+	// 입점 승인
 	@RequestMapping("/admin/confirmApp.do")
 	public ModelAndView updateStoreConfirm(@RequestParam("no") int no) {
 		ModelAndView mv = new ModelAndView();

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ownerMember">
 	<insert id="insertOwner" parameterType="ownermember">
-		insert into owner values(SEQ_OWNERNUM.nextval , #{ownerId},#{ownerPw},#{ownerName},#{ownerPhone},#{ownerEmail},sysdate)
+		insert into owner values(SEQ_OWNERNUM.nextval , #{ownerId},#{ownerPw},#{ownerName},#{ownerPhone},#{ownerEmail},sysdate,sysdate)
 	</insert>
 	
 	<select id="selectLogin" parameterType="string" resultType="ownermember">
@@ -28,4 +28,8 @@
 	<select id="ownerCheckId" parameterType="string" resultType="_int">
 		select count(*) from owner where ownerId = #{ownerId}
 	</select>
+	
+	<update id="lastDate" parameterType="_int">
+		UPDATE OWNER SET LASTCONNECTIONDATE=SYSDATE WHERE OWNERNUM=#{ownerNum} 
+	</update>
 </mapper>

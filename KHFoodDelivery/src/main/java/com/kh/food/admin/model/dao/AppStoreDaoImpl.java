@@ -2,6 +2,7 @@ package com.kh.food.admin.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,13 +23,26 @@ public class AppStoreDaoImpl implements AppStoreDao {
 
 	// 입점 신청 리스트
 	@Override
-	public List<Store> selectAppStoreList() {
-		return session.selectList("store.selectAppStoreList");
+	public List<Store> selectAppStoreList(int cPage, int numPerPage) {
+		RowBounds rb = new RowBounds((cPage - 1) * numPerPage, numPerPage);
+		return session.selectList("store.selectAppStoreList", null, rb);
 	}
 
 	// 입점 신청 선택하여 모달 띄우기
 	@Override
 	public Store selectAppStore(int no) {
 		return session.selectOne("store.selectAppStore", no);
+	}
+
+	// 입점 신청 count
+	@Override
+	public int appStoreCount() {
+		return session.selectOne("store.selectAppStoreCount");
 	}	
+	
+	// 입점 신청 리스트
+	@Override
+	public List<Store> selectAppStoreList() {
+		return session.selectList("store.selectAppStoreList");
+	}
 }

@@ -49,7 +49,7 @@
         </c:if> 
         <c:if test="${sessionScope.ownerId != null }"> 
           <a href="${path }/owner/logout.do">로그아웃</a>
-          <a href="#">마이페이지</a>
+          <a href="${path }/owner/myPage.do">마이페이지</a>
          </c:if>
     </div>
   
@@ -74,18 +74,11 @@
       <li class="nav-item">
        <a class="nav-link" href="${path }/owner/customService.do">고객센터</a>
       </li>
-  
-      <!-- Dropdown -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-          MORE
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Link 1</a>
-          <a class="dropdown-item" href="#">Link 2</a>
-          <a class="dropdown-item" href="#">Link 3</a>
-        </div>
+  	  <li class="nav-item">
+       <a class="nav-link" href="${path }/owner/orderService.do">주문관리</a>
       </li>
+  
+
     </ul>
   </nav>
  </div>

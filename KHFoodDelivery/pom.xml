@@ -191,7 +191,7 @@
 			<version>1.2</version>
 		</dependency>
 	
-		<!-- JsonView 등록 -->
+		<!-- jsonView 등록 -->
 		<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib-ext-spring -->
 		<dependency>
 		    <groupId>net.sf.json-lib</groupId>
@@ -213,6 +213,15 @@
 		    <artifactId>mail</artifactId>
 		    <version>1.4.3</version>
 		  </dependency>
+			
+			
+		<!--  jackson 라이브러리 등록  -->
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.9.8</version>
+		</dependency>
 			
 		<!-- Test -->
 		<dependency>

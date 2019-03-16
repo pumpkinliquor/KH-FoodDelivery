@@ -1,57 +1,129 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 
+<style>
+	div#context-area{ min-height: 200px; }
+	button {
+		background-color: transparent;
+		border-color: transparent;
+	}
+</style>
+
+<script>
+	/* ëŒ“ê¸€ ì‚­ì œ */
+	function fn_deleteReview(){
+		location.href="${path}/admin/deleteMemberQnaReview.do?no=${mq.qnaCode}";
+	}
+	/* ëŒ“ê¸€ ìˆ˜ì • */
+	function fn_updateReview(){
+		$('#reviewUpdateModal').modal();		
+	}
+	/* ë¬¸ì˜ ê¸€ ì‚­ì œ */
+	function fn_deleteQna(){
+		location.href="${path}/admin/deleteMemberQna.do?no=${mq.qnaCode}";
+	}
+</script>
+
 <section>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-10">
-				<h4>Á¦¸ñ . ~~~~~~~~~~~~ ¹®ÀÇµå¸³´Ï´Ù.</h4>
+				<h4>${mq.qnaTitle }</h4>
 			</div>
 			<div class="col-sm-2">
-				<button>¸ñ·ÏÀ¸·Î</button>				
 			</div>
 			<div class="col-sm-2">
-				<p>ÀÛ¼ºÀÚ <b>ÁÖÈ«¹ü</b></p>
+				<p>ì¹´í…Œê³ ë¦¬ <b>${mq.qnaCategory }</b></p>
 			</div>
 			<div class="col-sm-2">
-				<p>2019-02-28 12:14</p>
+				<p>ì‘ì„±ì <b>${mq.memberId }</b></p>
 			</div>
-			<div class="col-sm-2">
-				<p>Á¶È¸ 12È¸</p>
+			<div class="col-sm-3">
+				<p>ì‘ì„±ì¼<b>${mq.formatWriteDate }</b></p>
 			</div>
-			<div class="col-sm-2">
-				<p>´ñ±Û 12°Ç</p>
-			</div>
-			<div class="col-sm-2"></div>
-			<div class="col-sm-2">
-				<button>¼öÁ¤</button>
-				<button>»èÁ¦</button>			
+			<div class="col-sm-3">				
+			</div>			
+			<div class="col-sm-2">			
+				<button type="button" class="btn" onclick="fn_deleteQna()">ì‚­ì œ</button>
+				<button type="button" class="btn" onclick="location.href='${path}/admin/memberQnaList.do'">ëª©ë¡ìœ¼ë¡œ</button>			
 			</div>	
 		</div>
+		<hr/>
 		<br/>	
 		<div class="row">			
-			<div class="col-sm-12">
-				±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä
-				±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä±Ã±İÇØ¿ä
+			<div class="col-sm-12" id="context-area">
+				<p>${mq.qnaContent }</p>
 			</div>
 			<div class="col-sm-2"></div>
 		</div>
-		<hr/>
-		<div class="row">
-			<div class="col-sm-1"></div>
-			<div class="col-sm-10">
-				<textarea rows="3" cols="100"></textarea>
-				<button>µî·Ï</button>
+		
+		<c:if test="${!empty mqr}">
+			<hr/>		
+			<div class="row">
+				<div class="col-sm-1">
+					<p><b>ê´€ë¦¬ì</b></p>
+				</div>
+				<div class="col-sm-9">
+					<p>${mqr.formatWriteDate }</p>
+				</div>				
+				<div class="col-sm-2">
+					<button class="btn float-right" onclick="fn_deleteReview()">ì‚­ì œ</button>
+					<button class="btn float-right" onclick="fn_updateReview()">ìˆ˜ì •</button>
+				</div>
+				<div class="col-sm-12">
+					<p>${mqr.reviewContext }</p>
+				</div>
 			</div>
-			<div class="col-sm-1"></div>
-		</div>
+		</c:if>
+		
+		<c:if test="${empty mqr }">
+			<hr/>
+			<form action="${path }/admin/insertMemberQnaRe.do" method="post">		
+				<div class="rounded row" style="border:1px solid rgb(173, 173, 173); padding-bottom:1em; padding-right:1em; padding-left:1em; padding-top:1em;">
+            		<div class="input-group col-sm-11">
+				       	<label for="reviewContext" style="margin-top:5px"> ëŒ“ê¸€ </label> &nbsp;
+            			<input type="hidden" name="qnaNo" value="${mq.qnaCode }"/>
+               			<input type="text" class="form-control" name="context" style="margin-right:1em;" placeholder="ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”.">
+         			</div>
+         			<div class="col-sm-1">
+         				<input type="submit" class="btn" value="ë“±ë¡"/>
+         			</div>
+        		</div>
+			</form>			
+		</c:if>
 	</div>
 </section>
 
-
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+
+
+<!-- ëª¨ë‹¬ êµ¬í˜„ -->
+<div class="modal" id="reviewUpdateModal" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">ëŒ“ê¸€ ìˆ˜ì •</h4>
+				<button type="button" class="close" data-dismiss="modal">Ã—</button>
+			</div>
+			<form action="${path}/admin/updateMemberQnaReview.do?no=${mq.qnaCode}" method="post">
+				<div class="modal-body" style="height: 200px;">
+					<table class="table">
+						<tr>
+							<th style="vertical-align: middle">ëŒ“ê¸€</th>
+							<td><textarea name="updateContext" class="form-control" style="resize: none" rows="6">${mqr.reviewContext }</textarea></td>						
+						</tr>						
+					</table>
+				</div>
+				<div class="modal-footer">
+					<input type="submit" class="btn btn-outline-success" value="ìˆ˜ì •"/>
+				</div>
+			</form>
+		</div>  
+	</div>
+</div>

@@ -11,16 +11,12 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>finalproject</title>
 </head>
 <body> 
 	<header>
-		<div class="headerDiv1">
-            <a href="#">로그인</a>
-            <a href="#">회원가입</a>
-        </div>
 		<nav class="navbar navbar-expand-sm  navbar-dark ">  
 			<!-- Links -->
 			<ul class="navbar-nav container ">
@@ -31,7 +27,7 @@
 					<a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">공지사항</a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="${path }/admin/memberNoticeList.do">회원 공지사항</a>
-						<a class="dropdown-item" href="${path }/owner/noticeList.do">사장님 공지사항</a>
+						<a class="dropdown-item" href="${path }/owner/ownerNoticeList.do">사장님 공지사항</a>
 					</div>
 				</li>
 				<li class="nav-item">

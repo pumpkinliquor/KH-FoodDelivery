@@ -13,9 +13,18 @@
 	</select>
 	
 	<!-- 입점 신청 store 모달 띄우기 -->
-	<select id="selectAppStore" resultType="store">
-		SELECT * FROM STORE
+	<select id="selectAppStore" resultType="store" parameterType="_int">
+		SELECT * FROM STORE WHERE businessCode = #{no}
 	</select>
+	
+	<!-- 입점 신청 Count -->
+	<select id="selectAppStoreCount" resultType="_int">
+		SELECT COUNT(*) FROM STORE WHERE isConfirm = 0
+	</select>
+	
+	<insert id="addStore" parameterType="map">
+		INSERT INTO STORE VALUES(SEQ_BUSINESSCODE.NEXTVAL, #{ownerId}, #{businessName}, #{businessPhone}, #{storeName}, #{storePhone}, #{storeAddress}, #{storeCategory}, #{reName}, #{minPrice}, #{storeProfile}, DEFAULT, SYSDATE, #{businessNum}, 5, 5)
+	</insert>
 		
 	<!-- resultMap : Store -->
 	<resultMap type="map" id="store"></resultMap>

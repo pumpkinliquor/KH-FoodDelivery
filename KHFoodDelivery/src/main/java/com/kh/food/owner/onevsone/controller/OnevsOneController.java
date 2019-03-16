@@ -18,26 +18,43 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.food.common.PagingFactory;
+import com.kh.food.owner.member.model.vo.Owner;
 import com.kh.food.owner.onevsone.model.service.OnevsOneService;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
-import com.kh.food.owner.onevsone.model.vo.OwnerQnaReview;
 
 @Controller
 public class OnevsOneController {
 
 	@Autowired
+	BCryptPasswordEncoder pwEncoder;
+	
+	@Autowired
 	OnevsOneService service;
 	
 	@RequestMapping("/owner/oneVSoneList.do")
-	public ModelAndView oneVSoneList(ModelAndView mv) {
+	public ModelAndView oneVSoneList(ModelAndView mv, @RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
 		
-		List<Map<String,String>> oneVSoneList=service.oneVSoneList();
+		int numPerPage=10;
 		
+		int count=service.qnaCount();
+		
+		List<Map<String,String>> oneVSoneList=service.oneVSoneList(cPage, numPerPage);
+//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//		for(int i = 0; i<oneVSoneList.size(); i++) {
+//			oneVSoneList.get(i).set(df.format(oneVSoneList.get(i).get("WRITEDATE")));
+//		}
+
+
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/owner/oneVSoneList.do"));
+		mv.addObject("qnaCount", count);
 		mv.addObject("oneVSoneList", oneVSoneList);
 		mv.setViewName("owner/oneVSoneList");
 		return mv;
@@ -68,7 +85,7 @@ public class OnevsOneController {
 		ArrayList<OwnerQnaAttachment> files=new ArrayList<OwnerQnaAttachment>();
 		
 		//저장경료
-		String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/owner/ownerAttach");
+		String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/owner/qnaAttach");
 		
 		for(MultipartFile f : upFile) {
 			if(!f.isEmpty()) {
@@ -112,14 +129,20 @@ public class OnevsOneController {
 	}
 	
 	@RequestMapping("/owner/myOneVSone.do")
-	public ModelAndView myOneVSone(String ownerId, ModelAndView mv) {
+	public ModelAndView myOneVSone(HttpServletRequest request, ModelAndView mv, @RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
 		
 //		System.out.println(ownerId);
 		
-		List<Map<String,String>> myQnaList=service.myQnaList(ownerId);
+		int numPerPage=10;
+		String ownerId=(String) request.getSession().getAttribute("ownerId");
+		int ownerNum=(int) request.getSession().getAttribute("ownerNum");
+		
+		int count=service.myQnaCount(ownerNum);
+		List<Map<String,String>> myQnaList=service.myQnaList(ownerId, cPage, numPerPage);
 		
 //		System.out.println(myQnaList);
-		
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/owner/myOneVSone.do"));
+		mv.addObject("myQnaCount", count);
 		mv.addObject("myQnaList", myQnaList);
 		mv.setViewName("owner/myQna");
 		return mv;
@@ -155,84 +178,7 @@ public class OnevsOneController {
 		return mv;
 	}
 	
-	@RequestMapping("/owner/qnaReviewForm.do")
-	public ModelAndView qnaReviewForm(ModelAndView mv, int qnaCode, int ownerNum, String reviewContext) throws Exception{
-		
-//		System.out.println(qnaCode+ownerNum+reviewContext);
-		
-		OwnerQnaReview oqr=new OwnerQnaReview(0,qnaCode,ownerNum,null,reviewContext);
-		
-		int result=service.qnaReviewForm(oqr);
-		
-		String msg="";
-		String loc="/owner/oneVSoneView.do?qnaCode="+qnaCode;
-		
-		if(result>0) {
-			msg="성공";
-		}
-		else {
-			msg="실패";
-		}
-		
-		mv.addObject("msg", msg);
-		mv.addObject("loc", loc);
-		
-		mv.setViewName("common/msg");
-		
-		return mv;
-	}
 	
-	@RequestMapping("/owner/reviewUpdate.do")
-	public ModelAndView qnaReviewUpdate(ModelAndView mv,int qnaCode, int reQnaReviewCode, String updateContext) {
-		Map<String,Object> reviewUp=new HashMap<String, Object>();
-		reviewUp.put("reQnaReviewCode", reQnaReviewCode);
-		reviewUp.put("updateContext", updateContext);
-		
-//		System.out.println(qnaCode);
-//		System.out.println(reviewUp);
-		
-		int result=service.qnaReviewUpdate(reviewUp);
-		
-		String msg="";
-		String loc="/owner/oneVSoneView.do?qnaCode="+qnaCode;
-		
-		if(result>0) {
-			msg="성공";
-		}
-		else {
-			msg="실패";
-		}
-		
-		mv.addObject("msg", msg);
-		mv.addObject("loc", loc);
-		
-		mv.setViewName("common/msg");
-		
-		return mv;
-	}
-	
-	@RequestMapping("/owner/reviewDelete.do")
-	public ModelAndView qnaReviewDelete(ModelAndView mv, int qnaCode, int qnaReviewCode) {
-
-		int result=service.qnaReviewDelete(qnaReviewCode);
-		
-		String msg="";
-		String loc="/owner/oneVSoneView.do?qnaCode="+qnaCode;
-		
-		if(result>0) {
-			msg="성공";
-		}
-		else {
-			msg="실패";
-		}
-		
-		mv.addObject("msg", msg);
-		mv.addObject("loc", loc);
-		
-		mv.setViewName("common/msg");
-		
-		return mv;
-	}
 	
 	@RequestMapping("/owner/fileDownLoad.do")
 	public void fileDownLoad(String oriName, String reName, HttpServletRequest request, HttpServletResponse response) {
@@ -240,7 +186,7 @@ public class OnevsOneController {
 		BufferedInputStream bis=null;
 		ServletOutputStream sos=null;
 		boolean fileCheck=true;
-		String dir=request.getSession().getServletContext().getRealPath("resources/upload/owner/ownerAttach");
+		String dir=request.getSession().getServletContext().getRealPath("resources/upload/owner/qnaAttach");
 		File savedFile=new File(dir+"/"+reName); //경로
 		try {
 			FileInputStream fis=new FileInputStream(savedFile);
@@ -309,5 +255,85 @@ public class OnevsOneController {
 			}
 			out.println("<script>alert('선택 하신 파일을 찾을 수 없습니다.'); history.go(-1);</script>");
 		}
+	}
+	
+	@RequestMapping("/owner/qnaDelete.do")
+	public ModelAndView qnaDelete(ModelAndView mv, int qnaCode) {
+		
+		System.out.println(qnaCode);
+		
+		int result=service.qnaDelete(qnaCode);
+		String msg="";
+		String loc="/owner/oneVSoneList.do";
+		
+		if(result>0) {
+			msg="성공";
+		}
+		else {
+			msg="실패";
+		}
+		
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		
+		mv.setViewName("common/msg");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/owner/myPage.do")
+	public ModelAndView myPage(HttpServletRequest request, ModelAndView mv) {
+		int ownerNum=(int) request.getSession().getAttribute("ownerNum");
+		
+		Owner owner=service.selectMyPage(ownerNum);
+		
+		int qnaCount=service.selectQnaCount(ownerNum);
+		int reviewCount=service.selectReCount(ownerNum);
+		int ownerReviewCount=service.selectOwnerReCount(ownerNum);
+		
+		mv.addObject("owner", owner);
+		mv.addObject("qnaCount", qnaCount);
+		mv.addObject("ownerReviewCount", ownerReviewCount);
+		mv.addObject("reviewCount", reviewCount);
+		
+		mv.setViewName("owner/ownerMyPage");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/owner/myPageUpdate.do")
+	public ModelAndView updateMyPage(HttpServletRequest request, ModelAndView mv, String ownerId, String ownerPw, String ownerName, String ownerPhone, String ownerEmail) {
+		
+		
+		String ownerRePw=pwEncoder.encode(ownerPw);
+		int ownerNum=(int) request.getSession().getAttribute("ownerNum");
+		Map<String,Object> owner=new HashMap<>();
+		
+		owner.put("ownerNum", ownerNum);
+		owner.put("ownerId", ownerId);
+		owner.put("ownerRePw", ownerRePw);
+		owner.put("ownerName", ownerName);
+		owner.put("ownerPhone", ownerPhone);
+		owner.put("ownerEmail", ownerEmail);
+		System.out.println(owner);
+		
+		int result=service.updateMyPage(owner);
+		
+		String msg="";
+		String loc="/owner/myPage.do";
+		
+		if(result>0) {
+			msg="성공";
+		}
+		else {
+			msg="실패";
+		}
+		
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		
+		mv.setViewName("common/msg");
+		
+		return mv;
 	}
 }

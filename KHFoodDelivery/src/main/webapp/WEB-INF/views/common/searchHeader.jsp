@@ -20,18 +20,50 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-</head>
+<style>
 
+div.newsletter div.search1{text-align:center; margin-top:0.25%;}   
+
+div.newsletter div.search1 .btn{background-color:#F6F6F6;}
+div.newsletter div.search1 .btn:hover{background-color:#8C8C8C; color:white;}
+div.group{text-align:center; box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);background-color:#F6F6F6; margin-top:1%; padding:0; display:none;}
+div.group1{margin-top:1%;text-align:center;box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);padding:0;background-color:#F6F6F6;} 
+div.newsletter,div.group{display:inline-block;}
+ @media (max-width:843px){
+	div.group{
+	 display:none; 
+	}
+	
+}
+@media (min-width:843px){
+	div.group1{
+	
+	display:none;
+	}
+	
+} 
+</style>
+</head>
 <body>
 
-<header>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c&libraries=services"></script>
+
+
+
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c&libraries=services"></script> 
+
+
 
 
    
    <script>
+
+	
+
+
+
     $(document).ready(function () {
-      $("#positionBtn").click(function(){
+    	$("#positionBtn").click(function(){
             function getLocation() {
                 if (navigator.geolocation) { // GPS를 지원하면
                     navigator.geolocation.getCurrentPosition(function(position) {
@@ -66,7 +98,7 @@
                             var infoDiv = document.getElementById('centerAddr1');
                             
                             $('#location').val(result[0].address.address_name);
-                            infoDiv.innerHTML = '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+                            /* infoDiv.innerHTML = '<div>지번 주소 : ' + result[0].address.address_name + '</div>'; */
                          
                         }   
                     });
@@ -131,7 +163,7 @@
                 }
  
                 // 주소 정보를 해당 필드에 넣는다.
-                document.getElementById("location").value = fullAddr;
+              $('#location').val(fullAddr);
                 // 주소로 상세 정보를 검색
                 geocoder.addressSearch(data.address, function(results, status) {
                     // 정상적으로 검색이 완료됐으면
@@ -141,18 +173,19 @@
  
                         // 해당 주소에 대한 좌표를 받아서
                         var coords = new daum.maps.LatLng(result.y, result.x);
+                        console.log(coords);
                        
                      
                     }
                 });
             }
          }).open(); 
-    }
+    } 
   
 
 
    //헤더 고정 
-   $(function(){
+/*    $(function(){
       $(window).scroll(function(){
          var num = $(this).scrollTop();
       
@@ -162,7 +195,7 @@
             $(".newsletter").css("position","absolute");
          }
       });
-   });
+   }); */
    //배달의민족 클릭시 메인으로
    function mainpage(){
       location.href="${path }";
@@ -170,15 +203,7 @@
    
    
    </script>
-<style>
- 
-div.newsletter div.search1{text-align:center; margin-top:0.25%;}   
-button{outline:0; border:0;}
-div.newsletter div.search1 .btn{background-color:#F6F6F6;}
-div.newsletter div.search1 .btn:hover{background-color:#8C8C8C; color:white;}
-div.group{text-align:center; box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);background-color:#F6F6F6; margin-top:1%; padding:0; display:none;} 
-div.newsletter,div.group{display:inline-block;}
-</style>
+
 
 
 
@@ -195,7 +220,7 @@ div.newsletter,div.group{display:inline-block;}
               </c:if> 
                <c:if test="${sessionScope.logined!=null}">
                <a href="${path }/customer/logout.do">로그아웃</a>
-               <a href="#">마이페이지</a>
+               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}">마이페이지</a>
                
              
               </c:if> 
@@ -219,21 +244,84 @@ div.newsletter,div.group{display:inline-block;}
                 
                 </div> 
                 </div>
-                   <div class="group col-md-12 col-lg-12 ">
-                <div class="btn-group btn-group-lg search1"  >
-              <button type="button" class="btn btn-default">돈까스</button>
-              <button type="button" class="btn btn-default">프랜차이즈</button>
-              <button type="button" class="btn btn-default">치킨</button>
-              <button type="button" class="btn btn-default">피자</button>
-              <button type="button" class="btn btn-default">중국집</button>
-              <button type="button" class="btn btn-default">한식</button>
-              <button type="button" class="btn btn-default">족발/보쌈</button>
-              <button type="button" class="btn btn-default">분식</button>
-              <button type="button" class="btn btn-default">디저트</button>
+                <div class="group1  col-md-12 col-lg-12">
+                	 <select class="form-control" name="menuSearch" id="menuSearch" onchange="window.open(value,'_self');">
+					            <option  disabled selected>메뉴검색</option>
+					            <option value="${path}/customer/selectallstore.do">전체보기</option>
+					            <option value="${path}/customer/searchmenuView?category=돈까스">돈까스</option> 
+					            <option value="${path}/customer/searchmenuView?category=프랜차이즈">프랜차이즈</option>
+					            <option value="${path}/customer/searchmenuView?category=치킨">치킨</option>
+					            <option value="${path}/customer/searchmenuView?category=피자">피자</option>
+					            <option value="${path}/customer/searchmenuView?category=중국집">중국집</option>
+					            <option value="${path}/customer/searchmenuView?category=한식">한식</option>
+					            <option value="${path}/customer/searchmenuView?category=족발/보쌈">족발/보쌈</option>
+					            <option value="${path}/customer/searchmenuView?category=분식">분식</option>
+					            <option value="${path}/customer/searchmenuView?category=디저트">디저트</option>
+					            </select>
+                
+                </div>
+                   <div class="group col-md-12 col-lg-12">
+                <div class="btn-group btn-group-lg search1">
+               <button type="button" class="btn btn-default" onclick="allview();">전체보기</button> 
+              <button type="button" class="btn btn-default" onclick="don();">돈까스</button>
+              <button type="button" class="btn btn-default" onclick="fre();">프랜차이즈</button>
+              <button type="button" class="btn btn-default" onclick="chi();">치킨</button>
+              <button type="button" class="btn btn-default" onclick="piz();">피자</button>
+              <button type="button" class="btn btn-default" onclick="chi();">중국집</button>
+              <button type="button" class="btn btn-default" onclick="kor();">한식</button>
+              <button type="button" class="btn btn-default" onclick="jok();">족발/보쌈</button>
+              <button type="button" class="btn btn-default" onclick="base();">분식</button>
+              <button type="button" class="btn btn-default" onclick="des();">디저트</button>
                </div>     
                </div>          
        </div>
-                 <div id="map" style="width:300px;height:300px;"></div>
+
+                 <div id="map" style="width:300px;height:300px;"></div> 
+
+                 <script>
+                 	function allview(){
+                 		location.href="${path}/customer/selectallstore.do";
+                 	}
+                 	function don(){
+                 		location.href="${path}/customer/searchmenuView?category=돈까스"; 
+                 	}
+                 	
+                 	function fre(){
+                 		location.href="${path}/customer/searchmenuView?category=프랜차이즈"; 
+                 	}
+                 	
+                 	function chi(){
+                 		location.href="${path}/customer/searchmenuView?category=치킨"; 
+                 	}
+                 	
+                 	function piz(){
+                 		location.href="${path}/customer/searchmenuView?category=피자"; 
+                 	}
+                 	
+                 	function chi(){
+                 		location.href="${path}/customer/searchmenuView?category=중국집"; 
+                 	}
+                 	
+                 	function kor(){
+                 		location.href="${path}/customer/searchmenuView?category=한식"; 
+                 	}
+                 	
+                 	function jok(){
+                 		location.href="${path}/customer/searchmenuView?category=족발/보쌈"; 
+                 	}
+                 	
+                 	function base(){
+                 		location.href="${path}/customer/searchmenuView?category=분식"; 
+                 	}
+                 	
+                 	function des(){
+                 		location.href="${path}/customer/searchmenuView?category=디저트"; 
+                 	}
+                 
+                 
+                 
+                 </script>
+
  
-</header>
+
                             

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -11,100 +11,159 @@
 	div#qnaList{ margin-top: 15px; }
 	thead#tableHead{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); }
 	.pnt{ cursor: pointer; }
-	div#qna-search{ margin-top: 20px; }
-	div#qna-sort{ float: right; }
 	table#qnaTable{ table-layout: fixed; word-wrap: break-word; }
 	table#qnaTable th, table#qnaTable td{ text-align: center; vertical-align: middle; }
-	
+	div#qna-category{display: inline; margin-top: 20px;}
+	select{display: inline; margin-top: 20px;}
+	div#qna-search{display: inline; margin-top: 20px; float: right;}
+	div#qna-sort{ float: left; margin-top: 20px;}
 	table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
 	table#table-sort th{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); border: 1px solid #444444; padding: 0; }
 	table#table-sort td{ border: 1px solid #444444; padding: 0; }
-	
-	input[type=checkbox], input[type=radio] {  }
-	input[type=checkbox]:checked, input[type=radio]:checked {background: #ffffff;}
-		
+	input[type=checkbox], input[type=radio] {display: none; }
 </style>
 
-<script>
-	function fn_qnaView(){
-		location.href="${path}/admin/memberQnaView.do";
-	}
+<script>	
+	function fn_qnaView(no){
+		location.href="${path}/admin/memberQnaView.do?no="+no;		
+	}		
 </script>
 
 <section>
 	<div class="container">	
-		<h4 id="titleText">È¸¿ø ¹®ÀÇ ³»¿ª </h4>
+		<h4 id="titleText">íšŒì› ë¬¸ì˜ ë‚´ì—­ </h4>
 		
-		<div class="row">			
-			<div class="col-sm-6">
-				<div class="input-group" id="qna-search">
-					<form class="form-controll navbar-right" role="search" action="" method="get">
-						<div class="form-group">
-							<div class="input-group">
-								<input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä"/>
+		<form class="form-controll navbar-right" role="search" action="${path }/admin/searchMemberQna.do" method="post">
+			<div class="row">
+				<div class="col-sm-4">
+					<div id="qna-sort">
+						<div class="btn-group" data-toggle="buttons">
+							<label class="btn btn-secondary active">
+								<input type="radio" name="isRe" id="all" value="3" autocomplete="off" checked> ì „ì²´
+							</label>
+							<label class="btn btn-secondary">
+								<input type="radio" name="isRe" id="complete" value="1" autocomplete="off"> ì™„ë£Œ 
+							</label>
+							<label class="btn btn-secondary">
+								<input type="radio" name="isRe" id="incomplete" value="0" autocomplete="off"> ëŒ€ê¸° 
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3"></div>
+				<div class="col-sm-1">
+					<div id="qna-category" class="form-group">
+						<select class="form-control" name="category" style="width: auto">
+							<option value="ì „ì²´">ì „ì²´</option>
+							<option value="ê²°ì œ">ê²°ì œ</option>
+							<option value="íšŒì›">íšŒì›</option>
+							<option value="ì£¼ë¬¸">ì£¼ë¬¸</option>
+							<option value="í¬ì¸íŠ¸">í¬ì¸íŠ¸</option>
+							<option value="ë¦¬ë·°">ë¦¬ë·°</option>
+						</select>	
+					</div>	
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group" id="qna-search">			
+						<div class="form-group">						
+							<div class="input-group">														
+								<input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”"/>
+								<input type="hidden" name="isFirst" value="1"/>
 								<span class="input-group-btn">
-									<button type="submit" class="btn btn-default" id="searchBar">°Ë»ö</button>
+									<input type="submit" class="btn btn-default" id="searchBar" value="ê²€ìƒ‰"/>
 								</span>
 							</div>
 						</div>
-					</form>
-				</div>
-			</div>			
-			<div class="col-sm-6">
-				<div id="qna-sort">
-					<form action="" method="get">
-						<table id="table-sort">
-							<tbody>
-								<tr>
-									<th>´äº¯</th>
-									<td><input type="radio" id="radio1" name="radios" value="all" checked/><label for="radio1">ÀüÃ¼</label></td>
-									<td><input type="radio" id="radio2" name="radios" value="complete"/><label for="radio2">¿Ï·á</label></td>
-									<td><input type="radio" id="radio3" name="radios" value="incomplete"/><label for="radio3">´ë±â</label></td>														
-								</tr>
-								<tr>
-									<th>Ä«Å×°í¸®</th>
-									<td><input type="checkbox" id="chk1" checked/><label for="chk1">ÀüÃ¼</label></td>
-									<td><input type="checkbox" id="chk2"/><label for="chk2">°áÁ¦</label></td>
-									<td><input type="checkbox" id="chk3"/><label for="chk3">È¸¿ø</label></td>
-									<td><input type="checkbox" id="chk4"/><label for="chk4">ÁÖ¹®</label></td>
-									<td><input type="checkbox" id="chk5"/><label for="chk5">Æ÷ÀÎÆ®</label></td>
-									<td><input type="checkbox" id="chk6"/><label for="chk6">¸®ºä</label></td>
-								</tr>
-							</tbody>
-						</table>
-					</form>
-				</div>	
+					</div>
+				</div>		
 			</div>
-			</div>
+		</form>
 			
-			
-			<div id="qnaList">
-				<table class="table table-hover" id="qnaTable">
-					<thead id="tableHead">
-						<tr>	
-							<th>Ä«Å×°í¸®</th>	
-							<th style="width: 60%">Á¦¸ñ</th>
-							<th>ÀÛ¼ºÀÚ</th>
-							<th>³¯Â¥</th>	
-							<th>´äº¯¿©ºÎ</th>						
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach begin="1" end="5">
-							<tr class="pnt" onclick="fn_qnaView()">
-								<td>°áÁ¦</td>
-								<td>¾È³ç</td>
-								<td>ÁÖÈ«¹ü</td>
-								<td>2019-02-26</td> 
+		<!-- ë¬¸ì˜ í…Œì´ë¸” -->
+		<div id="qnaList">
+			<table class="table table-hover" id="qnaTable">
+				<thead id="tableHead">
+					<tr>	
+						<th>ì¹´í…Œê³ ë¦¬</th>	
+						<th style="width: 60%">ì œëª©</th>
+						<th>ì‘ì„±ì</th>
+						<th>ë‚ ì§œ</th>	
+						<th>ë‹µë³€ì—¬ë¶€</th>						
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${mqList}" var="mq">
+						<tr class="pnt" onclick="fn_qnaView(${mq.qnaCode})">
+							<td><c:out value="${mq.qnaCategory }"/></td>
+							<td><c:out value="${mq.qnaTitle }"/></td>
+							<td><c:out value="${mq.memberId }"/></td>
+							<td><c:out value="${mq.formatWriteDate }"/></td>
+							<c:if test="${mq.isRe eq 0}">
+								<td><img src="${path }/resources/images/admin/incomplete.png" width="30px" height="30px"/></td>
+							</c:if>
+							<c:if test="${mq.isRe > 0 }">
 								<td><img src="${path }/resources/images/admin/complete.png" width="30px" height="30px"/></td>
-								<%-- <td><img src="${path }/resources/images/admin/incomplete.png" width="30px" height="30px"/></td> --%>
-							</tr>				
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
+							</c:if>
+						</tr>				
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+		<div class="paging">
+			${pageBar}
 		</div>
 	</div>
 </section>
+
+
+
+
+						<!-- <table id="table-sort">
+							<tbody>
+								<tr>
+									<th>ë‹µë³€ìƒíƒœ </th>
+									<td>
+										<div class="btn-group" data-toggle="buttons">
+											<label class="btn btn-secondary active">
+												<input type="radio" name="isRe" id="all" value="3" autocomplete="off" checked> ì „ì²´
+											</label>
+											<label class="btn btn-secondary">
+												<input type="radio" name="isRe" id="complete" value="1" autocomplete="off"> ì™„ë£Œ 
+											</label>
+											<label class="btn btn-secondary">
+												<input type="radio" name="isRe" id="incomplete" value="0" autocomplete="off"> ëŒ€ê¸° 
+											</label>
+										</div>														
+									</td>
+								</tr>
+								<tr>
+									<th>ì¹´í…Œê³ ë¦¬</th>
+									<td>				
+										<div class="btn-group" data-toggle="buttons">
+											<label class="btn btn-secondary active">
+												<input type="checkbox" name="category" value="ì „ì²´" autocomplete="off" id="all" checked> ì „ì²´
+											</label>
+										</div>
+										<div class="btn-group" data-toggle="buttons">
+											<label id="cate" class="btn btn-secondary active">
+												<input type="checkbox" name="category" value="ê²°ì œ" autocomplete="off" checked> ê²°ì œ
+											</label>
+											<label id="cate" class="btn btn-secondary active">
+												<input type="checkbox" name="category" value="íšŒì›" autocomplete="off" checked> íšŒì›
+											</label>
+											<label id="cate" class="btn btn-secondary active">
+												<input type="checkbox" name="category" value="ì£¼ë¬¸" autocomplete="off" checked> ì£¼ë¬¸
+											</label>
+											<label id="cate" class="btn btn-secondary active">
+												<input type="checkbox" name="category" value="í¬ì¸íŠ¸" autocomplete="off" checked> í¬ì¸íŠ¸
+											</label>
+											<label id="cate" class="btn btn-secondary active">
+												<input type="checkbox" name="category" value="ë¦¬ë·°" autocomplete="off" checked> ë¦¬ë·°
+											</label>
+										</div>
+									</td>
+								</tr> 
+							</tbody>
+						</table>	 -->	
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

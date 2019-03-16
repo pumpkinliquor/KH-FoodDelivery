@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -24,12 +24,12 @@
 
 <script> 
 	function fn_modal(num){		
-		console.log(num);
 		$.ajax({
 			type: "POST",
 			url: "${path}/admin/selectAppStore.do?no=" + num,
 			data: JSON,
 			success: function(data){
+				console.log(data);
 				$('#storeModal').modal();
 				$('#mdCategory').val(data.storeCategory);
 				$('#mdName').val(data.storeName)
@@ -39,6 +39,7 @@
 				$('#mdAppDate').val(data.formatAppDate);
 				$('#mdProfile').val(data.storeProfile);
 				$('#mdBsCode').val(data.businessCode);
+				$('#mdImage').empty().append('<img src="${path}/resources/upload/owner/storeMainImage/'+data.storeImage+'" style="width:330px;"/>');
 			}
 		});
 	}
@@ -51,17 +52,17 @@
 <section>
 	<div class="container">	
 		<div>
-			<h4>ÀÔÁ¡ ½ÅÃ» ÇöÈ²</h4>
+			<h4>ì…ì  ì‹ ì²­ í˜„í™©</h4>
 		</div>
 		<div>
 			<table class="table table-hover">
 				<thead id="tableHead">
 					<tr>			
-						<th>¾÷Á¾</th>
-						<th>Á¡Æ÷¸í</th>
-						<th>Á¡ÁÖ¸í</th>
-						<th>ÁÖ¼Ò</th>
-						<th>ÀÔÁ¡ ½ÅÃ»ÀÏ</th>
+						<th>ì—…ì¢…</th>
+						<th>ì í¬ëª…</th>
+						<th>ì ì£¼ëª…</th>
+						<th>ì£¼ì†Œ</th>
+						<th>ì…ì  ì‹ ì²­ì¼</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -79,6 +80,9 @@
 				</tbody>
 			</table>
 		</div>
+		<div class="paging">
+			${pageBar}
+		</div>
 	</div>
 </section>
 
@@ -89,58 +93,61 @@
 
 
 
-<!-- ¸ğ´Ş ±¸Çö -->
+<!-- ëª¨ë‹¬ êµ¬í˜„ -->
 <div class="modal" id="storeModal" role="dialog">
 	<div class="modal-dialog">
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">°¡°Ô Á¤º¸</h4>
-				<button type="button" class="close" data-dismiss="modal">¡¿</button>
+				<h4 class="modal-title">ê°€ê²Œ ì •ë³´</h4>
+				<button type="button" class="close" data-dismiss="modal">Ã—</button>
 			</div>
-			<div class="modal-body" style="height: 1000px;">
+			<div class="modal-body" style="height: auto;">
 				<table class="table">
 					<tr>
-						<th>¾÷Á¾</th>
+						<th>ì—…ì¢…</th>
 						<td><input class="form-control" type="text" id="mdCategory" readonly/></td>						
 					</tr>
 					<tr>
-						<th>Á¡Æ÷¸í</th>
+						<th>ì í¬ëª…</th>
 						<td><input class="form-control" type="text" id="mdName" readonly/></td>
 					</tr>
 					<tr>
-						<th>Á¡ÁÖ¸í</th>
+						<th>ì ì£¼ëª…</th>
 						<td><input class="form-control" type="text" id="mdOwner" readonly/></td>
 					</tr>
 					<tr>
-						<th>¿¬¶ôÃ³</th>
+						<th>ì—°ë½ì²˜</th>
 						<td><input class="form-control" type="text" id="mdPhone" readonly/></td>
 					</tr>
 					<tr>
-						<th>ÁÖ¼Ò</th>
+						<th>ì£¼ì†Œ</th>
 						<td><input class="form-control" type="text" id="mdAddress" readonly/></td>
 					</tr>
 					<tr>
-						<th>ÀÔÁ¡ ½ÅÃ»ÀÏ</th>
+						<th>ì…ì  ì‹ ì²­ì¼</th>
 						<td><input class="form-control" type="text" id="mdAppDate" readonly/></td>
 					</tr>	
 					<tr>
-						<th>°¡°Ô ¼Ò°³</th>					
+						<th>ê°€ê²Œ ì†Œê°œ</th>					
 						<td><textarea cols="10" rows="4" class="form-control" id="mdProfile" style="resize: none" readonly></textarea></td> 
+					</tr>
+					<tr>
+						<th>ì—…ì†Œì´ë¯¸ì§€</th>
+						<td id="mdImage"></td> 
 					</tr>
 					<tr id="btnGroup">
 						<td colspan='2' align="center">
 							<form action="${path}/admin/confirmApp.do" method="post">
 								<input type="hidden" name="no" id="mdBsCode"/>
-								<input type="submit" class="btn btn-outline-success" value="½ÂÀÎ"/>
-								<button type="button" class="btn btn-outline-danger" data-dismiss="modal">°ÅÀı</button>
+								<input type="submit" class="btn btn-outline-success" value="ìŠ¹ì¸"/>
 							</form>
 						</td>
 					</tr>
 				</table>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">´İ±â</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">ë‹«ê¸°</button>
 			</div>
 		</div>  
 	</div>

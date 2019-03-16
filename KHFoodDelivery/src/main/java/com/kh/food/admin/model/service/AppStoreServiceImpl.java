@@ -22,13 +22,25 @@ public class AppStoreServiceImpl implements AppStoreService{
 
 	// 입점 신청 리스트
 	@Override
-	public List<Store> selectAppStoreList() {
-		return dao.selectAppStoreList();
+	public List<Store> selectAppStoreList(int cPage, int numPerPage) {
+		return dao.selectAppStoreList(cPage, numPerPage);
 	}
 	
 	// 입점 신청 선택하여 모달 띄우기
 	@Override
 	public Store selectAppStore(int no) {
 		return dao.selectAppStore(no);
-	}	
+	}
+
+	// 입점 신청 count
+	@Override
+	public int appStoreCount() {
+		return dao.appStoreCount();
+	}
+
+	// 입점 신청 리스트
+	@Override
+	public List<Store> selectAppStoreList() {
+		return dao.selectAppStoreList();
+	}		
 }
