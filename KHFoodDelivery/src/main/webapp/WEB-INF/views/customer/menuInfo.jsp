@@ -329,7 +329,7 @@
                            	합계 : 30,000원
                         </div>
                         <div class="cart-btn clearfix" style="clear:both;">
-                            <a onclick="" class="btu">주문하기</a>
+                            <a href="${path}/customer/pay.do" class="btu">주문하기</a>
                         </div>
                     </div>
                 </div>

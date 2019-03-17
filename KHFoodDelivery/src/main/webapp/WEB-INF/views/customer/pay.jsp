@@ -22,7 +22,7 @@ IMP.request_pay({
     buyer_tel : '010-1234-5678', //번호도
     buyer_addr : '서울특별시 강남구 역삼동 KH정보교육원', //주소도
     buyer_postcode : '123-456',
-    m_redirect_url : '/'
+    m_redirect_url : '/' //주문완료 창 생기면 
 }, function(rsp) {
     if ( rsp.success ) {
         var msg = '결제가 완료되었습니다.';
