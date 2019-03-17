@@ -268,7 +268,7 @@ div.newsletter,div.group{display:inline-block;}
               <button type="button" class="btn btn-default" onclick="fre();">프랜차이즈</button>
               <button type="button" class="btn btn-default" onclick="chi();">치킨</button>
               <button type="button" class="btn btn-default" onclick="piz();">피자</button>
-              <button type="button" class="btn btn-default" onclick="chi();">중국집</button>
+              <button type="button" class="btn btn-default" onclick="jun();">중국집</button>
               <button type="button" class="btn btn-default" onclick="kor();">한식</button>
               <button type="button" class="btn btn-default" onclick="jok();">족발/보쌈</button>
               <button type="button" class="btn btn-default" onclick="base();">분식</button>
@@ -299,7 +299,7 @@ div.newsletter,div.group{display:inline-block;}
                  		location.href="${path}/customer/searchmenuView?category=피자"; 
                  	}
                  	
-                 	function chi(){
+                 	function jun(){
                  		location.href="${path}/customer/searchmenuView?category=중국집"; 
                  	}
                  	
