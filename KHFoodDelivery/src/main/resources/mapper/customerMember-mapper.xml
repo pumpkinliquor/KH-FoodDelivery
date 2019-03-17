@@ -87,6 +87,12 @@
 		select mq.*, m.memberId from member_qna mq JOIN member m ON(mq.memberNum = m.memberNum) where MEMBERID=#{memberId}
 	</select>
 
-
+	<insert id="kakaoLogin" parameterType="map">
+			insert into member values(SEQ_MEMBERNUM.nextval,#{id},default,default,default,default,0,0,#{nickName},default,default,default,default,0,0,default,default)
+	</insert>
+	
+	<update id="kakaoEnrollEnd" parameterType="member">
+		update member set memberName=#{memberName},memberBirth=#{memberBirth} , memberEmail=#{memberEmail}, memberPhone=#{memberPhone},memberAddress=#{memberAddress},memberAddress1=#{memberAddress1},memberGender=#{memberGender} where memberId=#{memberId}
+	</update>
 
 </mapper>

@@ -129,5 +129,16 @@ public class MemberDaoImpl implements MemberDao {
 	public Menu menuSelect(int menuCode) {
 		return sqlSession.selectOne("menu.menuSelect", menuCode);
 	}
+
+	@Override
+	public int kakaoLogin(Map<String, String> map) {
+		return sqlSession.insert("member.kakaoLogin",map);
+	}
+
+	@Override
+	public int kakaoEnrollEnd(Member m) {
+		return sqlSession.update("member.kakaoEnrollEnd",m);
+	}
+	
 	
 }

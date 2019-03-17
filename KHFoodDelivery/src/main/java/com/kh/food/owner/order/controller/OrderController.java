@@ -113,6 +113,7 @@ public class OrderController {
 		logger.debug("페이오더넘버"+payOrderNum);
 		List list = service.selectPayOrderNum(payOrderNum);
 		logger.debug("페이오더넘버리스트"+list);
+		
 		return list;
 	}
 	

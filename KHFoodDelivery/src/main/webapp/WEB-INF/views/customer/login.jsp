@@ -91,8 +91,58 @@ background-color: transparent;
 	border-color: transparent;
 	color:gray;
 }
+
+.modal.modal-center {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) { 
+  .modal.modal-center:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog.modal-80size {
+  width: 100%;
+  height: 80%;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-content.modal-80size {
+  height: auto;
+  min-height: 80%;
+}
+
+.modal.modal-center {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .modal.modal-center:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog.modal-center {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
 </style>
  <script>
+ 		$('#myModal').modal('show').css({
+ 			'margin-left': function(){
+ 				return -($(this).width() / 2);
+ 			}
+ 		})
+ 
 		function login(){
 			
 			var id = $('#id').val().trim().length;
@@ -110,6 +160,49 @@ background-color: transparent;
 
 		}
 
+ 		
+ 		 function address() {
+             new daum.Postcode({ 
+                oncomplete: function(data) {
+                    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                    var fullAddr = data.address; // 최종 주소 변수
+                    var extraAddr = ''; // 조합형 주소 변수
+     
+                    // 기본 주소가 도로명 타입일때 조합한다.
+                    if(data.addressType === 'R'){
+                        //법정동명이 있을 경우 추가한다.
+                        if(data.bname !== ''){
+                            extraAddr += data.bname;
+                        }
+                        // 건물명이 있을 경우 추가한다.
+                        if(data.buildingName !== ''){
+                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                        
+                        // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                         fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : ''); 
+                    }
+     
+                    // 주소 정보를 해당 필드에 넣는다.
+                    $('#memberAddress').val(fullAddr); 
+                     /* document.getElementById("location").value = fullAddr;  */
+                    // 주소로 상세 정보를 검색
+                    geocoder.addressSearch(data.address, function(results, status) {
+                        // 정상적으로 검색이 완료됐으면
+                        if (status === daum.maps.services.Status.OK) {
+     
+                            var result = results[0]; //첫번째 결과의 값을 활용
+     
+                            // 해당 주소에 대한 좌표를 받아서
+                            var coords = new daum.maps.LatLng(result.y, result.x);
+                           
+                         
+                        }
+                    });
+                }
+             }).open(); 
+        }
 </script> 
 
 <section>
@@ -140,7 +233,8 @@ background-color: transparent;
                        		
                          </form>
                          <form id="kakaoLoginForm" method="post" action="${path }/member/kakaoLogin.do">
-                         	<input type="hidden" id="kakaoId" name="id" value="">
+                         		<input type="hidden" id="memberId" name="memberId" value="">
+                         		<input type="hidden" id="nickName" name="nickName" value="">                   		
                          </form>
                             <div class="text-center">
 							<a id="kakao-login-btn"></a>
@@ -176,24 +270,14 @@ background-color: transparent;
 							    	  Kakao.API.request({
 							    		  url: '/v1/user/me',
 							              success: function(res) {
-													
-							                    alert(JSON.stringify(res));
-
-							                    alert(JSON.stringify(authObj));
-
-							                    console.log(res.id);
-
-							                    console.log(res.kaccount_email);
-							                    console.log(res.kgender);
-
-							                    console.log(res.properties['nickname']);
-
-							                    console.log(authObj.access_token);
+											
+							                    /* console.log(authObj.access_token); */
 							                    $('#kakaoId').val(res.id);
 							                    $('#kakaoNick').val(res.properties['nickname']);
-							                    $('#myModal').modal();
-												/* $('#kakaoId').val(res.id);
-												$('#kakaoLoginForm').submit(); */
+							                    $('#nickName').val(res.properties['nickname'])
+							                    $('#memberId').val(res.id);
+							                    /* $('#myModal').modal(); */
+												$('#kakaoLoginForm').submit();
 							                  }
 
 							                })
@@ -206,64 +290,73 @@ background-color: transparent;
 							</script>
 							
 							
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					
-				</div>
-				<div class="modal-body">
-
-					<div class="card-body">
+	<div class="modal modal-center fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="my80sizeCenterModalLabel">
+  <div class="modal-dialog modal-80size modal-center" role="document">
+    <div class="modal-content modal-80size">
+      <div class="modal-header">
+      	<h4 class="modal-title" id="myModalLabel">Modal 제목</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        	
+        	
+        	<div class="card-body">
 						<div class="row">
 							<div class="col-md-12">
-								<h4>추가 정보</h4>
+								<h4>추가 정보 입력</h4>
 								<hr>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-12">
-								<form action="${path }/member/kakaoMemberEnroll.do" method="post" onsubmit="return fn_enroll_validate();">
-									<input type="hidden" id="kakaoId" name="id" value="">
+								<form action="${path }/member/kakaoMemberEnrollEnd.do" method="post"
+									onsubmit="return fn_enroll_validate();">
 									<div class="form-group row">
-										<label for="username" class="col-4 col-form-label">메뉴이름</label>
-										<div class="col-8">
-											<input type="text" id="menuName" name="menuName"
+										<label for="username" class="col-3 col-form-label">이름</label>
+										<div class="col-9">
+											<input type="text" id="memberName" name="memberName"
 												placeholder="아이디" class="form-control here"
-												required="required"> <input type="hidden"
-												name="checkId" value="0" />
+												required="required"> 
 										</div>
 									</div>
 									<div class="form-group row">
-										<label for="name" class="col-4 col-form-label">메뉴가격</label>
-										<div class="col-8">
-											<input type="text" id="menuPrice" name="menuPrice"
+										<label for="name" class="col-3 col-form-label">이메일</label>
+										<div class="col-9">
+											<input type="email" id="memberEmail" name="memberEmail"
 												placeholder="" class="form-control here">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label for="lastname" class="col-4 col-form-label">메뉴설명</label>
-										<div class="col-8">
-											<textarea id="menuContent" name="menuContent" cols="40" rows="4" class="form-control"></textarea>
+										<label for="name" class="col-3 col-form-label">핸드폰번호</label>
+										<div class="col-9">
+											<input type="text" id="memberPhone" name="memberPhone"
+												placeholder="" class="form-control here">
 										</div>
 									</div>
 									<div class="form-group row">
-                                        <label for="newpass" class="col-4 col-form-label">메뉴사진</label> 
-                                          <div class="col-sm-8 wrap-input-container">
-                                            <label id="menuImage1" for="menuImage" class="custom-file-upload form-control">Upload Image</label>
-                                                <input id="menuImage" class="file-upload" name="menuImage" type="file" onchange="chk_file_type(this);" accept="image/gif,image/jpeg,image/png">
-                                          </div>
-                                    </div>      
+										<label for="name" class="col-3 col-form-label">주소</label>
+										<div class="col-9">
+											<input type="button" class="btn-ser btn btn-default" onclick="address();" value="주소검색"/>
+											<input type="text" id="memberAddress" name="memberAddress"
+												placeholder="" class="form-control here">
+										</div>
+									</div>
 									<div class="form-group row">
-										<div class="col-4"></div>
-										<div class="col-8">
-											 <input type="hidden" id="menuCode" name="menuCode">
+										<label for="name" class="col-3 col-form-label">상세주소</label>
+										<div class="col-9">
+											<input type="text" id="memberAddress1" name="memberAddress1"
+												placeholder="" class="form-control here">
+										</div>
+										
+									</div>     
+									<input type="hidden" id="kakaoId" name="memberId" value="">
+									<input type="hidden" id="kakaoNick" name="nickName" value="">
+									<input type="hidden" name="profileImage" value="user.jpg"/>
+									<div class="form-group row">
+										<div class="col-3"></div>
+										<div class="col-9">
 											<button id="ownerJoinBtn" name="submit" type="submit"
-												class="btn btn-primary">수정</button>
+												class="btn btn-primary">가입</button>
 										</div>
 									</div>
 								</form>
@@ -271,17 +364,16 @@ background-color: transparent;
 						</div>
 
 					</div>
+        	
+        	
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-
-
-
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-				</div>
-			</div>
-		</div>
-	</div>
 
 </section>
 

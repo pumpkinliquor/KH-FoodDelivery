@@ -132,6 +132,14 @@ public class MemberServiceImpl implements MemberService {
 	public Menu menuSelect(int menuCode) {
 		return dao.menuSelect(menuCode);
 	}
+	@Override
+	public int kakaoLogin(Map<String, String> map) {
+		return dao.kakaoLogin(map);
+	}
+	@Override
+	public int kakaoEnrollEnd(Member m) {
+		return dao.kakaoEnrollEnd(m);
+	}
 
 	
 }
