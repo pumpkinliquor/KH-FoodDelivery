@@ -43,12 +43,15 @@ public class OrderController {
 //		List<Map<String,String>> orderList = service.selectOrderList();
 		List<Pay> orderList = service.selectOrderList();
 		List<Pay> orderOneList = service.selectOrderOneList(cPage,numPerPage);
+		Map<String,String> todayOrderCount = service.selectTodayOrderCount();
+		
 		int orderCount = service.selectOrderCount();
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+/*		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss");
 		for(int i = 0; i < orderOneList.size(); i++) {
 			orderOneList.get(i).setFormatDate(df.format(orderOneList.get(i).getPayDate()));
-		}
+		}*/
 		
+		logger.debug("오늘날짜주문개수"+todayOrderCount);
 		logger.debug("주문하나내역"+orderOneList);
 		logger.debug("주문내역"+orderList);
 		ArrayList<Pay> list = new ArrayList<>();
@@ -90,7 +93,9 @@ public class OrderController {
 		}
 		logger.debug("가격내역"+price);
 		logger.debug("오더리스트"+orderList);
+		
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("todayOrderCount",todayOrderCount);
 		mv.addObject("orderOneList",orderOneList);
 		mv.addObject("orderList",orderList);
 		mv.addObject("price",price);
@@ -108,6 +113,7 @@ public class OrderController {
 		logger.debug("페이오더넘버"+payOrderNum);
 		List list = service.selectPayOrderNum(payOrderNum);
 		logger.debug("페이오더넘버리스트"+list);
+		
 		return list;
 	}
 	

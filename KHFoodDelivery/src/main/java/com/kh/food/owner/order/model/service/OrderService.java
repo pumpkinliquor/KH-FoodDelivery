@@ -14,5 +14,7 @@ public interface OrderService {
 	List<Pay> selectOrderOneList(int cPage, int numPerPage);
 
 	int selectOrderCount();
+
+	Map<String, String> selectTodayOrderCount();
 	
 }

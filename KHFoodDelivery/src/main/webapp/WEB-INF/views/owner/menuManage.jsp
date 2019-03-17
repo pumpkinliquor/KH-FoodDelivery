@@ -16,7 +16,7 @@ pageEncoding="UTF-8"%>
 	.categoryDiv1{
 		margin-bottom:20px;
 	}
-
+	
 	
 </style>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
@@ -30,19 +30,8 @@ pageEncoding="UTF-8"%>
                     <div class="col-md-3 ">
                          <div class="list-group ">
                           <a id="enrollMenu" class="list-group-item list-group-item-action active">메뉴/카테고리 등록</a>
-                          <a href="${path }/owner/menuManage.do" class="list-group-item list-group-item-action">메뉴관리</a>
-                          <a href="${path }/owner/menuSoldOut.do" class="list-group-item list-group-item-action">품절관리</a>
-                          <a href="#" class="list-group-item list-group-item-action">Enquiry</a>
-                          <a href="#" class="list-group-item list-group-item-action">Dealer</a>
-                          <a href="#" class="list-group-item list-group-item-action">Media</a>
-                          <a href="#" class="list-group-item list-group-item-action">Post</a>
-                          <a href="#" class="list-group-item list-group-item-action">Category</a>
-                          <a href="#" class="list-group-item list-group-item-action">New</a>
-                          <a href="#" class="list-group-item list-group-item-action">Comments</a>
-                          <a href="#" class="list-group-item list-group-item-action">Appearance</a>
-                          <a href="#" class="list-group-item list-group-item-action">Reports</a>
-                          <a href="#" class="list-group-item list-group-item-action">Settings</a>
-                          
+                          <a href="${path }/owner/menuManage.do" class="list-group-item list-group-item-action aMenu">메뉴관리</a>
+                          <a href="${path }/owner/menuSoldOut.do" class="list-group-item list-group-item-action aMenu">품절관리</a>                         
                           
                         </div> 
                     </div>
@@ -261,10 +250,10 @@ pageEncoding="UTF-8"%>
 					}
 				}
 
-				
+
 			</script>
 </section>
 
 
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/ownerFooter.jsp"></jsp:include>

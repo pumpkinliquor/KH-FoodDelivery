@@ -44,7 +44,7 @@ pageEncoding="UTF-8"%>
 		<h2 style="font-weight:bold;">주문 내역</h2>
 	</div>
 	<div style="text-align:center; margin-bottom:15px;">
-		<span>하루동안 총 <span style="color:red; font-weight:bold; font-size:20px;">3</span>건의 주문내역이 있습니다.</span>
+		<span>하루동안 총 <span style="color:red; font-weight:bold; font-size:20px;">${todayOrderCount.TODAYORDERCOUNT}</span>건의 주문내역이 있습니다.</span>
 	</div>
 	<div class="row" style="clear:both;">
 		<div class="col-md-12">
@@ -65,7 +65,7 @@ pageEncoding="UTF-8"%>
 					<c:forEach var="o" items="${orderOneList}" varStatus="status">		
 							<tr style="cursor:pointer;" onclick="fn_detailOrder(${o.payOrderNum});">						
 								<td class="td1"><c:out value="${status.count}"/></td>
-								<td class="td1">${o.formatDate}</td>
+								<td class="td1">${o.payDate}</td>
 								<td class="td1">${o.memberName}님의 주문입니다.</td>
 								<td class="td1"></td>							
 								<td class="td1">${price[status.index].price}</td>
@@ -101,7 +101,6 @@ pageEncoding="UTF-8"%>
                               <div class="row">
                                   <div class="col-md-12">
                                       <h4>주문 상세 내역</h4>
-                                      <hr>
                                   </div>
                               </div>
                               <div class="row">
@@ -132,10 +131,24 @@ pageEncoding="UTF-8"%>
                                                     <tr style="cursor:pointer;">
                                                         <td width="70%">결제일</td>                                                 
                                                         <td class="orderDate" width="30%"></td>
+                                                    </tr>                         
+                                            </table>     
+                                            <table class="table table-hover board">
+                                                <tbody>                  
+                                                    <tr style="cursor:pointer;">
+                                                        <td width="30%" >배달주소</td>                                                 
+                                                        <td width="70%"></td>
                                                     </tr>
-                                                    
-                                            </table>                             
-                                            ${pageBar }
+                                                    <tr style="cursor:pointer;">
+                                                        <td width="30%" >전화번호</td>                                                 
+                                                        <td class="memberPhone" width="70%"></td>
+                                                    </tr>
+                                                    <tr style="cursor:pointer;">
+                                                        <td width="10%" >요청사항</td>                                                 
+                                                        <td class="orderRequest" width="80%"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>                        
                                   </div>
                               </div>
                               
@@ -174,7 +187,7 @@ function fn_detailOrder(payOrderNum){
 			 	$('.orderName').text(data[0].MEMBERNAME);
 				$('.orderDate').text(data[0].PAYDATE);
 				$('.orderRequest').text(data[0].PAYREQUEST);
-				
+				$('.memberPhone').text(data[0].MEMBERPHONE);
 				var html = "";
 				var sum = "";
 				for(var i=0; i<data.length; i++)
@@ -197,4 +210,4 @@ function fn_detailOrder(payOrderNum){
 
 
 </script>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include> 
+<jsp:include page="/WEB-INF/views/common/ownerFooter.jsp"></jsp:include> 

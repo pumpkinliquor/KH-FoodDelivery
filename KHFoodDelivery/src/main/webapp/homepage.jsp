@@ -64,6 +64,7 @@ div.main{text-align:center;}
 
 </div>
 	<div class="container">
+	<a href="${path }/customer/pay.do">결제 테스트   </a>
 	<a href="${path }/admin/adminMain.do">관리자 화면</a>
 <%-- 	<a href="${path }/admin/noticeList.do">공지사항</a>
 	<a href="${path }/admin/noticeForm.do">공지사항등록</a>

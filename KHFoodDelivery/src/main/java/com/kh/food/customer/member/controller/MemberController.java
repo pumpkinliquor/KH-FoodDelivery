@@ -27,6 +27,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,6 +37,7 @@ import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+
 
 @Controller
 public class MemberController {
@@ -574,4 +576,126 @@ public class MemberController {
 		mv.setViewName("common/msg");
 		return mv;
 	}
+	
+	//카카오 로그인
+	@RequestMapping("member/kakaoMemberEnrollEnd.do")
+	public ModelAndView kakaoLogin(Member m,HttpSession session)
+	{
+		logger.debug("카카오아이디"+m);
+		
+		//디비에 계정이 존재하는지 확인
+		
+		Map<String,String> map = new HashMap<>();
+		map.put("id", m.getMemberId());
+		Map<String,String> result=service.login(map);
+		logger.debug("result"+result);
+		String msg="";
+		String loc="/";
+		if(result == null)
+		{
+			int result1=service.memberEnroll(m);
+			if(result1>0)
+			{
+				msg = "회원 가입 성공 로그인 성공";
+			}
+			else
+			{
+				msg = "로그인 실패";
+			}
+		}
+		else
+		{
+			msg = "로그인 성공";
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		session.setAttribute("logined", m.getMemberId());
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	
+	//카카오 로그인
+	@RequestMapping("member/kakaoLogin.do")
+	public ModelAndView kakaoApiLogin(String memberId,String nickName,HttpSession session)
+	{
+		ModelAndView mv = new ModelAndView();
+		logger.debug("id"+memberId);
+		logger.debug("nickName"+nickName);
+		String msg="";
+		String loc="/";
+		
+		Map<String,String> map = new HashMap<>();
+		map.put("id", memberId);
+		map.put("nickName", nickName);
+		Map<String,String> result=service.login(map);
+		logger.debug("result"+result);
+		//아이디가 디비에 없다? , 추가정보입력창으로 간다.
+		if(result == null)
+		{
+			int result1 = service.kakaoLogin(map);
+			if(result1>0)
+			{
+				Map<String,String> result2=service.login(map);
+				mv.addObject("result",result2);
+				mv.setViewName("customer/memberAddInfo");
+				return mv;
+			}
+
+			
+		}
+		else
+		{
+			//처음에 로그인하고 추가정보 입력안하고 뒤로 가기를 누르면 ? 
+			if(result.get("MEMBEREMAIL").equals(String.valueOf(0)))
+			{
+				//추가정보 입력 사이트로 가자.
+
+				mv.addObject("result",result);
+				mv.setViewName("customer/memberAddInfo");
+				return mv;
+			}
+			else
+			{
+				session.setAttribute("logined", memberId);
+				msg = "로그인 성공";
+				loc = "/";
+			// 있으면 바로 로그인 / 메인으로간다.
+			}
+		}
+		mv.addObject("member",result);
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	// 카카오 로그인 추가정보 입력
+	@RequestMapping("member/kakaoEnrollEnd.do")
+	public ModelAndView kakaoEnrollEnd(Member m,HttpSession session)
+	{
+		logger.debug("m"+m);
+		String msg = "";
+		String loc ="/";
+		
+		int result = service.kakaoEnrollEnd(m);
+		logger.debug("result"+result);
+		if(result>0)
+		{
+			msg = "로그인 성공!";
+			session.setAttribute("logined", m.getMemberId());
+		}
+		else
+		{
+			msg = "로그인 실패!";
+		}
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
 }

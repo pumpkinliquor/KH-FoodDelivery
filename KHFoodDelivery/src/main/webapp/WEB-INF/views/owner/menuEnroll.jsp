@@ -248,4 +248,4 @@ function chk_file_type(el) {
 </script>
 
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/ownerFooter.jsp"></jsp:include>
