@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.food.owner.member.model.service.OwnerMemberService;
 import com.kh.food.owner.member.model.vo.Owner;
 
-@SessionAttributes({"ownerId","ownerNum"})
+@SessionAttributes({"ownerId","ownerNum","businessCode"})
 @Controller
 public class OwnerMemberController {
 	
@@ -191,6 +191,7 @@ public class OwnerMemberController {
 		ModelAndView mv = new ModelAndView();
 		logger.debug("ownerId"+ownerId + "ownerPW" + ownerPw);
 		
+		String businessCode=service.selectBusiness(ownerId);
 		
 		Owner o = service.selectLogin(ownerId);
 		String msg ="";
@@ -204,7 +205,10 @@ public class OwnerMemberController {
 			/*if(ownerPw.equals(o.getOwnerPw()))*/
 			if(pwEncoder.matches(ownerPw, o.getOwnerPw()))
 			{
-			
+				if(businessCode!=null) {
+					Integer.parseInt(businessCode);
+					mv.addObject("businessCode", businessCode);
+				}
 			mv.addObject("ownerNum",o.getOwnerNum());
 			mv.addObject("ownerId",o.getOwnerId());
 			msg =  ownerId + "님 환영합니다";

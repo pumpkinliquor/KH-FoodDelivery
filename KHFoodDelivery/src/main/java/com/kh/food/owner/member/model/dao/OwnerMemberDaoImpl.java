@@ -49,5 +49,10 @@ public class OwnerMemberDaoImpl implements OwnerMemberDao {
 	public int lastDate(int ownerNum) {
 		return sqlSession.update("ownerMember.lastDate", ownerNum);
 	}
+
+	@Override
+	public String selectBusiness(String ownerId) {
+		return sqlSession.selectOne("ownerMember.selectBusiness", ownerId);
+	}
 	
 }

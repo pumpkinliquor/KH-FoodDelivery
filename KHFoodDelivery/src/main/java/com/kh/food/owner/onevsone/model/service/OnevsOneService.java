@@ -20,6 +20,5 @@ public interface OnevsOneService {
 	Owner selectMyPage(int ownerNum);
 	int updateMyPage(Map<String,Object> owner);
 	int selectQnaCount(int ownerNum);
-	int selectReCount(int ownerNum);
-	int selectOwnerReCount(int ownerNum);
+	int businessReviewCount(int businessCode);
 }

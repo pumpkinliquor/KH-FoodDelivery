@@ -89,15 +89,10 @@ public class OnevsOneDaoImpl implements OnevsOneDao {
 	public int selectQnaCount(int ownerNum) {
 		return session.selectOne("oneVSone.selectQnaCount", ownerNum);
 	}
+
+	@Override
+	public int businessReviewCount(int businessCode) {
+		return session.selectOne("oneVSone.businessReviewCount", businessCode);
+	}
 	
-	@Override
-	public int selectReCount(int ownerNum) {
-		return session.selectOne("oneVSone.selectReCount", ownerNum);
-	}
-
-	@Override
-	public int selectOwnerReCount(int ownerNum) {
-		return session.selectOne("oneVSone.selectOwnerReCount", ownerNum);
-	}
-
 }

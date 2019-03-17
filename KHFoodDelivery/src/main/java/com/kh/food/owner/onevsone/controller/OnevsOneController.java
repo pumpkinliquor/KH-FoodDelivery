@@ -284,17 +284,19 @@ public class OnevsOneController {
 	@RequestMapping("/owner/myPage.do")
 	public ModelAndView myPage(HttpServletRequest request, ModelAndView mv) {
 		int ownerNum=(int) request.getSession().getAttribute("ownerNum");
+		String businessCode=(String) request.getSession().getAttribute("businessCode");
 		
 		Owner owner=service.selectMyPage(ownerNum);
+		if(businessCode!=null) {
+			int bc=Integer.parseInt(businessCode);
+			int businessReviewCount=service.businessReviewCount(bc);
+			mv.addObject("businessReviewCount", businessReviewCount);
+		}
 		
 		int qnaCount=service.selectQnaCount(ownerNum);
-		int reviewCount=service.selectReCount(ownerNum);
-		int ownerReviewCount=service.selectOwnerReCount(ownerNum);
 		
 		mv.addObject("owner", owner);
 		mv.addObject("qnaCount", qnaCount);
-		mv.addObject("ownerReviewCount", ownerReviewCount);
-		mv.addObject("reviewCount", reviewCount);
 		
 		mv.setViewName("owner/ownerMyPage");
 		
