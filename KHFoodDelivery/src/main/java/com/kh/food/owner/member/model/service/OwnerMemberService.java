@@ -13,4 +13,5 @@ public interface OwnerMemberService {
 	int updateTempPw(Map<String, String> map);
 	int ownerCheckId(String ownerId);
 	int lastDate(int ownerNum);
+	String selectBusiness(String ownerId);
 }

@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,7 +24,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -443,11 +441,20 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/customer/menuInsert.do")
-	public ModelAndView menuInsert(ModelAndView mv, int menuPrice, int menuCount, int plusMenuPrice) {
+	@ResponseBody
+	public Map<String, Object> menuInsert(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, 
+			String menuTitle, int menuPrice, int menuCount, int plusMenuPrice, int businessCode) {
 		
-		System.out.println("가격 : "+menuPrice+"수량 : "+menuCount+"합계 : "+plusMenuPrice);
+		System.out.println("메뉴이름 : "+menuTitle+", 가격 : "+menuPrice+", 수량 : "+menuCount+", 합계 : "+plusMenuPrice+", 사장님번호 : "+businessCode);
+	    
+		Map<String, Object> menuMaps=new HashMap<>();
 		
-		return mv;
+		menuMaps.put("menuTitle", menuTitle);
+		menuMaps.put("menuPrice", menuPrice);
+		menuMaps.put("menuCount", menuCount);
+		menuMaps.put("plusMenuPrice", plusMenuPrice);
+		
+		return menuMaps;
 	}
 	
 	

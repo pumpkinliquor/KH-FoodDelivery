@@ -64,11 +64,7 @@
 		SELECT COUNT(*) FROM OWNER_QNA WHERE OWNERNUM=#{ownerNum}
 	</select>
 	
-	<select id="selectReCount" parameterType="_int" resultType="_int">
-		SELECT COUNT(*) FROM OWNER_QNA_REVIEW WHERE OWNERNUM=#{ownerNum}
-	</select>
-	
-	<select id="selectOwnerReCount" parameterType="_int" resultType="_int">
-		SELECT COUNT(*) FROM OWNER_REVIEW A LEFT JOIN OWNER B ON B.OWNERNUM=A.REVIEWNUM WHERE B.OWNERNUM=#{ownerNum}
+	<select id="businessReviewCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM OWNER_REVIEW WHERE BUSINESSCODE=#{businessCode}
 	</select>
 </mapper>

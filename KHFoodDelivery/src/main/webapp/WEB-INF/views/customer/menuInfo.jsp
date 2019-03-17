@@ -314,7 +314,7 @@
                     <div class="cart">
                         <div class="cart-empty">
 	                        <ul>
-	                        	<li style="list-style:none; float:left;">후라이드</li>
+	                        	<li style="list-style:none; float:left;">${menuTitle }후라이드</li>
 	                        </ul>
 	                        <br>
 	                        <ul>

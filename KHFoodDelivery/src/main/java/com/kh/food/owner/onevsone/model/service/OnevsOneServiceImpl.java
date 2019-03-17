@@ -103,12 +103,9 @@ public class OnevsOneServiceImpl implements OnevsOneService {
 	}
 
 	@Override
-	public int selectReCount(int ownerNum) {
-		return dao.selectReCount(ownerNum);
+	public int businessReviewCount(int businessCode) {
+		return dao.businessReviewCount(businessCode);
 	}
-
-	@Override
-	public int selectOwnerReCount(int ownerNum) {
-		return dao.selectOwnerReCount(ownerNum);
-	}
+	
+	
 }
