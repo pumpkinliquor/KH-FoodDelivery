@@ -210,6 +210,7 @@ $(function(){
               <div class="col-sm-12 headerDiv2">
             <div class="headerDiv1">
              <c:if test="${sessionScope.logined==null }">
+             <a href="${path }/owner/ownerMain.do">사장님 페이지</a> &nbsp;&nbsp;
                <a href="${path }/customer/login.do">로그인</a>
                   <a href="${path }/member/memberEnroll.do">회원가입</a>
                  

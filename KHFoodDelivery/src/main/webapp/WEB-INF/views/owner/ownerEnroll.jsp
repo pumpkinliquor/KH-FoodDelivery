@@ -211,4 +211,4 @@ span.error,span.error1 {
 </section>
 
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/ownerFooter.jsp"></jsp:include>

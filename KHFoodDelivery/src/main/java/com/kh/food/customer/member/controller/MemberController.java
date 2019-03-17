@@ -52,8 +52,58 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
+	//문의글 수정
+	@RequestMapping("/customer/memberQnaUpdate.do")
+	public ModelAndView updateMemberQna(MemberQna mq) {
+		ModelAndView mv = new ModelAndView();
+		
+		int result = service.updateMemberQna(mq);
+
+		String msg="";
+		String loc="/";
+		if(result > 0) {
+			msg="수정 성공";
+			loc="/member/qnaList.do?memberId="+mq.getMemberId();
+		}else {
+			msg="수정실패";
+			loc="/member/qnaList.do?memberId="+mq.getMemberId();
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		
+		
+		return mv;
+		
+		
+		
+	}
 	
 	
+	
+	//문의글 삭제
+	@RequestMapping("/customer/deletememberQna.do")
+	public ModelAndView deleteMemberQna(int no,String memberId) {
+		ModelAndView mv = new ModelAndView();
+		
+		int result=service.deleteMemberQna(no);
+		
+		String msg="";
+		String loc="/";
+		if(result >0) {
+			msg="삭제성공";
+			loc="/member/qnaList.do?memberId="+memberId;
+		}else {
+			msg="삭제실패";
+			loc="/member/qnaList.do?memberId="+memberId;
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		
+		
+		return mv;
+	}
 	//고객 메인페이지
 	@RequestMapping("/cutomer/main")
 	public String mainPage() {
@@ -63,7 +113,7 @@ public class MemberController {
 	@RequestMapping("/member/qnaList.do")
 	public ModelAndView memberQna(String memberId) {
 		ModelAndView mv = new ModelAndView();
-		int numPerPage=5;
+		
 
 		//문의 리스트
 		List<MemberQna> qnaList=service.selectmemberQna(memberId);
@@ -88,10 +138,13 @@ public class MemberController {
 		ModelAndView mv= new ModelAndView();
 		
 	
-				MemberQna mq = service.memberDetailQna(no);
+		MemberQna mq = service.memberDetailQna(no);
 				
-				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-				mq.setFormatWriteDate(df.format(mq.getWriteDate()));
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		mq.setFormatWriteDate(df.format(mq.getWriteDate()));
+		
+		mv.addObject("mq",mq);
+		mv.setViewName("customer/detailQna");
 		return mv;
 		
 	}
