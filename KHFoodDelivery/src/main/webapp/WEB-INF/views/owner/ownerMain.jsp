@@ -33,7 +33,7 @@ pageEncoding="UTF-8"%>
             font-size: 12px;
             margin-bottom: 20px;
         }
-        #enrollBtn{
+        #enrollBtn,#logoutBtn{
             width:100%;
             height:40px;
         }
@@ -98,12 +98,8 @@ pageEncoding="UTF-8"%>
                 <div class="col-md-4">
                    <c:if test="${sessionScope.ownerId== null }">
                     <div class="col-md-12">
-                    
                         <p>사장님 로그인 해주세요!</p>
-                    </div>
-   
-                    
-                    
+                    </div> 
                     <div class="col-md-12">
                         <button id="loginBtn" onclick="location.href='${path }/owner/login.do'">로그인</button>
                     </div>
@@ -116,29 +112,28 @@ pageEncoding="UTF-8"%>
                     <div class="col-md-12">
                         <button id="enrollBtn" onclick="location.href='${path }/owner/insertOwner.do'">회원가입</button>
                     </div>
-                </div>
-                </c:if>
-                
-                
-        
-      				<c:if test="${sessionScope.ownerId!=null }">
-                    <div class="col-md-12">
-                        <button id="loginBtn" onclick="location.href='${path }/owner/logout.do'">로그아웃</button>
-                    </div>
-                </c:if>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+                     </c:if>
+                     <c:if test="${sessionScope.ownerId!=null }">
+                     <div class="col-md-12">
+                        <p>${ownerId}사장님 환영 합니다!!${ownerNum }????${bCode.BUSINESSCODE }${todayOrderCount.TODAYORDERCOUNT}${busiCode}</p>
+                     </div>
+                     <div class="col-md-12">
+                     	<c:if test="${bCode.BUSINESSCODE ne null}">
+                       <h4>오늘의 주문 수는 ${todayOrderCount.TODAYORDERCOUNT }건 입니다!</h4>
+                     	</c:if>
+                     	<c:if test="${bCode.BUSINESSCODE eq null }">
+                     	<h4>사장님 업체 등록을 해주세요~!!!${todayOrderCount.TODAYORDERCOUNT }</h4>
+        				<c:out value="${todayOrderCount.TODAYORDERCOUNT }"></c:out>
+                     	</c:if>
+                     </div>
+                     <div class="col-md-12">
+                        <button id="logoutBtn" onclick="location.href='${path }/owner/insertOwner.do'">로그아웃</button>
+                     </div> 
+                     </c:if>
+                </div>           
             </div>
+            
+            
             <div class="row">
             <div class="col-md-12">
                 <div class="row">

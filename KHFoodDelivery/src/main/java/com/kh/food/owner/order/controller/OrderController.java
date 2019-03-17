@@ -40,6 +40,7 @@ public class OrderController {
 	public ModelAndView selectOrderList(@RequestParam(value="cPage",required=false,defaultValue="0") int cPage) throws ServletException, IOException
 	{
 		int numPerPage = 5;
+		String businessCode = "";
 //		List<Map<String,String>> orderList = service.selectOrderList();
 		List<Pay> orderList = service.selectOrderList();
 		List<Pay> orderOneList = service.selectOrderOneList(cPage,numPerPage);
