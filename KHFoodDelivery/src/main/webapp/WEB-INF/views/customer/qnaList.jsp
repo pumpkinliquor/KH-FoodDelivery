@@ -45,6 +45,7 @@
 	
 		<h4 id="titleText">${sessionScope.logined}님 문의 내역 </h4>
 		
+		
 		<div id="qnaList">
 			<table class="table table-hover" id="qnaTable">
 				<thead id="tableHead">
