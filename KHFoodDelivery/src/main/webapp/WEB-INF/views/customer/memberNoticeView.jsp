@@ -4,13 +4,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/cstyle.css" />
 
-<jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <style>
 div#noticeContectDiv{
 	min-height: 200px;
+}
+button#noticeListBtn{
+	background-color: transparent;
+	border-color: transparent;
 }
 </style>
 <script>
@@ -64,15 +68,7 @@ function fileDownLoad(oriName, reName){
 			<div class="col-sm-1">
 			</div>
 			<div class="col-sm-1"></div>
-			<div class="col-sm-2">			
-				<button id="noticeCancelkBtn" name="noticeCancelkBtn" class="btn btn-default float-right" value="${notice.NOTICENUM }" onclick="fn_memberNoticeDel(this)">삭제</button>
-				<form action="${path }/admin/memNoticeUpdate.do" enctype="multipart/form-data" method="post">
-				<input value="${notice.NOTICENUM }" type="hidden" name="noticeNum">
-				<button id="noticeUpBtn"  class="btn btn-default float-right">수정</button>
-	
-				</form>
-				
-			</div>	
+			<div class="col-sm-2"></div>	
 		</div>
 		<hr/>
 		<br/>	
@@ -91,7 +87,7 @@ function fileDownLoad(oriName, reName){
 		</div>
 		<br>
 		<hr>
-		<button id="noticeListBtn" class="btn btn-default" onclick="location.href='${path}/admin/memberNoticeList.do'">목록</button>
+		<button id="noticeListBtn" class="btn btn-default" onclick="location.href='${path}/customer/memberNoticeList.do'">목록으로</button>
 	</div>
 	
 </section>
