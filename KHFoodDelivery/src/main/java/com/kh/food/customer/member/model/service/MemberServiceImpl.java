@@ -24,6 +24,18 @@ public class MemberServiceImpl implements MemberService {
 	MemberDao dao;
 
 	@Override
+	public Map<String,String> orderOne(int menuCode) {
+		return dao.orderOne(menuCode);
+	}
+	@Override
+	public int selectOrderCount(int memberNum) {
+		return dao.selectOrderCount(memberNum);
+	}
+	@Override
+	public List<Member> selectMemberOrder(int memberNum,int cPage,int numPerPage) {
+		return dao.selectMemberOrder(memberNum,cPage,numPerPage);
+	}
+	@Override
 	public int updateMemberQna(MemberQna mq) {
 		return dao.updateMemberQna(mq);
 	}

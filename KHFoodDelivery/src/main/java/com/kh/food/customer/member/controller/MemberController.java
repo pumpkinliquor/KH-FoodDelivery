@@ -51,6 +51,9 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
+	
+	
+	
 	//문의글 수정
 	@RequestMapping("/customer/memberQnaUpdate.do")
 	public ModelAndView updateMemberQna(MemberQna mq) {
@@ -114,7 +117,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		
 
-		//문의 리스트
+		
 		List<MemberQna> qnaList=service.selectmemberQna(memberId);
 		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)
 				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -147,15 +150,37 @@ public class MemberController {
 		return mv;
 		
 	}
+	
+	//상세 주문내역
+	@RequestMapping("/member/orderOne.do")
+	public Map orderOne(int menuCode) {
+		
+		System.out.println(menuCode);
+		
+
+		Map<String,String> mem1=service.orderOne(menuCode);
+		
+		
+		
+		return mem1;
+	}
 	//나의주문내역
 	@RequestMapping("/member/orderList.do")
-	public ModelAndView memberOrderList(String memberId)
+	public ModelAndView memberOrderList(int memberNum,String memberId,@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage)
 	{
 		ModelAndView mv=new ModelAndView();
+		logger.debug(""+memberNum);
+		int numPerPage=6;
 		
-		Member member = service.selectMember(memberId);
 		
-		mv.addObject("member",member);
+		int count=service.selectOrderCount(memberNum);
+		
+		
+		 
+		List<Member> memberList = service.selectMemberOrder(memberNum,cPage,numPerPage);
+		
+		mv.addObject("pageBar",PagingFactory.getPageBar3(memberNum,count, cPage, numPerPage, "/food/member/orderList.do"));
+		mv.addObject("orderList",memberList);
 		mv.setViewName("customer/orderList");
 		return mv;
 	}
@@ -314,6 +339,7 @@ public class MemberController {
 			if(pwEncoder.matches(pw,result.get("MEMBERPW"))) {
 				msg="로그인 성공";
 				session.setAttribute("logined", result.get("MEMBERID"));
+				session.setAttribute("loginedno", result.get("MEMBERNUM"));
 			
 			
 			}else {

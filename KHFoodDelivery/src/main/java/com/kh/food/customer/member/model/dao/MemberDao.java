@@ -9,6 +9,9 @@ import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
 
 public interface MemberDao {
+	Map<String,String> orderOne(int menuCode);
+	int selectOrderCount(int memberNum);
+	List<Member> selectMemberOrder(int memberNum,int cPage,int numPerPage);
 	int updateMemberQna(MemberQna mq);
 	int deleteMemberQna(int no);
 	MemberQna memberDetailQna(int no);

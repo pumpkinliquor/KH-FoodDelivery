@@ -22,6 +22,22 @@ public class MemberDaoImpl implements MemberDao {
 	SqlSessionTemplate sqlSession;
 	
 	@Override
+	public Map<String,String> orderOne(int menuCode) {
+		return sqlSession.selectOne("member.orderOne",menuCode);
+	}
+	
+	@Override
+	public int selectOrderCount(int memberNum) {
+		return sqlSession.selectOne("member.orderCount",memberNum); 
+	}
+	
+	@Override
+	public List<Member> selectMemberOrder(int memberNum,int cPage,int numPerPage) {
+		RowBounds rb = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("member.selectMemberOrder",memberNum,rb);
+	}
+	
+	@Override
 	public int updateMemberQna(MemberQna mq) {
 		return sqlSession.update("member.qnaUpdate",mq);
 	}

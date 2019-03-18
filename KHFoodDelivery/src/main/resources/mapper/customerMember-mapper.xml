@@ -5,6 +5,8 @@
 
 	 <resultMap id="memberQna" type="map">
 	 </resultMap>
+	  <resultMap id="memberOrder" type="map">
+	 </resultMap>
      <resultMap id="member" type="map">
 	</resultMap>
 	 <resultMap id="store" type="map">
@@ -106,5 +108,23 @@
 	<update id="qnaUpdate" parameterType="memberQna">
 		update member_qna set QNACATEGORY=#{qnaCategory},QNATITLE=#{qnaTitle},QNACONTENT=#{qnaContent},WRITEDATE=default  where  qnaCode = #{qnaCode} 
 	</update>
+	
+	<!-- 주문내역 페이징 카운트 -->
+	<select id="orderCount" resultType="_int">
+		select count(*) from pay where membernum=#{memberNum}
+	</select>
+	
+	<select id="selectMemberOrder" resultMap="memberOrder" parameterType="map">
+		select s.storename,s.storecategory,p.*,m.memberid 
+		from pay p 
+		JOIN store s ON(s.businesscode = p.businesscode) 
+		JOIN member m ON(p.membernum = m.membernum)  where m.memberNum=#{memberNum}
+	</select>
+	<select id="orderOne" resultMap="memberOrder" parameterType="_int">
+		select s.storename,s.storecategory,p.*,m.memberid 
+		from pay p 
+		JOIN store s ON(s.businesscode = p.businesscode) 
+		JOIN member m ON(p.membernum = m.membernum)  where menucode=#{menuCode}
+	</select>
 
 </mapper>

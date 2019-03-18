@@ -9,6 +9,8 @@ import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
 
 public interface MemberService {
+	//상세 주문내역
+	Map<String,String> orderOne(int menuCode);
 	//고객 문의 수정
 	int updateMemberQna(MemberQna mq);
 	//고객 문의 삭제
@@ -19,6 +21,10 @@ public interface MemberService {
 	List<MemberQna> selectmemberQna(String memberId);
 	//회원가입
 	int memberEnroll(Member m);
+	//주문내역
+	List<Member> selectMemberOrder(int memberNum,int cPage,int numPerPage);
+	//주문내역 페이징 카운트
+	int selectOrderCount(int memberNum);
 	int checkId(String memberId);
 	Map<String,String> login(Map<String,String> map);
 	int checkNick(String nickName);
