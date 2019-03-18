@@ -36,6 +36,11 @@
 			}
 		});
 	});
+	
+/* 	function fn_order(){
+		 location.href="${path}/demo/udateDev.do?no="+devNo; 
+		 href="${path }/owner/storeChoice.do?ownerId="${sessionScope.ownerId}
+	} */
 </script>
 
 </head>
@@ -63,10 +68,10 @@
       <a class="nav-link" href="${path }/owner/ownerMain.do"><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></a>
     </li>
       <li class="nav-item">
-        <a class="nav-link" href="${path }/owner/menuEnroll.do">메뉴관리</a>
+        <a class="nav-link" href="${path }/owner/menuStoreChoice.do?ownerId=${sessionScope.ownerId}">메뉴관리</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${path }/owner/storeForm.do"">업체등록</a>
+        <a class="nav-link" href="${path }/owner/storeForm.do">업체등록</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="${path }">업소통계</a>
@@ -75,9 +80,11 @@
        <a class="nav-link" href="${path }/owner/customService.do">고객센터</a>
       </li>
   	  <li class="nav-item">
-       <a class="nav-link" href="${path }/owner/orderService.do">주문관리</a>
+       <a class="nav-link"  href="${path }/owner/storeChoice.do?ownerId=${sessionScope.ownerId}">주문관리</a>
       </li>
-  
+       <li class="nav-item">
+       <a class="nav-link"  href="#">리뷰관리</a>
+      </li>
 
     </ul>
   </nav>

@@ -12,4 +12,62 @@ public class Mark implements Serializable{
 	private int businessCode;
 	private Member member;
 	private Store store;
+	
+	public Mark() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Mark(int memberNum, int businessCode, Member member, Store store) {
+		super();
+		this.memberNum = memberNum;
+		this.businessCode = businessCode;
+		this.member = member;
+		this.store = store;
+	}
+
+	
+	
+	public int getMemberNum() {
+		return memberNum;
+	}
+
+	public void setMemberNum(int memberNum) {
+		this.memberNum = memberNum;
+	}
+
+	public int getBusinessCode() {
+		return businessCode;
+	}
+
+	public void setBusinessCode(int businessCode) {
+		this.businessCode = businessCode;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+	public Store getStore() {
+		return store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "Mark [memberNum=" + memberNum + ", businessCode=" + businessCode + ", member=" + member + ", store="
+				+ store + "]";
+	}
+	
 }

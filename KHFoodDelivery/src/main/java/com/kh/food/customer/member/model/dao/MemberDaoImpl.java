@@ -11,10 +11,12 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.review.model.vo.Review;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -23,6 +25,31 @@ public class MemberDaoImpl implements MemberDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
+
+	@Override
+	public List<Review> selectReview(int businessCode) {
+		return sqlSession.selectList("member.selectReview",businessCode);
+	}
+	@Override
+	public Map<String,String> orderOne(int menuCode) {
+		return sqlSession.selectOne("member.orderOne",menuCode);
+	}
+	
+	@Override
+	public int selectOrderCount(int memberNum) {
+		return sqlSession.selectOne("member.orderCount",memberNum); 
+	}
+	
+	@Override
+	public List<Member> selectMemberOrder(int memberNum,int cPage,int numPerPage) {
+		RowBounds rb = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("member.selectMemberOrder",memberNum,rb);
+	}
+	
+	public int menuCounts(int menuCode) {
+		return sqlSession.selectOne("menu.menuCounts", menuCode);
+	}
+
 	@Override
 	public int updateMemberQna(MemberQna mq) {
 		return sqlSession.update("member.qnaUpdate",mq);
@@ -38,8 +65,32 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList("member.memberQnaList",memberId);
 	}
 	
+	@Override
+	public List<WishList> selectWishList(Map<String, Object> maps) {
+		return sqlSession.selectList("menu.selectWishList", maps);
+	}
 
+	@Override
+	public int insertWishList(Map<String, Object> menuMap) {
+		System.out.println(menuMap);
+		return sqlSession.insert("menu.insertWishList", menuMap);
+	}
+
+	@Override
+	public int plusMenuCount(Map<String,Object> upCount) {
+		return sqlSession.update("menu.updateMenuCount", upCount);
+	}
 	
+	@Override
+	public int minusMenuCount(Map<String,Object> upCount) {
+		return sqlSession.update("menu.updateMenuCount", upCount);
+	}
+
+	@Override
+	public int deleteMenuCount(int menuCode) {
+		return sqlSession.delete("menu.deleteMenuCount", menuCode);
+	}
+
 	@Override
 	public MemberQna memberDetailQna(int no) {
 		return sqlSession.selectOne("member.qnaDtail",no);

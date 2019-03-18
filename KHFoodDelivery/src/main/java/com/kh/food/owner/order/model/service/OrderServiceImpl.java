@@ -16,29 +16,36 @@ public class OrderServiceImpl implements OrderService {
 	OrderDao dao;
 
 	@Override
-	public List<Pay> selectOrderList() {
-		return dao.selectOrderList();
-	}
-
-	@Override
 	public List<Map<String,String>> selectPayOrderNum(String payOrderNum) {
 		return dao.selectPayOrderNum(payOrderNum);
 	}
 
 	@Override
-	public List<Pay> selectOrderOneList(int cPage, int numPerPage) {
-		return dao.selectOrderOneList(cPage,numPerPage);
+	public List<Pay> selectOrderOneList(int cPage, int numPerPage,int businessCode1) {
+		return dao.selectOrderOneList(cPage,numPerPage,businessCode1);
 	}
 
 	@Override
-	public int selectOrderCount() {
-		return dao.selectOrderCount();
+	public int selectOrderCount(int businessCode1) {
+		return dao.selectOrderCount(businessCode1);
 	}
 
 	@Override
-	public Map<String, String> selectTodayOrderCount() {
-		return dao.selectTodayOrderCount();
+	public Map<String, String> selectTodayOrderCount(int businessCode1) {
+		return dao.selectTodayOrderCount(businessCode1);
 	}
+
+	@Override
+	public List<Map<String, String>> selectStoreList(String ownerId) {
+		return dao.selectStoreList(ownerId);
+	}
+
+	@Override
+	public List<Pay> selectOrderList(int businessCode) {
+		return dao.selectOrderList(businessCode);
+	}
+	
+	
 
 	
 

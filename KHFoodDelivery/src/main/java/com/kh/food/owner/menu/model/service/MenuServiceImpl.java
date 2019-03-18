@@ -32,13 +32,13 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public List<Map<String, String>> selectMenuCategory() {
-		return dao.selectMenuCategory();
+	public List<Map<String, String>> selectMenuCategory(String businessCode) {
+		return dao.selectMenuCategory(businessCode);
 	}
 
 	@Override
-	public List<Map<String, String>> selectMenuList() {
-		return dao.selectMenuList();
+	public List<Map<String, String>> selectMenuList(String businessCode) {
+		return dao.selectMenuList(businessCode);
 	}
 
 	@Override

@@ -5,6 +5,8 @@
 
 	 <resultMap id="memberQna" type="map">
 	 </resultMap>
+	  <resultMap id="memberOrder" type="map">
+	 </resultMap>
      <resultMap id="member" type="map">
 	</resultMap>
 	 <resultMap id="store" type="map">
@@ -105,8 +107,32 @@
 	
 	<update id="qnaUpdate" parameterType="memberQna">
 		update member_qna set QNACATEGORY=#{qnaCategory},QNATITLE=#{qnaTitle},QNACONTENT=#{qnaContent},WRITEDATE=default  where  qnaCode = #{qnaCode} 
-	</update>
 
+	</update>
+	
+	<!-- 주문내역 페이징 카운트 -->
+	<select id="orderCount" resultType="_int">
+		select count(*) from pay where membernum=#{memberNum}
+	</select>
+	
+	<select id="selectMemberOrder" resultMap="memberOrder" parameterType="map">
+		select s.storename,s.storecategory,p.*,m.memberid 
+		from pay p 
+		JOIN store s ON(s.businesscode = p.businesscode) 
+		JOIN member m ON(p.membernum = m.membernum)  where m.memberNum=#{memberNum}
+	</select>
+	<select id="orderOne" resultMap="memberOrder" parameterType="_int">
+		select s.storename,s.storecategory,p.*,m.memberid 
+		from pay p 
+		JOIN store s ON(s.businesscode = p.businesscode) 
+		JOIN member m ON(p.membernum = m.membernum)  where menucode=#{menuCode}
+	</select>
+
+	
+
+	<select id="selectReview" parameterType="_int" resultType="review">
+		select review.*,memberid from review inner join member on(review.membernum=member.membernum) where businesscode=#{businessCode} order by reviewnum desc
+	</select>
 
 	<resultMap id="memberNotice" type="map">
 	</resultMap>
@@ -115,14 +141,18 @@
 		SELECT * FROM NOTICE ORDER BY writeDate DESC
 	</select>
 	
-	<resultMap id="mark" type="map"></resultMap>
+	<resultMap id="mark" type="map">
+		<collection property="store" resultMap="store"/>
+		<collection property="member" resultMap="member"/>
+	</resultMap>
 	<!-- 찜 목록 -->
 	<select id="selectMarkList" parameterType="string" resultType="mark">
 		SELECT 
-			m.*, s.* 
+			ma.*, m.*, s.* 
 		FROM 
 			MARK ma JOIN MEMBER m ON (ma.memberNum = m.memberNum) JOIN STORE s ON (ma.businessCode = s.businessCode)  
 		WHERE 
-			m.memberId = #{memberId} 
+			m.memberId = #{memberId}
 	</select>
+
 </mapper>

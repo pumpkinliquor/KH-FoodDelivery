@@ -55,15 +55,7 @@ public class OwnerMemberDaoImpl implements OwnerMemberDao {
 		return sqlSession.selectOne("ownerMember.selectBusiness", ownerId);
 	}
 
-	@Override
-	public Map<String, String> selectPayOneList(String businessCode) {
-		return sqlSession.selectOne("ownerOrder.selectPayOneList",businessCode);
-	}
 
-	@Override
-	public Map<String, String> selectBusinessCode(String ownerId) {
-		return sqlSession.selectOne("ownerOrder.selectBusinessCode",ownerId);
-	}
 
 	
 	
