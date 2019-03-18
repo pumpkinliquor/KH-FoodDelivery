@@ -26,7 +26,10 @@
 	<select id="selectStoreList" resultType="store">
 		SELECT * FROM STORE WHERE isConfirm = 1
 	</select>
-	
+	<!-- 전체 입점 리스트2 -->
+	<select id="selectStoreListTwo" parameterType="string" resultType="store">
+		SELECT * FROM STORE WHERE ownerId=#{ownerId}
+	</select>
 	<!-- 전체 입점 Count -->
 	<select id="selectStoreCount" resultType="_int">
 		SELECT COUNT(*) FROM STORE WHERE isConfirm = 1
