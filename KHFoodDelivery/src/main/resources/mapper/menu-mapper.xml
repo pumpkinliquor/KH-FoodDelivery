@@ -6,10 +6,27 @@
 	<insert id="insertCategory" parameterType="map">
 		insert into menu_category values(SEQ_menuCategoryCode.nextval , #{menuCategory} , 38)
 	</insert>
+	<insert id="insertWishList" parameterType="map">
+		INSERT INTO WISHLIST VALUES(SEQ_WISHNUM.NEXTVAL, #{menuCode}, #{businessCode}, #{memberId}, #{menuCount}, #{plusMenuPrice})
+	</insert>
+	<select id="selectWishList" parameterType="map" resultMap="menuMap">
+		SELECT * FROM WISHLIST A INNER JOIN MENU B ON A.MENUCODE=B.MENUCODE WHERE A.BUSINESSCODE=#{businessCode} AND A.MEMBERID=#{memberId} ORDER BY A.WISHNUM DESC 
+	</select>
 	
 	<insert id="insertMenu" parameterType="map">
 		insert into menu values(seq_menucode.nextval,38,#{menuCategoryCode},#{menuName},#{menuContent},#{menuPrice},#{menuImage},default)
 	</insert>
+	<update id="updateMenuCount" parameterType="map">
+		UPDATE WISHLIST SET MENUCOUNT=#{plusCount} WHERE MENUCODE=#{menuCode}
+	</update>
+	<select id="menuCounts" parameterType="_int" resultType="_int">
+		SELECT MENUCOUNT FROM WISHLIST WHERE MENUCODE=#{menuCode} GROUP BY MENUCOUNT
+	</select>
+	<delete id="deleteMenuCount" parameterType="_int">
+		DELETE FROM WISHLIST WHERE MENUCODE=#{menuCode}
+	</delete>
+	
+	
 	<delete id="deleteCategory" parameterType="string">
 		delete from menu_category where menucategorycode = #{menuCategory}
 	</delete>

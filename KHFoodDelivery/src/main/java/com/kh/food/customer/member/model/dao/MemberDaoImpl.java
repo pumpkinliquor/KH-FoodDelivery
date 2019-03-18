@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
@@ -45,6 +46,10 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList("member.selectMemberOrder",memberNum,rb);
 	}
 	
+	public int menuCounts(int menuCode) {
+		return sqlSession.selectOne("menu.menuCounts", menuCode);
+	}
+
 	@Override
 	public int updateMemberQna(MemberQna mq) {
 		return sqlSession.update("member.qnaUpdate",mq);
@@ -60,8 +65,32 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList("member.memberQnaList",memberId);
 	}
 	
+	@Override
+	public List<WishList> selectWishList(Map<String, Object> maps) {
+		return sqlSession.selectList("menu.selectWishList", maps);
+	}
 
+	@Override
+	public int insertWishList(Map<String, Object> menuMap) {
+		System.out.println(menuMap);
+		return sqlSession.insert("menu.insertWishList", menuMap);
+	}
+
+	@Override
+	public int plusMenuCount(Map<String,Object> upCount) {
+		return sqlSession.update("menu.updateMenuCount", upCount);
+	}
 	
+	@Override
+	public int minusMenuCount(Map<String,Object> upCount) {
+		return sqlSession.update("menu.updateMenuCount", upCount);
+	}
+
+	@Override
+	public int deleteMenuCount(int menuCode) {
+		return sqlSession.delete("menu.deleteMenuCount", menuCode);
+	}
+
 	@Override
 	public MemberQna memberDetailQna(int no) {
 		return sqlSession.selectOne("member.qnaDtail",no);
@@ -164,13 +193,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int kakaoLogin(Map<String, String> map) {
-		return sqlSession.insert("member.kakaoLogin",map);
-	}
-
-	@Override
 	public int kakaoEnrollEnd(Member m) {
-		return sqlSession.update("member.kakaoEnrollEnd",m);
+		return sqlSession.insert("member.kakaoEnrollEnd",m);
 	}
 	
 	// 회원 공지사항

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
@@ -39,6 +40,12 @@ public interface MemberService {
 	List<Store> menuInfo(int businessCode);
 	List<Map<String,String>> selectCategoryList(int businessCode);
 //	List<Map<String,String>> selectMenuList(int menuCategoryCode,int businessCode);
+	int insertWishList(Map<String,Object> menuMap);
+	List<WishList> selectWishList(Map<String,Object> maps);
+	int plusMenuCount(Map<String,Object> upCount);
+	int minusMenuCount(Map<String,Object> upCount);
+	int menuCounts(int menuCode);
+	int deleteMenuCount(int menuCode);
 	
 	Map<String,String>selectSearchId(Map<String,String> map); //아이디찾기
 	Map<String,String>selectConfirmEmail(Map<String,String>map);
@@ -47,7 +54,6 @@ public interface MemberService {
 	List<Map<String,String>> selectMenuList(int menuCategoryCode,int businessCode);
 	Menu menuSelect(int menuCode);
 	List<Store> selectAllStore(int cPage,int numPerPage);
-	int kakaoLogin(Map<String, String> map);
 	int kakaoEnrollEnd(Member m);
 	
 	// 회원 공지사항
