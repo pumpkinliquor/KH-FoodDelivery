@@ -36,6 +36,8 @@
 			<mapping path="/owner/myOneVSone.do"/>
 			<mapping path="/owner/storeForm.do"/>
 			<mapping path="/owner/oneVSoneView.do"/>
+			<mapping path="/owner/menuStoreChoice.do"/>
+			<mapping path="/owner/storeChoice.do"/>
 			<beans:bean id="ownerInterceptor" class="com.kh.food.common.OwnerInterceptor"/>
 		</interceptor>
 	</interceptors>

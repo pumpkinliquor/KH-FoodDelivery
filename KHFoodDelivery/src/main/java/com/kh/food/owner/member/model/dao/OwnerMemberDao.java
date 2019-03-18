@@ -14,6 +14,4 @@ public interface OwnerMemberDao {
 	int ownerCheckId(String ownerId);
 	int lastDate(int ownerNum);
 	String selectBusiness(String ownerId);
-	Map<String, String> selectPayOneList(String businessCode);
-	Map<String, String> selectBusinessCode(String ownerId);
 }
