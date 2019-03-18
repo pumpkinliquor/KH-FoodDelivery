@@ -47,7 +47,6 @@ public interface MemberService {
 	List<Map<String,String>> selectMenuList(int menuCategoryCode,int businessCode);
 	Menu menuSelect(int menuCode);
 	List<Store> selectAllStore(int cPage,int numPerPage);
-	int kakaoLogin(Map<String, String> map);
 	int kakaoEnrollEnd(Member m);
 	
 	// 회원 공지사항

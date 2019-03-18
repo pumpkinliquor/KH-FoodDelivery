@@ -119,7 +119,7 @@ public class OrderController {
 		mv.addObject("orderList",orderList);
 		mv.addObject("price",price);
 		mv.setViewName("owner/ownerOrderList");
-		mv.addObject("pageBar",PagingFactory.getPageBar(orderCount, cPage, numPerPage, "/food/owner/orderService.do?businessCode="+businessCode1));
+		mv.addObject("pageBar",PagingFactory.getPageBar4(orderCount, cPage, numPerPage, "/food/owner/orderService.do?businessCode="+businessCode1));
 		return mv;
 			
 	}
