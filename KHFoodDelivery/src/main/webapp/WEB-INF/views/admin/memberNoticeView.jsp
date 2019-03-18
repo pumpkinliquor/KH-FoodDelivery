@@ -6,7 +6,12 @@
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
 
+<c:if test="${sessionScope.logined!='admin' }">
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
+</c:if>
+<c:if test="${sessionScope.logined=='admin' }">
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
+</c:if>
 
 <style>
 div#noticeContectDiv{
@@ -64,14 +69,16 @@ function fileDownLoad(oriName, reName){
 			<div class="col-sm-1">
 			</div>
 			<div class="col-sm-1"></div>
-			<div class="col-sm-2">			
+			<div class="col-sm-2">	
+			<c:if test="${sessionScope.logined=='admin' }">
+					
 				<button id="noticeCancelkBtn" name="noticeCancelkBtn" class="btn btn-default float-right" value="${notice.NOTICENUM }" onclick="fn_memberNoticeDel(this)">삭제</button>
 				<form action="${path }/admin/memNoticeUpdate.do" enctype="multipart/form-data" method="post">
 				<input value="${notice.NOTICENUM }" type="hidden" name="noticeNum">
 				<button id="noticeUpBtn"  class="btn btn-default float-right">수정</button>
 	
 				</form>
-				
+			</c:if>	
 			</div>	
 		</div>
 		<hr/>
