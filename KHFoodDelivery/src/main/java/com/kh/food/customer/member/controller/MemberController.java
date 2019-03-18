@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.common.PagingFactory;
 import com.kh.food.customer.member.model.service.MemberService;
 import com.kh.food.customer.member.model.vo.Member;
@@ -754,4 +755,19 @@ public class MemberController {
 		return mv;
 	}
 	
+	// 회원 공지사항
+	@RequestMapping("customer/memberNoticeList.do")
+	public ModelAndView MemberNoticeList() {
+		ModelAndView mv = new ModelAndView();
+		List<MemberNotice> mnList = service.selectMemberNotice();
+		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		for(int i = 0; i < mnList.size(); i++) {
+			mnList.get(i).setFormatWriteDate(df.format(mnList.get(i).getWriteDate()));
+		}
+		
+		mv.addObject("mnList", mnList);
+		mv.setViewName("customer/memberNoticeList");
+		return mv;		
+	}
 }

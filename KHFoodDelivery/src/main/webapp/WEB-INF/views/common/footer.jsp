@@ -115,7 +115,7 @@
                     <div class="col-xs-12 col-sm-4 col-md-12">
                         <ul class="list-unstyled quick-links">
                             <li><a href="${path }"><i class="fa fa-angle-double-right"></i>Home</a></li>
-                            <li><a href="${path }"><i class="fa fa-angle-double-right"></i>공지사항</a></li>
+                            <li><a href="${path }/customer/memberNoticeList.do"><i class="fa fa-angle-double-right"></i>공지사항</a></li>
                             <li><a href="${path }"><i class="fa fa-angle-double-right"></i>1:1문의</a></li>
                         </ul>
 

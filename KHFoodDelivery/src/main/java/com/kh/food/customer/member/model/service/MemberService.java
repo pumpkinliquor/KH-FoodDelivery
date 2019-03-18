@@ -3,6 +3,7 @@ package com.kh.food.customer.member.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
@@ -41,4 +42,6 @@ public interface MemberService {
 	int kakaoLogin(Map<String, String> map);
 	int kakaoEnrollEnd(Member m);
 	
+	// 회원 공지사항
+	List<MemberNotice> selectMemberNotice();
 }
