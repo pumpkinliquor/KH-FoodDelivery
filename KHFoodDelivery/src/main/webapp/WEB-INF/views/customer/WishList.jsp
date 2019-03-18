@@ -39,7 +39,7 @@
 					var minusCount=${maps.menuCount}-1;
 				}
 				else{
-					minusCount=Number($(e).next().val())-1;
+					minusCount=Number($(e).next().next().val())-1;
 				}
 				if(minusCount==0){
 					alert("수량 0은 입력하실 수 없습니다.");
