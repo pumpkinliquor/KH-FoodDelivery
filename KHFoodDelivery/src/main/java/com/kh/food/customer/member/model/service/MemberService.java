@@ -43,5 +43,5 @@ public interface MemberService {
 	int kakaoEnrollEnd(Member m);
 	
 	// 회원 공지사항
-	List<MemberNotice> selectMemberNotice();
+	List<MemberNotice> selectMemberNotice(int cPage,int numPerPage);
 }

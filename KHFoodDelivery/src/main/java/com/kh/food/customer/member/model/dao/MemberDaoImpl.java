@@ -152,7 +152,8 @@ public class MemberDaoImpl implements MemberDao {
 	
 	// 회원 공지사항
 	@Override
-	public List<MemberNotice> selectMemberNotice() {
-		return sqlSession.selectList("member.selectMemberNotice");
+	public List<MemberNotice> selectMemberNotice(int cPage,int numPerPage) {
+		RowBounds rb=new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("member.selectMemberNotice", null, rb);
 	}
 }

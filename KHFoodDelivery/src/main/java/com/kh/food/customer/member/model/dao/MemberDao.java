@@ -38,5 +38,5 @@ public interface MemberDao {
 	int kakaoEnrollEnd(Member m);
 	
 	// 회원공지사항
-	List<MemberNotice> selectMemberNotice();
+	List<MemberNotice> selectMemberNotice(int cPage,int numPerPage);
 }

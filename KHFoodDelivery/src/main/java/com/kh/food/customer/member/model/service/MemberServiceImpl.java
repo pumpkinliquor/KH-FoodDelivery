@@ -151,7 +151,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 회원 공지사항
 	@Override
-	public List<MemberNotice> selectMemberNotice() {
-		return dao.selectMemberNotice();
+	public List<MemberNotice> selectMemberNotice(int cPage,int numPerPage) {
+		return dao.selectMemberNotice(cPage, numPerPage);
 	}
 }

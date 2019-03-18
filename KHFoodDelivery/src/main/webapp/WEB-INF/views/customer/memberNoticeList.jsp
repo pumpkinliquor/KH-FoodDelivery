@@ -26,10 +26,10 @@
 				</thead>
 				<c:forEach items="${mnList }" var="mn">
 					<tbody>
-						<tr>
+						<tr onclick="location.href='${path}/customer/memberNoticeView.do?noticeNum=${mn.noticeNum}'" style="cursor: pointer">
 							<td>${mn.noticeNum }</td>
 							<td id="noticeTitleTd">
-								<a href="${path}/admin/memberNoticeView.do?noticeNum=${mn.noticeNum}">${mn.noticeTitle}</a>
+								${mn.noticeTitle}
 							</td>
 							<td>${mn.formatWriteDate}</td>
 						</tr>

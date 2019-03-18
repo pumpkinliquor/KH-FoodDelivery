@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.food.admin.notice.model.service.NoticeService;
 import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.common.PagingFactory;
 import com.kh.food.customer.member.model.service.MemberService;
@@ -49,6 +50,8 @@ public class MemberController {
 	BCryptPasswordEncoder pwEncoder;
 	@Autowired
 	MemberService service;
+	@Autowired
+	NoticeService ns;
 	@Autowired
 	private JavaMailSender mailSender;
 	
@@ -755,19 +758,34 @@ public class MemberController {
 		return mv;
 	}
 	
-	// 회원 공지사항
+	// 회원 공지사항 리스트
 	@RequestMapping("customer/memberNoticeList.do")
-	public ModelAndView MemberNoticeList() {
+	public ModelAndView memberNoticeList(@RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
 		ModelAndView mv = new ModelAndView();
-		List<MemberNotice> mnList = service.selectMemberNotice();
+		int numPerPage=10;
+		int count = ns.notCount();
+		List<MemberNotice> mnList = service.selectMemberNotice(cPage,numPerPage);
 		
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		for(int i = 0; i < mnList.size(); i++) {
 			mnList.get(i).setFormatWriteDate(df.format(mnList.get(i).getWriteDate()));
 		}
 		
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/customer/memberNoticeList.do"));
 		mv.addObject("mnList", mnList);
 		mv.setViewName("customer/memberNoticeList");
 		return mv;		
+	}
+	
+	// 회원 공지 보기
+	@RequestMapping("customer/memberNoticeView.do")
+	public ModelAndView memberNoticeView(int noticeNum) {
+		ModelAndView mv = new ModelAndView();
+		Map<String,String> map=ns.selectMemberNotice(noticeNum);
+		List<Map<String,String>> attach=ns.selectAttach(noticeNum);
+		mv.addObject("notice",map);
+		mv.addObject("attach",attach);		
+		mv.setViewName("customer/memberNoticeView");
+		return mv;
 	}
 }
