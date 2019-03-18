@@ -197,12 +197,13 @@
         	
         	$("#test1").click(function(){
         		
-        		
+        		var businessCode=${businessCode}
         		
         		$.ajax({
         			
         			type: "post",
         			url: "${path}/customer/test.do",	
+        			data : {"businessCode" : businessCode},
         			success: function test(a){$("#callback").html(a);}
         		});
         		

@@ -40,6 +40,7 @@ import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.review.model.vo.Review;
 
 @Controller
 public class MemberController {
@@ -425,9 +426,14 @@ public class MemberController {
 	//테스트
 	
 	@RequestMapping("/customer/test.do")
-	public String test()
+	public ModelAndView test(ModelAndView mv, int businessCode)
 	{
-		return "customer/test";
+		List<Review> review=service.selectReview(businessCode);
+		System.out.println(review);
+		mv.addObject("businessCode",businessCode);
+		mv.addObject("review",review);
+		mv.setViewName("customer/test");
+		return mv;
 	}
 	
 	

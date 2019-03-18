@@ -16,6 +16,7 @@ import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.review.model.vo.Review;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -25,6 +26,11 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao dao;
 
+	@Override
+	public List<Review> selectReview(int businessCode) {
+		
+		return dao.selectReview(businessCode);
+	}
 	@Override
 	public Map<String,String> orderOne(int menuCode) {
 		return dao.orderOne(menuCode);
