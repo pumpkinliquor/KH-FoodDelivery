@@ -15,4 +15,9 @@ public class CustomerPay {
 	public String customerPay() {
 		return "customer/pay";
 	}
+	
+	@RequestMapping("/customer/payEnd.do")
+	public String customerPayEnd() {
+		return "customer/payEnd";
+	}
 }

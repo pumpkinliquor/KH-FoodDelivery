@@ -19,10 +19,7 @@ body{background-color:#F6F6F6;}
 
 <div class="me container">
 	<div class="a">
-	<c:if test="${sessionScope.storeName==null }">
-	<a class="option">간신배 등록 음식점</a>
-	</c:if>
-	<br/><br/>
+	
 	
 	
 	<c:forEach items="${list}" var="i" >

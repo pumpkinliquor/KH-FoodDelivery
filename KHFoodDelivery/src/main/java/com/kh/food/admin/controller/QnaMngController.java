@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -91,16 +92,6 @@ public class QnaMngController {
 		for(int i = 0; i < mqList.size(); i++) {
 			mqList.get(i).setFormatWriteDate(df.format(mqList.get(i).getWriteDate()));
 		}
-
-		for(MemberQna q : mqList) {
-			logger.debug("" + q);
-		}
-		
-		logger.debug(keyword);
-		logger.debug(isRe);
-		logger.debug(category);
-		logger.debug(""+isFirst);
-		
 		mv.addObject("mqList", mqList);		
 		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/searchMemberQna.do"));
 		mv.setViewName("admin/memberQnaList");				
@@ -217,7 +208,8 @@ public class QnaMngController {
 										@RequestParam(value="category", defaultValue="전체") String category,
 										@RequestParam(value="isFirst", defaultValue="0") int isFirst,
 										@RequestParam(value="cPage", required=false, defaultValue="0") int cPage,
-										HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+										HttpSession session, HttpServletRequest request, HttpServletResponse response) {		
+		
 		
 		// 한글 인코딩
 		try {

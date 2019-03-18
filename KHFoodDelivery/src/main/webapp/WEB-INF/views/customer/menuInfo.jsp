@@ -261,7 +261,6 @@
 	 	
 		
 	
-	
  </script>
  
     <div class="container">
@@ -272,7 +271,7 @@
             	
                 <div class="restaurant-info">
                     <div class="restaurant-title">
-                        <span>${i.storeName }</span>
+                        <span id="storeName">${i.storeName }</span>
                     </div>
                     <div class="restaurant-content">
                         <div class="logo"><img class="mainlogo" src="${path }/resources/upload/owner/storeMainImage/${i.storeImage }" /></div>
@@ -334,7 +333,7 @@
                            		합계 : ${plusMenuPrice }원
                         </div>
                         <div class="cart-btn clearfix" style="clear:both;">
-                            <a href="${path}/customer/pay.do" class="btu">주문하기</a>
+                            <a id="pay" class="btu">주문하기</a>
                         </div>
                     </div>
                 </div>
@@ -345,9 +344,9 @@
        
 
     </div>
+
  
-    
- 
+
 
 
 

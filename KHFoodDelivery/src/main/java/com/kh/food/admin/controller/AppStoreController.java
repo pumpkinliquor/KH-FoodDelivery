@@ -2,9 +2,12 @@ package com.kh.food.admin.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,6 +87,60 @@ public class AppStoreController {
 		mv.addObject("msg", msg);
 		mv.addObject("loc", loc);
 		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	// 전체 입점 리스트
+	@RequestMapping("/admin/storeList.do")
+	public ModelAndView storeList(@RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
+		ModelAndView mv = new ModelAndView();
+		int numPerPage=10;
+		int count = service.selectStoreCount();
+		List<Store> list = service.selectStoreList(cPage, numPerPage);
+		
+		// 입점 신청 날짜 포맷 (패턴 : yyyy-MM-dd)
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		
+		for(int i = 0; i < list.size(); i++) {
+			list.get(i).setFormatAppDate(df.format(list.get(i).getAppDate()));
+		}
+		
+		mv.addObject("list", list);
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/storeList.do"));
+		mv.setViewName("/admin/storeList");
+		return mv;
+	}
+	
+	// 입점 검색
+	@RequestMapping("/admin/searchStore.do")
+	public ModelAndView searchStore(@RequestParam(value="keyword", defaultValue="") String keyword,
+									@RequestParam(value="category", defaultValue="전체") String category,
+									@RequestParam(value="isFirst", defaultValue="0") int isFirst,
+									@RequestParam(value="cPage", required=false, defaultValue="0") int cPage,
+									HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		int numPerPage = 5;
+		
+		Map map3 = new HashMap();
+		if(isFirst == 1) {						// 처음 검색했을 때 map 객체 안에 조건 저장	
+			map3.put("keyword", keyword);
+			map3.put("category", category);
+			session.setAttribute("map3", map3);	// 맵을 세션에 저장
+		} else {								
+			map3 = (Map)session.getAttribute("map3");		// 검색 후 페이징 했을 땐 세션에서 조건을 가져옴
+		}
+		
+		List<Store> list = service.selectSearchStore(map3, cPage, numPerPage);
+		int count = service.selectSearchStoreCount((Map)session.getAttribute("map3"));
+		// 날짜 포맷 (패턴 : yyyy-MM-dd)
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		for(int i = 0; i < list.size(); i++) {
+			list.get(i).setFormatAppDate(df.format(list.get(i).getAppDate()));
+		}
+		
+		mv.addObject("list", list);
+		mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/searchStore.do"));
+		mv.setViewName("/admin/storeList");
 		return mv;
 	}
 }

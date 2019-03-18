@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 import="java.util.*, java.sql.* , com.kh.food.customer.member.model.vo.*" 
 pageEncoding="UTF-8"%>
-    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>    
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>  
    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -149,7 +149,7 @@ function address1() {
 		     <div class="list-group ">
               <a href="${path}/customer/mypage.do?memberId=${sessionScope.logined}"  class="list-group-item list-group-item-action active">회원정보변경</a>
               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action" style="z-index:0;">나의 주문내역</a>
-              <a href="${path }/member/markList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action">즐겨찾는매장</a>
+              <a href="#" class="list-group-item list-group-item-action">즐겨찾는매장</a>
               <a href="${path }/member/qnaList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action">나의 문의내역</a>
             </div> 
 		</div>
