@@ -92,8 +92,12 @@ function detailOrder(menuCode){
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
+
               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}" class="list-group-item list-group-item-action active" style="z-index:0;">나의 주문내역</a>
-              <a href="#" class="list-group-item list-group-item-action">즐겨찾는매장</a>
+              
+
+              <a href="${path }/member/markList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action">즐겨찾는매장</a>
+
               <a href="${path}/customer/mypage.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action">회원정보변경</a>
               <a href="${path }/member/qnaList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action">나의 문의내역</a>
             </div> 

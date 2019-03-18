@@ -13,11 +13,11 @@
 	<delete id="deleteCategory" parameterType="string">
 		delete from menu_category where menucategorycode = #{menuCategory}
 	</delete>
-	<select id="selectMenuCategory" resultMap="categoryMap">
-		select * from menu_category order by menucategorycode asc
+	<select id="selectMenuCategory" parameterType="string" resultMap="categoryMap">
+		select * from menu_category where businesscode = #{businessCode} order by menucategorycode asc
 	</select>
-	<select id="selectMenuList" resultMap="menuMap">
-		select * from menu 
+	<select id="selectMenuList" parameterType="string" resultMap="menuMap">
+		select * from menu where businessCode = #{businessCode}
 	</select>
 	
 	<update id="updateMenuPrice" parameterType="map">

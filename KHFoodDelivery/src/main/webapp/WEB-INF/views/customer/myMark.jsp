@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-import="java.util.*, java.sql.* , com.kh.food.customer.member.model.vo.*" 
+import="java.util.*, java.sql.* , com.kh.food.customer.member.model.vo.*, com.kh.food.mark.model.vo.Mark" 
 pageEncoding="UTF-8"%>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>  
-   
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	Member member = (Member)request.getAttribute("member");
+	List<Mark> markList = (List<Mark>)request.getAttribute("list"); 
 %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
@@ -146,109 +146,23 @@ function address1() {
  			
 	<div class="row">
 		<div class="col-md-3 ">
-		     <div class="list-group ">
+		     <div class="list-group">
               <a href="${path}/customer/mypage.do?memberId=${sessionScope.logined}"  class="list-group-item list-group-item-action active">회원정보변경</a>
               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action" style="z-index:0;">나의 주문내역</a>
-              <a href="#" class="list-group-item list-group-item-action">즐겨찾는매장</a>
+              <a href="${path }/member/markList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action">즐겨찾는매장</a>
               <a href="${path }/member/qnaList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action">나의 문의내역</a>
             </div> 
 		</div>
-		
-		<div class="col-md-9 ">
-			
- 			 <div class="row">
-		         <div class="col-md-12">
-		              <form name="update" action="${path}/member/update.do" method="post" enctype="multipart/form-data">
-						  <div class="text-center">
-				  			
-				  			<img onclick="fileUpload()" style="cursor: pointer;" name="file" title="profile image" class="avatar img-circle img-thumbnail" alt="avatar" src="${path}/resources/upload/member/profile/${member.profileImage}"/>
-				 			<input type="file" class="btn btn-primary" id="file" name="profileImg" value="${member.profileImage}" style="display: none ;">
-				 			 <input type="hidden" name="profileImage" value="${member.profileImage}"/>
-			 				
-			 			<hr>
-			 			</div>
-                              <div class="form-group row">
-                               
-                                <label for="username" class="col-4 col-form-label">아이디</label>
-                                <div class="col-8">
-                                  <input  name="memberId" id="memberId"value="${member.memberId}" class="form-control here" required="required" type="text" readonly >
-                                </div>
-                              </div>
-                              <div class="form-group row">
-                                <label for="name" class="col-4 col-form-label">이름</label> 
-                                <div class="col-8">
-                                  <input id="name" name="memberName" id="memberName"value="${member.memberName}" class="form-control here" type="text" readonly>
-                                </div>
-                              </div>
-                              <div class="form-group row">
-                                <label for="lastname" class="col-4 col-form-label">닉네임</label> 
-                                <div class="col-8">
-                                    <span class="guide2 ok2">사용 가능한 닉네임입니다. </span>
-            						<span class="guide2 error2">닉네임이 존재합니다. </span>
-                                  <input  name="nickName" id="nickName" value="${member.nickName}" class="form-control here" type="text"/>
-                                </div>
-                              </div>
-                              <div class="form-group row">
-                                <label for="text" class="col-4 col-form-label">생년월일</label> 
-                                <div class="col-8">
-                                  <input type="date" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" max="2019-03-29" min="1900-01-01"/>
-                                </div>
-                              </div>
-                              <div class="form-group row">
-                                <label for="select" class="col-4 col-form-label">이메일</label> 
-                                <div class="col-8">
-                                  <input id="email"id="memberEmail" name="memberEmail" value="${member.memberEmail}" class="form-control here" required="required" type="text"/>
-                                </div>
-                              </div>
-                              <div class="form-group row">
-                                <label for="email" class="col-4 col-form-label">전화번호</label> 
-                                <div class="col-8">
-                                  <input id="email" name="memberPhone" id="memberPhone" value="${member.memberPhone}" class="form-control here" required="required" type="text"  maxlength="11"/>
-                                </div>
-                              </div>
-                               <div class="form-group row"> 
-                                <label for="website" class="col-4 col-form-label">주소</label> 
-                                <div class="addre col-7"> 
-                                	
-                                  <input  name="memberAddress" id="memberAddress"value="${member.memberAddress}" class="form-control here" type="text"/>
-                                  </div>
-                                <div class="addre col-1">
-                             	  <input type="button" class="btn-ser1 btn btn-default" onclick="address1();" value="주소검색"/> 
-                                 </div>
-                                  <label for="website" class="col-4 col-form-label">상세주소</label> 
-                                  <div class="addre col-3"> 
-                               <input  name="memberAddress1" id="memberAddress1"value="${member.memberAddress1}" class="form-control here" type="text"/>
-                                  </div> 
-                                
-                                 
-                              </div>
-                               <div class="form-group row">
-                                <label for="publicinfo" class="col-4 col-form-label">성별</label>
-                                <div class="col-8"> 
-                                <select class="form-control" name="memberGender" id="memberGender" required>
-					            <option value="" disabled selected>성별</option>
-					            <option value="M" ${member.memberGender=='M'?'selected':''}>남</option>
-					            <option value="F" ${member.memberGender=='F'?'selected':'' }>여</option>
-					            </select>
-								</div>     
-                              </div> 
-                              
-                              <input type="submit" class="btn btn-default" value="수정하기"/>&nbsp;
-                              <input type="button" class="btn btn-default" value="취소" onclick="re();"/>
-                            
-                             <script>
-                             	function re(){
-                             		alert("메인화면으로 이동합니다");
-                             		location.href="${path}";
-                             	}
-                             </script>
-                              
-                              
-                            <input type="button" onclick="dropMember();" class="btn btn-default" id="drop" value="탈퇴"/>
-                            </form>
-		                </div>
-		            </div>
-  		
+		<div class="col-md-9">
+			<table class="table table-hover">
+				<tr>
+					<%for(Mark m : markList) { %>
+						<td>
+							<c:out value="${m.getStore().getStoreName() }"/>
+						</td>
+					<%} %>
+				</tr>
+			</table>
 		</div>
 	</div>
 </div>
