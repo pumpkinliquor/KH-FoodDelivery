@@ -4,18 +4,28 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
 
+<c:if test="${sessionScope.logined!='admin' }">
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
+</c:if>
+<c:if test="${sessionScope.logined=='admin' }">
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
-<style>
+</c:if>
 
-</style>
 <section>
 	<div class="container" id="memberNoticeDiv">
+		<c:if test="${sessionScope.logined=='admin' }">
 		<div>
 			<h4>회원 공지사항</h4>
 		</div>
+		</c:if>
+		<c:if test="${sessionScope.logined!='admin' }">
+			<div style="text-align: center; margin-bottom: 5em;">
+				<h2 style="font-weight: bold;">회원 공지사항</h2>
+			</div>
+		</c:if>
+		
 		<div class="col-md-12">
 			<table class="table table-hover notice">
 
@@ -40,10 +50,12 @@
 				</c:forEach>
 			</table>
 
+				<c:if test="${sessionScope.logined=='admin' }">
+					<button type="button" class="btn btn-light float-right"
+						onclick="location.href='${path}/admin/memberNoticeForm.do'">글쓰기</button>
+				</c:if>
 
-
-			<button type="button" class="btn btn-light float-right"
-				onclick="location.href='${path}/admin/memberNoticeForm.do'">글쓰기</button>
+			
 
 		</div>
 	</div>
