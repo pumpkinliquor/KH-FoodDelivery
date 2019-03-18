@@ -6,23 +6,23 @@
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
 
-
-<jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 
 <style>
 div#noticeContectDiv{
 	min-height: 200px;
 }
 </style>
+
+
+<!-- 사장 뷰 공지사항임!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+
+
+
+
+
 <script>
-//게시글 삭제
-function fn_memberNoticeDel(e){
-	
-	var num = $(e).val();
-	
-	location.href="${path}/admin/memberNoticeDel.do?noticeNum="+num;
-	alert("삭제되었습니다.");
-};
 
 
 //파일다운로드
@@ -33,11 +33,10 @@ function fileDownLoad(oriName, reName){
 	}
 	if(confirm(oriName+"을(를) 다운로드 하시겠습니까?")){
 		oriName=encodeURIComponent(oriName); //한글일 가능성 때문 
-		location.href="${path}/admin/memberfileDownLoad.do?oriName="+oriName+"&reName="+reName;
+		location.href="${path}/owner/noticefileDownLoad.do?oriName="+oriName+"&reName="+reName;
 		return true;
 	}
 }
-
 
 
 </script>
@@ -47,33 +46,25 @@ function fileDownLoad(oriName, reName){
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-10">
-				<h4>${notice.NOTICETITLE }</h4>
+				<h4>${notice.OWNERNOTICETITLE }</h4>
 			</div>
 			<div class="col-sm-2">		
 			</div>
 			<div class="col-sm-2">
-				<p>글 번호 <b>${notice.NOTICENUM }</b></p>
+				<p>글 번호 <b>${notice.OWNERNOTICENUM }</b></p>
 			</div>
 			<div class="col-sm-2">
 				<p>작성자 <b>관리자</b></p>
 			</div>
 			<div class="col-sm-3">
-				<p>${notice.WRITEDATE }</p>
+				<p>${notice.OWNERWRITEDATE }</p>
 			</div>
 			<div class="col-sm-1">
 			</div>
 			<div class="col-sm-1">
 			</div>
 			<div class="col-sm-1"></div>
-			<div class="col-sm-2">	
-
-					
-				<button id="noticeCancelkBtn" name="noticeCancelkBtn" class="btn btn-default float-right" value="${notice.NOTICENUM }" onclick="fn_memberNoticeDel(this)">삭제</button>
-				<form action="${path }/admin/memNoticeUpdate.do" enctype="multipart/form-data" method="post">
-				<input value="${notice.NOTICENUM }" type="hidden" name="noticeNum">
-				<button id="noticeUpBtn"  class="btn btn-default float-right">수정</button>
-	
-				</form>
+			<div class="col-sm-2">		
 
 			</div>	
 		</div>
@@ -81,12 +72,14 @@ function fileDownLoad(oriName, reName){
 		<br/>	
 		<div class="row">			
 			<div class="col-sm-12" id="noticeContectDiv">
-				${notice.NOTICECONTENT}
+				${notice.OWNERNOTICECONTENT}
 			</div>
-			<div>
+			
+			<div class="col-sm-12">
+			
 			<c:forEach items="${attach}" var="a" varStatus="vs">
-        <button type="button" style="padding:0px; background-color:white; cursor:pointer; border:0px;" class="fileDownLoadBtn" onclick="fileDownLoad('${a.ORIGINALFILENAME}','${a.RENAMEDFILENAME}');">
-         	<img src="${path }/resources/images/owner/icons/attach_file_icon.png" width=17px;/> - ${a.ORIGINALFILENAME}
+        <button type="button" style="padding:0px; background-color:white; cursor:pointer; border:0px;" class="fileDownLoadBtn" onclick="fileDownLoad('${a.OWNERORIGINALFILENAME}','${a.OWNERRENAMEDFILENAME}');">
+         	<img src="${path }/resources/images/owner/icons/attach_file_icon.png" width=17px;/> - ${a.OWNERORIGINALFILENAME}
         </button>
     	</c:forEach>
     	</div>
@@ -94,9 +87,8 @@ function fileDownLoad(oriName, reName){
 		</div>
 		<br>
 		<hr>
-		<button id="noticeListBtn" class="btn btn-default" onclick="location.href='${path}/admin/memberNoticeList.do'">목록</button>
+		<button id="noticeListBtn" class="btn btn-default" onclick="location.href='${path}/owner/ownerNoticeListOwnerView.do'">목록</button>
 	</div>
-	
 </section>
 
 
