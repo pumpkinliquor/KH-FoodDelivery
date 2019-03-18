@@ -81,7 +81,7 @@ pageEncoding="UTF-8"%>
                 <div class="col-md-8">
                     <div class="col-md-12">
                     <h6 id="p1">공지사항</h6> 
-                    <a href="${path}/owner/ownerNoticeList.do" id="noticePlus" style="float:right">+더보기</a>
+                    <a href="${path}/owner/ownerNoticeListOwnerView.do" id="noticePlus" style="float:right">+더보기</a>
                     </div>
                     <div class="col-sm-12 noticeDiv1">
                     <table id="notice_ta" width="100%">

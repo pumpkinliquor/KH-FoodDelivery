@@ -50,6 +50,20 @@ public class OwnerNoticeController {
 		return mv;
 	}
 	
+	//사장 공지사항 리스트 (사장뷰)
+		@RequestMapping("/owner/ownerNoticeListOwnerView.do")
+		public ModelAndView ownerNoticeList(ModelAndView mv, @RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
+			int numPerPage=10;
+			
+			int count = service.ownNotCount();
+			List<Map<String, String>> list=service.ownerNoticeListOwnerView(cPage,numPerPage);
+			mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/owner/ownerNoticeListOwnerView.do"));
+			mv.addObject("list", list);	
+			mv.setViewName("owner/ownerNoticeListOwnerView");
+			return mv;
+		}
+	
+	
 	//사장 공지사항 뷰
 	@RequestMapping("/owner/ownerNoticeView.do")
 	public ModelAndView noticeView(int ownerNoticeNum) {

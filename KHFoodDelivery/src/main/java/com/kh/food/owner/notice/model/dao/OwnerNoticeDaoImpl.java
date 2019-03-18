@@ -23,6 +23,17 @@ public class OwnerNoticeDaoImpl implements OwnerNoticeDao {
 		return sqlSession.selectList("ownerNotice.selectOwnerNoticeList",null,rows);
 	}
 	
+	
+	//사장리스트 사장뷰
+	@Override
+	public List<Map<String, String>> ownerNoticeListOwnerView(int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		RowBounds rows=new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("ownerNotice.ownerNoticeListOwnerView",null, rows);
+	}
+
+
+
 	@Override
 	public int ownNotCount() {
 		// TODO Auto-generated method stub
