@@ -54,13 +54,13 @@ div .menuCategoryStyle {
 				data:{"menuCode" : no},
 				dataType:"JSON",
 				success: function(data) {
-					console.log(data);
 					$('#menuSelectModal').modal();
 					$('#menuImage').empty().append('<img src="${path}/resources/upload/owner/menu/'+data.menuImage+'" style="width:100%; height:333px;"/>');
 					$('#menuTitle').empty().append(data.menuName);
 					$('#menuTitle_').val(data.menuName);
 					$('#menuPrice').empty().append(data.menuPrice);
 					$('#menuPrice_').val(data.menuPrice);
+					$('#menuCode_').val(data.menuCode);
 				}
 			});
 		}
@@ -113,7 +113,9 @@ function plusCount() {
 }
 // 장바구니 누르면 컨트롤러로 값 전송 및 모달끄기
 $(document).ready(function(){
+		var count=0;
 	$("#cookieInsert_").click(function(){
+		count++;		
 		var menuCount=$("#menuCount_").val();
 		if(menuCount.trim().length==0||menuCount==0){
 			alert('수량이 0 입니다.');
@@ -122,15 +124,28 @@ $(document).ready(function(){
 		var plusMenuPrice=$("#plusMenuPrice_").val();
 		var menuPrice=$("#menuPrice_").val();
 		var menuTitle=$("#menuTitle_").val();
+		var menuCode=$('#menuCode_').val();
 		var businessCode=${businessCode};
 		$.ajax({
 			type:"POST",
 			url:"${path}/customer/menuInsert.do",
-			data:{"plusMenuPrice" : plusMenuPrice, "menuCount" : menuCount, "menuPrice" : menuPrice, "menuTitle" : menuTitle, "businessCode" : businessCode},
+			data:{"plusMenuPrice" : plusMenuPrice, "menuCount" : menuCount, "menuPrice" : menuPrice, "menuTitle" : menuTitle, "businessCode" : businessCode, "menuCode" : menuCode},
 			dataType:"JSON",
-			succes: function(data) {
+			success: function(data) {
 				console.log(data);
-				alert('장바구니넣음');
+				$.ajax({
+					type:"POST",
+					url:"${path}/customer/menuInfo2.do?menuCount="+data.menuCount+"&businessCode="+businessCode+"&menuTitle="+data.menuTitle+"&menuPrice="+menuPrice+"&plusMenuPrice="+plusMenuPrice+"&menuCode="+data.menuCode,
+					dataType:"html",
+					success: function(data) {
+						if(count==1){
+							$('#janbgaID').html(data);
+						}
+						else{
+							$('#janbgaID').append(data);
+						}
+					}
+				});
 			}
 		});
 	});
@@ -169,6 +184,7 @@ $('#menuSelectModal').on('hidden.bs.modal', function (e) {
 				<h5 style="font-weight:bold; float:left; padding-left:1em; line-height:80px;">총 주문금액</h5>
 				<h5 style="float:right; padding-right:1em; line-height:80px;" id="plusMenuPrice"></h5>
 				<input type="hidden" id="plusMenuPrice_" name="plusMenuPrice" value=""/>
+				<input type="hidden" id="menuCode_" name="menuCode" value=""/>
 				</div>
 			</div>
 			<div class="modal-footer">

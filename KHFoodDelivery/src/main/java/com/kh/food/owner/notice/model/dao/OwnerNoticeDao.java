@@ -20,4 +20,5 @@ public interface OwnerNoticeDao {
 	 
 	
 	List<Map<String,String>>ownerNoticeList();
+	List<Map<String,String>>ownerNoticeListOwnerView(int cPage,int numPerPage);
 }

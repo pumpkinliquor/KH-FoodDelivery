@@ -5,12 +5,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
-<%-- <c:if test="${sessionScope.ownerId!='admin' }">
+
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
-</c:if> 
-<c:if test="${sessionScope.ownerId=='admin' }">--%>
-<jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
-<%-- </c:if> --%>
+
 <style>
 div#noticeContectDiv{
 	min-height: 200px;
@@ -18,7 +15,7 @@ div#noticeContectDiv{
 </style>
 
 
-<!-- 관리자 뷰 공지사항임!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<!-- 사장 뷰 공지사항임!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 
 
 
@@ -26,14 +23,6 @@ div#noticeContectDiv{
 
 
 <script>
-//게시글 삭제
-function fn_ownerNoticeDel(e){
-	
-	var num = $(e).val();
-	
-	location.href="${path}/owner/ownerNoticeDel.do?ownerNoticeNum="+num;
-	alert("삭제되었습니다.");
-}
 
 
 //파일다운로드
@@ -76,13 +65,7 @@ function fileDownLoad(oriName, reName){
 			</div>
 			<div class="col-sm-1"></div>
 			<div class="col-sm-2">		
-			<%-- <c:if test="${sessionScope.ownerId=='admin' }">	 --%>
-				<button id="noticeCancelkBtn" name="noticeCancelkBtn" class="btn btn-default float-right" value="${notice.OWNERNOTICENUM }" onclick="fn_ownerNoticeDel(this)">삭제</button>
-				<form action="${path }/owner/ownerNoticeUpdate.do" enctype="multipart/form-data" method="post">
-				<input type="hidden" value="${notice.OWNERNOTICENUM }" name="ownerNoticeNum">
-				<button id="noticeUpBtn"  class="btn btn-default float-right" value="${notice.OWNERNOTICENUM }">수정</button>
-				</form>
-			<%-- </c:if> --%>
+
 			</div>	
 		</div>
 		<hr/>
@@ -104,7 +87,7 @@ function fileDownLoad(oriName, reName){
 		</div>
 		<br>
 		<hr>
-		<button id="noticeListBtn" class="btn btn-default" onclick="location.href='${path}/owner/ownerNoticeList.do'">목록</button>
+		<button id="noticeListBtn" class="btn btn-default" onclick="location.href='${path}/owner/ownerNoticeListOwnerView.do'">목록</button>
 	</div>
 </section>
 

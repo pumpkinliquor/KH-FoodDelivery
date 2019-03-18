@@ -19,14 +19,11 @@ body{background-color:#F6F6F6;}
 
 <div class="me container">
 	<div class="a">
-	<c:if test="${sessionScope.storeName==null }">
-	<a class="option">간신배 등록 음식점</a>
-	</c:if>
-	<br/><br/>
+	
 	
 	
 	<c:forEach items="${list}" var="i" >
-	 <div class="store col-lg-5">
+	 <div class="store col-lg-5" style="width:387px; height:202px; overflow:hidden;">
 	  
 	<div class="col-md-8" style="float:left;" >
 	<a href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}"><h4 style="margin-top:10%;"> ${i.storeName}</h4></a><br/>
@@ -35,7 +32,7 @@ body{background-color:#F6F6F6;}
 	<a href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}"><b>가게 주소: ${i.storeAddress}</b></a><br/>
 	</div>
 	<div class="col-md-4" style="float:left; margin-top:10%; margin-bottom:10%;">
-	<a href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}"><img src="${path }/resources/upload/owner/storeMainImage/${i.storeImage}" style="width:100%; height:100%;"/></a><br/>
+	<a href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}"><img src="${path }/resources/upload/owner/storeMainImage/${i.storeImage}" style="width:113px; height:113px;"/></a><br/>
 	</div>
 	
 </div>

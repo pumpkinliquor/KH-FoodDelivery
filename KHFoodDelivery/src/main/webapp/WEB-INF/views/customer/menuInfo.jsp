@@ -209,6 +209,8 @@
         	});
         	
         });
+        
+        
 		$(document).ready(function(){
         	$("#test2").click(function(){
         		var businessCode=${businessCode};
@@ -259,7 +261,6 @@
 	 	
 		
 	
-	
  </script>
  
     <div class="container">
@@ -270,7 +271,7 @@
             	
                 <div class="restaurant-info">
                     <div class="restaurant-title">
-                        <span>${i.storeName }</span>
+                        <span id="storeName">${i.storeName }</span>
                     </div>
                     <div class="restaurant-content">
                         <div class="logo"><img class="mainlogo" src="${path }/resources/upload/owner/storeMainImage/${i.storeImage }" /></div>
@@ -306,30 +307,33 @@
 				
               </div>
               </c:forEach>
-                <div class="col-sm-4">
+              <div class="col-sm-4">
                 <div class="jumun">
                     <div class=title>
                         <span>주문표</span>
                     </div>
                     <div class="cart">
-                        <div class="cart-empty">
+                        <div class="cart-empty" id="janbgaID">
 	                        <ul>
-	                        	<li style="list-style:none; float:left;">${menuTitle }후라이드</li>
-	                        </ul>
-	                        <br>
-	                        <ul>
-	                        	<li style="list-style:none; float:left;"><button class="btn btn-default" type="button">x</button> 10,000원</li>
-	                        	<li style="list-style:none; margin-right:1em; text-align:right; padding-top:5px;"><a class="btn btn-minus">-</a>3<a class="btn btn-plus">+</a></li>
-	                        </ul>
+								<li style="list-style: none; float: left;">${maps.menuTitle }</li>
+							</ul>
+							<br>
+							<ul>
+								<li style="list-style: none; float: left;"><button
+										class="btn btn-default" type="button">x</button> ${maps.menuPrice }원</li>
+								<li
+									style="list-style: none; margin-right: 1em; text-align: right; padding-top: 5px;"><a
+									class="btn btn-minus">-</a>${maps.menuCount }<a class="btn btn-plus">+</a></li>
+							</ul>
                         </div>
                         <div class="clearfix" style="clear:both;">
                            	최소주문금액 10,000원
                         </div>
                         <div class="clearfix" style="background-color:ivory; color:red; font-weight:bold;">
-                           	합계 : 30,000원
+                           		합계 : ${plusMenuPrice }원
                         </div>
                         <div class="cart-btn clearfix" style="clear:both;">
-                            <a href="${path}/customer/pay.do" class="btu">주문하기</a>
+                            <a id="pay" class="btu">주문하기</a>
                         </div>
                     </div>
                 </div>
@@ -340,9 +344,9 @@
        
 
     </div>
+
  
-    
- 
+
 
 
 
