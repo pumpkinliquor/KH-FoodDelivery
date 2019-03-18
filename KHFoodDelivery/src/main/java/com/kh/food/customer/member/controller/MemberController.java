@@ -40,7 +40,6 @@ import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
 
-
 @Controller
 public class MemberController {
 
@@ -793,8 +792,13 @@ public class MemberController {
 	// 찜 목록 (마이페이지)
 	@RequestMapping("/member/markList.do")
 	public ModelAndView markList(String memberId) {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView();		
 		List<Mark> list = service.selectMarkList(memberId);
+		for(Mark m : list) {
+			logger.debug("" + m);
+		}
+		mv.addObject("list", list);
+		mv.setViewName("customer/myMark");
 		return mv;
 	}
 }
