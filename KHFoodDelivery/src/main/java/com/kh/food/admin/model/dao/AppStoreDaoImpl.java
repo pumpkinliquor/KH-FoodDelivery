@@ -1,6 +1,7 @@
 package com.kh.food.admin.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -45,4 +46,25 @@ public class AppStoreDaoImpl implements AppStoreDao {
 	public List<Store> selectAppStoreList() {
 		return session.selectList("store.selectAppStoreList");
 	}
+
+	// 전체 리스트
+	@Override
+	public List<Store> selectStoreList(int cPage, int numPerPage) {
+		RowBounds rb = new RowBounds((cPage - 1) * numPerPage, numPerPage);
+		return session.selectList("store.selectStoreList", null, rb);
+	}
+
+	// 입점 검색
+	@Override
+	public List<Store> selectSearchStore(Map map, int cPage, int numPerPage) {
+		RowBounds rb = new RowBounds((cPage - 1) * numPerPage, numPerPage);
+		return session.selectList("store.selectSearchStore", map, rb);
+	}
+
+	// 검색 Count
+	@Override
+	public int selectSearchStoreCount(Map map) {
+		return session.selectOne("store.selectStoreCount", map);
+	}
+	
 }

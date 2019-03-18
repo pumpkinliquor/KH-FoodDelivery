@@ -52,7 +52,8 @@
 <section>
 	<div class="container">	
 		<div>
-			<h4>입점 신청 현황</h4>
+			<h4 style="display: inline">입점 신청 현황</h4>
+			<a href="${path }/admin/storeList.do" style="float: right">전체 입점 현황</a>
 		</div>
 		<div>
 			<table class="table table-hover">
