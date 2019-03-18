@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,16 +26,17 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.common.PagingFactory;
 import com.kh.food.customer.member.model.service.MemberService;
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.customer.member.model.vo.MenuCookie;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -479,6 +482,29 @@ public class MemberController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("/customer/menuInfo2.do")
+	@ResponseBody
+	public void infoAjaxMenu(ModelAndView mv, @RequestParam(value="menuCount", required=false, defaultValue="0") int menuCount, 
+			@RequestParam(value="businessCode", required=false, defaultValue="0") int businessCode, 
+			@RequestParam(value="menuTitle", required=false, defaultValue="0") String menuTitle,
+			@RequestParam(value="menuPrice", required=false, defaultValue="0") int menuPrice,
+			@RequestParam(value="plusMenuPrice", required=false, defaultValue="0") int plusMenuPrice,
+			@RequestParam(value="menuCode", required=false, defaultValue="0") int menuCode,
+			HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException {
+		
+		System.out.println(menuCount);
+		Map<String,Object> maps=new HashMap<>();
+		maps.put("menuTitle", menuTitle);
+		maps.put("menuPrice", menuPrice);
+		maps.put("plusMenuPrice", plusMenuPrice);
+		maps.put("businessCode", businessCode);
+		maps.put("menuCount", menuCount);
+		maps.put("menuCode", menuCode);
+		req.setAttribute("maps", maps);
+		req.getRequestDispatcher("/WEB-INF/views/customer/jangba.jsp").forward(req, res);
+	}
+	
 	//업체 전체보기
 	@RequestMapping("/customer/selectallstore.do")
 	public ModelAndView allStore() {
@@ -495,19 +521,21 @@ public class MemberController {
 	
 	@RequestMapping("/customer/menuInsert.do")
 	@ResponseBody
-	public Map<String, Object> menuInsert(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, 
-			String menuTitle, int menuPrice, int menuCount, int plusMenuPrice, int businessCode) {
+	public Map menuInsert(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, 
+			String menuTitle, 	int menuPrice,	int menuCount, int plusMenuPrice, int businessCode, int menuCode) {
+
+		System.out.println("메뉴이름 : "+menuTitle+", 가격 : "+menuPrice+", 수량 : "+menuCount+", 합계 : "+plusMenuPrice+", 사장님번호 : "+businessCode+", 메뉴코드 : "+menuCode);
+		Map<String,Object> menuMap=new HashMap<>();
+		String memberId=(String) request.getSession().getAttribute("logined");
+		menuMap.put("memberId", memberId);
+		menuMap.put("menuTitle", menuTitle);
+		menuMap.put("menuPrice", menuPrice);
+		menuMap.put("menuCount", menuCount);
+		menuMap.put("plusMenuPrice", plusMenuPrice);
+		menuMap.put("businessCode", businessCode);
+		menuMap.put("menuCode", menuCode);
 		
-		System.out.println("메뉴이름 : "+menuTitle+", 가격 : "+menuPrice+", 수량 : "+menuCount+", 합계 : "+plusMenuPrice+", 사장님번호 : "+businessCode);
-	    
-		Map<String, Object> menuMaps=new HashMap<>();
-		
-		menuMaps.put("menuTitle", menuTitle);
-		menuMaps.put("menuPrice", menuPrice);
-		menuMaps.put("menuCount", menuCount);
-		menuMaps.put("plusMenuPrice", plusMenuPrice);
-		
-		return menuMaps;
+		return menuMap;
 	}
 	
 	
