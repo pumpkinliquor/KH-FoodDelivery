@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.customer.member.model.dao.MemberDao;
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
@@ -120,7 +121,30 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectCategoryList(businessCode);
 	}
 
-
+	@Override
+	public int insertWishList(Map<String, Object> menuMap) {
+		return dao.insertWishList(menuMap);
+	}
+	
+	@Override
+	public List<WishList> selectWishList(Map<String, Object> maps) {
+		return dao.selectWishList(maps);
+	}
+	
+	@Override
+	public int plusMenuCount(Map<String,Object> upCount) {
+		return dao.plusMenuCount(upCount);
+	}
+	
+	@Override
+	public int minusMenuCount(Map<String, Object> upCount) {
+		return dao.minusMenuCount(upCount);
+	}
+	
+	@Override
+	public int menuCounts(int menuCode) {
+		return dao.menuCounts(menuCode);
+	}
 	//아이디찾기
 	@Override
 	public Map<String, String> selectSearchId(Map<String, String> map) {
@@ -128,6 +152,11 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectSearchId(map);
 	}
 
+	@Override
+	public int deleteMenuCount(int menuCode) {
+		return dao.deleteMenuCount(menuCode);
+	}
+	
 	//비밀번호찾기
 	@Override
 	public Map<String, String> selectConfirmEmail(Map<String, String> map) {

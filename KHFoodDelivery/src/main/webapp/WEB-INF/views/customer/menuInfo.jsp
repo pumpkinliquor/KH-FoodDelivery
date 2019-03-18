@@ -314,17 +314,88 @@
                     </div>
                     <div class="cart">
                         <div class="cart-empty" id="janbgaID">
+              <c:forEach var="wish" items="${wishList }">
+              <div id="deletedd">
 	                        <ul>
-								<li style="list-style: none; float: left;">${maps.menuTitle }</li>
+								<li style="list-style: none; float: left;">${wish.MENUTITLE}</li>
 							</ul>
 							<br>
 							<ul>
-								<li style="list-style: none; float: left;"><button
-										class="btn btn-default" type="button">x</button> ${maps.menuPrice }원</li>
-								<li
-									style="list-style: none; margin-right: 1em; text-align: right; padding-top: 5px;"><a
-									class="btn btn-minus">-</a>${maps.menuCount }<a class="btn btn-plus">+</a></li>
+								<li style="list-style: none; float: left;">
+								<a href="#" id="deleteMenuCount${wish.MENUCODE }">x</a> ${wish.MENUPRICE }원</li>
+								<li	style="list-style: none; margin-right: 1em; text-align: right; padding-top: 5px;">
+									<a	id="minusMenuCount" class="btn btn-minus">-</a><span id="countUpdate">${wish.MENUCOUNT }</span><input type="hidden" id="countUpdate" value=""/><a id="plusMenuCount" class="btn btn-plus">+</a>
+								</li>
 							</ul>
+							<hr>
+				</div>
+			<script>
+			var count=0;
+			
+			$(document).ready(function(){
+				$("#minusMenuCount").click(function(){
+				count++;
+				if(count==1){
+					var minusCount=${maps.menuCount}-1;
+				}
+				else{
+					minusCount=Number($("#countUpdate").val())-1;
+				}
+				if(minusCount==0){
+					alert("수량 0은 입력하실 수 없습니다.");
+					return false;
+				}
+				var menuCode=${maps.menuCode};
+					$.ajax({
+						type:"POST",
+						url:"${path}/customer/minusMenuCount.do",
+						data:{"menuCode" : menuCode, "minusCount" : minusCount},
+						dataType:"JSON",
+						success: function(data){
+							$('#countUpdate').html(data);
+							$('#countUpdate').val(minusCount);
+						}
+					});
+				});
+			});
+			$(document).ready(function(){
+				$("#plusMenuCount").click(function(){
+				count++;
+				if(count==1){
+					var plusCount=${maps.menuCount}+1;
+				}
+				else{
+					plusCount=Number($("#countUpdate").val())+1;
+				}
+				var menuCode=${maps.menuCode};
+					$.ajax({
+						type:"POST",
+						url:"${path}/customer/plusMenuCount.do",
+						data:{"menuCode" : menuCode, "plusCount" : plusCount},
+						dataType:"JSON",
+						success: function(data){
+							$('#countUpdate').html(data);
+							$('#countUpdate').val(plusCount);
+						}
+					});
+				});
+			});
+			$(document).ready(function(){
+				$("#deleteMenuCount${wish.MENUCODE }").click(function(){
+				var menuCode=${wish.MENUCODE};
+					$.ajax({
+						type:"POST",
+						url:"${path}/customer/deleteMenuCount.do",
+						data:{"menuCode" : menuCode},
+						dataType:"JSON",
+						success: function(data){
+							$('#deletedd').html("");
+						}
+					});
+				});
+			});
+			</script>
+            </c:forEach>
                         </div>
                         <div class="clearfix" style="clear:both;">
                            	최소주문금액 10,000원
@@ -337,7 +408,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 		</div>
 	
