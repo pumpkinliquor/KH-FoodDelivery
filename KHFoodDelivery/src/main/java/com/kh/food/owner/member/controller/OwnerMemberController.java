@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.food.owner.member.model.service.OwnerMemberService;
 import com.kh.food.owner.member.model.vo.Owner;
 
-@SessionAttributes({"ownerId","ownerNum"})
+@SessionAttributes({"ownerId","ownerNum","businessCode"})
 @Controller
 public class OwnerMemberController {
 	
@@ -128,7 +128,7 @@ public class OwnerMemberController {
 		if(idEmail == null)
 		{
 			msg = "아이디 또는 이메일이 일치 하지 않습니다";
-			loc = "owner/ownerlogin";
+			loc = "/owner/ownerSearchPw.do";
 		}		
 		else
 		{
@@ -191,7 +191,8 @@ public class OwnerMemberController {
 		ModelAndView mv = new ModelAndView();
 		logger.debug("ownerId"+ownerId + "ownerPW" + ownerPw);
 		
-		
+		String businessCode=service.selectBusiness(ownerId);
+		logger.debug("businiess"+businessCode);
 		Owner o = service.selectLogin(ownerId);
 		String msg ="";
 		String loc = "/owner/ownerMain.do";
@@ -204,11 +205,27 @@ public class OwnerMemberController {
 			/*if(ownerPw.equals(o.getOwnerPw()))*/
 			if(pwEncoder.matches(ownerPw, o.getOwnerPw()))
 			{
-			
-			mv.addObject("ownerNum",o.getOwnerNum());
-			mv.addObject("ownerId",o.getOwnerId());
-			msg =  ownerId + "님 환영합니다";
-			
+				if(businessCode!=null) {
+					Integer.parseInt(businessCode);
+					mv.addObject("businessCode", businessCode);
+				}
+				
+				Map<String,String> bCode = service.selectBusinessCode(ownerId);
+				logger.debug("bCode"+bCode);
+				if(bCode != null)
+				{
+				String busiCode = String.valueOf(bCode.get("BUSINESSCODE"));
+				logger.debug("busiCode"+busiCode);
+				Map<String,String> todayOrderCount = service.selectPayOneList(busiCode);
+				logger.debug("todayOrderCount"+todayOrderCount);
+				mv.addObject("todayOrderCount",todayOrderCount);
+				mv.addObject("busiCode",busiCode);
+				}
+					mv.addObject("bCode",bCode);
+					mv.addObject("ownerNum",o.getOwnerNum());
+					mv.addObject("ownerId",o.getOwnerId());
+					msg =  ownerId + "님 환영합니다";
+				
 			int lastDate=service.lastDate(o.getOwnerNum());
 			}
 			//비밀번호가 틀릴때

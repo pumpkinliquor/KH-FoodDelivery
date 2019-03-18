@@ -21,6 +21,14 @@ public class MemberDaoImpl implements MemberDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
+	@Override
+	public int updateMemberQna(MemberQna mq) {
+		return sqlSession.update("member.qnaUpdate",mq);
+	}
+	@Override
+	public int deleteMemberQna(int no) {
+		return sqlSession.delete("member.qnaDelete",no);
+	}
 	
 	@Override
 	public List<MemberQna> selectmemberQna(String memberId){
@@ -35,8 +43,9 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectOne("member.qnaDtail",no);
 	}
 	@Override
-	public List<Store> selectAllStore(){
-		return sqlSession.selectList("member.selectAllStore");
+	public List<Store> selectAllStore(int cPage,int numPerPage){
+		RowBounds rb=new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("member.selectAllStore",null,rb);
 	}
 	
 	@Override
@@ -129,5 +138,16 @@ public class MemberDaoImpl implements MemberDao {
 	public Menu menuSelect(int menuCode) {
 		return sqlSession.selectOne("menu.menuSelect", menuCode);
 	}
+
+	@Override
+	public int kakaoLogin(Map<String, String> map) {
+		return sqlSession.insert("member.kakaoLogin",map);
+	}
+
+	@Override
+	public int kakaoEnrollEnd(Member m) {
+		return sqlSession.update("member.kakaoEnrollEnd",m);
+	}
+	
 	
 }

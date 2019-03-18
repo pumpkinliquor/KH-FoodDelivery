@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import com.kh.food.common.MailHandler;
-import com.kh.food.common.TempKey;
 import com.kh.food.owner.member.model.dao.OwnerMemberDao;
 import com.kh.food.owner.member.model.vo.Owner;
 
@@ -58,6 +56,21 @@ public class OwnerMemberServiceImpl implements OwnerMemberService {
 	@Override
 	public int lastDate(int ownerNum) {
 		return dao.lastDate(ownerNum);
+	}
+
+	@Override
+	public String selectBusiness(String ownerId) {
+		return dao.selectBusiness(ownerId);
+	}
+
+	@Override
+	public Map<String, String> selectPayOneList(String businessCode) {
+		return dao.selectPayOneList(businessCode);
+	}
+
+	@Override
+	public Map<String, String> selectBusinessCode(String ownerId) {
+		return dao.selectBusinessCode(ownerId);
 	}
 
 	

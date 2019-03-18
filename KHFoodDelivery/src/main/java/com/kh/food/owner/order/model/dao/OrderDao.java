@@ -11,4 +11,10 @@ public interface OrderDao {
 
 	List<Map<String,String>> selectPayOrderNum(String payOrderNum);
 
+	List<Pay> selectOrderOneList(int cPage, int numPerPage);
+
+	int selectOrderCount();
+
+	Map<String, String> selectTodayOrderCount();
+
 }

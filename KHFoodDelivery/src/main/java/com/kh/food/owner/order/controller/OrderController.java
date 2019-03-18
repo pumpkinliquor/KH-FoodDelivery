@@ -19,9 +19,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.food.common.PagingFactory;
 import com.kh.food.owner.order.model.service.OrderService;
 import com.kh.food.owner.order.model.vo.Pay;
 
@@ -35,80 +37,36 @@ public class OrderController {
 	
 	//주문관리 화면진입
 	@RequestMapping("owner/orderService.do")
-	public ModelAndView selectOrderList(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException
+	public ModelAndView selectOrderList(@RequestParam(value="cPage",required=false,defaultValue="0") int cPage) throws ServletException, IOException
 	{
+		int numPerPage = 5;
+		String businessCode = "";
 //		List<Map<String,String>> orderList = service.selectOrderList();
 		List<Pay> orderList = service.selectOrderList();
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
-		for(int i = 0; i < orderList.size(); i++) {
-			orderList.get(i).setFormatDate(df.format(orderList.get(i).getPayDate()));
-		}
+		List<Pay> orderOneList = service.selectOrderOneList(cPage,numPerPage);
+		Map<String,String> todayOrderCount = service.selectTodayOrderCount();
 		
+		int orderCount = service.selectOrderCount();
+/*		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss");
+		for(int i = 0; i < orderOneList.size(); i++) {
+			orderOneList.get(i).setFormatDate(df.format(orderOneList.get(i).getPayDate()));
+		}*/
+		
+		logger.debug("오늘날짜주문개수"+todayOrderCount);
+		logger.debug("주문하나내역"+orderOneList);
 		logger.debug("주문내역"+orderList);
-/*		int orderCount = service.selectOrderCount();*/		
 		ArrayList<Pay> list = new ArrayList<>();
-		int payOrderNum = 0;
 		int sum = 0;
-		logger.debug("사이즈"+orderList.size());
-		for(int i=0; i<orderList.size(); i++)
-		{
-			if(i<orderList.size()-1) {
-				if(orderList.get(i).getPayOrderNum()==orderList.get(i+1).getPayOrderNum())
-				{
-					if(payOrderNum != orderList.get(i).getPayOrderNum()) {
-					list.add(orderList.get(i));
-					payOrderNum = orderList.get(i).getPayOrderNum();
-					}
-					
-				}
-				else
-				{
-					list.add(orderList.get(i));
-					payOrderNum = orderList.get(i).getPayOrderNum();
-				}
-			}
-			else
-			{
-				logger.debug("들어왔냐1");
-				if(i!=0) {
-					if(orderList.get(i).getPayOrderNum()!=orderList.get(i-1).getPayOrderNum())
-					{
-						logger.debug("들어왔냐");
-						list.add(orderList.get(i));
-					}
-				}
-				else
-				{
-					list.add(orderList.get(i));
-				}
-			}
-		}
+		/*logger.debug("사이즈"+orderList.size());*/
 		
 		ArrayList<Pay> price = new ArrayList<>();
-		for(int i=0; i<list.size(); i++)
+		for(int i=0; i<orderOneList.size(); i++)
 		{
-			price.add(list.get(i));
+			price.add(orderOneList.get(i));
 		}
 		
-		/*for(int i=0; i<orderList.size(); i++)
-		{
-			for(int j=i; j<list.size(); j++)
-			{
-				if(orderList.get(i).getPayOrderNum() == list.get(j).getPayOrderNum())
-				{
-					sum = sum + orderList.get(i).getPrice();
-				}
-				else
-				{
-					list.get(i).setPrice(sum);
-					sum = 0 ;
-					i=j;
-					break;
-				}
-			}
-		}*/
 		logger.debug("orderList"+orderList);
-		logger.debug("list"+list);
+		logger.debug("orderOneList"+orderOneList);
 		logger.debug("price"+price);
 		logger.debug("price사이즈"+price.size());
 		int count = 0;
@@ -118,13 +76,15 @@ public class OrderController {
 			{
 				if(orderList.get(j).getPayOrderNum() == price.get(i).getPayOrderNum())
 				{
-					sum = sum + orderList.get(i).getPrice();
-					logger.debug("합계"+sum);
+					logger.debug("합계전"+sum);
+					logger.debug("오더리스트가격"+orderList.get(j).getPrice()+"IIII"+i);
+					sum = sum + orderList.get(j).getPrice();
+					price.get(i).setPrice(sum);
+					logger.debug("합계후"+sum);
 				}
 				else
 				{
 					logger.debug("else문"+i+":::"+j);
-					price.get(i).setPrice(sum);
 					logger.debug("가격"+price.get(i).getPrice());
 					sum = 0 ;
 					count = j;
@@ -133,13 +93,15 @@ public class OrderController {
 			}
 		}
 		logger.debug("가격내역"+price);
-		logger.debug("주문하나만내역"+list);
 		logger.debug("오더리스트"+orderList);
+		
 		ModelAndView mv = new ModelAndView();
-//		request.setAttribute("orderList1", orderList);
-		mv.addObject("list",list);
+		mv.addObject("todayOrderCount",todayOrderCount);
+		mv.addObject("orderOneList",orderOneList);
 		mv.addObject("orderList",orderList);
+		mv.addObject("price",price);
 		mv.setViewName("owner/ownerOrderList");
+		mv.addObject("pageBar",PagingFactory.getPageBar(orderCount, cPage, numPerPage, "/food/owner/orderService.do"));
 		return mv;
 			
 	}
@@ -152,6 +114,7 @@ public class OrderController {
 		logger.debug("페이오더넘버"+payOrderNum);
 		List list = service.selectPayOrderNum(payOrderNum);
 		logger.debug("페이오더넘버리스트"+list);
+		
 		return list;
 	}
 	

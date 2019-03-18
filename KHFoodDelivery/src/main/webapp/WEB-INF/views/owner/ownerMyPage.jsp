@@ -55,7 +55,7 @@ div.container span.ok1 {color:blue;}
 					<table class="table">
 						<tr>
 							<th width=40%><small>내가쓴글</small></th>
-							<td>(문의글:${qnaCount}, 문의댓글:${reviewCount}, 코멘트:${ownerReviewCount})</td>
+							<td>(문의글:${qnaCount}개<c:if test="${not empty businessReviewCount }">, 코멘트:${businessReviewCount}개</c:if>)</td>
 						</tr>
 						<tr>
 							<th width=40%><small>E-MAIL</small></th>
@@ -193,4 +193,4 @@ div.container span.ok1 {color:blue;}
 		</div>
 	</div>
 </section>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/ownerFooter.jsp"></jsp:include>

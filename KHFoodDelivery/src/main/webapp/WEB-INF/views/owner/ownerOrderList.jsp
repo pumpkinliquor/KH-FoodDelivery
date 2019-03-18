@@ -33,6 +33,9 @@ pageEncoding="UTF-8"%>
 .orderTable .td1{
 	padding-top:30px;
 }
+.orderTable{
+	text-align:center;
+}
 
 </style>
 <section>
@@ -41,7 +44,7 @@ pageEncoding="UTF-8"%>
 		<h2 style="font-weight:bold;">주문 내역</h2>
 	</div>
 	<div style="text-align:center; margin-bottom:15px;">
-		<span>하루동안 총 <span style="color:red; font-weight:bold; font-size:20px;">3</span>건의 주문내역이 있습니다.</span>
+		<span>하루동안 총 <span style="color:red; font-weight:bold; font-size:20px;">${todayOrderCount.TODAYORDERCOUNT}</span>건의 주문내역이 있습니다.</span>
 	</div>
 	<div class="row" style="clear:both;">
 		<div class="col-md-12">
@@ -49,65 +52,28 @@ pageEncoding="UTF-8"%>
 					<thead>
 						<tr>
 							<th width=7%>번호</th>
-							<th width=15%>주문일시</th>
-							<th width=25%>메뉴명</th>
-							<th width=8%>주문인</th>
-							<th width=7%>배달비</th>
-							<th width=8%>결제금액</th>
+							<th width=18%>주문일시</th>
+							<th width=27%>주문명</th>
+							<th width=9%>배달비</th>
+							<th width=9%>결제금액</th>
 							<th width=10%>결제방식</th>
 							<th width=20%>상태</th>
 						</tr>
 					</thead>
 					<tbody>
 					
-					<c:forEach var="o" items="${list}" varStatus="status">		
+					<c:forEach var="o" items="${orderOneList}" varStatus="status">		
 							<tr style="cursor:pointer;" onclick="fn_detailOrder(${o.payOrderNum});">						
 								<td class="td1"><c:out value="${status.count}"/></td>
-								<td class="td1">${o.formatDate}</td>
-								<td class="td1">${o.menuName}</td>
-								<td class="td1">${o.memberName}</td>
+								<td class="td1">${o.payDate}</td>
+								<td class="td1">${o.memberName}님의 주문입니다.</td>
 								<td class="td1"></td>							
-								<td class="td1"></td>
+								<td class="td1">${price[status.index].price}</td>
 								<td class="td1">${o.payOrderMethod}</td>							
 								<td><button class="btn btn-default statusBtn">주문접수</button><button class="btn btn-default statusBtn">배달중</button><button class="btn btn-default statusBtn">배달완료</button><button class="btn btn-default statusBtn">주문취소</button></td>
 							</tr>
 							
 					</c:forEach> 
-						
-						<%-- <% for(int i=0; i<orderList.size(); i++){%>				
-							<%for(int j=0; j<orderList.size(); j++) {%>
-								<c:choose >
-									<c:when test='<%=orderList.get(i).get("PAYORDERNUM")==orderList.get(j).get("PAYORDERNUM")%>'></c:when>
-								 <%if(orderList.get(i).get("PAYORDERNUM")==orderList.get(j).get("PAYORDERNUM")){%>				
-								
-								<%} else{%> 
-								<c:otherwise>
-								<tr style="cursor:pointer;" onclick="fn_detailOrder(<%=orderList.get(i).get("PAYORDERNUM")%>);">						
-								<td class="td1"><c:out value="<%=i+1%>"/></td>
-								<td class="td1"><c:out value='<%=orderList.get(i).get("PRICE")%>'/></td>
-								<td class="td1"><c:out value='<%=orderList.get(0).get("MEMBERNAME")%>'/></td>
-								<td class="td1"><c:out value='<%=orderList.get(1).get("MEMBERNAME")%>'/></td>
-								<td class="td1"></td>							
-								<td class="td1"></td>
-								<td class="td1"></td>							
-								<td><button class="btn btn-default statusBtn">주문접수</button><button class="btn btn-default statusBtn">배달중</button><button class="btn btn-default statusBtn">배달완료</button><button class="btn btn-default statusBtn">주문취소</button></td>
-								</tr>
-								 <%} %> 
-								</c:otherwise>
-								
-								</c:choose>
-							<%} %>
-						<% }%>	 --%>
-						<tr style="cursor:pointer;" onclick="location.href='${path}/owner/oneVSoneView.do?qnaCode=${one.QNACODE}'">
-								<td class="td1">1</td>
-								<td class="td1">2019-03-11/ 10:aa34</td>
-								<td class="td1">아이스 아메리카노 외 3잔</td>
-								<td class="td1">김일호</td>
-								<td class="td1">2000</td>
-								<td class="td1">16000</td>
-								<td class="td1">카카오페이</td>
-								<td><button class="btn btn-default statusBtn">주문접수</button><button class="btn btn-default statusBtn">배달중</button><button class="btn btn-default statusBtn">배달완료</button><button class="btn btn-default statusBtn">주문취소</button></td>
-							</tr>
 					</tbody>
 				</table>
 				<div class="paging">
@@ -135,26 +101,13 @@ pageEncoding="UTF-8"%>
                               <div class="row">
                                   <div class="col-md-12">
                                       <h4>주문 상세 내역</h4>
-                                      <hr>
                                   </div>
                               </div>
                               <div class="row">
-                                  <div class="col-md-12">                                                
-                                            <table class="table table-hover board">
-                                                <tbody>          
+                                  <div class="col-md-12 " style="overflow-y:auto;overflow-x:hidden;height:550px;">                                                
+                                            <table class="table table-hover board menu">     
                                                     <!-- data-toggle="modal" data-target="#myModal" -->
-                                                    <tr style="cursor:pointer;">
-                                                        <td width="44%" >싸이버거 1개</td>                                                 
-                                                        <td width="12%">5600원</td>
-                                                    </tr>
-                                                    <tr style="cursor:pointer;">
-                                                        <td width="44%" >치킨커틀렛버거 1개</td>                                                 
-                                                        <td width="12%">5600원</td>
-                                                    </tr>
-                                                    <tr style="cursor:pointer;">
-                                                        <td width="44%" >싸이버거 1개</td>                                                 
-                                                        <td width="12%">5600원</td>
-                                                    </tr>
+
                                                     <tr style="cursor:pointer;">
                                                         <td class="orderPrice" width="44%" >주문금액</td>                                                 
                                                         <td width="12%">18400원</td>
@@ -178,26 +131,24 @@ pageEncoding="UTF-8"%>
                                                     <tr style="cursor:pointer;">
                                                         <td width="70%">결제일</td>                                                 
                                                         <td class="orderDate" width="30%"></td>
-                                                    </tr>
-                                                    
-                                                </tbody>
-                                            </table>                             
+                                                    </tr>                         
+                                            </table>     
                                             <table class="table table-hover board">
                                                 <tbody>                  
                                                     <tr style="cursor:pointer;">
                                                         <td width="30%" >배달주소</td>                                                 
-                                                        <td width="70%">서울 강서구 가양동 1461 가양2단지 아파트 209동 1006호</td>
+                                                        <td width="70%"></td>
                                                     </tr>
                                                     <tr style="cursor:pointer;">
                                                         <td width="30%" >전화번호</td>                                                 
-                                                        <td width="70%">01091634624</td>
+                                                        <td class="memberPhone" width="70%"></td>
                                                     </tr>
                                                     <tr style="cursor:pointer;">
                                                         <td width="10%" >요청사항</td>                                                 
-                                                        <td class="orderRequest" width="80%">문을 크게 두드리지 말아주세요 집에 아기가 있어요. 아기가 울지도 몰라요</td>
+                                                        <td class="orderRequest" width="80%"></td>
                                                     </tr>
                                                 </tbody>
-                                            </table> 
+                                            </table>                        
                                   </div>
                               </div>
                               
@@ -229,15 +180,34 @@ function fn_detailOrder(payOrderNum){
 			{
 				console.log(data);
 				console.log(data[0].PAYDATE);
-				$('.orderName').text(data[0].MEMBERNAME);
+				/* for(var i=0; i<data.length; i++)
+				{
+					$('.menu').prepend("<tr style='cursor:pointer;'><td width='44%'>"+data[i].MENUNAME+"</td><td width='12%'>"+data[i].PRICE+"원</td></tr>")
+				} */
+			 	$('.orderName').text(data[0].MEMBERNAME);
 				$('.orderDate').text(data[0].PAYDATE);
 				$('.orderRequest').text(data[0].PAYREQUEST);
-				$('#myModal').modal();
+				$('.memberPhone').text(data[0].MEMBERPHONE);
+				var html = "";
+				var sum = "";
+				for(var i=0; i<data.length; i++)
+				{	
+					html += "<tr style='cursor:pointer;'><td width='44%'>"+data[i].MENUNAME+"</td><td width='12%'>"+data[i].PRICE+"원</td></tr>";
+					sum = Number(sum) + Number(data[i].PRICE);
+				}
+				html += "<tr style='cursor:pointer;'><td width='44%'>주문금액</td><td width='12%'>"+sum+"원</td></tr>"
+				html += "<tr style='cursor:pointer;'><td width='44%'>배달비</td><td width='12%'>"+sum+"원</td></tr>"
+				html += "<tr style='cursor:pointer;'><td width='44%'>총결제금액</td><td width='12%'>"+sum+"원</td></tr>"
+				html += "<tr style='cursor:pointer;'><td width='44%'>결제방법</td><td width='12%'>"+data[0].PAYORDERMETHOD+"</td></tr>"
+				html += "<tr style='cursor:pointer;'><td width='44%'>주문자</td><td width='12%'>"+data[0].MEMBERNAME+"</td></tr>"
+				html += "<tr style='cursor:pointer;'><td width='44%'>결제일</td><td width='12%'>"+data[0].PAYDATE+"</td></tr>"			
+				$(".menu").html(html);
+				$('#myModal').modal(); 
+				
 			}
-		
 	});
 }
 
 
 </script>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include> 
+<jsp:include page="/WEB-INF/views/common/ownerFooter.jsp"></jsp:include> 

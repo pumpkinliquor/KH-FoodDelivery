@@ -15,4 +15,6 @@ public interface OwnerNoticeService {
 	
 	
 	int ownerNoticeUpdateEnd(Map<String,Object> map, List<OwnerNoticeAttachment> files);
+	
+	List<Map<String,String>>ownerNoticeList();
 }

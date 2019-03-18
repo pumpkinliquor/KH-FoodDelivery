@@ -214,6 +214,7 @@ div.newsletter,div.group{display:inline-block;}
                 <div class="col-sm-12 headerDiv2">
               <div class="headerDiv1">
                <c:if test="${sessionScope.logined==null }">
+               <a href="${path }/owner/ownerMain.do">사장님 페이지</a>
                  <a href="${path }/customer/login.do">로그인</a>
                     <a href="${path }/member/memberEnroll.do">회원가입</a>
                    
@@ -267,7 +268,7 @@ div.newsletter,div.group{display:inline-block;}
               <button type="button" class="btn btn-default" onclick="fre();">프랜차이즈</button>
               <button type="button" class="btn btn-default" onclick="chi();">치킨</button>
               <button type="button" class="btn btn-default" onclick="piz();">피자</button>
-              <button type="button" class="btn btn-default" onclick="chi();">중국집</button>
+              <button type="button" class="btn btn-default" onclick="jun();">중국집</button>
               <button type="button" class="btn btn-default" onclick="kor();">한식</button>
               <button type="button" class="btn btn-default" onclick="jok();">족발/보쌈</button>
               <button type="button" class="btn btn-default" onclick="base();">분식</button>
@@ -298,7 +299,7 @@ div.newsletter,div.group{display:inline-block;}
                  		location.href="${path}/customer/searchmenuView?category=피자"; 
                  	}
                  	
-                 	function chi(){
+                 	function jun(){
                  		location.href="${path}/customer/searchmenuView?category=중국집"; 
                  	}
                  	

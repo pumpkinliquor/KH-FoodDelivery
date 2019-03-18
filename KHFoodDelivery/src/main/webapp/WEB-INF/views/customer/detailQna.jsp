@@ -4,121 +4,100 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-<jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <style>
 	div#context-area{ min-height: 200px; }
+	div.row div.bt-group{float:right;}
 	button {
-		background-color: transparent;
-		border-color: transparent;
+		background-color: black;
+		border-color: white;
+		color:white;
 	}
+	div.de{margin-top:-10%;}
 </style>
 
-<script>
-	/* 댓글 삭제 */
-	function fn_deleteReview(){
-		location.href="${path}/admin/deleteOwnerQnaReview.do?no=${oq.qnaCode}";
-	}
-	/* 댓글 수정 */
-	function fn_updateReview(){
-		$('#reviewUpdateModal').modal();		
+<script>	
+
+	//문의글 수정
+	function updateQna(){
+		$('#qnaUpdateModal').modal();
 	}
 	/* 문의 글 삭제 */
-	function fn_deleteQna(){
-		location.href="${path}/admin/deleteOwnerQna.do?no=${oq.qnaCode}";
+	function deleteQna(){
+		location.href="${path}/customer/deletememberQna.do?no=${mq.qnaCode}&memberId=${mq.memberId}";
 	}
 </script>
 
 <section>
-	<div class="container">
+	<div class="container de">
 		<div class="row">
-			<div class="col-sm-10">
-				<h4>${oq.qnaTitle }</h4>
+			<div class="col-sm-12">
 			</div>
 			<div class="col-sm-2">
+				<p>카테고리: <b>${mq.qnaCategory }</b></p>
 			</div>
 			<div class="col-sm-2">
-				<p>카테고리 <b>${oq.qnaCategory }</b></p>
-			</div>
-			<div class="col-sm-2">
-				<p>작성자 <b>${oq.ownerId }</b></p>
+				<p>작성자: <b>${mq.memberId }</b></p>
 			</div>
 			<div class="col-sm-3">
-				<p>작성일<b>${oq.formatWriteDate }</b></p>
+				<p>작성일:  <b>${mq.formatWriteDate }</b></p>
 			</div>
-			<div class="col-sm-3">				
-			</div>			
-			<div class="col-sm-2">			
-				<button type="button" class="btn" onclick="fn_deleteQna()">삭제</button>
-				<button type="button" class="btn" onclick="location.href='${path}/admin/ownerQnaList.do'">수정</button>			
+			<div class="bt-group col-sm-5">			
+				<button type="button" class="btn btn-default" onclick="deleteQna()">삭제</button>
+				<button type="button" class="btn btn-default" onclick="updateQna();">수정</button>	
+				<button type="button" class="btn btn-default" onclick="location.href='${path }/member/qnaList.do?memberId=${sessionScope.logined}'">목록으로</button>			
 			</div>	
 		</div>
 		<hr/>
 		<br/>	
 		<div class="row">			
 			<div class="col-sm-12" id="context-area">
-				<p>${oq.qnaContent }</p>
+				<h4>${mq.qnaContent }</h4>
 			</div>
-			<div class="col-sm-2"></div>
+			<div class="col-sm-2 back"></div>
 		</div>
-		
-		<c:if test="${!empty oqr}">
-			<hr/>		
-			<div class="row">
-				<div class="col-sm-1">
-					<p><b>관리자</b></p>
-				</div>
-				<div class="col-sm-9">
-					<p>${oqr.formatWriteDate }</p>
-				</div>				
-				<div class="col-sm-2">
-					<button class="btn float-right" onclick="fn_deleteReview()">삭제</button>
-					<button class="btn float-right" onclick="fn_updateReview()">수정</button>
-				</div>
-				<div class="col-sm-12">
-					<p>${oqr.reviewContext }</p>
-				</div>
-			</div>
-		</c:if>
-		
-		<c:if test="${empty oqr }">
-			<hr/>
-			<form action="${path }/admin/insertOwnerQnaRe.do" method="post">									
-				<div class="rounded row" style="border:1px solid rgb(173, 173, 173); padding-bottom:1em; padding-right:1em; padding-left:1em; padding-top:1em;">
-            		<div class="input-group col-sm-11">
-				       	<label for="reviewContext" style="margin-top:5px"> 댓글 </label> &nbsp;
-            			<input type="hidden" name="qnaNo" value="${oq.qnaCode }"/>
-               			<input type="text" class="form-control" name="context" style="margin-right:1em;" placeholder="내용을 입력하세요.">
-         			</div>
-         			<div class="col-sm-1">
-         				<input type="submit" class="btn" value="등록"/>
-         			</div>
-        		</div>
-			</form>			
-		</c:if>
-	</div>
-</section>
-
+		</div>
+		</section>
+	
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 
 <!-- 모달 구현 -->
-<div class="modal" id="reviewUpdateModal" role="dialog">
+<div class="modal" id="qnaUpdateModal" role="dialog">
 	<div class="modal-dialog">
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">댓글 수정</h4>
+				<h4 class="modal-title">문의글 수정</h4>
 				<button type="button" class="close" data-dismiss="modal">×</button>
 			</div>
-			<form action="${path}/admin/updateOwnerQnaReview.do?no=${oq.qnaCode}" method="post">
-				<div class="modal-body" style="height: 200px;">
+			<form action="${path}/customer/memberQnaUpdate.do" method="post">
+				<div class="modal-body" style="height: 500px;">
 					<table class="table">
 						<tr>
-							<th style="vertical-align: middle">댓글</th>
-							<td><textarea name="updateContext" class="form-control" style="resize: none" rows="6">${oqr.reviewContext }</textarea></td>						
+							<th style="vertical-align: middle">카테고리</th>
+							<td><input type="text" name="qnaCategory" class="form-control" value="${mq.qnaCategory }"/></td>						
+						</tr>					
+						<tr>
+							<th style="vertical-align: middle">아이디</th>
+							<td><input type="text" name="memberId" class="form-control" value="${mq.memberId }" readonly/></td>						
 						</tr>						
+						<tr>
+							<th style="vertical-align: middle">등록일</th>
+					<td><input type="text" name="formatWriteDate" class="form-control" value="${mq.formatWriteDate}" readonly/></td>						
+						</tr>	
+						<tr>
+							<th style="vertical-align: middle">제목</th>
+							<td><input type="text" name="qnaTitle" class="form-control" value="${mq.qnaTitle}"/></td>						
+						</tr>						 
+					
+						<tr>
+							<th style="vertical-align: middle">문의글</th>
+							<td><textarea name="qnaContent" class="form-control" style="resize: none" rows="6">${mq.qnaContent }</textarea></td>						
+						</tr>															
 					</table>
+						<input type="hidden" name="qnaCode" value="${mq.qnaCode }"/>
 				</div>
 				<div class="modal-footer">
 					<input type="submit" class="btn btn-outline-success" value="수정"/>
@@ -127,3 +106,5 @@
 		</div>  
 	</div>
 </div>
+
+

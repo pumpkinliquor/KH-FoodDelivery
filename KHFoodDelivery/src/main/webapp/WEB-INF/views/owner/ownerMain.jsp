@@ -33,7 +33,7 @@ pageEncoding="UTF-8"%>
             font-size: 12px;
             margin-bottom: 20px;
         }
-        #enrollBtn{
+        #enrollBtn,#logoutBtn{
             width:100%;
             height:40px;
         }
@@ -62,6 +62,13 @@ pageEncoding="UTF-8"%>
         .main_row1{
         	margin-top:30px;
         }
+        #noticePlus{
+        	background-color: transparent;
+			border-color: transparent;
+        }
+        #noticePlus:hover{
+        pnt;
+        }
     </style>
     <section>
     <div class="container">
@@ -73,28 +80,26 @@ pageEncoding="UTF-8"%>
             <div class="row main_row1">
                 <div class="col-md-8">
                     <div class="col-md-12">
-                    <p id="p1">공지사항</p>
-                    <p id="p2">더보기</p>
+                    <h6 id="p1">공지사항</h6> 
+                    <a href="${path}/owner/ownerNoticeList.do" id="noticePlus" style="float:right">+더보기</a>
                     </div>
                     <div class="col-sm-12 noticeDiv1">
                     <table id="notice_ta" width="100%">
-                        <tr>
-                            <td>[공지] 업소 정보 통합, 출금 방식 변경, 일 단위 정산 시행 등 3대 진행사항</td>                        
-                        </tr>
-                        <tr>
-                            <td>[공지] 새로워진 주문접수 앱을 미리 사용해보세요</td>
-                        </tr>
-                        <tr>
-                            <td>[공지] 배달의민족/배민라이더스 사장님 사칭 피해 주의</td>
-                        </tr>
-                    
+                       <c:forEach var="list" items="${list }" begin="0" end="2" step="1" varStatus="vs">
+							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/ownerNoticeView.do?ownerNoticeNum=${list.OWNERNOTICENUM }'">
+								
+								<td><a href="#">${list.OWNERNOTICETITLE }</a></td>
+								
+							</tr>
+					  </c:forEach>
                     </table>
                     </div>
                 </div>
                 <div class="col-md-4">
+                   <c:if test="${sessionScope.ownerId== null }">
                     <div class="col-md-12">
                         <p>사장님 로그인 해주세요!</p>
-                    </div>
+                    </div> 
                     <div class="col-md-12">
                         <button id="loginBtn" onclick="location.href='${path }/owner/login.do'">로그인</button>
                     </div>
@@ -107,8 +112,28 @@ pageEncoding="UTF-8"%>
                     <div class="col-md-12">
                         <button id="enrollBtn" onclick="location.href='${path }/owner/insertOwner.do'">회원가입</button>
                     </div>
-                </div>
+                     </c:if>
+                     <c:if test="${sessionScope.ownerId!=null }">
+                     <div class="col-md-12">
+                        <p>${ownerId}사장님 환영 합니다!!${ownerNum }????${bCode.BUSINESSCODE }${todayOrderCount.TODAYORDERCOUNT}${busiCode}</p>
+                     </div>
+                     <div class="col-md-12">
+                     	<c:if test="${bCode.BUSINESSCODE ne null}">
+                       <h4>오늘의 주문 수는 ${todayOrderCount.TODAYORDERCOUNT }건 입니다!</h4>
+                     	</c:if>
+                     	<c:if test="${bCode.BUSINESSCODE eq null }">
+                     	<h4>사장님 업체 등록을 해주세요~!!!${todayOrderCount.TODAYORDERCOUNT }</h4>
+        				<c:out value="${todayOrderCount.TODAYORDERCOUNT }"></c:out>
+                     	</c:if>
+                     </div>
+                     <div class="col-md-12">
+                        <button id="logoutBtn" onclick="location.href='${path }/owner/insertOwner.do'">로그아웃</button>
+                     </div> 
+                     </c:if>
+                </div>           
             </div>
+            
+            
             <div class="row">
             <div class="col-md-12">
                 <div class="row">
@@ -116,11 +141,12 @@ pageEncoding="UTF-8"%>
                     <div class="col-md-12 infoDiv2">
                         <div class="row">
                         <div class="col-md-6 col-sm-6 infoDiv3">
-                        <a>입점신청하기 간단한 정보를 입력하고 입점 등록 신청을 해보세요. 아주 쉬워요!</a>
+                        <a href="${path }/owner/menuEnroll.do">
+                        <p>사장님 가게의 메뉴를  쉽게 관리해보세요.</p>
                         </div>
                         <div class="col-md-6 col-sm-6 infoDiv4">
                             <img src="${path }/resources/images/owner/main/등록.png" width="100px" height="100px">
-                        </div>
+                       </a> </div>
                         </div>
                     </div>
                 </div>
@@ -128,11 +154,12 @@ pageEncoding="UTF-8"%>
                     <div class="col-md-12 infoDiv2">
                         <div class="row">
                         <div class="col-md-6 col-sm-6 infoDiv3">
-                            <a href="${path }/owner/storeForm.do">입점신청하기 간단한 정보를 입력하고 입점 등록 신청을 해보세요. 아주 쉬워요!</a>
+                        <a href="${path }/owner/storeForm.do">
+                            <p>간단한 정보를 입력하고 입점 등록 신청을 해보세요. 아주 쉬워요!</p>
                         </div>
                         <div class="col-md-6 col-sm-6 infoDiv4">
                             <img src="${path }/resources/images/owner/main/정보수정.png" width="100px" height="100px">
-                        </div>
+                       </a> </div>
                         </div>
                     </div>
                 </div>
@@ -140,11 +167,12 @@ pageEncoding="UTF-8"%>
                     <div class="col-md-12 infoDiv2">
                         <div class="row">
                         <div class="col-md-6 col-sm-6 infoDiv3">
-                            <a>입점신청하기 간단한 정보를 입력하고 입점 등록 신청을 해보세요. 아주 쉬워요!</a>
+                            <a href="${path }/owner/menuEnroll.do">
+                            <p>사장님 가게의 매출을 통계를 통해 확인하세요! 통계주소는 아직~</p>
                         </div>
                         <div class="col-md-6 col-sm-6 infoDiv4">
                             <img src="${path }/resources/images/owner/main/매출.png" width="100px" height="100px">
-                        </div>
+                        </a></div>
                         </div>
                     </div>
                 </div>
@@ -155,6 +183,5 @@ pageEncoding="UTF-8"%>
     </div>
     </div>  
     </section>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
-	
+<jsp:include page="/WEB-INF/views/common/ownerFooter.jsp"></jsp:include>
 	

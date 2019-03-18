@@ -23,8 +23,14 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao dao;
 
-	
-	
+	@Override
+	public int updateMemberQna(MemberQna mq) {
+		return dao.updateMemberQna(mq);
+	}
+	@Override
+	public int deleteMemberQna(int no) {
+		return dao.deleteMemberQna(no);
+	}
 	@Override
 	public MemberQna memberDetailQna(int no) {
 		return dao.memberDetailQna(no);
@@ -40,8 +46,8 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	@Override
-	public List<Store> selectAllStore(){
-		return dao.selectAllStore();
+	public List<Store> selectAllStore(int cPage,int numPerPage){
+		return dao.selectAllStore(cPage,numPerPage);
 	}
 	
 	@Override
@@ -131,6 +137,14 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Menu menuSelect(int menuCode) {
 		return dao.menuSelect(menuCode);
+	}
+	@Override
+	public int kakaoLogin(Map<String, String> map) {
+		return dao.kakaoLogin(map);
+	}
+	@Override
+	public int kakaoEnrollEnd(Member m) {
+		return dao.kakaoEnrollEnd(m);
 	}
 
 	

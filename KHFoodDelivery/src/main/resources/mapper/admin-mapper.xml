@@ -45,8 +45,8 @@
 	</delete>
 	 
 	 <!-- 사장 삭제 -->
-	<delete id="ownerDel" parameterType="_int">
-	delete from owner where ownernum=#{ownerNum}
+	<delete id="ownerDel" parameterType="String">
+	delete from owner ownerid=#{ownerId}
 	</delete>
 	 
 </mapper>

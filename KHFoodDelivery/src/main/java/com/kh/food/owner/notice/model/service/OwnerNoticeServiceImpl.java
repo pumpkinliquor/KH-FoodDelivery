@@ -104,6 +104,14 @@ public class OwnerNoticeServiceImpl implements OwnerNoticeService {
 		return result;
 	}
 
+	
+	//메인공지사항
+	@Override
+	public List<Map<String, String>> ownerNoticeList() {
+		// TODO Auto-generated method stub
+		return dao.ownerNoticeList();
+	}
+
 
 	
 	 

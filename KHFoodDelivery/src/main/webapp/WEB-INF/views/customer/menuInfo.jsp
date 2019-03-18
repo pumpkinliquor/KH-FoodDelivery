@@ -259,7 +259,6 @@
 	 	
 		
 	
-	
  </script>
  
     <div class="container">
@@ -270,7 +269,7 @@
             	
                 <div class="restaurant-info">
                     <div class="restaurant-title">
-                        <span>${i.storeName }</span>
+                        <span id="storeName">${i.storeName }</span>
                     </div>
                     <div class="restaurant-content">
                         <div class="logo"><img class="mainlogo" src="${path }/resources/upload/owner/storeMainImage/${i.storeImage }" /></div>
@@ -314,7 +313,7 @@
                     <div class="cart">
                         <div class="cart-empty">
 	                        <ul>
-	                        	<li style="list-style:none; float:left;">후라이드</li>
+	                        	<li style="list-style:none; float:left;">${menuTitle }후라이드</li>
 	                        </ul>
 	                        <br>
 	                        <ul>
@@ -325,11 +324,11 @@
                         <div class="clearfix" style="clear:both;">
                            	최소주문금액 10,000원
                         </div>
-                        <div class="clearfix" style="background-color:ivory; color:red; font-weight:bold;">
+                        <div class="clearfix" id="totalPrice" style="background-color:ivory; color:red; font-weight:bold;">
                            	합계 : 30,000원
                         </div>
                         <div class="cart-btn clearfix" style="clear:both;">
-                            <a onclick="" class="btu">주문하기</a>
+                            <a id="pay" class="btu">주문하기</a>
                         </div>
                     </div>
                 </div>
@@ -340,9 +339,9 @@
        
 
     </div>
+
  
-    
- 
+
 
 
 

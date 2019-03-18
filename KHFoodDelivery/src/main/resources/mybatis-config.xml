@@ -13,6 +13,7 @@
 		<typeAlias type="com.kh.food.qna.model.vo.MemberQna" alias="memberQna"/>		
 		<typeAlias type="com.kh.food.qna.model.vo.MemberQnaReview" alias="memberQnaReview"/>
 		<typeAlias type="com.kh.food.qna.model.vo.MemberQnaAttachment" alias="memberQnaAtt"/>
+		<typeAlias type="com.kh.food.owner.order.model.vo.Pay" alias="pay"/>
 	</typeAliases>
 	<typeHandlers>
 		<package name="com.kh.food.common"/>

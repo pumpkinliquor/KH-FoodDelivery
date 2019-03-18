@@ -9,7 +9,8 @@ import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
 
 public interface MemberDao {
-	
+	int updateMemberQna(MemberQna mq);
+	int deleteMemberQna(int no);
 	MemberQna memberDetailQna(int no);
 	List<MemberQna> selectmemberQna(String memberId);
 	int memberEnroll(Member m);
@@ -31,5 +32,7 @@ public interface MemberDao {
 
 	List<Map<String,String>> selectMenuList(int menuCategoryCode, int businessCode);
 	Menu menuSelect(int menuCode);
-	List<Store> selectAllStore();
+	List<Store> selectAllStore(int cPage,int numPerPage);
+	int kakaoLogin(Map<String, String> map);
+	int kakaoEnrollEnd(Member m);
 }

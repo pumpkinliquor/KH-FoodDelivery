@@ -79,6 +79,13 @@ public class OwnerNoticeDaoImpl implements OwnerNoticeDao {
 		return sqlSession.update("ownerNotice.ownerNoticeAUpdateEnd", a);
 	}
 
+	//사장 메인 공지사항
+	@Override
+	public List<Map<String, String>> ownerNoticeList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("ownerMain.ownerNoticeList");
+	}
+
 	
 	
 	

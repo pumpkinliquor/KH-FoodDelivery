@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,7 +24,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,6 +36,7 @@ import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+
 
 @Controller
 public class MemberController {
@@ -52,11 +51,68 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
+	//문의글 수정
+	@RequestMapping("/customer/memberQnaUpdate.do")
+	public ModelAndView updateMemberQna(MemberQna mq) {
+		ModelAndView mv = new ModelAndView();
+		
+		int result = service.updateMemberQna(mq);
+
+		String msg="";
+		String loc="/";
+		if(result > 0) {
+			msg="수정 성공";
+			loc="/member/qnaList.do?memberId="+mq.getMemberId();
+		}else {
+			msg="수정실패";
+			loc="/member/qnaList.do?memberId="+mq.getMemberId();
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		
+		
+		return mv;
+		
+		
+		
+	}
+	
+	
+	
+	//문의글 삭제
+	@RequestMapping("/customer/deletememberQna.do")
+	public ModelAndView deleteMemberQna(int no,String memberId) {
+		ModelAndView mv = new ModelAndView();
+		
+		int result=service.deleteMemberQna(no);
+		
+		String msg="";
+		String loc="/";
+		if(result >0) {
+			msg="삭제성공";
+			loc="/member/qnaList.do?memberId="+memberId;
+		}else {
+			msg="삭제실패";
+			loc="/member/qnaList.do?memberId="+memberId;
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		
+		
+		return mv;
+	}
+	//고객 메인페이지
+	@RequestMapping("/cutomer/main")
+	public String mainPage() {
+		return "/food";
+	}
 	//나의 문의내역
 	@RequestMapping("/member/qnaList.do")
 	public ModelAndView memberQna(String memberId) {
 		ModelAndView mv = new ModelAndView();
-		int numPerPage=5;
+		
 
 		//문의 리스트
 		List<MemberQna> qnaList=service.selectmemberQna(memberId);
@@ -81,10 +137,13 @@ public class MemberController {
 		ModelAndView mv= new ModelAndView();
 		
 	
-				MemberQna mq = service.memberDetailQna(no);
+		MemberQna mq = service.memberDetailQna(no);
 				
-				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-				mq.setFormatWriteDate(df.format(mq.getWriteDate()));
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		mq.setFormatWriteDate(df.format(mq.getWriteDate()));
+		
+		mv.addObject("mq",mq);
+		mv.setViewName("customer/detailQna");
 		return mv;
 		
 	}
@@ -112,7 +171,7 @@ public class MemberController {
 
 		Member member = service.selectMember(memberId);
 		
-		
+		System.out.println(member);
 		mv.addObject("member",member);
 		mv.setViewName("customer/mypage");
 		return mv;
@@ -309,7 +368,11 @@ public class MemberController {
 		System.out.println("암호화전"+rawPw);
 		
 		m.setMemberPw(pwEncoder.encode(rawPw));
-		System.out.println(m);
+		
+		
+	
+		
+		
 		
 		int result=service.memberEnroll(m);
 		String msg="";
@@ -417,12 +480,16 @@ public class MemberController {
 	}
 	//업체 전체보기
 	@RequestMapping("/customer/selectallstore.do")
-	public ModelAndView allStore() {
+	public ModelAndView allStore(@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage) {
 		
 		ModelAndView mv= new ModelAndView();
+		int numPerPage=8;
 		
-		List<Store> list =service.selectAllStore();
+		int count=service.selectMenuCount();
 		
+		List<Store> list =service.selectAllStore(cPage,numPerPage);
+		
+		mv.addObject("pageBar",PagingFactory.getPageBar(count, cPage, numPerPage, "/food/customer/selectallstore.do"));
 		mv.addObject("list",list);
 		mv.setViewName("customer/searchMenu");
 		
@@ -430,11 +497,20 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/customer/menuInsert.do")
-	public ModelAndView menuInsert(ModelAndView mv, int menuPrice, int menuCount, int plusMenuPrice) {
+	@ResponseBody
+	public Map<String, Object> menuInsert(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, 
+			String menuTitle, int menuPrice, int menuCount, int plusMenuPrice, int businessCode) {
 		
-		System.out.println("가격 : "+menuPrice+"수량 : "+menuCount+"합계 : "+plusMenuPrice);
+		System.out.println("메뉴이름 : "+menuTitle+", 가격 : "+menuPrice+", 수량 : "+menuCount+", 합계 : "+plusMenuPrice+", 사장님번호 : "+businessCode);
+	    
+		Map<String, Object> menuMaps=new HashMap<>();
 		
-		return mv;
+		menuMaps.put("menuTitle", menuTitle);
+		menuMaps.put("menuPrice", menuPrice);
+		menuMaps.put("menuCount", menuCount);
+		menuMaps.put("plusMenuPrice", plusMenuPrice);
+		
+		return menuMaps;
 	}
 	
 	
@@ -556,4 +632,126 @@ public class MemberController {
 		mv.setViewName("common/msg");
 		return mv;
 	}
+	
+	//카카오 로그인
+	@RequestMapping("member/kakaoMemberEnrollEnd.do")
+	public ModelAndView kakaoLogin(Member m,HttpSession session)
+	{
+		logger.debug("카카오아이디"+m);
+		
+		//디비에 계정이 존재하는지 확인
+		
+		Map<String,String> map = new HashMap<>();
+		map.put("id", m.getMemberId());
+		Map<String,String> result=service.login(map);
+		logger.debug("result"+result);
+		String msg="";
+		String loc="/";
+		if(result == null)
+		{
+			int result1=service.memberEnroll(m);
+			if(result1>0)
+			{
+				msg = "회원 가입 성공 로그인 성공";
+			}
+			else
+			{
+				msg = "로그인 실패";
+			}
+		}
+		else
+		{
+			msg = "로그인 성공";
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		session.setAttribute("logined", m.getMemberId());
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	
+	//카카오 로그인
+	@RequestMapping("member/kakaoLogin.do")
+	public ModelAndView kakaoApiLogin(String memberId,String nickName,HttpSession session)
+	{
+		ModelAndView mv = new ModelAndView();
+		logger.debug("id"+memberId);
+		logger.debug("nickName"+nickName);
+		String msg="";
+		String loc="/";
+		
+		Map<String,String> map = new HashMap<>();
+		map.put("id", memberId);
+		map.put("nickName", nickName);
+		Map<String,String> result=service.login(map);
+		logger.debug("result"+result);
+		//아이디가 디비에 없다? , 추가정보입력창으로 간다.
+		if(result == null)
+		{
+			int result1 = service.kakaoLogin(map);
+			if(result1>0)
+			{
+				Map<String,String> result2=service.login(map);
+				mv.addObject("result",result2);
+				mv.setViewName("customer/memberAddInfo");
+				return mv;
+			}
+
+			
+		}
+		else
+		{
+			//처음에 로그인하고 추가정보 입력안하고 뒤로 가기를 누르면 ? 
+			if(result.get("MEMBEREMAIL").equals(String.valueOf(0)))
+			{
+				//추가정보 입력 사이트로 가자.
+
+				mv.addObject("result",result);
+				mv.setViewName("customer/memberAddInfo");
+				return mv;
+			}
+			else
+			{
+				session.setAttribute("logined", memberId);
+				msg = "로그인 성공";
+				loc = "/";
+			// 있으면 바로 로그인 / 메인으로간다.
+			}
+		}
+		mv.addObject("member",result);
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	// 카카오 로그인 추가정보 입력
+	@RequestMapping("member/kakaoEnrollEnd.do")
+	public ModelAndView kakaoEnrollEnd(Member m,HttpSession session)
+	{
+		logger.debug("m"+m);
+		String msg = "";
+		String loc ="/";
+		
+		int result = service.kakaoEnrollEnd(m);
+		logger.debug("result"+result);
+		if(result>0)
+		{
+			msg = "로그인 성공!";
+			session.setAttribute("logined", m.getMemberId());
+		}
+		else
+		{
+			msg = "로그인 실패!";
+		}
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
 }
