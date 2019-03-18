@@ -16,6 +16,7 @@ import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.review.model.vo.Review;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -24,6 +25,11 @@ public class MemberDaoImpl implements MemberDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
+
+	@Override
+	public List<Review> selectReview(int businessCode) {
+		return sqlSession.selectList("member.selectReview",businessCode);
+	}
 	@Override
 	public Map<String,String> orderOne(int menuCode) {
 		return sqlSession.selectOne("member.orderOne",menuCode);

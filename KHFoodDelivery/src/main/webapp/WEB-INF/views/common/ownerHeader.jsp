@@ -82,6 +82,9 @@
   	  <li class="nav-item">
        <a class="nav-link"  href="${path }/owner/storeChoice.do?ownerId=${sessionScope.ownerId}">주문관리</a>
       </li>
+       <li class="nav-item">
+       <a class="nav-link"  href="#">리뷰관리</a>
+      </li>
 
     </ul>
   </nav>

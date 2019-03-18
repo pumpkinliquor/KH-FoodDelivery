@@ -130,6 +130,9 @@
 
 	
 
+	<select id="selectReview" parameterType="_int" resultType="review">
+		select review.*,memberid from review inner join member on(review.membernum=member.membernum) where businesscode=#{businessCode} order by reviewnum desc
+	</select>
 
 	<resultMap id="memberNotice" type="map">
 	</resultMap>

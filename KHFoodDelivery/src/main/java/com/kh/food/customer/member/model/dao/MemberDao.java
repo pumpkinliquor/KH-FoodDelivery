@@ -10,6 +10,7 @@ import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.review.model.vo.Review;
 
 public interface MemberDao {
 	Map<String,String> orderOne(int menuCode);
@@ -47,7 +48,7 @@ public interface MemberDao {
 	List<Store> selectAllStore(int cPage,int numPerPage);
 	int kakaoLogin(Map<String, String> map);
 	int kakaoEnrollEnd(Member m);
-	
+	List<Review> selectReview(int businessCode);
 	// 회원공지사항
 	List<MemberNotice> selectMemberNotice(int cPage,int numPerPage);
 	// 찜 목록

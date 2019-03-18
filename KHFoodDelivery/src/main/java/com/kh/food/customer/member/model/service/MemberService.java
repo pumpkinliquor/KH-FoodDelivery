@@ -10,6 +10,7 @@ import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.review.model.vo.Review;
 
 public interface MemberService {
 	//상세 주문내역
@@ -60,4 +61,5 @@ public interface MemberService {
 	List<MemberNotice> selectMemberNotice(int cPage,int numPerPage);
 	// 찜 목록
 	List<Mark> selectMarkList(String memberId);
+	List<Review> selectReview(int businessCode);
 }
