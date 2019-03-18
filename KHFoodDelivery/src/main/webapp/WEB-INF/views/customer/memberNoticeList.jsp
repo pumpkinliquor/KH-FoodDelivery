@@ -31,7 +31,7 @@
 							<td id="noticeTitleTd">
 								<a href="${path}/admin/memberNoticeView.do?noticeNum=${mn.noticeNum}">${mn.noticeTitle}</a>
 							</td>
-							<td>${mn.writeDate}</td>
+							<td>${mn.formatWriteDate}</td>
 						</tr>
 					</tbody>
 				</c:forEach>
