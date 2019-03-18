@@ -114,4 +114,15 @@
 	<select id="selectMemberNotice" resultType="memberNotice">
 		SELECT * FROM NOTICE ORDER BY writeDate DESC
 	</select>
+	
+	<resultMap id="mark" type="map"></resultMap>
+	<!-- 찜 목록 -->
+	<select id="selectMarkList" parameterType="string" resultType="mark">
+		SELECT 
+			m.*, s.* 
+		FROM 
+			MARK ma JOIN MEMBER m ON (ma.memberNum = m.memberNum) JOIN STORE s ON (ma.businessCode = s.businessCode)  
+		WHERE 
+			m.memberId = #{memberId} 
+	</select>
 </mapper>

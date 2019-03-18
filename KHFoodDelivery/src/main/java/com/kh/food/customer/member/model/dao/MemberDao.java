@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -39,4 +40,6 @@ public interface MemberDao {
 	
 	// 회원공지사항
 	List<MemberNotice> selectMemberNotice(int cPage,int numPerPage);
+	// 찜 목록
+	List<Mark> selectMarkList(String memberId);
 }
