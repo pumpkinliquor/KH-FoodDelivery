@@ -17,10 +17,10 @@
 	select{display: inline; margin-top: 20px;}
 	div#qna-search{display: inline; margin-top: 20px; float: right;}
 	div#qna-sort{ float: left; margin-top: 20px;}
-	table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
-	table#table-sort th{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); border: 1px solid #444444; padding: 0; }
-	table#table-sort td{ border: 1px solid #444444; padding: 0; }
 	input[type=checkbox], input[type=radio] {display: none; }
+/* 	table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
+	table#table-sort th{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); border: 1px solid #444444; padding: 0; }
+	table#table-sort td{ border: 1px solid #444444; padding: 0; } */
 </style>
 
 <script>	
