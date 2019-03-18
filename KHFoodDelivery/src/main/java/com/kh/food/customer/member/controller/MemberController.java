@@ -35,6 +35,7 @@ import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.common.PagingFactory;
 import com.kh.food.customer.member.model.service.MemberService;
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -786,6 +787,14 @@ public class MemberController {
 		mv.addObject("notice",map);
 		mv.addObject("attach",attach);		
 		mv.setViewName("customer/memberNoticeView");
+		return mv;
+	}
+	
+	// 찜 목록 (마이페이지)
+	@RequestMapping("/member/markList.do")
+	public ModelAndView markList(String memberId) {
+		ModelAndView mv = new ModelAndView();
+		List<Mark> list = service.selectMarkList(memberId);
 		return mv;
 	}
 }
