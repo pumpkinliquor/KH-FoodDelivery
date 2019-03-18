@@ -13,9 +13,9 @@ public interface MenuService {
 
 	int deleteCategory(String menuCategory);
 
-	List<Map<String, String>> selectMenuCategory();
+	List<Map<String, String>> selectMenuCategory(String businessCode);
 
-	List<Map<String, String>> selectMenuList();
+	List<Map<String, String>> selectMenuList(String businessCode);
 
 	int updateMenuPrice(Map<String, String> map);
 

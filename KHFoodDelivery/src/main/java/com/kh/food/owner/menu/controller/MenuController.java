@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.owner.menu.model.service.MenuService;
 import com.kh.food.owner.menu.model.vo.Menu;
+import com.kh.food.owner.order.model.service.OrderService;
 
 @Controller
 public class MenuController {
@@ -29,24 +30,44 @@ public class MenuController {
 	@Autowired
 	MenuService service;
 	
-	@RequestMapping("/owner/menuEnroll.do")
-	public ModelAndView menuEnroll()
+	@Autowired
+	OrderService orderService;
+	
+	//메뉴관리 가게 선택 화면진입
+	@RequestMapping("owner/menuStoreChoice.do")
+	public ModelAndView menuStoreChoice(String ownerId)
 	{
+		List<Map<String,String>> storeList = orderService.selectStoreList(ownerId);
+		
 		ModelAndView mv = new ModelAndView();
-		List<Map<String,String>> category = service.selectMenuCategory();		
+		mv.addObject("storeList",storeList);
+		mv.setViewName("owner/menuStoreChoice");
+		return mv;
+	}
+	
+	//메뉴 등록 화면 진입
+	@RequestMapping("/owner/menuEnroll.do")
+	public ModelAndView menuEnroll(String businessCode)
+	{	
+		
+		ModelAndView mv = new ModelAndView();
+		List<Map<String,String>> category = service.selectMenuCategory(businessCode);
+		mv.addObject("businessCode",businessCode);
 		mv.addObject("category",category);
 		mv.setViewName("owner/menuEnroll");
 		return mv;
 	}
 	
+	//메뉴 관리 화면 진입
 	@RequestMapping("/owner/menuManage.do")
-	public ModelAndView menuManage()
+	public ModelAndView menuManage(String businessCode)
 	{
 		ModelAndView mv = new ModelAndView();
-		List<Map<String,String>> category = service.selectMenuCategory();
-		List<Map<String,String>> menuList = service.selectMenuList();
+		List<Map<String,String>> category = service.selectMenuCategory(businessCode);
+		List<Map<String,String>> menuList = service.selectMenuList(businessCode);
 //		logger.debug("카테고리리스트"+category);
 //		logger.debug("메뉴리스트"+menuList);
+		mv.addObject("businessCode",businessCode);
 		mv.addObject("menuList",menuList);
 		mv.addObject("category",category);
 		mv.setViewName("owner/menuManage");
@@ -56,13 +77,14 @@ public class MenuController {
 	
 	//메뉴 품절 화면 진입
 	@RequestMapping("/owner/menuSoldOut.do")
-	public ModelAndView menuSoldOut()
+	public ModelAndView menuSoldOut(String businessCode)
 	{
 		ModelAndView mv = new ModelAndView();
-		List<Map<String,String>> category = service.selectMenuCategory();
-		List<Map<String,String>> menuList = service.selectMenuList();
+		List<Map<String,String>> category = service.selectMenuCategory(businessCode);
+		List<Map<String,String>> menuList = service.selectMenuList(businessCode);
 		
 		/*logger.debug("메뉴리스트"+menuList);*/
+		mv.addObject("businessCode",businessCode);
 		mv.addObject("menuList",menuList);
 		mv.addObject("category",category);
 		mv.setViewName("owner/menuSoldOut");

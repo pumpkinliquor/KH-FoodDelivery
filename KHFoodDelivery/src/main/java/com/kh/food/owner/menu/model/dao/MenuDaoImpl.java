@@ -32,13 +32,13 @@ public class MenuDaoImpl implements MenuDao {
 	}
 
 	@Override
-	public List<Map<String, String>> selectMenuCategory() {
-		return sqlSession.selectList("menu.selectMenuCategory");
+	public List<Map<String, String>> selectMenuCategory(String businessCode) {
+		return sqlSession.selectList("menu.selectMenuCategory",businessCode);
 	}
 
 	@Override
-	public List<Map<String, String>> selectMenuList() {
-		return sqlSession.selectList("menu.selectMenuList");
+	public List<Map<String, String>> selectMenuList(String businessCode) {
+		return sqlSession.selectList("menu.selectMenuList",businessCode);
 	}
 
 	@Override
