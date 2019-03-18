@@ -27,6 +27,11 @@
 		SELECT * FROM STORE WHERE isConfirm = 1
 	</select>
 	
+	<!-- 전체 입점 Count -->
+	<select id="selectStoreCount" resultType="_int">
+		SELECT COUNT(*) FROM STORE WHERE isConfirm = 1
+	</select>
+	
 	<!-- 입점 검색 -->
 	<select id="selectSearchStore" resultType="store">
 		SELECT 
@@ -34,7 +39,9 @@
 		FROM 
 			STORE
 		WHERE
-			storeName LIKE '%'||#{keyword}||'%' OR storeAddress LIKE '%'||#{keyword}||'%'
+			isConfirm = 1
+		AND
+			(storeName LIKE '%'||#{keyword}||'%' OR storeAddress LIKE '%'||#{keyword}||'%')		<!-- OR 문 때문에 () 필수 -->
 		AND
 			<choose>
 				<when test="category eq '전체'">
@@ -48,9 +55,25 @@
 			appDate DESC
 	</select>
 	
-	<!-- 전체 입점 Count -->
-	<select id="selectStoreCount" resultType="_int">
-		SELECT COUNT(*) FROM STORE WHERE isConfirm = 1
+	<!-- 입점 검색 Count -->
+	<select id="selectSearchStoreCount" resultType="_int">
+		SELECT 
+			COUNT(*) 
+		FROM 
+			STORE 
+		WHERE
+			isConfirm = 1
+		AND
+			(storeName LIKE '%'||#{keyword}||'%' OR storeAddress LIKE '%'||#{keyword}||'%')
+		AND
+			<choose>
+				<when test="category eq '전체'">
+					1 = 1
+				</when>
+				<otherwise>
+					storeCategory = #{category}
+				</otherwise>
+			</choose>
 	</select>
 	
 	<insert id="addStore" parameterType="map">

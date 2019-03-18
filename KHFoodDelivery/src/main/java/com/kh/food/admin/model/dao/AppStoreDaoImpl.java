@@ -46,6 +46,8 @@ public class AppStoreDaoImpl implements AppStoreDao {
 	public List<Store> selectAppStoreList() {
 		return session.selectList("store.selectAppStoreList");
 	}
+	
+	// wjsc
 
 	// 전체 리스트
 	@Override
@@ -64,7 +66,13 @@ public class AppStoreDaoImpl implements AppStoreDao {
 	// 검색 Count
 	@Override
 	public int selectSearchStoreCount(Map map) {
-		return session.selectOne("store.selectStoreCount", map);
+		return session.selectOne("store.selectSearchStoreCount", map);
+	}
+
+	// 입점 Count
+	@Override
+	public int selectStoreCount() {
+		return session.selectOne("store.selectStoreCount");
 	}
 	
 }

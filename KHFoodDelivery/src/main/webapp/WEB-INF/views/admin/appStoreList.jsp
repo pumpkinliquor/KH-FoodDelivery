@@ -53,7 +53,7 @@
 	<div class="container">	
 		<div>
 			<h4 style="display: inline">입점 신청 현황</h4>
-			<a href="${path }/admin/storeList.do" style="float: right">전체 입점 현황</a>
+			<a href="${path }/admin/storeList.do" style="decoration : none; float: right; color: black;">입점 리스트 보기</a>
 		</div>
 		<div>
 			<table class="table table-hover">

@@ -42,7 +42,7 @@
 							<option value="치킨">치킨</option>
 							<option value="피자">피자</option>
 							<option value="중국집">중국집</option>
-							<option value="한식">포인트</option>
+							<option value="한식">한식</option>
 							<option value="족발/보쌈">족발/보쌈</option>
 							<option value="분식">분식</option>
 							<option value="디저트">디저트</option>

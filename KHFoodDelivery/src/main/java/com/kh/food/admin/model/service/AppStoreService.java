@@ -15,4 +15,5 @@ public interface AppStoreService {
 	List<Store> selectStoreList(int cPage, int numPerPage);				// 전체 리스트
 	List<Store> selectSearchStore(Map map, int cPage, int numPerPage);	// 입점 리스트 검색
 	int selectSearchStoreCount(Map map);								// 입점 검색 Count
+	int selectStoreCount();												// 입점 Count
 }

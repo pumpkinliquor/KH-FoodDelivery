@@ -61,5 +61,11 @@ public class AppStoreServiceImpl implements AppStoreService{
 	@Override
 	public int selectSearchStoreCount(Map map) {
 		return dao.selectSearchStoreCount(map);
+	}
+
+	// 입점 Count
+	@Override
+	public int selectStoreCount() {
+		return dao.selectStoreCount();
 	}		
 }
