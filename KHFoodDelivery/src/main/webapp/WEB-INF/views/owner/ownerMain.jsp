@@ -81,12 +81,12 @@ pageEncoding="UTF-8"%>
                 <div class="col-md-8">
                     <div class="col-md-12">
                     <h6 id="p1">공지사항</h6> 
-                    <a href="${path}/owner/ownerNoticeList.do" id="noticePlus" style="float:right">+더보기</a>
+                    <a href="${path}/owner/ownerNoticeListOwnerView.do" id="noticePlus" style="float:right">+더보기</a>
                     </div>
                     <div class="col-sm-12 noticeDiv1">
                     <table id="notice_ta" width="100%">
                        <c:forEach var="list" items="${list }" begin="0" end="2" step="1" varStatus="vs">
-							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/ownerNoticeView.do?ownerNoticeNum=${list.OWNERNOTICENUM }'">
+							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/ownerNoticeViewOwnerView.do?ownerNoticeNum=${list.OWNERNOTICENUM }'">
 								
 								<td><a href="#">${list.OWNERNOTICETITLE }</a></td>
 								

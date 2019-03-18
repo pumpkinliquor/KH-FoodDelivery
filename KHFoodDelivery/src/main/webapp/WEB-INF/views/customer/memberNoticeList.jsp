@@ -4,20 +4,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Cstyle.css" />
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
+<style>
 
-
-<jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
-
-
+</style>
 <section>
 	<div class="container" id="memberNoticeDiv">
-		
 		<div>
 			<h4>회원 공지사항</h4>
 		</div>
-		
-		
 		<div class="col-md-12">
 			<table class="table table-hover notice">
 
@@ -26,29 +22,20 @@
 						<th width="20%">번호</th>
 						<th width="60%">제목</th>
 						<th width="20%">날짜</th>
-
 					</tr>
 				</thead>
-				<c:forEach items="${list }" var="mn">
+				<c:forEach items="${mnList }" var="mn">
 					<tbody>
-						<tr>
-							<td>${mn.NOTICENUM }</td>
-							<td id="noticeTitleTd"><a
-								href="${path}/admin/memberNoticeView.do?noticeNum=${mn.NOTICENUM}">${mn.NOTICETITLE}</a></td>
-							<td>${mn.WRITEDATE}</td>
+						<tr onclick="location.href='${path}/customer/memberNoticeView.do?noticeNum=${mn.noticeNum}'" style="cursor: pointer">
+							<td>${mn.noticeNum }</td>
+							<td id="noticeTitleTd">
+								${mn.noticeTitle}
+							</td>
+							<td>${mn.formatWriteDate}</td>
 						</tr>
-
 					</tbody>
 				</c:forEach>
 			</table>
-
-			
-					<button type="button" class="btn btn-light float-right"
-						onclick="location.href='${path}/admin/memberNoticeForm.do'">글쓰기</button>
-
-
-			
-
 		</div>
 	</div>
 		<div class="paging">${pageBar}</div>

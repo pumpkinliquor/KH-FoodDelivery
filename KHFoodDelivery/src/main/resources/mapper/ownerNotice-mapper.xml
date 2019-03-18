@@ -15,6 +15,11 @@
 	attachcount from ownernotice a order by ownernoticenum desc
 	</select>
 	
+	<!-- 사장공지사항 사장뷰 -->
+	<select id="ownerNoticeListOwnerView" resultType="Map">
+	select a.*,(select count(*) from ownernotice_attachment where ownernoticenum=a.ownernoticenum) as
+	attachcount from ownernotice a order by ownernoticenum desc
+	</select>
 	<!-- 페이징 -->
 	<select id="ownNotCount" resultType="_int">
 	select count(*) from ownernotice

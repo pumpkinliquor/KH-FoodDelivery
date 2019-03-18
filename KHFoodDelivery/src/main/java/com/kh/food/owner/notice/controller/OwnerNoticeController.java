@@ -50,6 +50,20 @@ public class OwnerNoticeController {
 		return mv;
 	}
 	
+	//사장 공지사항 리스트 (사장뷰)
+		@RequestMapping("/owner/ownerNoticeListOwnerView.do")
+		public ModelAndView ownerNoticeList(ModelAndView mv, @RequestParam(value="cPage", required=false, defaultValue="0") int cPage) {
+			int numPerPage=10;
+			
+			int count = service.ownNotCount();
+			List<Map<String, String>> list=service.ownerNoticeListOwnerView(cPage,numPerPage);
+			mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/owner/ownerNoticeListOwnerView.do"));
+			mv.addObject("list", list);	
+			mv.setViewName("owner/ownerNoticeListOwnerView");
+			return mv;
+		}
+	
+	
 	//사장 공지사항 뷰
 	@RequestMapping("/owner/ownerNoticeView.do")
 	public ModelAndView noticeView(int ownerNoticeNum) {
@@ -61,6 +75,19 @@ public class OwnerNoticeController {
 		mv.setViewName("owner/ownerNoticeView");
 		return mv;
 	}
+	
+	//사장공지사항 사장뷰
+	@RequestMapping("/owner/ownerNoticeViewOwnerView.do")
+	public ModelAndView ownerNoticeView(int ownerNoticeNum) {
+		ModelAndView mv=new ModelAndView();
+		Map<String,String> map=service.selectOwnerNotice(ownerNoticeNum);
+		List<Map<String,String>> attach=service.selectOwnerAttach(ownerNoticeNum);
+		mv.addObject("notice",map);
+		mv.addObject("attach",attach);
+		mv.setViewName("owner/ownerNoticeViewOwnerView");
+		return mv;
+	}
+	
 	
 	//사장 공지사항 삭제
 	@RequestMapping("/owner/ownerNoticeDel.do")

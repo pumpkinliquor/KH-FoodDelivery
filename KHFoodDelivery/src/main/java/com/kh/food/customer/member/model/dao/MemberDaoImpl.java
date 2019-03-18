@@ -9,7 +9,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -165,5 +167,17 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.update("member.kakaoEnrollEnd",m);
 	}
 	
+	// 회원 공지사항
+	@Override
+	public List<MemberNotice> selectMemberNotice(int cPage,int numPerPage) {
+		RowBounds rb=new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("member.selectMemberNotice", null, rb);
+	}
+	
+	// 찜 목록
+	@Override
+	public List<Mark> selectMarkList(String memberId) {
+		return sqlSession.selectList("member.selectMarkList", memberId);
+	}
 	
 }

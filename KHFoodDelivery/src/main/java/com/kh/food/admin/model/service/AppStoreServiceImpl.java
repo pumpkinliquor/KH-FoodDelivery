@@ -1,6 +1,7 @@
 package com.kh.food.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,5 +43,29 @@ public class AppStoreServiceImpl implements AppStoreService{
 	@Override
 	public List<Store> selectAppStoreList() {
 		return dao.selectAppStoreList();
+	}
+
+	// 전체 리스트
+	@Override
+	public List<Store> selectStoreList(int cPage, int numPerPage) {
+		return dao.selectStoreList(cPage, numPerPage);
+	}
+
+	// 입점 검색
+	@Override
+	public List<Store> selectSearchStore(Map map, int cPage, int numPerPage) {
+		return dao.selectSearchStore(map, cPage, numPerPage);
+	}
+
+	// 검색 Count
+	@Override
+	public int selectSearchStoreCount(Map map) {
+		return dao.selectSearchStoreCount(map);
+	}
+
+	// 입점 Count
+	@Override
+	public int selectStoreCount() {
+		return dao.selectStoreCount();
 	}		
 }

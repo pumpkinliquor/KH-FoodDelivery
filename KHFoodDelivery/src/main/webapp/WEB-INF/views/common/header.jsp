@@ -19,10 +19,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -217,10 +216,16 @@ $(function(){
             </c:if> 
              <c:if test="${sessionScope.logined!=null}">
              <a href="${path }/customer/logout.do">로그아웃</a>
+
              <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
              
         
+
+
+
             </c:if> 
+     
+            
             
             </div>
                   <div class="content1">

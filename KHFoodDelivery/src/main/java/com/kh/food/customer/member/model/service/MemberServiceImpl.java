@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.customer.member.model.dao.MemberDao;
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -158,6 +160,16 @@ public class MemberServiceImpl implements MemberService {
 	public int kakaoEnrollEnd(Member m) {
 		return dao.kakaoEnrollEnd(m);
 	}
-
 	
+	
+	// 회원 공지사항
+	@Override
+	public List<MemberNotice> selectMemberNotice(int cPage,int numPerPage) {
+		return dao.selectMemberNotice(cPage, numPerPage);
+	}
+	// 찜목록
+	@Override
+	public List<Mark> selectMarkList(String memberId) {
+		return dao.selectMarkList(memberId);
+	}
 }
