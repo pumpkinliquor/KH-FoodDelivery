@@ -163,7 +163,7 @@ pageEncoding="UTF-8"%>
 						</thead>
 						<tbody>
 							<c:forEach var="notice" items="${selectNoticeList }" begin="0" end="4" step="1" varStatus="vs">
-							<tr style="cursor:pointer;" onclick="location.href='${path}owner/ownerNoticeListOwnerView.do'">
+							<tr style="cursor:pointer;" onclick="location.href='${path}/owner/ownerNoticeListOwnerView.do'">
 								<td>${vs.count }</td>
 								<td><a href="#">${notice.OWNERNOTICETITLE }</a></td>
 								<td>${notice.OWNERWRITEDATE }</td>

@@ -76,6 +76,19 @@ public class OwnerNoticeController {
 		return mv;
 	}
 	
+	//사장공지사항 사장뷰
+	@RequestMapping("/owner/ownerNoticeViewOwnerView.do")
+	public ModelAndView ownerNoticeView(int ownerNoticeNum) {
+		ModelAndView mv=new ModelAndView();
+		Map<String,String> map=service.selectOwnerNotice(ownerNoticeNum);
+		List<Map<String,String>> attach=service.selectOwnerAttach(ownerNoticeNum);
+		mv.addObject("notice",map);
+		mv.addObject("attach",attach);
+		mv.setViewName("owner/ownerNoticeViewOwnerView");
+		return mv;
+	}
+	
+	
 	//사장 공지사항 삭제
 	@RequestMapping("/owner/ownerNoticeDel.do")
 	public String noticeDel(int ownerNoticeNum) {
