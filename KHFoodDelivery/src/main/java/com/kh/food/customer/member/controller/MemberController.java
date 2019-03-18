@@ -27,7 +27,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -481,12 +480,16 @@ public class MemberController {
 	}
 	//업체 전체보기
 	@RequestMapping("/customer/selectallstore.do")
-	public ModelAndView allStore() {
+	public ModelAndView allStore(@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage) {
 		
 		ModelAndView mv= new ModelAndView();
+		int numPerPage=8;
 		
-		List<Store> list =service.selectAllStore();
+		int count=service.selectMenuCount();
 		
+		List<Store> list =service.selectAllStore(cPage,numPerPage);
+		
+		mv.addObject("pageBar",PagingFactory.getPageBar(count, cPage, numPerPage, "/food/customer/selectallstore.do"));
 		mv.addObject("list",list);
 		mv.setViewName("customer/searchMenu");
 		

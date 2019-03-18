@@ -77,7 +77,7 @@
 		select * from menu where MENUCATEGORYCODE=#{menuCategoryCode} AND BUSINESSCODE=#{businessCode}
 	</select>
 	
-	<select id="selectAllStore" resultType="store">
+	<select id="selectAllStore" parameterType="_int" resultType="store">
 		select * from store where ISCONFIRM=1
 	</select>
 	

@@ -46,8 +46,8 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	@Override
-	public List<Store> selectAllStore(){
-		return dao.selectAllStore();
+	public List<Store> selectAllStore(int cPage,int numPerPage){
+		return dao.selectAllStore(cPage,numPerPage);
 	}
 	
 	@Override
