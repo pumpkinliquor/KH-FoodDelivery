@@ -18,11 +18,13 @@ public class OwnerContoller {
 	OwnerNoticeService service;
 	private Logger logger = LoggerFactory.getLogger(OwnerContoller.class);
 	
+	//사장님 사이트 메인화면 진입
 	@RequestMapping("/owner/ownerMain.do")
 	public ModelAndView ownerMain()
 	{
 		ModelAndView mv= new ModelAndView();
 		List<Map<String,String>> list=service.ownerNoticeList();
+		
 		mv.addObject("list",list);
 		mv.setViewName("owner/ownerMain");
 		return mv;
@@ -37,7 +39,6 @@ public class OwnerContoller {
 	@RequestMapping("/owner/login.do")
 	public String ownerLogin()
 	{
-		logger.debug("로그인들어왔니?");
 		return "owner/ownerlogin";
 	}
 	

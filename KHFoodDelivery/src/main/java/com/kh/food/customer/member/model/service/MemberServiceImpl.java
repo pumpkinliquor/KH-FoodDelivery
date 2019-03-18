@@ -23,8 +23,14 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao dao;
 
-	
-	
+	@Override
+	public int updateMemberQna(MemberQna mq) {
+		return dao.updateMemberQna(mq);
+	}
+	@Override
+	public int deleteMemberQna(int no) {
+		return dao.deleteMemberQna(no);
+	}
 	@Override
 	public MemberQna memberDetailQna(int no) {
 		return dao.memberDetailQna(no);

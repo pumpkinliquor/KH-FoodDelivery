@@ -9,7 +9,8 @@ import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
 
 public interface MemberDao {
-	
+	int updateMemberQna(MemberQna mq);
+	int deleteMemberQna(int no);
 	MemberQna memberDetailQna(int no);
 	List<MemberQna> selectmemberQna(String memberId);
 	int memberEnroll(Member m);

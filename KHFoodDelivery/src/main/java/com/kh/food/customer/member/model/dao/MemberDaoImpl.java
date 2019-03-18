@@ -21,6 +21,14 @@ public class MemberDaoImpl implements MemberDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
+	@Override
+	public int updateMemberQna(MemberQna mq) {
+		return sqlSession.update("member.qnaUpdate",mq);
+	}
+	@Override
+	public int deleteMemberQna(int no) {
+		return sqlSession.delete("member.qnaDelete",no);
+	}
 	
 	@Override
 	public List<MemberQna> selectmemberQna(String memberId){

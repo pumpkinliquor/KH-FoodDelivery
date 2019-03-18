@@ -80,6 +80,7 @@
 	<select id="selectAllStore" resultType="store">
 		select * from store where ISCONFIRM=1
 	</select>
+	
 
 	
 	
@@ -93,6 +94,17 @@
 	
 	<update id="kakaoEnrollEnd" parameterType="member">
 		update member set memberName=#{memberName},memberBirth=#{memberBirth} , memberEmail=#{memberEmail}, memberPhone=#{memberPhone},memberAddress=#{memberAddress},memberAddress1=#{memberAddress1},memberGender=#{memberGender} where memberId=#{memberId}
+	</update>
+	<!-- 마이페이지 문의 상세 -->
+	<select id="qnaDtail" parameterType="_int" resultType="memberQna">
+		SELECT mq.*, m.memberId FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum) WHERE qnaCode = #{no}
+	</select>
+	<delete id="qnaDelete" parameterType="_int">
+		delete from member_qna where  qnaCode=#{no} 
+	</delete>
+	
+	<update id="qnaUpdate" parameterType="memberQna">
+		update member_qna set QNACATEGORY=#{qnaCategory},QNATITLE=#{qnaTitle},QNACONTENT=#{qnaContent},WRITEDATE=default  where  qnaCode = #{qnaCode} 
 	</update>
 
 </mapper>

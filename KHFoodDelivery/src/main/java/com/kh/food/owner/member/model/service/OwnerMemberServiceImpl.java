@@ -63,6 +63,16 @@ public class OwnerMemberServiceImpl implements OwnerMemberService {
 		return dao.selectBusiness(ownerId);
 	}
 
+	@Override
+	public Map<String, String> selectPayOneList(String businessCode) {
+		return dao.selectPayOneList(businessCode);
+	}
+
+	@Override
+	public Map<String, String> selectBusinessCode(String ownerId) {
+		return dao.selectBusinessCode(ownerId);
+	}
+
 	
 	
 }
