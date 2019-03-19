@@ -17,8 +17,8 @@ public class OrderDaoImpl implements OrderDao {
 	SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<Pay> selectOrderList() {
-		return sqlSession.selectList("ownerOrder.selectOrderList");
+	public List<Pay> selectOrderList(int businessCode) {
+		return sqlSession.selectList("ownerOrder.selectOrderList",businessCode);
 	}
 
 	@Override
@@ -27,19 +27,24 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public List<Pay> selectOrderOneList(int cPage,int numPerPage) {
+	public List<Pay> selectOrderOneList(int cPage,int numPerPage,int businessCode1) {
 		RowBounds rb = new RowBounds((cPage-1)*numPerPage,numPerPage);
-		return sqlSession.selectList("ownerOrder.selectOrderOneList",null,rb);
+		return sqlSession.selectList("ownerOrder.selectOrderOneList",businessCode1,rb);
 	}
 
 	@Override
-	public int selectOrderCount() {
-		return sqlSession.selectOne("ownerOrder.selectOrderCount");
+	public int selectOrderCount(int businessCode1) {
+		return sqlSession.selectOne("ownerOrder.selectOrderCount",businessCode1);
 	}
 
 	@Override
-	public Map<String, String> selectTodayOrderCount() {
-		return sqlSession.selectOne("ownerOrder.selectTodayOrderCount");
+	public Map<String, String> selectTodayOrderCount(int businessCode1) {
+		return sqlSession.selectOne("ownerOrder.selectTodayOrderCount",businessCode1);
+	}
+
+	@Override
+	public List<Map<String, String>> selectStoreList(String ownerId) {
+		return sqlSession.selectList("ownerOrder.selectStoreList",ownerId);
 	}
 	
 	

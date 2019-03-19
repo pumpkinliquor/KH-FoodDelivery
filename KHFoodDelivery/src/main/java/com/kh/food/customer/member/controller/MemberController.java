@@ -1,7 +1,9 @@
 package com.kh.food.customer.member.controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DateFormat;
@@ -36,10 +38,12 @@ import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.common.PagingFactory;
 import com.kh.food.customer.member.model.service.MemberService;
 import com.kh.food.customer.member.model.vo.Member;
+import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.review.model.vo.Review;
 
 @Controller
 public class MemberController {
@@ -55,6 +59,9 @@ public class MemberController {
 	NoticeService ns;
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	
+	
 	
 	//문의글 수정
 	@RequestMapping("/customer/memberQnaUpdate.do")
@@ -119,7 +126,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		
 
-		//문의 리스트
+		
 		List<MemberQna> qnaList=service.selectmemberQna(memberId);
 		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)
 				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -138,6 +145,7 @@ public class MemberController {
 	
 	//문의내역 상세보기
 	@RequestMapping("/customer/memberQnaView.do")
+	@ResponseBody
 	public ModelAndView memberDetailQna(int no) {
 		ModelAndView mv= new ModelAndView();
 		
@@ -152,15 +160,42 @@ public class MemberController {
 		return mv;
 		
 	}
+	
+	//상세 주문내역
+	@RequestMapping("/member/orderOne.do")
+	@ResponseBody
+	public Map orderOne(int payorderNum) {
+		
+		
+		
+		System.out.println(payorderNum);
+		
+		Map<String,Object> orList=service.orderOne(payorderNum);
+		System.out.println("주문내역"+orList);
+		orList.put("PAYDATE","PAYDATE");
+		
+		
+		
+		
+		return orList;
+	}
 	//나의주문내역
 	@RequestMapping("/member/orderList.do")
-	public ModelAndView memberOrderList(String memberId)
+	public ModelAndView memberOrderList(int memberNum,String memberId,@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage)
 	{
 		ModelAndView mv=new ModelAndView();
+		logger.debug(""+memberNum);
+		int numPerPage=6;
 		
-		Member member = service.selectMember(memberId);
 		
-		mv.addObject("member",member);
+		int count=service.selectOrderCount(memberNum);
+		
+		
+		 
+		List<Member> memberList = service.selectMemberOrder(memberNum,cPage,numPerPage);
+		
+		mv.addObject("pageBar",PagingFactory.getPageBar3(memberNum,count, cPage, numPerPage, "/food/member/orderList.do"));
+		mv.addObject("orderList",memberList);
 		mv.setViewName("customer/orderList");
 		return mv;
 	}
@@ -319,6 +354,7 @@ public class MemberController {
 			if(pwEncoder.matches(pw,result.get("MEMBERPW"))) {
 				msg="로그인 성공";
 				session.setAttribute("logined", result.get("MEMBERID"));
+				session.setAttribute("loginedno", result.get("MEMBERNUM"));
 			
 			
 			}else {
@@ -399,9 +435,14 @@ public class MemberController {
 	//테스트
 	
 	@RequestMapping("/customer/test.do")
-	public String test()
+	public ModelAndView test(ModelAndView mv, int businessCode)
 	{
-		return "customer/test";
+		List<Review> review=service.selectReview(businessCode);
+		System.out.println(review);
+		mv.addObject("businessCode",businessCode);
+		mv.addObject("review",review);
+		mv.setViewName("customer/test");
+		return mv;
 	}
 	
 	
@@ -472,11 +513,16 @@ public class MemberController {
 	}	
 	
 	@RequestMapping("/customer/menuInfo.do")
-	public ModelAndView infoMenu(ModelAndView mv,int businessCode)
+	public ModelAndView infoMenu(HttpServletRequest request, ModelAndView mv,int businessCode)
 	{
-		
+		String memberId=(String) request.getSession().getAttribute("logined");
+		Map<String, Object> maps=new HashMap<>();
+		maps.put("memberId", memberId);
+		maps.put("businessCode", businessCode);
 		List<Store> list=service.menuInfo(businessCode);
+		List<WishList> wishList=service.selectWishList(maps);
 		
+		mv.addObject("wishList", wishList);
 		mv.addObject("businessCode", businessCode);
 		mv.addObject("list",list);
 		mv.setViewName("customer/menuInfo");
@@ -486,25 +532,77 @@ public class MemberController {
 	
 	@RequestMapping("/customer/menuInfo2.do")
 	@ResponseBody
-	public void infoAjaxMenu(ModelAndView mv, @RequestParam(value="menuCount", required=false, defaultValue="0") int menuCount, 
+	public void infoAjaxMenu(ModelAndView mv,
+			@RequestParam(value="menuCount", required=false, defaultValue="0") int menuCount, 
 			@RequestParam(value="businessCode", required=false, defaultValue="0") int businessCode, 
 			@RequestParam(value="menuTitle", required=false, defaultValue="0") String menuTitle,
 			@RequestParam(value="menuPrice", required=false, defaultValue="0") int menuPrice,
 			@RequestParam(value="plusMenuPrice", required=false, defaultValue="0") int plusMenuPrice,
 			@RequestParam(value="menuCode", required=false, defaultValue="0") int menuCode,
-			HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException {
+			HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println(menuCount);
+		String memberId=(String) request.getSession().getAttribute("logined");
 		Map<String,Object> maps=new HashMap<>();
 		maps.put("menuTitle", menuTitle);
+		maps.put("memberId", memberId);
 		maps.put("menuPrice", menuPrice);
 		maps.put("plusMenuPrice", plusMenuPrice);
 		maps.put("businessCode", businessCode);
 		maps.put("menuCount", menuCount);
 		maps.put("menuCode", menuCode);
-		req.setAttribute("maps", maps);
-		req.getRequestDispatcher("/WEB-INF/views/customer/jangba.jsp").forward(req, res);
+		
+		List<WishList> wishList=service.selectWishList(maps);
+		System.out.println(maps);
+		
+		request.setAttribute("maps", maps);
+		request.getRequestDispatcher("/WEB-INF/views/customer/WishList.jsp").forward(request, response);
 	}
+	
+	@RequestMapping("/customer/plusMenuCount.do")
+	@ResponseBody
+	public int plusMenuCount(int menuCode, int plusCount, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(menuCode);
+		System.out.println(plusCount);
+		
+		Map<String,Object> upCount=new HashMap<>();
+		upCount.put("menuCode", menuCode);
+		upCount.put("plusCount", plusCount);
+		
+		int result=service.plusMenuCount(upCount);
+		
+		int menuCount=service.menuCounts(menuCode);
+		
+		return menuCount;
+	}
+	
+	@RequestMapping("/customer/minusMenuCount.do")
+	@ResponseBody
+	public int minusMenuCount(int menuCode, int minusCount, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(menuCode);
+		System.out.println(minusCount);
+		
+		Map<String,Object> upCount=new HashMap<>();
+		upCount.put("menuCode", menuCode);
+		upCount.put("plusCount", minusCount);
+		
+		int result=service.minusMenuCount(upCount);
+		
+		int menuCount=service.menuCounts(menuCode);
+		
+		return menuCount;
+	}
+	
+	@RequestMapping("/customer/deleteMenuCount.do")
+	@ResponseBody
+	public int deleteMenuCount(int menuCode, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(menuCode);
+		
+		int result=service.deleteMenuCount(menuCode);
+		
+		return result;
+	}
+	
 	
 	//업체 전체보기
 	@RequestMapping("/customer/selectallstore.do")
@@ -539,6 +637,8 @@ public class MemberController {
 		menuMap.put("plusMenuPrice", plusMenuPrice);
 		menuMap.put("businessCode", businessCode);
 		menuMap.put("menuCode", menuCode);
+		
+		int result=service.insertWishList(menuMap);
 		
 		return menuMap;
 	}
@@ -721,35 +821,17 @@ public class MemberController {
 		//아이디가 디비에 없다? , 추가정보입력창으로 간다.
 		if(result == null)
 		{
-			int result1 = service.kakaoLogin(map);
-			if(result1>0)
-			{
-				Map<String,String> result2=service.login(map);
-				mv.addObject("result",result2);
-				mv.setViewName("customer/memberAddInfo");
-				return mv;
-			}
-
 			
+				mv.addObject("kakaoId",memberId);
+				mv.setViewName("customer/memberAddInfo");
+				return mv;		
 		}
 		else
 		{
-			//처음에 로그인하고 추가정보 입력안하고 뒤로 가기를 누르면 ? 
-			if(result.get("MEMBEREMAIL").equals(String.valueOf(0)))
-			{
-				//추가정보 입력 사이트로 가자.
-
-				mv.addObject("result",result);
-				mv.setViewName("customer/memberAddInfo");
-				return mv;
-			}
-			else
-			{
 				session.setAttribute("logined", memberId);
 				msg = "로그인 성공";
 				loc = "/";
 			// 있으면 바로 로그인 / 메인으로간다.
-			}
 		}
 		mv.addObject("member",result);
 		mv.addObject("msg",msg);

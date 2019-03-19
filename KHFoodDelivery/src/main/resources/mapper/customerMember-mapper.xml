@@ -5,6 +5,8 @@
 
 	 <resultMap id="memberQna" type="map">
 	 </resultMap>
+	  <resultMap id="memberOrder" type="map">
+	 </resultMap>
      <resultMap id="member" type="map">
 	</resultMap>
 	 <resultMap id="store" type="map">
@@ -13,7 +15,7 @@
 	   <resultMap id="member1" type="member">
 	</resultMap>
 	<insert id="insertMember" parameterType="member" >
-		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},#{memberPw},#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},default,#{memberGender},default,default,0,0,#{profileImage},#{memberAddress1})
+		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},#{memberPw},#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},default,#{memberGender},default,0,0,#{profileImage},#{memberAddress1})
 	</insert>
 	
 	<select id="checkId" parameterType="String" resultType="_int">
@@ -87,14 +89,10 @@
 	<select id="memberQnaList"  parameterType="string" resultType="memberQna">
 		select mq.*, m.memberId from member_qna mq JOIN member m ON(mq.memberNum = m.memberNum) where MEMBERID=#{memberId}
 	</select>
-
-	<insert id="kakaoLogin" parameterType="map">
-			insert into member values(SEQ_MEMBERNUM.nextval,#{id},default,default,default,default,0,0,#{nickName},default,default,default,default,0,0,default,default)
-	</insert>
 	
-	<update id="kakaoEnrollEnd" parameterType="member">
-		update member set memberName=#{memberName},memberBirth=#{memberBirth} , memberEmail=#{memberEmail}, memberPhone=#{memberPhone},memberAddress=#{memberAddress},memberAddress1=#{memberAddress1},memberGender=#{memberGender} where memberId=#{memberId}
-	</update>
+	<insert id="kakaoEnrollEnd" parameterType="member">
+		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},default,#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},default,#{memberGender},default,default,0,0,#{profileImage},#{memberAddress1})
+	</insert>
 	<!-- 마이페이지 문의 상세 -->
 	<select id="qnaDtail" parameterType="_int" resultType="memberQna">
 		SELECT mq.*, m.memberId FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum) WHERE qnaCode = #{no}
@@ -105,8 +103,33 @@
 	
 	<update id="qnaUpdate" parameterType="memberQna">
 		update member_qna set QNACATEGORY=#{qnaCategory},QNATITLE=#{qnaTitle},QNACONTENT=#{qnaContent},WRITEDATE=default  where  qnaCode = #{qnaCode} 
-	</update>
 
+	</update>
+	
+	<!-- 주문내역 페이징 카운트 -->
+	<select id="orderCount" resultType="_int">
+		select count(*) from pay where membernum=#{memberNum}
+	</select>
+	
+	<select id="selectMemberOrder" resultMap="memberOrder" parameterType="map">
+		select s.storename,s.storecategory,p.*,m.memberid 
+		from pay p 
+		JOIN store s ON(s.businesscode = p.businesscode) 
+		JOIN member m ON(p.membernum = m.membernum)  where m.memberNum=#{memberNum}
+	</select>
+	<!-- 상세주문내역 -->
+	<select id="orderOne"  resultType="Map" parameterType="_int">
+		select s.storename,s.storecategory,p.*,m.memberid 
+		from pay p 
+		JOIN store s ON(s.businesscode = p.businesscode) 
+		JOIN member m ON(p.membernum = m.membernum)  where menucode=#{payorderNum}
+	</select>
+
+	
+
+	<select id="selectReview" parameterType="_int" resultType="review">
+		select review.*,memberid from review inner join member on(review.membernum=member.membernum) where businesscode=#{businessCode} order by reviewnum desc
+	</select>
 
 	<resultMap id="memberNotice" type="map">
 	</resultMap>
@@ -124,4 +147,5 @@
 		WHERE 
 			m.memberId = #{memberId}
 	</select>
+
 </mapper>

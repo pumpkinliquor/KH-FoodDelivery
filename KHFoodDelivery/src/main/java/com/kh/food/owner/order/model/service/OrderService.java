@@ -7,14 +7,16 @@ import com.kh.food.owner.order.model.vo.Pay;
 
 public interface OrderService {
 
-	List<Pay> selectOrderList();
+	List<Pay> selectOrderList(int businessCode1);
 
 	List<Map<String,String>> selectPayOrderNum(String payOrderNum);
 
-	List<Pay> selectOrderOneList(int cPage, int numPerPage);
+	List<Pay> selectOrderOneList(int cPage, int numPerPage, int businessCode1);
 
-	int selectOrderCount();
+	int selectOrderCount(int businessCode1);
 
-	Map<String, String> selectTodayOrderCount();
+	Map<String, String> selectTodayOrderCount(int businessCode1);
+
+	List<Map<String, String>> selectStoreList(String ownerId);
 	
 }

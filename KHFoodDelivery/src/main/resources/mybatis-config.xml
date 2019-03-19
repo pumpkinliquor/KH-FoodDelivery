@@ -16,6 +16,7 @@
 		<typeAlias type="com.kh.food.owner.order.model.vo.Pay" alias="pay"/>
 		<typeAlias type="com.kh.food.admin.notice.model.vo.MemberNotice" alias="memberNotice"/>
 		<typeAlias type="com.kh.food.mark.model.vo.Mark" alias="mark"/>
+		<typeAlias type="com.kh.food.review.model.vo.Review" alias="review"/>
 	</typeAliases>
 	<typeHandlers>
 		<package name="com.kh.food.common"/>

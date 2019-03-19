@@ -1,18 +1,11 @@
 package com.kh.food.owner.order.controller;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.common.PagingFactory;
+//github.com/pumpkinliquor/KH-FoodDelivery
 import com.kh.food.owner.order.model.service.OrderService;
 import com.kh.food.owner.order.model.vo.Pay;
 
@@ -35,18 +29,34 @@ public class OrderController {
 	@Autowired
 	OrderService service;
 	
+	//가게 선택 화면 진입
+	@RequestMapping("owner/storeChoice.do")
+	public ModelAndView selectStoreList(String ownerId)
+	{
+		List<Map<String,String>> storeList = service.selectStoreList(ownerId);
+		ModelAndView mv = new ModelAndView();
+		logger.debug("owerId"+ownerId);
+		logger.debug("storeList"+storeList);
+		mv.addObject("storeList",storeList);
+		mv.setViewName("owner/storeChoice");
+		return mv;
+	}
+	
+	
 	//주문관리 화면진입
 	@RequestMapping("owner/orderService.do")
-	public ModelAndView selectOrderList(@RequestParam(value="cPage",required=false,defaultValue="0") int cPage) throws ServletException, IOException
+	public ModelAndView selectOrderList(@RequestParam(value="cPage",required=false,defaultValue="0") int cPage,String businessCode) throws ServletException, IOException
+	
 	{
 		int numPerPage = 5;
-		String businessCode = "";
+		int businessCode1 = Integer.valueOf(businessCode); 
+		logger.debug("businessCode"+businessCode);
 //		List<Map<String,String>> orderList = service.selectOrderList();
-		List<Pay> orderList = service.selectOrderList();
-		List<Pay> orderOneList = service.selectOrderOneList(cPage,numPerPage);
-		Map<String,String> todayOrderCount = service.selectTodayOrderCount();
+		List<Pay> orderList = service.selectOrderList(businessCode1);
+		List<Pay> orderOneList = service.selectOrderOneList(cPage,numPerPage,businessCode1);
+		Map<String,String> todayOrderCount = service.selectTodayOrderCount(businessCode1);
 		
-		int orderCount = service.selectOrderCount();
+		int orderCount = service.selectOrderCount(businessCode1);
 /*		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss");
 		for(int i = 0; i < orderOneList.size(); i++) {
 			orderOneList.get(i).setFormatDate(df.format(orderOneList.get(i).getPayDate()));
@@ -55,6 +65,7 @@ public class OrderController {
 		logger.debug("오늘날짜주문개수"+todayOrderCount);
 		logger.debug("주문하나내역"+orderOneList);
 		logger.debug("주문내역"+orderList);
+		logger.debug("orderCount"+orderCount);
 		ArrayList<Pay> list = new ArrayList<>();
 		int sum = 0;
 		/*logger.debug("사이즈"+orderList.size());*/
@@ -101,7 +112,8 @@ public class OrderController {
 		mv.addObject("orderList",orderList);
 		mv.addObject("price",price);
 		mv.setViewName("owner/ownerOrderList");
-		mv.addObject("pageBar",PagingFactory.getPageBar(orderCount, cPage, numPerPage, "/food/owner/orderService.do"));
+		mv.addObject("pageBar",PagingFactory.getPageBar4(orderCount, cPage, numPerPage, "/food/owner/orderService.do?businessCode="+businessCode1));
+
 		return mv;
 			
 	}

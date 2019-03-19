@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>   
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+   <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>   
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/WEB-INF/views/common/searchHeader.jsp"/>
 
@@ -183,7 +183,7 @@
     color: #333; 
 }
 #test1 , #test2,#test3{
-	
+   
  cursor:pointer;
  
 }
@@ -194,81 +194,81 @@
        
         
         $(document).ready(function(){
-        	
-        	$("#test1").click(function(){
-        		
-        		
-        		
-        		$.ajax({
-        			
-        			type: "post",
-        			url: "${path}/customer/test.do",	
-        			success: function test(a){$("#callback").html(a);}
-        		});
-        		
-        	});
-        	
+           
+           $("#test1").click(function(){
+              
+              
+              
+              $.ajax({
+                 
+                 type: "post",
+                 url: "${path}/customer/test.do",   
+                 success: function test(a){$("#callback").html(a);}
+              });
+              
+           });
+           
         });
         
         
-		$(document).ready(function(){
-        	$("#test2").click(function(){
-        		var businessCode=${businessCode};
-        		$.ajax({
-        			type: "post",
-        			url: "${path}/customer/test1.do",
-        			data : {"businessCode" : businessCode},
-        			success: function test(a){$("#callback").html(a);}
-        		});       	
-        	});
+      $(document).ready(function(){
+           $("#test2").click(function(){
+              var businessCode=${businessCode};
+              $.ajax({
+                 type: "post",
+                 url: "${path}/customer/test1.do",
+                 data : {"businessCode" : businessCode},
+                 success: function test(a){$("#callback").html(a);}
+              });          
+           });
         });
-		
-		window.onload=function(){
-			var businessCode=${businessCode}
-    		$.ajax({
-    			type: "post",
-    			url: "${path}/customer/test1.do",
-    			data : {"businessCode" : businessCode},
-    			success: function test(a){$("#callback").html(a);}
-    		});
-    		
-		}
-			
-		$(document).ready(function(){
-        	
-        	$("#test3").click(function(){
-        		
-        		$.ajax({
-        			
-        			type: "post",
-        			url: "${path}/customer/test2.do",	
-        			success: function test(a){$("#callback").html(a);}
-        		});
-        		
-        		
-        	});
-        	
+      
+      window.onload=function(){
+         var businessCode=${businessCode}
+          $.ajax({
+             type: "post",
+             url: "${path}/customer/test1.do",
+             data : {"businessCode" : businessCode},
+             success: function test(a){$("#callback").html(a);}
+          });
+          
+      }
+         
+      $(document).ready(function(){
+           
+           $("#test3").click(function(){
+              
+              $.ajax({
+                 
+                 type: "post",
+                 url: "${path}/customer/test2.do",   
+                 success: function test(a){$("#callback").html(a);}
+              });
+              
+              
+           });
+           
         });
-		
-	 	$(document).ready(function () {
-	        $('.nav-link').hover(function () {
-	            $(this).css('background-color','#d9d9d9')
-	        },function(){
-	        	$(this).css('background-color','white')
-	        });
-	    	
-	    });
-	 	
-		
-	
+      
+       $(document).ready(function () {
+           $('.nav-link').hover(function () {
+               $(this).css('background-color','#d9d9d9')
+           },function(){
+              $(this).css('background-color','white')
+           });
+          
+       });
+       
+      
+   
  </script>
  
     <div class="container">
         <div class="row justify-content-start">
-        	
-        	<c:forEach items="${list}" var="i" >
+           
+           <c:forEach items="${list}" var="i" >
             <div class="col-sm-8">
-            	
+               
                 <div class="restaurant-info">
                     <div class="restaurant-title">
                         <span id="storeName">${i.storeName }</span>
@@ -301,10 +301,10 @@
                     </ul>
                 </nav>
                
-               	
-				<div id="callback"></div>
-				
-				
+                  
+            <div id="callback"></div>
+            
+            
               </div>
               </c:forEach>
               <div class="col-sm-4">
@@ -314,33 +314,35 @@
                     </div>
                     <div class="cart">
                         <div class="cart-empty" id="janbgaID">
-	                        <ul>
-								<li style="list-style: none; float: left;">${maps.menuTitle }</li>
-							</ul>
-							<br>
-							<ul>
-								<li style="list-style: none; float: left;"><button
-										class="btn btn-default" type="button">x</button> ${maps.menuPrice }원</li>
-								<li
-									style="list-style: none; margin-right: 1em; text-align: right; padding-top: 5px;"><a
-									class="btn btn-minus">-</a>${maps.menuCount }<a class="btn btn-plus">+</a></li>
-							</ul>
+              <c:forEach var="wish" items="${wishList }">
+                           <ul>
+                        <li style="list-style: none; float: left;">${wish.MENUNAME }</li>
+                     </ul>
+                     <br>
+                     <ul>
+                        <li style="list-style: none; float: left;">
+                        <a href="#">x</a> ${wish.MENUPRICE }원</li>
+                        <li
+                           style="list-style: none; margin-right: 1em; text-align: right; padding-top: 5px;"><a
+                           class="btn btn-minus">-</a>${wish.MENUCOUNT }<a class="btn btn-plus" onclick="">+</a></li>
+                     </ul>
+                     <hr>
+            </c:forEach>
                         </div>
                         <div class="clearfix" style="clear:both;">
-                           	최소주문금액 10,000원
+                              최소주문금액 10,000원
                         </div>
                         <div class="clearfix" style="background-color:ivory; color:red; font-weight:bold;">
-                           		합계 : ${plusMenuPrice }원
+                                 합계 : ${plusMenuPrice }원
                         </div>
                         <div class="cart-btn clearfix" style="clear:both;">
                             <a id="pay" class="btu">주문하기</a>
                         </div>
                     </div>
                 </div>
-
             </div>
-		</div>
-	
+      </div>
+   
        
 
     </div>

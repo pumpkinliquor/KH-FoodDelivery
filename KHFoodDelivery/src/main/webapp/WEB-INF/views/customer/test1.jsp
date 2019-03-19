@@ -113,14 +113,13 @@ function plusCount() {
 }
 // 장바구니 누르면 컨트롤러로 값 전송 및 모달끄기
 $(document).ready(function(){
-		var count=0;
-	$("#cookieInsert_").click(function(){
-		count++;		
+	$("#menuInsert_").click(function(){
 		var menuCount=$("#menuCount_").val();
 		if(menuCount.trim().length==0||menuCount==0){
 			alert('수량이 0 입니다.');
 			return false;
 		}
+		var same=0;
 		var plusMenuPrice=$("#plusMenuPrice_").val();
 		var menuPrice=$("#menuPrice_").val();
 		var menuTitle=$("#menuTitle_").val();
@@ -138,18 +137,13 @@ $(document).ready(function(){
 					url:"${path}/customer/menuInfo2.do?menuCount="+data.menuCount+"&businessCode="+businessCode+"&menuTitle="+data.menuTitle+"&menuPrice="+menuPrice+"&plusMenuPrice="+plusMenuPrice+"&menuCode="+data.menuCode,
 					dataType:"html",
 					success: function(data) {
-						if(count==1){
-							$('#janbgaID').html(data);
-						}
-						else{
-							$('#janbgaID').append(data);
-						}
+						$('#janbgaID').prepend(data);
 					}
 				});
 			}
 		});
 	});
-	$("#cookieInsert_").click(function(){
+	$("#menuInsert_").click(function(){
 		$('#menuSelectModal').modal("hide");
 	});
 });
@@ -191,7 +185,7 @@ $('#menuSelectModal').on('hidden.bs.modal', function (e) {
 				<div class="container">
 				<div class="row">
 				<div class="col-sm-6" style="padding-left:0px; padding-right:0px;">
-				<button type="button" id="cookieInsert_" class="btn btn-success btn-lg btn-block">장바구니담기</button>
+				<button type="button" id="menuInsert_" class="btn btn-success btn-lg btn-block">장바구니담기</button>
 				</div>
 				<div class="col-sm-6" style="padding-left:0px; padding-right:0px;">
 				<button type="button" class="btn btn-danger btn-lg btn-block">결제하기</button>
