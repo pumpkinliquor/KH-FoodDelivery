@@ -25,6 +25,11 @@
 		SELECT mq.*, m.memberId FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum) WHERE qnaCode = #{no}
 	</select>
 
+	<!-- 회원 문의 첨부파일 -->
+	<select id="selectMemberQnaAttach" parameterType="_int" resultType="map">
+		SELECT * FROM MEMBER_QNA_ATTACHMENT WHERE qnaCode = #{no}
+	</select>
+
 	<!-- 회원 문의 답변 보기 -->
 	<select id="selectMemberQnaReview" parameterType="_int" resultType="memberQnaReview">
 		SELECT * FROM MEMBER_QNA_REVIEW WHERE qnaCode = #{no}
@@ -142,6 +147,11 @@
 	<!-- 사장 문의 보기 -->
 	<select id="selectOwnerQna" parameterType="_int" resultType="com.kh.food.qna.model.vo.OwnerQna">
 		SELECT oq.*, o.ownerId FROM OWNER_QNA oq JOIN OWNER o ON(oq.ownerNum = o.ownerNum) WHERE qnaCode = #{no}
+	</select>
+	
+	<!-- 사장 문의 첨부파일 -->
+	<select id="selectOwnerQnaAttach" parameterType="_int" resultType="map">
+		SELECT * FROM OWNER_QNA_ATTACHMENT WHERE qnaCode = #{no}
 	</select>
 
 	<!-- 사장 문의 답변 보기 -->

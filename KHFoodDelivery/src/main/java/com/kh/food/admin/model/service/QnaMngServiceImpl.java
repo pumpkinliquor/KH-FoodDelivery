@@ -34,6 +34,12 @@ public class QnaMngServiceImpl implements QnaMngService {
 		return dao.selectMemberQna(no);
 	}
 
+	// 회원 문의 첨부 파일
+	@Override
+	public List<Map<String, String>> selectMemberQnaAttach(int no) {
+		return dao.selectMemberQnaAttach(no);
+	}
+
 	// 회원 문의 답변 보기
 	@Override
 	public MemberQnaReview selectMemberQnaReview(int no) {
@@ -98,6 +104,12 @@ public class QnaMngServiceImpl implements QnaMngService {
 	@Override
 	public OwnerQna selectOwnerQna(int no) {
 		return dao.selectOwnerQna(no);
+	}
+	
+	// 사장 문의 첨부 파일
+	@Override
+	public List<Map<String, String>> selectOwnerQnaAttach(int no) {
+		return dao.selectOwnerQnaAttach(no);
 	}
 
 	// 사장 문의 답변 보기
