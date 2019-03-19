@@ -67,7 +67,7 @@ pageEncoding="UTF-8"%>
 								<td class="td1"><c:out value="${status.count}"/></td>
 								<td class="td1">${o.payDate}</td>
 								<td class="td1">${o.memberName}님의 주문입니다.</td>
-								<td class="td1"></td>							
+								<td class="td1">${o.deliveryPrice}</td>							
 								<td class="td1">${price[status.index].price}</td>
 								<td class="td1">${o.payOrderMethod}</td>							
 								<td><button class="btn btn-default statusBtn">주문접수</button><button class="btn btn-default statusBtn">배달중</button><button class="btn btn-default statusBtn">배달완료</button><button class="btn btn-default statusBtn">주문취소</button></td>
@@ -114,7 +114,7 @@ pageEncoding="UTF-8"%>
                                                     </tr>
                                                     <tr style="cursor:pointer;">
                                                         <td width="44%" >배달비</td>                                                 
-                                                        <td width="12%">3000원</td>
+                                                        <td class="" width="12%"></td>
                                                     </tr>
                                                     <tr style="cursor:pointer;">
                                                         <td width="44%" >총 결제금액</td>                                                 
@@ -195,9 +195,10 @@ function fn_detailOrder(payOrderNum){
 					html += "<tr style='cursor:pointer;'><td width='44%'>"+data[i].MENUNAME+"</td><td width='12%'>"+data[i].PRICE+"원</td></tr>";
 					sum = Number(sum) + Number(data[i].PRICE);
 				}
+				var totalPrice = Number(sum) + Number(data[0].DELIVERYPRICE);
 				html += "<tr style='cursor:pointer;'><td width='44%'>주문금액</td><td width='12%'>"+sum+"원</td></tr>"
-				html += "<tr style='cursor:pointer;'><td width='44%'>배달비</td><td width='12%'>"+sum+"원</td></tr>"
-				html += "<tr style='cursor:pointer;'><td width='44%'>총결제금액</td><td width='12%'>"+sum+"원</td></tr>"
+				html += "<tr style='cursor:pointer;'><td width='44%'>배달비</td><td width='12%'>"+data[0].DELIVERYPRICE+"원</td></tr>"
+				html += "<tr style='cursor:pointer;'><td width='44%'>총결제금액</td><td width='12%'>"+totalPrice+"원</td></tr>"
 				html += "<tr style='cursor:pointer;'><td width='44%'>결제방법</td><td width='12%'>"+data[0].PAYORDERMETHOD+"</td></tr>"
 				html += "<tr style='cursor:pointer;'><td width='44%'>주문자</td><td width='12%'>"+data[0].MEMBERNAME+"</td></tr>"
 				html += "<tr style='cursor:pointer;'><td width='44%'>결제일</td><td width='12%'>"+data[0].PAYDATE+"</td></tr>"			

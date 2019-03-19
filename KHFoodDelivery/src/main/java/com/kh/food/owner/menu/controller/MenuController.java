@@ -41,7 +41,7 @@ public class MenuController {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("storeList",storeList);
-		mv.setViewName("owner/menuStoreChoice");
+		mv.setViewName("owner/menuStoreChoice1");
 		return mv;
 	}
 	

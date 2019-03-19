@@ -15,7 +15,7 @@
 	   <resultMap id="member1" type="member">
 	</resultMap>
 	<insert id="insertMember" parameterType="member" >
-		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},#{memberPw},#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},default,#{memberGender},default,default,0,0,#{profileImage},#{memberAddress1})
+		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},#{memberPw},#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},default,#{memberGender},default,0,0,#{profileImage},#{memberAddress1})
 	</insert>
 	
 	<select id="checkId" parameterType="String" resultType="_int">
@@ -91,7 +91,7 @@
 	</select>
 	
 	<insert id="kakaoEnrollEnd" parameterType="member">
-		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},default,#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},default,#{memberGender},default,default,0,0,#{profileImage},#{memberAddress1})
+		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},default,#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},default,#{memberGender},default,0,0,#{profileImage},#{memberAddress1})
 	</insert>
 	<!-- 마이페이지 문의 상세 -->
 	<select id="qnaDtail" parameterType="_int" resultType="memberQna">

@@ -5,15 +5,15 @@
 			select P.*,M.MEMBERID,M.MEMBERNAME,M.MEMBERPHONE,ME.MENUNAME from pay P JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE)  where P.BUSINESSCODE = #{businessCode} order by paynum desc
 	</select>
 	<select id="selectPayOrderNum" parameterType="string" resultType="map">			
-		select P.PAYNUM,P.BUSINESSCODE,to_char(P.PAYDATE,'YYYY-MM-DD HH24:MI:SS') as PAYDATE,P.MENUCODE,P.PRICE,P.COUNT,P.MEMBERNUM,P.PAYORDERMETHOD,P.PAYREQUEST,P.PAYORDERNUM,M.MEMBERID,M.MEMBERNAME,M.MEMBERPHONE,ME.MENUNAME from pay P JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) WHERE P.PAYORDERNUM = #{payOrderNum}
+		select P.PAYNUM,P.BUSINESSCODE,to_char(P.PAYDATE,'YYYY-MM-DD HH24:MI:SS') as PAYDATE,P.MENUCODE,P.PRICE,P.COUNT,P.MEMBERNUM,P.PAYORDERMETHOD,P.PAYREQUEST,P.PAYORDERNUM,M.MEMBERID,M.MEMBERNAME,M.MEMBERPHONE,ME.MENUNAME,S.DELIVERYPRICE from pay P JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) JOIN STORE S ON(P.BUSINESSCODE = S.BUSINESSCODE) WHERE P.PAYORDERNUM = #{payOrderNum}
 	</select>
 	
 	<select id="selectOrderOneList" resultType="pay">
-		select p.*,M.MEMBERID,M.MEMBERNAME,M.MEMBERPHONE,ME.MENUNAME from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest,price from pay) p JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) where rnum = 1 and p.businesscode = #{businessCode} order by payordernum desc
+				select p.*,M.MEMBERID,M.MEMBERNAME,M.MEMBERPHONE,ME.MENUNAME,S.DELIVERYPRICE from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest,price from pay) p JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) JOIN STORE S ON(P.BUSINESSCODE = S.BUSINESSCODE) where rnum = 1 and p.businesscode = #{businessCode1} order by payordernum desc
 	</select>
 	
 	<select id="selectOrderCount" resultType="_int">
-		select count(*) from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest from pay) p JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) where rnum = 1 and p.businesscode = #{businessCode}
+		select count(*) from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest from pay) p JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) where rnum = 1 and p.businesscode = #{businessCode1}
 	</select>
 	
 	<select id="selectTodayOrderCount" resultType="map">

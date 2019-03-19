@@ -758,46 +758,6 @@ public class MemberController {
 	}
 	
 	//카카오 로그인
-	@RequestMapping("member/kakaoMemberEnrollEnd.do")
-	public ModelAndView kakaoLogin(Member m,HttpSession session)
-	{
-		logger.debug("카카오아이디"+m);
-		
-		//디비에 계정이 존재하는지 확인
-		
-		Map<String,String> map = new HashMap<>();
-		map.put("id", m.getMemberId());
-		Map<String,String> result=service.login(map);
-		logger.debug("result"+result);
-		String msg="";
-		String loc="/";
-		if(result == null)
-		{
-			int result1=service.memberEnroll(m);
-			if(result1>0)
-			{
-				msg = "회원 가입 성공 로그인 성공";
-			}
-			else
-			{
-				msg = "로그인 실패";
-			}
-		}
-		else
-		{
-			msg = "로그인 성공";
-		}
-		
-		ModelAndView mv = new ModelAndView();
-		session.setAttribute("logined", m.getMemberId());
-		mv.addObject("msg",msg);
-		mv.addObject("loc",loc);
-		mv.setViewName("common/msg");
-		return mv;
-	}
-	
-	
-	//카카오 로그인
 	@RequestMapping("member/kakaoLogin.do")
 	public ModelAndView kakaoApiLogin(String memberId,String nickName,HttpSession session)
 	{
@@ -808,6 +768,7 @@ public class MemberController {
 		String loc="/";
 		
 		Map<String,String> map = new HashMap<>();
+		Map<String,String> result2 = new HashMap<>();
 		map.put("id", memberId);
 		map.put("nickName", nickName);
 		Map<String,String> result=service.login(map);
@@ -822,6 +783,8 @@ public class MemberController {
 		}
 		else
 		{
+				result2=service.login(map);
+				session.setAttribute("loginedno", result2.get("MEMBERNUM"));
 				session.setAttribute("logined", memberId);
 				msg = "로그인 성공";
 				loc = "/";
@@ -848,6 +811,7 @@ public class MemberController {
 		{
 			msg = "로그인 성공!";
 			session.setAttribute("logined", m.getMemberId());
+			session.setAttribute("loginedno", m.getMemberNum());
 		}
 		else
 		{
