@@ -13,7 +13,7 @@ import com.kh.food.review.model.vo.Review;
 
 public interface MemberService {
 	//상세 주문내역
-	Map<String,Object> orderOne(int payorderNum);
+	Map<String,String> orderOne(Map<String,String> orList);
 	//고객 문의 수정
 	int updateMemberQna(MemberQna mq);
 	//고객 문의 삭제

@@ -49,14 +49,15 @@ function fileUpload(){
 }
 
 
-function detailOrder1(menuCode){
-	console.log(menuCode);
+function detailOrder1(payorderNum,menucode){
+	console.log(payorderNum,menucode);
 	
 	$.ajax({
 		url:"${path}/member/orderOne.do",
 		dataType : 'json',
 		data : {
-			"payorderNum" : payorderNum
+			"payorderNum" : payorderNum,
+			"menucode" : menucode
 		},
 		success : function(mem1){
 			console.log(mem1);
@@ -66,6 +67,7 @@ function detailOrder1(menuCode){
 			$('.way').val(mem1.PAYORDERMETHOD);
 			$('.price').val(mem1.PRICE);
 			$('.payRequest').val(mem1.PAYREQUEST);
+			$('.menu1').val(mem1.MENUNAME);
 			$('#orderListModal1').modal();
 			
 			
@@ -115,18 +117,18 @@ function detailOrder1(menuCode){
 						<th>카테고리</th>	
 						<th>가게명</th>
 						<th>주문 날짜</th>	
-						<th>리뷰작성</th>
 						<th>배송상태</th>
+						<th>리뷰작성</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${orderList}" var="m">
 						<tr class="pnt" >
 						
-							<td onclick="detailOrder1(${m.PAYORDERNUM});"><c:out value="${m.STORECATEGORY }"/></td>
-							<td onclick="detailOrder1(${m.PAYORDERNUM});"><c:out value="${m.STORENAME }"/></td>
-							<td onclick="detailOrder1(${m.PAYORDERNUM});"><c:out value="${m.PAYDATE}"/></td>
-							<td onclick="detailOrder1(${m.PAYORDERNUM});"><c:out value=""/></td>
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.STORECATEGORY }"/></td>
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.STORENAME }"/></td>
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.PAYDATE}"/></td>
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value=""/></td>
 							<td><button class="btn btn-default">리뷰</button></td>
 						</tr>				
 					</c:forEach>
@@ -153,7 +155,7 @@ ${pageBar}
 				<button type="button" class="close" data-dismiss="modal">×</button>
 			</div>
 			<form action="${path}/customer/memberQnaUpdate.do" method="post">
-				<div class="modal-body" style="height: 500px;">
+				<div class="modal-body" style="height: 600px;">
 					<table class="table">
 						<tr>
 							<th style="vertical-align: middle">카테고리</th>
@@ -167,6 +169,10 @@ ${pageBar}
 							<th style="vertical-align: middle">주문날짜</th>
 					<td><input type="text"  class="form-control orderDate" value="" readonly/></td>						
 						</tr>	
+						<tr>
+							<th style="vertical-align: middle">주문메뉴</th>
+							<td><input type="text"  class="form-control menu1" value="" readonly/></td>						
+						</tr>					
 						<tr>
 							<th style="vertical-align: middle">결제 방식</th>
 							<td><input type="text"  class="form-control way" value="" readonly/></td>						
