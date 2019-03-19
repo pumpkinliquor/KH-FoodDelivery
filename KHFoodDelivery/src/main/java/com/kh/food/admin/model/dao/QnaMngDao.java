@@ -13,6 +13,7 @@ public interface QnaMngDao {
 	/* 회원 문의 관련 service */
 	List<MemberQna> selectMemberQnaList(int cPage, int numPerPage);				// 회원 문의 리스트
 	MemberQna selectMemberQna(int no);											// 회원 문의 보기
+	List<Map<String, String>> selectMemberQnaAttach(int no);					// 회원 문의 첨부 파일
 	MemberQnaReview selectMemberQnaReview(int no);								// 회원 문의 답변 보기
 	int insertMemberQnaReview(Map map);											// 회원 문의 답변 등록
 	int deleteMemberQnaReview(int no);											// 회원 문의 답변 삭제
@@ -26,6 +27,7 @@ public interface QnaMngDao {
 	/* 사장 문의 관련 service */
 	List<OwnerQna> selectOwnerQnaList(int cPage, int numPerPage);				// 회원 문의 리스트
 	OwnerQna selectOwnerQna(int no);											// 사장 문의 보기
+	List<Map<String, String>> selectOwnerQnaAttach(int no);						// 사장 문의 첨부 파일
 	OwnerQnaReview selectOwnerQnaReview(int no);								// 사장 문의 답변 보기
 	int insertOwnerQnaReview(Map map);											// 사장 문의 답변 등록
 	int deleteOwnerQnaReview(int no);											// 사장 문의 답변 삭제
