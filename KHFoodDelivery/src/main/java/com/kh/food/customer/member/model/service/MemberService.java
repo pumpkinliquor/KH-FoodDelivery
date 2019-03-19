@@ -6,7 +6,6 @@ import java.util.Map;
 import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
-import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -14,7 +13,7 @@ import com.kh.food.review.model.vo.Review;
 
 public interface MemberService {
 	//상세 주문내역
-	Map<String,String> orderOne(int menuCode);
+	Map<String,String> orderOne(Map<String,String> orList);
 	//고객 문의 수정
 	int updateMemberQna(MemberQna mq);
 	//고객 문의 삭제
@@ -59,6 +58,6 @@ public interface MemberService {
 	// 회원 공지사항
 	List<MemberNotice> selectMemberNotice(int cPage,int numPerPage);
 	// 찜 목록
-	List<Mark> selectMarkList(String memberId);
+	List<Store> selectMarkList(String memberId);
 	List<Review> selectReview(int businessCode);
 }

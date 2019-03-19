@@ -38,6 +38,12 @@ public class QnaMngDaoImpl implements QnaMngDao {
 		return session.selectOne("qna.selectMemberQna", no);
 	}
 
+	// 회원 문의 첨부파일
+	@Override
+	public List<Map<String, String>> selectMemberQnaAttach(int no) {
+		return session.selectList("qna.selectMemberQnaAttach", no);
+	}
+
 	// 회원 문의 답변 보기
 	@Override
 	public MemberQnaReview selectMemberQnaReview(int no) {
@@ -102,6 +108,12 @@ public class QnaMngDaoImpl implements QnaMngDao {
 	@Override
 	public OwnerQna selectOwnerQna(int no) {
 		return session.selectOne("qna.selectOwnerQna", no);
+	}
+	
+	// 사장 문의 첨부파일
+	@Override
+	public List<Map<String, String>> selectOwnerQnaAttach(int no) {
+		return session.selectList("qna.selectOwnerQnaAttach", no);
 	}
 
 	// 사장 문의 답변 보기

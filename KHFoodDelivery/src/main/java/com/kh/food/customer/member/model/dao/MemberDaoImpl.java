@@ -31,8 +31,8 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList("member.selectReview",businessCode);
 	}
 	@Override
-	public Map<String,String> orderOne(int menuCode) {
-		return sqlSession.selectOne("member.orderOne",menuCode);
+	public Map<String,String> orderOne(Map<String,String> orList) {
+		return sqlSession.selectOne("member.orderOne",orList);
 	}
 	
 	@Override
@@ -206,7 +206,7 @@ public class MemberDaoImpl implements MemberDao {
 	
 	// 찜 목록
 	@Override
-	public List<Mark> selectMarkList(String memberId) {
+	public List<Store> selectMarkList(String memberId) {
 		return sqlSession.selectList("member.selectMarkList", memberId);
 	}
 	

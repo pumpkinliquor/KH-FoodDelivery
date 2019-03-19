@@ -336,7 +336,7 @@
                                  합계 : ${plusMenuPrice }원
                         </div>
                         <div class="cart-btn clearfix" style="clear:both;">
-                            <a id="pay" class="btu">주문하기</a>
+                            <a id="pay" class="btu" href="${path}/customer/pay.do">주문하기</a>
                         </div>
                     </div>
                 </div>
