@@ -344,6 +344,14 @@
 		                   dataType:"JSON",
 		                   success: function(data){
 		                     $('#deleteddd${wish.MENUCODE}').html("");
+		                     $.ajax({
+		 						type:"POST",
+		 						url:"${path}/customer/wishResult.do?businessCode="+businessCode,
+		 						dataType:"html",
+		 						success: function(data) {
+		 							$('#plusMenuPrice_result').html(data);
+		 						}
+		 					});
 		                   }
 		                });
 		             });
