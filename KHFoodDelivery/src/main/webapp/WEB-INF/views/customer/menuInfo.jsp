@@ -315,24 +315,60 @@
                     <div class="cart">
                         <div class="cart-empty" id="janbgaID">
               <c:forEach var="wish" items="${wishList }">
+<<<<<<< HEAD
 <ul>
+=======
+              <div id="deleteddd${wish.MENUCODE}">
+	              <ul>
+>>>>>>> branch 'master' of https://github.com/pumpkinliquor/KH-FoodDelivery.git
 		            <li style="list-style: none; float: left;">${wish.MENUNAME }</li>
 		         </ul>
 		         <br>
 		         <ul>
 		            <li style="list-style: none; float: left;">
-		            <a href="#" id="deleteMenuCount">x</a> ${wish.MENUPRICE }원</li>
-		            <li   style="list-style: none; margin-right: 1em; text-align: right; padding-top: 5px;">
+		            <a id="deleteMenuCount${wish.MENUCODE }" style="cursor:pointer;">x</a> ${wish.MENUPRICE }원</li>
+		            <li style="list-style: none; margin-right: 1em; text-align: right; padding-top: 5px;">
 		               <!-- <a id="minusMenuCount" class="btn btn-minus">-</a> -->
+<<<<<<< HEAD
 		               <span id="countUpdate${maps.menuCode }">${wish.MENUCOUNT } 개</span>
 		               <input type="hidden" id="countUpdate${maps.menuCode }" value=""/>
+=======
+		               <span id="countUpdate${wish.MENUCODE }">${wish.MENUCOUNT } 개</span>
+		               <input type="hidden" id="countUpdate${wish.MENUCODE }" value=""/>
+>>>>>>> branch 'master' of https://github.com/pumpkinliquor/KH-FoodDelivery.git
 		               <!-- <a id="plusMenuCount"  class="btn btn-plus">+</a> -->
 		            </li>
 		         </ul>
 		         <hr>
-
+	         </div>
+		         <script>
+		         $(document).ready(function(){
+		             $("#deleteMenuCount${wish.MENUCODE}").click(function(){
+		             var menuCode=${wish.MENUCODE};
+		             var businessCode=${wish.BUSINESSCODE};
+		                $.ajax({
+		                   type:"POST",
+		                   url:"${path}/customer/deleteMenuCount.do",
+		                   data:{"menuCode" : menuCode},
+		                   dataType:"JSON",
+		                   success: function(data){
+		                     $('#deleteddd${wish.MENUCODE}').html("");
+		                     $.ajax({
+		 						type:"POST",
+		 						url:"${path}/customer/wishResult.do?businessCode="+businessCode,
+		 						dataType:"html",
+		 						success: function(data) {
+		 							$('#plusMenuPrice_result').html(data);
+		 						}
+		 					});
+		                   }
+		                });
+		             });
+		          });
+		         </script>
             </c:forEach>
                         </div>
+
                         <div class="clearfix" style="clear:both;">
                               최소주문금액 10,000원
                         </div>
@@ -341,7 +377,8 @@
                         </div>
                         <div class="cart-btn clearfix" style="clear:both;">
                             <a id="pay" class="btu" href="${path}/customer/pay.do?memberId=${sessionScope.logined}">주문하기</a>
-                        </div>
+
+                       
                     </div>
                 </div>
             </div>

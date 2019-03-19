@@ -32,12 +32,13 @@ public interface MemberDao {
 	List<Map<String,String>> selectCategoryList(int businessCode);
 	int insertWishList(Map<String,Object> menuMap);
 	List<WishList> selectWishList(Map<String,Object> maps);
+	List<WishList> bigyoMenuCode(Map<String,Object> maps);
 //	int plusMenuCount(Map<String,Object> upCount);
 //	int minusMenuCount(Map<String,Object> upCount);
 //	int menuCounts(int menuCode);
-//	int deleteMenuCount(int menuCode);
+	int deleteMenuCount(int menuCode);
 	List<WishList> plusPrice(Map<String,Object> maps);
-	
+	Store minPrice(int businessCode);
 	
 //	List<Map<String,String>> selectMenuList(int menuCategoryCode, int businessCode);
 	Map<String,String> selectSearchId(Map<String,String> map); //아이디찾기

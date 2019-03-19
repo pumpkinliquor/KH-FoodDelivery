@@ -161,7 +161,7 @@ $(document).ready(function(){
 							success: function(data){
 								$('#plusMenuPrice_result').html(data);
 							}
-						})
+						});
 					}
 				});
 			}
