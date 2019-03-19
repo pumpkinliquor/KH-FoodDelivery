@@ -50,7 +50,7 @@
 			</tr>
 			<tr>
 				<th><b>가격</b></th>
-				<td>다 더한 것</td>
+				<td>${totalMenuPrice }</td>
 			</tr>
 			<tr>
 				<th><b>주소</b></th>
