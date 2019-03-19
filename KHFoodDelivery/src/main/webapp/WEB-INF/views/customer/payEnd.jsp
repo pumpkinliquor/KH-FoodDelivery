@@ -50,11 +50,11 @@
 			</tr>
 			<tr>
 				<th><b>가격</b></th>
-				<td>${totalMenuPrice }</td>
+				<td>${pay.totalMenuPrice }</td>
 			</tr>
 			<tr>
 				<th><b>주소</b></th>
-				<td>서울시 강남구 역삼동 kh정보교육원</td>
+				<td>${pay.payAddress } ${pay.payAddressDetail }</td>
 			</tr>
 			<tr>
 				<th><b>주문 시간</b></th>

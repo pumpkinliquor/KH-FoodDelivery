@@ -325,6 +325,28 @@
                         <li
                            style="list-style: none; margin-right: 1em; text-align: right; padding-top: 5px;"><a
                            class="btn btn-minus">-</a>${wish.MENUCOUNT }<a class="btn btn-plus" onclick="">+</a></li>
+                           <input type='hidden' id='${wish.MENUCODE}' value='${wish.MENUPRICE }'/>
+                           <input type='hidden' id='${wish.MENUCODE}count' value='${wish.MENUCOUNT }'/>
+                           <input type='hidden' id='${wish.MENUCODE}perTotal'/>
+                           
+                           <input type='hidden' id='total'/> 
+                           <script>
+                           		$(function () 
+                  				{
+                           			var menuCode=${wish.MENUCODE};
+                           			var menuPrice=$('#${wish.MENUCODE}').val();
+                           			var menuCount=$('#${wish.MENUCODE}count').val();
+                           			console.log(menuCode+"의 가격"+menuPrice+"갯수"+menuCount);
+                           			var totalPrice=$('#total').val();
+                           			totalPrice+(menuPrice*menuCount);
+                           			$('#total').attr('value',totalPrice);
+                           			console.log($('#total').val());
+                           			/* $('#${wish.MENUCODE}perTotal').attr('value',menuPrice*menuCount);
+                           			var perTotal=$('#${wish.MENUCODE}perTotal').val();
+                           			console.log('개별가격'+perTotal); */
+                           			
+                           		});
+                           </script>
                      </ul>
                      <hr>
             </c:forEach>
@@ -336,7 +358,7 @@
                                  합계 : ${plusMenuPrice }원
                         </div>
                         <div class="cart-btn clearfix" style="clear:both;">
-                            <a id="pay" class="btu" href="${path}/customer/pay.do">주문하기</a>
+                            <a id="pay" class="btu" href="${path}/customer/pay.do?memberId=${sessionScope.logined}">주문하기</a>
                         </div>
                     </div>
                 </div>

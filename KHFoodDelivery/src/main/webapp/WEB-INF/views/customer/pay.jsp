@@ -151,7 +151,7 @@ div{
                     <div class="cart">
                         <div class="cart-empty">
                             
-                            총 합계 : ${plusMenuPrice }
+                            총 합계 : ${totalPrice}
                         </div>
                         <div class="clearfix" id="totalPrice">
 
