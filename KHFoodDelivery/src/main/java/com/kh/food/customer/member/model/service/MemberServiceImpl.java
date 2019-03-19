@@ -136,30 +136,33 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectWishList(maps);
 	}
 	
+//	@Override
+//	public int plusMenuCount(Map<String,Object> upCount) {
+//		return dao.plusMenuCount(upCount);
+//	}
+//	
+//	@Override
+//	public int minusMenuCount(Map<String, Object> upCount) {
+//		return dao.minusMenuCount(upCount);
+//	}
+//	
+//	@Override
+//	public int menuCounts(int menuCode) {
+//		return dao.menuCounts(menuCode);
+//	}
+//	@Override
+//	public int deleteMenuCount(int menuCode) {
+//		return dao.deleteMenuCount(menuCode);
+//	}
 	@Override
-	public int plusMenuCount(Map<String,Object> upCount) {
-		return dao.plusMenuCount(upCount);
-	}
-	
-	@Override
-	public int minusMenuCount(Map<String, Object> upCount) {
-		return dao.minusMenuCount(upCount);
-	}
-	
-	@Override
-	public int menuCounts(int menuCode) {
-		return dao.menuCounts(menuCode);
+	public List<WishList> plusPrice(Map<String, Object> maps) {
+		return dao.plusPrice(maps);
 	}
 	//아이디찾기
 	@Override
 	public Map<String, String> selectSearchId(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		return dao.selectSearchId(map);
-	}
-
-	@Override
-	public int deleteMenuCount(int menuCode) {
-		return dao.deleteMenuCount(menuCode);
 	}
 	
 	//비밀번호찾기
