@@ -315,42 +315,7 @@
                     <div class="cart">
                         <div class="cart-empty" id="janbgaID">
               <c:forEach var="wish" items="${wishList }">
-
-                           <ul>
-                        <li style="list-style: none; float: left;">${wish.MENUNAME }</li>
-                     </ul>
-                     <br>
-                     <ul>
-                        <li style="list-style: none; float: left;">
-                        <a href="#">x</a> ${wish.MENUPRICE }원</li>
-                        <li
-                           style="list-style: none; margin-right: 1em; text-align: right; padding-top: 5px;"><a
-                           class="btn btn-minus">-</a>${wish.MENUCOUNT }<a class="btn btn-plus" onclick="">+</a></li>
-                           <input type='hidden' id='${wish.MENUCODE}' value='${wish.MENUPRICE }'/>
-                           <input type='hidden' id='${wish.MENUCODE}count' value='${wish.MENUCOUNT }'/>
-                           <input type='hidden' id='${wish.MENUCODE}perTotal'/>
-                           
-                           <input type='hidden' id='total'/> 
-                           <script>
-                           		$(function () 
-                  				{
-                           			var menuCode=${wish.MENUCODE};
-                           			var menuPrice=$('#${wish.MENUCODE}').val();
-                           			var menuCount=$('#${wish.MENUCODE}count').val();
-                           			console.log(menuCode+"의 가격"+menuPrice+"갯수"+menuCount);
-                           			var totalPrice=$('#total').val();
-                           			totalPrice+(menuPrice*menuCount);
-                           			$('#total').attr('value',totalPrice);
-                           			console.log($('#total').val());
-                           			/* $('#${wish.MENUCODE}perTotal').attr('value',menuPrice*menuCount);
-                           			var perTotal=$('#${wish.MENUCODE}perTotal').val();
-                           			console.log('개별가격'+perTotal); */
-                           			
-                           		});
-                           </script>
-                     </ul>
-                     <hr>
-	              <ul>
+<ul>
 		            <li style="list-style: none; float: left;">${wish.MENUNAME }</li>
 		         </ul>
 		         <br>
@@ -360,7 +325,6 @@
 		            <li   style="list-style: none; margin-right: 1em; text-align: right; padding-top: 5px;">
 		               <!-- <a id="minusMenuCount" class="btn btn-minus">-</a> -->
 		               <span id="countUpdate${maps.menuCode }">${wish.MENUCOUNT } 개</span>
-		            
 		               <input type="hidden" id="countUpdate${maps.menuCode }" value=""/>
 		               <!-- <a id="plusMenuCount"  class="btn btn-plus">+</a> -->
 		            </li>
@@ -372,7 +336,7 @@
                         <div class="clearfix" style="clear:both;">
                               최소주문금액 10,000원
                         </div>
-                        <div id="plusMenuPrice_result" class="clearfix" style="background-color:ivory; color:red; font-weight:bold;">
+                          <div id="plusMenuPrice_result" class="clearfix" style="background-color:ivory; color:red; font-weight:bold;">
                                  합계 : ${plusMenuPrice }원
                         </div>
                         <div class="cart-btn clearfix" style="clear:both;">
