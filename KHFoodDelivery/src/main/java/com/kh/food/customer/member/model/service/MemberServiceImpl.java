@@ -136,7 +136,15 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectWishList(maps);
 	}
 	
-//	@Override
+@Override
+	public List<WishList> bigyoMenuCode(Map<String, Object> maps) {
+		return dao.bigyoMenuCode(maps);
+	}
+	@Override
+public Store minPrice(int businessCode) {
+	return dao.minPrice(businessCode);
+}
+	//	@Override
 //	public int plusMenuCount(Map<String,Object> upCount) {
 //		return dao.plusMenuCount(upCount);
 //	}
@@ -150,10 +158,10 @@ public class MemberServiceImpl implements MemberService {
 //	public int menuCounts(int menuCode) {
 //		return dao.menuCounts(menuCode);
 //	}
-//	@Override
-//	public int deleteMenuCount(int menuCode) {
-//		return dao.deleteMenuCount(menuCode);
-//	}
+	@Override
+	public int deleteMenuCount(int menuCode) {
+		return dao.deleteMenuCount(menuCode);
+	}
 	@Override
 	public List<WishList> plusPrice(Map<String, Object> maps) {
 		return dao.plusPrice(maps);

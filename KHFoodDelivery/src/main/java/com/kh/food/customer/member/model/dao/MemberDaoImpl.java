@@ -46,6 +46,11 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList("member.selectMemberOrder",memberNum,rb);
 	}
 	
+	@Override
+	public Store minPrice(int businessCode) {
+		return sqlSession.selectOne("menu.selectMinPrice", businessCode);
+	}
+	
 	public int menuCounts(int menuCode) {
 		return sqlSession.selectOne("menu.menuCounts", menuCode);
 	}
@@ -90,11 +95,15 @@ public class MemberDaoImpl implements MemberDao {
 //		return sqlSession.update("menu.updateMenuCount", upCount);
 //	}
 //
-//	@Override
-//	public int deleteMenuCount(int menuCode) {
-//		return sqlSession.delete("menu.deleteMenuCount", menuCode);
-//	}
+	@Override
+	public int deleteMenuCount(int menuCode) {
+		return sqlSession.delete("menu.deleteMenuCount", menuCode);
+	}
 
+	@Override
+	public List<WishList> bigyoMenuCode(Map<String, Object> maps) {
+		return sqlSession.selectList("menu.bigyoMenuCode", maps);
+	}
 	@Override
 	public MemberQna memberDetailQna(int no) {
 		return sqlSession.selectOne("member.qnaDtail",no);

@@ -10,7 +10,15 @@
 		INSERT INTO WISHLIST VALUES(SEQ_WISHNUM.NEXTVAL, #{menuCode}, #{businessCode}, #{memberId}, #{menuCount}, #{plusMenuPrice})
 	</insert>
 	<select id="selectWishList" parameterType="map" resultMap="menuMap">
-		SELECT * FROM WISHLIST A INNER JOIN MENU B ON A.MENUCODE=B.MENUCODE WHERE A.BUSINESSCODE=#{businessCode} AND A.MEMBERID=#{memberId} ORDER BY A.WISHNUM DESC 
+		SELECT * FROM WISHLIST A INNER JOIN MENU B ON A.MENUCODE=B.MENUCODE WHERE A.MEMBERID=#{memberId} ORDER BY A.WISHNUM DESC 
+	</select>
+	
+	<select id="bigyoMenuCode" parameterType="map" resultType="wishList">
+		SELECT * FROM WISHLIST WHERE MEMBERID=#{memberId}
+	</select> 
+	
+	<select id="selectMinPrice" parameterType="_int" resultType="store">
+		SELECT * FROM STORE WHERE BUSINESSCODE=#{businessCode}
 	</select>
 	
 	<insert id="insertMenu" parameterType="map">
@@ -21,10 +29,11 @@
 	</update>
 	<select id="menuCounts" parameterType="_int" resultType="_int">
 		SELECT MENUCOUNT FROM WISHLIST WHERE MENUCODE=#{menuCode} GROUP BY MENUCOUNT
-	</select>
+	</select> -->
+	
 	<delete id="deleteMenuCount" parameterType="_int">
 		DELETE FROM WISHLIST WHERE MENUCODE=#{menuCode}
-	</delete> -->
+	</delete>
 	
 	<select id="plusPrice" parameterType="map" resultType="wishList">
 		SELECT * FROM WISHLIST WHERE BUSINESSCODE=#{businessCode} AND MEMBERID=#{memberId}

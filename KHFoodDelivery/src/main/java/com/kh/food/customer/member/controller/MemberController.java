@@ -519,8 +519,15 @@ public class MemberController {
 		maps.put("businessCode", businessCode);
 		List<Store> list=service.menuInfo(businessCode);
 		List<WishList> wishList=service.selectWishList(maps);
-		
+		List<WishList> callPrice=service.plusPrice(maps);
+		Store minPrice=service.minPrice(businessCode);
+		int resultPrice=0;
+		for(int i=0; i<callPrice.size(); i++) {
+			resultPrice+=callPrice.get(i).getPlusMenuPrice();
+		}
+		mv.addObject("minPrice", minPrice);
 		mv.addObject("wishList", wishList);
+		mv.addObject("resultPrice", resultPrice);
 		mv.addObject("businessCode", businessCode);
 		mv.addObject("list",list);
 		mv.setViewName("customer/menuInfo");
@@ -550,9 +557,18 @@ public class MemberController {
 		maps.put("menuCount", menuCount);
 		maps.put("menuCode", menuCode);
 		
-		List<WishList> wishList=service.selectWishList(maps);
+		List<WishList> wishList=service.bigyoMenuCode(maps);
 //		System.out.println(maps);
 		
+		int selectMenuCode=0;
+		for(int i=0; i<wishList.size(); i++) {
+			if(menuCode==wishList.get(i).getMenuCode()) {
+				selectMenuCode=wishList.get(i).getMenuCode();
+				System.out.println(i+"번째 메뉴코드"+selectMenuCode);
+			}
+		}
+		System.out.println(selectMenuCode);
+		request.setAttribute("selectMenuCode", selectMenuCode);
 		request.setAttribute("maps", maps);
 		request.getRequestDispatcher("/WEB-INF/views/customer/WishList.jsp").forward(request, response);
 	}
@@ -562,20 +578,22 @@ public class MemberController {
 	public void resultAjaxPrice(HttpServletRequest request, HttpServletResponse response, int businessCode) throws ServletException, IOException {
 		String memberId=(String) request.getSession().getAttribute("logined");
 		
-		System.out.println("비즈니스코드"+businessCode);
+//		System.out.println("비즈니스코드"+businessCode);
 		
 		Map<String, Object> maps=new HashMap<>();
 		
 		maps.put("businessCode", businessCode);
 		maps.put("memberId", memberId);
 		
+		Store minPrice=service.minPrice(businessCode);
 		List<WishList> callPrice=service.plusPrice(maps);
 		int resultPrice=0;
 		for(int i=0; i<callPrice.size(); i++) {
 			resultPrice+=callPrice.get(i).getPlusMenuPrice();
 		}
-		System.out.println(resultPrice);
+//		System.out.println(resultPrice);
 		
+		request.setAttribute("minPrice", minPrice);
 		request.setAttribute("resultPrice", resultPrice);
 		request.getRequestDispatcher("/WEB-INF/views/customer/WishResult.jsp").forward(request, response);
 	}
@@ -614,15 +632,15 @@ public class MemberController {
 //		return menuCount;
 //	}
 //	
-//	@RequestMapping("/customer/deleteMenuCount.do")
-//	@ResponseBody
-//	public int deleteMenuCount(int menuCode, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-//		System.out.println(menuCode);
-//		
-//		int result=service.deleteMenuCount(menuCode);
-//		
-//		return result;
-//	}
+	@RequestMapping("/customer/deleteMenuCount.do")
+	@ResponseBody
+	public int deleteMenuCount(int menuCode, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(menuCode);
+		
+		int result=service.deleteMenuCount(menuCode);
+		
+		return result;
+	}
 	
 	
 	//업체 전체보기
