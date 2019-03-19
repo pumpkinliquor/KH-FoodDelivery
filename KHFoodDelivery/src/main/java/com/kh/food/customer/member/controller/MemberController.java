@@ -819,9 +819,9 @@ public class MemberController {
 	@RequestMapping("/member/markList.do")
 	public ModelAndView markList(String memberId) {
 		ModelAndView mv = new ModelAndView();		
-		List<Mark> list = service.selectMarkList(memberId);
-		for(Mark m : list) {
-			logger.debug("" + m);
+		List<Store> list = service.selectMarkList(memberId);
+		for(Store s : list) {
+			logger.debug(""+s);
 		}
 		mv.addObject("list", list);
 		mv.setViewName("customer/myMark");

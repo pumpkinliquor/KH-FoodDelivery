@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.customer.member.model.dao.MemberDao;
 import com.kh.food.customer.member.model.vo.Member;
-import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -157,7 +156,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	// 찜목록
 	@Override
-	public List<Mark> selectMarkList(String memberId) {
+	public List<Store> selectMarkList(String memberId) {
 		return dao.selectMarkList(memberId);
 	}
 }

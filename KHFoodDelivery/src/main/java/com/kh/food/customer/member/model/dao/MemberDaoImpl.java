@@ -160,7 +160,7 @@ public class MemberDaoImpl implements MemberDao {
 	
 	// 찜 목록
 	@Override
-	public List<Mark> selectMarkList(String memberId) {
+	public List<Store> selectMarkList(String memberId) {
 		return sqlSession.selectList("member.selectMarkList", memberId);
 	}
 	
