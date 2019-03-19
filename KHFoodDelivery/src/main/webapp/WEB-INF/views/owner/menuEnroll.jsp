@@ -71,21 +71,6 @@ left: 0;
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 <script>
 
-$(function(){
-	$(".menu").click(function(){
-		var menu = $(".menu").val();
-		$.ajax({
-			url:"${path}/owner/menuEnroll.do",
-			data:{"menu":menu},
-			success:function(data)
-			{
-				
-			}
-			
-		});
-	});
-});
-
 </script>
 <section>
 	<div class="container">
