@@ -164,20 +164,21 @@ public class MemberController {
 	//상세 주문내역
 	@RequestMapping("/member/orderOne.do")
 	@ResponseBody
-	public Map orderOne(int payorderNum) {
+	public Map orderOne(String payorderNum,String menucode) {
 		
 		
 		
-		System.out.println(payorderNum);
+		System.out.println(payorderNum+""+menucode);
+		Map<String,String> orList=new HashMap();
+		orList.put("payorderNum",payorderNum);
+		orList.put("menucode",menucode);
 		
-		Map<String,Object> orList=service.orderOne(payorderNum);
-		System.out.println("주문내역"+orList);
-		orList.put("PAYDATE","PAYDATE");
+		Map<String,String>orList1=service.orderOne(orList);
+		System.out.println(orList1);
 		
+
 		
-		
-		
-		return orList;
+		return orList1;
 	}
 	//나의주문내역
 	@RequestMapping("/member/orderList.do")

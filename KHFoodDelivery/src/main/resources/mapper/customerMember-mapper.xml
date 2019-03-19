@@ -118,11 +118,12 @@
 		JOIN member m ON(p.membernum = m.membernum)  where m.memberNum=#{memberNum}
 	</select>
 	<!-- 상세주문내역 -->
-	<select id="orderOne"  resultType="Map" parameterType="_int">
-		select s.storename,s.storecategory,p.*,m.memberid 
+	<select id="orderOne"  resultType="Map" parameterType="map">
+		select s.storename,s.storecategory,p.*,m.memberid,q.menuname 
 		from pay p 
 		JOIN store s ON(s.businesscode = p.businesscode) 
-		JOIN member m ON(p.membernum = m.membernum)  where menucode=#{payorderNum}
+		JOIN member m ON(p.membernum = m.membernum)  
+        JOIN menu q ON(p.menucode = q.menucode) where P.PAYORDERNUM=#{payorderNum} and q.menucode=#{menucode}
 	</select>
 
 	
