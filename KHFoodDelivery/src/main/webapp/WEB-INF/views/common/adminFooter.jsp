@@ -108,7 +108,7 @@
 
         }
     </style>
-<script>
+<!-- <script>
 function memberQnA(){
 	 if(${sessionScope.logined==null}){
 		 alert("로그인 후 이용해주세요");
@@ -117,27 +117,24 @@ function memberQnA(){
 		 location.href="${path}/member/qnaList.do?memberId=${sessionScope.logined}";
 	 }
 }
-</script>
+</script> -->
     <!-- Footer -->
     <footer id="footer">
         <div class="row footerdiv">
             <div class="col-md-2"> </div>
             <div class="col-md-8 footerDiv">
-                <div class="row text-center text-xs-left text-sm-left text-md-center footerDiv2">
-					<div style="height: 30px;">
-					
-					</div>
-<%--                     <div class="col-xs-12 col-sm-4 col-md-12">
+                <div class="row text-center text-xs-left text-sm-left text-md-center footerDiv2">					
+                     <div class="col-xs-12 col-sm-4 col-md-12">
                         <ul class="list-unstyled quick-links">
                             <li><a href="${path }"><i class="fa fa-angle-double-right"></i>Home</a></li>
-                            <li><a href="${path }/customer/memberNoticeList.do"><i class="fa fa-angle-double-right"></i>공지사항</a></li>
+                            <%-- <li><a href="${path }/customer/memberNoticeList.do"><i class="fa fa-angle-double-right"></i>공지사항</a></li>
                             <li><a href="${path }"><i class="fa fa-angle-double-right"></i>1:1문의</a></li>
                             <li><a href="${path }/admin/memberNoticeList.do"><i class="fa fa-angle-double-right"></i>공지사항</a></li>
-                            <li><a onclick="memberQnA();"><i class="fa fa-angle-double-right"></i>1:1문의</a></li>
+                            <li><a onclick="memberQnA();"><i class="fa fa-angle-double-right"></i>1:1문의</a></li> --%>
 
                         </ul>
 
-                    </div> --%>
+                    </div> 
                    <!--  <div class="col-xs-12 col-sm-6 col-md-6"></div> -->
                 </div>
 			<div class="col-xs-2 col-sm-12 col-md-12 col-lg-12">
