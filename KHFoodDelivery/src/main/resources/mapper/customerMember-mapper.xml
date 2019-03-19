@@ -15,7 +15,7 @@
 	   <resultMap id="member1" type="member">
 	</resultMap>
 	<insert id="insertMember" parameterType="member" >
-		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},#{memberPw},#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},default,#{memberGender},default,default,0,0,#{profileImage},#{memberAddress1})
+		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},#{memberPw},#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},default,#{memberGender},default,0,0,#{profileImage},#{memberAddress1})
 	</insert>
 	
 	<select id="checkId" parameterType="String" resultType="_int">
@@ -117,11 +117,13 @@
 		JOIN store s ON(s.businesscode = p.businesscode) 
 		JOIN member m ON(p.membernum = m.membernum)  where m.memberNum=#{memberNum}
 	</select>
-	<select id="orderOne" resultMap="memberOrder" parameterType="_int">
-		select s.storename,s.storecategory,p.*,m.memberid 
+	<!-- 상세주문내역 -->
+	<select id="orderOne"  resultType="Map" parameterType="map">
+		select s.storename,s.storecategory,p.*,m.memberid,q.menuname 
 		from pay p 
 		JOIN store s ON(s.businesscode = p.businesscode) 
-		JOIN member m ON(p.membernum = m.membernum)  where menucode=#{menuCode}
+		JOIN member m ON(p.membernum = m.membernum)  
+        JOIN menu q ON(p.menucode = q.menucode) where P.PAYORDERNUM=#{payorderNum} and q.menucode=#{menucode}
 	</select>
 
 	
@@ -137,16 +139,12 @@
 		SELECT * FROM NOTICE ORDER BY writeDate DESC
 	</select>
 	
-	<resultMap id="mark" type="map">
-		<collection property="store" resultMap="store"/>
-		<collection property="member" resultMap="member"/>
-	</resultMap>
-	<!-- 찜 목록 -->
-	<select id="selectMarkList" parameterType="string" resultType="mark">
+	<!-- 찜 목록 -->	
+	<select id="selectMarkList" parameterType="string" resultType="store">
 		SELECT 
-			ma.*, m.*, s.* 
+			s.*
 		FROM 
-			MARK ma JOIN MEMBER m ON (ma.memberNum = m.memberNum) JOIN STORE s ON (ma.businessCode = s.businessCode)  
+			MARK ma LEFT JOIN MEMBER m ON (ma.memberNum = m.memberNum) LEFT JOIN STORE s ON (ma.businessCode = s.businessCode)  
 		WHERE 
 			m.memberId = #{memberId}
 	</select>

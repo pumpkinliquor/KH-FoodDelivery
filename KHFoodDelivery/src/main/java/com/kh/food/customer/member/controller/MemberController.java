@@ -145,6 +145,7 @@ public class MemberController {
 	
 	//문의내역 상세보기
 	@RequestMapping("/customer/memberQnaView.do")
+	@ResponseBody
 	public ModelAndView memberDetailQna(int no) {
 		ModelAndView mv= new ModelAndView();
 		
@@ -162,16 +163,22 @@ public class MemberController {
 	
 	//상세 주문내역
 	@RequestMapping("/member/orderOne.do")
-	public Map orderOne(int menuCode) {
+	@ResponseBody
+	public Map orderOne(String payorderNum,String menucode) {
 		
-		System.out.println(menuCode);
+		
+		
+		System.out.println(payorderNum+""+menucode);
+		Map<String,String> orList=new HashMap();
+		orList.put("payorderNum",payorderNum);
+		orList.put("menucode",menucode);
+		
+		Map<String,String>orList1=service.orderOne(orList);
+		System.out.println(orList1);
 		
 
-		Map<String,String> mem1=service.orderOne(menuCode);
 		
-		
-		
-		return mem1;
+		return orList1;
 	}
 	//나의주문내역
 	@RequestMapping("/member/orderList.do")
@@ -895,9 +902,9 @@ public class MemberController {
 	@RequestMapping("/member/markList.do")
 	public ModelAndView markList(String memberId) {
 		ModelAndView mv = new ModelAndView();		
-		List<Mark> list = service.selectMarkList(memberId);
-		for(Mark m : list) {
-			logger.debug("" + m);
+		List<Store> list = service.selectMarkList(memberId);
+		for(Store s : list) {
+			logger.debug(""+s);
 		}
 		mv.addObject("list", list);
 		mv.setViewName("customer/myMark");

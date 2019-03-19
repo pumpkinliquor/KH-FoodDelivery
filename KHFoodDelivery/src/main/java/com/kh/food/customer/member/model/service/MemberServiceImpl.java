@@ -13,7 +13,6 @@ import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.customer.member.model.dao.MemberDao;
 import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
-import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -33,8 +32,8 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectReview(businessCode);
 	}
 	@Override
-	public Map<String,String> orderOne(int menuCode) {
-		return dao.orderOne(menuCode);
+	public Map<String,String> orderOne(Map<String,String> orList) {
+		return dao.orderOne(orList);
 	}
 	@Override
 	public int selectOrderCount(int memberNum) {
@@ -201,7 +200,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	// 찜목록
 	@Override
-	public List<Mark> selectMarkList(String memberId) {
+	public List<Store> selectMarkList(String memberId) {
 		return dao.selectMarkList(memberId);
 	}
 }
