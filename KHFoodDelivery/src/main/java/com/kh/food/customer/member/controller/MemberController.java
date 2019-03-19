@@ -145,6 +145,7 @@ public class MemberController {
 	
 	//문의내역 상세보기
 	@RequestMapping("/customer/memberQnaView.do")
+	@ResponseBody
 	public ModelAndView memberDetailQna(int no) {
 		ModelAndView mv= new ModelAndView();
 		
@@ -162,16 +163,21 @@ public class MemberController {
 	
 	//상세 주문내역
 	@RequestMapping("/member/orderOne.do")
-	public Map orderOne(int menuCode) {
-		
-		System.out.println(menuCode);
-		
-
-		Map<String,String> mem1=service.orderOne(menuCode);
+	@ResponseBody
+	public Map orderOne(int payorderNum) {
 		
 		
 		
-		return mem1;
+		System.out.println(payorderNum);
+		
+		Map<String,Object> orList=service.orderOne(payorderNum);
+		System.out.println("주문내역"+orList);
+		orList.put("PAYDATE","PAYDATE");
+		
+		
+		
+		
+		return orList;
 	}
 	//나의주문내역
 	@RequestMapping("/member/orderList.do")

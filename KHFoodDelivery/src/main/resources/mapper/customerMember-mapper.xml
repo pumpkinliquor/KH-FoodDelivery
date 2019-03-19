@@ -15,7 +15,7 @@
 	   <resultMap id="member1" type="member">
 	</resultMap>
 	<insert id="insertMember" parameterType="member" >
-		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},#{memberPw},#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},default,#{memberGender},default,default,0,0,#{profileImage},#{memberAddress1})
+		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},#{memberPw},#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},default,#{memberGender},default,0,0,#{profileImage},#{memberAddress1})
 	</insert>
 	
 	<select id="checkId" parameterType="String" resultType="_int">
@@ -117,11 +117,12 @@
 		JOIN store s ON(s.businesscode = p.businesscode) 
 		JOIN member m ON(p.membernum = m.membernum)  where m.memberNum=#{memberNum}
 	</select>
-	<select id="orderOne" resultMap="memberOrder" parameterType="_int">
+	<!-- 상세주문내역 -->
+	<select id="orderOne"  resultType="Map" parameterType="_int">
 		select s.storename,s.storecategory,p.*,m.memberid 
 		from pay p 
 		JOIN store s ON(s.businesscode = p.businesscode) 
-		JOIN member m ON(p.membernum = m.membernum)  where menucode=#{menuCode}
+		JOIN member m ON(p.membernum = m.membernum)  where menucode=#{payorderNum}
 	</select>
 
 	

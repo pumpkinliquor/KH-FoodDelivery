@@ -33,8 +33,8 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectReview(businessCode);
 	}
 	@Override
-	public Map<String,String> orderOne(int menuCode) {
-		return dao.orderOne(menuCode);
+	public Map<String,Object> orderOne(int payorderNum) {
+		return dao.orderOne(payorderNum);
 	}
 	@Override
 	public int selectOrderCount(int memberNum) {

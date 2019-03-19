@@ -31,8 +31,8 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList("member.selectReview",businessCode);
 	}
 	@Override
-	public Map<String,String> orderOne(int menuCode) {
-		return sqlSession.selectOne("member.orderOne",menuCode);
+	public Map<String,Object> orderOne(int payorderNum) {
+		return sqlSession.selectOne("member.orderOne",payorderNum);
 	}
 	
 	@Override

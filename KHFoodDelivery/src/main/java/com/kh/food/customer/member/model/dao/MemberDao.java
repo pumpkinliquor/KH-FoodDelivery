@@ -13,7 +13,7 @@ import com.kh.food.qna.model.vo.MemberQna;
 import com.kh.food.review.model.vo.Review;
 
 public interface MemberDao {
-	Map<String,String> orderOne(int menuCode);
+	Map<String,Object> orderOne(int payorderNum);
 	int selectOrderCount(int memberNum);
 	List<Member> selectMemberOrder(int memberNum,int cPage,int numPerPage);
 	int updateMemberQna(MemberQna mq);
