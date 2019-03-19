@@ -815,35 +815,17 @@ public class MemberController {
 		//아이디가 디비에 없다? , 추가정보입력창으로 간다.
 		if(result == null)
 		{
-			int result1 = service.kakaoLogin(map);
-			if(result1>0)
-			{
-				Map<String,String> result2=service.login(map);
-				mv.addObject("result",result2);
-				mv.setViewName("customer/memberAddInfo");
-				return mv;
-			}
-
 			
+				mv.addObject("kakaoId",memberId);
+				mv.setViewName("customer/memberAddInfo");
+				return mv;		
 		}
 		else
 		{
-			//처음에 로그인하고 추가정보 입력안하고 뒤로 가기를 누르면 ? 
-			if(result.get("MEMBEREMAIL").equals(String.valueOf(0)))
-			{
-				//추가정보 입력 사이트로 가자.
-
-				mv.addObject("result",result);
-				mv.setViewName("customer/memberAddInfo");
-				return mv;
-			}
-			else
-			{
 				session.setAttribute("logined", memberId);
 				msg = "로그인 성공";
 				loc = "/";
 			// 있으면 바로 로그인 / 메인으로간다.
-			}
 		}
 		mv.addObject("member",result);
 		mv.addObject("msg",msg);

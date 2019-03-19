@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.owner.notice.model.service.OwnerNoticeService;
+import com.kh.food.owner.store.model.vo.Store;
 
 @Controller
 public class OwnerContoller {
@@ -47,5 +48,6 @@ public class OwnerContoller {
 	{
 		return "owner/ownerIdSearch";
 	}
+	
 
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.food.common.PagingFactory;
 //github.com/pumpkinliquor/KH-FoodDelivery
 import com.kh.food.owner.order.model.service.OrderService;
 import com.kh.food.owner.order.model.vo.Pay;
@@ -111,7 +112,8 @@ public class OrderController {
 		mv.addObject("orderList",orderList);
 		mv.addObject("price",price);
 		mv.setViewName("owner/ownerOrderList");
-//		mv.addObject("pageBar",PagingFactory2.getPageBar(orderCount, cPage, numPerPage, "/food/owner/orderService.do?businessCode="+businessCode1));
+		mv.addObject("pageBar",PagingFactory.getPageBar4(orderCount, cPage, numPerPage, "/food/owner/orderService.do?businessCode="+businessCode1));
+
 		return mv;
 			
 	}

@@ -13,8 +13,62 @@ pageEncoding="UTF-8"%>
       div#enroll-container input, div#enroll-container select {margin-bottom:10px;}
       div#enroll-container .btn-ser{position:absolute;display:inline;margin-left: 78%; }
 	  div#enroll-container{position:relative; padding:0px;}	
+	  
+	div#enroll-container span.guide {display:none;font-size: 12px;position:absolute; top:12px; right:10px;}
+    div#enroll-container span.guide1 {display:none;font-size: 12px;position:absolute; top:105px; right:10px;}
+    div#enroll-container span.guide2 {display:none;font-size: 12px;position:absolute; top:10px; right:10px;}
+    div#enroll-container span.ok,span.ok1,span.ok2{color:blue;}
+    div#enroll-container span.error,span.error2{color:red;}
 </style>
 <script>
+
+
+$('#memberPhone').bind("keyup", function(event) {
+    var regNumber = /^[0-9]*$/;
+    var temp = $('#memberPhone').val();
+    if(!regNumber.test(temp))
+    {
+        alert('숫자만 입력하세요');
+        $('#memberPhone').val(temp.replace(/[^0-9]/g,""));
+    }
+});
+
+$(function(){
+	$("#nickName").keyup(function(){
+		nickName=$("#nickName").val().trim();
+
+		$.ajax({
+			url:"${path}/member/checkNick.do",
+			data:{"nickName":nickName},
+			success:function(data){          
+				console.log(data.isNick);
+				nick=data.isNick;
+				console.log(nick);       					
+				if(data.isNick==false){
+					$(".guide2.ok2").show();
+					$(".guide2.error2").hide();
+				
+				}else{
+					
+					$(".guide2.error2").show();
+					$(".guide2.ok2").hide();
+					
+				}
+				
+				
+			}
+		});
+	});
+});
+
+function validate(){
+	if(nick==true)
+	{
+		alert("닉네임을 확인해주세요");
+		return false;
+	}
+}
+
 function address() {
     new daum.Postcode({ 
        oncomplete: function(data) {
@@ -61,8 +115,11 @@ function address() {
 
 
 	<div id="enroll-container" class="col-sm-12">
-        <form name="enroll" action="${path}/member/kakaoEnrollEnd.do" method="post">  
-        	<input type="hidden" value="${result.MEMBERID}" name="memberId">
+        <form name="enroll" action="${path}/member/kakaoEnrollEnd.do" method="post" onsubmit="return validate();">  
+        	<input type="hidden" value="${kakaoId}" name="memberId">
+        	<span class="guide2 ok2">사용 가능한 닉네임입니다. </span>
+            <span class="guide2 error2">닉네임이 존재합니다. </span>
+        	<input type="text" class="form-control" placeholder="닉네임" name="nickName" id="nickName"/>
             <input type="text" class="form-control" placeholder="이름" name="memberName" id="memberName"/>
             <input type="date" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth" max="2019-03-29" min="1900-01-01"/>
             <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" >

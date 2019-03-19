@@ -80,7 +80,7 @@
 					        <span class="on">★</span>
 	    				</p>
 	             	</c:if>
-             	</td>
+             
              </tr>
             </div>
           </div>   

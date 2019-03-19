@@ -89,14 +89,10 @@
 	<select id="memberQnaList"  parameterType="string" resultType="memberQna">
 		select mq.*, m.memberId from member_qna mq JOIN member m ON(mq.memberNum = m.memberNum) where MEMBERID=#{memberId}
 	</select>
-
-	<insert id="kakaoLogin" parameterType="map">
-			insert into member values(SEQ_MEMBERNUM.nextval,#{id},default,default,default,default,0,0,#{nickName},default,default,default,default,0,0,default,default)
-	</insert>
 	
-	<update id="kakaoEnrollEnd" parameterType="member">
-		update member set memberName=#{memberName},memberBirth=#{memberBirth} , memberEmail=#{memberEmail}, memberPhone=#{memberPhone},memberAddress=#{memberAddress},memberAddress1=#{memberAddress1},memberGender=#{memberGender} where memberId=#{memberId}
-	</update>
+	<insert id="kakaoEnrollEnd" parameterType="member">
+		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},default,#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},default,#{memberGender},default,default,0,0,#{profileImage},#{memberAddress1})
+	</insert>
 	<!-- 마이페이지 문의 상세 -->
 	<select id="qnaDtail" parameterType="_int" resultType="memberQna">
 		SELECT mq.*, m.memberId FROM MEMBER_QNA mq JOIN MEMBER m ON(mq.memberNum = m.memberNum) WHERE qnaCode = #{no}

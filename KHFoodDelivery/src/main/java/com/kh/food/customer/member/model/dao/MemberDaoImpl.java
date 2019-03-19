@@ -193,13 +193,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int kakaoLogin(Map<String, String> map) {
-		return sqlSession.insert("member.kakaoLogin",map);
-	}
-
-	@Override
 	public int kakaoEnrollEnd(Member m) {
-		return sqlSession.update("member.kakaoEnrollEnd",m);
+		return sqlSession.insert("member.kakaoEnrollEnd",m);
 	}
 	
 	// 회원 공지사항
