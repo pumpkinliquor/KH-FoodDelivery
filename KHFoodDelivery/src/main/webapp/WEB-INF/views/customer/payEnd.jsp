@@ -35,7 +35,7 @@ td{
 		
 			<tr>
 					<th><b>상호명</b></th>
-					<td>네네치킨</td>
+					<td>${map.title}</td>
 				</tr>
 				<tr>
 						<th><b>가격</b></th>
