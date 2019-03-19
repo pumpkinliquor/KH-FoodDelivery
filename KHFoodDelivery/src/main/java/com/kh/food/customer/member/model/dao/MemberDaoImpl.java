@@ -60,6 +60,10 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
+	public List<WishList> plusPrice(Map<String, Object> maps) {
+		return sqlSession.selectList("menu.plusPrice", maps);
+	}
+	@Override
 	public List<MemberQna> selectmemberQna(String memberId){
 		
 		return sqlSession.selectList("member.memberQnaList",memberId);
@@ -76,20 +80,20 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.insert("menu.insertWishList", menuMap);
 	}
 
-	@Override
-	public int plusMenuCount(Map<String,Object> upCount) {
-		return sqlSession.update("menu.updateMenuCount", upCount);
-	}
-	
-	@Override
-	public int minusMenuCount(Map<String,Object> upCount) {
-		return sqlSession.update("menu.updateMenuCount", upCount);
-	}
-
-	@Override
-	public int deleteMenuCount(int menuCode) {
-		return sqlSession.delete("menu.deleteMenuCount", menuCode);
-	}
+//	@Override
+//	public int plusMenuCount(Map<String,Object> upCount) {
+//		return sqlSession.update("menu.updateMenuCount", upCount);
+//	}
+//	
+//	@Override
+//	public int minusMenuCount(Map<String,Object> upCount) {
+//		return sqlSession.update("menu.updateMenuCount", upCount);
+//	}
+//
+//	@Override
+//	public int deleteMenuCount(int menuCode) {
+//		return sqlSession.delete("menu.deleteMenuCount", menuCode);
+//	}
 
 	@Override
 	public MemberQna memberDetailQna(int no) {
