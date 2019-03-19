@@ -902,9 +902,7 @@ public class MemberController {
 	public ModelAndView markList(String memberId) {
 		ModelAndView mv = new ModelAndView();		
 		List<Store> list = service.selectMarkList(memberId);
-		for(Store s : list) {
-			logger.debug(""+s);
-		}
+		mv.addObject("count", list.size());
 		mv.addObject("list", list);
 		mv.setViewName("customer/myMark");
 		return mv;

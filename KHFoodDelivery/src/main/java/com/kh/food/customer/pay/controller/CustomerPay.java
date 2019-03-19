@@ -1,4 +1,4 @@
-package com.kh.food.customer.pay.controller;
+/*package com.kh.food.customer.pay.controller;
 
 import java.util.Map;
 
@@ -16,17 +16,18 @@ public class CustomerPay {
 	 @Autowired CustomerPayService service;
 	 
 	
-	/*
+	
 	 * @RequestMapping("/customer/pay.do") public ModelAndView customerPay(int
 	 * totalPrice, String title) { ModelAndView mv= new ModelAndView();
 	 * Map<String,String> map=service.pay(); mv.addObject("totalPrice",totalPrice);
 	 * mv.addObject("title",title); mv.setViewName("/customer/payEnd");
 	 * 
 	 * return mv; }
-	 */
+	 
 	
 	@RequestMapping("/customer/payEnd.do")
 	public String customerPayEnd() {
 		return "customer/payEnd";
 	}
 }
+*/
