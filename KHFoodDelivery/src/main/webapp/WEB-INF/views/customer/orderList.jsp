@@ -117,7 +117,7 @@ function detailOrder1(payorderNum,menucode){
 						<th>카테고리</th>	
 						<th>가게명</th>
 						<th>주문 날짜</th>	
-						<th>배송상태</th>
+						<th>주문상태</th>
 						<th>리뷰작성</th>
 					</tr>
 				</thead>
@@ -189,9 +189,7 @@ ${pageBar}
 					</table>
 						
 				</div>
-				<div class="modal-footer">
-					<input type="submit" class="btn btn-outline-success" value="수정"/>
-				</div>
+				
 			</form>
 		</div>  
 	</div>

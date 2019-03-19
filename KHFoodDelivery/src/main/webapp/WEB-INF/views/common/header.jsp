@@ -35,6 +35,27 @@
 
    
    <script>
+/*    window.onload=function(){
+	   $.ajax({
+	   url : "https://dapi.kakao.com/v2/local/search/keyword.json",
+	   type : "GET",
+	   headers : {"Authorization":"72e4455e8e74d792419a0939fdffed0c"},
+	   data : {
+	   query : "병원",// 검색어
+	   x : "126.979788",
+	   y : "37.587235",
+	   radius : "500",
+	   sort : "accuracy",
+	   format : "JSON"
+	   },
+	   success : function(r){
+	   console.log(r);
+	   }
+	   });
+	   });
+   }
+    */
+   
     $(document).ready(function () {
       $("#positionBtn").click(function(){
     	  
@@ -46,7 +67,6 @@
                     navigator.geolocation.getCurrentPosition(function(position) {
                      var latitude = position.coords.latitude;
                     var longitude = position.coords.longitude;
-                      
                     
                    
                      alert("아직 구현안됨 지도 클릭!"); 
@@ -68,7 +88,7 @@
                  var geocoder = new daum.maps.services.Geocoder();
 
                     //지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
-                     daum.maps.event.addListener(map, 'click', function(mouseEvent) {
+                   /*   daum.maps.event.addListener(map, 'click', function(mouseEvent) { */
                     searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
                         if (status === daum.maps.services.Status.OK) {
                            
@@ -79,7 +99,7 @@
                          
                         }   
                     });
-                    });
+                    /* }); */
   
 
             
@@ -235,7 +255,7 @@ $(function(){
               <div class="col-sm-12">
                   <div class="content">
                   <div class="input-group">
-                       <button id="positionBtn" onclick="getLocation4()" ><img id="locationImg" src="${path }/resources/images/place.png"></button>
+                       <button id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
                     <input type="text" id="location" onclick="execDaumPostcode();"  class="form-control" value="" placeholder="주소 찾기를 원하시면 클릭해주세요">
                        <span class="input-group-btn">
                        <button class="btn" onclick="locationSearchStore();" type="submit">검색</button>
