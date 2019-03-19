@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-import="java.util.*, java.sql.* , com.kh.food.customer.member.model.vo.*, com.kh.food.mark.model.vo.Mark" 
+import="java.util.*, java.sql.* , com.kh.food.customer.member.model.vo.*, com.kh.food.owner.store.model.vo.Store" 
 pageEncoding="UTF-8"%>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -7,7 +7,7 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	Member member = (Member)request.getAttribute("member");
-	List<Mark> markList = (List<Mark>)request.getAttribute("list"); 
+	List<Store> markList = (List<Store>)request.getAttribute("list"); 
 %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
@@ -147,7 +147,7 @@ function address1() {
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group">
-              <a href="${path}/customer/mypage.do?memberId=${sessionScope.logined}"  class="list-group-item list-group-item-action ">회원정보변경</a>
+              <a href="${path}/customer/mypage.do?memberId=${sessionScope.logined}"  class="list-group-item list-group-item-action">회원정보변경</a>
               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action" style="z-index:0;">나의 주문내역</a>
               <a href="${path }/member/markList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action active">즐겨찾는매장</a>
               <a href="${path }/member/qnaList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action">나의 문의내역</a>
@@ -156,9 +156,9 @@ function address1() {
 		<div class="col-md-9">
 			<table class="table table-hover">
 				<tr>
-					<%for(Mark m : markList) { %>
+					<%for(Store s : markList) { %>
 						<td>
-							<c:out value="${m.getStore().getStoreName() }"/>
+							<c:out value="<%=s.getStoreName() %>"/>
 						</td>
 					<%} %>
 				</tr>
