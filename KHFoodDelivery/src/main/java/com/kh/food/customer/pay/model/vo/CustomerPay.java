@@ -2,10 +2,12 @@ package com.kh.food.customer.pay.model.vo;
 
 import java.util.Date;
 
+
+
 public class CustomerPay {
 
 	private int payNum;
-	private int bisinessCode;
+	private int businessCode;
 	private Date payDate;
 	private int menuCode;
 	private int sideCode;
@@ -20,12 +22,12 @@ public class CustomerPay {
 	
 	public CustomerPay() {}
 
-	public CustomerPay(int payNum, int bisinessCode, Date payDate, int menuCode, int sideCode, int drinkCode,
+	public CustomerPay(int payNum, int businessCode, Date payDate, int menuCode, int sideCode, int drinkCode,
 			int tasteCode, int price, int count, int memberNum, int payOrdernum, String payRequest,
 			String payOrderMethod) {
 		super();
 		this.payNum = payNum;
-		this.bisinessCode = bisinessCode;
+		this.businessCode = businessCode;
 		this.payDate = payDate;
 		this.menuCode = menuCode;
 		this.sideCode = sideCode;
@@ -47,12 +49,12 @@ public class CustomerPay {
 		this.payNum = payNum;
 	}
 
-	public int getBisinessCode() {
-		return bisinessCode;
+	public int getBusinessCode() {
+		return businessCode;
 	}
 
-	public void setBisinessCode(int bisinessCode) {
-		this.bisinessCode = bisinessCode;
+	public void setBusinessCode(int businessCode) {
+		this.businessCode = businessCode;
 	}
 
 	public Date getPayDate() {
@@ -145,10 +147,11 @@ public class CustomerPay {
 
 	@Override
 	public String toString() {
-		return "CustomerPay [payNum=" + payNum + ", bisinessCode=" + bisinessCode + ", payDate=" + payDate
+		return "CustomerPay [payNum=" + payNum + ", businessCode=" + businessCode + ", payDate=" + payDate
 				+ ", menuCode=" + menuCode + ", sideCode=" + sideCode + ", drinkCode=" + drinkCode + ", tasteCode="
 				+ tasteCode + ", price=" + price + ", count=" + count + ", memberNum=" + memberNum + ", payOrdernum="
 				+ payOrdernum + ", payRequest=" + payRequest + ", payOrderMethod=" + payOrderMethod + "]";
 	}
+
 	
 }
