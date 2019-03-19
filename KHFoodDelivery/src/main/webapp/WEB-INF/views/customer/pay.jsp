@@ -9,18 +9,179 @@ pageEncoding="UTF-8"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 <!-- 주문하기 창에 띄울것 -->
+<style>
+.sub-title {
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 10px 10px 15px;
+}
+.panel-heading{
+    color: #333;
+    background-color: #e6e6e6;
+    border-radius: 0;
+    border-color: #ddd;
+    padding: 10px 15px;
+    
+
+}
+div{
+    display: block;
+}
+.panel-title{
+    font-size: 16px;
+}
+.panel-body{
+    
+    border-top-color: #ddd;
+    border-top: 1px solid #ddd;
+}
+.panel-default{
+    border:1px solid #ddd;
+}
+.form-group
+{
+    
+    margin-top: 15px; 
+    
+}
+.control-label{
+
+    padding-bottom: 3px;
+}
+.title{
+    background-color: #333;
+    color: #fff;
+    font-size: 110%;
+    padding: 10px 10px 10px 15px;
+}
+.cart-empty{
+    background: #fff;
+    text-align: center;
+    padding: 50px 0;
+    border: 1px solid #d9d9d9;
+}
+.cart-btn{
+    margin-top: 10px;
+    text-align: center;
+    color: #fff;
+    background-color: #DC1400;
+    border-color: #DC1400;
+    border-radius: 0;
+}
+.clearfix
+{
+    border: 1px solid #d9d9d9;
+    padding : 10px 15px;
+    text-align: center;
+}
+</style>
+<body>
+
+    <div class="container">
+        <div class="row justify-content-start">
+
+            <div class="col-sm-8">
+                <div class="sub-title">
+                    <span>결제하기</span>
+                </div>
+                <div class="panel-group">
+
+
+                    <div class="panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">배달정보</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-horizontal">
+
+                                <div class="form-group">
+                                    <label for="address" class="col-sm-3 control-label">주소</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control address1" placeholder="배달 주소"
+                                            name="address" ng-value="session_storage.checkout_input.address"
+                                            ng-readonly="true" ng-disabled="true" value="서울특별시 강남구 역삼동 831-11 서울빌딩"
+                                            readonly="readonly" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <input type="text" class="form-control" placeholder="(필수)상세주소 입력"
+                                            name="address_detail" required="true" required="required">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address" class="col-sm-3 control-label">휴대전화번호</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" value="${memberPhone }"
+                                            name="address_detail" required="true" required="required">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+
+                        <div class="panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">주문시 요청사항</h4>
+                            </div>
+
+                            <div class="panel-collapse">
+                              <div class="panel-body">
+                                <textarea class="form-control ng-pristine ng-untouched ng-valid ng-valid-maxlength" rows="3" ng-blur="check_order_request($event)" name="comment" ng-model="session_storage.checkout_input.comment" maxlength="100" placeholder="주문시 요청 사항이 있으시면 남겨주세요.">
+                                
+                                </textarea>
+                                
+                              </div>
+                            </div>
+                          </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+            <div class="col-sm-4">
+                <div>
+                    <div class=title>
+                        <span>결제 정보</span>
+                    </div>
+                    <div class="cart">
+                        <div class="cart-empty">
+                            
+                            총 합계 : ${plusMenuPrice }
+                        </div>
+                        <div class="clearfix" id="totalPrice">
+
+                            배달요금 : ${deliveryPrice } 
+                        </div>
+                        <div class="cart-btn clearfix">
+                            <a id="payButton" class="btu">주문하기</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <input type="hidden" value="${storeName }" id="storeName">
+    </div>
+
 <script>
-$(document).on('click','#pay',function(){ //결제하기 버튼 아이디쓸것
-    var title=$('#').text();			//가게명
-    var totalPrice=$('#').val();   		//총 합계금액     
+$(document).on('click','#payButton',function(){ //결제하기 버튼 아이디쓸것
+    var title=$('#storeName').text();		//가게명
+    console.log(title);
+    var totalPrice=$('#totalPrice').val();   		//총 합계금액     
  	var IMP = window.IMP; // 생략가능
 	IMP.init('imp51687071'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	IMP.request_pay({
     pg : 'inicis', // version 1.1.0부터 지원.
     pay_method : 'card',
     merchant_uid : 'merchant_' + new Date().getTime(),
-    name : title, //주문음식이름
-    amount : totalPrice, //가격 받아가야함
+    name : 'title', //주문음식이름
+    
+    amount : 100, //가격 받아가야함
     buyer_email : 'wjdqls7773@gmail.com', //사는 사람 이메일 받아가야됨
     buyer_name : '간신배', //이름도
     buyer_tel : '010-1234-5678', //번호도
@@ -34,11 +195,11 @@ $(document).on('click','#pay',function(){ //결제하기 버튼 아이디쓸것
        msg += '상점 거래ID : ' + rsp.merchant_uid;
        msg += '결제 금액 : ' + rsp.paid_amount;
        msg += '카드 승인번호 : ' + rsp.apply_num; 
-       location.href="${path}/customer/customerPay.do?amount="+totalPrice; //보낼값들
+       location.href="${path}/customer/payEnd.do?amount="+totalPrice+"&&memberId"+memberId; //보낼값들
 
     } else {
         var msg = '결제에 실패하였습니다.';
-        msg += '<br>실패 사유 : ' + rsp.error_msg;
+        msg += '실패 사유 : ' + rsp.error_msg;
     }
     alert(msg);
 });
