@@ -439,7 +439,7 @@ public class MemberController {
 	public ModelAndView test(ModelAndView mv, int businessCode)
 	{
 		List<Review> review=service.selectReview(businessCode);
-		System.out.println(review);
+		System.out.println("review : "+review);
 		mv.addObject("businessCode",businessCode);
 		mv.addObject("review",review);
 		mv.setViewName("customer/test");

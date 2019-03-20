@@ -8,4 +8,5 @@ import com.kh.food.owner.store.model.vo.Store;
 public interface OrderReviewDao {
 
 	List<Map<String, String>> selectStoreList(String ownerId);
+	List<Store> storeList(String ownerId);
 }

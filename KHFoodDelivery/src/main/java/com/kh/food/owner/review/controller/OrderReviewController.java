@@ -24,9 +24,17 @@ public class OrderReviewController {
 	{
 		
 		List<Map<String, String>> storeList = service.selectStoreList(ownerId);
+		List<Store> selectStoreList=service.storeList(ownerId);
 		
+		mv.addObject("selectStoreList",selectStoreList);
 		mv.addObject("storeList",storeList);
 		mv.setViewName("owner/ownerReview");
+		return mv;
+	}
+	@RequestMapping("/owner/test.do")
+	public ModelAndView test(ModelAndView mv)
+	{
+		mv.setViewName("owner/test");
 		return mv;
 	}
 	

@@ -20,6 +20,12 @@ public class OrderReviewServiceImpl implements OrderReviewService {
 		return dao.selectStoreList(ownerId);
 	}
 
+	@Override
+	public List<Store> storeList(String ownerId) {
+		
+		return dao.storeList(ownerId);
+	}
+
 	
 	
 }
