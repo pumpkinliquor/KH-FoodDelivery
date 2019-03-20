@@ -48,6 +48,8 @@ public interface MemberService {
 	int deleteMenuCount(int menuCode);
 	List<WishList> plusPrice(Map<String,Object> maps);
 	Store minPrice(int businessCode);
+	List<WishList> selectSame(Map<String,Object> menuMap);
+	int deleteMenuCode(int reMenuCode);
 	
 	Map<String,String>selectSearchId(Map<String,String> map); //아이디찾기
 	Map<String,String>selectConfirmEmail(Map<String,String>map);

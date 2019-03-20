@@ -28,6 +28,10 @@
 		select * from store where ownerId = #{ownerId}
 	</select>
 	<select id="selectStoreList2" parameterType="string" resultType="map">
-		select store.* , review.* from store inner join review on (store.businesscode=review.businesscode) where ownerId=#{ownerId} order by reviewnum desc
+		select store.* , review.* ,member.memberid
+		from store 
+		inner join review on (store.businesscode=review.businesscode) 
+		inner join member on (review.membernum=member.membernum) 
+		where ownerId=#{ownerId} order by reviewnum desc
 	</select>
 </mapper>

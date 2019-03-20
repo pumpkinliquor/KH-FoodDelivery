@@ -15,7 +15,7 @@
 <div class="clearfix" style="background-color:ivory; color:red; font-weight:bold;">
 합계 : ${resultPrice }원
 </div>
-<div class="cart-btn clearfix" style="clear:both;">
-<a id="pay" class="btu" href="${path}/customer/pay.do">주문하기</a>
+<div class="cart-btn clearfix" onclick="location.href='${path}/customer/pay.do'" id="insertMemberId" style="clear:both;">
+    <a id="pay" class="btu">주문하기</a>
 </div>
 </div>

@@ -202,13 +202,16 @@
            
            $("#test1").click(function(){
               
-              
+        	   var businessCode=${businessCode};
               
               $.ajax({
                  
                  type: "post",
                  url: "${path}/customer/test.do",   
-                 success: function test(a){$("#callback").html(a);}
+                 data : {"businessCode" : businessCode},
+                 success: function test(a){
+                	 $("#callback").html(a);
+                	 }
               });
               
            });
@@ -267,13 +270,124 @@
       
    
  </script>
+ 
+<div class="container">
+        <div class="row justify-content-start">
+           
+           <c:forEach items="${list}" var="i" >
+            <div class="col-sm-8">
+               
+                <div class="restaurant-info">
+                    <div class="restaurant-title">
+                        <span id="storeName">${i.storeName }</span>
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="logo"><img class="mainlogo" src="${path }/resources/upload/owner/storeMainImage/${i.storeImage }" /></div>
+                        <ul class="list">
+                            <li>별점</li>
+                            <li>최소주문금액 <span>${i.minPrice}원</span></li>
+                            <li>배달시간</li>
+                            <li>결제방법 <span>신용카드,현금</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="owner_massage">
+                    <strong>사장님말</strong><br>
+                    <span>${i.storeProfile }</span>
+                </div>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <ul class="navbar-nav mr-aurto">
+                        <li class="nav-item active">
+                            <a class="nav-link" id="test2">메뉴 <span>35</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" id="test1" >리뷰 <span>55</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" id="test3">정보</a>
+                        </li>
+                    </ul>
+                </nav>
+               
+                  
+            <div id="callback"></div>
+            
+            
+              </div>
+              </c:forEach>
+              <div class="col-sm-4">
+                <div class="jumun">
+                    <div class=title>
+                        <span>주문표</span>
+                    </div>
+                    <div class="cart">
+                        <div class="cart-empty" id="janbgaID">
+              <c:forEach var="wish" items="${wishList }">
+              <div id="deletedd${wish.MENUCODE}">
+                 <ul>
+                  <li style="list-style: none; float: left;">${wish.MENUNAME }</li>
+               </ul>
+               <br>
+               <ul>
+                  <li style="list-style: none; float: left;">
+                  <a id="deleteMenuCount${wish.MENUCODE }" style="cursor:pointer;"><img src="${path }/resources/images/owner/icons/deleteIcon.png" width=16px;/></a> ${wish.MENUPRICE }원</li>
+                  <li style="list-style: none; margin-right: 1em; text-align: right; padding-top: 5px;">
+                     <!-- <a id="minusMenuCount" class="btn btn-minus">-</a> -->
+                     <span id="countUpdate${wish.MENUCODE }">${wish.MENUCOUNT } 개</span>
+                     <input type="hidden" id="countUpdate${wish.MENUCODE }" value=""/>
+                     <!-- <a id="plusMenuCount"  class="btn btn-plus">+</a> -->
+                  </li>
+               </ul>
+               <hr>
+            </div>
+               <script>
+               $(document).ready(function(){
+                   $("#deleteMenuCount${wish.MENUCODE}").click(function(){
+                   var menuCode=${wish.MENUCODE};
+                   var businessCode=${wish.BUSINESSCODE};
+                      $.ajax({
+                         type:"POST",
+                         url:"${path}/customer/deleteMenuCount.do",
+                         data:{"menuCode" : menuCode},
+                         dataType:"JSON",
+                         success: function(data){
+                           $('#deletedd${wish.MENUCODE}').html("");
+                           $.ajax({
+   							type:"POST",
+   							url:"${path}/customer/wishResult.do?businessCode="+businessCode,
+   							dataType:"html",
+   							success: function(data){
+   								$('#plusMenuPrice_result').html(data);
+   							}
+   						});
+                         }
+                      });
+                   });
+                });
+               </script>
+            </c:forEach>
+                        </div>
+                        <div id="plusMenuPrice_result">
+                           <div class="clearfix" style="clear:both;">최소주문금액 ${minPrice.minPrice }원</div>
+                           <div class="clearfix" style="background-color:ivory; color:red; font-weight:bold;">
+                                    합계 : ${resultPrice }원
+                           </div>
+							<div class="cart-btn clearfix" onclick="location.href='${path}/customer/pay.do'" id="insertMemberId" style="clear:both;">
+							    <a id="pay" class="btu">주문하기</a>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+</div>
+   
+       
 
 <div class="container">
 	<div class="row justify-content-start">
-
 		<c:forEach items="${list}" var="i">
 			<div class="col-sm-8">
-
 				<div class="restaurant-info">
 					<div class="restaurant-title">
 						<span id="storeName">${i.storeName }</span>
