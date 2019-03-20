@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -346,18 +347,24 @@ public class MemberController {
 		map.put("id",id);
 		map.put("pw",pw);
 		
-		Map<String,String> result=service.login(map);
+		Map<String,Object> result=service.login(map);
 		
 		String msg="";
-		String loc="/";
+		String loc="";
 		if(result!=null) {
-			
-			if(pwEncoder.matches(pw,result.get("MEMBERPW"))) {
-				msg="로그인 성공";
+			if(pwEncoder.matches(pw,(String) result.get("MEMBERPW"))) {
+				logger.debug("비밀번호일치");
+				if(((BigDecimal)(result.get("ISADMIN"))).intValue() == 1) {				
+					logger.debug("관리자 확인");
+					msg = "관리자님 환영합니다.";
+					loc = "/admin/adminMain.do";
+				}
+				else {
+					msg="로그인 성공";
+					loc="/";
+				}				
 				session.setAttribute("logined", result.get("MEMBERID"));
 				session.setAttribute("loginedno", result.get("MEMBERNUM"));
-			
-			
 			}else {
 				msg="패스워드가 일치하지 않습니다.";
 				loc="/customer/login.do";
@@ -774,7 +781,7 @@ public class MemberController {
 		
 		Map<String,String> map = new HashMap<>();
 		map.put("id", m.getMemberId());
-		Map<String,String> result=service.login(map);
+		Map<String,Object> result=service.login(map);
 		logger.debug("result"+result);
 		String msg="";
 		String loc="/";
@@ -817,7 +824,7 @@ public class MemberController {
 		Map<String,String> map = new HashMap<>();
 		map.put("id", memberId);
 		map.put("nickName", nickName);
-		Map<String,String> result=service.login(map);
+		Map<String,Object> result=service.login(map);
 		logger.debug("result"+result);
 		//아이디가 디비에 없다? , 추가정보입력창으로 간다.
 		if(result == null)
