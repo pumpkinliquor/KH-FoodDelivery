@@ -3,6 +3,7 @@ package com.kh.food.customer.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -343,18 +344,25 @@ public class MemberController {
 		map.put("id",id);
 		map.put("pw",pw);
 		
-		Map<String,String> result=service.login(map);
+		Map<String,Object> result=service.login(map);
 		
 		String msg="";
-		String loc="/";
+		String loc="";
 		if(result!=null) {
-			
-			if(pwEncoder.matches(pw,result.get("MEMBERPW"))) {
-				msg="로그인 성공";
+			if(pwEncoder.matches(pw,(String) result.get("MEMBERPW"))) {
+				logger.debug("비밀번호일치");
+				if(((BigDecimal)(result.get("ISADMIN"))).intValue() == 1) {				
+					logger.debug("관리자 확인");
+					msg = "관리자님 환영합니다.";
+					loc = "/admin/adminMain.do";
+				}
+				else {
+					msg="로그인 성공";
+					loc="/";
+				}
+				session.setAttribute("isAdmin", result.get("ISADMIN"));
 				session.setAttribute("logined", result.get("MEMBERID"));
 				session.setAttribute("loginedno", result.get("MEMBERNUM"));
-			
-			
 			}else {
 				msg="패스워드가 일치하지 않습니다.";
 				loc="/customer/login.do";
@@ -436,7 +444,7 @@ public class MemberController {
 	public ModelAndView test(ModelAndView mv, int businessCode)
 	{
 		List<Review> review=service.selectReview(businessCode);
-		System.out.println(review);
+		System.out.println("review : "+review);
 		mv.addObject("businessCode",businessCode);
 		mv.addObject("review",review);
 		mv.setViewName("customer/test");
@@ -645,9 +653,16 @@ public class MemberController {
 	
 	//업체 전체보기
 	@RequestMapping("/customer/selectallstore.do")
-	public ModelAndView allStore(@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage) {
+	public ModelAndView allStore(@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage,String myAddr,HttpSession session) {
 		
+		System.out.println(myAddr);
 		ModelAndView mv= new ModelAndView();
+		
+		//검색 주소 세션에 넣기
+		session.setAttribute("myAddr",myAddr);
+				
+		logger.debug(""+session.getAttribute("myAddr"));
+		
 		int numPerPage=8;
 		
 		int count=service.selectMenuCount();
@@ -817,6 +832,46 @@ public class MemberController {
 	}
 	
 	//카카오 로그인
+	@RequestMapping("member/kakaoMemberEnrollEnd.do")
+	public ModelAndView kakaoLogin(Member m,HttpSession session)
+	{
+		logger.debug("카카오아이디"+m);
+		
+		//디비에 계정이 존재하는지 확인
+		
+		Map<String,String> map = new HashMap<>();
+		map.put("id", m.getMemberId());
+		Map<String,Object> result=service.login(map);
+		logger.debug("result"+result);
+		String msg="";
+		String loc="/";
+		if(result == null)
+		{
+			int result1=service.memberEnroll(m);
+			if(result1>0)
+			{
+				msg = "회원 가입 성공 로그인 성공";
+			}
+			else
+			{
+				msg = "로그인 실패";
+			}
+		}
+		else
+		{
+			msg = "로그인 성공";
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		session.setAttribute("logined", m.getMemberId());
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	
+	//카카오 로그인
 	@RequestMapping("member/kakaoLogin.do")
 	public ModelAndView kakaoApiLogin(String memberId,String nickName,HttpSession session)
 	{
@@ -827,10 +882,10 @@ public class MemberController {
 		String loc="/";
 		
 		Map<String,String> map = new HashMap<>();
-		Map<String,String> result2 = new HashMap<>();
+		Map<String,Object> result2 = new HashMap<>();
 		map.put("id", memberId);
 		map.put("nickName", nickName);
-		Map<String,String> result=service.login(map);
+		Map<String,Object> result=service.login(map);
 		logger.debug("result"+result);
 		//아이디가 디비에 없다? , 추가정보입력창으로 간다.
 		if(result == null)

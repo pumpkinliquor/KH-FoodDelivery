@@ -19,6 +19,13 @@ public class OrderReviewDaoImpl implements OrderReviewDao {
 	public List<Map<String, String>> selectStoreList(String ownerId) {
 		return session.selectList("ownerOrder.selectStoreList2",ownerId);
 	}
+
+	@Override
+	public List<Store> storeList(String ownerId) {
+		return session.selectList("store.selectStoreListTwo",ownerId);
+	}
+	
+	
 	
 	
 }

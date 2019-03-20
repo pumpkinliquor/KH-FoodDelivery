@@ -124,7 +124,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Map<String,String> login(Map<String,String> map){
+	public Map<String,Object> login(Map<String,String> map){
 		return dao.login(map);
 	}
 	@Override
