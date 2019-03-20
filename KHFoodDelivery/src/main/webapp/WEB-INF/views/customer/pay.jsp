@@ -151,9 +151,9 @@ div{
                     <div class="cart">
                         <div class="cart-empty">
                             
-                            총 합계 : ${totalPrice}
+                            총 합계 : ${resultPrice}
                         </div>
-                        <div class="clearfix" id="totalPrice">
+                        <div class="clearfix" id="resultPrice">
 
                             배달요금 : ${deliveryPrice } 
                         </div>
@@ -172,7 +172,7 @@ div{
 $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디쓸것
     var title=$('#storeName').text();		//가게명
     console.log(title);
-    var totalPrice=$('#totalPrice').val();   		//총 합계금액     
+    var resultPrice=$('#resultPrice').val();   		//총 합계금액     
  	var IMP = window.IMP; // 생략가능
 	IMP.init('imp51687071'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	IMP.request_pay({
