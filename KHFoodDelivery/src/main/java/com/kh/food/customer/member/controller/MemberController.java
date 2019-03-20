@@ -644,23 +644,32 @@ public class MemberController {
 	
 	//업체 전체보기
 	@RequestMapping("/customer/selectallstore.do")
-	public ModelAndView allStore(@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage,String myAddr,HttpSession session) {
+	public ModelAndView allStore(@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage,String myAddr,HttpSession session,
+			@RequestParam(value="firstPage", defaultValue="0")int firstPage) {
 		
 		System.out.println(myAddr);
+		System.out.println(firstPage);
 		ModelAndView mv= new ModelAndView();
 		
+		
+		
+		String category=myAddr.substring(0,6);
+
 		//검색 주소 세션에 넣기
+		if(firstPage==1) {
 		session.setAttribute("myAddr",myAddr);
-				
-		logger.debug(""+session.getAttribute("myAddr"));
+		}
+		
+			
 		
 		int numPerPage=8;
 		
 		int count=service.selectMenuCount();
 		
-		List<Store> list =service.selectAllStore(cPage,numPerPage);
+		List<Store> list =service.selectAllStore(category);
+	
 		
-		mv.addObject("pageBar",PagingFactory.getPageBar(count, cPage, numPerPage, "/food/customer/selectallstore.do"));
+		
 		mv.addObject("list",list);
 		mv.setViewName("customer/searchMenu");
 		

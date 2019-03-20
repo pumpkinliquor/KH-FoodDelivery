@@ -117,9 +117,9 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectOne("member.qnaDtail",no);
 	}
 	@Override
-	public List<Store> selectAllStore(int cPage,int numPerPage){
-		RowBounds rb=new RowBounds((cPage-1)*numPerPage,numPerPage);
-		return sqlSession.selectList("member.selectAllStore",null,rb);
+	public List<Store> selectAllStore(String category){
+		
+		return sqlSession.selectList("member.selectAllStore",category);
 	}
 	
 	@Override
