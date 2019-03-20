@@ -90,15 +90,12 @@ public class MemberServiceImpl implements MemberService {
 	public int drop(String memberId) {
 		return dao.drop(memberId);
 	}
-	@Override
-	public int selectMenuCount() {
-		return dao.selectMenuCount();
-	}
+
 	
 	
 	@Override
-	public List<Store> selectStore(String category,int cPage,int numPerPage){
-		return dao.selectStore(category,cPage,numPerPage);
+	public List<Store> selectStore(String category){
+		return dao.selectStore(category);
 	}
 	
 	@Override

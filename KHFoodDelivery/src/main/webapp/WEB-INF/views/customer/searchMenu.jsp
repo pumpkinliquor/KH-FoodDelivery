@@ -54,6 +54,13 @@
                                         <a href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}"><b>02-2668-4624</b></a><br/>
                                     </div>
                                 </div>   
+                                  <div class="row rowDiv1">
+                                    <label for="username" class="col-6 col-form-label">주소</label> 
+                                    <div class="col-6 menuSearch_Div1">
+                                        <a class="" href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">${i.storeAddress}</a>
+                                    </div>
+                                </div>   
+                                
                             </div>
                             <div class="col-md-3" style="float:left; margin-top:10%; margin-bottom:10%;">
                                 <a href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}"><img src="${path }/resources/upload/owner/storeMainImage/${i.storeImage}" style="width:113px; height:113px;"/></a><br/>

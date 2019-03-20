@@ -501,16 +501,16 @@ public class MemberController {
 
 	//가게 출력
 	@RequestMapping("/customer/searchmenuView")
-	public ModelAndView menuView(String category,@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage) {
+	public ModelAndView menuView(String category) {
 		
 		ModelAndView mv=new ModelAndView();
-		int numPerPage=8;
-		int count=service.selectMenuCount();
 		
-		List<Store> list=service.selectStore(category,cPage,numPerPage);
+	
+		
+		List<Store> list=service.selectStore(category);
 		
 		
-		mv.addObject("pageBar",PagingFactory.getPageBar2(category,count, cPage, numPerPage, "/food/customer/searchmenuView"));
+		
 		mv.addObject("list",list);
 		mv.setViewName("customer/searchMenu");
 	
@@ -668,13 +668,7 @@ public class MemberController {
 		if(firstPage==1) {
 		session.setAttribute("myAddr",myAddr);
 		}
-		
-			
-		
-		int numPerPage=8;
-		
-		int count=service.selectMenuCount();
-		
+
 		List<Store> list =service.selectAllStore(category);
 	
 		

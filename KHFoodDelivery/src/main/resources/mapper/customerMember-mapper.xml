@@ -42,11 +42,7 @@
 	<select id="selectStore2" parameterType="int" resultType="store">		  	
 		select* from store where BUSINESSCODE=#{besinessCode} and ISCONFIRM=1	
 	</select>
-	
-	 <select id="selectMenuCount" resultType="_int">
-	 
-		  	select count(*) from store
-		  </select>
+
 		  
 		<delete id="drop" parameterType="member">
 			delete from member where MEMBERID=#{memberId}
