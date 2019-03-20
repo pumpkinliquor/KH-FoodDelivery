@@ -46,6 +46,11 @@ public class OrderDaoImpl implements OrderDao {
 	public List<Map<String, String>> selectStoreList(String ownerId) {
 		return sqlSession.selectList("ownerOrder.selectStoreList",ownerId);
 	}
+
+	@Override
+	public int updateOrderState(Map<String, String> map) {
+		return sqlSession.update("ownerOrder.updateOrderState",map);
+	}
 	
 	
 	

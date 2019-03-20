@@ -36,6 +36,12 @@ pageEncoding="UTF-8"%>
 .orderTable{
 	text-align:center;
 }
+.trueBtn{
+	color : red;
+}
+.notBtn{
+	color : black;
+}
 
 </style>
 <section>
@@ -63,14 +69,39 @@ pageEncoding="UTF-8"%>
 					<tbody>
 					
 					<c:forEach var="o" items="${orderOneList}" varStatus="status">		
-							<tr style="cursor:pointer;" onclick="fn_detailOrder(${o.payOrderNum});">						
-								<td class="td1"><c:out value="${status.count}"/></td>
-								<td class="td1">${o.payDate}</td>
-								<td class="td1">${o.memberName}님의 주문입니다.</td>
-								<td class="td1">${o.deliveryPrice}</td>							
-								<td class="td1">${price[status.index].price}</td>
-								<td class="td1">${o.payOrderMethod}</td>							
-								<td><button class="btn btn-default statusBtn">주문접수</button><button class="btn btn-default statusBtn">배달중</button><button class="btn btn-default statusBtn">배달완료</button><button class="btn btn-default statusBtn">주문취소</button></td>
+							<tr style="cursor:pointer;">						
+								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1"><c:out value="${status.count}"/></td>
+								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.payDate}</td>
+								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.memberName}님의 주문입니다.</td>
+								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.deliveryPrice}</td>							
+								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${price[status.index].price}</td>
+								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.payOrderMethod}</td>							
+								<td>
+								<c:if test="${o.orderState eq 1 }">
+								<button id="state1"  value="1" onclick="fn_state(${o.payOrderNum},this)" class="btn btn-default statusBtn trueBtn">주문접수</button>
+								</c:if>
+								<c:if test="${o.orderState ne 1 }">
+								<button id="state1"  value="1" onclick="fn_state(${o.payOrderNum},this)" class="btn btn-default statusBtn notBtn">주문접수</button>			
+								</c:if>
+								<c:if test="${o.orderState eq 2 }">
+								<button id="state2" value="2" class="btn btn-default statusBtn trueBtn" onclick="fn_state(${o.payOrderNum},this)">배달중</button>
+								</c:if>
+								<c:if test="${o.orderState ne 2 }">
+								<button id="state2" value="2" class="btn btn-default statusBtn notBtn" onclick="fn_state(${o.payOrderNum},this)">배달중</button>			
+								</c:if>
+								<c:if test="${o.orderState eq 3 }">
+								<button value="3" id="state3" class="btn btn-default statusBtn trueBtn" onclick="fn_state(${o.payOrderNum},this)">배달완료</button>							
+								</c:if>
+								<c:if test="${o.orderState ne 3 }">
+								<button value="3" id="state3" class="btn btn-default statusBtn notBtn" onclick="fn_state(${o.payOrderNum},this)">배달완료</button>
+								</c:if>
+								<c:if test="${o.orderState eq 4 }">
+								<button id="state4" value="4" class="btn btn-default statusBtn trueBtn" onclick="fn_state(${o.payOrderNum},this)">주문취소</button>								
+								</c:if>
+								<c:if test="${o.orderState ne 4 }">
+								<button id="state4" value="4" class="btn btn-default statusBtn notBtn" onclick="fn_state(${o.payOrderNum},this)">주문취소</button>							
+								</c:if>
+								</td>
 							</tr>
 							
 					</c:forEach> 
@@ -208,6 +239,75 @@ function fn_detailOrder(payOrderNum){
 			}
 	});
 }
+
+	function fn_state(payOrderNum,e)
+	{
+		
+		console.log($(e).val());
+		var orderState = $(e).val();
+/* 		if($(e).attr('id') == 'state1')
+			{
+				orederState = 1;
+			}
+		else if($(e).attr('id')==state2)
+			{
+				orederState = 2;
+			}
+		else if($(e).attr('id')==state3)
+			{
+				orederState = 3;
+			}
+		else{
+			orederState = 4;
+		} */
+		
+		 $.ajax({
+			url:"${path}/order/updateOrderState.do",
+			data:{"payOrderNum" : payOrderNum , "orderState" : orderState},
+			success:function(data)
+			{
+					if(data==1)
+					{
+						$(e).css("color","red");
+						if(orderState == 1)
+							{
+								$(e).css("color","red");
+								$(e).next().css("color","black");
+								$(e).next().next().css("color","black");
+								$(e).next().next().next().css("color","black");
+								
+							
+							}
+						else if(orderState == 2)
+							{
+								$(e).css("color","red");
+								$(e).prev().css("color","black");
+								$(e).next().css("color","black");
+								$(e).next().next().css("color","black");
+							}
+						else if(orderState == 3)
+							{
+								$(e).css("color","red");
+								$(e).prev().css("color","black");
+								$(e).prev().prev().css("color","black");
+								$(e).next().css("color","black");
+							}
+						else
+							{
+							$(e).css("color","red");
+							$(e).prev().css("color","black");
+							$(e).prev().prev().css("color","black");
+							$(e).prev().prev().prev().css("color","black");
+							}
+						
+					}
+					else
+					{
+							alert("변경실패!");
+					}
+			}
+		})		 
+	}
 
 
 </script>
