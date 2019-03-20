@@ -265,7 +265,7 @@ div.newsletter,div.group{display:inline-block;}
                 </div>
                    <div class="group col-md-12 col-lg-12">
                 <div class="btn-group btn-group-lg search1">
-               <button type="button" class="btn btn-default" onclick="allview();">전체보기</button> 
+               <button type="button" class="btn btn-default active" onclick="allview();">전체보기</button> 
               <button type="button" class="btn btn-default" onclick="don();">돈까스</button>
               <button type="button" class="btn btn-default" onclick="fre();">프랜차이즈</button>
               <button type="button" class="btn btn-default" onclick="chi();">치킨</button>

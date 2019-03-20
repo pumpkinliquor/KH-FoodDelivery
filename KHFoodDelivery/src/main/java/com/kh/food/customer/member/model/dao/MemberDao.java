@@ -49,7 +49,7 @@ public interface MemberDao {
 
 	List<Map<String,String>> selectMenuList(int menuCategoryCode, int businessCode);
 	Menu menuSelect(int menuCode);
-	List<Store> selectAllStore(int cPage,int numPerPage);
+	List<Store> selectAllStore(String category);
 	int kakaoEnrollEnd(Member m);
 	List<Review> selectReview(int businessCode);
 	// 회원공지사항
