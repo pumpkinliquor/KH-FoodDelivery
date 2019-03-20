@@ -183,12 +183,13 @@
            
            $("#menuReview").click(function(){
               
-              
+              var businessCode=${businessCode};
               
               $.ajax({
                  
                  type: "post",
                  url: "${path}/customer/menuReview.do",   
+                 data : {"businessCode" : businessCode},
                  success: function test(a){$("#callback").html(a);}
               });
               
