@@ -41,6 +41,13 @@
 			<beans:bean id="ownerInterceptor" class="com.kh.food.common.OwnerInterceptor"/>
 		</interceptor>
 	</interceptors>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/customer/menuInfo.do"/>
+			<beans:bean id="memberInterceptor" class="com.kh.food.common.MemberInterceptor"/>
+		</interceptor>
+	</interceptors>
 		 
 	 <!-- 파일업로드 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
