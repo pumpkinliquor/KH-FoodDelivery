@@ -18,9 +18,9 @@ pageEncoding="UTF-8"%>
                 <div class="row">
                     <div class="col-md-3 ">
                          <div class="list-group ">
-                			  <a href="${path }/owner/menuEnroll.do?businessCode=${businessCode}" class="list-group-item list-group-item-action active menu">메뉴/카테고리 등록</a>
+                			  <a href="${path }/owner/menuEnroll.do?businessCode=${businessCode}" class="list-group-item list-group-item-action menu">메뉴/카테고리 등록</a>
 	                          <a href="${path }/owner/menuManage.do?businessCode=${businessCode}" class="list-group-item list-group-item-action menu">메뉴관리</a>
-	                          <a href="${path }/owner/menuSoldOut.do?businessCode=${businessCode}" class="list-group-item list-group-item-action menu">품절관리</a>
+	                          <a href="${path }/owner/menuSoldOut.do?businessCode=${businessCode}" class="list-group-item list-group-item-action active menu">품절관리</a>
 	                          
                           
                         </div> 
