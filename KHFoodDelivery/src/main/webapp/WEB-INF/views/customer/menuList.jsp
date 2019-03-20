@@ -153,7 +153,19 @@ $(document).ready(function(){
 					url:"${path}/customer/menuInfo2.do?menuCount="+data.menuCount+"&businessCode="+businessCode+"&menuTitle="+data.menuTitle+"&menuPrice="+menuPrice+"&plusMenuPrice="+plusMenuPrice+"&menuCode="+data.menuCode,
 					dataType:"html",
 					success: function(data) {
+						
+						console.log(menuCode);
+							var id = "countUpdate"+menuCode;
+						console.log(id);
+				/* 				if($("input[type=hidden]").val()==menuCode) */
+									/* if($("input:hidden[class='gg']").val()==menuCode) */
+									if($('div').find('input:hidden[class="gg"]').val() == menuCode)
+							{
+								console.log("들어옴?");
+								$('#deletedd'+menuCode).remove();
+							}
 						$('#janbgaID').prepend(data);
+						
 						$.ajax({
 							type:"POST",
 							url:"${path}/customer/wishResult.do?businessCode="+wishResultBusinessCode,
