@@ -34,8 +34,7 @@
 
 
    
-   <script>
-/*    window.onload=function(){
+<!--     window.onload=function(){
 	   $.ajax({
 	   url : "https://dapi.kakao.com/v2/local/search/keyword.json",
 	   type : "GET",
@@ -54,8 +53,9 @@
 	   });
 	   });
    }
-    */
+ -->    
    
+   <script>
     $(document).ready(function () {
       $("#positionBtn").click(function(){
     	  
@@ -169,7 +169,7 @@
                 }
  
                 // 주소 정보를 해당 필드에 넣는다.
-                $('#location').val(fullAddr); 
+                $('#location1').val(fullAddr); 
                 /* document.getElementById("location").value = fullAddr; */
                 // 주소로 상세 정보를 검색
                 geocoder.addressSearch(data.address, function(results, status) {
@@ -214,7 +214,12 @@ $(function(){
 	 if(${sessionScope.logined==null}){
 		 alert("로그인 후 이용해주세요");
 	 }else{
-		 location.href="${path}/customer/selectallstore.do";
+		 
+		var myAddr=$('#location1').val();
+		console.log(myAddr);
+		  location.href="${path}/customer/selectallstore.do?myAddr="+myAddr; 
+
+		
 	 }
  }
  
@@ -235,14 +240,15 @@ $(function(){
                  
             </c:if> 
              <c:if test="${sessionScope.logined!=null}">
-             <a href="${path }/customer/logout.do">로그아웃</a>
-
-             <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
-             
-        
-
-
-
+             	<c:choose>
+             		<c:when test="${sessionScope.isAdmin == 1 }">             	
+             			<a href="${path}/admin/adminMain.do">관리자 페이지</a>
+             		</c:when>
+             		<c:otherwise>
+             			<a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
+             		</c:otherwise>
+             	</c:choose>
+             	<a href="${path }/customer/logout.do">로그아웃</a>
             </c:if> 
      
             
@@ -256,7 +262,8 @@ $(function(){
                   <div class="content">
                   <div class="input-group">
                        <button id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
-                    <input type="text" id="location" onclick="execDaumPostcode();"  class="form-control" value="" placeholder="주소 찾기를 원하시면 클릭해주세요">
+                       
+                    <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요" />
                        <span class="input-group-btn">
                        <button class="btn" onclick="locationSearchStore();" type="submit">검색</button>
 
@@ -265,6 +272,7 @@ $(function(){
                   </div>
               </div>
               
+
               </div>
               </div>
      </div>

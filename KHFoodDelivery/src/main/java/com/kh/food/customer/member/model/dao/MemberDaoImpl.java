@@ -157,7 +157,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public Map<String,String> login(Map<String,String> map){
+	public Map<String,Object> login(Map<String,String> map){
 		return sqlSession.selectOne("member.login",map);
 	}
 	@Override

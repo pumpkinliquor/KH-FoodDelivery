@@ -21,7 +21,7 @@ public interface MemberDao {
 	List<MemberQna> selectmemberQna(String memberId);
 	int memberEnroll(Member m);
 	int checkId(String memberId);
-	Map<String,String> login(Map<String,String> map);
+	Map<String,Object> login(Map<String,String> map);
 	int checkNick(String nickName);
 	Member selectMember(String memberId);
 	int update(Member m);
