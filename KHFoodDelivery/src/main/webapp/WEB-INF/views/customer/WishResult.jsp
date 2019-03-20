@@ -10,6 +10,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
+<div id="plusMenuPrice_result">
+<div class="clearfix" style="clear:both;">최소주문금액 ${minPrice.minPrice }원</div>
 <div class="clearfix" style="background-color:ivory; color:red; font-weight:bold;">
-	합계 : ${plusMenuPrice }원
+합계 : ${resultPrice }원
+</div>
+<div class="cart-btn clearfix" style="clear:both;">
+<a id="pay" class="btu" href="${path}/customer/pay.do">주문하기</a>
+</div>
 </div>

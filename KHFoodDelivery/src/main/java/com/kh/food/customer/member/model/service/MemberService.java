@@ -29,7 +29,7 @@ public interface MemberService {
 	//주문내역 페이징 카운트
 	int selectOrderCount(int memberNum);
 	int checkId(String memberId);
-	Map<String,String> login(Map<String,String> map);
+	Map<String,Object> login(Map<String,String> map);
 	int checkNick(String nickName);
 	Member selectMember(String memberId);
 	int update(Member m);
@@ -41,10 +41,13 @@ public interface MemberService {
 //	List<Map<String,String>> selectMenuList(int menuCategoryCode,int businessCode);
 	int insertWishList(Map<String,Object> menuMap);
 	List<WishList> selectWishList(Map<String,Object> maps);
-	int plusMenuCount(Map<String,Object> upCount);
-	int minusMenuCount(Map<String,Object> upCount);
-	int menuCounts(int menuCode);
+	List<WishList> bigyoMenuCode(Map<String,Object> maps);
+//	int plusMenuCount(Map<String,Object> upCount);
+//	int minusMenuCount(Map<String,Object> upCount);
+//	int menuCounts(int menuCode);
 	int deleteMenuCount(int menuCode);
+	List<WishList> plusPrice(Map<String,Object> maps);
+	Store minPrice(int businessCode);
 	
 	Map<String,String>selectSearchId(Map<String,String> map); //아이디찾기
 	Map<String,String>selectConfirmEmail(Map<String,String>map);

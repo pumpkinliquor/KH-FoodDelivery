@@ -46,6 +46,11 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList("member.selectMemberOrder",memberNum,rb);
 	}
 	
+	@Override
+	public Store minPrice(int businessCode) {
+		return sqlSession.selectOne("menu.selectMinPrice", businessCode);
+	}
+	
 	public int menuCounts(int menuCode) {
 		return sqlSession.selectOne("menu.menuCounts", menuCode);
 	}
@@ -59,6 +64,10 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.delete("member.qnaDelete",no);
 	}
 	
+	@Override
+	public List<WishList> plusPrice(Map<String, Object> maps) {
+		return sqlSession.selectList("menu.plusPrice", maps);
+	}
 	@Override
 	public List<MemberQna> selectmemberQna(String memberId){
 		
@@ -76,21 +85,25 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.insert("menu.insertWishList", menuMap);
 	}
 
-	@Override
-	public int plusMenuCount(Map<String,Object> upCount) {
-		return sqlSession.update("menu.updateMenuCount", upCount);
-	}
-	
-	@Override
-	public int minusMenuCount(Map<String,Object> upCount) {
-		return sqlSession.update("menu.updateMenuCount", upCount);
-	}
-
+//	@Override
+//	public int plusMenuCount(Map<String,Object> upCount) {
+//		return sqlSession.update("menu.updateMenuCount", upCount);
+//	}
+//	
+//	@Override
+//	public int minusMenuCount(Map<String,Object> upCount) {
+//		return sqlSession.update("menu.updateMenuCount", upCount);
+//	}
+//
 	@Override
 	public int deleteMenuCount(int menuCode) {
 		return sqlSession.delete("menu.deleteMenuCount", menuCode);
 	}
 
+	@Override
+	public List<WishList> bigyoMenuCode(Map<String, Object> maps) {
+		return sqlSession.selectList("menu.bigyoMenuCode", maps);
+	}
 	@Override
 	public MemberQna memberDetailQna(int no) {
 		return sqlSession.selectOne("member.qnaDtail",no);
@@ -144,7 +157,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public Map<String,String> login(Map<String,String> map){
+	public Map<String,Object> login(Map<String,String> map){
 		return sqlSession.selectOne("member.login",map);
 	}
 	@Override

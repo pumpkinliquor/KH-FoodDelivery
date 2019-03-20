@@ -63,6 +63,11 @@ div .menuCategoryStyle {
 					$('#menuCode_').val(data.menuCode);
 				}
 			});
+			// 모달닫을 때 마다 입력값 초기화
+			$('#menuSelectModal').on('hidden.bs.modal', function (e) {
+			    $('#menuCount_').val("");
+			    $('#plusMenuPrice').html("");
+			});
 		}
 		// 에이젝스로 값보내기
 		$(document).ready(function(){
@@ -96,6 +101,11 @@ div .menuCategoryStyle {
         		});
         	});
         });
+		// 모달닫을 때 마다 입력값 초기화
+		$('#menuSelectModal').on('hidden.bs.modal', function (e) {
+		    $('#menuCount_').val("");
+		    $('#plusMenuPrice').html("");
+		});
 		</script>
 		<div id="menuList${category.MENUCATEGORYCODE }">
 		</div>
@@ -110,6 +120,11 @@ function plusCount() {
 	var plus=$('#menuCount_').val();
 	$('#plusMenuPrice').html(price*plus);
 	$('#plusMenuPrice_').val(price*plus);
+	// 모달닫을 때 마다 입력값 초기화
+	$('#menuSelectModal').on('hidden.bs.modal', function (e) {
+	    $('#menuCount_').val("");
+	    $('#plusMenuPrice').html("");
+	});
 }
 // 장바구니 누르면 컨트롤러로 값 전송 및 모달끄기
 $(document).ready(function(){
@@ -132,12 +147,21 @@ $(document).ready(function(){
 			dataType:"JSON",
 			success: function(data) {
 				console.log(data);
+				var wishResultBusinessCode=businessCode;
 				$.ajax({
 					type:"POST",
 					url:"${path}/customer/menuInfo2.do?menuCount="+data.menuCount+"&businessCode="+businessCode+"&menuTitle="+data.menuTitle+"&menuPrice="+menuPrice+"&plusMenuPrice="+plusMenuPrice+"&menuCode="+data.menuCode,
 					dataType:"html",
 					success: function(data) {
 						$('#janbgaID').prepend(data);
+						$.ajax({
+							type:"POST",
+							url:"${path}/customer/wishResult.do?businessCode="+wishResultBusinessCode,
+							dataType:"html",
+							success: function(data){
+								$('#plusMenuPrice_result').html(data);
+							}
+						});
 					}
 				});
 			}
@@ -145,6 +169,11 @@ $(document).ready(function(){
 	});
 	$("#menuInsert_").click(function(){
 		$('#menuSelectModal').modal("hide");
+	});
+	// 모달닫을 때 마다 입력값 초기화
+	$('#menuSelectModal').on('hidden.bs.modal', function (e) {
+	    $('#menuCount_').val("");
+	    $('#plusMenuPrice').html("");
 	});
 });
 // 모달닫을 때 마다 입력값 초기화
