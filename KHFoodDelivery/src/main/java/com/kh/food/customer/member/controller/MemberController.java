@@ -568,15 +568,6 @@ public class MemberController {
 		List<WishList> wishList=service.bigyoMenuCode(maps);
 //		System.out.println(maps);
 		
-		int selectMenuCode=0;
-		for(int i=0; i<wishList.size(); i++) {
-			if(menuCode==wishList.get(i).getMenuCode()) {
-				selectMenuCode=wishList.get(i).getMenuCode();
-//				System.out.println(i+"번째 메뉴코드"+selectMenuCode);
-			}
-		}
-//		System.out.println(selectMenuCode);
-		request.setAttribute("selectMenuCode", selectMenuCode);
 		request.setAttribute("maps", maps);
 		request.getRequestDispatcher("/WEB-INF/views/customer/WishList.jsp").forward(request, response);
 	}

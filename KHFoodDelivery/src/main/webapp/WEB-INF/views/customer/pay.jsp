@@ -181,7 +181,7 @@ $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디�
     pay_method : 'card',
     merchant_uid : 'merchant_' + new Date().getTime(),
     name : 'title', //주문음식이름 
-    amount : resultPrice+deliveryPrice, //가격 받아가야함 총 가격과 배달가격 합쳐서
+    amount : 100, //가격 받아가야함 총 가격과 배달가격 합쳐서
     buyer_email : 'wjdqls7773@gmail.com', //사는 사람 이메일 받아가야됨
     buyer_name : '간신배', //이름도
     buyer_tel : '010-1234-5678', //번호도
@@ -195,7 +195,7 @@ $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디�
        msg += '상점 거래ID : ' + rsp.merchant_uid;
        msg += '결제 금액 : ' + rsp.paid_amount;
        msg += '카드 승인번호 : ' + rsp.apply_num; 
-       location.href="${path}/customer/payEnd.do?amount="+resultPrice+"&&memberId"+memberId+"&&name"+title; //보낼값들
+       location.href="${path}/customer/payEnd.do?amount="+resultPrice+"&memberId"+memberId+"&name"+title; //보낼값들
 
     } else {
         var msg = '결제에 실패하였습니다.';
