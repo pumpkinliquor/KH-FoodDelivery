@@ -18,5 +18,7 @@ public interface OrderService {
 	Map<String, String> selectTodayOrderCount(int businessCode1);
 
 	List<Map<String, String>> selectStoreList(String ownerId);
+
+	int updateOrderState(Map<String, String> map);
 	
 }
