@@ -86,4 +86,14 @@
 	<!-- resultMap : Store -->
 	<resultMap type="map" id="store"></resultMap>
 	
+	<resultMap type="map" id="review"></resultMap>
+	<select id="selectReviewList" parameterType="string" resultType="map">
+	
+	 select store.* , review.* ,member.memberid from store
+	inner join review on (store.businesscode=review.businesscode)
+	inner join member on (review.membernum=member.membernum)
+	where businessnum=#{stN}
+		
+	
+	</select>
 </mapper>

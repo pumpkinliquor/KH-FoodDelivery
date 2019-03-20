@@ -440,31 +440,32 @@ public class MemberController {
 	
 	//테스트
 	
-	@RequestMapping("/customer/test.do")
+	@RequestMapping("/customer/menuReview.do")
+	
 	public ModelAndView test(ModelAndView mv, int businessCode)
 	{
 		List<Review> review=service.selectReview(businessCode);
 		System.out.println("review : "+review);
 		mv.addObject("businessCode",businessCode);
 		mv.addObject("review",review);
-		mv.setViewName("customer/test");
+		mv.setViewName("customer/menuReview");
 		return mv;
 	}
 	
 	
 	
 	
-	@RequestMapping("/customer/test1.do")
+	@RequestMapping("/customer/menuList.do")
 	public ModelAndView test1(ModelAndView mv, int businessCode)
 	{
 //		System.out.println(businessCode);
 		List<Map<String,String>> menuCategory=service.selectCategoryList(businessCode);
 		mv.addObject("businessCode", businessCode);
 		mv.addObject("categoryList", menuCategory);
-		mv.setViewName("customer/test1");
+		mv.setViewName("customer/menuList");
 		return mv;
 	}
-	@RequestMapping("/customer/test1End.do")
+	@RequestMapping("/customer/menuListEnd.do")
 	@ResponseBody
 	public List test1End(ModelAndView mv, int menuCategoryCode, int businessCode) {
 //		System.out.println("비즈니스코드"+businessCode);
@@ -477,10 +478,10 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping("/customer/test2.do")
+	@RequestMapping("/customer/storeInfo.do")
 	public String test2()
 	{
-		return "customer/test2";
+		return "customer/storeInfo";
 	}
 	
 	@RequestMapping("/customer/menuSelect.do")

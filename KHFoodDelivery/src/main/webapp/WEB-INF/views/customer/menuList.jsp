@@ -8,9 +8,6 @@
 div .menuCategoryStyle {
 	cursor:pointer;
 }
-dt:hover{
-	color:red;
-}
 </style>
 <script>
 	$(function() {
@@ -46,7 +43,7 @@ dt:hover{
 			</c:forEach>
 		</dd>
 		<c:forEach var="category" items="${categoryList}">
-		<dt id="categoryBtn${category.MENUCATEGORYCODE }" class="categoryHover">${category.MENUCATEGORY }</dt>
+		<dt id="categoryBtn${category.MENUCATEGORYCODE }">${category.MENUCATEGORY }</dt>
 		<dd>
 		<script>
 		//모달
@@ -79,7 +76,7 @@ dt:hover{
         		var menuCategoryCode=${category.MENUCATEGORYCODE};
         		$.ajax({
         			type: "POST",
-        			url: "${path}/customer/test1End.do",
+        			url: "${path}/customer/menuListEnd.do",
         			data : {"businessCode" : businessCode, "menuCategoryCode" : menuCategoryCode},
         			dataType : "JSON",
         			success:function(data) {
@@ -150,7 +147,6 @@ $(document).ready(function(){
 			dataType:"JSON",
 			success: function(data) {
 				console.log(data);
-				var reMenuCode=data.reMenuCode;
 				var wishResultBusinessCode=businessCode;
 				$.ajax({
 					type:"POST",
@@ -158,7 +154,6 @@ $(document).ready(function(){
 					dataType:"html",
 					success: function(data) {
 						$('#janbgaID').prepend(data);
-						window.location.reload(true);
 						$.ajax({
 							type:"POST",
 							url:"${path}/customer/wishResult.do?businessCode="+wishResultBusinessCode,

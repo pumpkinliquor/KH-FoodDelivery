@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.food.owner.store.model.vo.Store;
+import com.kh.food.review.model.vo.Review;
 
 @Repository
 public class OrderReviewDaoImpl implements OrderReviewDao {
@@ -23,6 +24,12 @@ public class OrderReviewDaoImpl implements OrderReviewDao {
 	@Override
 	public List<Store> storeList(String ownerId) {
 		return session.selectList("store.selectStoreListTwo",ownerId);
+	}
+
+	@Override
+	public List<Map<String, String>> selectReviewList(String stN) {
+		// TODO Auto-generated method stub
+		return session.selectList("store.selectReviewList",stN);
 	}
 	
 	

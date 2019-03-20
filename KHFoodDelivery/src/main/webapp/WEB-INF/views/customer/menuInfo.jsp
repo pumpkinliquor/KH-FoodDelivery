@@ -7,11 +7,9 @@
 <jsp:include page="/WEB-INF/views/common/searchHeader.jsp"/>
 
 <style>
-
 .restaurant-info{
     background-color: white;
     border: 1px solid #d9d9d9;
-
 }
 .restaurant-info .list{
     margin: 0;
@@ -34,7 +32,6 @@
     width: 100px;
     height: 100px;
 }
-
 .restaurant-content .list{
     list-style: none;  
 }
@@ -58,7 +55,6 @@
     border-left : 1px solid #d9d9d9;
     text-align: center;
 }
-
 .mn_bar{
     text-shadow: 0 1px 0 #fff;
     text-decoration: none;
@@ -66,10 +62,8 @@
     font-weight:  700;
    
     display: inline !important;
-
    
   }
-
   .menu-name{
     position: absolute;
     overflow: hidden;
@@ -80,7 +74,6 @@
    
   }
    
-
 .category
 {
     border: 1px solid #d9d9d9;
@@ -94,7 +87,6 @@
     /* height:135px; */
     visibility:hidden;
   }
-
   .list li {
     list-style:none;
     margin-top:5px;
@@ -104,8 +96,6 @@
     text-decoration:underline;
     cursor:pointer;
   } 
-
-
   #menubox dl {
       width:100%;
     }
@@ -127,7 +117,6 @@
 #menubox dd :hover{
     cursor:pointer;
 }
-
 #menubox dd a{
     color:#b6b6b6;
     
@@ -144,7 +133,6 @@
     height:80px;
     border:1px solid #d9d9d9;
     background-size: cover;
-
 }
 .mnl{
      /* border :1px solid black;  */
@@ -182,27 +170,25 @@
 .list li span{
     color: #333; 
 }
-#test1 , #test2,#test3{
+#menuReview , #menuList,#storeInfo{
    
  cursor:pointer;
  
 }
-
-
 </style>
  <script>
        
         
         $(document).ready(function(){
            
-           $("#test1").click(function(){
+           $("#menuReview").click(function(){
               
               
               
               $.ajax({
                  
                  type: "post",
-                 url: "${path}/customer/test.do",   
+                 url: "${path}/customer/menuReview.do",   
                  success: function test(a){$("#callback").html(a);}
               });
               
@@ -212,11 +198,11 @@
         
         
       $(document).ready(function(){
-           $("#test2").click(function(){
+           $("#menuList").click(function(){
               var businessCode=${businessCode};
               $.ajax({
                  type: "post",
-                 url: "${path}/customer/test1.do",
+                 url: "${path}/customer/menuList.do",
                  data : {"businessCode" : businessCode},
                  success: function test(a){$("#callback").html(a);}
               });          
@@ -227,7 +213,7 @@
          var businessCode=${businessCode}
           $.ajax({
              type: "post",
-             url: "${path}/customer/test1.do",
+             url: "${path}/customer/menuList.do",
              data : {"businessCode" : businessCode},
              success: function test(a){$("#callback").html(a);}
           });
@@ -236,12 +222,12 @@
          
       $(document).ready(function(){
            
-           $("#test3").click(function(){
+           $("#storeInfo").click(function(){
               
               $.ajax({
                  
                  type: "post",
-                 url: "${path}/customer/test2.do",   
+                 url: "${path}/customer/storeInfo.do",   
                  success: function test(a){$("#callback").html(a);}
               });
               
@@ -290,13 +276,13 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <ul class="navbar-nav mr-aurto">
                         <li class="nav-item active">
-                            <a class="nav-link" id="test2">메뉴 <span>35</span></a>
+                            <a class="nav-link" id="menuList">메뉴 <span>35</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" id="test1" >리뷰 <span>55</span></a>
+                            <a class="nav-link" id="menuReview" >리뷰 <span>55</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" id="test3">정보</a>
+                            <a class="nav-link" id="storeInfo">정보</a>
                         </li>
                     </ul>
                 </nav>
