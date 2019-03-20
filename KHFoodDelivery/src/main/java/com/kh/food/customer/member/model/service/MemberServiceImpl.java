@@ -60,6 +60,17 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectmemberQna(memberId);
 	}
 
+
+	@Override
+	public int deleteMenuCode(int reMenuCode) {
+		return dao.deleteMenuCode(reMenuCode);
+	}
+	@Override
+	public List<WishList> selectSame(Map<String, Object> menuMap) {
+		return dao.selectSame(menuMap);
+	}
+
+
 	@Inject
 	private JavaMailSender mailSender;
 

@@ -564,10 +564,10 @@ public class MemberController {
 		for(int i=0; i<wishList.size(); i++) {
 			if(menuCode==wishList.get(i).getMenuCode()) {
 				selectMenuCode=wishList.get(i).getMenuCode();
-				System.out.println(i+"번째 메뉴코드"+selectMenuCode);
+//				System.out.println(i+"번째 메뉴코드"+selectMenuCode);
 			}
 		}
-		System.out.println(selectMenuCode);
+//		System.out.println(selectMenuCode);
 		request.setAttribute("selectMenuCode", selectMenuCode);
 		request.setAttribute("maps", maps);
 		request.getRequestDispatcher("/WEB-INF/views/customer/WishList.jsp").forward(request, response);
@@ -635,7 +635,7 @@ public class MemberController {
 	@RequestMapping("/customer/deleteMenuCount.do")
 	@ResponseBody
 	public int deleteMenuCount(int menuCode, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(menuCode);
+//		System.out.println(menuCode);
 		
 		int result=service.deleteMenuCount(menuCode);
 		
@@ -677,7 +677,21 @@ public class MemberController {
 		menuMap.put("businessCode", businessCode);
 		menuMap.put("menuCode", menuCode);
 		
+		
+		
+		List<WishList> wishList=service.selectSame(menuMap);
+		
+		int reMenuCode=0;
+		for(int i=0; i<wishList.size(); i++) {
+			System.out.println(i+"번째 메뉴코드"+wishList.get(i).getMenuCode());
+			if(menuCode==wishList.get(i).getMenuCode()) {
+				reMenuCode=wishList.get(i).getMenuCode();
+			}
+		}
+		int delete=service.deleteMenuCode(reMenuCode);
 		int result=service.insertWishList(menuMap);
+		
+		menuMap.put("reMenuCode", menuCode);
 		
 		return menuMap;
 	}

@@ -39,7 +39,6 @@
 		SELECT * FROM WISHLIST WHERE BUSINESSCODE=#{businessCode} AND MEMBERID=#{memberId}
 	</select>
 	
-	
 	<delete id="deleteCategory" parameterType="string">
 		delete from menu_category where menucategorycode = #{menuCategory}
 	</delete>
@@ -50,6 +49,13 @@
 		select * from menu where businessCode = #{businessCode}
 	</select>
 	
+	<select id="selectSame" parameterType="map" resultType="wishList">
+		SELECT * FROM WISHLIST WHERE BUSINESSCODE=#{businessCode} AND MEMBERID=#{memberId}
+	</select>
+	
+	<delete id="deleteMenuCode" parameterType="_int">
+		DELETE FROM WISHLIST WHERE MENUCODE=#{reMenuCode}
+	</delete>
 	<update id="updateMenuPrice" parameterType="map">
 			update menu set menuprice = #{menuPrice} where menucode = #{menuCode}
 	</update>
