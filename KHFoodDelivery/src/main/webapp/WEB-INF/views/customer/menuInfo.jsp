@@ -450,7 +450,7 @@
 										<!-- <a id="minusMenuCount" class="btn btn-minus">-</a> --> <span
 										id="countUpdate${wish.MENUCODE }">${wish.MENUCOUNT } 개</span>
 										<input type="hidden" id="countUpdate${wish.MENUCODE }"
-										value="" /> <input type="hidden" value="${wish.MEMBERID }">
+										value="" /> 
 										<!-- <a id="plusMenuCount"  class="btn btn-plus">+</a> -->
 									</li>
 								</ul>

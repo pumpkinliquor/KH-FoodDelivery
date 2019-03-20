@@ -98,9 +98,9 @@ div{
                                 <div class="form-group">
                                     <label for="address" class="col-sm-3 control-label">주소</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control address1" placeholder="배달 주소" name="memberAddress"
+                                        <input type="text" class="form-control address1" name="memberAddress"
                                             name="address" ng-value="session_storage.checkout_input.address"
-                                            ng-readonly="true" ng-disabled="true" value="현재위치받아야함"
+                                            ng-readonly="true" ng-disabled="true" value="${sessionScope.myAddr }"
                                             readonly="readonly" disabled="disabled">
                                     </div>
                                 </div>
