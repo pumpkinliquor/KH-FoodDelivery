@@ -8,6 +8,6 @@ import com.kh.food.owner.store.model.vo.Store;
 public interface OrderReviewService {
 
 	List<Map<String, String>> selectStoreList(String ownerId);
-	
+	List<Store> storeList(String ownerId);
 	
 }

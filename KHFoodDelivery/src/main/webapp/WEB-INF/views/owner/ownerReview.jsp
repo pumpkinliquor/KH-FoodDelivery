@@ -49,6 +49,31 @@ pageEncoding="UTF-8"%>
 </style>
 
 
+
+	<script>
+		function SetSelectBox(){
+			var stN=$(".form-control").val();
+			
+			console.log(stN);
+			if(stN=='oll')
+			{
+				jQuery('.layer').show();
+				}	
+			else if(stN==stN){
+				console.log("stm==stn : "+stN);
+				$.ajax({
+					
+	                 type: "post",
+	                 url: "${path}/owner/test.do",   
+	                 data: {"stN" : stN},
+	                 success: function test(a){$(".layer").html(a);}
+	              });
+			}
+		}
+	
+	</script> 
+	
+	
     <div class="container">
     	
         <div class="row">
@@ -57,17 +82,19 @@ pageEncoding="UTF-8"%>
             </div>
 
             <div class="col-sm-10">
-                <select class="form-control">
-                    <option>전체보기</option>
-                    <option>가게명1</option>
-                    <option>가게명2</option>
+                <select class="form-control" onchange="SetSelectBox()";>
+                    <option value="oll">전체보기</option>
+                    <c:forEach items="${selectStoreList}" var="st">
+                    <option value="${st.storeName}">${st.storeName}</option>
+                    
+                    </c:forEach>
                 </select>
             </div>
 	
         </div>
         <hr/>
       
-       
+       <div class="layer">
         <c:forEach items="${storeList}" var="st">
          
         <div class="row">
@@ -85,7 +112,7 @@ pageEncoding="UTF-8"%>
 					        <span class="off">★</span>
 					        <span class="off">★</span>
 					        <span class="off">★</span>
-					        <a>${st.OWNERID }님</a>
+					        <a>${st.MEMBERID }님</a>
 					        <small>${st.WRITEDATE }</small>
 	    				</p>
 	    				
@@ -97,7 +124,7 @@ pageEncoding="UTF-8"%>
 					        <span class="off">★</span>
 					        <span class="off">★</span>
 					        <span class="off">★</span>
-	    					<a>${st.OWNERID }님</a>
+	    					<a>${st.MEMBERID }님</a>
 	    					<small>${st.WRITEDATE }</small>
 	    				
 	    				</p>
@@ -110,7 +137,7 @@ pageEncoding="UTF-8"%>
 					        <span class="on">★</span>
 					        <span class="off">★</span>
 					        <span class="off">★</span>
-					        <a>${st.OWNERID }님</a>
+					        <a>${st.MEMBERID }님</a>
 					        <small>${st.WRITEDATE }</small>
 	    				</p>
 	             	</c:if>
@@ -121,7 +148,7 @@ pageEncoding="UTF-8"%>
 					        <span class="on">★</span>
 					        <span class="on">★</span>
 					        <span class="off">★</span>
-					        <a>${st.OWNERID }님</a>
+					        <a>${st.MEMBERID }님</a>
 					        <small>${st.WRITEDATE }</small>
 	    				</p>
 	             	</c:if>
@@ -132,7 +159,7 @@ pageEncoding="UTF-8"%>
 					        <span class="on">★</span>
 					        <span class="on">★</span>
 					        <span class="on">★</span>
-					        <a>${st.OWNERID }님</a>
+					        <a>${st.MEMBERID }님</a>
 					        <small>${st.WRITEDATE }</small>
 	    				</p>
 	    				
@@ -162,6 +189,7 @@ pageEncoding="UTF-8"%>
         </form>
         <hr/>
 	</c:forEach>
+	</div>
 
     </div>
 

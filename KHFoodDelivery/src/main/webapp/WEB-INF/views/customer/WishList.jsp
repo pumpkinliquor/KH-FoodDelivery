@@ -18,7 +18,7 @@
          <br>
          <ul>
             <li style="list-style: none; float: left;">
-            <a id="deleteMenuCount${maps.menuCode }" style="cursor:pointer;">x</a> ${maps.menuPrice }원</li>
+            <a id="deleteMenuCount${maps.menuCode }" style="cursor:pointer;"><img src="${path }/resources/images/owner/icons/deleteIcon.png" width=16px;/></a> ${maps.menuPrice }원</li>
             <li   style="list-style: none; margin-right: 1em; text-align: right; padding-top: 5px;">
                <!-- <a id="minusMenuCount" class="btn btn-minus">-</a> -->
                <span id="countUpdate${maps.menuCode }">${maps.menuCount } 개</span>
