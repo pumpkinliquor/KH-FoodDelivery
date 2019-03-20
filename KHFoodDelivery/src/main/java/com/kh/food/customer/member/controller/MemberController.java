@@ -1,9 +1,7 @@
 package com.kh.food.customer.member.controller;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
@@ -40,7 +38,6 @@ import com.kh.food.common.PagingFactory;
 import com.kh.food.customer.member.model.service.MemberService;
 import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
-import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -529,8 +526,15 @@ public class MemberController {
 		maps.put("businessCode", businessCode);
 		List<Store> list=service.menuInfo(businessCode);
 		List<WishList> wishList=service.selectWishList(maps);
-		
+		List<WishList> callPrice=service.plusPrice(maps);
+		Store minPrice=service.minPrice(businessCode);
+		int resultPrice=0;
+		for(int i=0; i<callPrice.size(); i++) {
+			resultPrice+=callPrice.get(i).getPlusMenuPrice();
+		}
+		mv.addObject("minPrice", minPrice);
 		mv.addObject("wishList", wishList);
+		mv.addObject("resultPrice", resultPrice);
 		mv.addObject("businessCode", businessCode);
 		mv.addObject("list",list);
 		mv.setViewName("customer/menuInfo");
@@ -549,7 +553,7 @@ public class MemberController {
 			@RequestParam(value="menuCode", required=false, defaultValue="0") int menuCode,
 			HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println(menuCount);
+//		System.out.println(menuCount);
 		String memberId=(String) request.getSession().getAttribute("logined");
 		Map<String,Object> maps=new HashMap<>();
 		maps.put("menuTitle", menuTitle);
@@ -560,47 +564,81 @@ public class MemberController {
 		maps.put("menuCount", menuCount);
 		maps.put("menuCode", menuCode);
 		
-		List<WishList> wishList=service.selectWishList(maps);
-		System.out.println(maps);
+		List<WishList> wishList=service.bigyoMenuCode(maps);
+//		System.out.println(maps);
 		
+		int selectMenuCode=0;
+		for(int i=0; i<wishList.size(); i++) {
+			if(menuCode==wishList.get(i).getMenuCode()) {
+				selectMenuCode=wishList.get(i).getMenuCode();
+				System.out.println(i+"번째 메뉴코드"+selectMenuCode);
+			}
+		}
+		System.out.println(selectMenuCode);
+		request.setAttribute("selectMenuCode", selectMenuCode);
 		request.setAttribute("maps", maps);
 		request.getRequestDispatcher("/WEB-INF/views/customer/WishList.jsp").forward(request, response);
 	}
 	
-	@RequestMapping("/customer/plusMenuCount.do")
+	@RequestMapping("/customer/wishResult.do")
 	@ResponseBody
-	public int plusMenuCount(int menuCode, int plusCount, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(menuCode);
-		System.out.println(plusCount);
+	public void resultAjaxPrice(HttpServletRequest request, HttpServletResponse response, int businessCode) throws ServletException, IOException {
+		String memberId=(String) request.getSession().getAttribute("logined");
 		
-		Map<String,Object> upCount=new HashMap<>();
-		upCount.put("menuCode", menuCode);
-		upCount.put("plusCount", plusCount);
+//		System.out.println("비즈니스코드"+businessCode);
 		
-		int result=service.plusMenuCount(upCount);
+		Map<String, Object> maps=new HashMap<>();
 		
-		int menuCount=service.menuCounts(menuCode);
+		maps.put("businessCode", businessCode);
+		maps.put("memberId", memberId);
 		
-		return menuCount;
+		Store minPrice=service.minPrice(businessCode);
+		List<WishList> callPrice=service.plusPrice(maps);
+		int resultPrice=0;
+		for(int i=0; i<callPrice.size(); i++) {
+			resultPrice+=callPrice.get(i).getPlusMenuPrice();
+		}
+//		System.out.println(resultPrice);
+		
+		request.setAttribute("minPrice", minPrice);
+		request.setAttribute("resultPrice", resultPrice);
+		request.getRequestDispatcher("/WEB-INF/views/customer/WishResult.jsp").forward(request, response);
 	}
 	
-	@RequestMapping("/customer/minusMenuCount.do")
-	@ResponseBody
-	public int minusMenuCount(int menuCode, int minusCount, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(menuCode);
-		System.out.println(minusCount);
-		
-		Map<String,Object> upCount=new HashMap<>();
-		upCount.put("menuCode", menuCode);
-		upCount.put("plusCount", minusCount);
-		
-		int result=service.minusMenuCount(upCount);
-		
-		int menuCount=service.menuCounts(menuCode);
-		
-		return menuCount;
-	}
-	
+//	@RequestMapping("/customer/plusMenuCount.do")
+//	@ResponseBody
+//	public int plusMenuCount(int menuCode, int plusCount, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+//		System.out.println(menuCode);
+//		System.out.println(plusCount);
+//		
+//		Map<String,Object> upCount=new HashMap<>();
+//		upCount.put("menuCode", menuCode);
+//		upCount.put("plusCount", plusCount);
+//		
+//		int result=service.plusMenuCount(upCount);
+//		
+//		int menuCount=service.menuCounts(menuCode);
+//		
+//		return menuCount;
+//	}
+//	
+//	@RequestMapping("/customer/minusMenuCount.do")
+//	@ResponseBody
+//	public int minusMenuCount(int menuCode, int minusCount, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+//		System.out.println(menuCode);
+//		System.out.println(minusCount);
+//		
+//		Map<String,Object> upCount=new HashMap<>();
+//		upCount.put("menuCode", menuCode);
+//		upCount.put("plusCount", minusCount);
+//		
+//		int result=service.minusMenuCount(upCount);
+//		
+//		int menuCount=service.menuCounts(menuCode);
+//		
+//		return menuCount;
+//	}
+//	
 	@RequestMapping("/customer/deleteMenuCount.do")
 	@ResponseBody
 	public int deleteMenuCount(int menuCode, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
@@ -614,9 +652,16 @@ public class MemberController {
 	
 	//업체 전체보기
 	@RequestMapping("/customer/selectallstore.do")
-	public ModelAndView allStore(@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage) {
+	public ModelAndView allStore(@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage,String myAddr,HttpSession session) {
 		
+		System.out.println(myAddr);
 		ModelAndView mv= new ModelAndView();
+		
+		//검색 주소 세션에 넣기
+		session.setAttribute("myAddr",myAddr);
+				
+		logger.debug(""+session.getAttribute("myAddr"));
+		
 		int numPerPage=8;
 		
 		int count=service.selectMenuCount();
@@ -635,7 +680,7 @@ public class MemberController {
 	public Map menuInsert(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, 
 			String menuTitle, 	int menuPrice,	int menuCount, int plusMenuPrice, int businessCode, int menuCode) {
 
-		System.out.println("메뉴이름 : "+menuTitle+", 가격 : "+menuPrice+", 수량 : "+menuCount+", 합계 : "+plusMenuPrice+", 사장님번호 : "+businessCode+", 메뉴코드 : "+menuCode);
+//		System.out.println("메뉴이름 : "+menuTitle+", 가격 : "+menuPrice+", 수량 : "+menuCount+", 합계 : "+plusMenuPrice+", 사장님번호 : "+businessCode+", 메뉴코드 : "+menuCode);
 		Map<String,Object> menuMap=new HashMap<>();
 		String memberId=(String) request.getSession().getAttribute("logined");
 		menuMap.put("memberId", memberId);
@@ -822,6 +867,7 @@ public class MemberController {
 		String loc="/";
 		
 		Map<String,String> map = new HashMap<>();
+		Map<String,Object> result2 = new HashMap<>();
 		map.put("id", memberId);
 		map.put("nickName", nickName);
 		Map<String,Object> result=service.login(map);
@@ -836,6 +882,8 @@ public class MemberController {
 		}
 		else
 		{
+				result2=service.login(map);
+				session.setAttribute("loginedno", result2.get("MEMBERNUM"));
 				session.setAttribute("logined", memberId);
 				msg = "로그인 성공";
 				loc = "/";
@@ -862,6 +910,7 @@ public class MemberController {
 		{
 			msg = "로그인 성공!";
 			session.setAttribute("logined", m.getMemberId());
+			session.setAttribute("loginedno", m.getMemberNum());
 		}
 		else
 		{

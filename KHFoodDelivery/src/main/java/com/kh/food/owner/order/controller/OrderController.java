@@ -38,7 +38,7 @@ public class OrderController {
 		logger.debug("owerId"+ownerId);
 		logger.debug("storeList"+storeList);
 		mv.addObject("storeList",storeList);
-		mv.setViewName("owner/storeChoice");
+		mv.setViewName("owner/storeChoice1");
 		return mv;
 	}
 	
@@ -53,6 +53,7 @@ public class OrderController {
 		logger.debug("businessCode"+businessCode);
 //		List<Map<String,String>> orderList = service.selectOrderList();
 		List<Pay> orderList = service.selectOrderList(businessCode1);
+		logger.debug("주문내역"+orderList);
 		List<Pay> orderOneList = service.selectOrderOneList(cPage,numPerPage,businessCode1);
 		Map<String,String> todayOrderCount = service.selectTodayOrderCount(businessCode1);
 		

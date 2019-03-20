@@ -32,7 +32,7 @@ public class StoreController {
 	
 	@RequestMapping("/owner/storeFormEnd.do")
 	public ModelAndView storeFormEnd(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, String businessName, String businessPhone, String businessNum, 
-			String storeCategory, String storeName, String storePhone, String frontAddress, String backAddress, int minPrice, String storeProfile, MultipartFile storeImage) {
+			String storeCategory, String storeName, String storePhone, String frontAddress, String backAddress, int minPrice, String storeProfile,String deliveryPrice ,MultipartFile storeImage) {
 			Map<String,Object> store=new HashMap<String,Object>();
 			String ownerId=(String) request.getSession().getAttribute("ownerId");
 			String storeAddress=frontAddress+" "+backAddress;
@@ -46,6 +46,7 @@ public class StoreController {
 			store.put("storeCategory", storeCategory);
 			store.put("minPrice", minPrice);
 			store.put("storeProfile", storeProfile);
+			store.put("deliveryPrice", deliveryPrice);
 //			System.out.println(storeAddress);
 			String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/owner/storeMainImage");
 			

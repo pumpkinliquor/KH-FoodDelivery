@@ -24,11 +24,41 @@ public class Pay {
 	private String memberPhone;
 	private String menuName;
 	private Date formatDate;
+	private int deliveryPrice;
 	
 	public Pay() {}
 
 	
 	
+	
+	
+	public Pay(int rNum, int payNum, int businessCode, String payDate, int menuCode, String sideCode, String drinkCode,
+			String tasteCode, int price, int count, int memberNum, String payOrderMethod, String payRequest,
+			int payOrderNum, String memberId, String memberName, String memberPhone, String menuName, Date formatDate,
+			int deliveryPrice) {
+		super();
+		this.rNum = rNum;
+		this.payNum = payNum;
+		this.businessCode = businessCode;
+		this.payDate = payDate;
+		this.menuCode = menuCode;
+		this.sideCode = sideCode;
+		this.drinkCode = drinkCode;
+		this.tasteCode = tasteCode;
+		this.price = price;
+		this.count = count;
+		this.memberNum = memberNum;
+		this.payOrderMethod = payOrderMethod;
+		this.payRequest = payRequest;
+		this.payOrderNum = payOrderNum;
+		this.memberId = memberId;
+		this.memberName = memberName;
+		this.memberPhone = memberPhone;
+		this.menuName = menuName;
+		this.formatDate = formatDate;
+		this.deliveryPrice = deliveryPrice;
+	}
+
 	public Pay(int payNum, int businessCode, String payDate, int menuCode, String sideCode, String drinkCode,
 			String tasteCode, int price, int count, int memberNum, String payOrderMethod, String payRequest,
 			int payOrderNum, String memberId, String memberName, String memberPhone, String menuName,
@@ -105,6 +135,22 @@ public class Pay {
 		this.menuName = menuName;
 		this.formatDate = formatDate;
 	}
+
+
+
+	public int getDeliveryPrice() {
+		return deliveryPrice;
+	}
+
+
+
+
+
+	public void setDeliveryPrice(int deliveryPrice) {
+		this.deliveryPrice = deliveryPrice;
+	}
+
+
 
 
 
@@ -335,7 +381,6 @@ public class Pay {
 	}
 
 
-
 	@Override
 	public String toString() {
 		return "Pay [rNum=" + rNum + ", payNum=" + payNum + ", businessCode=" + businessCode + ", payDate=" + payDate
@@ -343,8 +388,10 @@ public class Pay {
 				+ tasteCode + ", price=" + price + ", count=" + count + ", memberNum=" + memberNum + ", payOrderMethod="
 				+ payOrderMethod + ", payRequest=" + payRequest + ", payOrderNum=" + payOrderNum + ", memberId="
 				+ memberId + ", memberName=" + memberName + ", memberPhone=" + memberPhone + ", menuName=" + menuName
-				+ ", formatDate=" + formatDate + "]";
+				+ ", formatDate=" + formatDate + ", deliveryPrice=" + deliveryPrice + "]";
 	}
+
+
 
 	
 	

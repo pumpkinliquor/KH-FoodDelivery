@@ -41,7 +41,7 @@ public class MenuController {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("storeList",storeList);
-		mv.setViewName("owner/menuStoreChoice");
+		mv.setViewName("owner/menuStoreChoice1");
 		return mv;
 	}
 	
@@ -52,6 +52,7 @@ public class MenuController {
 		
 		ModelAndView mv = new ModelAndView();
 		List<Map<String,String>> category = service.selectMenuCategory(businessCode);
+		logger.debug("category"+category);
 		mv.addObject("businessCode",businessCode);
 		mv.addObject("category",category);
 		mv.setViewName("owner/menuEnroll");
@@ -62,6 +63,7 @@ public class MenuController {
 	@RequestMapping("/owner/menuManage.do")
 	public ModelAndView menuManage(String businessCode)
 	{
+		logger.debug("진입했니?");
 		ModelAndView mv = new ModelAndView();
 		List<Map<String,String>> category = service.selectMenuCategory(businessCode);
 		List<Map<String,String>> menuList = service.selectMenuList(businessCode);

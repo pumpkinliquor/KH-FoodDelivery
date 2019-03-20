@@ -125,6 +125,10 @@ function execDaumPostcode(){
 			                <td><input type="number" name="minPrice" placeholder="배달 시 최저주문금액을 적어주세요." class="form-control" required></td>
 			            </tr>
 			            <tr>
+			                <th>배달비</th>
+			                <td><input type="number" name="deliveryPrice" placeholder="배달비를 적어주세요." class="form-control" required></td>
+			            </tr>
+			            <tr>
 			                <th>업체소개</th>
 			                <td><textarea cols="10" id="storeProfile" name="storeProfile" class="form-control" style="resize:none; height:15em;" required></textarea></td>
 			            </tr>

@@ -71,21 +71,6 @@ left: 0;
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 <script>
 
-$(function(){
-	$(".menu").click(function(){
-		var menu = $(".menu").val();
-		$.ajax({
-			url:"${path}/owner/menuEnroll.do",
-			data:{"menu":menu},
-			success:function(data)
-			{
-				
-			}
-			
-		});
-	});
-});
-
 </script>
 <section>
 	<div class="container">
@@ -94,9 +79,7 @@ $(function(){
                          <div class="list-group ">
                           <a href="${path }/owner/menuEnroll.do?businessCode=${businessCode}" class="list-group-item list-group-item-action active menu">메뉴/카테고리 등록</a>
                           <a href="${path }/owner/menuManage.do?businessCode=${businessCode}" class="list-group-item list-group-item-action menu">메뉴관리</a>
-                          <a href="${path }/owner/menuSoldOut.do?businessCode=${businessCode}" class="list-group-item list-group-item-action menu">품절관리</a>
-                          
-                          
+                          <a href="${path }/owner/menuSoldOut.do?businessCode=${businessCode}" class="list-group-item list-group-item-action menu">품절관리</a>                   
                         </div> 
                     </div>
                     <div class="col-md-9">
