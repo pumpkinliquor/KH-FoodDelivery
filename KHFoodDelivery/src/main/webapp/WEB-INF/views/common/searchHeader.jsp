@@ -97,7 +97,7 @@ div.newsletter,div.group{display:inline-block;}
                            
                             var infoDiv = document.getElementById('centerAddr1');
                             
-                            $('#location').val(result[0].address.address_name);
+                            $('#location1').val(result[0].address.address_name);
                             /* infoDiv.innerHTML = '<div>지번 주소 : ' + result[0].address.address_name + '</div>'; */
                          
                         }   
@@ -140,7 +140,7 @@ div.newsletter,div.group{display:inline-block;}
        var geocoder = new daum.maps.services.Geocoder();
   
  
-    function sample5_execDaumPostcode() {
+    function execDaumPostcode() {
          new daum.Postcode({ 
             oncomplete: function(data) {
                 // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -163,7 +163,7 @@ div.newsletter,div.group{display:inline-block;}
                 }
  
                 // 주소 정보를 해당 필드에 넣는다.
-              $('#location').val(fullAddr);
+              $('#location1').val(fullAddr);
                 // 주소로 상세 정보를 검색
                 geocoder.addressSearch(data.address, function(results, status) {
                     // 정상적으로 검색이 완료됐으면
@@ -184,22 +184,23 @@ div.newsletter,div.group{display:inline-block;}
   
 
 
-   //헤더 고정 
-/*    $(function(){
-      $(window).scroll(function(){
-         var num = $(this).scrollTop();
-      
-         if(num > 36){
-            $(".newsletter").css("position","fixed");
-         }else{
-            $(".newsletter").css("position","absolute");
-         }
-      });
-   }); */
+
    //배달의민족 클릭시 메인으로
    function mainpage(){
       location.href="${path }";
    }
+   function locationSearchStore(){
+		 if(${sessionScope.logined==null}){
+			 alert("로그인 후 이용해주세요");
+		 }else{
+			 
+			var myAddr=$('#location1').val();
+			console.log(myAddr);
+			  location.href="${path}/customer/selectallstore.do?myAddr="+myAddr; 
+
+			
+		 }
+	 }
    
    
    </script>
@@ -221,7 +222,7 @@ div.newsletter,div.group{display:inline-block;}
               </c:if> 
                <c:if test="${sessionScope.logined!=null}">
                <a href="${path }/customer/logout.do">로그아웃</a>
-               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}">마이페이지</a>
+               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
                
              
               </c:if> 
@@ -230,18 +231,19 @@ div.newsletter,div.group{display:inline-block;}
                        <h2 onclick="mainpage();"> <span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></h2>
                     </div>
                 </div>
-                <div class="col-sm-12">
-                    <div class="content">
-                    <div class="input-group">
-                         <button id="positionBtn" onclick="getLocation4()" ><img id="locationImg" src="${path }/resources/images/place.png"></button>
-                      <input type="text" id="location" onclick="sample5_execDaumPostcode();"  class="form-control" value="" placeholder="주소 찾기를 원하시면 클릭해주세요">
-                         <span class="input-group-btn">
-                         <button class="btn" onclick="" type="submit">검색</button>
+             <div class="col-sm-12">
+                  <div class="content">
+                  <div class="input-group">
+                       <button id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
+                       
+                    <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요" />
+                       <span class="input-group-btn">
+                       <button class="btn" onclick="locationSearchStore();" type="submit">검색</button>
 
-                         </span>
-                    </div>
-                    </div>
-                </div>
+                       </span>
+                  </div>
+                  </div>
+              </div>
                 
                 </div> 
                 </div>

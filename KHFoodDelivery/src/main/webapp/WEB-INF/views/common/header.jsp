@@ -67,6 +67,7 @@
                     navigator.geolocation.getCurrentPosition(function(position) {
                      var latitude = position.coords.latitude;
                     var longitude = position.coords.longitude;
+                    var coords = position.coords;
                     
                    
                      alert("아직 구현안됨 지도 클릭!"); 
@@ -79,7 +80,7 @@
                         level: 3 // 지도의 확대 레벨
                     };   
 
-                    
+                      
                       //지도를 생성합니다    
                     var map = new daum.maps.Map(mapContainer, mapOption); 
 
@@ -88,18 +89,20 @@
                  var geocoder = new daum.maps.services.Geocoder();
 
                     //지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
-                   /*   daum.maps.event.addListener(map, 'click', function(mouseEvent) { */
-                    searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+                     daum.maps.event.addListener(map, 'click', function(mouseEvent) { 
+                    searchDetailAddrFromCoords(coords1, function(result, status) {
                         if (status === daum.maps.services.Status.OK) {
                            
-                            var infoDiv = document.getElementById('centerAddr1');
-                            
-                            $('#location').val(result[0].address.address_name); 
-                          /*   infoDiv.innerHTML = '<div>지번 주소 : ' + result[0].address.address_name + '</div>'; */
+                            var infoDiv = document.getElementById('centerAddr1'); 
+
+
+  
+	$('#location1').val(result[0].address.address_name); 
+                         
                          
                         }   
                     });
-                    /* }); */
+                     }); 
   
 
             
@@ -215,9 +218,11 @@ $(function(){
 		 alert("로그인 후 이용해주세요");
 	 }else{
 		 
+		 var firstPage=$('#firstPage').val();
 		var myAddr=$('#location1').val();
 		console.log(myAddr);
-		  location.href="${path}/customer/selectallstore.do?myAddr="+myAddr; 
+		 location.href="${path}/customer/selectallstore.do?myAddr="+myAddr+"&firstPage="+firstPage;
+		 
 
 		
 	 }
@@ -262,8 +267,9 @@ $(function(){
                   <div class="input-group">
                        <button id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
                        
-                    <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요" />
+                    <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요"/>
                        <span class="input-group-btn">
+                       <input type="hidden" value="1" name="firstPage" id="firstPage"/>
                        <button class="btn" onclick="locationSearchStore();" type="submit">검색</button>
 
                        </span>
