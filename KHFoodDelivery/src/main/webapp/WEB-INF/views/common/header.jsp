@@ -240,14 +240,15 @@ $(function(){
                  
             </c:if> 
              <c:if test="${sessionScope.logined!=null}">
-             <a href="${path }/customer/logout.do">로그아웃</a>
-
-             <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
-             
-        
-
-
-
+             	<c:choose>
+             		<c:when test="${sessionScope.isAdmin == 1 }">             	
+             			<a href="${path}/admin/adminMain.do">관리자 페이지</a>
+             		</c:when>
+             		<c:otherwise>
+             			<a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
+             		</c:otherwise>
+             	</c:choose>
+             	<a href="${path }/customer/logout.do">로그아웃</a>
             </c:if> 
      
             

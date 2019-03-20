@@ -359,7 +359,8 @@ public class MemberController {
 				else {
 					msg="로그인 성공";
 					loc="/";
-				}				
+				}
+				session.setAttribute("isAdmin", result.get("ISADMIN"));
 				session.setAttribute("logined", result.get("MEMBERID"));
 				session.setAttribute("loginedno", result.get("MEMBERNUM"));
 			}else {
