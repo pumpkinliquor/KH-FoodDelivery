@@ -151,11 +151,11 @@ div{
                     <div class="cart">
                         <div class="cart-empty">
                             
-                            총 합계 : ${resultPrice}
+                            총 합계 : ${resultPrice} 원
                         </div>
                         <div class="clearfix" id="resultPrice">
 
-                            배달요금 : ${deliveryPrice } 
+                            배달요금 별도 : ${deliveryPrice } 원
                         </div>
                         <div class="cart-btn clearfix">
                             <a id="payButton" class="btu">결제하기</a>
@@ -172,16 +172,16 @@ div{
 $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디쓸것
     var title=$('#storeName').text();		//가게명
     console.log(title);
-    var resultPrice=$('#resultPrice').val();   		//총 합계금액     
+    var resultPrice=$('#resultPrice').val();
+    var deliveryPrice=$('#deliveryPrice').val();//총 합계금액     
  	var IMP = window.IMP; // 생략가능
 	IMP.init('imp51687071'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	IMP.request_pay({
     pg : 'inicis', // version 1.1.0부터 지원.
     pay_method : 'card',
     merchant_uid : 'merchant_' + new Date().getTime(),
-    name : 'title', //주문음식이름
-    
-    amount : 100+200, //가격 받아가야함 총 가격과 배달가격 합쳐서
+    name : 'title', //주문음식이름 
+    amount : resultPrice+deliveryPrice, //가격 받아가야함 총 가격과 배달가격 합쳐서
     buyer_email : 'wjdqls7773@gmail.com', //사는 사람 이메일 받아가야됨
     buyer_name : '간신배', //이름도
     buyer_tel : '010-1234-5678', //번호도
@@ -195,7 +195,7 @@ $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디�
        msg += '상점 거래ID : ' + rsp.merchant_uid;
        msg += '결제 금액 : ' + rsp.paid_amount;
        msg += '카드 승인번호 : ' + rsp.apply_num; 
-       location.href="${path}/customer/payEnd.do?amount="+totalPrice+"&&memberId"+memberId+"&&name"+title; //보낼값들
+       location.href="${path}/customer/payEnd.do?amount="+resultPrice+"&&memberId"+memberId+"&&name"+title; //보낼값들
 
     } else {
         var msg = '결제에 실패하였습니다.';
