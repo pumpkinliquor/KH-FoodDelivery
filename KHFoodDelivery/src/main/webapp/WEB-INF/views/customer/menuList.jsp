@@ -165,7 +165,9 @@ $(document).ready(function(){
 								$('#deletedd'+menuCode).remove();
 							}
 						$('#janbgaID').prepend(data);
-						
+
+						/* location.reload(); */
+
 						$.ajax({
 							type:"POST",
 							url:"${path}/customer/wishResult.do?businessCode="+wishResultBusinessCode,
