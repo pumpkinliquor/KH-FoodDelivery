@@ -645,9 +645,16 @@ public class MemberController {
 	
 	//업체 전체보기
 	@RequestMapping("/customer/selectallstore.do")
-	public ModelAndView allStore(@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage) {
+	public ModelAndView allStore(@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage,String myAddr,HttpSession session) {
 		
+		System.out.println(myAddr);
 		ModelAndView mv= new ModelAndView();
+		
+		//검색 주소 세션에 넣기
+		session.setAttribute("myAddr",myAddr);
+				
+		logger.debug(""+session.getAttribute("myAddr"));
+		
 		int numPerPage=8;
 		
 		int count=service.selectMenuCount();
