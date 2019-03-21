@@ -63,7 +63,11 @@ public class OrderReviewController {
 		
 		List<OwnerReview> or = service.selectOwnerRevie(stN);
 		System.out.println("or : " + or);
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		
+		for(int i=0; i<or.size(); i++) {
+			or.get(i).setFormatWriteDate(df.format(or.get(i).getWriteDate()));
+		}
 		request.setAttribute("orr", or);
 		request.setAttribute("rv", rv);
 		request.getRequestDispatcher("/WEB-INF/views/owner/test.jsp").forward(request, response);
