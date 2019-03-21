@@ -29,4 +29,8 @@ public interface MenuDao {
 
 	int updateCancleSoldOut(String menuCode);
 
+	int deleteMenu1(String menuCategory);
+
+	List<Map<String, String>> selectMenuCategory1(String menuCategory);
+
 }

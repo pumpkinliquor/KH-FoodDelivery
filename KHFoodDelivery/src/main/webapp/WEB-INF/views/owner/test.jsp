@@ -45,7 +45,7 @@ pageEncoding="UTF-8"%>
 
 .star_rating span.on {color:crimson;}
 </style>
- <c:forEach var="st" items="${rv }">
+ <c:forEach var="st" items="${rv }" varStatus="status">
 
 <div class="row">
 <div class="col-sm-2">
@@ -120,30 +120,33 @@ pageEncoding="UTF-8"%>
         
             </div>
          <%-- <c:if test="${!empty orr }"> --%>
-        	<div class="rounded row" style="padding-bottom:1em; padding-right:1em; padding-left:1em; padding-top:1em;">
+      <%--   	<div class="rounded row" style="padding-bottom:1em; padding-right:1em; padding-left:1em; padding-top:1em;">
         		<p>${orr.reviewContext}</p>
         		
         		 
         		 <p>${orr.businessCode}</p>
-        	</div>
+        	</div> --%>
         
       <%--   </c:if>  --%>
         
-         
-            
-        <%-- <c:if test="${empty orr}"> --%>
+      
         <form action="${path }/owner/insertReviewRe.do" method="post">
             <div class="rounded row" style="padding-bottom:1em; padding-right:1em; padding-left:1em; padding-top:1em;">
                         <div class="re">                          
                             <input type="hidden" name="qnaNo" value="${st.REVIEWNUM}"/>
                             <input type="hidden" name="qnaCode" value="${st.BUSINESSCODE}"/>
                             <input type="hidden" name="ownerId" value="${st.OWNERID}"/>                            
+                            <input type="text" value="${orr.get(0).reviewContext }">
                             <textarea id="textarea" name="context" cols="70" rows="5" placeholder="답글을 달아주세요" style="margin-left: 250px;"></textarea><br/>
                             <input type="submit" class="btn" value="사장님 댓글 등록" style=" width:200px; margin-top:15px; float: right;"/>  
                         </div>              
             </div>                
         </form>
-         <%-- </c:if>  --%>
+
         <hr/>
             
+            </c:forEach>
+            
+            <c:forEach var="o" items="${orr}">
+            	 <a>${o.reviewContext}</a> 
             </c:forEach>

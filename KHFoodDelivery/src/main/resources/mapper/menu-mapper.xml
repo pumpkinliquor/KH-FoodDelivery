@@ -4,7 +4,7 @@
 	<resultMap type="map" id="categoryMap"></resultMap>
 	<resultMap type="map" id="menuMap"></resultMap>
 	<insert id="insertCategory" parameterType="map">
-		insert into menu_category values(SEQ_menuCategoryCode.nextval , #{menuCategory} , 38)
+		insert into menu_category values(SEQ_menuCategoryCode.nextval , #{menuCategory} , #{businessCode},0)
 	</insert>
 	<insert id="insertWishList" parameterType="map">
 		INSERT INTO WISHLIST VALUES(SEQ_WISHNUM.NEXTVAL, #{menuCode}, #{businessCode}, #{memberId}, #{menuCount}, #{plusMenuPrice})
@@ -30,7 +30,7 @@
 	</select>
 	
 	<insert id="insertMenu" parameterType="map">
-		insert into menu values(seq_menucode.nextval,38,#{menuCategoryCode},#{menuName},#{menuContent},#{menuPrice},#{menuImage},default)
+		insert into menu values(seq_menucode.nextval,#{businessCode},#{menuCategoryCode},#{menuName},#{menuContent},#{menuPrice},#{menuImage},default,default,default)
 	</insert>
 	<!-- <update id="updateMenuCount" parameterType="map">
 		UPDATE WISHLIST SET MENUCOUNT=#{plusCount} WHERE MENUCODE=#{menuCode}
@@ -50,11 +50,11 @@
 		SELECT * FROM WISHLIST WHERE BUSINESSCODE=#{businessCode} AND MEMBERID=#{memberId}
 	</select>
 	
-	<delete id="deleteCategory" parameterType="string">
-		delete from menu_category where menucategorycode = #{menuCategory}
-	</delete>
+	<update id="deleteCategory" parameterType="string">
+		update menu_category set categorystate = 1 where menucategorycode = #{menuCategory}
+	</update>
 	<select id="selectMenuCategory" parameterType="string" resultMap="categoryMap">
-		select * from menu_category where businesscode = #{businessCode} order by menucategorycode asc
+		select * from menu_category where businesscode = #{businessCode} and categorystate = 0 order by menucategorycode asc
 	</select>
 	<select id="selectMenuList" parameterType="string" resultMap="menuMap">
 		select * from menu where businessCode = #{businessCode} and menustate=0
@@ -71,9 +71,9 @@
 			update menu set menuprice = #{menuPrice} where menucode = #{menuCode}
 	</update>
 	
-	<delete id="deleteMenu" parameterType="string">
-		delete from menu where menucode = #{menuCode}
-	</delete>
+	<update id="deleteMenu" parameterType="string">
+		update menu set menustate = 1 where menucode = #{menuCode}
+	</update>
 	
 	<select id="selectOneMenu" parameterType="string" resultType="map">
 		select * from menu where menucode = #{menuCode}
@@ -95,4 +95,11 @@
 		SELECT * FROM MENU WHERE MENUCODE=#{menuCode}
 	</select>
 	
+	<update id="deleteMenu1" parameterType="string">
+		update menu set menuState = 1 where menucategorycode = #{menuCategory}
+	</update>
+	
+	<select id="selectMenuCategory1" resultType="map">
+			select * from menu_category where menuCategory = #{menuCategory}
+	</select>
 </mapper>

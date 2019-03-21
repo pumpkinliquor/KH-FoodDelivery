@@ -10,17 +10,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
-<div id="plusMenuPrice_result">
-<div class="clearfix" style="clear:both;">최소주문금액 ${minPrice.minPrice }원</div>
-<div class="clearfix" style="background-color:ivory; color:red; font-weight:bold;">
-합계 : ${resultPrice }원
-</div>
-  <form id='businessCodeFrm' action='${path}/customer/pay.do'>
-                           	<input type='hidden' id='businessCode' name='businessCode' value='${businessCode}'/>
-                           	<script>
-                           	</script>
- 							<button class="cart-btn clearfix" id="pay" type="submit" style="clear:both;">
-							주문하기							    
-							</button>
-                           </form>
-</div>
+ <span>주문표</span><a style="float:right; cursor:pointer;" onclick="refreshWishList(${businessCode});"><img src="${path }/resources/images/owner/icons/refreshIcon.png" width=26px;/></a>

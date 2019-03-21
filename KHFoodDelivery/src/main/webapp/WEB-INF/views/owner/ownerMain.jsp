@@ -115,19 +115,10 @@ pageEncoding="UTF-8"%>
                      </c:if>
                      <c:if test="${sessionScope.ownerId!=null }">
                      <div class="col-md-12">
-                        <p>${ownerId}사장님 환영 합니다!!${ownerNum }??${ownerPhone}??${bCode.BUSINESSCODE }${todayOrderCount.TODAYORDERCOUNT},${buSiCode}</p>
+                        <p>${ownerId}사장님 환영 합니다!!</p>
                      </div>
                      <div class="col-md-12">
-                     	<c:if test="${bCode.BUSINESSCODE ne null}">
-                       <h4>오늘의 주문 수는 ${todayOrderCount.TODAYORDERCOUNT }건 입니다!</h4>
-                     	</c:if>
-                     	<c:if test="${bCode.BUSINESSCODE eq null }">
-                     	<h4>사장님 업체 등록을 해주세요~!!!${todayOrderCount2.TODAYORDERCOUNT }</h4>
-        				<c:out value="${todayOrderCount2.TODAYORDERCOUNT }"></c:out>
-                     	</c:if>
-                     </div>
-                     <div class="col-md-12">
-                        <button id="logoutBtn" onclick="location.href='${path }/owner/insertOwner.do'">로그아웃</button>
+                        <button id="logoutBtn" onclick="location.href='${path }/owner/logout.do'">로그아웃</button>
                      </div> 
                      </c:if>
                 </div>           

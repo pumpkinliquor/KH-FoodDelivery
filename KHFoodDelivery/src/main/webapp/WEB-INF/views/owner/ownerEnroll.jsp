@@ -155,7 +155,7 @@ span.error,span.error1 {
 										<label for="name" class="col-4 col-form-label">비밀번호</label>
 										<div class="col-8">
 											<input type="password" id="ownerPw" name="ownerPw"
-												placeholder="비밀번호" class="form-control here">
+												placeholder="6~20 영문 대소문자," class="form-control here">
 										</div>
 									</div>
 									<div class="form-group row">
@@ -163,7 +163,7 @@ span.error,span.error1 {
 											확인</label>
 										<div class="col-8">
 											<input type="password" id="reownerPw" name="reownerPw"
-												placeholder="비밀번호 확인" class="form-control here"> <span
+												placeholder="최소 1개의 숫자 혹은 특수 문자를 포함" class="form-control here"> <span
 												class="guide ok1">비밀 번호가 일치함</span> <span
 												class="guide error1">비밀번호가 일치하지 않음 </span>
 										</div>

@@ -97,7 +97,9 @@
 	</insert>
 	
 	<select id="selectOwnerRevie" parameterType="_int" resultType="com.kh.food.owner.review.model.vo.OwnerReview">
-		select review_sub.* from review_sub join review on(review_sub.reviewnum = review.reviewnum) where review.businesscode=#{stN}
+	
+		select * from review_sub where businessCode=#{stN}
+
 	</select>
 
 	
