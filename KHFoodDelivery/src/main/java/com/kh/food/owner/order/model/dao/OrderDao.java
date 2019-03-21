@@ -19,5 +19,7 @@ public interface OrderDao {
 
 	List<Map<String, String>> selectStoreList(String ownerId);
 
+	int updateOrderState(Map<String, String> map);
+
 
 }

@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.kh.food.owner.custom.model.service.CustomerService;
 
@@ -104,5 +106,25 @@ public class StoreController {
 		return mv;
 	}
 
-	
+	// 가게 즐겨찾기 추가 / 삭제
+	@RequestMapping("/store/markStore.do")
+	public ModelAndView markStore(@RequestParam("isMark") int isMark, @RequestParam("bsCode") int bsCode,
+									HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+
+		String memberId=(String) request.getSession().getAttribute("logined");
+		
+		Map<String, Object> map = new HashMap();
+		map.put("businessCode", bsCode);
+		map.put("memberId", memberId);
+		
+		if(isMark == 0) {	// 찜 등록
+			service.insertMark(map);
+		} else {			// 찜 삭제
+			service.deleteMark(map);
+		}
+		
+		mv.setView(new RedirectView("/food/customer/menuInfo.do?businessCode="+bsCode));
+		return mv;
+	}	
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
+import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -33,7 +34,7 @@ public interface MemberService {
 	int checkNick(String nickName);
 	Member selectMember(String memberId);
 	int update(Member m);
-	List<Store> selectStore(String category);
+	List<Store> selectStore(Map<String,String> map);
 	int drop(String memberId);
 	List<Store> menuInfo(int businessCode);
 	List<Map<String,String>> selectCategoryList(int businessCode);
@@ -49,6 +50,9 @@ public interface MemberService {
 	Store minPrice(int businessCode);
 	List<WishList> selectSame(Map<String,Object> menuMap);
 	int deleteMenuCode(int reMenuCode);
+	List<Menu> popularityMenu(int businessCode);
+	List<Menu> refreshWishList(Map<String,Object> maps);
+	int deleteWishList(Map<String,Object> maps);
 	
 	Map<String,String>selectSearchId(Map<String,String> map); //아이디찾기
 	Map<String,String>selectConfirmEmail(Map<String,String>map);
@@ -64,4 +68,5 @@ public interface MemberService {
 	// 찜 목록
 	List<Store> selectMarkList(String memberId);
 	List<Review> selectReview(int businessCode);
+	Mark isMark(Map<String, Object> maps);
 }

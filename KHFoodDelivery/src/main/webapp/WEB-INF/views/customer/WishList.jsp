@@ -22,7 +22,7 @@
             <li   style="list-style: none; margin-right: 1em; text-align: right; padding-top: 5px;">
                <!-- <a id="minusMenuCount" class="btn btn-minus">-</a> -->
                <span id="countUpdate${maps.menuCode }">${maps.menuCount } 개</span>
-               <input type="hidden" id="countUpdate${maps.menuCode }" value=""/>
+               <input type="hidden" class="gg" id="countUpdate${maps.menuCode }" value="${maps.menuCode}"/>
                <!-- <a id="plusMenuCount"  class="btn btn-plus">+</a> -->
             </li>
          </ul>

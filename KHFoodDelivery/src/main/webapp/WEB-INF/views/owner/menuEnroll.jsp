@@ -93,7 +93,7 @@ left: 0;
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form action="${path }/owner/enrollMenu1.do" method="post" enctype="multipart/form-data" onsubmit="return fn_enroll_validate();" >
+                                        <form action="${path }/owner/enrollMenu1.do?businessCode=${businessCode}" method="post" enctype="multipart/form-data" onsubmit="return fn_enroll_validate();" >
                                           <div class="form-group row">
                                             <label for="username" class="col-4 col-form-label">메뉴명</label> 
                                             <div class="col-8">
@@ -156,7 +156,7 @@ left: 0;
                               </div>
                               <div class="row">
                                   <div class="col-md-12">
-                                      <form action="${path }/owner/enrollCategory.do" method="post">
+                                      <form action="${path }/owner/enrollCategory.do?businessCode=${businessCode}" method="post">
                                         <div class="form-group row">
                                           <label for="menuCategory" class="col-4 col-form-label">카테고리명</label> 
                                           <div class="col-8">

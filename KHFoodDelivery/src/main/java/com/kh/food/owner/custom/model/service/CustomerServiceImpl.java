@@ -28,6 +28,14 @@ public class CustomerServiceImpl implements CustomerService {
 	public int storeFormEnd(Map<String, Object> store) {
 		return dao.storeFormEnd(store);
 	}
-	
 
+	@Override
+	public int insertMark(Map<String, Object> map) {
+		return dao.insertMark(map);
+	}
+
+	@Override
+	public int deleteMark(Map<String, Object> map) {
+		return dao.deleteMark(map);
+	}	
 }

@@ -15,7 +15,16 @@
 <div class="clearfix" style="background-color:ivory; color:red; font-weight:bold;">
 합계 : ${resultPrice }원
 </div>
-<div class="cart-btn clearfix" onclick="location.href='${path}/customer/pay.do'" id="insertMemberId" style="clear:both;">
-    <a id="pay" class="btu">주문하기</a>
-</div>
+  <form id='businessCodeFrm' action='${path}/customer/pay.do'>
+                           	<input type='hidden' id='businessCode' name='businessCode' value='${wishList.get(0).BUSINESSCODE }'/>
+                           	<script>
+                           	for(var i=0; i<wishList.length; i++){
+                           		
+                           	console.log(${wishList.get(i).BUSINESSCODE });
+                           	}
+                           	</script>
+ 							<button class="cart-btn clearfix" id="pay" type="submit" style="clear:both;">
+							주문하기							    
+							</button>
+                           </form>
 </div>
