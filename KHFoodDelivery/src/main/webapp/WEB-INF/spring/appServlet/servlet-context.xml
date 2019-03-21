@@ -42,6 +42,49 @@
 		</interceptor>
 	</interceptors>
 	
+	
+	<!-- 관리자 페이지 인터셉터 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/admin/*"/>
+			<!-- <mapping path="/admin/adminMain.do"/>
+			<mapping path="/admin/appStoreList.do"/>
+			<mapping path="/admin/selectAppStore.do"/>
+			<mapping path="/admin/confirmApp.do"/>
+			<mapping path="/admin/storeList.do"/>
+			<mapping path="/admin/searchStore.do"/>
+			<mapping path="/admin/memberList.do"/>
+			<mapping path="/admin/memDel.do"/>
+			<mapping path="/admin/memberOne.do"/>
+			<mapping path="/admin/ownerList.do"/>
+			<mapping path="/admin/ownerOne.do"/>
+			<mapping path="/admin/ownDel.do"/>
+			<mapping path="/admin/memberQnaList.do"/>
+			<mapping path="/admin/searchMemberQna.do"/>
+			<mapping path="/admin/memberQnaView.do"/>
+			<mapping path="/admin/insertMemberQnaRe.do"/>
+			<mapping path="/admin/deleteMemberQnaReview.do"/>
+			<mapping path="/admin/updateMemberQnaReview.do"/>
+			<mapping path="/admin/deleteMemberQna.do"/>
+			<mapping path="/admin/ownerQnaList.do"/>
+			<mapping path="/admin/searchOwnerQna.do"/>
+			<mapping path="/admin/ownerQnaView.do"/>
+			<mapping path="/admin/insertOwnerQnaRe.do"/>
+			<mapping path="/admin/deleteOwnerQnaReview.do"/>
+			<mapping path="/admin/updateOwnerQnaReview.do"/>
+			<mapping path="/admin/deleteOwnerQna.do"/>
+			<mapping path="/admin/memberNoticeList.do"/>
+			<mapping path="/admin/memberNoticeView.do"/>
+			<mapping path="/admin/memberNoticeForm.do"/>
+			<mapping path="/admin/memberNoticeFormEnd.do"/>
+			<mapping path="/admin/memberfileDownLoad.do"/>
+			<mapping path="/admin/memberNoticeUpdateEnd.do"/>
+			<mapping path="/admin/memNoticeUpdate.do"/>
+			<mapping path="/admin/memberNoticeDel.do"/>			 -->		
+			<beans:bean id="adminInterceptor" class="com.kh.food.common.AdminInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 	<interceptors>
 		<interceptor>
 			<mapping path="/customer/menuInfo.do"/>
