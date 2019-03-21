@@ -30,6 +30,9 @@
 	<select id="menuCounts" parameterType="_int" resultType="_int">
 		SELECT MENUCOUNT FROM WISHLIST WHERE MENUCODE=#{menuCode} GROUP BY MENUCOUNT
 	</select> -->
+	<select id="popularityMenu" parameterType="_int" resultType="menu">
+		SELECT * FROM MENU WHERE BUSINESSCODE=#{businessCode} AND MENUSOLDCOUNT>=10
+	</select>
 	
 	<delete id="deleteMenuCount" parameterType="_int">
 		DELETE FROM WISHLIST WHERE MENUCODE=#{menuCode}
@@ -46,7 +49,7 @@
 		select * from menu_category where businesscode = #{businessCode} order by menucategorycode asc
 	</select>
 	<select id="selectMenuList" parameterType="string" resultMap="menuMap">
-		select * from menu where businessCode = #{businessCode}
+		select * from menu where businessCode = #{businessCode} and menustate=0
 	</select>
 	
 	<select id="selectSame" parameterType="map" resultType="wishList">

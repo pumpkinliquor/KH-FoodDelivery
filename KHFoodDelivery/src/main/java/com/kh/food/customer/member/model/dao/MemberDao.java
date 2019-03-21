@@ -26,6 +26,7 @@ public interface MemberDao {
 	Member selectMember(String memberId);
 	int update(Member m);
 	List<Store> selectStore(String category);
+	List<Menu> popularityMenu(int businessCode);
 	
 	int drop(String memberId);
 	List<Store> menuInfo(int businessCode);
