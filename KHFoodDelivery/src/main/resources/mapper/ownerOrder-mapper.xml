@@ -25,7 +25,7 @@
 	</select>
 	
 	<select id="selectStoreList" parameterType="string" resultType="map">
-		select * from store where ownerId = #{ownerId}
+		select * from store where ownerId = #{ownerId} and isconfirm = 1
 	</select>
 	<select id="selectStoreList2" parameterType="string" resultType="map">
 		select store.* , review.* ,member.memberid

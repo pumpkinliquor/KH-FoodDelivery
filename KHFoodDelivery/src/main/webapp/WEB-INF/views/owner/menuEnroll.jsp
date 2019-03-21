@@ -66,6 +66,12 @@ left: 0;
   height:200px;
 }
 
+.bt1{
+	border-color: #4D4D4D !important;
+	background-color:white !important;
+	color:#4D4D4D !important;
+}
+
 </style>
 
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
@@ -134,7 +140,7 @@ left: 0;
                                           </div>                                
                                           <div class="form-group row">
                                             <div class="offset-4 col-8">
-                                              <button name="submit" type="submit" class="btn btn-primary">등록</button>
+                                              <button name="submit" type="submit" class="btn btn-primary bt1">등록</button>
                                             </div>
                                           </div>
                                         </form>
@@ -165,7 +171,7 @@ left: 0;
                                         </div>                                  
                                         <div class="form-group row">
                                           <div class="offset-4 col-8">
-                                            <button name="submit" type="submit" class="btn btn-primary">등록</button>
+                                            <button name="submit" type="submit" class="btn btn-primary bt1">등록</button>
                                           </div>
                                         </div>
                                       </form>

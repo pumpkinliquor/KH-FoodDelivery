@@ -69,6 +69,9 @@ pageEncoding="UTF-8"%>
         #noticePlus:hover{
         pnt;
         }
+        #p1{
+        	color:#4D4D4D;
+        }
     </style>
     <section>
     <div class="container">
@@ -97,7 +100,7 @@ pageEncoding="UTF-8"%>
                 </div>
                 <div class="col-md-4">
                    <c:if test="${sessionScope.ownerId== null }">
-                    <div class="col-md-12">
+                    <div class="col-md-12 div1">
                         <p>사장님 로그인 해주세요!</p>
                     </div> 
                     <div class="col-md-12">
@@ -114,7 +117,7 @@ pageEncoding="UTF-8"%>
                     </div>
                      </c:if>
                      <c:if test="${sessionScope.ownerId!=null }">
-                     <div class="col-md-12">
+                     <div class="col-md-12 div1">
                         <p>${ownerId}사장님 환영 합니다!!</p>
                      </div>
                      <div class="col-md-12">
@@ -133,7 +136,7 @@ pageEncoding="UTF-8"%>
                         <div class="row">
                         <div class="col-md-6 col-sm-6 infoDiv3">
                         <a href="${path }/owner/menuEnroll.do">
-                        <p>사장님 가게의 메뉴를  쉽게 관리해보세요.</p>
+                        <p id="p1">사장님 가게의 메뉴를  쉽게 관리해보세요.</p>
                         </div>
                         <div class="col-md-6 col-sm-6 infoDiv4">
                             <img src="${path }/resources/images/owner/main/등록.png" width="100px" height="100px">
@@ -146,7 +149,7 @@ pageEncoding="UTF-8"%>
                         <div class="row">
                         <div class="col-md-6 col-sm-6 infoDiv3">
                         <a href="${path }/owner/storeForm.do">
-                            <p>간단한 정보를 입력하고 입점 등록 신청을 해보세요. 아주 쉬워요!</p>
+                            <p id="p1">간단한 정보를 입력하고 입점 등록 신청을 해보세요. 아주 쉬워요!</p>
                         </div>
                         <div class="col-md-6 col-sm-6 infoDiv4">
                             <img src="${path }/resources/images/owner/main/정보수정.png" width="100px" height="100px">
@@ -159,7 +162,7 @@ pageEncoding="UTF-8"%>
                         <div class="row">
                         <div class="col-md-6 col-sm-6 infoDiv3">
                             <a href="${path }/owner/menuEnroll.do">
-                            <p>사장님 가게의 매출을 통계를 통해 확인하세요! 통계주소는 아직~</p>
+                            <p id="p1">사장님 가게의 매출을 통계를 통해 확인하세요! 통계주소는 아직~</p>
                         </div>
                         <div class="col-md-6 col-sm-6 infoDiv4">
                             <img src="${path }/resources/images/owner/main/매출.png" width="100px" height="100px">
