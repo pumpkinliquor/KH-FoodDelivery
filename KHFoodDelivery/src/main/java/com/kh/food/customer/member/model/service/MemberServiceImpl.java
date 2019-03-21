@@ -75,6 +75,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	@Override
+	public List<Menu> refreshWishList(Map<String, Object> maps) {
+		return dao.refreshWishList(maps);
+	}
+
+
+	@Override
+	public int deleteWishList(Map<String, Object> maps) {
+		return dao.deleteWishList(maps);
+	}
+
+
 	@Inject
 	private JavaMailSender mailSender;
 

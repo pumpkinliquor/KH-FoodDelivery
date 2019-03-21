@@ -50,6 +50,8 @@ public interface MemberService {
 	List<WishList> selectSame(Map<String,Object> menuMap);
 	int deleteMenuCode(int reMenuCode);
 	List<Menu> popularityMenu(int businessCode);
+	List<Menu> refreshWishList(Map<String,Object> maps);
+	int deleteWishList(Map<String,Object> maps);
 	
 	Map<String,String>selectSearchId(Map<String,String> map); //아이디찾기
 	Map<String,String>selectConfirmEmail(Map<String,String>map);

@@ -162,7 +162,6 @@ $(document).ready(function(){
                dataType:"html",
                success: function(data) {
                   $('#janbgaID').prepend(data);
-                  location.reload();
                   $.ajax({
                      type:"POST",
                      url:"${path}/customer/wishResult.do?businessCode="+wishResultBusinessCode,

@@ -17,6 +17,14 @@
 		SELECT * FROM WISHLIST WHERE MEMBERID=#{memberId}
 	</select> 
 	
+	<select id="refreshWishList" parameterType="map" resultType="menu">
+		SELECT * FROM MENU WHERE BUSINESSCODE=#{businessCode}
+	</select>
+	
+	<delete id="deleteWishList" parameterType="map">
+		DELETE FROM WISHLIST WHERE MEMBERID=#{memberId} AND BUSINESSCODE=#{businessCode}
+	</delete>
+	
 	<select id="selectMinPrice" parameterType="_int" resultType="store">
 		SELECT * FROM STORE WHERE BUSINESSCODE=#{businessCode}
 	</select>

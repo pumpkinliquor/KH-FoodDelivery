@@ -14,6 +14,7 @@ import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -557,6 +558,20 @@ public class MemberController {
 		
 		request.setAttribute("maps", maps);
 		request.getRequestDispatcher("/WEB-INF/views/customer/WishList.jsp").forward(request, response);
+	}
+	
+	@RequestMapping("/customer/refreshWishList.do")
+	@ResponseBody
+	public List refreshWishList(HttpServletRequest request, int businessCode) {
+		Map<String,Object> maps=new HashMap<>();
+		String memberId=(String) request.getSession().getAttribute("logined");
+		
+		maps.put("businessCode", businessCode);
+		maps.put("memberId", memberId);
+		int deleteWishList=service.deleteWishList(maps);
+		List<Menu> refreshWishList=service.refreshWishList(maps);
+		
+		return refreshWishList;
 	}
 	
 	@RequestMapping("/customer/wishResult.do")

@@ -297,7 +297,32 @@
               <div class="col-sm-4">
                 <div class="jumun">
                     <div class=title>
-                        <span>주문표</span><a style="float:right; cursor:pointer;" onclick="location.reload()"><img src="${path }/resources/images/owner/icons/refreshIcon.png" width=26px;/></a>
+                        <span>주문표</span><a style="float:right; cursor:pointer;" onclick="refreshWishList(${businessCode});"><img src="${path }/resources/images/owner/icons/refreshIcon.png" width=26px;/></a>
+                        <script>
+                        function refreshWishList(businessCode){
+                        	$.ajax({
+                        		type:"POST",
+                        		url:"${path}/customer/refreshWishList.do",
+                                data:{"businessCode" : businessCode},
+                                dataType:"JSON",
+                                success: function(data) {
+                                	console.log(data);
+                                	for(var i=0; i<data.length; i++){
+                                		console.log(data[i].menuCode);
+                                		$('#deleteddd'+data[i].menuCode).html("");
+                                	}
+                                	$.ajax({
+                   						type:"POST",
+                   						url:"${path}/customer/wishResult.do?businessCode="+businessCode,
+                   						dataType:"html",
+                   						success: function(data) {
+                   							$('#plusMenuPrice_result').html(data);
+                   						}
+                   					});
+                                }
+                        	});
+                        }
+                        </script>
                     </div>
                     <div class="cart">
                         <div class="cart-empty" id="janbgaID">

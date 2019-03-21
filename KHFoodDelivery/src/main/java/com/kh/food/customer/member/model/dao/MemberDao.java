@@ -27,6 +27,8 @@ public interface MemberDao {
 	int update(Member m);
 	List<Menu> popularityMenu(int businessCode);
 	List<Store> selectStore(Map<String,String> map);
+	List<Menu> refreshWishList(Map<String,Object> maps);
+	int deleteWishList(Map<String,Object> maps);
 	
 	int drop(String memberId);
 	List<Store> menuInfo(int businessCode);

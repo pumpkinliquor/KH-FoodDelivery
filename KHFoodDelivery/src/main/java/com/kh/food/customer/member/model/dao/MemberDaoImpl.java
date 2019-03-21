@@ -130,9 +130,17 @@ public class MemberDaoImpl implements MemberDao {
 	public List<Store> menuInfo(int businessCode) {
 		return sqlSession.selectList("member.selectStore2",businessCode);
 	}
-
 	
 	
+	
+	@Override
+	public int deleteWishList(Map<String, Object> maps) {
+		return sqlSession.delete("menu.deleteWishList", maps);
+	}
+	@Override
+	public List<Menu> refreshWishList(Map<String, Object> maps) {
+		return sqlSession.selectList("menu.refreshWishList", maps);
+	}
 	@Override
 	public int drop(String memberId) {
 		return sqlSession.delete("member.drop",memberId);
