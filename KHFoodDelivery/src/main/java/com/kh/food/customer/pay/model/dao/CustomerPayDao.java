@@ -6,7 +6,7 @@ package com.kh.food.customer.pay.model.dao;
   
 	/* Map<String, String> pay(int totalPrice, String title, String memberId); */
 
-  int customerPayDao(String memberId);
+  Map customerPayDao(Map setPay);
   
   
   

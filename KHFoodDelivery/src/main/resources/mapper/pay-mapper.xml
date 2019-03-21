@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="pay">
 
-<select id="pay" parameterType='String' resultType="_int">
-	select sum(plusMenuPrice) from wishlist where memberId=#{memberId}
+<select id="pay" parameterType='map' resultType="map">
+	select memberId,(select deliveryPrice from store where businesscode=#{businessCode}) as DELIVERYPRICE, memberPhone, (select sum(plusMenuPrice) from wishList b where memberId=b.memberId)as totalPrice from member where memberId=#{memberId}
 </select>
 </mapper>

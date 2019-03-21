@@ -1,5 +1,6 @@
 package com.kh.food.customer.pay.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,12 +18,16 @@ import com.kh.food.customer.pay.service.CustomerPayService;
    @Autowired
    CustomerPayService service;
   @RequestMapping("/customer/pay.do")
-  public ModelAndView customerPay(HttpServletRequest request) 
+  public ModelAndView customerPay(HttpServletRequest request, String businessCode) 
   { 
      String memberId=(String) request.getSession().getAttribute("logined");
+     Map setPay=new HashMap();
+     setPay.put("businessCode",businessCode);
+     setPay.put("memberId",memberId);
      ModelAndView mv= new ModelAndView();
-     int payReady=service.customerPayService(memberId);
-     mv.addObject("resultPrice",payReady);
+     Map payReady=service.customerPayService(setPay);
+     System.out.println(businessCode + "코코ㅗ코");
+     mv.addObject("payReady",payReady);
      mv.setViewName("/customer/pay");
      return mv;
   }

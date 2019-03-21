@@ -17,9 +17,9 @@ public class CustomerPayServiceImpl implements CustomerPayService {
 	@Autowired
 	CustomerPayDao dao;
 	@Override
-	public int customerPayService(String memberId) {
+	public Map customerPayService(Map setPay) {
 		// TODO Auto-generated method stub
-		return dao.customerPayDao(memberId);
+		return dao.customerPayDao(setPay);
 	}
 	
 }
