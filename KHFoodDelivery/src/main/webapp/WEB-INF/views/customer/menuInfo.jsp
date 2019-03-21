@@ -175,10 +175,28 @@
  cursor:pointer;
  
 }
+.onMark{
+	color: #FF0000;
+}
+.offMark{
+	color:#ccc;
+}
 </style>
  <script>
-       
-        
+ 
+	function fn_mark(){		
+		// 찜 상태 -> 찜 취소
+		if($('.onMark').length > 0) {
+			alert("찜 취소");
+			$('#isMark').val("1");
+			$('#markFrm').submit();
+		} else{
+			alert("찜 성공");
+			$('#isMark').val("0");
+			$('#markFrm').submit();
+		}
+	};
+ 
         $(document).ready(function(){
            
            $("#menuReview").click(function(){
@@ -197,14 +215,13 @@
            
         });
         
-        
       $(document).ready(function(){
            $("#menuList").click(function(){
               var businessCode=${businessCode};
               $.ajax({
                  type: "post",
                  url: "${path}/customer/menuList.do",
-                 data : {"businessCode" : businessCode},
+                 data : {"businessCode" : businessCode, "menuCode" : menuCode},
                  success: function test(a){$("#callback").html(a);}
               });          
            });
@@ -245,8 +262,7 @@
            });
           
        });
-       
-      
+
    
  </script>
  
@@ -259,7 +275,20 @@
                 <div class="restaurant-info">
                     <div class="restaurant-title">
                         <span id="storeName">${i.storeName }</span>
-                         
+                        <form id="markFrm" action="${path}/store/markStore.do" method="post"style="float: right;">
+                        	<button type="button" onclick="fn_mark()" style="cursor: pointer; border: 0; background-color:#FFF">
+                       			<c:choose>
+	                       			<c:when test="${mark != null}">
+	                       				<span id="mark" class="onMark">♥</span>
+	                       			</c:when>
+	                       			<c:otherwise>
+	                       				<span id="mark" class="offMark">♥</span>
+	                       			</c:otherwise>                       			
+                       			</c:choose>
+                       		</button>
+                       		<input type="hidden" name="bsCode" id="bsCode" value="${i.businessCode }"/>
+                       		<input type="hidden" name="isMark" id="isMark" value=""/>
+                        </form>
                     </div>
                     <div class="restaurant-content">
                         <div class="logo"><img class="mainlogo" src="${path }/resources/upload/owner/storeMainImage/${i.storeImage }" /></div>
@@ -298,7 +327,32 @@
               <div class="col-sm-4">
                 <div class="jumun">
                     <div class=title>
-                        <span>주문표</span><a style="float:right; cursor:pointer;" onclick="location.reload()"><img src="${path }/resources/images/owner/icons/refreshIcon.png" width=26px;/></a>
+                        <span>주문표</span><a style="float:right; cursor:pointer;" onclick="refreshWishList(${businessCode});"><img src="${path }/resources/images/owner/icons/refreshIcon.png" width=26px;/></a>
+                        <script>
+                        function refreshWishList(businessCode){
+                        	$.ajax({
+                        		type:"POST",
+                        		url:"${path}/customer/refreshWishList.do",
+                                data:{"businessCode" : businessCode},
+                                dataType:"JSON",
+                                success: function(data) {
+                                	console.log(data);
+                                	for(var i=0; i<data.length; i++){
+                                		console.log(data[i].menuCode);
+                                		$('#deleteddd'+data[i].menuCode).html("");
+                                	}
+                                	$.ajax({
+                   						type:"POST",
+                   						url:"${path}/customer/wishResult.do?businessCode="+businessCode,
+                   						dataType:"html",
+                   						success: function(data) {
+                   							$('#plusMenuPrice_result').html(data);
+                   						}
+                   					});
+                                }
+                        	});
+                        }
+                        </script>
                     </div>
                     <div class="cart">
                         <div class="cart-empty" id="janbgaID">

@@ -52,6 +52,10 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
+	public List<Menu> popularityMenu(int businessCode) {
+		return sqlSession.selectList("menu.popularityMenu", businessCode);
+	}
+	@Override
 	public List<WishList> selectSame(Map<String, Object> menuMap) {
 		return sqlSession.selectList("menu.selectSame", menuMap);
 	}
@@ -126,17 +130,25 @@ public class MemberDaoImpl implements MemberDao {
 	public List<Store> menuInfo(int businessCode) {
 		return sqlSession.selectList("member.selectStore2",businessCode);
 	}
-
 	
 	
+	
+	@Override
+	public int deleteWishList(Map<String, Object> maps) {
+		return sqlSession.delete("menu.deleteWishList", maps);
+	}
+	@Override
+	public List<Menu> refreshWishList(Map<String, Object> maps) {
+		return sqlSession.selectList("menu.refreshWishList", maps);
+	}
 	@Override
 	public int drop(String memberId) {
 		return sqlSession.delete("member.drop",memberId);
 	}
 	@Override
-	public List<Store> selectStore(String category){
+	public List<Store> selectStore(Map<String,String> map){
 		
-		return  sqlSession.selectList("member.selectStore",category);
+		return  sqlSession.selectList("member.selectStore",map);
 	}
 
 	@Override
@@ -228,4 +240,9 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList("member.selectMarkList", memberId);
 	}
 	
+	// 찜 했는지 확인
+	@Override
+	public Mark isMark(Map<String, Object> maps) {
+		return sqlSession.selectOne("member.selectIsMark", maps);
+	}	
 }
