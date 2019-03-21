@@ -128,9 +128,7 @@ div{
 
                             <div class="panel-collapse">
                               <div class="panel-body">
-                                <textarea name="payRequest" class="form-control ng-pristine ng-untouched ng-valid ng-valid-maxlength" rows="3" maxlength="100" placeholder="주문시 요청 사항이 있으시면 남겨주세요.">
-                                
-                                </textarea>
+                                <textarea name="payRequest" id="payRequest" class="form-control ng-pristine ng-untouched ng-valid ng-valid-maxlength" rows="3" maxlength="100" placeholder="주문시 요청 사항이 있으시면 남겨주세요."></textarea>
                                 
                               </div>
                             </div>
@@ -165,7 +163,7 @@ $('#result').text(result);
                         <div class="clearfix" id="resultDeliveryPrice">
                             배달요금 별도 : ${payReady.DELIVERYPRICE} 원
                         </div>
-                        <div class="cart-btn clearfix">
+                        <div class="cart-btn clearfix" style="cursor:pointer;">
                             <a id="payButton" class="btu">결제하기</a>
                         </div>
                     </div>
@@ -181,11 +179,12 @@ $('#result').text(result);
 
 <script>
 $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디쓸것
-    var title=$('#storeName').text();		//가게명
+    var title=$('#storeName').val();		//가게명
+    
     console.log(title);
     var resultPrice=$('#resultPrice').val();
     var deliveryPrice=$('#resultDeliveryPrice').val();//총 합계금액     
-    var result = parseInt(resultPrice)+parseInt(deliveryPrice);
+    var result = ${payReady.TOTALPRICE}+${payReady.DELIVERYPRICE};
  	var IMP = window.IMP; // 생략가능
 	IMP.init('imp51687071'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	IMP.request_pay({
@@ -207,7 +206,8 @@ $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디�
        msg += '상점 거래ID : ' + rsp.merchant_uid;
        msg += '결제 금액 : ' + rsp.paid_amount;
        msg += '카드 승인번호 : ' + rsp.apply_num; 
-       location.href="${path}/customer/payEnd.do?amount="+resultPrice+"&memberId"+memberId+"&name"+title; //보낼값들
+       location.href="${path}/customer/payEnd.do";
+    	   /* ?amount="+resultPrice+"&memberId"+memberId+"&name"+title+"&businessCode+"+${businessCode}; //보낼값들 */
 
     } else {
         var msg = '결제에 실패하였습니다.';
