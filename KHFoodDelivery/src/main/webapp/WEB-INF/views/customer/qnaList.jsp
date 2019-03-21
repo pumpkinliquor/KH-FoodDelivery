@@ -19,13 +19,20 @@
 	table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
 	table#table-sort th{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); border: 1px solid #444444; padding: 0; }
 	table#table-sort td{ border: 1px solid #444444; padding: 0; }
-	
+	.btn10{float:right; background-color:black; color:white; border:none;}
 </style>
 
 <script>	
 	function fn_qnaView(no){
 		location.href="${path}/customer/memberQnaView.do?no="+no;		
 	}		
+	
+	function qna_View(){
+		location.href="${path}/customer/memberQnaAdd.do";
+	}
+	
+		
+	
 </script>
 
 <section>
@@ -44,6 +51,7 @@
 	<div class="col-md-9">	
 	
 		<h4 id="titleText">${sessionScope.logined}님 문의 내역 </h4>
+		<button type="button" class="btn btn-default btn10" onclick="qna_View();">문의 등록</button>
 		
 		
 		<div id="qnaList">

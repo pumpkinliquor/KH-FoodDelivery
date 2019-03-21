@@ -646,6 +646,39 @@ public class MemberController {
 		return result;
 	}
 	
+	@RequestMapping("/customer/memberQnaAdd.do")
+	public ModelAndView addQnaView() {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("customer/memberQna");
+		return mv;
+	}
+	//문의글 수정 폼 뷰
+	@RequestMapping("/customer/memberQnaAddform.do")
+	public ModelAndView addQna(int no) {
+		
+		ModelAndView mv= new ModelAndView();
+		
+		int result = service.addQna(no);
+		String msg="";
+		String loc="";
+		
+		if(result> 0) {
+			msg="문의 등록완료.";
+			loc="/member/qnaList.do?memberId=${sessionScope.logined}";
+		}else {
+			msg="등록실패";
+			loc="/member/qnaList.do?memberId=${sessionScope.logined}";
+		}
+		mv.addObject("loc",loc);
+		mv.addObject("msg",msg);
+		mv.setViewName("common/msg");
+		
+		
+		return mv;
+		
+	}
 	
 	//업체 전체보기
 	@RequestMapping("/customer/selectallstore.do")

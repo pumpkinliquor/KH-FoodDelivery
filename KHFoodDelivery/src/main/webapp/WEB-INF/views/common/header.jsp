@@ -52,8 +52,8 @@
                     var coords = position.coords;
                     
                    
-				 /*  
-                    $.ajax({
+				  
+                     $.ajax({
                         url: 'http:////dapi.kakao.com/v2/local/geo/coord2address.json?x='+latitude+'&y='+longitude+'&input_coord=WGS84',
                         headers: { 'Authorization': 'feed05c2d7c3c51d07205126e0f9d71b'},
                         contentType: "application/json; charset=utf-8",
@@ -62,9 +62,11 @@
                     }).done(function(data) {
                         console.log(data);
                         console.log(total_count);
-                    }); */
-				   
+                    }); 
+				    
     
+				    
+				
                      alert("아직 구현안됨 지도 클릭!"); 
                      
                
@@ -84,8 +86,8 @@
                  var geocoder = new daum.maps.services.Geocoder();
 
                     //지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
-                     daum.maps.event.addListener(map, 'click', function(mouseEvent) { 
-                    searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+                      daum.maps.event.addListener(map, 'click', function(mouseEvent) { 
+                    searchDetailAddrFromCoords(coords.latLng, function(result, status) {
                         if (status === daum.maps.services.Status.OK) {
                            
                             var infoDiv = document.getElementById('centerAddr1'); 
