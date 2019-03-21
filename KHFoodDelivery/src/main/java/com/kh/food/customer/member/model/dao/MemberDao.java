@@ -15,7 +15,7 @@ import com.kh.food.review.model.vo.Review;
 
 public interface MemberDao {
 	
-	int addQna(int no);
+	int addQna(Map<String,Object> map);
 	Map<String,String> orderOne(Map<String,String> orList);
 	int selectOrderCount(int memberNum);
 	List<Member> selectMemberOrder(int memberNum,int cPage,int numPerPage);

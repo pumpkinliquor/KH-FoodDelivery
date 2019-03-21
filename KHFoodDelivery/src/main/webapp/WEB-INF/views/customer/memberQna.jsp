@@ -7,17 +7,16 @@ pageEncoding="UTF-8"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 <script>
-$(function(){
-   $('[name=upFile]').on('change',function(){
-      var filename=this.files[0].name;
-      $(this).next('.custom-file-label').html(filename);
-   });
-});
-function validate(){
+
+function validate123(){
     var content = $("#qnaContent").val();
+    var title = $("#qnaTitle").val();
     if(content.trim().length==0){
         alert("내용을 입력하세요");
         return false;
+    }if(title.trim().length==0){
+    	alert("제목을 입력하세요");
+    	return false;
     }
     return true;
 }
@@ -28,14 +27,14 @@ function validate(){
 		<h2 style="font-weight:bold;">1:1문의</h2>
 	</div>
 	<div class="col-md-12">
-		<form name="memQnaFrm" action="${path }/customer/memberQnaAddform.do?no=${sessionScope.loginedno}" method="post" >
+		<form name="memQnaFrm" action="${path }/customer/memberQnaAddform.do?no=${sessionScope.loginedno}" onsubmit="return validate123()"method="post" >
 		
 			<table class="table table-bordered">
 			    <tbody>
 			        	<tr>
 			        		<th>작성자</th>
 			        		<td>
-				        		<input type="text" id="ownerId" class="form-control" value="${sessionScope.logined}" readonly/>
+				        		<input type="text" id="memberId" class="form-control" value="${sessionScope.logined}" readonly/>
 			        		</td>
 			        	</tr>
 			        	<tr>
@@ -51,13 +50,13 @@ function validate(){
 			        	</tr>
 			            <tr>
 			                <th>제목</th>
-			                <td><input type="text" placeholder="제목 " name="qnaTitle" class="form-control" required></td>
+			                <td><input type="text" placeholder="제목 " name="qnaTitle" id="qnaTitle" class="form-control" required></td>
 			            </tr>
 			            <tr>
 			                <th>내용</th>
 			                <td><textarea cols="8" placeholder="내용" id="qnaContent" name="qnaContent" class="form-control" style="resize:none; height:15em;" required></textarea></td>
 			            </tr>
-			           
+			        	<input type="hidden"  name="memberId" value="${sessionScope.logined}"/>  
 			            <tr>
 			                <td colspan="2">
 			                    <input type="submit" value="문의하기" class="btn btn-outline-success" style="float:right;"/>

@@ -17,7 +17,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
@@ -141,6 +140,10 @@ div.newsletter,div.group{display:inline-block;}
   
  
     function execDaumPostcode() {
+    	/* var info=$('#location1').val();
+    	if(info.trim().length==0){
+    		alert("클릭해주세요");
+    	} */
          new daum.Postcode({ 
             oncomplete: function(data) {
                 // 각 주소의 노출 규칙에 따라 주소를 조합한다.

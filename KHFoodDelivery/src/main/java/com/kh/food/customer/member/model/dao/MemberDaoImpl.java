@@ -34,8 +34,9 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList("store.selectOwnerRevie2",businessCode);
 	}
 	@Override
-	public int addQna(int no) {
-		return sqlSession.insert("member.qnaAdd",no);
+	public int addQna(Map<String,Object> map) {
+		System.out.println("컨트롤러"+map);
+		return sqlSession.insert("member.qnaAdd",map);
 	}
 	@Override
 	public List<Review> selectReview(int businessCode) {

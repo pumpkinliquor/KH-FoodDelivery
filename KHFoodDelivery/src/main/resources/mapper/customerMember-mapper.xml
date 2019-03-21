@@ -79,11 +79,11 @@
 		select * from store where ISCONFIRM=1 and STOREADDRESS LIKE '%'||#{category}||'%'
 	</select>
 	
-<!-- 	
-	<insert id="qnaAdd" parameterType="string">
-		insert into member_qna values(SEQ_M_QNACODE.NEXTVAL,)
+	
+	<insert id="qnaAdd" parameterType="map">
+		insert into member_qna values(SEQ_M_QNACODE.NEXTVAL,#{no},default,#{qnaCategory},#{qnaContent},#{qnaTitle})
 	</insert>
-	-->
+	
 	 
 
 	
