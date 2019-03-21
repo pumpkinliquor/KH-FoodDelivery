@@ -326,7 +326,7 @@
               </c:forEach>
               <div class="col-sm-4">
                 <div class="jumun">
-                    <div class=title>
+                    <div class="title" id="WishHeaderID">
                         <span>주문표</span><a style="float:right; cursor:pointer;" onclick="refreshWishList(${businessCode});"><img src="${path }/resources/images/owner/icons/refreshIcon.png" width=26px;/></a>
                         <script>
                         function refreshWishList(businessCode){
