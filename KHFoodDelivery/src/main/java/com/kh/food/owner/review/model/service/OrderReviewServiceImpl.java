@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.food.owner.review.model.dao.OrderReviewDao;
 import com.kh.food.owner.store.model.vo.Store;
+import com.kh.food.review.model.vo.Review;
 
 @Service
 public class OrderReviewServiceImpl implements OrderReviewService {
@@ -24,6 +25,12 @@ public class OrderReviewServiceImpl implements OrderReviewService {
 	public List<Store> storeList(String ownerId) {
 		
 		return dao.storeList(ownerId);
+	}
+
+	@Override
+	public List<Map<String, String>> selectReviewList(String stN) {
+		
+		return dao.selectReviewList(stN);
 	}
 
 	

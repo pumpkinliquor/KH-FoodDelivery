@@ -114,10 +114,10 @@ function execDaumPostcode(){
 			             <tr>
 			                <th>주소</th>
 			                <td>
-			                	<button onclick="execDaumPostcode();" class="btn btn-default" style="float:left; margin-right:1em; ">주소찾기</button>
-			                	<input type="text" id="zip" class="form-control" style="width:7em;" placeholder="우편주소" value=""/>
-			                	<input type="text" id="addr1" name="frontAddress" placeholder="기본주소" class="form-control" style="width:30em; margin-top:1em;" value=""/>
-			                	<input type="text" id="addr2" name="backAddress" placeholder="상세주소" class="form-control" style="width:30em; margin-top:1em;" value=""/>
+			                	<button onclick="execDaumPostcode();" class="btn btn-default" style="float:left; margin-right:1em;" >주소찾기</button>
+			                	<input type="text" id="zip" class="form-control" style="width:7em;" placeholder="우편주소" value="" required/>
+			                	<input type="text" id="addr1" name="frontAddress" placeholder="기본주소" class="form-control" style="width:30em; margin-top:1em;" value="" readonly required/>
+			                	<input type="text" id="addr2" name="backAddress" placeholder="상세주소" class="form-control" style="width:30em; margin-top:1em;" value="" required/>
 			                </td>
 			            </tr>
 			             <tr>

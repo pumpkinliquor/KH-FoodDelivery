@@ -236,7 +236,7 @@ div.newsletter,div.group{display:inline-block;}
                   <div class="input-group">
                        <button id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
                        
-                    <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요" />
+                    <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="${sessionScope.myAddr }" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요" />
                        <span class="input-group-btn">
                        <button class="btn" onclick="locationSearchStore();" type="submit">검색</button>
 
@@ -265,7 +265,7 @@ div.newsletter,div.group{display:inline-block;}
                 </div>
                    <div class="group col-md-12 col-lg-12">
                 <div class="btn-group btn-group-lg search1">
-               <button type="button" class="btn btn-default" onclick="allview();">전체보기</button> 
+               <button type="button" class="btn btn-default active" onclick="allview();">전체보기</button> 
               <button type="button" class="btn btn-default" onclick="don();">돈까스</button>
               <button type="button" class="btn btn-default" onclick="fre();">프랜차이즈</button>
               <button type="button" class="btn btn-default" onclick="chi();">치킨</button>

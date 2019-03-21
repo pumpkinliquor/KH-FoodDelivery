@@ -42,11 +42,7 @@
 	<select id="selectStore2" parameterType="int" resultType="store">		  	
 		select* from store where BUSINESSCODE=#{besinessCode} and ISCONFIRM=1	
 	</select>
-	
-	 <select id="selectMenuCount" resultType="_int">
-	 
-		  	select count(*) from store
-		  </select>
+
 		  
 		<delete id="drop" parameterType="member">
 			delete from member where MEMBERID=#{memberId}
@@ -79,8 +75,8 @@
 		select * from menu where MENUCATEGORYCODE=#{menuCategoryCode} AND BUSINESSCODE=#{businessCode}
 	</select>
 	
-	<select id="selectAllStore" parameterType="_int" resultType="store">
-		select * from store where ISCONFIRM=1
+	<select id="selectAllStore" parameterType="string" resultType="store">
+		select * from store where ISCONFIRM=1 and STOREADDRESS LIKE '%'||#{category}||'%'
 	</select>
 	
 

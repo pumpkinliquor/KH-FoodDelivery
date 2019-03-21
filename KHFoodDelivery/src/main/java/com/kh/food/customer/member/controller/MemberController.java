@@ -440,31 +440,32 @@ public class MemberController {
 	
 	//테스트
 	
-	@RequestMapping("/customer/test.do")
+	@RequestMapping("/customer/menuReview.do")
+	
 	public ModelAndView test(ModelAndView mv, int businessCode)
 	{
 		List<Review> review=service.selectReview(businessCode);
 		System.out.println("review : "+review);
 		mv.addObject("businessCode",businessCode);
 		mv.addObject("review",review);
-		mv.setViewName("customer/test");
+		mv.setViewName("customer/menuReview");
 		return mv;
 	}
 	
 	
 	
 	
-	@RequestMapping("/customer/test1.do")
+	@RequestMapping("/customer/menuList.do")
 	public ModelAndView test1(ModelAndView mv, int businessCode)
 	{
 //		System.out.println(businessCode);
 		List<Map<String,String>> menuCategory=service.selectCategoryList(businessCode);
 		mv.addObject("businessCode", businessCode);
 		mv.addObject("categoryList", menuCategory);
-		mv.setViewName("customer/test1");
+		mv.setViewName("customer/menuList");
 		return mv;
 	}
-	@RequestMapping("/customer/test1End.do")
+	@RequestMapping("/customer/menuListEnd.do")
 	@ResponseBody
 	public List test1End(ModelAndView mv, int menuCategoryCode, int businessCode) {
 //		System.out.println("비즈니스코드"+businessCode);
@@ -477,10 +478,10 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping("/customer/test2.do")
+	@RequestMapping("/customer/storeInfo.do")
 	public String test2()
 	{
-		return "customer/test2";
+		return "customer/storeInfo";
 	}
 	
 	@RequestMapping("/customer/menuSelect.do")
@@ -501,16 +502,16 @@ public class MemberController {
 
 	//가게 출력
 	@RequestMapping("/customer/searchmenuView")
-	public ModelAndView menuView(String category,@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage) {
+	public ModelAndView menuView(String category) {
 		
 		ModelAndView mv=new ModelAndView();
-		int numPerPage=8;
-		int count=service.selectMenuCount();
 		
-		List<Store> list=service.selectStore(category,cPage,numPerPage);
+	
+		
+		List<Store> list=service.selectStore(category);
 		
 		
-		mv.addObject("pageBar",PagingFactory.getPageBar2(category,count, cPage, numPerPage, "/food/customer/searchmenuView"));
+		
 		mv.addObject("list",list);
 		mv.setViewName("customer/searchMenu");
 	
@@ -568,15 +569,6 @@ public class MemberController {
 		List<WishList> wishList=service.bigyoMenuCode(maps);
 //		System.out.println(maps);
 		
-		int selectMenuCode=0;
-		for(int i=0; i<wishList.size(); i++) {
-			if(menuCode==wishList.get(i).getMenuCode()) {
-				selectMenuCode=wishList.get(i).getMenuCode();
-//				System.out.println(i+"번째 메뉴코드"+selectMenuCode);
-			}
-		}
-//		System.out.println(selectMenuCode);
-		request.setAttribute("selectMenuCode", selectMenuCode);
 		request.setAttribute("maps", maps);
 		request.getRequestDispatcher("/WEB-INF/views/customer/WishList.jsp").forward(request, response);
 	}
@@ -660,23 +652,19 @@ public class MemberController {
 		System.out.println(firstPage);
 		ModelAndView mv= new ModelAndView();
 		
-		//검색 주소 세션에 넣기
 		
+		
+		String category=myAddr.substring(0,6);
+
+		//검색 주소 세션에 넣기
 		if(firstPage==1) {
 		session.setAttribute("myAddr",myAddr);
 		}
-			
+
+		List<Store> list =service.selectAllStore(category);
+	
 		
-				
-		logger.debug(""+session.getAttribute("myAddr"));
 		
-		int numPerPage=8;
-		
-		int count=service.selectMenuCount();
-		
-		List<Store> list =service.selectAllStore(cPage,numPerPage);
-		
-		mv.addObject("pageBar",PagingFactory.getPageBar(count, cPage, numPerPage, "/food/customer/selectallstore.do"));
 		mv.addObject("list",list);
 		mv.setViewName("customer/searchMenu");
 		

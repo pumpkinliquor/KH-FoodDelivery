@@ -44,6 +44,11 @@ public class OrderServiceImpl implements OrderService {
 	public List<Pay> selectOrderList(int businessCode) {
 		return dao.selectOrderList(businessCode);
 	}
+
+	@Override
+	public int updateOrderState(Map<String, String> map) {
+		return dao.updateOrderState(map);
+	}
 	
 	
 

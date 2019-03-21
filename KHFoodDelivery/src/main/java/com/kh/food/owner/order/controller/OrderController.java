@@ -2,10 +2,12 @@ package com.kh.food.owner.order.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,10 +79,10 @@ public class OrderController {
 			price.add(orderOneList.get(i));
 		}
 		
-		logger.debug("orderList"+orderList);
+		/*logger.debug("orderList"+orderList);*/
 		logger.debug("orderOneList"+orderOneList);
-		logger.debug("price"+price);
-		logger.debug("price사이즈"+price.size());
+		/*logger.debug("price"+price);
+		logger.debug("price사이즈"+price.size());*/
 		int count = 0;
 		for(int i=0; i<price.size(); i++)
 		{
@@ -88,24 +90,24 @@ public class OrderController {
 			{
 				if(orderList.get(j).getPayOrderNum() == price.get(i).getPayOrderNum())
 				{
-					logger.debug("합계전"+sum);
-					logger.debug("오더리스트가격"+orderList.get(j).getPrice()+"IIII"+i);
+					/*logger.debug("합계전"+sum);
+					logger.debug("오더리스트가격"+orderList.get(j).getPrice()+"IIII"+i);*/
 					sum = sum + orderList.get(j).getPrice();
 					price.get(i).setPrice(sum);
 					logger.debug("합계후"+sum);
 				}
 				else
 				{
-					logger.debug("else문"+i+":::"+j);
-					logger.debug("가격"+price.get(i).getPrice());
+					/*logger.debug("else문"+i+":::"+j);
+					logger.debug("가격"+price.get(i).getPrice());*/
 					sum = 0 ;
 					count = j;
 					break;
 				}
 			}
 		}
-		logger.debug("가격내역"+price);
-		logger.debug("오더리스트"+orderList);
+		/*logger.debug("가격내역"+price);
+		logger.debug("오더리스트"+orderList);*/
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("todayOrderCount",todayOrderCount);
@@ -131,4 +133,17 @@ public class OrderController {
 		return list;
 	}
 	
+	//주문상태 업데이트
+	@RequestMapping("order/updateOrderState.do")
+	public void updateOrderState(String payOrderNum,int orderState,HttpServletResponse response) throws IOException
+	{
+		logger.debug("pay"+payOrderNum + "::: orderState" + orderState);
+		
+		Map<String,String> map = new HashMap();
+		map.put("payOrderNum", payOrderNum);
+		map.put("orderState", String.valueOf(orderState));
+		int result = service.updateOrderState(map);
+		logger.debug("result"+result);
+		response.getWriter().print(result);
+	}
 }

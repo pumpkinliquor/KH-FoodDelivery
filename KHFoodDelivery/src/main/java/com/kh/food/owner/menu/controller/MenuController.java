@@ -95,7 +95,7 @@ public class MenuController {
 	
 	//카테고리 등록
 	@RequestMapping("/owner/enrollCategory.do")
-	public ModelAndView enrollCategory(String menuCategory)
+	public ModelAndView enrollCategory(String menuCategory,int businessCode)
 	{
 		/*logger.debug("메뉴카테고리"+menuCategory);*/
 		Map<String,String> map = new HashMap();
@@ -103,7 +103,7 @@ public class MenuController {
 		ModelAndView mv = new ModelAndView();
 		int result = service.enrollCategory(map);
 		String msg = "";
-		String loc = "/owner/menuEnroll.do";
+		String loc = "/owner/menuEnroll.do?businessCode="+businessCode;
 		if(result > 0)
 		{
 			msg = "카테고리 등록 성공!";
@@ -121,7 +121,7 @@ public class MenuController {
 	
 	//메뉴 등록
 	@RequestMapping("/owner/enrollMenu1.do")
-	public ModelAndView insertMenu1(String menuName,String menuCategoryCode, String menuPrice, String menuContent,MultipartFile menuImage,HttpServletRequest request)
+	public ModelAndView insertMenu1(String menuName,String menuCategoryCode, String menuPrice, String menuContent,MultipartFile menuImage,int businessCode,HttpServletRequest request)
 	{
 		
 		ModelAndView mv = new ModelAndView();
@@ -158,7 +158,7 @@ public class MenuController {
 		}
 		
 		String msg="";
-		String loc="/owner/menuEnroll.do";
+		String loc="/owner/menuEnroll.do?businessCode="+businessCode;
 		
 		int result = service.insertMenu(map);
 		if(result > 0)

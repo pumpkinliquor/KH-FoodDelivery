@@ -55,20 +55,16 @@ pageEncoding="UTF-8"%>
 			var stN=$(".form-control").val();
 			
 			console.log(stN);
-			if(stN=='oll')
-			{
-				jQuery('.layer').show();
-				}	
-			else if(stN==stN){
-				console.log("stm==stn : "+stN);
 				$.ajax({
-					
-	                 type: "post",
-	                 url: "${path}/owner/test.do",   
-	                 data: {"stN" : stN},
-	                 success: function test(a){$(".layer").html(a);}
-	              });
-			}
+				
+                type: "post",
+                url: "${path}/owner/test.do",   
+                data: {"stN" : stN},
+                dataType:"html",
+                success: function test(a){
+                	$(".layer").html(a);
+               	}
+             });
 		}
 	
 	</script> 
@@ -83,9 +79,9 @@ pageEncoding="UTF-8"%>
 
             <div class="col-sm-10">
                 <select class="form-control" onchange="SetSelectBox()";>
-                    <option value="oll">전체보기</option>
+                    <option value="">선택</option>
                     <c:forEach items="${selectStoreList}" var="st">
-                    <option value="${st.storeName}">${st.storeName}</option>
+                    <option value="${st.businessNum}">${st.storeName}</option>
                     
                     </c:forEach>
                 </select>
@@ -95,100 +91,6 @@ pageEncoding="UTF-8"%>
         <hr/>
       
        <div class="layer">
-        <c:forEach items="${storeList}" var="st">
-         
-        <div class="row">
-            <div class="col-sm-2">
-               		 ${st.STORENAME }
-            </div>
-
-            <div class="sol-sm-10" style="margin-left: 50px;">
-               		<tr>
-             	
-	             	<c:if test="${st.GRADE==1 }">
-	             		<p class="star_rating">
-					        <span class="on">★</span>
-					        <span class="off">★</span>
-					        <span class="off">★</span>
-					        <span class="off">★</span>
-					        <span class="off">★</span>
-					        <a>${st.MEMBERID }님</a>
-					        <small>${st.WRITEDATE }</small>
-	    				</p>
-	    				
-	             	</c:if>
-	             	<c:if test="${st.GRADE==2 }">
-	             		<p class="star_rating">
-					        <span class="on">★</span>
-					        <span class="on">★</span>
-					        <span class="off">★</span>
-					        <span class="off">★</span>
-					        <span class="off">★</span>
-	    					<a>${st.MEMBERID }님</a>
-	    					<small>${st.WRITEDATE }</small>
-	    				
-	    				</p>
-	    				
-	             	</c:if>
-	             	<c:if test="${st.GRADE==3 }">
-	             		<p class="star_rating">
-					        <span class="on">★</span>
-					        <span class="on">★</span>
-					        <span class="on">★</span>
-					        <span class="off">★</span>
-					        <span class="off">★</span>
-					        <a>${st.MEMBERID }님</a>
-					        <small>${st.WRITEDATE }</small>
-	    				</p>
-	             	</c:if>
-	             	<c:if test="${st.GRADE==4 }">
-	             		<p class="star_rating">
-					        <span class="on">★</span>
-					        <span class="on">★</span>
-					        <span class="on">★</span>
-					        <span class="on">★</span>
-					        <span class="off">★</span>
-					        <a>${st.MEMBERID }님</a>
-					        <small>${st.WRITEDATE }</small>
-	    				</p>
-	             	</c:if>
-	             	<c:if test="${st.GRADE==5 }">
-	             		<p class="star_rating">
-					        <span class="on">★</span>
-					        <span class="on">★</span>
-					        <span class="on">★</span>
-					        <span class="on">★</span>
-					        <span class="on">★</span>
-					        <a>${st.MEMBERID }님</a>
-					        <small>${st.WRITEDATE }</small>
-	    				</p>
-	    				
-	             	</c:if>
-             	
-             </tr>
-               		
-               	
-                	<a class="review">${st.REVIEWCONTEXT }</a>
-            </div>
-        </div>
-        <form action="${path }/" method="post">
-            <div class="rounded row" style="padding-bottom:1em; padding-right:1em; padding-left:1em; padding-top:1em;">
-                        <div class="re">
-                          
-                            <input type="hidden" name="qnaNo" value="${oq.qnaCode }"/>
-                            
-                            <textarea id="textarea" cols="70" rows="5" placeholder="답글을 달아주세요" style="margin-left: 250px;"></textarea><br/>
-                            <input type="submit" class="btn" value="사장님 댓글 등록" style=" width:200px; margin-top:15px; float: right;"/>  
-                       
-                        </div>  
-                        
-            </div>
-                
-                    
-                 
-        </form>
-        <hr/>
-	</c:forEach>
 	</div>
 
     </div>

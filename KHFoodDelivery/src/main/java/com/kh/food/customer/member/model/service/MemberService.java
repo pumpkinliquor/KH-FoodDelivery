@@ -33,8 +33,7 @@ public interface MemberService {
 	int checkNick(String nickName);
 	Member selectMember(String memberId);
 	int update(Member m);
-	List<Store> selectStore(String category,int cPage,int numPerPage);
-	int selectMenuCount();
+	List<Store> selectStore(String category);
 	int drop(String memberId);
 	List<Store> menuInfo(int businessCode);
 	List<Map<String,String>> selectCategoryList(int businessCode);
@@ -57,7 +56,7 @@ public interface MemberService {
 
 	List<Map<String,String>> selectMenuList(int menuCategoryCode,int businessCode);
 	Menu menuSelect(int menuCode);
-	List<Store> selectAllStore(int cPage,int numPerPage);
+	List<Store> selectAllStore(String category);
 	int kakaoEnrollEnd(Member m);
 	
 	// 회원 공지사항

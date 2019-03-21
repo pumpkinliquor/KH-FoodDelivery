@@ -117,9 +117,9 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectOne("member.qnaDtail",no);
 	}
 	@Override
-	public List<Store> selectAllStore(int cPage,int numPerPage){
-		RowBounds rb=new RowBounds((cPage-1)*numPerPage,numPerPage);
-		return sqlSession.selectList("member.selectAllStore",null,rb);
+	public List<Store> selectAllStore(String category){
+		
+		return sqlSession.selectList("member.selectAllStore",category);
 	}
 	
 	@Override
@@ -127,19 +127,16 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList("member.selectStore2",businessCode);
 	}
 
-	@Override
-	public int selectMenuCount() {
-		return sqlSession.selectOne("member.selectMenuCount");
-	}
+	
 	
 	@Override
 	public int drop(String memberId) {
 		return sqlSession.delete("member.drop",memberId);
 	}
 	@Override
-	public List<Store> selectStore(String category,int cPage,int numPerPage){
-		RowBounds rb=new RowBounds((cPage-1)*numPerPage,numPerPage);
-		return  sqlSession.selectList("member.selectStore",category,rb);
+	public List<Store> selectStore(String category){
+		
+		return  sqlSession.selectList("member.selectStore",category);
 	}
 
 	@Override
