@@ -41,7 +41,7 @@ public class OrderReviewServiceImpl implements OrderReviewService {
 	}
 
 	@Override
-	public OwnerReview selectOwnerRevie(int stN) {
+	public List<OwnerReview> selectOwnerRevie(int stN) {
 		
 		return dao.selectOwnerRevie(stN);
 	}

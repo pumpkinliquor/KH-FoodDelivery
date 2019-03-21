@@ -3,6 +3,7 @@ package com.kh.food.owner.review.controller;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,8 +61,8 @@ public class OrderReviewController {
 			System.out.println(rv.get(i));
 		}
 		
-		try {	
-		OwnerReview or = service.selectOwnerRevie(stN);
+		try {
+		List<OwnerReview> or = service.selectOwnerRevie(stN);
 		System.out.println("or : " + or);
 		request.setAttribute("orr", or);
 		}
@@ -70,6 +71,7 @@ public class OrderReviewController {
 			e.printStackTrace();
 		}
 		
+
 		request.setAttribute("rv", rv);
 		request.getRequestDispatcher("/WEB-INF/views/owner/test.jsp").forward(request, response);
 	}
@@ -88,8 +90,20 @@ public class OrderReviewController {
 		map.put("code", code);
 		
 		int result = service.insertReviewRe(map);
+		List<OwnerReview> or = new ArrayList<>();
+		try {	
+			or = service.selectOwnerRevie(code);
+			System.out.println("or : " + or);
+			request.setAttribute("orr", or);
+			}
+			catch(NullPointerException e)
+			{
+				e.printStackTrace();
+			}
 		
+		System.out.println("code"+code);
 		
+		mv.addObject("orr",or);
 		mv.setViewName("redirect:/owner/ownerReview.do?ownerId="+ownerId);
 		
 		return mv;

@@ -32,15 +32,16 @@
 			if(num > 107){
 				$(".headerDiv2").css("position","fixed");
 			}else{
-			/* 	$(".headerDiv2").css("position","absolute"); */
+			 	$(".headerDiv2").css("position","absolute"); 
 			}
 		});
-	}); */
+	}); 
 	
-/* 	function fn_order(){
+ 	function fn_order(){
 		 location.href="${path}/demo/udateDev.do?no="+devNo; 
 		 href="${path }/owner/storeChoice.do?ownerId="${sessionScope.ownerId}
 	} */
+	
 </script>
 
 </head>
