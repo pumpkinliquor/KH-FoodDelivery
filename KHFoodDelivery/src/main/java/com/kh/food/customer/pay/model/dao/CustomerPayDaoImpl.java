@@ -28,6 +28,12 @@ public List<Map<String,String>> payWishList(Map<String, String> setPay) {
 	return sqlSession.selectList("pay.payWishList", setPay);
 }
 
+@Override
+public int customerPayEnd(Map<String, Object> maps) {
+	// TODO Auto-generated method stub
+	return sqlSession.selectOne("pay.payEnd", maps);
+}
+
 
   }
  

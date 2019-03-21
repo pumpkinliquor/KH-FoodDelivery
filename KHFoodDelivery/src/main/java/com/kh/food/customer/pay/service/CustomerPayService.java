@@ -10,5 +10,6 @@ public interface CustomerPayService {
 
 	Map<String,String> customerPayService(Map<String,String> setPay);
 	List<Map<String,String>> payWishList(Map<String, String> setPay);
+	int cusomerPayEnd(Map<String, Object> maps);
 
 }

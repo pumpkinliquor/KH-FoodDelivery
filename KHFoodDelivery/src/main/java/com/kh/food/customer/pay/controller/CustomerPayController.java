@@ -35,7 +35,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
      
      
      for(int i=0; i<payWishList.size(); i++) {
-    	 System.out.println(payWishList.get(i));
+//    	 System.out.println(payWishList.get(i));
      }
      
      mv.addObject("businessCode", businessCode);
@@ -49,9 +49,18 @@ import com.kh.food.owner.menu.model.vo.Menu;
   
   
   @RequestMapping("/customer/payEnd.do") 
-  public String customerPayEnd() 
+  public ModelAndView customerPayEnd(int resultPrice, int businessCode, String payRequest, String payAddress) 
   {
-  return "customer/payEnd"; } 
+	  
+	System.out.println("비즈니스"+businessCode+"콘텍스트"+payRequest+"주소 : "+payAddress+"가격  : " +resultPrice);
+	ModelAndView mv=new ModelAndView();
+	
+	
+//	System.out.println("아이디 : "+memberId);
+
+	
+	return mv; 
+  } 
   
   }
  
