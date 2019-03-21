@@ -4,6 +4,6 @@ import java.util.Map;
 
 public interface CustomerPayService {
 
-	int customerPayService(String memberId);
+	Map customerPayService(Map setPay);
 
 }
