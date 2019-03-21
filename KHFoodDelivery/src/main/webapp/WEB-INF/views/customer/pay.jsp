@@ -132,7 +132,7 @@ div{
                               </div>
                             </div>
                           </div>
-
+							<input id="memberId" type="hidden" value="${payReady.MEMBERID}">
                     </div>
                 </div>
 
@@ -183,6 +183,8 @@ $('#result').text(result);
 </form>
 <script>
 $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디쓸것
+	 var memberId = $('#memberId').val();
+	console.log(memberId); 
 	var payRequest=$('#payRequest').val();
 	console.log(payRequest);
 	var payAddress=$('#payAddress').val()+" "+$('#payAddressDetail').val();
@@ -192,7 +194,7 @@ $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디�
     var deliveryPrice=$('#resultDeliveryPrice').val();//총 합계금액     
     var resultPrice =${payReady.TOTALPRICE}+${payReady.DELIVERYPRICE};
  	var IMP = window.IMP; // 생략가능
-    location.href="${path}/customer/payEnd.do?businessCode="+${businessCode}+"&payAddress="+payAddress+"&payRequest="+payRequest+"&resultPrice="+resultPrice; //보낼값들
+    location.href="${path}/customer/payEnd.do?businessCode="+${businessCode}+"&payAddress="+payAddress+"&payRequest="+payRequest+"&resultPrice="+resultPrice+"&memberId="+memberId; //보낼값들
 	IMP.init('imp51687071'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	IMP.request_pay({
     pg : 'inicis', // version 1.1.0부터 지원.

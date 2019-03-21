@@ -12,4 +12,15 @@
 <insert id="payEnd">
 
 </insert>
+
+<select id="selectWishList" resultType="map" parameterType="string">
+	 select w.*,m.membernum from wishlist w join member m on(w.memberId = m.memberId) where w.memberId = #{memberId}
+</select>
+
+<insert id="insertPay" parameterType="map">
+	insert into pay values(seq_paycode.nextval,#{businessCode},sysdate,#{menuCode},null,null,null,#{price},#{count},#{memberNum},'신용카드',#{payRequest},seq_payOrderNum.nextval,default,#{payAddress})
+</insert>
+<insert id="insertPay2" parameterType="map">
+	insert into pay values(seq_paycode.nextval,#{businessCode},sysdate,#{menuCode},null,null,null,#{price},#{count},#{memberNum},'신용카드',#{payRequest},seq_payOrderNum.currval,default,#{payAddress})
+</insert>
 </mapper>
