@@ -179,7 +179,7 @@ $('#result').text(result);
 
 <script>
 $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디쓸것
-    var title=$('#storeName').val();		//가게명
+    var title=$('#storeName').val();//가게명
     
     console.log(title);
     var resultPrice=$('#resultPrice').val();
@@ -191,7 +191,7 @@ $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디�
     pg : 'inicis', // version 1.1.0부터 지원.
     pay_method : 'card',
     merchant_uid : 'merchant_' + new Date().getTime(),
-    name : '간신배', //주문음식이름 
+    name :title, //주문음식이름 
     amount : result, //가격 받아가야함 총 가격과 배달가격 합쳐서
     buyer_email : 'wjdqls7773@gmail.com', //사는 사람 이메일 받아가야됨
     buyer_name : '간신배', //이름도
