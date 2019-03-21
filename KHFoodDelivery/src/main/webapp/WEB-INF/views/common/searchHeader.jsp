@@ -190,7 +190,7 @@ div.newsletter,div.group{display:inline-block;}
       location.href="${path }";
    }
    function locationSearchStore(){
-	   if(${sessionScope.logined==null}){
+	   if(sessionScope.logined==null){
 			 alert("로그인 후 이용해주세요");
 		 }else{
 			 
