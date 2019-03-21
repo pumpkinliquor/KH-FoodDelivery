@@ -42,6 +42,7 @@ import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
+import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
 import com.kh.food.review.model.vo.Review;
@@ -441,16 +442,24 @@ public class MemberController {
 	}
 	
 	
-	//테스트
+	//리뷰보여주기 ~_~
 	
 	@RequestMapping("/customer/menuReview.do")
 	
 	public ModelAndView test(ModelAndView mv, int businessCode)
 	{
 		List<Review> review=service.selectReview(businessCode);
+
+		List<OwnerReview> or = service.selectOwnerRevie(businessCode);
 		System.out.println("review : "+review);
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		
+		for(int i=0; i<or.size(); i++) {
+			or.get(i).setFormatWriteDate(df.format(or.get(i).getWriteDate()));
+		}
 		mv.addObject("businessCode",businessCode);
 		mv.addObject("review",review);
+		mv.addObject("orr",or);
 		mv.setViewName("customer/menuReview");
 		return mv;
 	}

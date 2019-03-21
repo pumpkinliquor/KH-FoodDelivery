@@ -122,7 +122,7 @@ pageEncoding="UTF-8"%>
         <c:forEach var="re" items="${orr}">
         <script>
         $(document).ready(function(){
-        	var h="<br><br><span id='ohoh${re.reviewNum}' style='font-weight:bold; font-size:25px; margin-left:50px;'>사장님 답변 : <span style='font-size:20px;'>${re.reviewContext}</span></span>";
+        	var h="<br><div style='border: 1px solid #d9d9d9;padding: 16px 16px 10px 16px;background: #f0f0f0;coler:#d9d9d9'>└<span id='ohoh${re.reviewNum}' style='font-weight:bold; font-size:19px; margin-left:10px;'>사장님 <span style='font-weight: normal; font-size:18px; margin-left:20px; color: #666;'>${re.formatWriteDate}<br/>${re.reviewContext}</span></span><div>";
         	$('#ohohoh${re.reviewNum}').html("");
         	$('#ohoh${re.reviewNum}').empty().append(h);
         });
