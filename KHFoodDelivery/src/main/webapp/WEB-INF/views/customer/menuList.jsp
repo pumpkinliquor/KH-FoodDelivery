@@ -8,6 +8,9 @@
 div .menuCategoryStyle {
    cursor:pointer;
 }
+dt:hover {
+	color:red;
+}
 </style>
 <script>
    $(function() {
