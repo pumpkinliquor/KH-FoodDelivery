@@ -13,6 +13,9 @@ import com.kh.food.qna.model.vo.MemberQna;
 import com.kh.food.review.model.vo.Review;
 
 public interface MemberService {
+	
+	//회원 문의
+	int addQna(int no);
 	//상세 주문내역
 	Map<String,String> orderOne(Map<String,String> orList);
 	//고객 문의 수정
