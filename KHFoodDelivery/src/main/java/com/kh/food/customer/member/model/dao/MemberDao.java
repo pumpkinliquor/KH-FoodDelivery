@@ -25,6 +25,7 @@ public interface MemberDao {
 	int checkNick(String nickName);
 	Member selectMember(String memberId);
 	int update(Member m);
+	List<Menu> popularityMenu(int businessCode);
 	List<Store> selectStore(Map<String,String> map);
 	
 	int drop(String memberId);

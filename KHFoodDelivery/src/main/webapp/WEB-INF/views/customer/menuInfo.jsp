@@ -197,14 +197,13 @@
            
         });
         
-        
       $(document).ready(function(){
            $("#menuList").click(function(){
               var businessCode=${businessCode};
               $.ajax({
                  type: "post",
                  url: "${path}/customer/menuList.do",
-                 data : {"businessCode" : businessCode},
+                 data : {"businessCode" : businessCode, "menuCode" : menuCode},
                  success: function test(a){$("#callback").html(a);}
               });          
            });

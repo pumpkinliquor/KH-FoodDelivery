@@ -26,17 +26,17 @@ div .menuCategoryStyle {
    <dl>
       <dt>인기메뉴</dt>
       <dd>
-         <c:forEach begin="0" end="1" step="1">
-         <div class="row">
+         <c:forEach var="popu" items="${popularityMenu}">
+         <div class="row menuCategoryStyle" onclick='menuModal(${popu.menuCode})' id='menuCategoryId${popu.menuCode }'>
             <div class="col-sm-9">
                <div class="mnl">
-                  <p>
-                     교촌 간장치킨<br /> 19500원
+                  <p style='margin-top:8px; margin-bottom:8px;'><span style='font-weight:bold;'>
+                    ${popu.menuName }</span><br /> <span style='color:black;'>${popu.menuPrice }원</span>
                   </p>
                </div>
             </div>
             <div class="col-sm-3">
-               <img class="mnlogo" src="${path}/resources/upload/owner/menu/20190314_142247312_830.jpg"><br />
+               <img class="mnlogo" src="${path}/resources/upload/owner/menu/${popu.menuImage}"><br />
             </div>
          </div>
          <hr>

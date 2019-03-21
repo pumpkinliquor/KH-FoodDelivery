@@ -461,7 +461,9 @@ public class MemberController {
 	{
 //		System.out.println(businessCode);
 		List<Map<String,String>> menuCategory=service.selectCategoryList(businessCode);
+		List<Menu> popularityMenu=service.popularityMenu(businessCode);
 		mv.addObject("businessCode", businessCode);
+		mv.addObject("popularityMenu", popularityMenu);
 		mv.addObject("categoryList", menuCategory);
 		mv.setViewName("customer/menuList");
 		return mv;

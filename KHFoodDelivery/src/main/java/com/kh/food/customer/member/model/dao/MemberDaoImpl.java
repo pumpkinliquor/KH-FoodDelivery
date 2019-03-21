@@ -52,6 +52,10 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
+	public List<Menu> popularityMenu(int businessCode) {
+		return sqlSession.selectList("menu.popularityMenu", businessCode);
+	}
+	@Override
 	public List<WishList> selectSame(Map<String, Object> menuMap) {
 		return sqlSession.selectList("menu.selectSame", menuMap);
 	}

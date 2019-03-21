@@ -62,6 +62,10 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
+	public List<Menu> popularityMenu(int businessCode) {
+		return dao.popularityMenu(businessCode);
+	}
+	@Override
 	public int deleteMenuCode(int reMenuCode) {
 		return dao.deleteMenuCode(reMenuCode);
 	}
