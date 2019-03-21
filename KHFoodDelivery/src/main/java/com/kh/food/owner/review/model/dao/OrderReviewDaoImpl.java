@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.review.model.vo.Review;
 
@@ -27,9 +28,21 @@ public class OrderReviewDaoImpl implements OrderReviewDao {
 	}
 
 	@Override
-	public List<Map<String, String>> selectReviewList(String stN) {
+	public List<Map<String, String>> selectReviewList(int stN) {
 		// TODO Auto-generated method stub
 		return session.selectList("store.selectReviewList",stN);
+	}
+
+	@Override
+	public int insertReviewRe(Map map) {
+		
+		return session.insert("store.insertReviewRe",map);
+	}
+
+	@Override
+	public OwnerReview selectOwnerRevie(int stN) {
+		
+		return session.selectOne("store.selectOwnerRevie",stN);
 	}
 	
 	
