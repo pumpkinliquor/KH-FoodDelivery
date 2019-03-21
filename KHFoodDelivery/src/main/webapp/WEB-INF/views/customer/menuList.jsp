@@ -9,7 +9,7 @@ div .menuCategoryStyle {
    cursor:pointer;
 }
 dt:hover {
-	color:red;
+   color:red;
 }
 </style>
 <script>
@@ -233,5 +233,4 @@ $('#menuSelectModal').on('hidden.bs.modal', function (e) {
       </div>  
    </div>
 </div>
-
 
