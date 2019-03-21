@@ -41,11 +41,11 @@
 					<thead id="tableHead">
 						<tr>
 							<th><input type="checkbox" id="ownAllCheck" /></th>
-							<th width="13%">사장님 번호</th>
-							<th width="20%">아이디</th>
-							<th width="30%">점포명</th>
-							<th width="17%">업종</th>
-							<th width="20%">가게 번호</th>
+							<th width="15%">사장님 번호</th>
+							<th width="20%">사장님 아이디</th>
+							<th width="15%">사장님 이름</th>
+							<th width="20%">사장님 번호</th>
+							<th width="30%">사장님 이메일</th>
 						</tr>
 					</thead>
 
@@ -54,11 +54,11 @@
 							<tr>
 								<td><input type="checkbox" class="checkthis"
 									name="rowCheck" value="${o.OWNERID }" /></td>
-								<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.BUSINESSCODE}</td>
+								<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.OWNERNUM}</td>
 								<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.OWNERID}</td>
-								<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.STORENAME}</td>
-								<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.STORECATEGORY}</td>
-								<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.STOREPHONE}</td>
+								<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.OWNERNAME}</td>
+								<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.OWNERPHONE}</td>
+								<td class="pnt" onclick="fn_ownListmodal('${o.BUSINESSCODE}')">${o.OWNEREMAIL}</td>
 							</tr>
 						</tbody>
 					</c:forEach>
@@ -77,7 +77,7 @@
 </section>
 
 
-<script>
+<!-- <script>
 	function fn_ownListmodal(businessCode) {
 		console.log(businessCode);
 		$
@@ -106,7 +106,7 @@
 				});
 
 	}
-</script>
+</script> -->
 <jsp:include page="/WEB-INF/views/common/adminFooter.jsp"></jsp:include>
 
 
@@ -136,9 +136,9 @@
 
 
 
-<div class="modal" id="ownListModal" role="dialog">
+<!-- <div class="modal" id="ownListModal" role="dialog">
 	<div class="modal-dialog">
-		<!-- Modal content-->
+		Modal content
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title">회원 정보</h4>
@@ -186,4 +186,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->

@@ -24,7 +24,11 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	MemberDao dao;
-
+	@Override
+	public 	int addQna(int no) {
+		return dao.addQna(no);
+	}
+	
 	@Override
 	public List<Review> selectReview(int businessCode) {
 		

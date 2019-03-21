@@ -26,6 +26,11 @@ public class MemberDaoImpl implements MemberDao {
 	SqlSessionTemplate sqlSession;
 	
 
+	
+	@Override
+	public int addQna(int no) {
+		return sqlSession.insert("member.qnaAdd",no);
+	}
 	@Override
 	public List<Review> selectReview(int businessCode) {
 		return sqlSession.selectList("member.selectReview",businessCode);
