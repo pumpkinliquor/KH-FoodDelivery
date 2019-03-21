@@ -412,7 +412,7 @@
 
 					<!-- !!!!!!!!!!!!!!!정빈 하는 중!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
                              <form id='businessCodeFrm' action='${path}/customer/pay.do'>
-                           	<input type='hidden' id='businessCode' name='businessCode' value='${wishList.get(0).BUSINESSCODE }'/>
+                           	<input type='hidden' id='businessCode' name='businessCode' value='${businessCode }'/>
  							<button class="cart-btn clearfix" id="pay" type="submit" style="clear:both;">
 							주문하기							    
 							</button>
