@@ -25,7 +25,7 @@
 </style>
 <script>
 
-	$(function(){
+/* 	$(function(){
 		$(window).scroll(function(){
 			var num = $(this).scrollTop();
 		
@@ -35,7 +35,7 @@
 			/* 	$(".headerDiv2").css("position","absolute"); */
 			}
 		});
-	});
+	}); */
 	
 /* 	function fn_order(){
 		 location.href="${path}/demo/udateDev.do?no="+devNo; 

@@ -21,8 +21,6 @@ import com.kh.food.review.model.vo.Review;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-	
-
 	@Autowired
 	MemberDao dao;
 

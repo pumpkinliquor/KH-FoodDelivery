@@ -72,6 +72,16 @@ public class MenuServiceImpl implements MenuService {
 	public int updateCancleSoldOut(String menuCode) {
 		return dao.updateCancleSoldOut(menuCode);
 	}
+
+	@Override
+	public int deleteMenu1(String menuCategory) {
+		return dao.deleteMenu1(menuCategory);
+	}
+
+	@Override
+	public List<Map<String, String>> selectMenuCategory1(String menuCategory) {
+		return dao.selectMenuCategory1(menuCategory);
+	}
 	
 	
 	
