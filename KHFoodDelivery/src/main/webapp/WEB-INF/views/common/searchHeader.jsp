@@ -24,10 +24,10 @@
 
 div.newsletter div.search1{text-align:center; margin-top:0.25%;}   
 
-div.newsletter div.search1 .btn{background-color:#F6F6F6;}
+div.newsletter div.search1 .btn{background-color:#F6F6F6; }
 div.newsletter div.search1 .btn:hover{background-color:#8C8C8C; color:white;}
 div.group{text-align:center; box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);background-color:#F6F6F6; margin-top:1%; padding:0; display:none;}
-div.group1{margin-top:1%;text-align:center;box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);padding:0;background-color:#F6F6F6;} 
+div.group1{text-align:center;box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);padding:0;background-color:#F6F6F6;} 
 div.newsletter,div.group{display:inline-block;}
  @media (max-width:843px){
 	div.group{
@@ -190,7 +190,7 @@ div.newsletter,div.group{display:inline-block;}
       location.href="${path }";
    }
    function locationSearchStore(){
-		 if(${sessionScope.logined==null}){
+	   if(${sessionScope.logined==null}){
 			 alert("로그인 후 이용해주세요");
 		 }else{
 			 
@@ -202,6 +202,7 @@ div.newsletter,div.group{display:inline-block;}
 		 }
 	 }
    
+
    
    </script>
 
@@ -250,22 +251,22 @@ div.newsletter,div.group{display:inline-block;}
                 <div class="group1  col-md-12 col-lg-12">
                 	 <select class="form-control" name="menuSearch" id="menuSearch" onchange="window.open(value,'_self');">
 					            <option  disabled selected>메뉴검색</option>
-					            <option value="${path}/customer/selectallstore.do">전체보기</option>
-					            <option value="${path}/customer/searchmenuView?category=돈까스">돈까스</option> 
-					            <option value="${path}/customer/searchmenuView?category=프랜차이즈">프랜차이즈</option>
-					            <option value="${path}/customer/searchmenuView?category=치킨">치킨</option>
-					            <option value="${path}/customer/searchmenuView?category=피자">피자</option>
-					            <option value="${path}/customer/searchmenuView?category=중국집">중국집</option>
-					            <option value="${path}/customer/searchmenuView?category=한식">한식</option>
-					            <option value="${path}/customer/searchmenuView?category=족발/보쌈">족발/보쌈</option>
-					            <option value="${path}/customer/searchmenuView?category=분식">분식</option>
-					            <option value="${path}/customer/searchmenuView?category=디저트">디저트</option>
+					            <option value="${path}/customer/selectallstore.do?myAddr=${sessionScope.myAddr}">전체보기</option>
+					            <option value="${path}/customer/searchmenuView?category=돈까스&myAddr=${sessionScope.myAddr}">돈까스</option> 
+					            <option value="${path}/customer/searchmenuView?category=프랜차이즈&myAddr=${sessionScope.myAddr}">프랜차이즈</option>
+					            <option value="${path}/customer/searchmenuView?category=치킨&myAddr=${sessionScope.myAddr}">치킨</option>
+					            <option value="${path}/customer/searchmenuView?category=피자&myAddr=${sessionScope.myAddr}">피자</option>
+					            <option value="${path}/customer/searchmenuView?category=중국집&myAddr=${sessionScope.myAddr}">중국집</option>
+					            <option value="${path}/customer/searchmenuView?category=한식&myAddr=${sessionScope.myAddr}">한식</option>
+					            <option value="${path}/customer/searchmenuView?category=족발/보쌈&myAddr=${sessionScope.myAddr}">족발/보쌈</option>
+					            <option value="${path}/customer/searchmenuView?category=분식&myAddr=${sessionScope.myAddr}">분식</option>
+					            <option value="${path}/customer/searchmenuView?category=디저트&myAddr=${sessionScope.myAddr}">디저트</option>
 					            </select>
                 
                 </div>
                    <div class="group col-md-12 col-lg-12">
                 <div class="btn-group btn-group-lg search1">
-               <button type="button" class="btn btn-default active" onclick="allview();">전체보기</button> 
+               <button type="button" class="btn btn-default" onclick="allview();">전체보기</button> 
               <button type="button" class="btn btn-default" onclick="don();">돈까스</button>
               <button type="button" class="btn btn-default" onclick="fre();">프랜차이즈</button>
               <button type="button" class="btn btn-default" onclick="chi();">치킨</button>
@@ -275,55 +276,62 @@ div.newsletter,div.group{display:inline-block;}
               <button type="button" class="btn btn-default" onclick="jok();">족발/보쌈</button>
               <button type="button" class="btn btn-default" onclick="base();">분식</button>
               <button type="button" class="btn btn-default" onclick="des();">디저트</button>
-               </div>     
+                
+       </div>     
                </div>          
        </div>
 
                  <div id="map" style="width:300px;height:300px;"></div> 
 
-                 <script>
-                 	function allview(){
-                 		location.href="${path}/customer/selectallstore.do";
-                 	}
-                 	function don(){
-                 		location.href="${path}/customer/searchmenuView?category=돈까스"; 
-                 	}
-                 	
-                 	function fre(){
-                 		location.href="${path}/customer/searchmenuView?category=프랜차이즈"; 
-                 	}
-                 	
-                 	function chi(){
-                 		location.href="${path}/customer/searchmenuView?category=치킨"; 
-                 	}
-                 	
-                 	function piz(){
-                 		location.href="${path}/customer/searchmenuView?category=피자"; 
-                 	}
-                 	
-                 	function jun(){
-                 		location.href="${path}/customer/searchmenuView?category=중국집"; 
-                 	}
-                 	
-                 	function kor(){
-                 		location.href="${path}/customer/searchmenuView?category=한식"; 
-                 	}
-                 	
-                 	function jok(){
-                 		location.href="${path}/customer/searchmenuView?category=족발/보쌈"; 
-                 	}
-                 	
-                 	function base(){
-                 		location.href="${path}/customer/searchmenuView?category=분식"; 
-                 	}
-                 	
-                 	function des(){
-                 		location.href="${path}/customer/searchmenuView?category=디저트"; 
-                 	}
+<script>
+
+function allview(){
+	location.href="${path}/customer/selectallstore.do?myAddr=${sessionScope.myAddr}";
+}
+function don(){
+	location.href="${path}/customer/searchmenuView?category=돈까스&myAddr=${sessionScope.myAddr}"; 
+}
+
+function fre(){
+	location.href="${path}/customer/searchmenuView?category=프랜차이즈&myAddr=${sessionScope.myAddr}"; 
+}
+
+function chi(){
+	location.href="${path}/customer/searchmenuView?category=치킨&myAddr=${sessionScope.myAddr}"; 
+}
+
+function piz(){
+	location.href="${path}/customer/searchmenuView?category=피자&myAddr=${sessionScope.myAddr}"; 
+}
+
+function jun(){
+	location.href="${path}/customer/searchmenuView?category=중국집&myAddr=${sessionScope.myAddr}"; 
+}
+
+function kor(){
+	location.href="${path}/customer/searchmenuView?category=한식&myAddr=${sessionScope.myAddr}"; 
+}
+
+function jok(){
+	location.href="${path}/customer/searchmenuView?category=족발/보쌈&myAddr=${sessionScope.myAddr}"; 
+}
+
+function base(){
+	location.href="${path}/customer/searchmenuView?category=분식&myAddr=${sessionScope.myAddr}"; 
+}
+
+function des(){
+	location.href="${path}/customer/searchmenuView?category=디저트&myAddr=${sessionScope.myAddr}";
+	
+}
+
+
+</script>
+        
+             
                  
                  
-                 
-                 </script>
+            
 
  
 

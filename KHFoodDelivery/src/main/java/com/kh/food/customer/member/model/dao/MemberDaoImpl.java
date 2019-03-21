@@ -138,9 +138,9 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.delete("member.drop",memberId);
 	}
 	@Override
-	public List<Store> selectStore(String category){
+	public List<Store> selectStore(Map<String,String> map){
 		
-		return  sqlSession.selectList("member.selectStore",category);
+		return  sqlSession.selectList("member.selectStore",map);
 	}
 
 	@Override
