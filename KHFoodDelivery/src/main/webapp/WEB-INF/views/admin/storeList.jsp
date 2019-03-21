@@ -19,10 +19,27 @@
 	input[type=checkbox], input[type=radio] {display: none; }	
 </style>
 
-<script>	
-	function fn_storeView(no){
-		location.href="${path}/admin/storeView.do?no="+no;		
-	}		
+<script> 
+	function fn_modal(num){		
+		$.ajax({
+			type: "POST",
+			url: "${path}/admin/selectAppStore.do?no=" + num,
+			data: JSON,
+			success: function(data){
+				console.log(data);
+				$('#storeModal').modal();
+				$('#mdCategory').val(data.storeCategory);
+				$('#mdName').val(data.storeName)
+				$('#mdOwner').val(data.businessName);
+				$('#mdPhone').val(data.storePhone);
+				$('#mdAddress').val(data.storeAddress);
+				$('#mdAppDate').val(data.formatAppDate);
+				$('#mdProfile').val(data.storeProfile);
+				$('#mdBsCode').val(data.businessCode);
+				$('#mdImage').empty().append('<img src="${path}/resources/upload/owner/storeMainImage/'+data.storeImage+'" style="width:330px;"/>');
+			}
+		});
+	}
 </script>
 
 <section>
@@ -79,7 +96,7 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${list}" var="list">
-						<tr class="pnt" onclick="fn_storeView(${list.businessCode})">
+						<tr class="pnt" onclick="fn_modal(${list.businessCode})">
 							<td><c:out value="${list.storeCategory }"/></td>
 							<td><c:out value="${list.storeName }"/></td>
 							<td><c:out value="${list.businessName }"/></td>
@@ -96,3 +113,56 @@
 	</div>
 </section>
 <jsp:include page="/WEB-INF/views/common/adminFooter.jsp"></jsp:include>
+
+
+<!-- 모달 구현 -->
+<div class="modal" id="storeModal" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">가게 정보</h4>
+				<button type="button" class="close" data-dismiss="modal">×</button>
+			</div>
+			<div class="modal-body" style="height: auto;">
+				<table class="table">
+					<tr>
+						<th>업종</th>
+						<td><input class="form-control" type="text" id="mdCategory" readonly/></td>						
+					</tr>
+					<tr>
+						<th>점포명</th>
+						<td><input class="form-control" type="text" id="mdName" readonly/></td>
+					</tr>
+					<tr>
+						<th>점주명</th>
+						<td><input class="form-control" type="text" id="mdOwner" readonly/></td>
+					</tr>
+					<tr>
+						<th>연락처</th>
+						<td><input class="form-control" type="text" id="mdPhone" readonly/></td>
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td><input class="form-control" type="text" id="mdAddress" readonly/></td>
+					</tr>
+					<tr>
+						<th>입점 신청일</th>
+						<td><input class="form-control" type="text" id="mdAppDate" readonly/></td>
+					</tr>	
+					<tr>
+						<th>가게 소개</th>					
+						<td><textarea cols="10" rows="4" class="form-control" id="mdProfile" style="resize: none" readonly></textarea></td> 
+					</tr>
+					<tr>
+						<th>업소이미지</th>
+						<td id="mdImage"></td> 
+					</tr>					
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			</div>
+		</div>  
+	</div>
+</div>

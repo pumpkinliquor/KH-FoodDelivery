@@ -100,6 +100,7 @@ public class MenuController {
 		/*logger.debug("메뉴카테고리"+menuCategory);*/
 		Map<String,String> map = new HashMap();
 		map.put("menuCategory", menuCategory);
+		map.put("businessCode", String.valueOf(businessCode));
 		ModelAndView mv = new ModelAndView();
 		int result = service.enrollCategory(map);
 		String msg = "";
@@ -133,7 +134,7 @@ public class MenuController {
 		map.put("menuCategoryCode", menuCategoryCode);
 		map.put("menuPrice", menuPrice);
 		map.put("menuContent", menuContent);
-		
+		map.put("businessCode",String.valueOf(businessCode));
 		String orifileName = menuImage.getOriginalFilename();
 		if(!menuImage.isEmpty())
 		{
@@ -178,18 +179,39 @@ public class MenuController {
 	
 	//카테고리삭제
 	@RequestMapping("/menu/deleteCategory.do")
-	public ModelAndView deleteCategory(String menuCategory)
+	public ModelAndView deleteCategory(String menuCategory,int businessCode)
 	{	
 		/*logger.debug("카테고리삭제");*/
 //		logger.debug("메뉴카테고리명"+menuCategory);
 		ModelAndView mv = new ModelAndView();
 		String msg ="";
-		String loc = "/owner/menuManage.do";
+		String loc = "/owner/menuManage.do?businessCode="+businessCode;
 		
 		int result = service.deleteCategory(menuCategory);
 		if(result>0)
 		{
-			msg = " 삭제성공";
+			logger.debug("result@@"+result);
+			logger.debug("menuCATE"+menuCategory);
+			
+			List<Map<String,String>> list = service.selectMenuCategory1(menuCategory);
+			logger.debug("list"+list);
+			if(list.size()!=0)
+			{
+			int result1 = service.deleteMenu1(menuCategory);
+				logger.debug("result1"+result1);
+				if(result1>0)
+				{
+					msg ="삭제성공";
+				}
+				else
+				{
+					msg = "삭제실패";
+				}
+			}
+			else
+			{
+				msg = "삭제성공";
+			}
 		}
 		else
 		{
@@ -205,12 +227,12 @@ public class MenuController {
 	
 	//메뉴 가격 수정
 	@RequestMapping("menu/updateMenuPrice.do")
-	public ModelAndView updateMenuPrice(int menuPrice,int menuCode)
+	public ModelAndView updateMenuPrice(int menuPrice,int menuCode,int businessCode)
 	{
 //		logger.debug("메뉴가격"+menuPrice);
 		ModelAndView mv = new ModelAndView();
 		String msg = "";
-		String loc = "/owner/menuManage.do";
+		String loc = "/owner/menuManage.do?businessCode="+businessCode;
 		Map<String,String> map = new HashMap<>();
 		map.put("menuPrice", String.valueOf(menuPrice));
 		map.put("menuCode",String.valueOf(menuCode));
@@ -234,12 +256,13 @@ public class MenuController {
 	
 	//메뉴삭제
 	@RequestMapping("menu/deleteMenu.do")
-	public ModelAndView deleteMenu(String menuCode)
+	public ModelAndView deleteMenu(String menuCode,int businessCode)
 	{
 		ModelAndView mv = new ModelAndView();
 		logger.debug("삭제할메뉴코드"+menuCode);
+		logger.debug("비지니스코드"+businessCode);
 		String msg = "";
-		String loc = "/owner/menuManage.do";
+		String loc = "/owner/menuManage.do?businessCode="+businessCode;
 		int result = service.deleteMenu(menuCode);
 		if(result > 0 )
 		{
@@ -269,12 +292,13 @@ public class MenuController {
 	
 	//메뉴 수정 하기
 	@RequestMapping("owner/updateMenu.do")
-	public ModelAndView updateMenu(Menu m)
+	public ModelAndView updateMenu(Menu m,int businessCode)
 	{
 		ModelAndView mv = new ModelAndView();
 		logger.debug("메뉴수정" + m);
+		logger.debug("비지니스코드"+businessCode);
 		String msg = "";
-		String loc = "/owner/menuManage.do";
+		String loc = "/owner/menuManage.do?businessCode="+businessCode;
 		
 		
 		int result = service.updateMenu(m);

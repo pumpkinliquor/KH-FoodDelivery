@@ -9,7 +9,7 @@ div .menuCategoryStyle {
    cursor:pointer;
 }
 dt:hover {
-	color:red;
+   color:red;
 }
 </style>
 <script>
@@ -155,6 +155,7 @@ $(document).ready(function(){
          dataType:"JSON",
          success: function(data) {
             console.log(data);
+            location.reload();
             var wishResultBusinessCode=businessCode;
             $.ajax({
                type:"POST",
@@ -233,5 +234,4 @@ $('#menuSelectModal').on('hidden.bs.modal', function (e) {
       </div>  
    </div>
 </div>
-
 

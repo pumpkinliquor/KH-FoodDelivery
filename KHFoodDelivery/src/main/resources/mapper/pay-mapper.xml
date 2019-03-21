@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="pay">
-
-<select id="pay" parameterType='map' resultType="map">
-	select memberId,(select deliveryPrice from store where businesscode=#{businessCode}) as DELIVERYPRICE, memberPhone, (select sum(plusMenuPrice) from wishList b where memberId=b.memberId)as totalPrice from member where memberId=#{memberId}
+<resultMap id="payMap" type="map"></resultMap>
+<select id="pay" parameterType='map' resultMap="payMap">
+	select memberId,(select deliveryPrice from store where businesscode=#{businessCode}) as DELIVERYPRICE,(select storeName from store where businesscode=38) as STORENAME, memberPhone, (select sum(plusMenuPrice) from wishList b where memberId=b.memberId)as totalPrice from member where memberId=#{memberId}
+</select>
+<select id="payWishList" parameterType="map" resultMap="payMap">
+	SELECT * FROM WISHLIST B INNER JOIN MENU A ON A.menucode=B.menucode WHERE B.businessCode=#{businessCode} AND B.memberId=#{memberId}
 </select>
 </mapper>

@@ -598,6 +598,7 @@ public class MemberController {
 //		System.out.println(resultPrice);
 		
 		request.setAttribute("minPrice", minPrice);
+		request.setAttribute("businessCode", businessCode);
 		request.setAttribute("resultPrice", resultPrice);
 		request.getRequestDispatcher("/WEB-INF/views/customer/WishResult.jsp").forward(request, response);
 	}

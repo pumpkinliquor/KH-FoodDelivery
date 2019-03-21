@@ -59,7 +59,7 @@ pageEncoding="UTF-8"%>
 				
                 type: "post",
                 url: "${path}/owner/test.do",   
-                data: {"stN" : stN},
+                data: {"stN" : stN },
                 dataType:"html",
                 success: function test(a){
                 	$(".layer").html(a);
@@ -81,7 +81,7 @@ pageEncoding="UTF-8"%>
                 <select class="form-control" onchange="SetSelectBox()";>
                     <option value="">선택</option>
                     <c:forEach items="${selectStoreList}" var="st">
-                    <option value="${st.businessNum}">${st.storeName}</option>
+                    <option value="${st.businessCode}">${st.storeName}</option>
                     
                     </c:forEach>
                 </select>
