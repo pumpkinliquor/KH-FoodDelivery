@@ -94,8 +94,8 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
-	public List<Store> selectStore(String category){
-		return dao.selectStore(category);
+	public List<Store> selectStore(Map<String,String> map){
+		return dao.selectStore(map);
 	}
 	
 	@Override

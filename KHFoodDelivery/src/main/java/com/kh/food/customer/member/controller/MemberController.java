@@ -29,6 +29,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -500,24 +501,7 @@ public class MemberController {
 		return "customer/test";
 	}
 
-	//가게 출력
-	@RequestMapping("/customer/searchmenuView")
-	public ModelAndView menuView(String category) {
-		
-		ModelAndView mv=new ModelAndView();
-		
 	
-		
-		List<Store> list=service.selectStore(category);
-		
-		
-		
-		mv.addObject("list",list);
-		mv.setViewName("customer/searchMenu");
-	
-		
-		return mv;
-	}	
 	
 	@RequestMapping("/customer/menuInfo.do")
 	public ModelAndView infoMenu(HttpServletRequest request, ModelAndView mv,int businessCode)
@@ -645,7 +629,7 @@ public class MemberController {
 	
 	//업체 전체보기
 	@RequestMapping("/customer/selectallstore.do")
-	public ModelAndView allStore(@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage,String myAddr,HttpSession session,
+	public ModelAndView allStore(String myAddr,HttpSession session,
 			@RequestParam(value="firstPage", defaultValue="0")int firstPage) {
 		
 		System.out.println(myAddr);
@@ -670,6 +654,27 @@ public class MemberController {
 		
 		return mv;
 	}
+	
+	// 카테고리별가게  출력
+		@RequestMapping("/customer/searchmenuView")
+		public ModelAndView menuView(String category,String myAddr) {
+			
+			ModelAndView mv=new ModelAndView();
+			System.out.println(" 부분 검색 주소"+myAddr);
+				String ctg=myAddr.substring(0,6);
+			Map<String,String> map = new HashMap();
+			map.put("category",category);
+			map.put("ctg",ctg);
+			List<Store> list=service.selectStore(map);
+			
+			
+			
+			mv.addObject("list",list);
+			mv.setViewName("customer/searchMenu");
+		
+			
+			return mv;
+		}	
 	
 	@RequestMapping("/customer/menuInsert.do")
 	@ResponseBody

@@ -36,8 +36,8 @@
 		update member set NICKNAME=#{nickName},MEMBERBIRTH=#{formatBirth},MEMBEREMAIL=#{memberEmail},MEMBERPHONE=#{memberPhone},MEMBERADDRESS=#{memberAddress},MEMBERENROLLDATE=default,MEMBERGENDER=#{memberGender},PROFILEIMAGE=#{profileImage},MEMBERADDRESS1=#{memberAddress1} where MEMBERID=#{memberId}		
 	</update>
 	
-	<select id="selectStore" parameterType="string" resultType="store">		  	
-		select* from store where STORECATEGORY=#{category} and ISCONFIRM=1	
+	<select id="selectStore" parameterType="map" resultType="store">		  	
+		select* from store where STORECATEGORY=#{category} and ISCONFIRM=1 and 	STOREADDRESS LIKE '%'||#{ctg}||'%'
 	</select>
 	<select id="selectStore2" parameterType="int" resultType="store">		  	
 		select* from store where BUSINESSCODE=#{besinessCode} and ISCONFIRM=1	
