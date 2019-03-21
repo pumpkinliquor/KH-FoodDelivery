@@ -28,6 +28,10 @@ public interface MenuService {
 	int updateMenuSoldOut(String menuCode);
 
 	int updateCancleSoldOut(String menuCode);
+
+	int deleteMenu1(String menuCategory);
+
+	List<Map<String, String>> selectMenuCategory1(String menuCategory);
 	
 	
 

@@ -46,7 +46,7 @@ pageEncoding="UTF-8"%>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form method="post" action="${path }/menu/deleteCategory.do" onsubmit="return validate();">
+                                        <form method="post" action="${path }/menu/deleteCategory.do?businessCode=${businessCode}" onsubmit="return validate();">
                                           <div class="form-group row">
                                             <div class="col-8">
                                                 <select id="select" name="menuCategory" class="custom-select">
@@ -87,14 +87,16 @@ pageEncoding="UTF-8"%>
                                                 <tbody>
                                                     <h5>${c.MENUCATEGORY}</h5>            
                                                     <c:forEach items="${menuList}" var="m" varStatus="status1">
+                                                    <c:if test="${m.MENUSTATE eq 0}">
                                                     <c:if test="${c.MENUCATEGORYCODE eq m.MENUCATEGORYCODE}">
                                                     <!-- data-toggle="modal" data-target="#myModal" -->
-                                                    <tr style="cursor:pointer;" onclick="updateMenu(${m.MENUCODE})">
+                                                    <tr style="cursor:pointer;" onclick="updateMenu(${m.MENUCODE},${businessCode })">
                                                         <td width="44%" >${m.MENUNAME }</td>
                                                         <td width="32%"><input type="text"  value="${m.MENUPRICE}" class="menu11" placeholder=""></td>
-                                                        <td width="12%"><button onclick="updatePrice(this,${m.MENUCODE})" class="btn btn-default remove">수정</button></td>
-                                                        <td width="12%"><button onclick="deleteMenu(${m.MENUCODE});" class="btn btn-default">삭제</button></td>
+                                                        <td width="12%"><button onclick="updatePrice(this,${m.MENUCODE},${businessCode })" class="btn btn-default remove">수정</button></td>
+                                                        <td width="12%"><button onclick="deleteMenu(${m.MENUCODE},${businessCode });" class="btn btn-default">삭제</button></td>
                                                     </tr>
+                  									</c:if>
                   									</c:if>
                                                     </c:forEach>
                                                 </tbody>
@@ -135,8 +137,7 @@ pageEncoding="UTF-8"%>
 						</div>
 						<div class="row">
 							<div class="col-md-12">
-								<form action="${path }/owner/updateMenu.do" method="post"
-									onsubmit="return fn_enroll_validate();">
+								<form action="${path }/owner/updateMenu.do" method="post">
 									<div class="form-group row">
 										<label for="username" class="col-4 col-form-label">메뉴이름</label>
 										<div class="col-8">
@@ -149,7 +150,7 @@ pageEncoding="UTF-8"%>
 									<div class="form-group row">
 										<label for="name" class="col-4 col-form-label">메뉴가격</label>
 										<div class="col-8">
-											<input type="text" id="menuPrice" name="menuPrice"
+											<input type="number" id="menuPrice" name="menuPrice"
 												placeholder="" class="form-control here">
 										</div>
 									</div>
@@ -170,6 +171,7 @@ pageEncoding="UTF-8"%>
 										<div class="col-4"></div>
 										<div class="col-8">
 											 <input type="hidden" id="menuCode" name="menuCode">
+											 <input type="hidden" id="businessCode" name="businessCode">
 											<button id="ownerJoinBtn" name="submit" type="submit"
 												class="btn btn-primary">수정</button>
 										</div>
@@ -193,18 +195,18 @@ pageEncoding="UTF-8"%>
 
 	<script>
 				
-				function updatePrice(e,menuCode)
+				function updatePrice(e,menuCode,businessCode)
 				{
 					var price = $(e).parent().prev().children().val();
-					location.href="${path}/menu/updateMenuPrice.do?menuPrice="+price+"&menuCode="+menuCode;
+					location.href="${path}/menu/updateMenuPrice.do?menuPrice="+price+"&menuCode="+menuCode+"&businessCode="+businessCode;
 				}
 				
-				function deleteMenu(menuCode)
+				function deleteMenu(menuCode,businessCode)
 				{
-					location.href="${path}/menu/deleteMenu.do?menuCode="+menuCode;
+					location.href="${path}/menu/deleteMenu.do?menuCode="+menuCode+"&businessCode="+businessCode;
 				}
 				
-				function updateMenu(menuCode)
+				function updateMenu(menuCode,businessCode)
 				{
 					console.log("업데이트메뉴 들어왔니?");
 					
@@ -219,6 +221,7 @@ pageEncoding="UTF-8"%>
 							console.log("뭐냐"+data.MENUNAME);
 							console.log(data);
 							
+							$('#businessCode').val(businessCode);
 							$('#menuCode').val(data.MENUCODE);
 							$('#menuName').val(data.MENUNAME);
 							$('#menuPrice').val(data.MENUPRICE);
@@ -250,7 +253,7 @@ pageEncoding="UTF-8"%>
 					}
 				}
 
-
+				
 			</script>
 </section>
 
