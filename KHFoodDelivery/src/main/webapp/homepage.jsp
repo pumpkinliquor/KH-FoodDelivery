@@ -24,7 +24,7 @@ div.main{text-align:center;}
 	$(document).ready(function(){
 		
 		$('.main').click(function(){
-			if(${sessionScope.myAddr}==null){
+			if(${sessionScope.myAddr==null}){
 				alert("주소를 입력해주세요.");
 				return false;
 			}
