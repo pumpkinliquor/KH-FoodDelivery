@@ -175,10 +175,28 @@
  cursor:pointer;
  
 }
+.onMark{
+	color: #FF0000;
+}
+.offMark{
+	color:#ccc;
+}
 </style>
  <script>
-       
-        
+ 
+	function fn_mark(){		
+		// 찜 상태 -> 찜 취소
+		if($('.onMark').length > 0) {
+			alert("찜 취소");
+			$('#isMark').val("1");
+			$('#markFrm').submit();
+		} else{
+			alert("찜 성공");
+			$('#isMark').val("0");
+			$('#markFrm').submit();
+		}
+	};
+ 
         $(document).ready(function(){
            
            $("#menuReview").click(function(){
@@ -245,8 +263,7 @@
            });
           
        });
-       
-      
+
    
  </script>
  
@@ -259,6 +276,20 @@
                 <div class="restaurant-info">
                     <div class="restaurant-title">
                         <span id="storeName">${i.storeName }</span>
+                        <form id="markFrm" action="${path}/store/markStore.do" method="post"style="float: right;">
+                        	<button type="button" onclick="fn_mark()" style="cursor: pointer; border: 0; background-color:#FFF">
+                       			<c:choose>
+	                       			<c:when test="${mark != null}">
+	                       				<span id="mark" class="onMark">♥</span>
+	                       			</c:when>
+	                       			<c:otherwise>
+	                       				<span id="mark" class="offMark">♥</span>
+	                       			</c:otherwise>                       			
+                       			</c:choose>
+                       		</button>
+                       		<input type="hidden" name="bsCode" id="bsCode" value="${i.businessCode }"/>
+                       		<input type="hidden" name="isMark" id="isMark" value=""/>
+                        </form>
                     </div>
                     <div class="restaurant-content">
                         <div class="logo"><img class="mainlogo" src="${path }/resources/upload/owner/storeMainImage/${i.storeImage }" /></div>

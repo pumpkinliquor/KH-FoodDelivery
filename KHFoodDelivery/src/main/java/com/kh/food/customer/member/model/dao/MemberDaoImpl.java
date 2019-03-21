@@ -228,4 +228,9 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList("member.selectMarkList", memberId);
 	}
 	
+	// 찜 했는지 확인
+	@Override
+	public Mark isMark(Map<String, Object> maps) {
+		return sqlSession.selectOne("member.selectIsMark", maps);
+	}	
 }

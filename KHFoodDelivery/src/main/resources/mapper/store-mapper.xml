@@ -96,4 +96,14 @@
 		
 	
 	</select>
+	
+	
+	<!-- 찜 하기 -->
+	<insert id="insertMark" parameterType="map">
+		INSERT INTO MARK VALUES( (SELECT memberNum FROM MEMBER WHERE memberId= #{memberId} ), #{businessCode})
+	</insert>
+	<!-- 찜 취소 -->
+	<delete id="deleteMark" parameterType="map">
+		DELETE FROM MARK WHERE memberNum = (SELECT memberNum FROM MEMBER WHERE memberId = #{memberId}) AND businessCode = #{businessCode}
+	</delete>
 </mapper>

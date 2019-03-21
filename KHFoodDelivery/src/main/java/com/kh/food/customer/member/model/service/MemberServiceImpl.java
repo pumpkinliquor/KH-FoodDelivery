@@ -13,6 +13,7 @@ import com.kh.food.admin.notice.model.vo.MemberNotice;
 import com.kh.food.customer.member.model.dao.MemberDao;
 import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
+import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -22,6 +23,8 @@ import com.kh.food.review.model.vo.Review;
 public class MemberServiceImpl implements MemberService {
 
 	
+
+
 
 	@Autowired
 	MemberDao dao;
@@ -222,4 +225,11 @@ public Store minPrice(int businessCode) {
 	public List<Store> selectMarkList(String memberId) {
 		return dao.selectMarkList(memberId);
 	}
+
+	// 찜 했는지 안했는지 확인
+	@Override
+	public Mark isMark(Map<String, Object> maps) {
+		return dao.isMark(maps);
+	}
+
 }

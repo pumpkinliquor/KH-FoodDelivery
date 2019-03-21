@@ -7,4 +7,6 @@ public interface CustomerService {
 	List<Map<String,String>> selectQnaList();
 	List<Map<String,String>> selectNoticeList();
 	int storeFormEnd(Map<String,Object> store);
+	int insertMark(Map<String, Object> map);
+	int deleteMark(Map<String, Object> map);
 }

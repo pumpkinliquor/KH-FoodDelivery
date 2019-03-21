@@ -28,4 +28,13 @@ public class CustomerDaoImpl implements CustomerDao {
 		return session.insert("store.addStore", store);
 	}
 
+	@Override
+	public int insertMark(Map<String, Object> map) {
+		return session.insert("store.insertMark", map);
+	}
+
+	@Override
+	public int deleteMark(Map<String, Object> map) {
+		return session.delete("store.deleteMark", map);
+	}
 }

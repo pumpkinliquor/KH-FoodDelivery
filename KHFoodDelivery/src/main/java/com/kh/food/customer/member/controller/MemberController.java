@@ -38,6 +38,7 @@ import com.kh.food.common.PagingFactory;
 import com.kh.food.customer.member.model.service.MemberService;
 import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
+import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -529,11 +530,13 @@ public class MemberController {
 		List<Store> list=service.menuInfo(businessCode);
 		List<WishList> wishList=service.selectWishList(maps);
 		List<WishList> callPrice=service.plusPrice(maps);
+		Mark mark = service.isMark(maps);
 		Store minPrice=service.minPrice(businessCode);
 		int resultPrice=0;
 		for(int i=0; i<callPrice.size(); i++) {
 			resultPrice+=callPrice.get(i).getPlusMenuPrice();
 		}
+		mv.addObject("mark", mark);
 		mv.addObject("minPrice", minPrice);
 		mv.addObject("wishList", wishList);
 		mv.addObject("resultPrice", resultPrice);

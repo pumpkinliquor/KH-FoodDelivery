@@ -145,4 +145,7 @@
 			m.memberId = #{memberId}
 	</select>
 
+	<select id="selectIsMark" parameterType="map" resultType="mark">
+		SELECT ma.* FROM MARK ma JOIN MEMBER m ON (ma.memberNum =m.memberNum) WHERE businessCode = #{businessCode} AND m.memberid = #{memberId}
+	</select>
 </mapper>
