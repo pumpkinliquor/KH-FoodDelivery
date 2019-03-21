@@ -12,6 +12,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
 
   Map<String,String> customerPayDao(Map<String,String> setPay);
   List<Map<String,String>> payWishList(Map<String,String> setPay);
+  int customerPayEnd(Map<String, Object> maps);
   
   
   }
