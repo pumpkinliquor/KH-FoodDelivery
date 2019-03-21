@@ -101,6 +101,11 @@
 		select * from review_sub where businessCode=#{stN}
 
 	</select>
+	<select id="selectOwnerRevie2" parameterType="_int" resultType="com.kh.food.owner.review.model.vo.OwnerReview">
+	
+		select * from review_sub where businessCode=#{businessCode}
+
+	</select>
 
 	
 	

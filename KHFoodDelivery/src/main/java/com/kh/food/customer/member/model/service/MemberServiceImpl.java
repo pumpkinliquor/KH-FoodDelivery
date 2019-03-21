@@ -15,6 +15,7 @@ import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
+import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
 import com.kh.food.review.model.vo.Review;
@@ -247,5 +248,13 @@ public Store minPrice(int businessCode) {
 	public Mark isMark(Map<String, Object> maps) {
 		return dao.isMark(maps);
 	}
+
+	@Override
+	public List<OwnerReview> selectOwnerRevie(int businessCode) {
+		
+		return dao.selectOwnerRevie(businessCode);
+	}
+	
+	
 
 }
