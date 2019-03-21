@@ -54,13 +54,19 @@ div .menuCategoryStyle {
 				data:{"menuCode" : no},
 				dataType:"JSON",
 				success: function(data) {
-					$('#menuSelectModal').modal();
-					$('#menuImage').empty().append('<img src="${path}/resources/upload/owner/menu/'+data.menuImage+'" style="width:100%; height:333px;"/>');
-					$('#menuTitle').empty().append(data.menuName);
-					$('#menuTitle_').val(data.menuName);
-					$('#menuPrice').empty().append(data.menuPrice);
-					$('#menuPrice_').val(data.menuPrice);
-					$('#menuCode_').val(data.menuCode);
+					if(data.menuSoldOut==1){
+						alert('품절인 메뉴입니다.');
+						return false;
+					}
+					else{
+						$('#menuSelectModal').modal();
+						$('#menuImage').empty().append('<img src="${path}/resources/upload/owner/menu/'+data.menuImage+'" style="width:100%; height:333px;"/>');
+						$('#menuTitle').empty().append(data.menuName);
+						$('#menuTitle_').val(data.menuName);
+						$('#menuPrice').empty().append(data.menuPrice);
+						$('#menuPrice_').val(data.menuPrice);
+						$('#menuCode_').val(data.menuCode);
+					}
 				}
 			});
 			// 모달닫을 때 마다 입력값 초기화
