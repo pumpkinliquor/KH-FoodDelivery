@@ -98,28 +98,29 @@ div{
                                 <div class="form-group">
                                     <label for="address" class="col-sm-3 control-label">주소</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control address1" name="memberAddress"
-                                            name="address" ng-value="session_storage.checkout_input.address"
-                                            ng-readonly="true" ng-disabled="true" value="${sessionScope.myAddr }"
-                                            readonly="readonly" disabled="disabled">
+                                        <input type="text" class="form-control address1" name="payAddress" value="${sessionScope.myAddr }" readonly="readonly" disabled="disabled">
                                     </div>
                                 </div>
+                                
+                                
+                                <!-- 상세주소 디비 추가해야함 -->
+                                
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <input type="text" class="form-control" placeholder="(필수)상세주소 입력"
-                                            name="memberAddress1"  required="required">
+                                            name="payAddressDetail"  required="required">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="address" class="col-sm-3 control-label">휴대전화번호</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" value="${memberPhone }"
-                                            name="memberPhone" required="required">
+                                        <input type="text" class="form-control"
+                                            name="payPhone" readonly value='${payReady.MEMBERPHONE }'>
                                     </div>
                                 </div>
                             </div>
                         </div>  
-
+						
                         <div class="panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">주문시 요청사항</h4>
@@ -127,7 +128,7 @@ div{
 
                             <div class="panel-collapse">
                               <div class="panel-body">
-                                <textarea name="${payRequest}" class="form-control ng-pristine ng-untouched ng-valid ng-valid-maxlength" rows="3" name="comment"maxlength="100" placeholder="주문시 요청 사항이 있으시면 남겨주세요.">
+                                <textarea name="payRequest" class="form-control ng-pristine ng-untouched ng-valid ng-valid-maxlength" rows="3" maxlength="100" placeholder="주문시 요청 사항이 있으시면 남겨주세요.">
                                 
                                 </textarea>
                                 
@@ -141,7 +142,15 @@ div{
 
 
             </div>
-
+<!-- <script>
+var resultPrice=${payReady.TOTALPRICE};
+var resultDeliveryPrice=${payReady.DELIVERYPRICE};
+var result=parseInt(resultPrice)+parseInt(resultDeliveryPrice);
+console.log(resultPrice);
+console.log(resultDeliveryPrice);
+console.log(result);
+$('#result').text(result);
+</script> -->
 
             <div class="col-sm-4">
                 <div>
@@ -149,13 +158,12 @@ div{
                         <span>결제 정보</span>
                     </div>
                     <div class="cart">
-                        <div class="cart-empty">
+                        <div class="cart-empty" id="resultPrice">
                             
-                            총 합계 : ${resultPrice} 원
+                            총 음식 합계 : ${payReady.TOTALPRICE}원
                         </div>
-                        <div class="clearfix" id="resultPrice">
-
-                            배달요금 별도 : ${deliveryPrice } 원
+                        <div class="clearfix" id="resultDeliveryPrice">
+                            배달요금 별도 : ${payReady.DELIVERYPRICE} 원
                         </div>
                         <div class="cart-btn clearfix">
                             <a id="payButton" class="btu">결제하기</a>
@@ -165,7 +173,10 @@ div{
 
             </div>
         </div>
-        <input type="hidden" value="${storeName }" id="storeName">
+        <input type="hidden" value="${payReady.STORENAME }" id="storeName">
+        <script>
+        console.log('${payReady.STORENAME }');
+        </script>
     </div>
 
 <script>
@@ -173,15 +184,16 @@ $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디�
     var title=$('#storeName').text();		//가게명
     console.log(title);
     var resultPrice=$('#resultPrice').val();
-    var deliveryPrice=$('#deliveryPrice').val();//총 합계금액     
+    var deliveryPrice=$('#resultDeliveryPrice').val();//총 합계금액     
+    var result = parseInt(resultPrice)+parseInt(deliveryPrice);
  	var IMP = window.IMP; // 생략가능
 	IMP.init('imp51687071'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	IMP.request_pay({
     pg : 'inicis', // version 1.1.0부터 지원.
     pay_method : 'card',
     merchant_uid : 'merchant_' + new Date().getTime(),
-    name : 'title', //주문음식이름 
-    amount : 100, //가격 받아가야함 총 가격과 배달가격 합쳐서
+    name : '간신배', //주문음식이름 
+    amount : result, //가격 받아가야함 총 가격과 배달가격 합쳐서
     buyer_email : 'wjdqls7773@gmail.com', //사는 사람 이메일 받아가야됨
     buyer_name : '간신배', //이름도
     buyer_tel : '010-1234-5678', //번호도

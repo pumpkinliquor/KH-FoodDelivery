@@ -87,13 +87,28 @@
 	<resultMap type="map" id="store"></resultMap>
 	
 	<resultMap type="map" id="review"></resultMap>
-	<select id="selectReviewList" parameterType="string" resultType="map">
+	<select id="selectReviewList" parameterType="_int" resultType="map">
 	
-	 select store.* , review.* ,member.memberid from store
-	inner join review on (store.businesscode=review.businesscode)
-	inner join member on (review.membernum=member.membernum)
-	where businessnum=#{stN}
-		
-	
+	 select store.* , review.* ,member.memberid from store inner join review on (store.businesscode=review.businesscode) inner join member on (review.membernum=member.membernum) where store.businesscode=#{stN}
 	</select>
+
+	<insert id="insertReviewRe" parameterType="map">
+		INSERT INTO REVIEW_SUB VALUES(#{no},#{code},#{context},DEFAULT)
+	</insert>
+	
+	<select id="selectOwnerRevie" parameterType="_int" resultType="com.kh.food.owner.review.model.vo.OwnerReview">
+		select * from review_sub where reviewnum=#{stN}
+	</select>
+
+	
+	
+	<!-- 찜 하기 -->
+	<insert id="insertMark" parameterType="map">
+		INSERT INTO MARK VALUES( (SELECT memberNum FROM MEMBER WHERE memberId= #{memberId} ), #{businessCode})
+	</insert>
+	<!-- 찜 취소 -->
+	<delete id="deleteMark" parameterType="map">
+		DELETE FROM MARK WHERE memberNum = (SELECT memberNum FROM MEMBER WHERE memberId = #{memberId}) AND businessCode = #{businessCode}
+	</delete>
+
 </mapper>

@@ -293,7 +293,6 @@ public class QnaMngController {
 			e.printStackTrace();
 		}
 		response.setCharacterEncoding("UTF-8");
-		
 		ModelAndView mv = new ModelAndView();
 		Map map = new HashMap();
 		map.put("context", context);
