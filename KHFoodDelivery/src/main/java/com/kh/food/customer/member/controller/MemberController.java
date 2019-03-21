@@ -64,7 +64,12 @@ public class MemberController {
 	
 	
 	
-	
+	//메인보이기
+	@RequestMapping("/member/main.do")
+	public String mainView() {
+		
+		return "/customer/memberMain";
+	}
 	//문의글 수정
 	@RequestMapping("/customer/memberQnaUpdate.do")
 	public ModelAndView updateMemberQna(MemberQna mq) {
@@ -362,7 +367,7 @@ public class MemberController {
 				}
 				else {
 					msg="로그인 성공";
-					loc="/";
+					loc="/member/main.do";
 				}
 				session.setAttribute("isAdmin", result.get("ISADMIN"));
 				session.setAttribute("logined", result.get("MEMBERID"));
@@ -391,6 +396,7 @@ public class MemberController {
 		{
 			session.invalidate();
 			msg="로그아웃 되었습니다.";
+			loc="/member/main.do";
 		}else {
 			msg="로그아웃 실패";
 		}
@@ -664,22 +670,31 @@ public class MemberController {
 		mv.setViewName("customer/memberQna");
 		return mv;
 	}
-	//문의글 수정 폼 뷰
+	//문의글  폼 뷰
 	@RequestMapping("/customer/memberQnaAddform.do")
-	public ModelAndView addQna(int no) {
+	public ModelAndView addQna(MemberQna memberqna,int no,String memberId) {
 		
 		ModelAndView mv= new ModelAndView();
+		Map<String,Object> map = new HashMap();
+		map.put("no",no);
+		map.put("qnaCategory",memberqna.getQnaCategory());
+		map.put("qnaContent",memberqna.getQnaContent());
+		map.put("qnaTitle",memberqna.getQnaTitle());
 		
-		int result = service.addQna(no);
+	
+		
+		
+		System.out.println(memberqna);
+		int result = service.addQna(map);
 		String msg="";
 		String loc="";
 		
 		if(result> 0) {
 			msg="문의 등록완료.";
-			loc="/member/qnaList.do?memberId=${sessionScope.logined}";
+			loc="/member/qnaList.do?memberId="+memberId;
 		}else {
 			msg="등록실패";
-			loc="/member/qnaList.do?memberId=${sessionScope.logined}";
+			loc="/member/qnaList.do?memberId="+memberId;
 		}
 		mv.addObject("loc",loc);
 		mv.addObject("msg",msg);

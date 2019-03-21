@@ -207,7 +207,7 @@ $(function(){
  });  */
  //배달의민족 클릭시 메인으로
  function mainpage(){
-    location.href="${path }";
+    location.href="${path}/member/main.do";
  }
  
  function locationSearchStore(){
