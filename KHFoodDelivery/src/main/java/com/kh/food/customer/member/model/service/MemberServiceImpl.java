@@ -65,12 +65,28 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
+	public List<Menu> popularityMenu(int businessCode) {
+		return dao.popularityMenu(businessCode);
+	}
+	@Override
 	public int deleteMenuCode(int reMenuCode) {
 		return dao.deleteMenuCode(reMenuCode);
 	}
 	@Override
 	public List<WishList> selectSame(Map<String, Object> menuMap) {
 		return dao.selectSame(menuMap);
+	}
+
+
+	@Override
+	public List<Menu> refreshWishList(Map<String, Object> maps) {
+		return dao.refreshWishList(maps);
+	}
+
+
+	@Override
+	public int deleteWishList(Map<String, Object> maps) {
+		return dao.deleteWishList(maps);
 	}
 
 
@@ -97,8 +113,8 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
-	public List<Store> selectStore(String category){
-		return dao.selectStore(category);
+	public List<Store> selectStore(Map<String,String> map){
+		return dao.selectStore(map);
 	}
 	
 	@Override

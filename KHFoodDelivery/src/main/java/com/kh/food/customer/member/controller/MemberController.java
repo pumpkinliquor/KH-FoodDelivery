@@ -14,6 +14,7 @@ import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,6 +30,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -461,7 +463,9 @@ public class MemberController {
 	{
 //		System.out.println(businessCode);
 		List<Map<String,String>> menuCategory=service.selectCategoryList(businessCode);
+		List<Menu> popularityMenu=service.popularityMenu(businessCode);
 		mv.addObject("businessCode", businessCode);
+		mv.addObject("popularityMenu", popularityMenu);
 		mv.addObject("categoryList", menuCategory);
 		mv.setViewName("customer/menuList");
 		return mv;
@@ -501,24 +505,7 @@ public class MemberController {
 		return "customer/test";
 	}
 
-	//가게 출력
-	@RequestMapping("/customer/searchmenuView")
-	public ModelAndView menuView(String category) {
-		
-		ModelAndView mv=new ModelAndView();
-		
 	
-		
-		List<Store> list=service.selectStore(category);
-		
-		
-		
-		mv.addObject("list",list);
-		mv.setViewName("customer/searchMenu");
-	
-		
-		return mv;
-	}	
 	
 	@RequestMapping("/customer/menuInfo.do")
 	public ModelAndView infoMenu(HttpServletRequest request, ModelAndView mv,int businessCode)
@@ -574,6 +561,20 @@ public class MemberController {
 		
 		request.setAttribute("maps", maps);
 		request.getRequestDispatcher("/WEB-INF/views/customer/WishList.jsp").forward(request, response);
+	}
+	
+	@RequestMapping("/customer/refreshWishList.do")
+	@ResponseBody
+	public List refreshWishList(HttpServletRequest request, int businessCode) {
+		Map<String,Object> maps=new HashMap<>();
+		String memberId=(String) request.getSession().getAttribute("logined");
+		
+		maps.put("businessCode", businessCode);
+		maps.put("memberId", memberId);
+		int deleteWishList=service.deleteWishList(maps);
+		List<Menu> refreshWishList=service.refreshWishList(maps);
+		
+		return refreshWishList;
 	}
 	
 	@RequestMapping("/customer/wishResult.do")
@@ -648,7 +649,7 @@ public class MemberController {
 	
 	//업체 전체보기
 	@RequestMapping("/customer/selectallstore.do")
-	public ModelAndView allStore(@RequestParam(value="cPage", required=false, defaultValue="0") int	cPage,String myAddr,HttpSession session,
+	public ModelAndView allStore(String myAddr,HttpSession session,
 			@RequestParam(value="firstPage", defaultValue="0")int firstPage) {
 		
 		System.out.println(myAddr);
@@ -673,6 +674,27 @@ public class MemberController {
 		
 		return mv;
 	}
+	
+	// 카테고리별가게  출력
+		@RequestMapping("/customer/searchmenuView")
+		public ModelAndView menuView(String category,String myAddr) {
+			
+			ModelAndView mv=new ModelAndView();
+			System.out.println(" 부분 검색 주소"+myAddr);
+				String ctg=myAddr.substring(0,6);
+			Map<String,String> map = new HashMap();
+			map.put("category",category);
+			map.put("ctg",ctg);
+			List<Store> list=service.selectStore(map);
+			
+			
+			
+			mv.addObject("list",list);
+			mv.setViewName("customer/searchMenu");
+		
+			
+			return mv;
+		}	
 	
 	@RequestMapping("/customer/menuInsert.do")
 	@ResponseBody

@@ -215,14 +215,13 @@
            
         });
         
-        
       $(document).ready(function(){
            $("#menuList").click(function(){
               var businessCode=${businessCode};
               $.ajax({
                  type: "post",
                  url: "${path}/customer/menuList.do",
-                 data : {"businessCode" : businessCode},
+                 data : {"businessCode" : businessCode, "menuCode" : menuCode},
                  success: function test(a){$("#callback").html(a);}
               });          
            });
@@ -328,7 +327,32 @@
               <div class="col-sm-4">
                 <div class="jumun">
                     <div class=title>
-                        <span>주문표</span><a style="float:right; cursor:pointer;" onclick="location.reload()"><img src="${path }/resources/images/owner/icons/refreshIcon.png" width=26px;/></a>
+                        <span>주문표</span><a style="float:right; cursor:pointer;" onclick="refreshWishList(${businessCode});"><img src="${path }/resources/images/owner/icons/refreshIcon.png" width=26px;/></a>
+                        <script>
+                        function refreshWishList(businessCode){
+                        	$.ajax({
+                        		type:"POST",
+                        		url:"${path}/customer/refreshWishList.do",
+                                data:{"businessCode" : businessCode},
+                                dataType:"JSON",
+                                success: function(data) {
+                                	console.log(data);
+                                	for(var i=0; i<data.length; i++){
+                                		console.log(data[i].menuCode);
+                                		$('#deleteddd'+data[i].menuCode).html("");
+                                	}
+                                	$.ajax({
+                   						type:"POST",
+                   						url:"${path}/customer/wishResult.do?businessCode="+businessCode,
+                   						dataType:"html",
+                   						success: function(data) {
+                   							$('#plusMenuPrice_result').html(data);
+                   						}
+                   					});
+                                }
+                        	});
+                        }
+                        </script>
                     </div>
                     <div class="cart">
                         <div class="cart-empty" id="janbgaID">
@@ -345,6 +369,8 @@
                      <!-- <a id="minusMenuCount" class="btn btn-minus">-</a> -->
                      <span id="countUpdate${wish.MENUCODE }">${wish.MENUCOUNT } 개</span>
                      <input type="hidden" id="countUpdate${wish.MENUCODE }" value=""/>
+                    
+                     
                      <!-- <a id="plusMenuCount"  class="btn btn-plus">+</a> -->
                   </li>
                </ul>
@@ -382,9 +408,28 @@
                            <div class="clearfix" style="background-color:ivory; color:red; font-weight:bold;">
                                     합계 : ${resultPrice }원
                            </div>
+
+
+					<!-- !!!!!!!!!!!!!!!정빈 하는 중!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+                    <%--        <form id='businessCodeFrm' action='${path}/customer/pay.do'>
+                           	<input type='hidden' id='businessCode' name='businessCode' value='${wishList.get(0).BUSINESSCODE }'/>
+                           </form>
+                           
+							<button class="cart-btn clearfix" onclick="fn_paySubmit()" id="insertMemberId"  style="clear:both;">
+							주문하기							    
+							</button>
+							<script>
+								function fn_paySubmit()
+								{
+									console.log($('#businessCode').val());
+									$('#businessCodeFrm').submit();
+								}
+							</script> --%>
+
                            <div class="cart-btn clearfix" onclick="location.href='${path}/customer/pay.do'" id="insertMemberId" style="clear:both;">
 							    <a id="pay" class="btu">주문하기</a>
 							</div>
+
                         </div>
                     </div>
                 </div>
@@ -392,6 +437,7 @@
       </div>
    
        
+
 
     </div>
 

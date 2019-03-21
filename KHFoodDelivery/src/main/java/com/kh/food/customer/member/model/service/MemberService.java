@@ -34,7 +34,7 @@ public interface MemberService {
 	int checkNick(String nickName);
 	Member selectMember(String memberId);
 	int update(Member m);
-	List<Store> selectStore(String category);
+	List<Store> selectStore(Map<String,String> map);
 	int drop(String memberId);
 	List<Store> menuInfo(int businessCode);
 	List<Map<String,String>> selectCategoryList(int businessCode);
@@ -50,6 +50,9 @@ public interface MemberService {
 	Store minPrice(int businessCode);
 	List<WishList> selectSame(Map<String,Object> menuMap);
 	int deleteMenuCode(int reMenuCode);
+	List<Menu> popularityMenu(int businessCode);
+	List<Menu> refreshWishList(Map<String,Object> maps);
+	int deleteWishList(Map<String,Object> maps);
 	
 	Map<String,String>selectSearchId(Map<String,String> map); //아이디찾기
 	Map<String,String>selectConfirmEmail(Map<String,String>map);

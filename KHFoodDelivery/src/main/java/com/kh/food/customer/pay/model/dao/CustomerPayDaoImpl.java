@@ -12,9 +12,9 @@ import org.springframework.stereotype.Repository;
   SqlSessionTemplate sqlSession;
 
   @Override
-  public int customerPayDao(String memberId) {
+  public Map customerPayDao(Map setPay) {
 	// TODO Auto-generated method stub
-	  return sqlSession.selectOne("pay.pay",memberId);
+	  return sqlSession.selectOne("pay.pay",setPay);
   	}
 
   }
