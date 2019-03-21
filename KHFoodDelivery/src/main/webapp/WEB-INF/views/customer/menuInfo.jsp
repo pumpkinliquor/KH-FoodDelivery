@@ -259,6 +259,7 @@
                 <div class="restaurant-info">
                     <div class="restaurant-title">
                         <span id="storeName">${i.storeName }</span>
+                         
                     </div>
                     <div class="restaurant-content">
                         <div class="logo"><img class="mainlogo" src="${path }/resources/upload/owner/storeMainImage/${i.storeImage }" /></div>
@@ -314,6 +315,8 @@
                      <!-- <a id="minusMenuCount" class="btn btn-minus">-</a> -->
                      <span id="countUpdate${wish.MENUCODE }">${wish.MENUCOUNT } 개</span>
                      <input type="hidden" id="countUpdate${wish.MENUCODE }" value=""/>
+                    
+                     
                      <!-- <a id="plusMenuCount"  class="btn btn-plus">+</a> -->
                   </li>
                </ul>
@@ -351,9 +354,28 @@
                            <div class="clearfix" style="background-color:ivory; color:red; font-weight:bold;">
                                     합계 : ${resultPrice }원
                            </div>
+
+
+					<!-- !!!!!!!!!!!!!!!정빈 하는 중!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+                    <%--        <form id='businessCodeFrm' action='${path}/customer/pay.do'>
+                           	<input type='hidden' id='businessCode' name='businessCode' value='${wishList.get(0).BUSINESSCODE }'/>
+                           </form>
+                           
+							<button class="cart-btn clearfix" onclick="fn_paySubmit()" id="insertMemberId"  style="clear:both;">
+							주문하기							    
+							</button>
+							<script>
+								function fn_paySubmit()
+								{
+									console.log($('#businessCode').val());
+									$('#businessCodeFrm').submit();
+								}
+							</script> --%>
+
                            <div class="cart-btn clearfix" onclick="location.href='${path}/customer/pay.do'" id="insertMemberId" style="clear:both;">
 							    <a id="pay" class="btu">주문하기</a>
 							</div>
+
                         </div>
                     </div>
                 </div>
@@ -361,6 +383,7 @@
       </div>
    
        
+
 
     </div>
 
