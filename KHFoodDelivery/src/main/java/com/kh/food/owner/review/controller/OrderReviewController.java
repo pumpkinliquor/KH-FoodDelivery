@@ -61,7 +61,7 @@ public class OrderReviewController {
 		}
 		
 		try {	
-		OwnerReview or = service.selectOwnerRevie(stN);
+		List<OwnerReview> or = service.selectOwnerRevie(stN);
 		System.out.println("or : " + or);
 		request.setAttribute("orr", or);
 		}

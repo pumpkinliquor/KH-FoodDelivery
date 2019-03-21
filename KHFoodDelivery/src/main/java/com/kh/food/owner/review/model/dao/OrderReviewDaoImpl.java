@@ -40,9 +40,9 @@ public class OrderReviewDaoImpl implements OrderReviewDao {
 	}
 
 	@Override
-	public OwnerReview selectOwnerRevie(int stN) {
+	public List<OwnerReview> selectOwnerRevie(int stN) {
 		
-		return session.selectOne("store.selectOwnerRevie",stN);
+		return session.selectList("store.selectOwnerRevie",stN);
 	}
 	
 	

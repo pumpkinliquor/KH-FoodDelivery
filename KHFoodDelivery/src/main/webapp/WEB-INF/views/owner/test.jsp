@@ -131,7 +131,7 @@ pageEncoding="UTF-8"%>
         
          
             
-        <c:if test="${empty orr}">
+        <%-- <c:if test="${empty orr}"> --%>
         <form action="${path }/owner/insertReviewRe.do" method="post">
             <div class="rounded row" style="padding-bottom:1em; padding-right:1em; padding-left:1em; padding-top:1em;">
                         <div class="re">                          
@@ -143,7 +143,7 @@ pageEncoding="UTF-8"%>
                         </div>              
             </div>                
         </form>
-         </c:if> 
+         <%-- </c:if>  --%>
         <hr/>
             
             </c:forEach>

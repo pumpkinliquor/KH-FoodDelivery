@@ -12,5 +12,5 @@ public interface OrderReviewDao {
 	List<Store> storeList(String ownerId);
 	List<Map<String, String>> selectReviewList(int stN);
 	int insertReviewRe(Map map);
-	OwnerReview selectOwnerRevie(int stN);
+	List<OwnerReview> selectOwnerRevie(int stN);
 }
