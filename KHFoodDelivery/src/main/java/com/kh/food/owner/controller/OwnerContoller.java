@@ -31,6 +31,14 @@ public class OwnerContoller {
 		return mv;
 	}
 	
+	@RequestMapping("/owner/memberMain.do")
+	public ModelAndView memberMain()
+	{
+		ModelAndView mv= new ModelAndView();
+		mv.setViewName("customer/memberMain");
+		return mv;
+	}
+	
 	@RequestMapping("/owner/insertOwner.do")
 	public String insertOwner()
 	{

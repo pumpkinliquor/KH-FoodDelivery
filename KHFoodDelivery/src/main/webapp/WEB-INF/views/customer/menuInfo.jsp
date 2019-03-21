@@ -326,7 +326,7 @@
               </c:forEach>
               <div class="col-sm-4">
                 <div class="jumun">
-                    <div class=title>
+                    <div class="title" id="WishHeaderID">
                         <span>주문표</span><a style="float:right; cursor:pointer;" onclick="refreshWishList(${businessCode});"><img src="${path }/resources/images/owner/icons/refreshIcon.png" width=26px;/></a>
                         <script>
                         function refreshWishList(businessCode){
@@ -412,7 +412,7 @@
 
 					<!-- !!!!!!!!!!!!!!!정빈 하는 중!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
                              <form id='businessCodeFrm' action='${path}/customer/pay.do'>
-                           	<input type='hidden' id='businessCode' name='businessCode' value='${wishList.get(0).BUSINESSCODE }'/>
+                           	<input type='hidden' id='businessCode' name='businessCode' value='${businessCode }'/>
  							<button class="cart-btn clearfix" id="pay" type="submit" style="clear:both;">
 							주문하기							    
 							</button>
