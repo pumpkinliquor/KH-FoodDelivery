@@ -33,16 +33,16 @@
 			class="col-md-12 table">
 			<tr>
 				<th><b>주문번호</b></th>
-				<td>${pay.PAYORDERNUM}</td>
+				<td>${payEnd.PAYORDERNUM}</td>
 			</tr>
 			<tr>
 				<th><b>주문자</b></th>
-				<td>${pay.MEMBERID }</td>
+				<td>${payEnd.MEMBERID }</td>
 			</tr>
 
 			<tr>
 				<th><b>상호명</b></th>
-				<td>${pay.STORENAME}</td>
+				<td>${payEnd.STORENAME}</td>
 			</tr>
 			<tr>
 				<th><b>음식</b></th>
