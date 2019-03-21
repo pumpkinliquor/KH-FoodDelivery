@@ -23,7 +23,7 @@
 <style>
 
 div.newsletter div.search1{text-align:center; margin-top:0.25%;}   
-
+btn:active{color:blue;}
 div.newsletter div.search1 .btn{background-color:#F6F6F6; }
 div.newsletter div.search1 .btn:hover{background-color:#8C8C8C; color:white;}
 div.group{text-align:center; box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);background-color:#F6F6F6; margin-top:1%; padding:0; display:none;}
@@ -190,17 +190,20 @@ div.newsletter,div.group{display:inline-block;}
       location.href="${path }";
    }
    function locationSearchStore(){
-	   if(sessionScope.logined==null){
+		 if(${sessionScope.logined==null}){
 			 alert("로그인 후 이용해주세요");
 		 }else{
 			 
+			 var firstPage=$('#firstPage').val();
 			var myAddr=$('#location1').val();
 			console.log(myAddr);
-			  location.href="${path}/customer/selectallstore.do?myAddr="+myAddr; 
+			 location.href="${path}/customer/selectallstore.do?myAddr="+myAddr+"&firstPage="+firstPage;
+			 
 
 			
 		 }
 	 }
+	 
    
 
    
@@ -239,6 +242,7 @@ div.newsletter,div.group{display:inline-block;}
                        
                     <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="${sessionScope.myAddr }" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요" />
                        <span class="input-group-btn">
+                       <input type="hidden" value="1" name="firstPage" id="firstPage"/>
                        <button class="btn" onclick="locationSearchStore();" type="submit">검색</button>
 
                        </span>
@@ -266,7 +270,7 @@ div.newsletter,div.group{display:inline-block;}
                 </div>
                    <div class="group col-md-12 col-lg-12">
                 <div class="btn-group btn-group-lg search1">
-               <button type="button" class="btn btn-default" onclick="allview();">전체보기</button> 
+               <button type="button" class="btn btn-default active" onclick="allview();">전체보기</button> 
               <button type="button" class="btn btn-default" onclick="don();">돈까스</button>
               <button type="button" class="btn btn-default" onclick="fre();">프랜차이즈</button>
               <button type="button" class="btn btn-default" onclick="chi();">치킨</button>
