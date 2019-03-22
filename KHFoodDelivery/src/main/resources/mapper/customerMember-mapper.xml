@@ -123,7 +123,7 @@
 	</delete>
 	
 	<update id="qnaUpdate" parameterType="memberQna">
-		update member_qna set QNACATEGORY=#{qnaCategory},QNATITLE=#{qnaTitle},QNACONTENT=#{qnaContent},WRITEDATE=default  where  qnaCode = #{qnaCode} 
+		update member_qna set QNACATEGORY=#{qnaCategory},QNATITLE=#{qnaTitle},QNACONTENT=#{qnaContent},WRITEDATE=sysdate  where  qnaCode = #{qnaCode} 
 
 	</update>
 	

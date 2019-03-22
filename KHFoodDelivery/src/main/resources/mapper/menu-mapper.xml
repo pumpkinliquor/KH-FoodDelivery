@@ -7,10 +7,10 @@
 		insert into menu_category values(SEQ_menuCategoryCode.nextval , #{menuCategory} , #{businessCode},0)
 	</insert>
 	<insert id="insertWishList" parameterType="map">
-		INSERT INTO WISHLIST VALUES(SEQ_WISHNUM.NEXTVAL, #{menuCode}, #{businessCode}, #{memberId}, #{menuCount}, #{plusMenuPrice})
+		INSERT INTO WISHLIST VALUES(SEQ_WISHNUM.NEXTVAL, #{menuCode}, #{businessCode}, #{memberId}, #{menuCount}, #{plusMenuPrice}, SYSDATE)
 	</insert>
 	<select id="selectWishList" parameterType="map" resultMap="menuMap">
-		SELECT * FROM WISHLIST A INNER JOIN MENU B ON A.MENUCODE=B.MENUCODE WHERE A.MEMBERID=#{memberId} ORDER BY A.WISHNUM DESC 
+		SELECT * FROM WISHLIST A INNER JOIN MENU B ON A.MENUCODE=B.MENUCODE WHERE A.MEMBERID=#{memberId} ORDER BY ADDDATE DESC 
 	</select>
 	
 	<select id="bigyoMenuCode" parameterType="map" resultMap="menuMap">
@@ -41,6 +41,9 @@
 	<select id="popularityMenu" parameterType="_int" resultType="menu">
 		SELECT * FROM MENU WHERE BUSINESSCODE=#{businessCode} AND MENUSOLDCOUNT>=10
 	</select>
+	<delete id="backWish" parameterType="string">
+		DELETE FROM WISHLIST WHERE MEMBERID=#{memberId}
+	</delete>
 	
 	<delete id="deleteMenuCount" parameterType="_int">
 		DELETE FROM WISHLIST WHERE MENUCODE=#{menuCode}

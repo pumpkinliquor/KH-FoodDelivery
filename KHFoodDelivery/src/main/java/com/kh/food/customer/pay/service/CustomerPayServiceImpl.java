@@ -51,8 +51,8 @@ public class CustomerPayServiceImpl implements CustomerPayService {
 		return dao.deleteWishList(memberId);
 	}
 	@Override
-	public Map<String, String> selectOnePay() {
-		return dao.selectOnePay();
+	public Map<String, String> selectOnePay(String memberId) {
+		return dao.selectOnePay(memberId);
 	}
 	
 	

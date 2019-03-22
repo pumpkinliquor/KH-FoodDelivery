@@ -4,16 +4,10 @@
 	version="3.1">
 	
 	
-	<!-- <error-page>
-      <exception-type>java.lang.RuntimeException</exception-type>
-      <location>/WEB-INF/views/common/error.jsp</location>
-    </error-page> -->
-
 	<error-page>
-   	 <error-code>400</error-code>
-   	 <location>/WEB-INF/views/common/error.jsp</location>
+		<exception-type>java.lang.RuntimeException</exception-type>
+		<location>/WEB-INF/views/common/error.jsp</location>
 	</error-page>
-
 
 	
 	<welcome-file-list>

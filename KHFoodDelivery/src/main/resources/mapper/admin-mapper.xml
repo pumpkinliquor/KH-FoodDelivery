@@ -6,7 +6,7 @@
 	
 	<!-- 회원리스트 -->
 	<select id="selectListMember" resultType="Map">
-	select * from member order by membernum desc
+	select * from member where memberid not in('admin') order by membernum desc
 	</select>
 	
 	<!-- 회원 페이징 -->

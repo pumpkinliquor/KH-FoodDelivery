@@ -35,6 +35,7 @@ public interface MemberDao {
 	List<Menu> refreshWishList(Map<String,Object> maps);
 	int deleteWishList(Map<String,Object> maps);
 	String storeP(int businessCode);
+	int backWish(String memberId);
 	int drop(String memberId);
 	List<Store> menuInfo(int businessCode);
 	List<Map<String,String>> selectCategoryList(int businessCode);

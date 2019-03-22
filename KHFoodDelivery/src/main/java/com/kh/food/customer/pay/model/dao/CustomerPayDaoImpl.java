@@ -56,9 +56,10 @@ public int deleteWishList(String memberId) {
 }
 
 @Override
-public Map<String, String> selectOnePay() {
-	return sqlSession.selectOne("pay.selectOnePay");
+public Map<String, String> selectOnePay(String memberId) {
+	return sqlSession.selectOne("pay.selectOnePay", memberId);
 }
+
 
 
 

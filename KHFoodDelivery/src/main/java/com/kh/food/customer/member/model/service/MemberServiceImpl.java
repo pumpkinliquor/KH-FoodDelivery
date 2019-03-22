@@ -80,6 +80,11 @@ public class MemberServiceImpl implements MemberService {
 		return dao.updateMemberQna(mq);
 	}
 	@Override
+	public int backWish(String memberId) {
+		return dao.backWish(memberId);
+	}
+
+	@Override
 	public int deleteMemberQna(int no) {
 		return dao.deleteMemberQna(no);
 	}

@@ -192,7 +192,7 @@ $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디�
     var foodPrice=$('#resultPrice').val();
     var deliveryPrice=$('#resultDeliveryPrice').val();//총 합계금액     
     var resultPrice =${payReady.TOTALPRICE}+${payReady.DELIVERYPRICE};
-    location.href="${path}/customer/payEnd.do?businessCode="+${businessCode}+"&payAddress="+payAddress+"&payRequest="+payRequest+"&resultPrice="+resultPrice+"&memberId="+memberId; //보낼값들
+    /* location.href="${path}/customer/payEnd.do?businessCode="+${businessCode}+"&payAddress="+payAddress+"&payRequest="+payRequest+"&resultPrice="+resultPrice+"&memberId="+memberId; //보낼값들 */
  	var IMP = window.IMP; // 생략가능
     IMP.init('imp51687071'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	IMP.request_pay({
@@ -226,8 +226,8 @@ $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디�
     msg += '결제 금액 : ' + rsp.paid_amount;
     msg += '카드 승인번호 : ' + rsp.apply_num; 
     
-    /* location.href="${path}/customer/payEnd.do?businessCode="+${businessCode}+"&payAddress="+payAddress+"&payRequest="+payRequest+"&resultPrice="+resultPrice+"&memberId="+memberId; //보낼값들
-	 */
+    location.href="${path}/customer/payEnd.do?businessCode="+${businessCode}+"&payAddress="+payAddress+"&payRequest="+payRequest+"&resultPrice="+resultPrice+"&memberId="+memberId; //보낼값들
+	
  } else {
      var msg = '결제에 실패하였습니다.';
      msg += '실패 사유 : ' + rsp.error_msg;

@@ -3,7 +3,6 @@ package com.kh.food.customer.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.text.DateFormat;
@@ -23,14 +22,12 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -237,7 +234,7 @@ public class MemberController {
 		
 		if(result>0) {
 			msg="탈퇴하였습니다.";
-			loc="/";
+			loc="/member/main.do";
 			if(session!=null)
 			{
 				session.invalidate();}
@@ -283,7 +280,7 @@ public class MemberController {
 		
 		if(result>0) {
 			msg="회원정보 수정 완료.";
-			loc="/";
+			loc="/member/main.do";
 		}else {
 			msg="회원정보 수정 실패";
 			loc="/customer/mypage.do?memberId="+m.getMemberId();
@@ -533,11 +530,11 @@ public class MemberController {
 	}
 
 	
-	
 	@RequestMapping("/customer/menuInfo.do")
 	public ModelAndView infoMenu(HttpServletRequest request, ModelAndView mv,int businessCode)
 	{
 		String memberId=(String) request.getSession().getAttribute("logined");
+		int backWish=service.backWish(memberId);
 		Map<String, Object> maps=new HashMap<>();
 		maps.put("memberId", memberId);
 		maps.put("businessCode", businessCode);
@@ -612,6 +609,12 @@ public class MemberController {
 		List<Menu> refreshWishList=service.refreshWishList(maps);
 		
 		return refreshWishList;
+	}
+	
+	@RequestMapping("/menu/ifDeleteWish.do")
+	public void ifDeleteWish(HttpServletRequest request) {
+		String memberId=(String) request.getSession().getAttribute("logined");
+		int backWish=service.backWish(memberId);
 	}
 	
 	@RequestMapping("/customer/wishResult.do")
@@ -731,7 +734,8 @@ public class MemberController {
 		@RequestMapping("/customer/searchmenuView")
 		public ModelAndView menuView(String category,String myAddr,HttpSession session,
 									@RequestParam(value="lat", defaultValue="1")String lat, 
-									@RequestParam(value="lng", defaultValue="1")String lng) {			
+									@RequestParam(value="lng", defaultValue="1")String lng,
+									HttpServletRequest request) {			
 			ModelAndView mv=new ModelAndView();
 
 			
@@ -746,6 +750,7 @@ public class MemberController {
 			BigDecimal lat1 = new BigDecimal(lat);
 			BigDecimal lng1 = new BigDecimal(lng);
 			
+			String memberId=(String) request.getSession().getAttribute("logined");
 			Map<String,Object> map = new HashMap();
 			map.put("category",category);
 			map.put("lat", lat);
