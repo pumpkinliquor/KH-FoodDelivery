@@ -721,7 +721,7 @@ public class MemberController {
 				session.setAttribute("myAddr", myAddr);
 				session.setAttribute("lat", lat);
 				session.setAttribute("lng", lng);
-			}
+			}   
 			
 			lat = (String)session.getAttribute("lat");
 			lng = (String)session.getAttribute("lng");

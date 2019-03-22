@@ -251,7 +251,7 @@ div#map{visibility: hidden;}
              	</c:choose>
              	<a href="${path }/customer/logout.do">로그아웃</a>
             </c:if> 
-     
+      
             
             
             </div>
