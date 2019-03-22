@@ -107,7 +107,9 @@
 
 	</select>
 
-	
+	<select id="storeP" parameterType="_int" resultType="string">
+		select substr(storeprofile,0,36) from store where BUSINESSCODE=#{businessCode} and ISCONFIRM=1
+	</select>
 	
 	<!-- 찜 하기 -->
 	<insert id="insertMark" parameterType="map">
@@ -117,5 +119,11 @@
 	<delete id="deleteMark" parameterType="map">
 		DELETE FROM MARK WHERE memberNum = (SELECT memberNum FROM MEMBER WHERE memberId = #{memberId}) AND businessCode = #{businessCode}
 	</delete>
+	
+	<select id="storeList" parameterType="_int" resultType="store">
+		select * from store where BUSINESSCODE=#{businessCode} and ISCONFIRM=1
+	
+	</select>
+
 
 </mapper>

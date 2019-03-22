@@ -177,4 +177,8 @@
 	<insert id="insertReview" parameterType="map">
 		insert into review values(seq_reviewnum.nextval,#{bsCode},#{memNum},DEFAULT,#{img},#{grade},#{context})
 	</insert>
+	
+	<select id="reviewAvg" parameterType="_int" resultType="_int"> 
+		select round(avg(grade),1) from review where businesscode=#{businessCode}
+	</select>
 </mapper>

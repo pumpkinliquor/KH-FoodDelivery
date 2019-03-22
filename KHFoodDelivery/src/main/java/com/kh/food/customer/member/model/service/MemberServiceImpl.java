@@ -28,6 +28,25 @@ public class MemberServiceImpl implements MemberService {
 	MemberDao dao;
 	
 	
+	
+	@Override
+	public Store storeList(int businessCode) {
+		
+		return dao.storeList(businessCode);
+	}
+
+	@Override
+	public String storeP(int businessCode) {
+	
+		return dao.storeP(businessCode);
+	}
+
+	@Override
+	public int reviewAvg(int businessCode) {
+		
+		return dao.reviewAvg(businessCode);
+	}
+
 	@Override
 	public int insertReview(Map map) {
 		

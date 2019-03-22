@@ -34,7 +34,7 @@ public interface MemberDao {
 	List<Store> selectStore(Map<String,Object> map);
 	List<Menu> refreshWishList(Map<String,Object> maps);
 	int deleteWishList(Map<String,Object> maps);
-	
+	String storeP(int businessCode);
 	int drop(String memberId);
 	List<Store> menuInfo(int businessCode);
 	List<Map<String,String>> selectCategoryList(int businessCode);
@@ -49,7 +49,7 @@ public interface MemberDao {
 	Store minPrice(int businessCode);
 	List<WishList> selectSame(Map<String,Object> menuMap);
 	int deleteMenuCode(int reMenuCode);
-	
+	Store storeList(int businessCode);
 //	List<Map<String,String>> selectMenuList(int menuCategoryCode, int businessCode);
 	Map<String,String> selectSearchId(Map<String,String> map); //아이디찾기
 	Map<String,String> selectConfirmEmail(Map<String,String>map);
@@ -65,4 +65,6 @@ public interface MemberDao {
 	List<Store> selectMarkList(String memberId);
 	Mark isMark(Map<String,Object> maps);
 	int insertReview(Map map);
+	int reviewAvg(int businessCode);
+	
 }
