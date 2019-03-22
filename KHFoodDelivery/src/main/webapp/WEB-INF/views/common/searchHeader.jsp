@@ -21,6 +21,8 @@
 <title>Insert title here</title>
 <style>
 
+div#map{height:1px;weight:1px;visibility: hidden;}
+
 div.newsletter div.search1{text-align:center; margin-top:0.25%;}   
 btn:active{color:blue;}
 div.newsletter div.search1 .btn{background-color:#F6F6F6; }
@@ -56,61 +58,68 @@ div.newsletter,div.group{display:inline-block;}
 
    
    <script>
-
-	
-
-
-
     $(document).ready(function () {
-    	$("#positionBtn").click(function(){
+      $("#positionBtn").click(function(){
+    	  
+    	  if(${sessionScope.logined==null}){
+    		  alert("로그인후 이용해주세요");
+    	  }else{
             function getLocation() {
                 if (navigator.geolocation) { // GPS를 지원하면
                     navigator.geolocation.getCurrentPosition(function(position) {
                      var latitude = position.coords.latitude;
                     var longitude = position.coords.longitude;
-                      
-                    
+                    var coords = position.coords;
                    
-                     alert("아직 구현안됨 지도 클릭!"); 
                      
-               
-                    
-                      var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                      mapOption = {
                         center: new daum.maps.LatLng(latitude, longitude), // 지도의 중심좌표
                         level: 3 // 지도의 확대 레벨
                     };   
+                        function resizeMap() {
+                            var mapContainer = document.getElementById('map');
+                            mapContainer.style.width = '1px';
+                            mapContainer.style.height = '1px'; 
+                        }
+                        function relayout() {    
+                            map.relayout();
+                        }
 
+                      //주소-좌표 변환 객체를 생성합니다
+                      var geocoder = new daum.maps.services.Geocoder();
+                      
                     
                       //지도를 생성합니다    
-                    var map = new daum.maps.Map(mapContainer, mapOption); 
+                     var map = new daum.maps.Map(mapContainer, mapOption);  
 
+                      searchAddrFromCoords(map.getCenter(), displayCenterInfo);
+
+                 
+              function searchAddrFromCoords(coords, callback) {
+          	    // 좌표로 행정동 주소 정보를 요청합니
+          	   geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+                }
+                      
+               function displayCenterInfo(result, status) {
+            	    if (status === daum.maps.services.Status.OK) {
+
+            	        for(var i = 0; i < result.length; i++) {
+            	            // 행정동의 region_type 값은 'H' 이므로
+            	            if (result[i].region_type === 'H') {
+            	            	$('#location1').val(result[i].address_name); 
+            	          
+            	                break;
+            	            }
+            	        }
+            	    }    
+            	}
                     
-                      //주소-좌표 변환 객체를 생성합니다
-                 var geocoder = new daum.maps.services.Geocoder();
-
-                    //지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
-                     daum.maps.event.addListener(map, 'click', function(mouseEvent) {
-                    searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
-                        if (status === daum.maps.services.Status.OK) {
-                           
-                            var infoDiv = document.getElementById('centerAddr1');
-                            
-                            $('#location1').val(result[0].address.address_name);
-                            /* infoDiv.innerHTML = '<div>지번 주소 : ' + result[0].address.address_name + '</div>'; */
-                         
-                        }   
-                    });
-                    });
-  
-
-            
                function searchDetailAddrFromCoords(coords, callback) {
                    // 좌표로 법정동 상세 주소 정보를 요청합니다
                    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
                  
                }
-                     
 
                      }, function(error) {
                        console.error(error);
@@ -124,11 +133,11 @@ div.newsletter,div.group{display:inline-block;}
                 }
               }
               getLocation();   
+    	  }
       }); 
+      
 }); 
      
-   
-   
    
    
    
@@ -286,9 +295,9 @@ div.newsletter,div.group{display:inline-block;}
                 
        </div>     
                </div>          
+                 <div id="map" style="width:300px;height:300px;"></div> 
        </div>
 
-                 <div id="map" style="width:300px;height:300px;"></div> 
 
 <script>
 
