@@ -225,6 +225,7 @@ $(function(){
  function locationSearchStore(){
 	 if(${sessionScope.logined==null}){
 		 alert("로그인 후 이용해주세요");
+		 location.href="${path }/customer/login.do";
 	 }else{
 		 
 		 var firstPage=$('#firstPage').val();
