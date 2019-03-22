@@ -747,7 +747,7 @@ public class MemberController {
 		public ModelAndView menuView(String category,String myAddr) {
 			
 			ModelAndView mv=new ModelAndView();
-			System.out.println(" 부분 검색 주소"+myAddr);
+			
 				String ctg=myAddr.substring(0,6);
 			Map<String,String> map = new HashMap();
 			map.put("category",category);

@@ -69,7 +69,7 @@
                     </div>  
                     </c:forEach>    
                 </div>
-                <div>${pageBar }</div>
+                
        		 </div>
 
     </section>

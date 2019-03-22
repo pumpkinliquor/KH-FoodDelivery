@@ -242,7 +242,7 @@ div.newsletter,div.group{display:inline-block;}
    
    </script>
 
-
+                  <div id="map" style="width:0.1px;height:0.1px;"></div>   
 
 
        
@@ -266,7 +266,7 @@ div.newsletter,div.group{display:inline-block;}
               </div>
               <form action="${path}/customer/selectallstore.do" onsubmit="return locationSearchStore()" method="post">
                     <div class="content1">
-                       <h2 onclick="mainpage();"> <span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></h2>
+                       <h2 onclick="mainpage();"><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></h2>
                     </div>
                 </div>
              <div class="col-sm-12">
@@ -306,21 +306,22 @@ div.newsletter,div.group{display:inline-block;}
                    <div class="group col-md-12 col-lg-12">
                 <div class="btn-group btn-group-lg search1">
                <button type="button" class="btn btn-default active" onclick="allview();">전체보기</button> 
-              <button type="button" class="btn btn-default" onclick="don();">돈까스</button>
-              <button type="button" class="btn btn-default" onclick="fre();">프랜차이즈</button>
-              <button type="button" class="btn btn-default" onclick="chi();">치킨</button>
-              <button type="button" class="btn btn-default" onclick="piz();">피자</button>
-              <button type="button" class="btn btn-default" onclick="jun();">중국집</button>
-              <button type="button" class="btn btn-default" onclick="kor();">한식</button>
-              <button type="button" class="btn btn-default" onclick="jok();">족발/보쌈</button>
-              <button type="button" class="btn btn-default" onclick="base();">분식</button>
-              <button type="button" class="btn btn-default" onclick="des();">디저트</button>
+              <button type="button" class="btn btn-default active" onclick="don();">돈까스</button>
+              <button type="button" class="btn btn-default active" onclick="fre();">프랜차이즈</button>
+              <button type="button" class="btn btn-default active" onclick="chi();">치킨</button>
+              <button type="button" class="btn btn-default active" onclick="piz();">피자</button>
+              <button type="button" class="btn btn-default active" onclick="jun();">중국집</button>
+              <button type="button" class="btn btn-default active" onclick="kor();">한식</button>
+              <button type="button" class="btn btn-default active" onclick="jok();">족발/보쌈</button>
+              <button type="button" class="btn btn-default active" onclick="base();">분식</button>
+              <button type="button" class="btn btn-default active" onclick="des();">디저트</button>
                 
        </div>     
                </div>          
-                 <div id="map" style="width:300px;height:300px;"></div> 
        </div>
-       <div style="width:300px;height:100px;"></div>
+       <div style="height:15px;"></div>
+
+       
 
 
 <script>
