@@ -3,6 +3,7 @@ package com.kh.food.customer.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.text.DateFormat;
@@ -28,6 +29,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -708,23 +710,19 @@ public class MemberController {
 	}
 	
 	//업체 전체보기
-	@RequestMapping("/customer/selectallstore.do")
+	@RequestMapping(value="/customer/selectallstore.do")
 	public ModelAndView allStore(String myAddr,HttpSession session,
 			@RequestParam(value="lat") String lat,
-			@RequestParam(value="lng") String lng) {
+			@RequestParam(value="lng") String lng ) {
+		
+		
 		session.setAttribute("myAddr",myAddr);		
 		session.setAttribute("lat", lat);
 		session.setAttribute("lng", lng);
 		ModelAndView mv= new ModelAndView();
 	
-		logger.debug("" + lat);
-		logger.debug("" + lng);
-		
 		Long lat1 = new Long(new BigDecimal(lat).longValue());
 		Long lng1 = new Long(new BigDecimal(lng).longValue());
-		
-		logger.debug("변환 후 : " + lat);
-		logger.debug("변환 후 : " + lng);
 		
 		Map<String, Object> map = new HashMap();
 		map.put("lat", lat1);

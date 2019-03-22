@@ -21,7 +21,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -56,11 +55,14 @@ div#map{visibility: hidden;}
                     
                     $('#lat').val(coords.jb); // 위도
                     $('#lng').val(coords1.jb)// 경도
-                    
+
                     console.log(coords.jb);//위도
+
                     console.log(coords1.jb);//경도
-                    console.log(coords.jb);
-                    console.log(coords1.jb);
+
+
+
+
                    
 				 /*  
                      $.ajax({
@@ -264,6 +266,7 @@ div#map{visibility: hidden;}
             
             
             </div>
+                       <form action="${path}/customer/selectallstore.do" onsubmit="return locationSearchStore()" method="post">
                   <div class="content1">
                      <h2 onclick="mainpage();"> <span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></h2>
                   </div>
@@ -271,8 +274,7 @@ div#map{visibility: hidden;}
               <div class="col-sm-12">
                   <div class="content">
                   <div class="input-group">
-                       <button id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
-                       
+                       <button type="button"id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
                     <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="${sessionScope.myAddr }" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요" readonly/>
                        <span class="input-group-btn">
                        
@@ -286,6 +288,7 @@ div#map{visibility: hidden;}
               </div>
               
 
+                       </form>
               </div>
               </div>
                <div id="map" style="width:300px;height:300px; position:relative;"></div>

@@ -197,8 +197,8 @@ div.newsletter,div.group{display:inline-block;}
                         
                         
                         
-                    var coords = new daum.maps.LatLng(latitude);
-                    var coords1 = new daum.maps.LatLng(longitude); 
+                    var coords = new daum.maps.LatLng(result.x);
+                    var coords1 = new daum.maps.LatLng(result.y); 
                     
                     $('#lat').val(coords.jb); // 위도
                     $('#lng').val(coords1.jb)// 경도
@@ -258,18 +258,13 @@ div.newsletter,div.group{display:inline-block;}
                    
               </c:if> 
                <c:if test="${sessionScope.logined!=null}">
-             	<c:choose>
-             		<c:when test="${sessionScope.isAdmin == 1 }">             	
-             			<a href="${path}/admin/adminMain.do">관리자 페이지</a>
-             		</c:when>
-             		<c:otherwise>
-             			<a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
-             		</c:otherwise>
-             	</c:choose>
-             	<a href="${path }/customer/logout.do">로그아웃</a>
-            </c:if> 
-     
+               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
+               <a href="${path }/customer/logout.do">로그아웃</a>
+               
+             
+              </c:if> 
               </div>
+              <form action="${path}/customer/selectallstore.do" onsubmit="return locationSearchStore()" method="post">
                     <div class="content1">
                        <h2 onclick="mainpage();"> <span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></h2>
                     </div>
@@ -277,9 +272,9 @@ div.newsletter,div.group{display:inline-block;}
              <div class="col-sm-12">
                   <div class="content">
                   <div class="input-group">
-                       <button id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
-                       <input type="hidden" value="" name="lat" id="lat"/>
- 						<input type="hidden" value="" name="lng" id="lng"/>   
+                       <button type="button" id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
+                       <input type="hidden" value="${sessionScope.lat }" name="lat" id="lat"/>
+ 						<input type="hidden" value="${sessionScope.lng }" name="lng" id="lng"/>   
                     <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="${sessionScope.myAddr }" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요"  readonly/>
                        <span class="input-group-btn">
                        
@@ -289,22 +284,22 @@ div.newsletter,div.group{display:inline-block;}
                   </div>
                   </div>
               </div>
-                
+                </form>
                 </div> 
                 </div>
                 <div class="group1  col-md-12 col-lg-12">
                 	 <select class="form-control" name="menuSearch" id="menuSearch" onchange="window.open(value,'_self');">
 					            <option  disabled selected>메뉴검색</option>
-					            <option value="${path}/customer/selectallstore.do?myAddr=${sessionScope.myAddr}">전체보기</option>
-					            <option value="${path}/customer/searchmenuView?category=돈까스&myAddr=${sessionScope.myAddr}">돈까스</option> 
-					            <option value="${path}/customer/searchmenuView?category=프랜차이즈&myAddr=${sessionScope.myAddr}">프랜차이즈</option>
-					            <option value="${path}/customer/searchmenuView?category=치킨&myAddr=${sessionScope.myAddr}">치킨</option>
-					            <option value="${path}/customer/searchmenuView?category=피자&myAddr=${sessionScope.myAddr}">피자</option>
-					            <option value="${path}/customer/searchmenuView?category=중국집&myAddr=${sessionScope.myAddr}">중국집</option>
-					            <option value="${path}/customer/searchmenuView?category=한식&myAddr=${sessionScope.myAddr}">한식</option>
-					            <option value="${path}/customer/searchmenuView?category=족발/보쌈&myAddr=${sessionScope.myAddr}">족발/보쌈</option>
-					            <option value="${path}/customer/searchmenuView?category=분식&myAddr=${sessionScope.myAddr}">분식</option>
-					            <option value="${path}/customer/searchmenuView?category=디저트&myAddr=${sessionScope.myAddr}">디저트</option>
+					            <option value="${path}/customer/selectallstore.do?myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">전체보기</option>
+					            <option value="${path}/customer/searchmenuView?category=돈까스&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">돈까스</option> 
+					            <option value="${path}/customer/searchmenuView?category=프랜차이즈&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">프랜차이즈</option>
+					            <option value="${path}/customer/searchmenuView?category=치킨&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">치킨</option>
+					            <option value="${path}/customer/searchmenuView?category=피자&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">피자</option>
+					            <option value="${path}/customer/searchmenuView?category=중국집&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">중국집</option>
+					            <option value="${path}/customer/searchmenuView?category=한식&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">한식</option>
+					            <option value="${path}/customer/searchmenuView?category=족발/보쌈&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">족발/보쌈</option>
+					            <option value="${path}/customer/searchmenuView?category=분식&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">분식</option>
+					            <option value="${path}/customer/searchmenuView?category=디저트&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">디저트</option>
 					            </select>
                 
                 </div>
@@ -331,42 +326,42 @@ div.newsletter,div.group{display:inline-block;}
 <script>
 
 function allview(){
-	location.href="${path}/customer/selectallstore.do?myAddr=${sessionScope.myAddr}";
+	location.href="${path}/customer/selectallstore.do?myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}";
 }
 function don(){
-	location.href="${path}/customer/searchmenuView?category=돈까스&myAddr=${sessionScope.myAddr}"; 
+	location.href="${path}/customer/searchmenuView?category=돈까스&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}"; 
 }
 
 function fre(){
-	location.href="${path}/customer/searchmenuView?category=프랜차이즈&myAddr=${sessionScope.myAddr}"; 
+	location.href="${path}/customer/searchmenuView?category=프랜차이즈&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}"; 
 }
 
 function chi(){
-	location.href="${path}/customer/searchmenuView?category=치킨&myAddr=${sessionScope.myAddr}"; 
+	location.href="${path}/customer/searchmenuView?category=치킨&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}"; 
 }
 
 function piz(){
-	location.href="${path}/customer/searchmenuView?category=피자&myAddr=${sessionScope.myAddr}"; 
+	location.href="${path}/customer/searchmenuView?category=피자&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}"; 
 }
 
 function jun(){
-	location.href="${path}/customer/searchmenuView?category=중국집&myAddr=${sessionScope.myAddr}"; 
+	location.href="${path}/customer/searchmenuView?category=중국집&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}"; 
 }
 
 function kor(){
-	location.href="${path}/customer/searchmenuView?category=한식&myAddr=${sessionScope.myAddr}"; 
+	location.href="${path}/customer/searchmenuView?category=한식&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}"; 
 }
 
 function jok(){
-	location.href="${path}/customer/searchmenuView?category=족발/보쌈&myAddr=${sessionScope.myAddr}"; 
+	location.href="${path}/customer/searchmenuView?category=족발/보쌈&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}"; 
 }
 
 function base(){
-	location.href="${path}/customer/searchmenuView?category=분식&myAddr=${sessionScope.myAddr}"; 
+	location.href="${path}/customer/searchmenuView?category=분식&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}"; 
 }
 
 function des(){
-	location.href="${path}/customer/searchmenuView?category=디저트&myAddr=${sessionScope.myAddr}";
+	location.href="${path}/customer/searchmenuView?category=디저트&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}";
 	
 }
 
