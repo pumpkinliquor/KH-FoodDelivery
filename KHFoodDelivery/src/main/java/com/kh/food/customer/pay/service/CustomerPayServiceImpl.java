@@ -50,6 +50,11 @@ public class CustomerPayServiceImpl implements CustomerPayService {
 		// TODO Auto-generated method stub
 		return dao.deleteWishList(memberId);
 	}
+	@Override
+	public Map<String, String> selectOnePay() {
+		return dao.selectOnePay();
+	}
+	
 	
 	//결제 후 장바구니 삭제
 	

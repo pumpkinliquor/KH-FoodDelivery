@@ -721,14 +721,8 @@ public class MemberController {
 		session.setAttribute("lng", lng);
 		ModelAndView mv= new ModelAndView();
 	
-		logger.debug("" + lat);
-		logger.debug("" + lng);
-		
 		Long lat1 = new Long(new BigDecimal(lat).longValue());
 		Long lng1 = new Long(new BigDecimal(lng).longValue());
-		
-		logger.debug("변환 후 : " + lat);
-		logger.debug("변환 후 : " + lng);
 		
 		Map<String, Object> map = new HashMap();
 		map.put("lat", lat1);

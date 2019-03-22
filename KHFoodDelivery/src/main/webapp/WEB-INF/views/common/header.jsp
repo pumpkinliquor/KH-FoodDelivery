@@ -55,10 +55,12 @@ div#map{visibility: hidden;}
                     
                     $('#lat').val(coords.jb); // 위도
                     $('#lng').val(coords1.jb)// 경도
-                    
 
                     console.log(coords.jb);//위도
+
                     console.log(coords1.jb);//경도
+
+
 
 
                    
