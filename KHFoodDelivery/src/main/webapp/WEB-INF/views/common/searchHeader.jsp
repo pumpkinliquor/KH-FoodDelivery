@@ -197,14 +197,14 @@ div.newsletter,div.group{display:inline-block;}
                         
                         
                         
-                        var coords = new daum.maps.LatLng(result.x);
-                        var coords1 = new daum.maps.LatLng(result.y);
-                        
-                        $('#lat').val(coords.jb); // 위도
-                        $('#lng').val(coords1.jb)// 경도
-                        
-                        console.log(coords.jb);
-                        console.log(coords1.jb);
+                    var coords = new daum.maps.LatLng(result.x);
+                    var coords1 = new daum.maps.LatLng(result.y); 
+                    
+                    $('#lat').val(coords.jb); // 위도
+                    $('#lng').val(coords1.jb)// 경도
+                    
+                    console.log(coords.jb);//위도
+                    console.log(coords1.jb);//경도
                      
                     }
                 });
@@ -247,7 +247,6 @@ div.newsletter,div.group{display:inline-block;}
 
        
         <div class="newsletter">
-       	 <form action="${path}/customer/selectallstore.do" onsubmit="return locationSearchStore();" method="post">
                 <div id="hd container">             
                 <div class="row" style="margin:0;">           
                 <div class="col-sm-12 headerDiv2">
@@ -259,18 +258,13 @@ div.newsletter,div.group{display:inline-block;}
                    
               </c:if> 
                <c:if test="${sessionScope.logined!=null}">
-             	<c:choose>
-             		<c:when test="${sessionScope.isAdmin == 1 }">             	
-             			<a href="${path}/admin/adminMain.do">관리자 페이지</a>
-             		</c:when>
-             		<c:otherwise>
-             			<a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
-             		</c:otherwise>
-             	</c:choose>
-             	<a href="${path }/customer/logout.do">로그아웃</a>
-            </c:if> 
-     
+               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
+               <a href="${path }/customer/logout.do">로그아웃</a>
+               
+             
+              </c:if> 
               </div>
+              <form action="${path}/customer/selectallstore.do" onsubmit="return locationSearchStore()" method="post">
                     <div class="content1">
                        <h2 onclick="mainpage();"> <span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></h2>
                     </div>
@@ -278,11 +272,9 @@ div.newsletter,div.group{display:inline-block;}
              <div class="col-sm-12">
                   <div class="content">
                   <div class="input-group">
-                       <button id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
-                        
- 						<input type="hidden" value="${sessionScope.lat }" name="lat" id="lat"/>
- 						<input type="hidden" value="${sessionScope.lng }" name="lng" id="lng"/>                      
-                       
+                       <button type="button" id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
+                       <input type="hidden" value="${sessionScope.lat }" name="lat" id="lat"/>
+ 						<input type="hidden" value="${sessionScope.lng }" name="lng" id="lng"/>   
                     <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="${sessionScope.myAddr }" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요"  readonly/>
                        <span class="input-group-btn">
                        
@@ -292,7 +284,7 @@ div.newsletter,div.group{display:inline-block;}
                   </div>
                   </div>
               </div>
-                
+                </form>
                 </div> 
                 </div>
                 <div class="group1  col-md-12 col-lg-12">
@@ -326,7 +318,6 @@ div.newsletter,div.group{display:inline-block;}
                 
        </div>     
                </div>          
-               </form>
                  <div id="map" style="width:300px;height:300px;"></div> 
        </div>
        <div style="width:300px;height:100px;"></div>
