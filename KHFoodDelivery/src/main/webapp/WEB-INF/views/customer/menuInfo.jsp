@@ -221,7 +221,7 @@
               $.ajax({
                  type: "post",
                  url: "${path}/customer/menuList.do",
-                 data : {"businessCode" : businessCode, "menuCode" : menuCode},
+                 data : {"businessCode" : businessCode},
                  success: function test(a){$("#callback").html(a);}
               });          
            });
