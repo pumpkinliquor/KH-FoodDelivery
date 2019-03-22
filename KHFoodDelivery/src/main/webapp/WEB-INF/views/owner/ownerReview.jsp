@@ -97,8 +97,4 @@ pageEncoding="UTF-8"%>
 
 
 
-
-
-
-
 <jsp:include page="/WEB-INF/views/common/ownerFooter.jsp"></jsp:include>

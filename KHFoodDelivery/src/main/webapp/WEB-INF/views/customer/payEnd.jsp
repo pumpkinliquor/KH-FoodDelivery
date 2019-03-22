@@ -33,32 +33,42 @@
 			class="col-md-12 table">
 			<tr>
 				<th><b>주문번호</b></th>
-				<td>${payEnd.PAYORDERNUM}</td>
+				<td>${payList.get(0).PAYORDERNUM}</td>
 			</tr>
 			<tr>
 				<th><b>주문자</b></th>
-				<td>${payEnd.MEMBERID }</td>
+				<td>${wishList.get(0).MEMBERID }</td>
 			</tr>
 
 			<tr>
 				<th><b>상호명</b></th>
-				<td>${payEnd.STORENAME}</td>
+				<td>${payList.get(0).STORENAME}</td>
 			</tr>
 			<tr>
 				<th><b>음식</b></th>
-				<td>${pay.MENUNAME}</td>
+				<td>
+				<c:forEach var="p" items="${payList}">
+					<c:out value="${p.MENUNAME}"/>
+				</c:forEach>
+				</td>
 			</tr>
 			<tr>
 				<th><b>가격</b></th>
-				<td>${pay.PRICE }</td>
+				<td>
+				<c:set var="total" value="0"/>
+				<c:forEach var="p1" items="${payList}">
+					<c:set var="total" value="${total+p1.PRICE}"></c:set>
+				</c:forEach>
+				<c:out value="${total}"/>
+				</td>
 			</tr>
 			<tr>
 				<th><b>주소</b></th>
-				<td>${pay.PAYADDRESS}</td>
+				<td>${payList.get(0).PAYADDRESS}</td>
 			</tr>
 			<tr>
 				<th><b>주문 시간</b></th>
-				<td>${pay.PAYDATE}</td>
+				<td>${payList.get(0).PAYDATE}</td>
 			</tr>
 		</table>
 

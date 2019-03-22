@@ -15,5 +15,6 @@ public interface CustomerPayService {
 	int insertPay(Map<String, String> map);
 	int insertPay2(Map<String, String> map);
 	int deleteWishList(String memberId);
+	Map<String, String> selectOnePay();
 
 }
