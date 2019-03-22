@@ -234,7 +234,7 @@ $(function(){
 		console.log(myAddr);
 		console.log(lat);
 		console.log(lng);
-		 location.href="${path}/customer/selectallstore.do?myAddr="+myAddr+"&firstPage="+firstPage+"&lat="+lat+"&lng="+lng;
+		 location.href="${path}/customer/selectallstore.do?myAddr="+myAddr+"&lat="+lat+"&lng="+lng;
 		 
 
 		
@@ -282,7 +282,7 @@ $(function(){
                        
                     <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="${sessionScope.myAddr }" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요" readonly/>
                        <span class="input-group-btn">
-                       <input type="hidden" value="1" name="firstPage" id="firstPage"/>
+                       
  						<input type="hidden" value="" name="lat" id="lat"/>
  						<input type="hidden" value="" name="lng" id="lng"/>                      
                         <button class="btn" onclick="locationSearchStore();" type="submit">검색</button>
