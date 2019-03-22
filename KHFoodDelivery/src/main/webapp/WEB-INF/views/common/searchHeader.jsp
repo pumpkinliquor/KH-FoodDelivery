@@ -310,7 +310,7 @@ div.newsletter,div.group{display:inline-block;}
               <button type="button" class="btn btn-default active" onclick="base();">분식</button>
               <button type="button" class="btn btn-default active" onclick="des();">디저트</button>
                 
-       </div>     
+       </div>      
                </div>          
        </div>
        <div style="height:15px;"></div>
