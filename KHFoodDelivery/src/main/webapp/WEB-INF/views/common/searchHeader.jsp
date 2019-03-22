@@ -63,6 +63,7 @@ div.newsletter,div.group{display:inline-block;}
     	  
     	  if(${sessionScope.logined==null}){
     		  alert("로그인후 이용해주세요");
+    		  location.href="${path }/customer/login.do";
     	  }else{
             function getLocation() {
                 if (navigator.geolocation) { // GPS를 지원하면
@@ -156,10 +157,11 @@ div.newsletter,div.group{display:inline-block;}
   
  
     function execDaumPostcode() {
-    	/* var info=$('#location1').val();
-    	if(info.trim().length==0){
-    		alert("클릭해주세요");
-    	} */
+    	if(${sessionScope.logined==null}){
+    		alert("로그인후 이용해주세요");
+    		location.href="${path }/customer/login.do";
+    	}else{
+    		
          new daum.Postcode({ 
             oncomplete: function(data) {
                 // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -208,6 +210,7 @@ div.newsletter,div.group{display:inline-block;}
             }
          }).open(); 
     } 
+    }
   
 
 

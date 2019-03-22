@@ -43,6 +43,7 @@ div#map{visibility: hidden;}
     	  
     	  if(${sessionScope.logined==null}){
     		  alert("로그인후 이용해주세요");
+    		  location.href="${path }/customer/login.do";
     	  }else{
             function getLocation() {
                 if (navigator.geolocation) { // GPS를 지원하면
@@ -147,6 +148,7 @@ div#map{visibility: hidden;}
     	
     	if(${sessionScope.logined==null}){
     		alert("로그인후 이용해주세요");
+    		location.href="${path }/customer/login.do";
     	}else{
     		
     	
@@ -223,7 +225,7 @@ $(function(){
  function locationSearchStore(){
 	 if(${sessionScope.logined==null}){
 		 alert("로그인 후 이용해주세요");
-		 location.href="${path }/customer/login.do";
+		location.href="${path }/customer/login.do";
 	 }else{
 		 
 		 var firstPage=$('#firstPage').val();
