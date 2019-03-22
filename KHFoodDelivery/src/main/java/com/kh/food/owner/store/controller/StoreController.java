@@ -95,7 +95,7 @@ public class StoreController {
 				}
 				out.println("<script>alert('이미지를 넣지 않으셨습니다! 이미지를 넣어주세요.'); history.go(-1);</script>");
 			}
-			
+		
 			int result=service.storeFormEnd(store);
 			
 			String msg="";

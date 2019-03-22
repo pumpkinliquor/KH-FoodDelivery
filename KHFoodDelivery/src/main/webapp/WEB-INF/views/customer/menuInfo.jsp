@@ -312,42 +312,40 @@ margin:0;
        });
        
        
-   	   setInterval(function() {
-   	 	$('#mark1').click(function(){
-   	 		var markState=1;
-   	 		var businessCode=${businessCode};
-   	 		$.ajax({
-   	 			type:"POST",
-   	 			url:"${path}/store/markStore.do?markState="+markState+"&businessCode="+businessCode,
-   	 			dataType:"JSON",
-   	 			success: function(data){
-   	 				console.log(data.markState);
-   	 				var h="<a style='cursor:pointer; float:right;' id='mark2'>";
-   	 				h+="<span id='mark' class='onMark'>♥</span>";
-   	 				h+="</a>";
-   	 				$('#markList').html(h);
-  	 				}
-   	 		});
-   	 	});
-   	   }, 1200);
-   	   setInterval(function() {
-   	 	$('#mark2').click(function(){
-   	 		var markState=0;
-   	 		var businessCode=${businessCode};
-   	 		$.ajax({
-   	 			type:"POST",
-   	 			url:"${path}/store/markStore.do?markState="+markState+"&businessCode="+businessCode,
-   	 			dataType:"JSON",
-   	 			success: function(data){
-   	 				console.log(data.markState);
-   	 				var h="<a style='cursor:pointer; float:right;' id='mark1'>";
-   	 				h+="<span id='mark' class='offMark'>♥</span>";
-   	 				h+="</a>";
-   	 				$('#markList').html(h);
-   	 			}
-   	 		});
-   	 	});
-   	   }, 1200);
+	setInterval(function() {
+		$('#mark1').click(function(){
+		var markState=1;
+		var businessCode=${businessCode};
+			$.ajax({
+			type:"POST",
+			url:"${path}/store/markStore.do?markState="+markState+"&businessCode="+businessCode,
+			dataType:"JSON",
+			success: function(data){
+				console.log(data.markState);
+				var h="<a style='cursor:pointer; float:right;' id='mark2'>";
+				h+="<span id='mark' class='onMark'>♥</span>";
+				h+="</a>";
+				$('#markList').html(h);
+			}
+			});
+		});
+		$('#mark2').click(function(){
+		var markState=0;
+		var businessCode=${businessCode};
+			$.ajax({
+			type:"POST",
+			url:"${path}/store/markStore.do?markState="+markState+"&businessCode="+businessCode,
+			dataType:"JSON",
+			success: function(data){
+				console.log(data.markState);
+				var h="<a style='cursor:pointer; float:right;' id='mark1'>";
+				h+="<span id='mark' class='offMark'>♥</span>";
+				h+="</a>";
+				$('#markList').html(h);
+			}
+			});
+		});
+	}, 600);
        
 
        
