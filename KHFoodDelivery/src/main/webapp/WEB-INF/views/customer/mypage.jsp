@@ -144,7 +144,7 @@ function address1() {
 
 <div class="container up">
  			
-	<div class="row">
+	<div class="row" style="padding-top:150px">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}" class="list-group-item list-group-item-action" style="z-index:0;">나의 주문내역</a>
@@ -191,7 +191,7 @@ function address1() {
                               <div class="form-group row">
                                 <label for="text" class="col-4 col-form-label">생년월일</label> 
                                 <div class="col-8">
-                                  <input type="date" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" max="2019-03-29" min="1900-01-01"/>
+                                  <input type="date" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" max="2019-03-01" min="1900-01-01"/>
                                 </div>
                               </div>
                               <div class="form-group row">
@@ -239,7 +239,7 @@ function address1() {
                              <script>
                              	function re(){
                              		alert("메인화면으로 이동합니다");
-                             		location.href="${path}";
+                             		location.href="${path}/member/main.do";
                              	}
                              </script>
                               

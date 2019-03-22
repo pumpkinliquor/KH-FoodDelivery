@@ -234,7 +234,7 @@ public class MemberController {
 		
 		if(result>0) {
 			msg="탈퇴하였습니다.";
-			loc="/";
+			loc="/member/main.do";
 			if(session!=null)
 			{
 				session.invalidate();}
@@ -280,7 +280,7 @@ public class MemberController {
 		
 		if(result>0) {
 			msg="회원정보 수정 완료.";
-			loc="/";
+			loc="/member/main.do";
 		}else {
 			msg="회원정보 수정 실패";
 			loc="/customer/mypage.do?memberId="+m.getMemberId();
