@@ -135,7 +135,7 @@ pageEncoding="UTF-8"%>
                     <div class="col-md-12 infoDiv2">
                         <div class="row">
                         <div class="col-md-6 col-sm-6 infoDiv3">
-                        <a href="${path }/owner/menuEnroll.do">
+                        <a href="${path }/owner/menuStoreChoice.do?ownerId=${sessionScope.ownerId}">
                         <p id="p1">사장님 가게의 메뉴를  쉽게 관리해보세요.</p>
                         </div>
                         <div class="col-md-6 col-sm-6 infoDiv4">
