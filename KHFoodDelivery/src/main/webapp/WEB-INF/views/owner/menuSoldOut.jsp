@@ -8,9 +8,19 @@ pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 <style>
 .soldBtn{
-	color: red;
+	color: red ;
 }
-
+.bt1{
+	border-color: #4D4D4D !important;
+	background-color:white !important;
+	color:#4D4D4D;
+}
+.nullDiv{
+		text-align:center;
+		font-size : 50px;
+		margin-top:150px;
+		color:#4D4D4D;
+	}
 </style>
 <section>
 
@@ -36,6 +46,7 @@ pageEncoding="UTF-8"%>
                               </div>
                               <div class="row">
                                   <div class="col-md-12" style=overflow-y:auto;overflow-x:hidden;height:500px;>
+                                  		<c:if test="${!empty menuList  }">
                                   		<c:forEach items="${category}" var="c" varStatus="status">
                                             <table class="table table-hover board">
                                                 <tbody>
@@ -45,16 +56,16 @@ pageEncoding="UTF-8"%>
                                                     <tr style="cursor:pointer;">
                                                         <td width="76%" >${m.MENUNAME }</td>
                                                         <c:if test="${m.MENUSOLDOUT eq 1 }">                                               
-                                                        <td width="12%"><button onclick="fn_soldOut(${m.MENUCODE},this)" class="btn btn-default soldBtn">품절</button></td>
+                                                        <td width="12%"><button onclick="fn_soldOut(${m.MENUCODE},this)" class="btn btn-default soldBtn bt1" style="color:red;">품절</button></td>
                                                         </c:if>
                                                         <c:if test="${m.MENUSOLDOUT eq 0 }">
-                                                        <td width="12%"><button onclick="fn_soldOut(${m.MENUCODE},this)" class="btn btn-default">품절</button></td>                            
+                                                        <td width="12%"><button onclick="fn_soldOut(${m.MENUCODE},this)" class="btn btn-default bt1 ">품절</button></td>                            
                                                         </c:if>
                                                         <c:if test="${m.MENUSOLDOUT eq 1 }">
-                                                        <td width="12%"><button class="btn btn-default" onclick="fn_noSoldOut(${m.MENUCODE},this);">품절취소</button></td>
+                                                        <td width="12%"><button class="btn btn-default bt1 " onclick="fn_noSoldOut(${m.MENUCODE},this);">품절취소</button></td>
                                                     	</c:if>
                                                     	<c:if test="${m.MENUSOLDOUT eq 0 }">
-                                                    	<td width="12%"><button class="btn btn-default soldBtn" onclick="fn_noSoldOut(${m.MENUCODE},this);">품절취소</button></td>
+                                                    	<td width="12%"><button class="btn btn-default soldBtn bt1" onclick="fn_noSoldOut(${m.MENUCODE},this);" style="color:red;">품절취소</button></td>
                                                     	</c:if>
                                                     </tr>
                   									</c:if>
@@ -62,7 +73,13 @@ pageEncoding="UTF-8"%>
                                                 </tbody>
                                             </table>
                                          </c:forEach> 
-                                            
+                                         </c:if>
+                                        
+                                         <c:if test="${empty menuList  }">
+                                         <div class="nullDiv">
+                                         	<p>사장님 메뉴가 하나도 없어요!</p>
+                                         </div>
+                                         </c:if>   
                                   </div>
                               </div>
                               

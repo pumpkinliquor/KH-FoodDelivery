@@ -1,5 +1,6 @@
 package com.kh.food.customer.member.model.dao;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ import com.kh.food.review.model.vo.Review;
 
 public interface MemberDao {
 	
-	int addQna(int no);
+	int addQna(Map<String,Object> map);
 	Map<String,String> orderOne(Map<String,String> orList);
 	int selectOrderCount(int memberNum);
 	List<Member> selectMemberOrder(int memberNum,int cPage,int numPerPage);
@@ -39,7 +40,7 @@ public interface MemberDao {
 	List<Map<String,String>> selectCategoryList(int businessCode);
 	int insertWishList(Map<String,Object> menuMap);
 	List<WishList> selectWishList(Map<String,Object> maps);
-	List<WishList> bigyoMenuCode(Map<String,Object> maps);
+	List<LinkedHashMap<String,String>> bigyoMenuCode(Map<String,Object> maps);
 //	int plusMenuCount(Map<String,Object> upCount);
 //	int minusMenuCount(Map<String,Object> upCount);
 //	int menuCounts(int menuCode);

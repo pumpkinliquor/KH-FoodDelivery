@@ -1,6 +1,7 @@
 package com.kh.food.customer.member.model.dao;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,8 +35,9 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList("store.selectOwnerRevie2",businessCode);
 	}
 	@Override
-	public int addQna(int no) {
-		return sqlSession.insert("member.qnaAdd",no);
+	public int addQna(Map<String,Object> map) {
+		System.out.println("컨트롤러"+map);
+		return sqlSession.insert("member.qnaAdd",map);
 	}
 	@Override
 	public List<Review> selectReview(int businessCode) {
@@ -124,7 +126,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public List<WishList> bigyoMenuCode(Map<String, Object> maps) {
+	public List<LinkedHashMap<String,String>> bigyoMenuCode(Map<String, Object> maps) {
 		return sqlSession.selectList("menu.bigyoMenuCode", maps);
 	}
 	@Override

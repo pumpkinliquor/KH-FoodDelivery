@@ -1,5 +1,6 @@
 package com.kh.food.customer.member.model.service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,8 +27,8 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao dao;
 	@Override
-	public 	int addQna(int no) {
-		return dao.addQna(no);
+	public 	int addQna(Map<String,Object> map) {
+		return dao.addQna(map);
 	}
 	
 	@Override
@@ -165,7 +166,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 @Override
-	public List<WishList> bigyoMenuCode(Map<String, Object> maps) {
+	public List<LinkedHashMap<String,String>> bigyoMenuCode(Map<String, Object> maps) {
 		return dao.bigyoMenuCode(maps);
 	}
 	@Override
