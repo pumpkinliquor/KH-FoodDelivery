@@ -69,8 +69,15 @@ div.newsletter,div.group{display:inline-block;}
                     navigator.geolocation.getCurrentPosition(function(position) {
                      var latitude = position.coords.latitude;
                     var longitude = position.coords.longitude;
-                    var coords = position.coords;
-                   
+                    
+                    var coords = new daum.maps.LatLng(latitude);
+                    var coords1 = new daum.maps.LatLng(longitude);
+                    
+                    $('#lat').val(coords); // 위도
+                    $('#lng').val(coords1)// 경도
+                    
+                    console.log(coords1);
+                    console.log(coords);
                      
                         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                      mapOption = {
@@ -184,7 +191,15 @@ div.newsletter,div.group{display:inline-block;}
                         var result = results[0]; //첫번째 결과의 값을 활용
  
                         // 해당 주소에 대한 좌표를 받아서
-                        var coords = new daum.maps.LatLng(result.y, result.x);
+                        
+                        
+                        var coords = new daum.maps.LatLng(latitude);
+                        var coords1 = new daum.maps.LatLng(longitude);
+                        
+                        $('#lat').val(coords); // 위도
+                        $('#lng').val(coords1)// 경도
+                        
+                        console.log(coords1);
                         console.log(coords);
                        
                      
@@ -197,19 +212,21 @@ div.newsletter,div.group{display:inline-block;}
 
 
 
-   //배달의민족 클릭시 메인으로
-   function mainpage(){
-      location.href="${path }";
-   }
+  //배달의민족 클릭시 메인으로
+    function mainpage(){
+       location.href="${path}/member/main.do";
+    }
+  
    function locationSearchStore(){
 		 if(${sessionScope.logined==null}){
 			 alert("로그인 후 이용해주세요");
+			 location.href="${path }/customer/login.do";
 		 }else{
 			 
 			 var firstPage=$('#firstPage').val();
 			var myAddr=$('#location1').val();
 			console.log(myAddr);
-			 location.href="${path}/customer/selectallstore.do?myAddr="+myAddr+"&firstPage="+firstPage;
+			 location.href="${path}/customer/selectallstore.do?myAddr="+myAddr+"&lat="+lat+"&lng="+lng;
 			 
 
 			
@@ -251,10 +268,11 @@ div.newsletter,div.group{display:inline-block;}
                   <div class="content">
                   <div class="input-group">
                        <button id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
-                       
+                       <input type="hidden" value="" name="lat" id="lat"/>
+ 						<input type="hidden" value="" name="lng" id="lng"/>   
                     <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="${sessionScope.myAddr }" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요"  readonly/>
                        <span class="input-group-btn">
-                       <input type="hidden" value="1" name="firstPage" id="firstPage"/>
+                       
                        <button class="btn" onclick="locationSearchStore();" type="submit">검색</button>
 
                        </span>
@@ -297,6 +315,7 @@ div.newsletter,div.group{display:inline-block;}
                </div>          
                  <div id="map" style="width:300px;height:300px;"></div> 
        </div>
+       <div style="width:300px;height:100px;"></div>
 
 
 <script>

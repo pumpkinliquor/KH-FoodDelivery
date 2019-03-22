@@ -23,4 +23,10 @@
 <insert id="insertPay2" parameterType="map">
 	insert into pay values(seq_paycode.nextval,#{businessCode},sysdate,#{menuCode},null,null,null,#{price},#{count},#{memberNum},'신용카드',#{payRequest},seq_payOrderNum.currval,default,#{payAddress})
 </insert>
+
+
+
+<delete id="deleteWishList" parameterType="String">
+delete from wishlist where memberId=#{memberId}
+</delete>
 </mapper>
