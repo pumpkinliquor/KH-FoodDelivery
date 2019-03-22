@@ -57,13 +57,11 @@ div#map{visibility: hidden;}
                     $('#lat').val(coords.jb); // 위도
                     $('#lng').val(coords1.jb)// 경도
                     
-<<<<<<< HEAD
+
                     console.log(coords.jb);//위도
                     console.log(coords1.jb);//경도
-=======
-                    console.log(coords.jb);
-                    console.log(coords1.jb);
->>>>>>> branch 'master' of https://github.com/pumpkinliquor/KH-FoodDelivery
+
+
                    
 				 /*  
                      $.ajax({
@@ -221,20 +219,11 @@ div#map{visibility: hidden;}
 	 if(${sessionScope.logined==null}){
 		 alert("로그인 후 이용해주세요");
 		location.href="${path }/customer/login.do";
-	 }else{
-		 
-		 var firstPage=$('#firstPage').val();
-		var myAddr=$('#location1').val();
-		var lat = $('#lat').val();
-		var lng = $('#lng').val();
-		console.log(myAddr);
-		console.log(lat);
-		console.log(lng);
-		 location.href="${path}/customer/selectallstore.do?myAddr="+myAddr+"&lat="+lat+"&lng="+lng;
+		return false;
+	 }
+	 return true;
 		 
 
-		
-	 }
  }
  
  
@@ -243,6 +232,7 @@ div#map{visibility: hidden;}
 
        
       <div class="newsletter">
+                       <form action="${path}/customer/selectallstore.do" onsubmit="return locationSearchStore();" method="post">
               <div id="hd container">             
               <div class="row" style="margin:0;">           
               <div class="col-sm-12 headerDiv2">
@@ -282,7 +272,6 @@ div#map{visibility: hidden;}
  						<input type="hidden" value="${sessionScope.lat }" name="lat" id="lat"/>
  						<input type="hidden" value="${sessionScope.lng }" name="lng" id="lng"/>                      
                         <button class="btn" onclick="locationSearchStore();" type="submit">검색</button>
-
                        </span>
                   </div>
                   </div>
@@ -291,6 +280,7 @@ div#map{visibility: hidden;}
 
               </div>
               </div>
+                       </form>
                <div id="map" style="width:300px;height:300px; position:relative;"></div>
      </div>
      <br/><br/><br/><br/>

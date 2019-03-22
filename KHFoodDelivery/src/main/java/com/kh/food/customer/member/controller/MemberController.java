@@ -3,6 +3,7 @@ package com.kh.food.customer.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.text.DateFormat;
@@ -711,7 +712,9 @@ public class MemberController {
 	@RequestMapping("/customer/selectallstore.do")
 	public ModelAndView allStore(String myAddr,HttpSession session,
 			@RequestParam(value="lat") String lat,
-			@RequestParam(value="lng") String lng) {
+			@RequestParam(value="lng") String lng ) {
+		
+		
 		session.setAttribute("myAddr",myAddr);		
 		session.setAttribute("lat", lat);
 		session.setAttribute("lng", lng);
