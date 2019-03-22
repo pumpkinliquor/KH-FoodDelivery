@@ -1,6 +1,7 @@
 package com.kh.food.customer.member.model.dao;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -125,7 +126,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public List<WishList> bigyoMenuCode(Map<String, Object> maps) {
+	public List<LinkedHashMap<String,String>> bigyoMenuCode(Map<String, Object> maps) {
 		return sqlSession.selectList("menu.bigyoMenuCode", maps);
 	}
 	@Override

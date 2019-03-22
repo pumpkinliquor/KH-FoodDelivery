@@ -8,13 +8,13 @@ import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -30,7 +30,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -571,9 +570,12 @@ public class MemberController {
 		maps.put("menuCount", menuCount);
 		maps.put("menuCode", menuCode);
 		
-		List<WishList> wishList=service.bigyoMenuCode(maps);
+		List<LinkedHashMap<String,String>> wishList=service.bigyoMenuCode(maps);
 //		System.out.println(maps);
-		
+		for(int i=0; i<wishList.size(); i++) {
+			System.out.println(wishList.get(i));
+		}
+		request.setAttribute("wishList", wishList);
 		request.setAttribute("maps", maps);
 		request.getRequestDispatcher("/WEB-INF/views/customer/WishList.jsp").forward(request, response);
 	}

@@ -15,10 +15,10 @@
 <div class="container">
 <div class="row">
 <div class="col-sm-6" id="ownerSite">
-<a href="${path }/owner/ownerMain.do"><img src="${path }/resources/images/owner/icons/ownerIcon.jpg" width=600px;></a>
+<a href="${path }/owner/memberMain.do"><img src="${path }/resources/images/owner/icons/memberIcon.jpg" width=560px;></a>
 </div>
 <div class="col-sm-6">
-<a href="${path }/owner/memberMain.do"><img src="${path }/resources/images/owner/icons/memberIcon.jpg" width=600px;></a>
+<a href="${path }/owner/ownerMain.do"><img src="${path }/resources/images/owner/icons/ownerIcon.jpg" width=560px;></a>
 </div>
 </div>
 </div>

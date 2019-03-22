@@ -221,7 +221,7 @@
               $.ajax({
                  type: "post",
                  url: "${path}/customer/menuList.do",
-                 data : {"businessCode" : businessCode, "menuCode" : menuCode},
+                 data : {"businessCode" : businessCode},
                  success: function test(a){$("#callback").html(a);}
               });          
            });
@@ -340,6 +340,7 @@
                                 	for(var i=0; i<data.length; i++){
                                 		console.log(data[i].menuCode);
                                 		$('#deleteddd'+data[i].menuCode).html("");
+                                		$('#deletedd'+data[i].menuCode).html("");
                                 	}
                                 	$.ajax({
                    						type:"POST",
@@ -388,6 +389,7 @@
                          dataType:"JSON",
                          success: function(data){
                            $('#deleteddd${wish.MENUCODE}').html("");
+                           $('#deletedd${wish.MENUCODE}').html("");
                            $.ajax({
        						type:"POST",
        						url:"${path}/customer/wishResult.do?businessCode="+businessCode,
