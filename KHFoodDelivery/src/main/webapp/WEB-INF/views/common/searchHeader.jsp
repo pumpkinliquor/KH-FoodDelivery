@@ -313,7 +313,7 @@ div.newsletter,div.group{display:inline-block;}
        </div>      
                </div>          
        </div>
-       <div style="height:15px;"></div>
+       <div style="height:150px;"></div>
 
        
 
