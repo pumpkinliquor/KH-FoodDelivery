@@ -27,18 +27,17 @@
 		</ul>
 		<br>
 		<ul>
-			<li style='list-style: none; float: left;'><a	id='deleteMenuCount${dd.MENUCODE}' style='cursor: pointer;'><img	src='${path}/resources/images/owner/icons/deleteIcon.png' width=16px; /></a> ${dd.MENUPRICE}원</li>
+			<li style='list-style: none; float: left;'><a id='deleteMenuCount${dd.MENUCODE}' style='cursor: pointer;'><img	src='${path}/resources/images/owner/icons/deleteIcon.png' width=16px; /></a> ${dd.MENUPRICE}원</li>
 			<li	style='list-style: none; margin-right: 1em; text-align: right; padding-top: 5px;'>
-				<span id='countUpdate${dd.MENUCODE}'>${dd.MENUCOUNT} 개</span> <input type='hidden' class='gg' id='countUpdate${dd.MENUCODE}' value='${dd.MENUCODE}' />
+				<span id='countUpdate${dd.MENUCODE}'>${dd.MENUCOUNT} 개</span><input type="hidden" id="deleteBtn${dd.MENUCODE }" value="${dd.MENUCODE }"/>
 			</li>
 		</ul>
 		<hr>
 	</div>
-</c:forEach>
 <script>
 $(document).ready(function() {
-	$("#deleteMenuCount${maps.menuCode}").click(function() {
-		var menuCode = ${maps.menuCode};
+	$("#deleteMenuCount${dd.MENUCODE}").click(function() {
+		var menuCode = $("#deleteBtn${dd.MENUCODE}").val();
 		var businessCode = ${maps.businessCode};
 		$.ajax({
 			type : "POST",
@@ -46,7 +45,7 @@ $(document).ready(function() {
 			data : {"menuCode" : menuCode},
 			dataType : "JSON",
 			success : function(data) {
-				$('#deletedd${maps.menuCode}').html("");
+				$('#deletedd'+menuCode).html("");
 				$.ajax({
 					type : "POST",
 					url : "${path}/customer/wishResult.do?businessCode="+businessCode,
@@ -57,6 +56,7 @@ $(document).ready(function() {
 				});
 			}
 		});
-	});
+	 });
 });
 </script>
+</c:forEach>
