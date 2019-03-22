@@ -282,7 +282,7 @@ div#map{visibility: hidden;}
               </div>
                <div id="map" style="width:300px;height:300px; position:relative;"></div>
      </div>
-     <br/><br/><br/><br/>
+  
                
               
                           

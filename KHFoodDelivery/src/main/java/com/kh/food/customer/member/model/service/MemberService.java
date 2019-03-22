@@ -58,16 +58,16 @@ public interface MemberService {
 	List<Menu> popularityMenu(int businessCode);
 	List<Menu> refreshWishList(Map<String,Object> maps);
 	int deleteWishList(Map<String,Object> maps);
+	Store storeList(int businessCode);
 	int backWish(String memberId);
-	
 	Map<String,String>selectSearchId(Map<String,String> map); //아이디찾기
 	Map<String,String>selectConfirmEmail(Map<String,String>map);
 	int updatePw(Map<String, String> map);
-
+	int reviewAvg(int businessCode);
 	List<Map<String,String>> selectMenuList(int menuCategoryCode,int businessCode);
 	Menu menuSelect(int menuCode);
 	int kakaoEnrollEnd(Member m);
-	
+	String storeP(int businessCode);
 	List<OwnerReview> selectOwnerRevie(int businessCode);
 	
 	

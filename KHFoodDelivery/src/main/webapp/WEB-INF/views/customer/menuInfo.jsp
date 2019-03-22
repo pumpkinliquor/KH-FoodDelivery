@@ -49,6 +49,9 @@
     /* display: inline; */
     width:100%;
 }
+.navbar{
+    padding: 10px 0px 10px 0px;
+}
 .mr-aurto li{
     width:33%;
     font-size: 115%;
@@ -181,6 +184,31 @@
 .offMark{
 	color:#ccc;
 }
+.star_rating {font-size:0; letter-spacing:-4px;}
+.star_rating span{
+    font-size:22px;
+    letter-spacing:0;
+    display:inline-block;
+    margin-left:5px;
+    color:#ccc;
+    text-decoration:none;
+}
+.star_rating span.off{
+color:#ccc;
+ font-size:18px;
+ margin:0;
+}
+
+
+.star_rating span.on 
+{color:crimson;
+font-size:18px;
+margin:0;
+}
+.owner_massage{
+    cursor: pointer;
+}
+
 </style>
  <script>
 /*  var backWishList=${backWish};
@@ -244,11 +272,12 @@
       $(document).ready(function(){
            
            $("#storeInfo").click(function(){
-              
+        	   var businessCode=${businessCode}
               $.ajax({
                  
                  type: "post",
-                 url: "${path}/customer/storeInfo.do",   
+                 url: "${path}/customer/storeInfo.do",  
+                 data : {"businessCode" : businessCode},
                  success: function test(a){$("#callback").html(a);}
               });
               
@@ -256,7 +285,23 @@
            });
            
         });
-      
+      $(document).ready(function(){
+          
+          $(".owner_massage").click(function(){
+        	  var businessCode=${businessCode}
+             $.ajax({
+                
+                type: "post",
+                url: "${path}/customer/storeInfo.do",   
+                data : {"businessCode" : businessCode},
+                success: function test(a){$("#callback").html(a);}
+             });
+             
+             
+          });
+          
+       });
+    
        $(document).ready(function () {
            $('.nav-link').hover(function () {
                $(this).css('background-color','#d9d9d9')
@@ -265,55 +310,48 @@
            });
           
        });
-    	 /* var h="<a style='cursor:pointer; float:right;' id='mark1'>";
-    	 h+="<c:if test='${mark.markState==1}'>";
-    	 h+="<span id='mark' class='onMark'>♥</span>";
-    	 h+="</c:if>";
-    	 h+="</a>";
-    	 h+="<a style='cursor:pointer; float:right;' id='mark2'>";
-    	 h+="<c:if test='${mark.markState==0}'>";
-    	 h+="<span id='mark' class='offMark'>♥</span>";
-    	 h+="</c:if>";
-    	 h+="</a>"; */
-    	 	//마크1 클릭했을 때 0으로 바뀌어야함.
-    	   setInterval(function() {
-    	 	$('#mark1').click(function(){
-    	 		var markState=1;
-    	 		var businessCode=${businessCode};
-    	 		$.ajax({
-    	 			type:"POST",
-    	 			url:"${path}/store/markStore.do?markState="+markState+"&businessCode="+businessCode,
-    	 			dataType:"JSON",
-    	 			success: function(data){
-    	 				console.log(data.markState);
-    	 				var h="<a style='cursor:pointer; float:right;' id='mark2'>";
-    	 				h+="<span id='mark' class='onMark'>♥</span>";
-    	 				h+="</a>";
-    	 				$('#markList').html(h);
-   	 				}
-    	 		});
-    	 	});
-    	   }, 1200);
-    	   setInterval(function() {
-    	 	$('#mark2').click(function(){
-    	 		var markState=0;
-    	 		var businessCode=${businessCode};
-    	 		$.ajax({
-    	 			type:"POST",
-    	 			url:"${path}/store/markStore.do?markState="+markState+"&businessCode="+businessCode,
-    	 			dataType:"JSON",
-    	 			success: function(data){
-    	 				console.log(data.markState);
-    	 				var h="<a style='cursor:pointer; float:right;' id='mark1'>";
-    	 				h+="<span id='mark' class='offMark'>♥</span>";
-    	 				h+="</a>";
-    	 				$('#markList').html(h);
-    	 			}
-    	 		});
-    	 	});
-    	   }, 1200);
+       
+       
+   	   setInterval(function() {
+   	 	$('#mark1').click(function(){
+   	 		var markState=1;
+   	 		var businessCode=${businessCode};
+   	 		$.ajax({
+   	 			type:"POST",
+   	 			url:"${path}/store/markStore.do?markState="+markState+"&businessCode="+businessCode,
+   	 			dataType:"JSON",
+   	 			success: function(data){
+   	 				console.log(data.markState);
+   	 				var h="<a style='cursor:pointer; float:right;' id='mark2'>";
+   	 				h+="<span id='mark' class='onMark'>♥</span>";
+   	 				h+="</a>";
+   	 				$('#markList').html(h);
+  	 				}
+   	 		});
+   	 	});
+   	   }, 1200);
+   	   setInterval(function() {
+   	 	$('#mark2').click(function(){
+   	 		var markState=0;
+   	 		var businessCode=${businessCode};
+   	 		$.ajax({
+   	 			type:"POST",
+   	 			url:"${path}/store/markStore.do?markState="+markState+"&businessCode="+businessCode,
+   	 			dataType:"JSON",
+   	 			success: function(data){
+   	 				console.log(data.markState);
+   	 				var h="<a style='cursor:pointer; float:right;' id='mark1'>";
+   	 				h+="<span id='mark' class='offMark'>♥</span>";
+   	 				h+="</a>";
+   	 				$('#markList').html(h);
+   	 			}
+   	 		});
+   	 	});
+   	   }, 1200);
        
 
+       
+   
  </script>
  
     <div class="container">
@@ -340,17 +378,66 @@
                     <div class="restaurant-content">
                         <div class="logo"><img class="mainlogo" src="${path }/resources/upload/owner/storeMainImage/${i.storeImage }" /></div>
                         <ul class="list">
-                            <li>별점</li>
+                            <li>별점
+                            
+                            			<c:if test="${reviewAvg==1 }">
+						             		<a class="star_rating">
+										        <span class="on">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+						    				</a>
+						             	</c:if>
+						             	<c:if test="${reviewAvg==2 }">
+						             		<a class="star_rating">
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+						    				</a>
+						             	</c:if>
+						             	<c:if test="${reviewAvg==3 }">
+						             		<a class="star_rating">
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+						    				</a>
+						             	</c:if>
+						             	<c:if test="${reviewAvg==4 }">
+						             		<a class="star_rating">
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="off">★</span>
+						    				</a>
+						             	</c:if>
+						             	<c:if test="${reviewAvg==5 }">
+						             		<a class="star_rating">
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+						    				</a>
+						             	</c:if>
+						   </li>	
                             <li>최소주문금액 <span>${i.minPrice}원</span></li>
                             <li>배달시간</li>
                             <li>결제방법 <span>신용카드,현금</span></li>
+                        
                         </ul>
                     </div>
                 </div>
-                <div class="owner_massage">
-                    <strong>사장님말</strong><br>
-                    <span>${i.storeProfile }</span>
+                <div class="owner_massage" style=" border: 1px solid #d9d9d9;    padding: 14px 20px 12px 15px;">
+                    <strong style="background:url(${path}/resources/images/customer/aa.png)no-repeat 0 2px; padding: 0 5px 0 19px;  background-size: 15px">사장님말</strong>
+                    <span id="hehe" style="color: #666;">${storeP }...</span>
                 </div>
+            
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <ul class="navbar-nav mr-aurto">
                         <li class="nav-item active">

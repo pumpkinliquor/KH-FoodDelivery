@@ -56,7 +56,24 @@ $(function(){
 		});
 	});
 });
+function noSpaceForm(obj) { // 공백사용못하게  , 특수문자 사용못하게
+    var str_space = /\s/;  // 공백체크
+    var pattern = /[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]/gi; //특수문제체크
+   	var val=obj.value;
+   
+    if(str_space.exec(obj.value)) { //공백 체크
+        alert("해당 항목에는 공백을 사용할수 없습니다.\n\n공백은 자동적으로 제거 됩니다.");
+        obj.focus();
+        obj.value = obj.value.replace(' ',''); // 공백제거
+        return false;
+    }
+    if (pattern.test(val)) {
+    	alert("해당 항목에는 특수문자를 사용할수 없습니다.특수문자는 자동적으로 제거 됩니다.");
+        obj.value = val.replace(pattern, "");
 
+       }
+
+	}
 
 $(document).ready(function() {
 
@@ -145,7 +162,7 @@ function address1() {
 
 <div class="container up">
  			
-	<div class="row">
+	<div class="row" style="padding-top:150px">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}" class="list-group-item list-group-item-action" style="z-index:0;">나의 주문내역</a>
@@ -186,13 +203,13 @@ function address1() {
                                 <div class="col-8">
                                     <span class="guide2 ok2">사용 가능한 닉네임입니다. </span>
             						<span class="guide2 error2">닉네임이 존재합니다. </span>
-                                  <input  name="nickName" id="nickName" value="${member.nickName}" class="form-control here" type="text"/>
+                                  <input  name="nickName" id="nickName" value="${member.nickName}" class="form-control here" type="text"onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)"/>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="text" class="col-4 col-form-label">생년월일</label> 
                                 <div class="col-8">
-                                  <input type="date" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" max="2019-03-29" min="1900-01-01"/>
+                                  <input type="date" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" max="2019-03-01" min="1900-01-01"/>
                                 </div>
                               </div>
                               <div class="form-group row">
@@ -240,7 +257,7 @@ function address1() {
                              <script>
                              	function re(){
                              		alert("메인화면으로 이동합니다");
-                             		location.href="${path}";
+                             		location.href="${path}/member/main.do";
                              	}
                              </script>
                               

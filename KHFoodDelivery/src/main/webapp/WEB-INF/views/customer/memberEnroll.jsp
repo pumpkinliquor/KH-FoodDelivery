@@ -25,6 +25,37 @@ pageEncoding="UTF-8"%>
        
 </style>      
  <script>
+ 
+	 function noSpaceForm1(obj) { // 공백사용못하게
+		    var str_space = /\s/;  // 공백체크
+		
+		   
+		    if(str_space.exec(obj.value)) { //공백 체크
+		        alert("해당 항목에는 공백을 사용할수 없습니다.\n\n공백은 자동적으로 제거 됩니다.");
+		        obj.focus();
+		        obj.value = obj.value.replace(' ',''); // 공백제거
+		        return false;
+		    }
+		   
+			}
+	 function noSpaceForm(obj) { // 공백사용못하게  , 특수문자 사용못하게
+		    var str_space = /\s/;  // 공백체크
+		    var pattern = /[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]/gi; //특수문제체크
+		   	var val=obj.value;
+		   
+		    if(str_space.exec(obj.value)) { //공백 체크
+		        alert("해당 항목에는 공백을 사용할수 없습니다.\n\n공백은 자동적으로 제거 됩니다.");
+		        obj.focus();
+		        obj.value = obj.value.replace(' ',''); // 공백제거
+		        return false;
+		    }
+		    if (pattern.test(val)) {
+		    	alert("해당 항목에는 특수문자를 사용할수 없습니다.특수문자는 자동적으로 제거 됩니다.");
+		        obj.value = val.replace(pattern, "");
+
+		       }
+		
+			}
             var id="";
             var memberId="";
             var nick="";
@@ -208,21 +239,21 @@ pageEncoding="UTF-8"%>
             
             </script>
            
-       
-      <div id="enroll-container" class="col-sm-12">
+       <br/><br/><br/><br/><br/><br/><br/>
+             <div id="enroll-container" class="col-sm-12" >
         <form name="enroll" action="${path}/member/memberEnrollEnd.do" method="post" onsubmit="return validate();">
-       <input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="memberId" id="memberId"/>
+       <input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="memberId" id="memberId" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)"/>
             <span class="guide ok">사용 가능한 아이디입니다. </span>
             <span class="guide error">아이디가 존재합니다. </span>
-            <input type="password" class="form-control" placeholder="비밀번호" name="memberPw" id="memberPw"/>
-            <input type="password" class="form-control" placeholder="비밀번호확인"name="memberPw2" id="memberPw2"/>
+            <input type="password" class="form-control" placeholder="비밀번호" name="memberPw" id="memberPw"onkeyup="noSpaceForm1(this);" onchange="noSpaceForm1(this)"/>
+            <input type="password" class="form-control" placeholder="비밀번호확인"name="memberPw2" id="memberPw2"onkeyup="noSpaceForm1(this);" onchange="noSpaceForm1(this)"/>
             	<span class="guide1 ok1">비밀번호가 일치합니다. </span>
         
-            <input type="text" class="form-control" placeholder="이름" name="memberName" id="memberName"/>
-             <input type="text" class="form-control" placeholder="닉네임" name="nickName" id="nickName"/>
+            <input type="text" class="form-control" placeholder="이름" name="memberName" id="memberName"onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)"/>
+             <input type="text" class="form-control" placeholder="닉네임" name="nickName" id="nickName"onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)"/>
              <span class="guide2 ok2">사용 가능한 닉네임입니다. </span>
             <span class="guide2 error2">닉네임이 존재합니다. </span>
-            <input type="date" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth" max="2019-03-29" min="1900-01-01"/>
+            <input type="date" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth" max="2018-12-31" min="1900-01-01"/>
             <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" >
             <input type="tel" class="form-control" placeholder="전화번호 (예:01012345678)" name="memberPhone" id="memberPhone" maxlength="11"/>
              

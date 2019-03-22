@@ -106,7 +106,11 @@
 		select * from review_sub where businessCode=#{businessCode}
 
 	</select>
+	<select id="storeP" parameterType="_int" resultType="string">
+		select substr(storeprofile,0,36) from store where BUSINESSCODE=#{businessCode} and ISCONFIRM=1
+	</select>
 	
+	<!-- 찜 하기 -->
 	<insert id="insertMark" parameterType="map">
 		MERGE INTO MARK S USING DUAL ON(S.MEMBERNUM=(SELECT MEMBERNUM FROM MEMBER WHERE MEMBERID=#{memberId}) AND S.BUSINESSCODE=#{businessCode})
 		WHEN MATCHED THEN
@@ -114,14 +118,12 @@
 		WHEN NOT MATCHED THEN
 		INSERT (S.MEMBERNUM, S.BUSINESSCODE, S.MARKSTATE) VALUES ((SELECT MEMBERNUM FROM MEMBER WHERE MEMBERID=#{memberId}),#{businessCode},1)
 	</insert>
-
+	<!-- 찜 제거 -->
 	<update id="updateMark" parameterType="map">
 		UPDATE MARK SET MARKSTATE=0 WHERE MEMBERNUM=(SELECT MEMBERNUM FROM MEMBER WHERE MEMBERID=#{memberId}) AND BUSINESSCODE=#{businessCode}
 	</update>
-	
 	<select id="selectMark" parameterType="map" resultType="mark">
 		SELECT * FROM MARK WHERE MEMBERNUM=(SELECT MEMBERNUM FROM MEMBER WHERE MEMBERID=#{memberId}) AND BUSINESSCODE=#{businessCode}
 	</select>
 	
-
 </mapper>

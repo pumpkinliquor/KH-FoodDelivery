@@ -9,7 +9,7 @@
 <style>
 	div#context-area{ min-height: 200px; }
 	div.row div.bt-group{float:right;}
-	button {
+	button.b1 {
 		background-color: black;
 		border-color: white;
 		color:white;
@@ -30,8 +30,9 @@
 </script>
 
 <section>
-	<div class="container de">
-		<div class="row">
+
+	<div class="container de">  
+		<div class="row" style="padding-top:100px">
 			<div class="col-sm-12">
 			</div>
 			<div class="col-sm-2">
@@ -44,9 +45,9 @@
 				<p>작성일:  <b>${mq.formatWriteDate }</b></p>
 			</div>
 			<div class="bt-group col-sm-5">			
-				<button type="button" class="btn btn-default" onclick="deleteQna()">삭제</button>
-				<button type="button" class="btn btn-default" onclick="updateQna();">수정</button>	
-				<button type="button" class="btn btn-default" onclick="location.href='${path }/member/qnaList.do?memberId=${sessionScope.logined}'">목록으로</button>			
+				<button type="button" class="btn btn-default b1" onclick="deleteQna()">삭제</button>
+				<button type="button" class="btn btn-default b1" onclick="updateQna();">수정</button>	
+				<button type="button" class="btn btn-default b1" onclick="location.href='${path }/member/qnaList.do?memberId=${sessionScope.logined}'">목록으로</button>			
 			</div>	
 		</div>
 		<hr/>

@@ -143,13 +143,13 @@ function address1() {
 
 <div class="container up">
  			
-	<div class="row">
+	<div class="row" style="padding-top:150px">
 		<div class="col-md-3 ">
 		     <div class="list-group">
-              <a href="${path}/customer/mypage.do?memberId=${sessionScope.logined}"  class="list-group-item list-group-item-action">회원정보변경</a>
-              <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action" style="z-index:0;">나의 주문내역</a>
+                <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}" class="list-group-item list-group-item-action" style="z-index:0;">나의 주문내역</a>
+              <a href="${path}/customer/mypage.do?memberId=${sessionScope.logined}"  class="list-group-item list-group-item-action ">회원정보변경</a>
               <a href="${path }/member/markList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action active">즐겨찾는매장</a>
-              <a href="${path }/member/qnaList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action">나의 문의내역</a>
+              <a href="${path }/member/qnaList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action ">나의 문의내역</a>
             </div> 
 		</div>
 		<div class="col-md-9">

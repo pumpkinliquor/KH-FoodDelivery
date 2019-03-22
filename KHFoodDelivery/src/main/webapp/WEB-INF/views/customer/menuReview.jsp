@@ -18,18 +18,86 @@
 
 
 .star_rating span.on {color:crimson;}
+.restaurant-star-point{
+text-align: center
+}
+.ng-binding{
+    font-size: 48px;
+    display: block;
+}
+.star-point-wrap{
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    }
 </style>
 <ul id="review" class="list-group review-list">
        
         
+        <div class="star-point-wrap">
         
+        	<div class="restaurant-star-point">
+        		<strong class="ng-binding">
+        			${reviewAvg }
+        		</strong>
+        		<span class="star-point">
+        			<c:if test="${reviewAvg==1 }">
+						             		<a class="star_rating">
+										        <span class="on">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+						    				</a>
+						             	</c:if>
+						             	<c:if test="${reviewAvg==2 }">
+						             		<a class="star_rating">
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+						    				</a>
+						             	</c:if>
+						             	<c:if test="${reviewAvg==3 }">
+						             		<a class="star_rating">
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+						    				</a>
+						             	</c:if>
+						             	<c:if test="${reviewAvg==4 }">
+						             		<a class="star_rating">
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="off">★</span>
+						    				</a>
+						             	</c:if>
+						             	<c:if test="${reviewAvg==5 }">
+						             		<a class="star_rating">
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+										        <span class="on">★</span>
+						    				</a>
+						             	</c:if>
+        		</span>
+        	</div>
+        
+        
+        </div>
 
 		<c:forEach items="${review}" var="re">
         <li class="list-group-item star-point ng-scope" ng-repeat="review in restaurant.reviews" on-finish-render="scrollCartArea()">
           <div>
             <span>${re.memberId }님</span>
             <span>${re.writeDate }</span>
-            <a href="#">신고</a>
+           
           </div>
           <div>
             <div class="star-point">

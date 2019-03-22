@@ -234,7 +234,7 @@ public class MemberController {
 		
 		if(result>0) {
 			msg="탈퇴하였습니다.";
-			loc="/";
+			loc="/member/main.do";
 			if(session!=null)
 			{
 				session.invalidate();}
@@ -280,7 +280,7 @@ public class MemberController {
 		
 		if(result>0) {
 			msg="회원정보 수정 완료.";
-			loc="/";
+			loc="/member/main.do";
 		}else {
 			msg="회원정보 수정 실패";
 			loc="/customer/mypage.do?memberId="+m.getMemberId();
@@ -455,13 +455,17 @@ public class MemberController {
 	{
 		List<Review> review=service.selectReview(businessCode);
 
+		
+		
 		List<OwnerReview> or = service.selectOwnerRevie(businessCode);
 		System.out.println("review : "+review);
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		
+		int reviewAvg = service.reviewAvg(businessCode);
+		System.out.println("reviewAvg : "+reviewAvg);
 		for(int i=0; i<or.size(); i++) {
 			or.get(i).setFormatWriteDate(df.format(or.get(i).getWriteDate()));
 		}
+		mv.addObject("reviewAvg",reviewAvg);
 		mv.addObject("businessCode",businessCode);
 		mv.addObject("review",review);
 		mv.addObject("orr",or);
@@ -498,9 +502,15 @@ public class MemberController {
 	
 	
 	@RequestMapping("/customer/storeInfo.do")
-	public String test2()
+	public ModelAndView test2(ModelAndView mv , int businessCode)
 	{
-		return "customer/storeInfo";
+		
+		Store storeList = service.storeList(businessCode);
+		
+		System.out.println("storeList : "+storeList);
+		mv.addObject("storeList",storeList);
+		mv.setViewName("customer/storeInfo");
+		return mv;
 	}
 	
 	@RequestMapping("/customer/menuSelect.do")
@@ -531,18 +541,25 @@ public class MemberController {
 		List<Store> list=service.menuInfo(businessCode);
 		List<WishList> wishList=service.selectWishList(maps);
 		List<WishList> callPrice=service.plusPrice(maps);
+		int reviewAvg = service.reviewAvg(businessCode);
+		String storeP =service.storeP(businessCode);
+		
+		System.out.println("storeP : " + storeP);
 		Mark mark = service.isMark(maps);
 		Store minPrice=service.minPrice(businessCode);
 		int resultPrice=0;
 		for(int i=0; i<callPrice.size(); i++) {
 			resultPrice+=callPrice.get(i).getPlusMenuPrice();
 		}
+		System.out.println("reviewAvg : " + reviewAvg);
+		mv.addObject("storeP",storeP);
 		mv.addObject("mark", mark);
 		mv.addObject("minPrice", minPrice);
 		mv.addObject("wishList", wishList);
 		mv.addObject("resultPrice", resultPrice);
 		mv.addObject("businessCode", businessCode);
 		mv.addObject("list",list);
+		mv.addObject("reviewAvg",reviewAvg);
 		mv.setViewName("customer/menuInfo");
 		
 		return mv;
@@ -727,6 +744,7 @@ public class MemberController {
 				session.setAttribute("lat", lat);
 				session.setAttribute("lng", lng);
 			}   
+			
 			
 			lat = (String)session.getAttribute("lat");
 			lng = (String)session.getAttribute("lng");

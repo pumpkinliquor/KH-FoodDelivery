@@ -38,20 +38,20 @@
                                 	
                                     <label for="username" class="col-6 col-form-label">최소주문금액</label> 
                                     <div class="col-6 menuSearch_Div1">
-                                        <a class="" href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">12000원</a>
+                                        <a class="" href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">${i.minPrice }원</a>
                                     	</div>
                                     
                                 </div>  
                                 <div class="row rowDiv1">
                                     <label for="username" class="col-6 col-form-label">배달비</label> 
                                     <div class="col-6 menuSearch_Div1">
-                                        <a class="" href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">12000원</a>
+                                        <a class="" href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">3000원</a>
                                     </div>
                                 </div>   
                                 <div class="row rowDiv1">
                                     <label for="username" class="col-6 col-form-label">가게번호</label> 
                                     <div class="col-6 menuSearch_Div1">
-                                        <a href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}"><b>02-2668-4624</b></a><br/>
+                                        <a href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}"><b>${i.storePhone }</b></a><br/>
                                     </div>
                                 </div>   
                                   <div class="row rowDiv1">
