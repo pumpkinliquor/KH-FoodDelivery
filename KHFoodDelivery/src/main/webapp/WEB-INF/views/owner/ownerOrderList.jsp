@@ -29,6 +29,10 @@ pageEncoding="UTF-8"%>
 	margin-left:3px;
 	margin-top:3px;
 	width:45%;
+	
+	border-color: #4D4D4D !important;
+	background-color:white !important;
+	color:#4D4D4D;
 }
 .orderTable .td1{
 	padding-top:30px;

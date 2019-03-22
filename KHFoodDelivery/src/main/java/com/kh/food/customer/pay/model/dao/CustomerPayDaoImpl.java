@@ -28,6 +28,28 @@ public List<Map<String,String>> payWishList(Map<String, String> setPay) {
 	return sqlSession.selectList("pay.payWishList", setPay);
 }
 
+@Override
+public int customerPayEnd(Map<String, Object> maps) {
+	// TODO Auto-generated method stub
+	return sqlSession.selectOne("pay.payEnd", maps);
+}
+
+@Override
+public List<Map<String, String>> selectWishList(String memberId) {
+	return sqlSession.selectList("pay.selectWishList",memberId);
+}
+
+@Override
+public int insertPay(Map<String, String> map) {
+	return sqlSession.insert("pay.insertPay",map);
+}
+
+@Override
+public int insertPay2(Map<String, String> map) {
+	return sqlSession.insert("pay.insertPay2",map);
+}
+
+
 
   }
  

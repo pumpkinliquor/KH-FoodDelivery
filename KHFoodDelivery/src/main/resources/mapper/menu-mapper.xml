@@ -13,8 +13,8 @@
 		SELECT * FROM WISHLIST A INNER JOIN MENU B ON A.MENUCODE=B.MENUCODE WHERE A.MEMBERID=#{memberId} ORDER BY A.WISHNUM DESC 
 	</select>
 	
-	<select id="bigyoMenuCode" parameterType="map" resultType="wishList">
-		SELECT * FROM WISHLIST WHERE MEMBERID=#{memberId}
+	<select id="bigyoMenuCode" parameterType="map" resultMap="menuMap">
+		SELECT * FROM WISHLIST A INNER JOIN MENU B ON A.MENUCODE=B.MENUCODE WHERE MEMBERID=#{memberId}
 	</select> 
 	
 	<select id="refreshWishList" parameterType="map" resultType="menu">

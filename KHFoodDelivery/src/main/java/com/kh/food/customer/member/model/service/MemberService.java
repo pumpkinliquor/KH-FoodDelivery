@@ -1,5 +1,6 @@
 package com.kh.food.customer.member.model.service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
+import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
 import com.kh.food.review.model.vo.Review;
@@ -15,7 +17,7 @@ import com.kh.food.review.model.vo.Review;
 public interface MemberService {
 	
 	//회원 문의
-	int addQna(int no);
+	int addQna(Map<String,Object> map);
 	//상세 주문내역
 	Map<String,String> orderOne(Map<String,String> orList);
 	//고객 문의 수정
@@ -44,7 +46,7 @@ public interface MemberService {
 //	List<Map<String,String>> selectMenuList(int menuCategoryCode,int businessCode);
 	int insertWishList(Map<String,Object> menuMap);
 	List<WishList> selectWishList(Map<String,Object> maps);
-	List<WishList> bigyoMenuCode(Map<String,Object> maps);
+	List<LinkedHashMap<String,String>> bigyoMenuCode(Map<String,Object> maps);
 //	int plusMenuCount(Map<String,Object> upCount);
 //	int minusMenuCount(Map<String,Object> upCount);
 //	int menuCounts(int menuCode);
@@ -65,6 +67,9 @@ public interface MemberService {
 	Menu menuSelect(int menuCode);
 	List<Store> selectAllStore(String category);
 	int kakaoEnrollEnd(Member m);
+	
+	List<OwnerReview> selectOwnerRevie(int businessCode);
+	
 	
 	// 회원 공지사항
 	List<MemberNotice> selectMemberNotice(int cPage,int numPerPage);

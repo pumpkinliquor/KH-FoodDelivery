@@ -21,11 +21,18 @@
   .headerDiv2{
   	width:100%;
   	z-index: 9;
+ 
+  }
+  .headerDiv1{
+   	background-color: #4D4D4D;
+  }
+  .headerDiv1 a{
+  	color:white;
   }
 </style>
 <script>
 
-/* 	$(function(){
+/* 	$(function(){aa
 		$(window).scroll(function(){
 			var num = $(this).scrollTop();
 		

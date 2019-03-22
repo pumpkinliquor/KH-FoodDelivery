@@ -8,13 +8,13 @@ import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -30,7 +30,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -42,6 +41,7 @@ import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
+import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
 import com.kh.food.review.model.vo.Review;
@@ -63,7 +63,12 @@ public class MemberController {
 	
 	
 	
-	
+	//메인보이기
+	@RequestMapping("/member/main.do")
+	public String mainView() {
+		
+		return "/customer/memberMain";
+	}
 	//문의글 수정
 	@RequestMapping("/customer/memberQnaUpdate.do")
 	public ModelAndView updateMemberQna(MemberQna mq) {
@@ -361,7 +366,7 @@ public class MemberController {
 				}
 				else {
 					msg="로그인 성공";
-					loc="/";
+					loc="/member/main.do";
 				}
 				session.setAttribute("isAdmin", result.get("ISADMIN"));
 				session.setAttribute("logined", result.get("MEMBERID"));
@@ -390,6 +395,7 @@ public class MemberController {
 		{
 			session.invalidate();
 			msg="로그아웃 되었습니다.";
+			loc="/member/main.do";
 		}else {
 			msg="로그아웃 실패";
 		}
@@ -441,16 +447,24 @@ public class MemberController {
 	}
 	
 	
-	//테스트
+	//리뷰보여주기 ~_~
 	
 	@RequestMapping("/customer/menuReview.do")
 	
 	public ModelAndView test(ModelAndView mv, int businessCode)
 	{
 		List<Review> review=service.selectReview(businessCode);
+
+		List<OwnerReview> or = service.selectOwnerRevie(businessCode);
 		System.out.println("review : "+review);
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		
+		for(int i=0; i<or.size(); i++) {
+			or.get(i).setFormatWriteDate(df.format(or.get(i).getWriteDate()));
+		}
 		mv.addObject("businessCode",businessCode);
 		mv.addObject("review",review);
+		mv.addObject("orr",or);
 		mv.setViewName("customer/menuReview");
 		return mv;
 	}
@@ -556,9 +570,12 @@ public class MemberController {
 		maps.put("menuCount", menuCount);
 		maps.put("menuCode", menuCode);
 		
-		List<WishList> wishList=service.bigyoMenuCode(maps);
+		List<LinkedHashMap<String,String>> wishList=service.bigyoMenuCode(maps);
 //		System.out.println(maps);
-		
+		for(int i=0; i<wishList.size(); i++) {
+			System.out.println(wishList.get(i));
+		}
+		request.setAttribute("wishList", wishList);
 		request.setAttribute("maps", maps);
 		request.getRequestDispatcher("/WEB-INF/views/customer/WishList.jsp").forward(request, response);
 	}
@@ -655,22 +672,31 @@ public class MemberController {
 		mv.setViewName("customer/memberQna");
 		return mv;
 	}
-	//문의글 수정 폼 뷰
+	//문의글  폼 뷰
 	@RequestMapping("/customer/memberQnaAddform.do")
-	public ModelAndView addQna(int no) {
+	public ModelAndView addQna(MemberQna memberqna,int no,String memberId) {
 		
 		ModelAndView mv= new ModelAndView();
+		Map<String,Object> map = new HashMap();
+		map.put("no",no);
+		map.put("qnaCategory",memberqna.getQnaCategory());
+		map.put("qnaContent",memberqna.getQnaContent());
+		map.put("qnaTitle",memberqna.getQnaTitle());
 		
-		int result = service.addQna(no);
+	
+		
+		
+		System.out.println(memberqna);
+		int result = service.addQna(map);
 		String msg="";
 		String loc="";
 		
 		if(result> 0) {
 			msg="문의 등록완료.";
-			loc="/member/qnaList.do?memberId=${sessionScope.logined}";
+			loc="/member/qnaList.do?memberId="+memberId;
 		}else {
 			msg="등록실패";
-			loc="/member/qnaList.do?memberId=${sessionScope.logined}";
+			loc="/member/qnaList.do?memberId="+memberId;
 		}
 		mv.addObject("loc",loc);
 		mv.addObject("msg",msg);

@@ -16,8 +16,21 @@ pageEncoding="UTF-8"%>
 	.categoryDiv1{
 		margin-bottom:20px;
 	}
-	
-	
+	.nullDiv{
+		text-align:center;
+		font-size : 50px;
+		margin-top:100px;
+		color:#4D4D4D;
+	}
+	.btn-default{
+		background-color:white;
+		
+	}
+	.bt1{
+	border-color: #4D4D4D !important;
+	background-color:white !important;
+	color:#4D4D4D !important;
+	}
 </style>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 
@@ -56,7 +69,7 @@ pageEncoding="UTF-8"%>
                                                 </select>
                                             </div>
                                             <div class="col-4">
-                                                <button name="submit" type="submit" class="btn btn-primary">삭제</button>
+                                                <button name="submit" type="submit" class="btn btn-primary bt1">삭제</button>
                                             </div>
                                           </div>                                  
                                           <div class="form-group row">
@@ -81,6 +94,7 @@ pageEncoding="UTF-8"%>
                               </div>
                               <div class="row">
                                   <div class="col-md-12">
+                                  			<c:if test="${ !empty category}">
                                   			<c:forEach items="${category}" var="c" varStatus="status">
                                                     
                                             <table class="table table-hover board">
@@ -92,9 +106,9 @@ pageEncoding="UTF-8"%>
                                                     <!-- data-toggle="modal" data-target="#myModal" -->
                                                     <tr style="cursor:pointer;" onclick="updateMenu(${m.MENUCODE},${businessCode })">
                                                         <td width="44%" >${m.MENUNAME }</td>
-                                                        <td width="32%"><input type="text"  value="${m.MENUPRICE}" class="menu11" placeholder=""></td>
-                                                        <td width="12%"><button onclick="updatePrice(this,${m.MENUCODE},${businessCode })" class="btn btn-default remove">수정</button></td>
-                                                        <td width="12%"><button onclick="deleteMenu(${m.MENUCODE},${businessCode });" class="btn btn-default">삭제</button></td>
+                                                        <td width="32%"><input type="text"  value="${m.MENUPRICE}" class="form-control here menu11" placeholder=""></td>
+                                                        <td width="12%"><button onclick="updatePrice(this,${m.MENUCODE},${businessCode })" class="btn btn-default bt1">수정</button></td>
+                                                        <td width="12%"><button onclick="deleteMenu(${m.MENUCODE},${businessCode });" class="btn btn-default bt1">삭제</button></td>
                                                     </tr>
                   									</c:if>
                   									</c:if>
@@ -102,7 +116,12 @@ pageEncoding="UTF-8"%>
                                                 </tbody>
                                             </table>
                                             </c:forEach>                                       
-                                            
+                                            </c:if>
+                                            <c:if test="${empty category }">
+                                            		<div class="nullDiv">
+                                            		<p>사장님!  메뉴 / 카테고리  등록해주세요!</p>
+                                            		</div>
+                                            </c:if>
                                   </div>
                               </div>
                               

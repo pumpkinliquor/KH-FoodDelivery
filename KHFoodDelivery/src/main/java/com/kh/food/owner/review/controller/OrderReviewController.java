@@ -61,17 +61,14 @@ public class OrderReviewController {
 			System.out.println(rv.get(i));
 		}
 		
-		try {
 		List<OwnerReview> or = service.selectOwnerRevie(stN);
 		System.out.println("or : " + or);
-		request.setAttribute("orr", or);
-		}
-		catch(NullPointerException e)
-		{
-			e.printStackTrace();
-		}
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		
-
+		for(int i=0; i<or.size(); i++) {
+			or.get(i).setFormatWriteDate(df.format(or.get(i).getWriteDate()));
+		}
+		request.setAttribute("orr", or);
 		request.setAttribute("rv", rv);
 		request.getRequestDispatcher("/WEB-INF/views/owner/test.jsp").forward(request, response);
 	}
@@ -84,26 +81,15 @@ public class OrderReviewController {
 															HttpServletRequest request , HttpServletResponse response)
 	{
 		
-		Map map=new HashMap();
+		Map<String,Object> map=new HashMap();
 		map.put("context", context);
 		map.put("no", no);
 		map.put("code", code);
 		
 		int result = service.insertReviewRe(map);
-		List<OwnerReview> or = new ArrayList<>();
-		try {	
-			or = service.selectOwnerRevie(code);
-			System.out.println("or : " + or);
-			request.setAttribute("orr", or);
-			}
-			catch(NullPointerException e)
-			{
-				e.printStackTrace();
-			}
 		
 		System.out.println("code"+code);
 		
-		mv.addObject("orr",or);
 		mv.setViewName("redirect:/owner/ownerReview.do?ownerId="+ownerId);
 		
 		return mv;

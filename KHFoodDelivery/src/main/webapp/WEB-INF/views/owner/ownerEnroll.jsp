@@ -37,6 +37,10 @@ span.error,span.error1 {
 	// 아이디 중복검사 ajax
 	$(function() {
 		$("#ownerId").keyup(function() {
+			
+			var a = $('#ownerId').val().replace(/ /gi, '');
+	        $('#ownerId').val(a);
+			
 			var ownerId = $("#ownerId").val().trim();
 			if (ownerId.length < 4) {
 				$(".guide").hide();
@@ -62,9 +66,40 @@ span.error,span.error1 {
 				}
 			});
 		});
-	
+		
+		
+		$("#ownerPw").keyup(function(){
+			
+			var a = $('#ownerPw').val().replace(/ /gi, '');
+	        $('#ownerPw').val(a);
+			
+			ownerPw = $("#ownerPw").val();
+			var ownewPw1 = $("#ownerPw").val().trim();
+			reownerPw = $("#reownerPw").val();
+			console.log(ownerPw);
+				if (ownerPw == reownerPw) {
+					$(".guide.ok1").show();
+					$(".guide.error1").hide();
+
+				} else {
+					$(".guide.ok1").hide();
+					$(".guide.error1").show();
+				}
+			
+				if($("#ownerPw").val().trim().length==0 || $("#reownerPw").val().trim().length==0)
+					{
+					$(".guide.ok1").hide();
+					$(".guide.error1").hide();
+					}
+			
+		});
+		
 		//비밀번호 중복확인
 		$("#reownerPw").keyup(function() {
+			
+			var a = $('#reownerPw').val().replace(/ /gi, '');
+	        $('#reownerPw').val(a);
+			
 			
 			ownerPw = $("#ownerPw").val();
 			var ownewPw1 = $("#ownerPw").val().trim();
@@ -83,6 +118,12 @@ span.error,span.error1 {
 					$(".guide.ok1").hide();
 					$(".guide.error1").show();
 				}
+			}
+			
+			if($("#reownerPw").val().trim().length==0 || $("#ownerPw").val().trim().length==0)
+			{
+			$(".guide.ok1").hide();
+			$(".guide.error1").hide();
 			}
 		});
 
@@ -180,7 +221,7 @@ span.error,span.error1 {
 										<div class="col-8">
 											<input type="text" id="ownerPhone" name="ownerPhone"
 												class="form-control here" required="required"
-												placeholder="연락처">
+												placeholder="예)01091634624" maxlength="11">
 										</div>
 									</div>
 									<div class="form-group row">

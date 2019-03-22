@@ -5,7 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Cstyle.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Astyle.css" />
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 <style>
 

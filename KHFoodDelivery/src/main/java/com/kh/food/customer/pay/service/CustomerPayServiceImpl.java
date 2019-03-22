@@ -28,5 +28,24 @@ public class CustomerPayServiceImpl implements CustomerPayService {
 	public List<Map<String,String>> payWishList(Map<String, String> setPay) {
 		return dao.payWishList(setPay);
 	}
+	@Override
+	public int cusomerPayEnd(Map<String, Object> maps) {
+		// TODO Auto-generated method stub
+		return dao.customerPayEnd(maps);
+	}
+	@Override
+	public List<Map<String, String>> selectWishList(String memberId) {
+		return dao.selectWishList(memberId);
+	}
+	@Override
+	public int insertPay(Map<String, String> map) {
+		return dao.insertPay(map);
+	}
+	@Override
+	public int insertPay2(Map<String, String> map) {
+		return dao.insertPay2(map);
+	}
+	
+	
 	
 }

@@ -155,14 +155,13 @@ $(document).ready(function(){
          dataType:"JSON",
          success: function(data) {
             console.log(data);
-            location.reload();
             var wishResultBusinessCode=businessCode;
             $.ajax({
                type:"POST",
                url:"${path}/customer/menuInfo2.do?menuCount="+data.menuCount+"&businessCode="+businessCode+"&menuTitle="+data.menuTitle+"&menuPrice="+menuPrice+"&plusMenuPrice="+plusMenuPrice+"&menuCode="+data.menuCode,
                dataType:"html",
                success: function(data) {
-                  $('#janbgaID').prepend(data);
+                  $('#janbgaID').html(data);
                   $.ajax({
                      type:"POST",
                      url:"${path}/customer/wishResult.do?businessCode="+wishResultBusinessCode,

@@ -16,7 +16,7 @@
 	 
 	 <!-- 사장님 리스트 -->
 	 <select id="selectListOwner" resultType="Map">
-	 select * from owner o, store s where o.ownerid=s.ownerid order by storename
+	 select * from owner order by ownernum desc
 	 </select>
 	 
 	 <!-- 사장 페이징 -->
@@ -35,9 +35,9 @@
 	</select>
 	
 	<!-- 사장상세보기 -->
-	<select id="ownerOne" resultType="Map" parameterType="_int">
-	select * from store where businesscode= #{businessCode}
-	</select>
+<!-- 	<select id="ownerOne" resultType="Map" parameterType="_int">
+	select * from owner where ownernum=#{ownerNum} 
+	</select> -->
 	
 	<!-- 회원 삭제 -->
 	<delete id="memberDel" parameterType="_int">

@@ -1,5 +1,6 @@
 package com.kh.food.customer.member.model.dao;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,13 +9,14 @@ import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
+import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
 import com.kh.food.review.model.vo.Review;
 
 public interface MemberDao {
 	
-	int addQna(int no);
+	int addQna(Map<String,Object> map);
 	Map<String,String> orderOne(Map<String,String> orList);
 	int selectOrderCount(int memberNum);
 	List<Member> selectMemberOrder(int memberNum,int cPage,int numPerPage);
@@ -38,7 +40,7 @@ public interface MemberDao {
 	List<Map<String,String>> selectCategoryList(int businessCode);
 	int insertWishList(Map<String,Object> menuMap);
 	List<WishList> selectWishList(Map<String,Object> maps);
-	List<WishList> bigyoMenuCode(Map<String,Object> maps);
+	List<LinkedHashMap<String,String>> bigyoMenuCode(Map<String,Object> maps);
 //	int plusMenuCount(Map<String,Object> upCount);
 //	int minusMenuCount(Map<String,Object> upCount);
 //	int menuCounts(int menuCode);
@@ -52,7 +54,7 @@ public interface MemberDao {
 	Map<String,String> selectSearchId(Map<String,String> map); //아이디찾기
 	Map<String,String> selectConfirmEmail(Map<String,String>map);
 	int updatePw(Map<String,String>map);
-
+	List<OwnerReview> selectOwnerRevie(int businessCode);
 	List<Map<String,String>> selectMenuList(int menuCategoryCode, int businessCode);
 	Menu menuSelect(int menuCode);
 	List<Store> selectAllStore(String category);

@@ -116,8 +116,18 @@ pageEncoding="UTF-8"%>
                		
                	
                 	<a class="review">${st.REVIEWCONTEXT }</a>
+                	<div id="ohoh${st.REVIEWNUM }"></div>
             </div>
         
+        <c:forEach var="re" items="${orr}">
+        <script>
+        $(document).ready(function(){
+        	var h="<br><div style='border: 1px solid #d9d9d9;padding: 16px 16px 10px 16px;background: #f0f0f0;coler:#d9d9d9'>└<span id='ohoh${re.reviewNum}' style='font-weight:bold; font-size:19px; margin-left:10px;'>사장님 <span style='font-weight: normal; font-size:18px; margin-left:20px; color: #666;'>${re.formatWriteDate}<br/>${re.reviewContext}</span></span><div>";
+        	$('#ohohoh${re.reviewNum}').html("");
+        	$('#ohoh${re.reviewNum}').empty().append(h);
+        });
+        </script>
+        </c:forEach>
             </div>
          <%-- <c:if test="${!empty orr }"> --%>
       <%--   	<div class="rounded row" style="padding-bottom:1em; padding-right:1em; padding-left:1em; padding-top:1em;">
@@ -128,25 +138,20 @@ pageEncoding="UTF-8"%>
         	</div> --%>
         
       <%--   </c:if>  --%>
-        
-      
+        <div id="ohohoh${st.REVIEWNUM }">
         <form action="${path }/owner/insertReviewRe.do" method="post">
             <div class="rounded row" style="padding-bottom:1em; padding-right:1em; padding-left:1em; padding-top:1em;">
                         <div class="re">                          
                             <input type="hidden" name="qnaNo" value="${st.REVIEWNUM}"/>
                             <input type="hidden" name="qnaCode" value="${st.BUSINESSCODE}"/>
                             <input type="hidden" name="ownerId" value="${st.OWNERID}"/>                            
-                            <input type="text" value="${orr.get(0).reviewContext }">
                             <textarea id="textarea" name="context" cols="70" rows="5" placeholder="답글을 달아주세요" style="margin-left: 250px;"></textarea><br/>
                             <input type="submit" class="btn" value="사장님 댓글 등록" style=" width:200px; margin-top:15px; float: right;"/>  
                         </div>              
             </div>                
         </form>
+        </div>
 
         <hr/>
             
-            </c:forEach>
-            
-            <c:forEach var="o" items="${orr}">
-            	 <a>${o.reviewContext}</a> 
             </c:forEach>
