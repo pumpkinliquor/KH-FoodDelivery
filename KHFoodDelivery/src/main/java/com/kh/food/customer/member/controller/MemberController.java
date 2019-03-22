@@ -745,6 +745,7 @@ public class MemberController {
 				session.setAttribute("lng", lng);
 			}   
 			
+			
 			lat = (String)session.getAttribute("lat");
 			lng = (String)session.getAttribute("lng");
 			BigDecimal lat1 = new BigDecimal(lat);
