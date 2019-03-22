@@ -710,14 +710,25 @@ public class MemberController {
 	//업체 전체보기
 	@RequestMapping("/customer/selectallstore.do")
 	public ModelAndView allStore(String myAddr,HttpSession session,
-			@RequestParam(value="lat") int lat,
-			@RequestParam(value="lng") int lng) {
-		session.setAttribute("myAddr",myAddr);
+			@RequestParam(value="lat") String lat,
+			@RequestParam(value="lng") String lng) {
+		session.setAttribute("myAddr",myAddr);		
+		session.setAttribute("lat", lat);
+		session.setAttribute("lng", lng);
 		ModelAndView mv= new ModelAndView();
 	
+		logger.debug("" + lat);
+		logger.debug("" + lng);
+		
+		Long lat1 = new Long(new BigDecimal(lat).longValue());
+		Long lng1 = new Long(new BigDecimal(lng).longValue());
+		
+		logger.debug("변환 후 : " + lat);
+		logger.debug("변환 후 : " + lng);
+		
 		Map<String, Object> map = new HashMap();
-		map.put("lat", lat);
-		map.put("lng", lng);
+		map.put("lat", lat1);
+		map.put("lng", lng1);
 		
 		List<Store> list =service.selectAllStore(map);
 
