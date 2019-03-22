@@ -195,22 +195,9 @@
     		type:"POST",
     		url:"${path}/menu/ifDeleteWish.do",
     		success: function(data){
-    			
     		}
     	});
    		history.go(-1);
-	};
-	function fn_mark(){		
-		// 찜 상태 -> 찜 취소
-		if($('.onMark').length > 0) {
-			alert("찜 취소");
-			$('#isMark').val("1");
-			$('#markFrm').submit();
-		} else{
-			alert("찜 성공");
-			$('#isMark').val("0");
-			$('#markFrm').submit();
-		}
 	};
  
         $(document).ready(function(){
@@ -278,8 +265,55 @@
            });
           
        });
+    	 /* var h="<a style='cursor:pointer; float:right;' id='mark1'>";
+    	 h+="<c:if test='${mark.markState==1}'>";
+    	 h+="<span id='mark' class='onMark'>♥</span>";
+    	 h+="</c:if>";
+    	 h+="</a>";
+    	 h+="<a style='cursor:pointer; float:right;' id='mark2'>";
+    	 h+="<c:if test='${mark.markState==0}'>";
+    	 h+="<span id='mark' class='offMark'>♥</span>";
+    	 h+="</c:if>";
+    	 h+="</a>"; */
+    	 	//마크1 클릭했을 때 0으로 바뀌어야함.
+    	   setInterval(function() {
+    	 	$('#mark1').click(function(){
+    	 		var markState=1;
+    	 		var businessCode=${businessCode};
+    	 		$.ajax({
+    	 			type:"POST",
+    	 			url:"${path}/store/markStore.do?markState="+markState+"&businessCode="+businessCode,
+    	 			dataType:"JSON",
+    	 			success: function(data){
+    	 				console.log(data.markState);
+    	 				var h="<a style='cursor:pointer; float:right;' id='mark2'>";
+    	 				h+="<span id='mark' class='onMark'>♥</span>";
+    	 				h+="</a>";
+    	 				$('#markList').html(h);
+   	 				}
+    	 		});
+    	 	});
+    	   }, 1200);
+    	   setInterval(function() {
+    	 	$('#mark2').click(function(){
+    	 		var markState=0;
+    	 		var businessCode=${businessCode};
+    	 		$.ajax({
+    	 			type:"POST",
+    	 			url:"${path}/store/markStore.do?markState="+markState+"&businessCode="+businessCode,
+    	 			dataType:"JSON",
+    	 			success: function(data){
+    	 				console.log(data.markState);
+    	 				var h="<a style='cursor:pointer; float:right;' id='mark1'>";
+    	 				h+="<span id='mark' class='offMark'>♥</span>";
+    	 				h+="</a>";
+    	 				$('#markList').html(h);
+    	 			}
+    	 		});
+    	 	});
+    	   }, 1200);
+       
 
-   
  </script>
  
     <div class="container">
@@ -287,24 +321,21 @@
            
            <c:forEach items="${list}" var="i" >
             <div class="col-sm-8">
-               
                 <div class="restaurant-info">
                     <div class="restaurant-title">
                         <span id="storeName">${i.storeName }</span>
-                        <form id="markFrm" action="${path}/store/markStore.do" method="post"style="float: right;">
-                        	<button type="button" onclick="fn_mark()" style="cursor: pointer; border: 0; background-color:#FFF">
-                       			<c:choose>
-	                       			<c:when test="${mark != null}">
-	                       				<span id="mark" class="onMark">♥</span>
-	                       			</c:when>
-	                       			<c:otherwise>
-	                       				<span id="mark" class="offMark">♥</span>
-	                       			</c:otherwise>                       			
-                       			</c:choose>
-                       		</button>
-                       		<input type="hidden" name="bsCode" id="bsCode" value="${i.businessCode }"/>
-                       		<input type="hidden" name="isMark" id="isMark" value=""/>
-                        </form>
+                        <span id="markList">
+				    	 <c:if test='${mark.markState==1}'>
+                         <a style='cursor:pointer; float:right;' id='mark2'>
+				    	 <span id='mark' class='onMark'>♥</span>
+				    	 </a>
+				    	 </c:if>
+				    	 <c:if test='${mark.markState==0||mark.markState==null}'>
+				    	 <a style='cursor:pointer; float:right;' id='mark1'>
+				    	 <span id='mark' class='offMark'>♥</span>
+				    	 </a>
+				    	 </c:if>
+				    	 </span>
                     </div>
                     <div class="restaurant-content">
                         <div class="logo"><img class="mainlogo" src="${path }/resources/upload/owner/storeMainImage/${i.storeImage }" /></div>

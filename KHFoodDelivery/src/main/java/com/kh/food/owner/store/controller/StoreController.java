@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,11 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
+import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.custom.model.service.CustomerService;
 
 @Controller
@@ -116,23 +117,36 @@ public class StoreController {
 
 	// 가게 즐겨찾기 추가 / 삭제
 	@RequestMapping("/store/markStore.do")
-	public ModelAndView markStore(@RequestParam("isMark") int isMark, @RequestParam("bsCode") int bsCode,
-									HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView();
-
+	@ResponseBody
+	public Mark ajaxMark(HttpServletRequest request, int businessCode, int markState) throws SQLException{
 		String memberId=(String) request.getSession().getAttribute("logined");
+		Map<String,Object> maps=new HashMap<>();
 		
-		Map<String, Object> map = new HashMap();
-		map.put("businessCode", bsCode);
-		map.put("memberId", memberId);
+		maps.put("memberId", memberId);
+		maps.put("businessCode", businessCode);
+		maps.put("markState", markState);
 		
-		if(isMark == 0) {	// 찜 등록
-			service.insertMark(map);
-		} else {			// 찜 삭제
-			service.deleteMark(map);
+		System.out.println(maps);
+		
+		Mark mark=new Mark();
+		
+		if(markState==0) {
+			//마크가 1일때 0으로 바꾸어줘야함.
+			int result=service.updateMark(maps);
+			mark=service.selectMark(maps);
+			int changeState=1;
+			mark.setMarkState(changeState);
+		}
+		if(markState==1) {
+			//마크가 0일때 1로 바꾸어줘야함.
+			int result=service.insertMark(maps);
+			mark=service.selectMark(maps);
+			int changeState=0;
+			mark.setMarkState(changeState);
 		}
 		
-		mv.setView(new RedirectView("/food/customer/menuInfo.do?businessCode="+bsCode));
-		return mv;
-	}	
+		System.out.println(mark);
+		
+		return mark;
+	}
 }

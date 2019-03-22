@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.custom.model.dao.CustomerDao;
 
 @Service
@@ -30,12 +31,18 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public int insertMark(Map<String, Object> map) {
-		return dao.insertMark(map);
+	public int insertMark(Map<String, Object> maps) {
+		return dao.insertMark(maps);
+	}
+	
+	@Override
+	public int updateMark(Map<String, Object> maps) {
+		return dao.updateMark(maps);
 	}
 
 	@Override
-	public int deleteMark(Map<String, Object> map) {
-		return dao.deleteMark(map);
-	}	
+	public Mark selectMark(Map<String, Object> maps) {
+		return dao.selectMark(maps);
+	}
+
 }
