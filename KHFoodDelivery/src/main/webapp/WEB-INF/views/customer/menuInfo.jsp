@@ -267,7 +267,7 @@
  </script>
  
     <div class="container">
-        <div class="row justify-content-start">
+        <div class="row justify-content-start" style="padding-top:180px">
            
            <c:forEach items="${list}" var="i" >
             <div class="col-sm-8">
@@ -389,6 +389,7 @@
                          dataType:"JSON",
                          success: function(data){
                            $('#deleteddd${wish.MENUCODE}').html("");
+                           $('#deletedd${wish.MENUCODE}').html("");
                            $.ajax({
        						type:"POST",
        						url:"${path}/customer/wishResult.do?businessCode="+businessCode,

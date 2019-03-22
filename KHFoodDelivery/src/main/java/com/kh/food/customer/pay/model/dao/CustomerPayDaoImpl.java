@@ -49,6 +49,17 @@ public int insertPay2(Map<String, String> map) {
 	return sqlSession.insert("pay.insertPay2",map);
 }
 
+@Override
+public int deleteWishList(String memberId) {
+	// TODO Auto-generated method stub
+	return sqlSession.delete("pay.deleteWishList",memberId);
+}
+
+@Override
+public Map<String, String> selectOnePay() {
+	return sqlSession.selectOne("pay.selectOnePay");
+}
+
 
 
   }

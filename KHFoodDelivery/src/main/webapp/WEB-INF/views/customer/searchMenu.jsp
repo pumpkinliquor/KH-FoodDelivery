@@ -19,8 +19,8 @@
      </style>
 
 
+<br/><br/><br/><br/>
 <section>
-
         <div class="me container">
             
                 <div class="row searchMenu_row">
@@ -69,7 +69,7 @@
                     </div>  
                     </c:forEach>    
                 </div>
-                <div>${pageBar }</div>
+                
        		 </div>
 
     </section>

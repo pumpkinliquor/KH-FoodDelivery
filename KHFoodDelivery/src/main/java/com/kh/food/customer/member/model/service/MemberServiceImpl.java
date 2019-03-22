@@ -105,10 +105,6 @@ public class MemberServiceImpl implements MemberService {
 
 	
 
-	@Override
-	public List<Store> selectAllStore(String category){
-		return dao.selectAllStore(category);
-	}
 	
 	@Override
 	public List<Store> menuInfo(int businessCode) {
@@ -123,7 +119,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
-	public List<Store> selectStore(Map<String,String> map){
+	public List<Store> selectStore(Map<String,Object> map){
 		return dao.selectStore(map);
 	}
 	

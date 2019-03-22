@@ -36,9 +36,32 @@
 		update member set NICKNAME=#{nickName},MEMBERBIRTH=#{formatBirth},MEMBEREMAIL=#{memberEmail},MEMBERPHONE=#{memberPhone},MEMBERADDRESS=#{memberAddress},MEMBERENROLLDATE=default,MEMBERGENDER=#{memberGender},PROFILEIMAGE=#{profileImage},MEMBERADDRESS1=#{memberAddress1} where MEMBERID=#{memberId}		
 	</update>
 	
-	<select id="selectStore" parameterType="map" resultType="store">		  	
-		select* from store where STORECATEGORY=#{category} and ISCONFIRM=1 and 	STOREADDRESS LIKE '%'||#{ctg}||'%'
+
+	<!-- 가게 카테고리별 검색 -->
+
+	<select id="selectStore" parameterType="map" resultType="store">
+		SELECT *
+		FROM 
+		(
+    		SELECT STORE.*, DISTNACE_WGS84(#{lat}, #{lng}, atitude, longitude) AS DISTANCE
+    		FROM STORE
+    		WHERE (atitude between #{lat} - 0.1 and #{lat} + 0.1)
+    			AND (longitude between #{lng} - 0.1 and #{lng} + 0.1)
+    			AND isConfirm = 1
+    			AND 
+    			<choose>
+    				<when test="category eq '전체'">
+    					1 = 1
+    				</when>
+    				<otherwise>
+    					storeCategory = #{category}
+    				</otherwise>
+    			</choose>
+    		ORDER BY DISTANCE
+    	)			  	
 	</select>
+	
+	<!-- 가게 상세보기 -->
 	<select id="selectStore2" parameterType="int" resultType="store">		  	
 		select* from store where BUSINESSCODE=#{besinessCode} and ISCONFIRM=1	
 	</select>
@@ -74,11 +97,7 @@
 	<select id="selectMenuList" parameterType="map" resultMap="member">
 		select * from menu where MENUCATEGORYCODE=#{menuCategoryCode} AND BUSINESSCODE=#{businessCode}
 	</select>
-	
-	<select id="selectAllStore" parameterType="string" resultType="store">
-		select * from store where ISCONFIRM=1 and STOREADDRESS LIKE '%'||#{category}||'%'
-	</select>
-	
+		
 	
 	<insert id="qnaAdd" parameterType="map">
 		insert into member_qna values(SEQ_M_QNACODE.NEXTVAL,#{no},default,#{qnaCategory},#{qnaContent},#{qnaTitle})

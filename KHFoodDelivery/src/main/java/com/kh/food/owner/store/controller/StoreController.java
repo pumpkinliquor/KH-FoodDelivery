@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,10 +35,15 @@ public class StoreController {
 	
 	@RequestMapping("/owner/storeFormEnd.do")
 	public ModelAndView storeFormEnd(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, String businessName, String businessPhone, String businessNum, 
-			String storeCategory, String storeName, String storePhone, String frontAddress, String backAddress, int minPrice, String storeProfile,String deliveryPrice ,MultipartFile storeImage) {
+			String storeCategory, String storeName, String storePhone, String frontAddress, String backAddress, int minPrice, String storeProfile,String deliveryPrice ,MultipartFile storeImage,
+			String lat, String lng) {
 			Map<String,Object> store=new HashMap<String,Object>();
 			String ownerId=(String) request.getSession().getAttribute("ownerId");
 			String storeAddress=frontAddress+" "+backAddress;
+			BigDecimal lat1 = new BigDecimal(lat);
+			BigDecimal lng1 = new BigDecimal(lng);
+			System.out.println("" + lat1);
+			System.out.println("" + lng1);
 			store.put("ownerId", ownerId);
 			store.put("businessNum", businessNum);
 			store.put("businessName", businessName);
@@ -49,6 +55,8 @@ public class StoreController {
 			store.put("minPrice", minPrice);
 			store.put("storeProfile", storeProfile);
 			store.put("deliveryPrice", deliveryPrice);
+			store.put("lat", lat1);
+			store.put("lng", lng1);
 //			System.out.println(storeAddress);
 			String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/owner/storeMainImage");
 			

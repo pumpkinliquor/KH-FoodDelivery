@@ -3,6 +3,7 @@ package com.kh.food.customer.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.text.DateFormat;
@@ -29,6 +30,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -708,44 +710,29 @@ public class MemberController {
 		
 	}
 	
-	//업체 전체보기
-	@RequestMapping("/customer/selectallstore.do")
-	public ModelAndView allStore(String myAddr,HttpSession session,
-			@RequestParam(value="firstPage", defaultValue="0")int firstPage) {
-		
-		System.out.println(myAddr);
-		System.out.println(firstPage);
-		ModelAndView mv= new ModelAndView();
-		
-		
-		
-		String category=myAddr.substring(0,6);
-
-		//검색 주소 세션에 넣기
-		if(firstPage==1) {
-		session.setAttribute("myAddr",myAddr);
-		}
-
-		List<Store> list =service.selectAllStore(category);
-	
-		
-		
-		mv.addObject("list",list);
-		mv.setViewName("customer/searchMenu");
-		
-		return mv;
-	}
-	
 	// 카테고리별가게  출력
 		@RequestMapping("/customer/searchmenuView")
-		public ModelAndView menuView(String category,String myAddr) {
-			
+		public ModelAndView menuView(String category,String myAddr,HttpSession session,
+									@RequestParam(value="lat", defaultValue="1")String lat, 
+									@RequestParam(value="lng", defaultValue="1")String lng) {			
 			ModelAndView mv=new ModelAndView();
-			System.out.println(" 부분 검색 주소"+myAddr);
-				String ctg=myAddr.substring(0,6);
-			Map<String,String> map = new HashMap();
+
+			
+			if(category.equals("전체")) {
+				session.setAttribute("myAddr", myAddr);
+				session.setAttribute("lat", lat);
+				session.setAttribute("lng", lng);
+			}   
+			
+			lat = (String)session.getAttribute("lat");
+			lng = (String)session.getAttribute("lng");
+			BigDecimal lat1 = new BigDecimal(lat);
+			BigDecimal lng1 = new BigDecimal(lng);
+			
+			Map<String,Object> map = new HashMap();
 			map.put("category",category);
-			map.put("ctg",ctg);
+			map.put("lat", lat);
+			map.put("lng", lng1);
 			List<Store> list=service.selectStore(map);
 			
 			

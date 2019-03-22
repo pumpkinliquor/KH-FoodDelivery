@@ -25,6 +25,7 @@ public class Store implements Serializable
 	private Date appDate;
 	private Owner owner;
 	private String formatAppDate;
+	private int distance;
 	
 	
 	public Store() {}
@@ -50,6 +51,31 @@ public class Store implements Serializable
 		this.owner = owner;
 		this.appDate = appDate;
 		this.formatAppDate = formatAppDate;
+	}
+
+	public Store(int businessCode, String businessNum, String businessName, String businessPhone, String storeName,
+			String storePhone, String storeAddress, String storeCategory, String storeImage, int minPrice,
+			String storeProfile, double longitude, double atitude, int isConfirm, Date appDate, Owner owner,
+			String formatAppDate, int distance) {
+		super();
+		this.businessCode = businessCode;
+		this.businessNum = businessNum;
+		this.businessName = businessName;
+		this.businessPhone = businessPhone;
+		this.storeName = storeName;
+		this.storePhone = storePhone;
+		this.storeAddress = storeAddress;
+		this.storeCategory = storeCategory;
+		this.storeImage = storeImage;
+		this.minPrice = minPrice;
+		this.storeProfile = storeProfile;
+		this.longitude = longitude;
+		this.atitude = atitude;
+		this.isConfirm = isConfirm;
+		this.appDate = appDate;
+		this.owner = owner;
+		this.formatAppDate = formatAppDate;
+		this.distance = distance;
 	}
 
 	public int getBusinessCode() {
@@ -192,6 +218,15 @@ public class Store implements Serializable
 	public void setFormatAppDate(String formatAppDate) {
 		this.formatAppDate = formatAppDate;
 	}
+	
+
+	public int getDistance() {
+		return distance;
+	}
+
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
 
 	@Override
 	public String toString() {
@@ -199,6 +234,7 @@ public class Store implements Serializable
 				+ ", businessPhone=" + businessPhone + ", storeName=" + storeName + ", storePhone=" + storePhone
 				+ ", storeAddress=" + storeAddress + ", storeCategory=" + storeCategory + ", storeImage=" + storeImage
 				+ ", minPrice=" + minPrice + ", storeProfile=" + storeProfile + ", longitude=" + longitude
-				+ ", atitude=" + atitude + ", isConfirm=" + isConfirm + ", appDate=" + appDate + ", owner=" + owner + "]";
+				+ ", atitude=" + atitude + ", isConfirm=" + isConfirm + ", appDate=" + appDate + ", owner=" + owner
+				+ ", formatAppDate=" + formatAppDate + ", distance=" + distance + "]";
 	}	
 }

@@ -6,6 +6,9 @@
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 
+<style>
+	a {color: black;}
+</style>
 
 <script> 
 	function fn_modal(num){		
@@ -65,7 +68,7 @@
 		
 		<div class="row" style="margin-top: 50px">
 			<div class="col-sm-6">
-				<h4 style="display: inline">답변해주세요</h4>
+				<h4 style="display: inline">답변해주세요 - 회원</h4>
 				<a href="${path }/admin/memberQnaList.do" style="float: right">더 보기</a>
 				<table class="table table-hover" style="margin-top: 10px" >
 					<tr>
@@ -75,15 +78,17 @@
 					</tr>
 					<c:forEach begin="0" end="2" items="${mqList }" var="mq">
 						<tr style="cursor: pointer" onclick="location.href='${path}/admin/memberQnaView.do?no=${mq.qnaCode }'">
-							<td><c:out value="${mq.qnaCategory }"/></td>
-							<td><c:out value="${mq.qnaTitle }"/></td>
-							<td><c:out value="${mq.memberId }"/></td>
+							<c:if test="${mq.isRe eq 0 }">
+								<td><c:out value="${mq.qnaCategory }"/></td>
+								<td><c:out value="${mq.qnaTitle }"/></td>
+								<td><c:out value="${mq.memberId }"/></td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</table>
 			</div>
 			<div class="col-sm-6">
-				<h4 style="display: inline">답변해주세요</h4>
+				<h4 style="display: inline">답변해주세요 - 사장님</h4>
 				<a href="${path }/admin/ownerQnaList.do" style="float: right">더 보기</a>
 				<table class="table table-hover" style="margin-top: 10px">
 					<tr>
@@ -93,9 +98,11 @@
 					</tr>
 					<c:forEach begin="0" end="2" items="${oqList }" var="oq">
 						<tr style="cursor: pointer" onclick="location.href='${path}/admin/ownerQnaView.do?no=${oq.qnaCode }'">
-							<td><c:out value="${oq.qnaCategory }"/></td>
-							<td><c:out value="${oq.qnaTitle }"/></td>
-							<td><c:out value="${oq.ownerId }"/></td>
+							<c:if test="${oq.isRe eq 0 }">
+								<td><c:out value="${oq.qnaCategory }"/></td>
+								<td><c:out value="${oq.qnaTitle }"/></td>
+								<td><c:out value="${oq.ownerId }"/></td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</table>				

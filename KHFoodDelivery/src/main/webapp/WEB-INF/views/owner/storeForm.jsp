@@ -8,6 +8,7 @@ pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=키값받아오기"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c&libraries=services"></script> 
 <script>
 $(function(){
    $('[name=storeImage]').on('change',function(){
@@ -46,7 +47,27 @@ function execDaumPostcode(){
 			// 우편번호와 주소 정보를 해당 필드에 넣는다.
 			document.getElementById('zip').value=data.zonecode; // 5자리 새우편번호 사용
 			document.getElementById('addr1').value=fullRoadAddr; // 선택 주소
-			document.getElementById('addr2').focus(); // 상세 주소
+			document.getElementById('addr2').focus(); // 상세 주소			
+            
+			var geocoder = new daum.maps.services.Geocoder();
+			// 주소로 상세 정보를 검색
+            geocoder.addressSearch(data.address, function(results, status) {
+                // 정상적으로 검색이 완료됐으면
+                if (status === daum.maps.services.Status.OK) {
+
+                    var result = results[0]; //첫번째 결과의 값을 활용
+
+                    // 해당 주소에 대한 좌표를 받아서
+                    var coords = new daum.maps.LatLng(result.x);
+                    var coords1 = new daum.maps.LatLng(result.y);
+                    
+                    $('#lat').val(coords.jb); // 위도
+                    $('#lng').val(coords1.jb)// 경도
+                    
+                    console.log(coords.jb);
+                    console.log(coords1.jb);
+                }
+            });
 		}
 	}).open();
 }
@@ -118,6 +139,8 @@ function execDaumPostcode(){
 			                	<input type="text" id="zip" class="form-control" style="width:7em;" placeholder="우편주소" value="" required/>
 			                	<input type="text" id="addr1" name="frontAddress" placeholder="기본주소" class="form-control" style="width:30em; margin-top:1em;" value="" readonly required/>
 			                	<input type="text" id="addr2" name="backAddress" placeholder="상세주소" class="form-control" style="width:30em; margin-top:1em;" value="" required/>
+			                	<input type="hidden" id="lat" name="lat" value=""/>
+			                	<input type="hidden" id="lng" name="lng" value=""/>
 			                </td>
 			            </tr>
 			             <tr>

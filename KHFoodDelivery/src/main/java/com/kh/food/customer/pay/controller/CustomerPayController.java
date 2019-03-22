@@ -1,5 +1,6 @@
 package com.kh.food.customer.pay.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,12 +56,11 @@ import com.kh.food.owner.menu.model.vo.Menu;
   @RequestMapping("/customer/payEnd.do") 
   public ModelAndView customerPayEnd(int resultPrice, int businessCode, String payRequest, String payAddress,String memberId) 
   {
-	  
-	System.out.println("비즈니스"+businessCode+"콘텍스트"+payRequest+"주소 : "+payAddress+"가격  : " +resultPrice + "아이디" + memberId);
 	ModelAndView mv=new ModelAndView();
 	
 	List<Map<String,String>> wishList = service.selectWishList(memberId);
 	Map<String,String> map = new HashMap<>();
+	List<Map<String,String>> payList = new ArrayList<>();
 	for(int i=0; i<wishList.size(); i++)
 	{
 		map.put("businessCode", String.valueOf(businessCode));
@@ -71,12 +71,21 @@ import com.kh.food.owner.menu.model.vo.Menu;
 		map.put("payRequest", payRequest);
 		map.put("payAddress", payAddress);
 		logger.debug("mapmap"+map);
+		logger.debug("wishList"+wishList);
 		if(i==0)
 		{
 			int result = service.insertPay(map);
+			Map<String,String> pay = service.selectOnePay();
+			logger.debug("pay"+pay);
+			payList.add(pay);
 			if(result>0)
 			{
 				logger.debug("처음꺼성공");
+				if(wishList.size()==1)
+				{
+					int result2=service.deleteWishList(memberId);
+					
+				}
 			}
 			else
 			{
@@ -86,9 +95,19 @@ import com.kh.food.owner.menu.model.vo.Menu;
 		else
 		{		
 			int result1 = service.insertPay2(map);
+			Map<String,String> pay = service.selectOnePay();
+			logger.debug("pay"+pay);
+			payList.add(pay);
+			if(wishList.size()!=1)
+			{
+				int result2=service.deleteWishList(memberId);
+				
+			}
+			
 			if(result1>0)
 			{
 				logger.debug("나머지성공");
+				
 			}
 			else
 			{
@@ -96,12 +115,14 @@ import com.kh.food.owner.menu.model.vo.Menu;
 			}
 		}
 	}
+	logger.debug("payList"+payList);
 	logger.debug("wishList"+wishList);
 	//	System.out.println("아이디 : "+memberId);
-
 	
-	return mv; 
+	mv.addObject("wishList",wishList);
+	mv.addObject("payList",payList);
+	mv.setViewName("customer/payEnd");
+	return mv;
   } 
-  
-  }
+}
  

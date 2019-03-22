@@ -31,7 +31,7 @@ public interface MemberDao {
 	Member selectMember(String memberId);
 	int update(Member m);
 	List<Menu> popularityMenu(int businessCode);
-	List<Store> selectStore(Map<String,String> map);
+	List<Store> selectStore(Map<String,Object> map);
 	List<Menu> refreshWishList(Map<String,Object> maps);
 	int deleteWishList(Map<String,Object> maps);
 	
@@ -57,7 +57,6 @@ public interface MemberDao {
 	List<OwnerReview> selectOwnerRevie(int businessCode);
 	List<Map<String,String>> selectMenuList(int menuCategoryCode, int businessCode);
 	Menu menuSelect(int menuCode);
-	List<Store> selectAllStore(String category);
 	int kakaoEnrollEnd(Member m);
 	List<Review> selectReview(int businessCode);
 	// 회원공지사항
