@@ -166,7 +166,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	//카테고리 별 가게 검색
 	@Override
-	public List<Store> selectStore(Map<String,String> map){
+	public List<Store> selectStore(Map<String,Object> map){
 		
 		return  sqlSession.selectList("member.selectStore",map);
 	}

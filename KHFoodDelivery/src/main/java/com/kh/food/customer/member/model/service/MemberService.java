@@ -39,7 +39,7 @@ public interface MemberService {
 	int checkNick(String nickName);
 	Member selectMember(String memberId);
 	int update(Member m);
-	List<Store> selectStore(Map<String,String> map);
+	List<Store> selectStore(Map<String,Object> map);
 	int drop(String memberId);
 	List<Store> menuInfo(int businessCode);
 	List<Map<String,String>> selectCategoryList(int businessCode);

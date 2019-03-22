@@ -220,20 +220,9 @@ div#map{visibility: hidden;}
 	 if(${sessionScope.logined==null}){
 		 alert("로그인 후 이용해주세요");
 		location.href="${path }/customer/login.do";
-	 }else{
-		 
-		 var firstPage=$('#firstPage').val();
-		var myAddr=$('#location1').val();
-		var lat = $('#lat').val();
-		var lng = $('#lng').val();
-		console.log(myAddr);
-		console.log(lat);
-		console.log(lng);
-		 location.href="${path}/customer/selectallstore.do?myAddr="+myAddr+"&lat="+lat+"&lng="+lng;
-		 
-
-		
+		return false;
 	 }
+	 return true;
  }
  
  
@@ -266,7 +255,7 @@ div#map{visibility: hidden;}
             
             
             </div>
-                       <form action="${path}/customer/selectallstore.do" onsubmit="return locationSearchStore()" method="post">
+                       <form action="${path}/customer/searchmenuView" onsubmit="return locationSearchStore()" method="post">
                   <div class="content1">
                      <h2 onclick="mainpage();"> <span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></h2>
                   </div>
@@ -277,7 +266,7 @@ div#map{visibility: hidden;}
                        <button type="button"id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
                     <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="${sessionScope.myAddr }" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요" readonly/>
                        <span class="input-group-btn">
-                       
+                       	<input type="hidden" value="전체" name="category"/>
  						<input type="hidden" value="${sessionScope.lat }" name="lat" id="lat"/>
  						<input type="hidden" value="${sessionScope.lng }" name="lng" id="lng"/>                      
                         <button class="btn" onclick="locationSearchStore();" type="submit">검색</button>

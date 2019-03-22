@@ -36,9 +36,29 @@
 		update member set NICKNAME=#{nickName},MEMBERBIRTH=#{formatBirth},MEMBEREMAIL=#{memberEmail},MEMBERPHONE=#{memberPhone},MEMBERADDRESS=#{memberAddress},MEMBERENROLLDATE=default,MEMBERGENDER=#{memberGender},PROFILEIMAGE=#{profileImage},MEMBERADDRESS1=#{memberAddress1} where MEMBERID=#{memberId}		
 	</update>
 	
+
 	<!-- 가게 카테고리별 검색 -->
-	<select id="selectStore" parameterType="map" resultType="store">		  	
-		select* from store where STORECATEGORY=#{category} and ISCONFIRM=1 and 	STOREADDRESS LIKE '%'||#{ctg}||'%'
+
+	<select id="selectStore" parameterType="map" resultType="store">
+		SELECT *
+		FROM 
+		(
+    		SELECT STORE.*, DISTNACE_WGS84(#{lat}, #{lng}, atitude, longitude) AS DISTANCE
+    		FROM STORE
+    		WHERE (atitude between #{lat} - 0.1 and #{lat} + 0.1)
+    			AND (longitude between #{lng} - 0.1 and #{lng} + 0.1)
+    			AND isConfirm = 1
+    			AND 
+    			<choose>
+    				<when test="category eq '전체'">
+    					1 = 1
+    				</when>
+    				<otherwise>
+    					storeCategory = #{category}
+    				</otherwise>
+    			</choose>
+    		ORDER BY DISTANCE
+    	)			  	
 	</select>
 	
 	<!-- 가게 상세보기 -->
@@ -84,8 +104,9 @@
 		(
     		SELECT STORE.*, DISTNACE_WGS84(#{lat}, #{lng}, atitude, longitude) AS DISTANCE
     		FROM STORE
-    		WHERE (atitude between #{lat} and #{lat} + 0.019)
-    			AND (longitude between #{lng} - 0.022 and #{lng} + 0.022)
+    		WHERE (atitude between #{lat} - 0.1 and #{lat} + 0.1)
+    			AND (longitude between #{lng} - 0.1 and #{lng} + 0.1)
+    			AND isConfirm = 1
     		ORDER BY DISTANCE
     	)		
 	</select>

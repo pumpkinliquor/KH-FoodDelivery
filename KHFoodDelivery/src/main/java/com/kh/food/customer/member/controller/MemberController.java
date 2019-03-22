@@ -738,14 +738,22 @@ public class MemberController {
 	
 	// 카테고리별가게  출력
 		@RequestMapping("/customer/searchmenuView")
-		public ModelAndView menuView(String category,String myAddr) {
-			
+		public ModelAndView menuView(String category,String myAddr,HttpSession session) {			
 			ModelAndView mv=new ModelAndView();
 			
-				String ctg=myAddr.substring(0,6);
-			Map<String,String> map = new HashMap();
+			String lat = (String)session.getAttribute("lat");
+			String lng = (String)session.getAttribute("lng");
+			BigDecimal lat1 = new BigDecimal(lat);
+			BigDecimal lng1 = new BigDecimal(lng);
+			
+			logger.debug(category);
+			logger.debug("" + lat1);
+			logger.debug("" + lng1);
+			
+			Map<String,Object> map = new HashMap();
 			map.put("category",category);
-			map.put("ctg",ctg);
+			map.put("lat", lat);
+			map.put("lng", lng1);
 			List<Store> list=service.selectStore(map);
 			
 			
