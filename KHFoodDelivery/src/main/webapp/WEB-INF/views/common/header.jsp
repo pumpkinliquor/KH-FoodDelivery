@@ -48,19 +48,22 @@ div#map{visibility: hidden;}
             function getLocation() {
                 if (navigator.geolocation) { // GPS를 지원하면
                     navigator.geolocation.getCurrentPosition(function(position) {
-                     var latitude = position.coords.latitude;
+                    var latitude = position.coords.latitude;
                     var longitude = position.coords.longitude;
-                    
-                   
-                    
+
                     var coords = new daum.maps.LatLng(latitude);
                     var coords1 = new daum.maps.LatLng(longitude); 
                     
                     $('#lat').val(coords.jb); // 위도
                     $('#lng').val(coords1.jb)// 경도
                     
+<<<<<<< HEAD
                     console.log(coords.jb);//위도
                     console.log(coords1.jb);//경도
+=======
+                    console.log(coords.jb);
+                    console.log(coords1.jb);
+>>>>>>> branch 'master' of https://github.com/pumpkinliquor/KH-FoodDelivery
                    
 				 /*  
                      $.ajax({
@@ -187,17 +190,16 @@ div#map{visibility: hidden;}
                         var result = results[0]; //첫번째 결과의 값을 활용
  
                         // 해당 주소에 대한 좌표를 받아서
-                       
-                    var coords = new daum.maps.LatLng(result.x);
-                    var coords1 = new daum.maps.LatLng(result.y); 
-                 
-                    
-                    
-                    $('#lat').val(coords.jb); // 위도
-                    $('#lng').val(coords1.jb)// 경도
-                    
-                    console.log(coords.jb);//위도
-                    console.log(coords1.jb);//경도
+
+                        var coords = new daum.maps.LatLng(result.x);
+                        var coords1 = new daum.maps.LatLng(result.y);
+                        
+                        $('#lat').val(coords.jb); // 위도
+                        $('#lng').val(coords1.jb)// 경도
+                        
+                        console.log(coords.jb);
+                        console.log(coords1.jb);
+ 
                        
                      
                     }
@@ -277,8 +279,8 @@ div#map{visibility: hidden;}
                     <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="${sessionScope.myAddr }" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요" readonly/>
                        <span class="input-group-btn">
                        
- 						<input type="hidden" value="" name="lat" id="lat"/>
- 						<input type="hidden" value="" name="lng" id="lng"/>                      
+ 						<input type="hidden" value="${sessionScope.lat }" name="lat" id="lat"/>
+ 						<input type="hidden" value="${sessionScope.lng }" name="lng" id="lng"/>                      
                         <button class="btn" onclick="locationSearchStore();" type="submit">검색</button>
 
                        </span>
