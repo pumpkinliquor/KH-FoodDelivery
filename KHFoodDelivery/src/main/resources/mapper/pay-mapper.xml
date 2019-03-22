@@ -29,4 +29,8 @@
 <delete id="deleteWishList" parameterType="String">
 delete from wishlist where memberId=#{memberId}
 </delete>
+
+<select id="selectOnePay">
+	select p.*,m.menuname,s.storename from (select * from pay order by paydate desc) p join menu m on(p.menucode = m.menucode) join store s on(p.businesscode = s.businesscode) where rownum = 1
+</select>
 </mapper>

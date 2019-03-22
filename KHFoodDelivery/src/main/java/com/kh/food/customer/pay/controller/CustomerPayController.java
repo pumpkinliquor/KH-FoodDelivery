@@ -1,5 +1,6 @@
 package com.kh.food.customer.pay.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,6 +60,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
 	
 	List<Map<String,String>> wishList = service.selectWishList(memberId);
 	Map<String,String> map = new HashMap<>();
+	List<Map<String,String>> payList = new ArrayList<>();
 	for(int i=0; i<wishList.size(); i++)
 	{
 		map.put("businessCode", String.valueOf(businessCode));
@@ -72,7 +74,8 @@ import com.kh.food.owner.menu.model.vo.Menu;
 		if(i==0)
 		{
 			int result = service.insertPay(map);
-			
+			Map<String,String> pay = service.selectOnePay();
+			payList.add(pay);
 			if(result>0)
 			{
 				logger.debug("처음꺼성공");
@@ -90,6 +93,8 @@ import com.kh.food.owner.menu.model.vo.Menu;
 		else
 		{		
 			int result1 = service.insertPay2(map);
+			Map<String,String> pay = service.selectOnePay();
+			payList.add(pay);
 			if(wishList.size()!=1)
 			{
 				int result2=service.deleteWishList(memberId);
@@ -107,6 +112,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
 			}
 		}
 	}
+	logger.debug("payList"+payList);
 	logger.debug("wishList"+wishList);
 	//	System.out.println("아이디 : "+memberId);
 	
