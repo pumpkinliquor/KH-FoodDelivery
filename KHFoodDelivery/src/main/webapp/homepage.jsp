@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
-
 <div class="container">
 <div class="row">
 <div class="col-sm-6" id="ownerSite">

@@ -27,6 +27,7 @@ input.memberAddress{display:inline;}
 #drop{float:right;}
 .btn-ser1{margin-top:0;float:right;}           
 </style>
+<section>
 <script>
 $(function(){
 	$("#nickName").keyup(function(){
@@ -252,7 +253,7 @@ function address1() {
 		</div>
 	</div>
 </div>
-	
+	</section>
  
      
 
