@@ -30,6 +30,11 @@ public class MemberDaoImpl implements MemberDao {
 
 	
 	@Override
+	public int insertReview(Map map) {
+		
+		return sqlSession.insert("member.insertReview",map);
+	}
+	@Override
 	public List<OwnerReview> selectOwnerRevie(int businessCode) {
 		
 		return sqlSession.selectList("store.selectOwnerRevie2",businessCode);

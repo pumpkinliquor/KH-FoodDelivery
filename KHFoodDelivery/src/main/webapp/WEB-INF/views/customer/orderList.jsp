@@ -20,6 +20,24 @@ table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
 	table#table-sort td{ border: 1px solid #444444; padding: 0; }
 	thead#tableHead{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); } 
 
+.star_rating {font-size:0; letter-spacing:-4px;}
+.star_rating span{
+    font-size:22px;
+    letter-spacing:0;
+    display:inline-block;
+    margin-left:5px;
+    color:#ccc;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+
+#noImg1{
+ cursor:pointer;
+}
+
+.star_rating span.on {color:crimson;}
+
 </style>
 <script>
 
@@ -129,7 +147,7 @@ function detailOrder1(payorderNum,menucode){
 							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.STORENAME }"/></td>
 							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.PAYDATE}"/></td>
 							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value=""/></td>
-							<td><button class="btn btn-default">리뷰</button></td>
+							<td><button class="btn btn-default" value="${m.MEMBERID}"  id="modal" type="button" onclick="fn_review(${m.BUSINESSCODE},${m.MEMBERNUM},this)">리뷰</button></td>
 						</tr>				
 					</c:forEach>
 				</tbody>
@@ -142,9 +160,141 @@ ${pageBar}
 </section>
 	
  
+ 
      
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+
+<div class="modal" id="reviewModal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">리뷰 작성</h4>
+			</div>
+			<form action="${path }/customer/memberReview.do" method="post" enctype="multipart/form-data">
+				<div class="modal-body">
+					<table class="table">
+						<tr>
+							<th style="vertical-align: middle; font-weight:bold;">별점</th>
+							<td><p class="star_rating">
+								    <span id="1" onclick=mark(this)>★</span>
+								    <span id="2" onclick=mark(this)>★</span>
+								    <span id="3" onclick=mark(this)>★</span>
+								    <span id="4" onclick=mark(this)>★</span>
+								    <span id="5" onclick=mark(this)>★</span>
+								<input type="hidden" id="star" name="grade"/>
+								</p>
+							</td>
+
+						
+						</tr>
+						<tr>
+							<th style="vertical-align: middle;">
+							<td>
+								<input type="hidden" id="businessCode" name="bsCode" value=""/>
+								<input type="hidden" id="memberNum" name="memNum" value=""/>
+								<input type="hidden" id="memberId" name="memId" value=""/>
+								<textarea id="textarea" name="context" cols="50" rows="5" placeholder="리뷰를 작성해 주세요." ></textarea></td>
+							
+							</th>
+						
+						</tr>
+						<tr>
+							<th style="vertical-align: middle;">
+							<td>
+							<label for="jdd_file1"><img class="defaultImg" id="noImg1" src="${path}/resources/images/noImg.png" style="width:150px; height:150px; border: 1px solid #d9d9d9;"></label>
+							<input id="jdd_file1" type="file" class="jdd_file" name="img"/>
+							</td>
+						</tr>
+					</table>
+					<div class="modal-footer">
+	        			<button type="submit" class="btn btn-secondary" >등록</button>
+	        			<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+	      			</div>
+				</div>
+			
+			</form>
+		
+		</div>
+	
+	</div>
+
+</div>
+
+<script>
+
+function fn_review(businessCode,membernum,e){
+	
+	console.log($(e).val());
+	var memberId = $(e).val();
+	$('#businessCode').val(businessCode);
+	$('#memberId').val(memberId);
+	$('#memberNum').val(membernum);
+	$('#reviewModal').modal();
+	
+}
+
+$( ".star_rating span" ).click(function() {
+    $(this).parent().children("span").removeClass("on");
+    $(this).addClass("on").prevAll("span").addClass("on");
+    return false;
+});
+
+
+function mark(e)
+{
+	
+	var score=$(e).attr('id');
+	$("#star").val(score);
+	console.log(e)
+	console.log(score)
+	
+	
+	}
+	
+$("#jdd_file1").hide();
+
+
+$(document).ready(function(){
+	
+	$(document).on("change",".jdd_file", handleImgRecipeFileSelect);
+});
+
+
+
+
+function handleImgRecipeFileSelect(e) {
+	
+  var files = e.target.files;	
+  var filesArr = Array.prototype.slice.call(files);
+  filesArr.forEach(function(f){
+      if(!f.type.match("image.*")) 
+      {
+          alert("확장자는 이미지 확장자만 가능합니다");
+          return;
+      }
+
+      sel_file = f;
+
+      var reader = new FileReader();
+      reader.onload = function(e){
+	  console.log(e.currentTarget);
+
+      		 //$(img).attr("src",e.target.result).attr("value",$("inputHiddenImg"+count).val()).css('width','158px').css('height','200px');
+      		$("#noImg1").attr("src",e.target.result).css('width','150px').css('height','150px');
+      		/*  $(document).on("click",".inputHiddenImg",function(){
+      			 
+      		 } */
+      		 console.log("미리보기123123123드렁옴");
+      }
+      reader.readAsDataURL(f);
+  });
+  
+}
+
+
+</script>
+
 <!-- 모달 구현 -->
 <div class="modal" id="orderListModal1" role="dialog">
 	<div class="modal-dialog">
@@ -154,7 +304,7 @@ ${pageBar}
 				<h4 class="modal-title">주문 상세정보 </h4>
 				<button type="button" class="close" data-dismiss="modal">×</button>
 			</div>
-			<form action="${path}/customer/memberQnaUpdate.do" method="post">
+			<form action="${path}/customer/memberQnaUpdate.do"  method="post">
 				<div class="modal-body" style="height: 600px;">
 					<table class="table">
 						<tr>

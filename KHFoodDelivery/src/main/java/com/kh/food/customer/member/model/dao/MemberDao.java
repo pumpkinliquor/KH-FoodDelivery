@@ -65,4 +65,5 @@ public interface MemberDao {
 	// 찜 목록
 	List<Store> selectMarkList(String memberId);
 	Mark isMark(Map<String,Object> maps);
+	int insertReview(Map map);
 }

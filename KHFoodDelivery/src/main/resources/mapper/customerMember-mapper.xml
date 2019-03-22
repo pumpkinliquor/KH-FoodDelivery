@@ -154,4 +154,8 @@
 	<select id="selectIsMark" parameterType="map" resultType="mark">
 		SELECT ma.* FROM MARK ma JOIN MEMBER m ON (ma.memberNum =m.memberNum) WHERE businessCode = #{businessCode} AND m.memberid = #{memberId}
 	</select>
+	
+	<insert id="insertReview" parameterType="map">
+		insert into review values(seq_reviewnum.nextval,#{bsCode},#{memNum},DEFAULT,#{img},#{grade},#{context})
+	</insert>
 </mapper>

@@ -85,8 +85,12 @@
             </div>
           </div>   
    
-
+		
           <p>${re.reviewContext }</p>
+          
+          <c:if test="${!empty re.reviewImage }">
+          <p><img src="${path }/resources/upload/member/review/${re.reviewImage}" style="width: 300px; height: 300px;"></p>
+         </c:if>
           <div id="ohoh${re.reviewNum }"></div>
 
  		<c:forEach var="se" items="${orr}">

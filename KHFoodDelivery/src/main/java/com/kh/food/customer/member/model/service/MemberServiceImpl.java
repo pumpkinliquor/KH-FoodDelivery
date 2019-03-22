@@ -26,6 +26,14 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	MemberDao dao;
+	
+	
+	@Override
+	public int insertReview(Map map) {
+		
+		return dao.insertReview(map);
+	}
+
 	@Override
 	public 	int addQna(Map<String,Object> map) {
 		return dao.addQna(map);

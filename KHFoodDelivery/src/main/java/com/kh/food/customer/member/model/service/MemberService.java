@@ -77,4 +77,6 @@ public interface MemberService {
 	List<Store> selectMarkList(String memberId);
 	List<Review> selectReview(int businessCode);
 	Mark isMark(Map<String, Object> maps);
+	
+	int insertReview(Map map);
 }
