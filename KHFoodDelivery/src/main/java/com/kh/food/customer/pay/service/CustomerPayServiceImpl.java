@@ -45,6 +45,13 @@ public class CustomerPayServiceImpl implements CustomerPayService {
 	public int insertPay2(Map<String, String> map) {
 		return dao.insertPay2(map);
 	}
+	@Override
+	public int deleteWishList(String memberId) {
+		// TODO Auto-generated method stub
+		return dao.deleteWishList(memberId);
+	}
+	
+	//결제 후 장바구니 삭제
 	
 	
 	

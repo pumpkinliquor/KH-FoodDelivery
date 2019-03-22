@@ -50,11 +50,11 @@
 			</tr>
 			<tr>
 				<th><b>가격</b></th>
-				<td>${pay.totalMenuPrice }</td>
+				<td>${pay.PRICE }</td>
 			</tr>
 			<tr>
 				<th><b>주소</b></th>
-				<td>${pay.payAddress } ${pay.payAddressDetail }</td>
+				<td>${pay.PAYADDRESS}</td>
 			</tr>
 			<tr>
 				<th><b>주문 시간</b></th>
