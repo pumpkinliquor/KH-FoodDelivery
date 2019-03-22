@@ -98,8 +98,8 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	@Override
-	public List<Store> selectAllStore(String category){
-		return dao.selectAllStore(category);
+	public List<Store> selectAllStore(Map<String, Object> map){
+		return dao.selectAllStore(map);
 	}
 	
 	@Override

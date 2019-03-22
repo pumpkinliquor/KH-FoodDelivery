@@ -134,9 +134,9 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectOne("member.qnaDtail",no);
 	}
 	@Override
-	public List<Store> selectAllStore(String category){
+	public List<Store> selectAllStore(Map<String, Object> map){
 		
-		return sqlSession.selectList("member.selectAllStore",category);
+		return sqlSession.selectList("member.selectAllStore",map);
 	}
 	
 	@Override

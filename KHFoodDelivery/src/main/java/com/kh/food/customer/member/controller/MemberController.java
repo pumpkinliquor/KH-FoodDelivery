@@ -710,25 +710,17 @@ public class MemberController {
 	//업체 전체보기
 	@RequestMapping("/customer/selectallstore.do")
 	public ModelAndView allStore(String myAddr,HttpSession session,
-			@RequestParam(value="firstPage", defaultValue="0")int firstPage) {
-		
-		System.out.println(myAddr);
-		System.out.println(firstPage);
-		ModelAndView mv= new ModelAndView();
-		
-		
-		
-		String category=myAddr.substring(0,6);
-
-		//검색 주소 세션에 넣기
-		if(firstPage==1) {
+			@RequestParam(value="lat") int lat,
+			@RequestParam(value="lng") int lng) {
 		session.setAttribute("myAddr",myAddr);
-		}
-
-		List<Store> list =service.selectAllStore(category);
+		ModelAndView mv= new ModelAndView();
 	
+		Map<String, Object> map = new HashMap();
+		map.put("lat", lat);
+		map.put("lng", lng);
 		
-		
+		List<Store> list =service.selectAllStore(map);
+
 		mv.addObject("list",list);
 		mv.setViewName("customer/searchMenu");
 		
