@@ -55,8 +55,6 @@ import com.kh.food.owner.menu.model.vo.Menu;
   @RequestMapping("/customer/payEnd.do") 
   public ModelAndView customerPayEnd(int resultPrice, int businessCode, String payRequest, String payAddress,String memberId) 
   {
-	  
-	System.out.println("비즈니스"+businessCode+"콘텍스트"+payRequest+"주소 : "+payAddress+"가격  : " +resultPrice + "아이디" + memberId);
 	ModelAndView mv=new ModelAndView();
 	
 	List<Map<String,String>> wishList = service.selectWishList(memberId);
@@ -74,9 +72,15 @@ import com.kh.food.owner.menu.model.vo.Menu;
 		if(i==0)
 		{
 			int result = service.insertPay(map);
+			
 			if(result>0)
 			{
 				logger.debug("처음꺼성공");
+				if(wishList.size()==1)
+				{
+					int result2=service.deleteWishList(memberId);
+					
+				}
 			}
 			else
 			{
@@ -86,9 +90,16 @@ import com.kh.food.owner.menu.model.vo.Menu;
 		else
 		{		
 			int result1 = service.insertPay2(map);
+			if(wishList.size()!=1)
+			{
+				int result2=service.deleteWishList(memberId);
+				
+			}
+			
 			if(result1>0)
 			{
 				logger.debug("나머지성공");
+				
 			}
 			else
 			{
@@ -98,10 +109,11 @@ import com.kh.food.owner.menu.model.vo.Menu;
 	}
 	logger.debug("wishList"+wishList);
 	//	System.out.println("아이디 : "+memberId);
-
 	
-	return mv; 
+	
+	
+	
+	return mv;
   } 
-  
-  }
+}
  
