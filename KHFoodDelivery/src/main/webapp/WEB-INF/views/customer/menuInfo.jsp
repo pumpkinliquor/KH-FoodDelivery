@@ -221,7 +221,7 @@
               $.ajax({
                  type: "post",
                  url: "${path}/customer/menuList.do",
-                 data : {"businessCode" : businessCode, "menuCode" : menuCode},
+                 data : {"businessCode" : businessCode},
                  success: function test(a){$("#callback").html(a);}
               });          
            });
@@ -389,6 +389,7 @@
                          dataType:"JSON",
                          success: function(data){
                            $('#deleteddd${wish.MENUCODE}').html("");
+                           $('#deletedd${wish.MENUCODE}').html("");
                            $.ajax({
        						type:"POST",
        						url:"${path}/customer/wishResult.do?businessCode="+businessCode,
