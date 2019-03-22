@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -709,43 +710,29 @@ public class MemberController {
 		
 	}
 	
-	//업체 전체보기
-	@RequestMapping(value="/customer/selectallstore.do")
-	public ModelAndView allStore(String myAddr,HttpSession session,
-			@RequestParam(value="lat") String lat,
-			@RequestParam(value="lng") String lng ) {
-		
-		
-		session.setAttribute("myAddr",myAddr);		
-		session.setAttribute("lat", lat);
-		session.setAttribute("lng", lng);
-		ModelAndView mv= new ModelAndView();
-	
-		Long lat1 = new Long(new BigDecimal(lat).longValue());
-		Long lng1 = new Long(new BigDecimal(lng).longValue());
-		
-		Map<String, Object> map = new HashMap();
-		map.put("lat", lat1);
-		map.put("lng", lng1);
-		
-		List<Store> list =service.selectAllStore(map);
-
-		mv.addObject("list",list);
-		mv.setViewName("customer/searchMenu");
-		
-		return mv;
-	}
-	
 	// 카테고리별가게  출력
 		@RequestMapping("/customer/searchmenuView")
-		public ModelAndView menuView(String category,String myAddr) {
-			
+		public ModelAndView menuView(String category,String myAddr,HttpSession session,
+									@RequestParam(value="lat", defaultValue="1")String lat, 
+									@RequestParam(value="lng", defaultValue="1")String lng) {			
 			ModelAndView mv=new ModelAndView();
+
 			
-				String ctg=myAddr.substring(0,6);
-			Map<String,String> map = new HashMap();
+			if(category.equals("전체")) {
+				session.setAttribute("myAddr", myAddr);
+				session.setAttribute("lat", lat);
+				session.setAttribute("lng", lng);
+			}   
+			
+			lat = (String)session.getAttribute("lat");
+			lng = (String)session.getAttribute("lng");
+			BigDecimal lat1 = new BigDecimal(lat);
+			BigDecimal lng1 = new BigDecimal(lng);
+			
+			Map<String,Object> map = new HashMap();
 			map.put("category",category);
-			map.put("ctg",ctg);
+			map.put("lat", lat);
+			map.put("lng", lng1);
 			List<Store> list=service.selectStore(map);
 			
 			
@@ -1060,4 +1047,56 @@ public class MemberController {
 		mv.setViewName("customer/myMark");
 		return mv;
 	}
+	
+	@RequestMapping("/customer/memberReview.do")
+	public ModelAndView memberReview(ModelAndView mv, @RequestParam("context") String context,
+														@RequestParam("bsCode") int bsCode,
+														@RequestParam("memNum") int memNum,
+														@RequestParam("img") MultipartFile img,
+														@RequestParam("grade") String grade,
+														@RequestParam("memId") String memId,
+														HttpServletRequest request)
+	{
+
+		String reName="";
+		System.out.println(img.getOriginalFilename());
+		Map<String,Object> map = new HashMap();
+		map.put("context", context);
+		map.put("bsCode", bsCode);
+		map.put("memNum", memNum);
+		map.put("grade", grade);
+		String saveDir = request.getSession().getServletContext().getRealPath("/resources/upload/member/review");
+		String orifileName = img.getOriginalFilename();
+		if(!img.isEmpty())
+		{
+			//파일명을 생성
+			String ext = orifileName.substring(orifileName.lastIndexOf("."));
+			//rename 규칙 설정
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+			int rdv = (int)(Math.random()*1000);
+			
+			
+			reName = sdf.format(System.currentTimeMillis())+"_"+rdv+ext;
+			//파일저장하기
+			try
+			{
+				img.transferTo(new File(saveDir+"/"+reName));
+				logger.debug("들어왔냐?");
+			}catch(IllegalStateException | IOException e)
+			{
+				e.printStackTrace();
+			}
+				
+			
+		}
+		map.put("img", reName);
+		int result= service.insertReview(map);
+		
+		System.out.println(bsCode);
+		System.out.println(memNum);
+		System.out.println(memId);
+			mv.setViewName("redirect:/member/orderList.do?memberId="+memId+"&memberNum="+memNum);
+			return mv;
+	}
 }
+

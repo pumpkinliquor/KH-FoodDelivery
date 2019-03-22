@@ -143,8 +143,9 @@ public class MenuController {
 			//rename 규칙 설정
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
 			int rdv = (int)(Math.random()*1000);
-			String reName = sdf.format(System.currentTimeMillis())+"_"+rdv+ext;
 			
+			
+			String reName = sdf.format(System.currentTimeMillis())+"_"+rdv+ext;
 			//파일저장하기
 			try
 			{

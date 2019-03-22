@@ -26,6 +26,14 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	MemberDao dao;
+	
+	
+	@Override
+	public int insertReview(Map map) {
+		
+		return dao.insertReview(map);
+	}
+
 	@Override
 	public 	int addQna(Map<String,Object> map) {
 		return dao.addQna(map);
@@ -97,10 +105,6 @@ public class MemberServiceImpl implements MemberService {
 
 	
 
-	@Override
-	public List<Store> selectAllStore(Map<String, Object> map){
-		return dao.selectAllStore(map);
-	}
 	
 	@Override
 	public List<Store> menuInfo(int businessCode) {
@@ -115,7 +119,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
-	public List<Store> selectStore(Map<String,String> map){
+	public List<Store> selectStore(Map<String,Object> map){
 		return dao.selectStore(map);
 	}
 	

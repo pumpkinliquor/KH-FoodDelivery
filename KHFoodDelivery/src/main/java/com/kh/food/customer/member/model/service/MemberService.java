@@ -39,7 +39,7 @@ public interface MemberService {
 	int checkNick(String nickName);
 	Member selectMember(String memberId);
 	int update(Member m);
-	List<Store> selectStore(Map<String,String> map);
+	List<Store> selectStore(Map<String,Object> map);
 	int drop(String memberId);
 	List<Store> menuInfo(int businessCode);
 	List<Map<String,String>> selectCategoryList(int businessCode);
@@ -65,7 +65,6 @@ public interface MemberService {
 
 	List<Map<String,String>> selectMenuList(int menuCategoryCode,int businessCode);
 	Menu menuSelect(int menuCode);
-	List<Store> selectAllStore(Map<String, Object> map);
 	int kakaoEnrollEnd(Member m);
 	
 	List<OwnerReview> selectOwnerRevie(int businessCode);
@@ -77,4 +76,6 @@ public interface MemberService {
 	List<Store> selectMarkList(String memberId);
 	List<Review> selectReview(int businessCode);
 	Mark isMark(Map<String, Object> maps);
+	
+	int insertReview(Map map);
 }

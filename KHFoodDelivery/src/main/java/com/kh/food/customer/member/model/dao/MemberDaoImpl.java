@@ -30,29 +30,40 @@ public class MemberDaoImpl implements MemberDao {
 
 	
 	@Override
+	public int insertReview(Map map) {
+		
+		return sqlSession.insert("member.insertReview",map);
+	}
+	@Override
 	public List<OwnerReview> selectOwnerRevie(int businessCode) {
 		
 		return sqlSession.selectList("store.selectOwnerRevie2",businessCode);
 	}
+	
+	//회원 문의 등록
 	@Override
 	public int addQna(Map<String,Object> map) {
 		System.out.println("컨트롤러"+map);
 		return sqlSession.insert("member.qnaAdd",map);
 	}
+	
+	//멤버 리뷰 보기
 	@Override
 	public List<Review> selectReview(int businessCode) {
 		return sqlSession.selectList("member.selectReview",businessCode);
 	}
+	//회원 주문내역
 	@Override
 	public Map<String,String> orderOne(Map<String,String> orList) {
 		return sqlSession.selectOne("member.orderOne",orList);
 	}
 	
+	//회원 주문내역 카운트
 	@Override
 	public int selectOrderCount(int memberNum) {
 		return sqlSession.selectOne("member.orderCount",memberNum); 
 	}
-	
+	//회원 주문내역 전체 보기
 	@Override
 	public List<Member> selectMemberOrder(int memberNum,int cPage,int numPerPage) {
 		RowBounds rb = new RowBounds((cPage-1)*numPerPage,numPerPage);
@@ -133,11 +144,6 @@ public class MemberDaoImpl implements MemberDao {
 	public MemberQna memberDetailQna(int no) {
 		return sqlSession.selectOne("member.qnaDtail",no);
 	}
-	@Override
-	public List<Store> selectAllStore(Map<String, Object> map){
-		
-		return sqlSession.selectList("member.selectAllStore",map);
-	}
 	
 	@Override
 	public List<Store> menuInfo(int businessCode) {
@@ -158,8 +164,9 @@ public class MemberDaoImpl implements MemberDao {
 	public int drop(String memberId) {
 		return sqlSession.delete("member.drop",memberId);
 	}
+	//카테고리 별 가게 검색
 	@Override
-	public List<Store> selectStore(Map<String,String> map){
+	public List<Store> selectStore(Map<String,Object> map){
 		
 		return  sqlSession.selectList("member.selectStore",map);
 	}
