@@ -709,46 +709,24 @@ public class MemberController {
 		
 	}
 	
-	//업체 전체보기
-	@RequestMapping(value="/customer/selectallstore.do")
-	public ModelAndView allStore(String myAddr,HttpSession session,
-			@RequestParam(value="lat") String lat,
-			@RequestParam(value="lng") String lng ) {
-		
-		
-		session.setAttribute("myAddr",myAddr);		
-		session.setAttribute("lat", lat);
-		session.setAttribute("lng", lng);
-		ModelAndView mv= new ModelAndView();
-	
-		Long lat1 = new Long(new BigDecimal(lat).longValue());
-		Long lng1 = new Long(new BigDecimal(lng).longValue());
-		
-		Map<String, Object> map = new HashMap();
-		map.put("lat", lat1);
-		map.put("lng", lng1);
-		
-		List<Store> list =service.selectAllStore(map);
-
-		mv.addObject("list",list);
-		mv.setViewName("customer/searchMenu");
-		
-		return mv;
-	}
-	
 	// 카테고리별가게  출력
 		@RequestMapping("/customer/searchmenuView")
-		public ModelAndView menuView(String category,String myAddr,HttpSession session) {			
+		public ModelAndView menuView(String category,String myAddr,HttpSession session,
+									@RequestParam(value="lat", defaultValue="1")String lat, 
+									@RequestParam(value="lng", defaultValue="1")String lng) {			
 			ModelAndView mv=new ModelAndView();
+
 			
-			String lat = (String)session.getAttribute("lat");
-			String lng = (String)session.getAttribute("lng");
+			if(category.equals("전체")) {
+				session.setAttribute("myAddr", myAddr);
+				session.setAttribute("lat", lat);
+				session.setAttribute("lng", lng);
+			}
+			
+			lat = (String)session.getAttribute("lat");
+			lng = (String)session.getAttribute("lng");
 			BigDecimal lat1 = new BigDecimal(lat);
 			BigDecimal lng1 = new BigDecimal(lng);
-			
-			logger.debug(category);
-			logger.debug("" + lat1);
-			logger.debug("" + lng1);
 			
 			Map<String,Object> map = new HashMap();
 			map.put("category",category);

@@ -65,7 +65,6 @@ public interface MemberService {
 
 	List<Map<String,String>> selectMenuList(int menuCategoryCode,int businessCode);
 	Menu menuSelect(int menuCode);
-	List<Store> selectAllStore(Map<String, Object> map);
 	int kakaoEnrollEnd(Member m);
 	
 	List<OwnerReview> selectOwnerRevie(int businessCode);

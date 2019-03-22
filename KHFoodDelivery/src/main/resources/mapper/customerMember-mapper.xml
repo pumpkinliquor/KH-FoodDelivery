@@ -92,20 +92,7 @@
 	<select id="selectMenuList" parameterType="map" resultMap="member">
 		select * from menu where MENUCATEGORYCODE=#{menuCategoryCode} AND BUSINESSCODE=#{businessCode}
 	</select>
-	
-	<select id="selectAllStore" parameterType="map" resultType="store">
-		SELECT *
-		FROM 
-		(
-    		SELECT STORE.*, DISTNACE_WGS84(#{lat}, #{lng}, atitude, longitude) AS DISTANCE
-    		FROM STORE
-    		WHERE (atitude between #{lat} - 0.1 and #{lat} + 0.1)
-    			AND (longitude between #{lng} - 0.1 and #{lng} + 0.1)
-    			AND isConfirm = 1
-    		ORDER BY DISTANCE
-    	)		
-	</select>
-	
+		
 	
 	<insert id="qnaAdd" parameterType="map">
 		insert into member_qna values(SEQ_M_QNACODE.NEXTVAL,#{no},default,#{qnaCategory},#{qnaContent},#{qnaTitle})

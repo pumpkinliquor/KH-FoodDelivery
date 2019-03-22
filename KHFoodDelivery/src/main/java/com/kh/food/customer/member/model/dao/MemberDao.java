@@ -57,7 +57,6 @@ public interface MemberDao {
 	List<OwnerReview> selectOwnerRevie(int businessCode);
 	List<Map<String,String>> selectMenuList(int menuCategoryCode, int businessCode);
 	Menu menuSelect(int menuCode);
-	List<Store> selectAllStore(Map<String, Object> map);
 	int kakaoEnrollEnd(Member m);
 	List<Review> selectReview(int businessCode);
 	// 회원공지사항

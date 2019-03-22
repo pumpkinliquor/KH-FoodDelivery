@@ -133,11 +133,6 @@ public class MemberDaoImpl implements MemberDao {
 	public MemberQna memberDetailQna(int no) {
 		return sqlSession.selectOne("member.qnaDtail",no);
 	}
-	@Override
-	public List<Store> selectAllStore(Map<String, Object> map){
-		
-		return sqlSession.selectList("member.selectAllStore",map);
-	}
 	
 	@Override
 	public List<Store> menuInfo(int businessCode) {
