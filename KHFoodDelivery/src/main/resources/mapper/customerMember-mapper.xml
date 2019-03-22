@@ -36,9 +36,12 @@
 		update member set NICKNAME=#{nickName},MEMBERBIRTH=#{formatBirth},MEMBEREMAIL=#{memberEmail},MEMBERPHONE=#{memberPhone},MEMBERADDRESS=#{memberAddress},MEMBERENROLLDATE=default,MEMBERGENDER=#{memberGender},PROFILEIMAGE=#{profileImage},MEMBERADDRESS1=#{memberAddress1} where MEMBERID=#{memberId}		
 	</update>
 	
+	<!-- 가게 카테고리별 검색 -->
 	<select id="selectStore" parameterType="map" resultType="store">		  	
 		select* from store where STORECATEGORY=#{category} and ISCONFIRM=1 and 	STOREADDRESS LIKE '%'||#{ctg}||'%'
 	</select>
+	
+	<!-- 가게 상세보기 -->
 	<select id="selectStore2" parameterType="int" resultType="store">		  	
 		select* from store where BUSINESSCODE=#{besinessCode} and ISCONFIRM=1	
 	</select>
