@@ -76,7 +76,15 @@
 	</select>
 	
 	<select id="selectAllStore" parameterType="string" resultType="store">
-		select * from store where ISCONFIRM=1 and STOREADDRESS LIKE '%'||#{category}||'%'
+		SELECT *
+		FROM 
+		(
+    		SELECT STORE.*, DISTNACE_WGS84(#{lat}, #{lng}, atitude, longitude) AS DISTANCE
+    		FROM STORE
+    		WHERE (atitude between #{lat} and #{lat} + 0.019)
+    			AND (longitude between #{lng} - 0.022 and #{lng} + 0.022)
+    		ORDER BY DISTANCE
+    	)		
 	</select>
 	
 	
