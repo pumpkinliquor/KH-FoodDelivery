@@ -537,7 +537,6 @@ public class MemberController {
 		for(int i=0; i<callPrice.size(); i++) {
 			resultPrice+=callPrice.get(i).getPlusMenuPrice();
 		}
-		mv.addObject("backWish", backWish);
 		mv.addObject("mark", mark);
 		mv.addObject("minPrice", minPrice);
 		mv.addObject("wishList", wishList);
@@ -593,6 +592,12 @@ public class MemberController {
 		List<Menu> refreshWishList=service.refreshWishList(maps);
 		
 		return refreshWishList;
+	}
+	
+	@RequestMapping("/menu/ifDeleteWish.do")
+	public void ifDeleteWish(HttpServletRequest request) {
+		String memberId=(String) request.getSession().getAttribute("logined");
+		int backWish=service.backWish(memberId);
 	}
 	
 	@RequestMapping("/customer/wishResult.do")

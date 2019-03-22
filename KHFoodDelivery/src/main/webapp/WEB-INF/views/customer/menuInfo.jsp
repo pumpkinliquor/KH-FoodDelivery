@@ -183,13 +183,23 @@
 }
 </style>
  <script>
- var backWishList=${backWish};
+/*  var backWishList=${backWish};
 	if(backWishList>0){
 		$(document).ready(function(){
 			alert('장바구니에 담긴 메뉴가 초기화 되었습니다.');
 		});
-	}
- 
+	} */
+	history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+    	$.ajax({
+    		type:"POST",
+    		url:"${path}/menu/ifDeleteWish.do",
+    		success: function(data){
+    			
+    		}
+    	});
+   		history.go(-1);
+	};
 	function fn_mark(){		
 		// 찜 상태 -> 찜 취소
 		if($('.onMark').length > 0) {
