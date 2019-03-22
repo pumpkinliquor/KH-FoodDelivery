@@ -159,7 +159,7 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.delete("member.drop",memberId);
 	}
 	@Override
-	public List<Store> selectStore(Map<String,String> map){
+	public List<Store> selectStore(Map<String,Object> map){
 		
 		return  sqlSession.selectList("member.selectStore",map);
 	}
