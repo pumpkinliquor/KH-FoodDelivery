@@ -176,9 +176,15 @@ div#map{visibility: hidden;}
                         var result = results[0]; //첫번째 결과의 값을 활용
  
                         // 해당 주소에 대한 좌표를 받아서
-                        var coords = new daum.maps.LatLng(result.y, result.x);
+                        var coords = new daum.maps.LatLng(result.x);
+                        var coords1 = new daum.maps.LatLng(result.y);
                         
+                        $('#lat').val(coords); // 위도
+                        $('#lng').val(coords1)// 경도
+                        
+                        console.log(coords1);
                         console.log(coords);
+                        
                        
                      
                     }
@@ -214,8 +220,12 @@ $(function(){
 		 
 		 var firstPage=$('#firstPage').val();
 		var myAddr=$('#location1').val();
+		var lat = $('#lat').val();
+		var lng = $('#lng').val();
 		console.log(myAddr);
-		 location.href="${path}/customer/selectallstore.do?myAddr="+myAddr+"&firstPage="+firstPage;
+		console.log(lat);
+		console.log(lng);
+		 location.href="${path}/customer/selectallstore.do?myAddr="+myAddr+"&firstPage="+firstPage+"&lat="+lat+"&lng="+lng;
 		 
 
 		
@@ -264,7 +274,9 @@ $(function(){
                     <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="${sessionScope.myAddr }" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요" readonly/>
                        <span class="input-group-btn">
                        <input type="hidden" value="1" name="firstPage" id="firstPage"/>
-                       <button class="btn" onclick="locationSearchStore();" type="submit">검색</button>
+ 						<input type="hidden" value="" name="lat" id="lat"/>
+ 						<input type="hidden" value="" name="lng" id="lng"/>                      
+                        <button class="btn" onclick="locationSearchStore();" type="submit">검색</button>
 
                        </span>
                   </div>

@@ -197,10 +197,11 @@ div.newsletter,div.group{display:inline-block;}
 
 
 
-   //배달의민족 클릭시 메인으로
-   function mainpage(){
-      location.href="${path }";
-   }
+  //배달의민족 클릭시 메인으로
+    function mainpage(){
+       location.href="${path}/member/main.do";
+    }
+  
    function locationSearchStore(){
 		 if(${sessionScope.logined==null}){
 			 alert("로그인 후 이용해주세요");
@@ -297,6 +298,7 @@ div.newsletter,div.group{display:inline-block;}
                </div>          
                  <div id="map" style="width:300px;height:300px;"></div> 
        </div>
+       <div style="width:300px;height:100px;"></div>
 
 
 <script>
