@@ -41,6 +41,9 @@
 	<select id="popularityMenu" parameterType="_int" resultType="menu">
 		SELECT * FROM MENU WHERE BUSINESSCODE=#{businessCode} AND MENUSOLDCOUNT>=10
 	</select>
+	<delete id="backWish" parameterType="string">
+		DELETE FROM WISHLIST WHERE MEMBERID=#{memberId}
+	</delete>
 	
 	<delete id="deleteMenuCount" parameterType="_int">
 		DELETE FROM WISHLIST WHERE MENUCODE=#{menuCode}

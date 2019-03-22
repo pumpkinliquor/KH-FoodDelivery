@@ -71,6 +71,10 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
+	public int backWish(String memberId) {
+		return sqlSession.delete("menu.backWish", memberId);
+	}
+	@Override
 	public Store minPrice(int businessCode) {
 		return sqlSession.selectOne("menu.selectMinPrice", businessCode);
 	}

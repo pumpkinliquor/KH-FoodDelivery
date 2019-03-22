@@ -3,7 +3,6 @@ package com.kh.food.customer.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.text.DateFormat;
@@ -23,14 +22,12 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -523,11 +520,11 @@ public class MemberController {
 	}
 
 	
-	
 	@RequestMapping("/customer/menuInfo.do")
 	public ModelAndView infoMenu(HttpServletRequest request, ModelAndView mv,int businessCode)
 	{
 		String memberId=(String) request.getSession().getAttribute("logined");
+		int backWish=service.backWish(memberId);
 		Map<String, Object> maps=new HashMap<>();
 		maps.put("memberId", memberId);
 		maps.put("businessCode", businessCode);
@@ -540,6 +537,7 @@ public class MemberController {
 		for(int i=0; i<callPrice.size(); i++) {
 			resultPrice+=callPrice.get(i).getPlusMenuPrice();
 		}
+		mv.addObject("backWish", backWish);
 		mv.addObject("mark", mark);
 		mv.addObject("minPrice", minPrice);
 		mv.addObject("wishList", wishList);
@@ -714,7 +712,8 @@ public class MemberController {
 		@RequestMapping("/customer/searchmenuView")
 		public ModelAndView menuView(String category,String myAddr,HttpSession session,
 									@RequestParam(value="lat", defaultValue="1")String lat, 
-									@RequestParam(value="lng", defaultValue="1")String lng) {			
+									@RequestParam(value="lng", defaultValue="1")String lng,
+									HttpServletRequest request) {			
 			ModelAndView mv=new ModelAndView();
 
 			
@@ -729,6 +728,7 @@ public class MemberController {
 			BigDecimal lat1 = new BigDecimal(lat);
 			BigDecimal lng1 = new BigDecimal(lng);
 			
+			String memberId=(String) request.getSession().getAttribute("logined");
 			Map<String,Object> map = new HashMap();
 			map.put("category",category);
 			map.put("lat", lat);

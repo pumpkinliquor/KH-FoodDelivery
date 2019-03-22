@@ -58,6 +58,7 @@ public interface MemberService {
 	List<Menu> popularityMenu(int businessCode);
 	List<Menu> refreshWishList(Map<String,Object> maps);
 	int deleteWishList(Map<String,Object> maps);
+	int backWish(String memberId);
 	
 	Map<String,String>selectSearchId(Map<String,String> map); //아이디찾기
 	Map<String,String>selectConfirmEmail(Map<String,String>map);
