@@ -71,14 +71,15 @@ div.newsletter,div.group{display:inline-block;}
                      var latitude = position.coords.latitude;
                     var longitude = position.coords.longitude;
                     
+                    
                     var coords = new daum.maps.LatLng(latitude);
-                    var coords1 = new daum.maps.LatLng(longitude);
+                    var coords1 = new daum.maps.LatLng(longitude); 
                     
-                    $('#lat').val(coords); // 위도
-                    $('#lng').val(coords1)// 경도
+                    $('#lat').val(coords.jb); // 위도
+                    $('#lng').val(coords1.jb)// 경도
                     
-                    console.log(coords1);
-                    console.log(coords);
+                    console.log(coords.jb);//위도
+                    console.log(coords1.jb);//경도
                      
                         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                      mapOption = {
@@ -195,15 +196,15 @@ div.newsletter,div.group{display:inline-block;}
                         // 해당 주소에 대한 좌표를 받아서
                         
                         
-                        var coords = new daum.maps.LatLng(latitude);
-                        var coords1 = new daum.maps.LatLng(longitude);
                         
-                        $('#lat').val(coords); // 위도
-                        $('#lng').val(coords1)// 경도
-                        
-                        console.log(coords1);
-                        console.log(coords);
-                       
+                    var coords = new daum.maps.LatLng(latitude);
+                    var coords1 = new daum.maps.LatLng(longitude); 
+                    
+                    $('#lat').val(coords.jb); // 위도
+                    $('#lng').val(coords1.jb)// 경도
+                    
+                    console.log(coords.jb);//위도
+                    console.log(coords1.jb);//경도
                      
                     }
                 });
@@ -257,11 +258,17 @@ div.newsletter,div.group{display:inline-block;}
                    
               </c:if> 
                <c:if test="${sessionScope.logined!=null}">
-               <a href="${path }/customer/logout.do">로그아웃</a>
-               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
-               
-             
-              </c:if> 
+             	<c:choose>
+             		<c:when test="${sessionScope.isAdmin == 1 }">             	
+             			<a href="${path}/admin/adminMain.do">관리자 페이지</a>
+             		</c:when>
+             		<c:otherwise>
+             			<a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
+             		</c:otherwise>
+             	</c:choose>
+             	<a href="${path }/customer/logout.do">로그아웃</a>
+            </c:if> 
+     
               </div>
                     <div class="content1">
                        <h2 onclick="mainpage();"> <span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></h2>

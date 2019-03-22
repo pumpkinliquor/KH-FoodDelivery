@@ -54,13 +54,13 @@ div#map{visibility: hidden;}
                    
                     
                     var coords = new daum.maps.LatLng(latitude);
-                    var coords1 = new daum.maps.LatLng(longitude);
+                    var coords1 = new daum.maps.LatLng(longitude); 
                     
-                    $('#lat').val(coords); // 위도
-                    $('#lng').val(coords1)// 경도
+                    $('#lat').val(coords.jb); // 위도
+                    $('#lng').val(coords1.jb)// 경도
                     
-                    console.log(coords1);
-                    console.log(coords);
+                    console.log(coords.jb);//위도
+                    console.log(coords1.jb);//경도
                    
 				 /*  
                      $.ajax({
@@ -187,15 +187,17 @@ div#map{visibility: hidden;}
                         var result = results[0]; //첫번째 결과의 값을 활용
  
                         // 해당 주소에 대한 좌표를 받아서
-                        var coords = new daum.maps.LatLng(result.x);
-                        var coords1 = new daum.maps.LatLng(result.y);
-                        
-                        $('#lat').val(coords); // 위도
-                        $('#lng').val(coords1)// 경도
-                        
-                        console.log(coords1);
-                        console.log(coords);
-                        
+                       
+                    var coords = new daum.maps.LatLng(result.x);
+                    var coords1 = new daum.maps.LatLng(result.y); 
+                 
+                    
+                    
+                    $('#lat').val(coords.jb); // 위도
+                    $('#lng').val(coords1.jb)// 경도
+                    
+                    console.log(coords.jb);//위도
+                    console.log(coords1.jb);//경도
                        
                      
                     }
@@ -207,18 +209,7 @@ div#map{visibility: hidden;}
   
 
  
-/* 
-$(function(){
-    $(window).scroll(function(){
-       var num = $(this).scrollTop();
-    
-       if(num > 36){
-          $(".newsletter").css("position","fixed");
-       }else{
-          $(".newsletter").css("position","absolute");
-       }
-    });
- });  */
+
  //배달의민족 클릭시 메인으로
  function mainpage(){
     location.href="${path}/member/main.do";
