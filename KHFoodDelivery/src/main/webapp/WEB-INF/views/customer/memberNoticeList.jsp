@@ -7,7 +7,28 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Cstyle.css" />
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 <style>
+#noticeTitleTd{
+   width:800px;
+}
+#topTable {
+   background-color: #4D4D4D;
+   color: rgba(255, 255, 255, .5);
+}
 
+#noticeListCount {
+   float: left;
+}
+
+#noticeListCount2 {
+   color: red;
+   float: left;
+}
+.pnt{
+   cursor:pointer;
+}
+#memberNoticeDiv{
+	padding-bottom: 5%;
+}
 </style>
 <section>
 	<div class="container" id="memberNoticeDiv">
