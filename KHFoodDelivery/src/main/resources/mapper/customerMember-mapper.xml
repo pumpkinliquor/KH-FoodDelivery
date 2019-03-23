@@ -168,6 +168,7 @@
 			MARK ma LEFT JOIN MEMBER m ON (ma.memberNum = m.memberNum) LEFT JOIN STORE s ON (ma.businessCode = s.businessCode)  
 		WHERE 
 			m.memberId = #{memberId}
+			AND markState = 1
 	</select>
 
 	<select id="selectIsMark" parameterType="map" resultType="mark">
