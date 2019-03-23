@@ -20,5 +20,7 @@ public interface OrderService {
 	List<Map<String, String>> selectStoreList(String ownerId);
 
 	int updateOrderState(Map<String, String> map);
+
+	Map<String, String> selectPayOne(String payOrderNum);
 	
 }
