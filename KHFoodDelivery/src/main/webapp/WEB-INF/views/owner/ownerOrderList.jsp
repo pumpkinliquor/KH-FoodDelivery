@@ -52,6 +52,7 @@ pageEncoding="UTF-8"%>
 <div class="container">
 	<div style="text-align:center; margin-bottom:5em;">
 		<h2 style="font-weight:bold;">주문 내역</h2>
+		<!-- <button onclick="refund();">환불</button> -->
 	</div>
 	<div style="text-align:center; margin-bottom:15px;">
 		<span>하루동안 총 <span style="color:red; font-weight:bold; font-size:20px;">${todayOrderCount.TODAYORDERCOUNT}</span>건의 주문내역이 있습니다.</span>
@@ -100,10 +101,10 @@ pageEncoding="UTF-8"%>
 								<button value="3" id="state3" class="btn btn-default statusBtn notBtn" onclick="fn_state(${o.payOrderNum},this)">배달완료</button>
 								</c:if>
 								<c:if test="${o.orderState eq 4 }">
-								<button id="state4" value="4" class="btn btn-default statusBtn trueBtn" onclick="fn_state(${o.payOrderNum},this)">주문취소</button>								
+								<button id="state4" value="4" class="btn btn-default statusBtn trueBtn" onclick="fn_state1(${o.payOrderNum},this)">주문취소</button>								
 								</c:if>
 								<c:if test="${o.orderState ne 4 }">
-								<button id="state4" value="4" class="btn btn-default statusBtn notBtn" onclick="fn_state(${o.payOrderNum},this)">주문취소</button>							
+								<button id="state4" value="4" class="btn btn-default statusBtn notBtn" onclick="fn_state1(${o.payOrderNum},this)">주문취소</button>							
 								</c:if>
 								</td>
 							</tr>
@@ -206,6 +207,74 @@ pageEncoding="UTF-8"%>
 
 
 <script>
+
+function fn_state1(payOrderNum,e)
+{
+	console.log($(e).val());
+	var orderState = $(e).val();
+	
+		var UP = confirm("정말로 삭제 하시겠습니까?");
+		
+		if(UP == true)
+			{
+			 $.ajax({
+					url:"${path}/order/updateOrderState1.do",
+					data:{"payOrderNum" : payOrderNum , "orderState" : orderState},
+					success:function(data)
+					{
+							if(data==1)
+							{
+								$(e).css("color","red");
+								if(orderState == 1)
+									{
+										$(e).css("color","red");
+										$(e).next().css("color","black");
+										$(e).next().next().css("color","black");
+										$(e).next().next().next().css("color","black");
+										
+									
+									}
+								else if(orderState == 2)
+									{
+										$(e).css("color","red");
+										$(e).prev().css("color","black");
+										$(e).next().css("color","black");
+										$(e).next().next().css("color","black");
+									}
+								else if(orderState == 3)
+									{
+										$(e).css("color","red");
+										$(e).prev().css("color","black");
+										$(e).prev().prev().css("color","black");
+										$(e).next().css("color","black");
+									}
+								else
+									{
+									$(e).css("color","red");
+									$(e).prev().css("color","black");
+									$(e).prev().prev().css("color","black");
+									$(e).prev().prev().prev().css("color","black");
+									}
+								alert("주문취소를 하셨습니다.");
+							}
+							else
+							{
+									alert("변경실패!");
+							}
+					}
+				})		 
+			}
+		else
+			{
+				alert("주문취소를 취소하셨습니다.");
+			}
+}
+function refund()
+{
+	location.href="${path}/owner/payRefund.do"
+}	
+
+
 function fn_detailOrder(payOrderNum){
 	
 	$.ajax({

@@ -226,8 +226,8 @@ $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디�
     msg += '결제 금액 : ' + rsp.paid_amount;
     msg += '카드 승인번호 : ' + rsp.apply_num; 
     
-    location.href="${path}/customer/payEnd.do?businessCode="+${businessCode}+"&payAddress="+payAddress+"&payRequest="+payRequest+"&resultPrice="+resultPrice+"&memberId="+memberId; //보낼값들
-	
+    var impUid = rsp.imp_uid;
+    location.href="${path}/customer/payEnd.do?businessCode="+${businessCode}+"&payAddress="+payAddress+"&payRequest="+payRequest+"&resultPrice="+resultPrice+"&memberId="+memberId+"&impUid="+impUid; //보낼값들
  } else {
      var msg = '결제에 실패하였습니다.';
      msg += '실패 사유 : ' + rsp.error_msg;
