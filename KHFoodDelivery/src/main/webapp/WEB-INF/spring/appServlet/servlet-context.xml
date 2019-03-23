@@ -38,6 +38,7 @@
 			<mapping path="/owner/oneVSoneView.do"/>
 			<mapping path="/owner/menuStoreChoice.do"/>
 			<mapping path="/owner/storeChoice.do"/>
+			<mapping path="/owner/ownerReview.do"/>
 			<beans:bean id="ownerInterceptor" class="com.kh.food.common.OwnerInterceptor"/>
 		</interceptor>
 	</interceptors>
@@ -85,6 +86,7 @@
 		</interceptor>
 	</interceptors>
 	
+	<!-- 멤버 인터셉터 -->
 	<interceptors>
 		<interceptor>
 			<mapping path="/customer/menuInfo.do"/>

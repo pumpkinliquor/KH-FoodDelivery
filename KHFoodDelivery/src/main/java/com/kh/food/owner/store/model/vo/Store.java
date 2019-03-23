@@ -26,6 +26,7 @@ public class Store implements Serializable
 	private Owner owner;
 	private String formatAppDate;
 	private int distance;
+	private int deliveryPrice;
 	
 	
 	public Store() {}
@@ -56,7 +57,7 @@ public class Store implements Serializable
 	public Store(int businessCode, String businessNum, String businessName, String businessPhone, String storeName,
 			String storePhone, String storeAddress, String storeCategory, String storeImage, int minPrice,
 			String storeProfile, double longitude, double atitude, int isConfirm, Date appDate, Owner owner,
-			String formatAppDate, int distance) {
+			String formatAppDate, int distance, int deliveryPrice) {
 		super();
 		this.businessCode = businessCode;
 		this.businessNum = businessNum;
@@ -76,6 +77,7 @@ public class Store implements Serializable
 		this.owner = owner;
 		this.formatAppDate = formatAppDate;
 		this.distance = distance;
+		this.deliveryPrice = deliveryPrice;
 	}
 
 	public int getBusinessCode() {
@@ -190,6 +192,14 @@ public class Store implements Serializable
 		this.isConfirm = isConfirm;
 	}
 
+	public Date getAppDate() {
+		return appDate;
+	}
+
+	public void setAppDate(Date appDate) {
+		this.appDate = appDate;
+	}
+
 	public Owner getOwner() {
 		return owner;
 	}
@@ -198,19 +208,6 @@ public class Store implements Serializable
 		this.owner = owner;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	
-	public Date getAppDate() {
-		return appDate;
-	}
-
-	public void setAppDate(Date appDate) {
-		this.appDate = appDate;
-	}
-	
 	public String getFormatAppDate() {
 		return formatAppDate;
 	}
@@ -218,7 +215,6 @@ public class Store implements Serializable
 	public void setFormatAppDate(String formatAppDate) {
 		this.formatAppDate = formatAppDate;
 	}
-	
 
 	public int getDistance() {
 		return distance;
@@ -228,6 +224,18 @@ public class Store implements Serializable
 		this.distance = distance;
 	}
 
+	public int getDeliveryPrice() {
+		return deliveryPrice;
+	}
+
+	public void setDeliveryPrice(int deliveryPrice) {
+		this.deliveryPrice = deliveryPrice;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
 		return "Store [businessCode=" + businessCode + ", businessNum=" + businessNum + ", businessName=" + businessName
@@ -235,6 +243,8 @@ public class Store implements Serializable
 				+ ", storeAddress=" + storeAddress + ", storeCategory=" + storeCategory + ", storeImage=" + storeImage
 				+ ", minPrice=" + minPrice + ", storeProfile=" + storeProfile + ", longitude=" + longitude
 				+ ", atitude=" + atitude + ", isConfirm=" + isConfirm + ", appDate=" + appDate + ", owner=" + owner
-				+ ", formatAppDate=" + formatAppDate + ", distance=" + distance + "]";
-	}	
+				+ ", formatAppDate=" + formatAppDate + ", distance=" + distance + ", deliveryPrice=" + deliveryPrice
+				+ "]";
+	}
+
 }
