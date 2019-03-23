@@ -217,10 +217,6 @@ margin:0;
 			alert('장바구니에 담긴 메뉴가 초기화 되었습니다.');
 		});
 	} */
-	var repl=${repl};
-	if(repl==1){
-		location.reload();
-	}
 	history.pushState(null, null, location.href);
     window.onpopstate = function () {
     	$.ajax({

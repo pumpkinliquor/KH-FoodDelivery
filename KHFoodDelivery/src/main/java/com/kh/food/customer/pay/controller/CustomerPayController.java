@@ -54,7 +54,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
   
   
   @RequestMapping("/customer/payEnd.do") 
-  public ModelAndView customerPayEnd(int resultPrice, int businessCode, String payRequest, String payAddress,String memberId) 
+  public ModelAndView customerPayEnd(int resultPrice, int businessCode, String payRequest, String payAddress,String memberId,String impUid) 
   {
 	ModelAndView mv=new ModelAndView();
 	
@@ -70,6 +70,8 @@ import com.kh.food.owner.menu.model.vo.Menu;
 		map.put("memberNum", String.valueOf(wishList.get(i).get("MEMBERNUM")));
 		map.put("payRequest", payRequest);
 		map.put("payAddress", payAddress);
+		map.put("impUid", impUid);
+		logger.debug("impUid"+impUid);
 		logger.debug("mapmap"+map);
 		logger.debug("wishList"+wishList);
 		if(i==0)
