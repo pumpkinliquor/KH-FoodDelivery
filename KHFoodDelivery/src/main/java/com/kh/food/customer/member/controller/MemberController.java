@@ -535,7 +535,6 @@ public class MemberController {
 	public ModelAndView infoMenu(HttpServletRequest request, ModelAndView mv,int businessCode)
 	{
 		String memberId=(String) request.getSession().getAttribute("logined");
-		int backWish=service.backWish(memberId);
 		Map<String, Object> maps=new HashMap<>();
 		maps.put("memberId", memberId);
 		maps.put("businessCode", businessCode);
@@ -761,7 +760,7 @@ public class MemberController {
 			map.put("lat", lat);
 			map.put("lng", lng1);
 			List<Store> list=service.selectStore(map);
-			
+			int backWish=service.backWish(memberId);
 			
 			
 			mv.addObject("list",list);
