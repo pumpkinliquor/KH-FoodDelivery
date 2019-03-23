@@ -8,14 +8,17 @@
 div .menuCategoryStyle {
    cursor:pointer;
 }
-dt:hover {
-   color:red;
+dt{
+	color:rgb(0, 0, 0);
+}
+dt:hover{
+	color:white;
 }
 </style>
 <script>
    $(function() {
       $("dd:not(:first)").css("display", "none"); //선택 dd 빼고 나머지 dd를 none으로 해라
-
+      $("dt").css({"background-color" : "rgb(255, 171, 149)"});
       $("dl dt").click(function() {
          if ($("+dd", this).css("display") == "none") {
             $(this).siblings("dd").slideUp("fast");

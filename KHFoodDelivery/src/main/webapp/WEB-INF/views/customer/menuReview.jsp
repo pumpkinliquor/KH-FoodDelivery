@@ -30,6 +30,17 @@ text-align: center
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     }
+ .review-count {
+    position: relative;
+    border: 1px solid #ddd;
+  
+    background: #fff;
+    color: #666;
+    font-size: 15px;
+}
+.review-count strong {
+    color: #333;
+}
 </style>
 <ul id="review" class="list-group review-list">
        
@@ -41,7 +52,22 @@ text-align: center
         			${reviewAvg }
         		</strong>
         		<span class="star-point">
-        			<c:if test="${reviewAvg==1 }">
+        								<c:if test="${reviewAvg==0 }">
+						             		<a class="star_rating">
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+						    				</a>
+						    				
+						    				<br/>
+						    				<br/>
+							    				<div style="color: #666;">
+							    					주문후 첫번째 리뷰를 남겨보세요.
+							    				</div>
+						             	</c:if>
+        									<c:if test="${reviewAvg==1 }">
 						             		<a class="star_rating">
 										        <span class="on">★</span>
 										        <span class="off">★</span>
@@ -91,7 +117,11 @@ text-align: center
         
         
         </div>
-
+		<div class="review-count">
+			<div style ="padding: 16px; border-top: 8px solid #fafafa;">
+					리뷰 <strong>${reviewCount }</strong>개·사장님댓글<strong>${ownerReviewCount }</strong>개
+			 </div>
+		</div>
 		<c:forEach items="${review}" var="re">
         <li class="list-group-item star-point ng-scope" ng-repeat="review in restaurant.reviews" on-finish-render="scrollCartArea()">
           <div>

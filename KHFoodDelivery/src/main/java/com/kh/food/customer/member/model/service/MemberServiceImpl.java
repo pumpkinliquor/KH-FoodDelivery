@@ -30,6 +30,18 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
+	public int reviewCount(int businessCode) {
+		
+		return dao.reviewCount(businessCode);
+	}
+
+	@Override
+	public int ownerReviewCount(int businessCode) {
+		
+		return dao.ownerReviewCount(businessCode);
+	}
+
+	@Override
 	public Store storeList(int businessCode) {
 		
 		return dao.storeList(businessCode);

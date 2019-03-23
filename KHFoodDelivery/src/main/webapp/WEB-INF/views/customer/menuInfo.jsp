@@ -5,7 +5,6 @@
    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>   
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/WEB-INF/views/common/searchHeader.jsp"/>
-
 <style>
 .restaurant-info{
     background-color: white;
@@ -209,6 +208,7 @@ margin:0;
     cursor: pointer;
 }
 
+
 </style>
  <script>
 /*  var backWishList=${backWish};
@@ -310,12 +310,17 @@ margin:0;
            });
           
        });
-       
-       
 	setInterval(function() {
 		$('#mark1').click(function(){
-		var markState=1;
-		var businessCode=${businessCode};
+			/* toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 1800
+            };
+            toastr.warning('찜 성공'); */
+			var markState=1;
+			var businessCode=${businessCode};
 			$.ajax({
 			type:"POST",
 			url:"${path}/store/markStore.do?markState="+markState+"&businessCode="+businessCode,
@@ -330,8 +335,15 @@ margin:0;
 			});
 		});
 		$('#mark2').click(function(){
-		var markState=0;
-		var businessCode=${businessCode};
+			/* toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 1800
+            };
+            toastr.warning('찜 실패'); */
+			var markState=0;
+			var businessCode=${businessCode};
 			$.ajax({
 			type:"POST",
 			url:"${path}/store/markStore.do?markState="+markState+"&businessCode="+businessCode,
@@ -346,10 +358,6 @@ margin:0;
 			});
 		});
 	}, 600);
-       
-
-       
-   
  </script>
  
     <div class="container">
@@ -377,7 +385,7 @@ margin:0;
                         <div class="logo"><img class="mainlogo" src="${path }/resources/upload/owner/storeMainImage/${i.storeImage }" /></div>
                         <ul class="list">
                             <li>별점
-                            
+                            			<c:if test="${!empty reviewAvg }">
                             			<c:if test="${reviewAvg==1 }">
 						             		<a class="star_rating">
 										        <span class="on">★</span>
@@ -423,6 +431,16 @@ margin:0;
 										        <span class="on">★</span>
 						    				</a>
 						             	</c:if>
+						             	</c:if>
+						             	<c:if test="${reviewAvg==0}">
+						             		<a class="star_rating">
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+						    				</a>
+						             	</c:if>
 						   </li>	
                             <li>최소주문금액 <span>${i.minPrice}원</span></li>
                             <li>배달시간</li>
@@ -436,7 +454,7 @@ margin:0;
                     <span id="hehe" style="color: #666;">${storeP }...</span>
                 </div>
             
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 8px;">
                     <ul class="navbar-nav mr-aurto">
                         <li class="nav-item active">
                             <a class="nav-link" id="menuList">메뉴 <span>35</span></a>

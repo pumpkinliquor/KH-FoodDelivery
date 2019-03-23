@@ -180,7 +180,7 @@ public class MemberController {
 		orList.put("menucode",menucode);
 		
 		Map<String,String>orList1=service.orderOne(orList);
-		System.out.println(orList1);
+		System.out.println("orList : "+orList1);
 		
 
 		
@@ -454,17 +454,18 @@ public class MemberController {
 	public ModelAndView test(ModelAndView mv, int businessCode)
 	{
 		List<Review> review=service.selectReview(businessCode);
-
-		
-		
 		List<OwnerReview> or = service.selectOwnerRevie(businessCode);
 		System.out.println("review : "+review);
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		int reviewAvg = service.reviewAvg(businessCode);
+		int reviewCount = service.reviewCount(businessCode);
+		int ownerReviewCount = service.ownerReviewCount(businessCode);
 		System.out.println("reviewAvg : "+reviewAvg);
 		for(int i=0; i<or.size(); i++) {
 			or.get(i).setFormatWriteDate(df.format(or.get(i).getWriteDate()));
 		}
+		mv.addObject("reviewCount",reviewCount);
+		mv.addObject("ownerReviewCount",ownerReviewCount);
 		mv.addObject("reviewAvg",reviewAvg);
 		mv.addObject("businessCode",businessCode);
 		mv.addObject("review",review);
@@ -531,10 +532,9 @@ public class MemberController {
 
 	
 	@RequestMapping("/customer/menuInfo.do")
-	public ModelAndView infoMenu(HttpServletRequest request, ModelAndView mv,int businessCode)
+	public ModelAndView infoMenu(HttpServletRequest request, ModelAndView mv,int businessCode) 
 	{
 		String memberId=(String) request.getSession().getAttribute("logined");
-		int backWish=service.backWish(memberId);
 		Map<String, Object> maps=new HashMap<>();
 		maps.put("memberId", memberId);
 		maps.put("businessCode", businessCode);
@@ -542,6 +542,7 @@ public class MemberController {
 		List<WishList> wishList=service.selectWishList(maps);
 		List<WishList> callPrice=service.plusPrice(maps);
 		int reviewAvg = service.reviewAvg(businessCode);
+		
 		String storeP =service.storeP(businessCode);
 		
 		System.out.println("storeP : " + storeP);
@@ -757,7 +758,7 @@ public class MemberController {
 			map.put("lat", lat);
 			map.put("lng", lng1);
 			List<Store> list=service.selectStore(map);
-			
+			int backWish=service.backWish(memberId);
 			
 			
 			mv.addObject("list",list);
