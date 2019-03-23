@@ -73,7 +73,7 @@
 		</delete>
 	
 	<select id="selectCategoryList" parameterType="_int" resultType="map">
-      select b.menucategorycode, b.menucategory from menu a inner join menu_category b on a.businesscode=b.businesscode where a.businesscode=#{businessCode} group by b.menucategorycode, b.menucategory order by b.menucategorycode asc
+      select b.menucategorycode, b.menucategory from menu a inner join menu_category b on a.businesscode=b.businesscode where a.businesscode=#{businessCode} AND b.categorystate=0 group by b.menucategorycode, b.menucategory order by b.menucategorycode asc
    </select>
 	
 
