@@ -454,17 +454,18 @@ public class MemberController {
 	public ModelAndView test(ModelAndView mv, int businessCode)
 	{
 		List<Review> review=service.selectReview(businessCode);
-
-		
-		
 		List<OwnerReview> or = service.selectOwnerRevie(businessCode);
 		System.out.println("review : "+review);
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		int reviewAvg = service.reviewAvg(businessCode);
+		int reviewCount = service.reviewCount(businessCode);
+		int ownerReviewCount = service.ownerReviewCount(businessCode);
 		System.out.println("reviewAvg : "+reviewAvg);
 		for(int i=0; i<or.size(); i++) {
 			or.get(i).setFormatWriteDate(df.format(or.get(i).getWriteDate()));
 		}
+		mv.addObject("reviewCount",reviewCount);
+		mv.addObject("ownerReviewCount",ownerReviewCount);
 		mv.addObject("reviewAvg",reviewAvg);
 		mv.addObject("businessCode",businessCode);
 		mv.addObject("review",review);

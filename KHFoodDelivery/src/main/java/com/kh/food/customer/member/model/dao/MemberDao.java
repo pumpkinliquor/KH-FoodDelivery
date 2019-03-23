@@ -67,5 +67,7 @@ public interface MemberDao {
 	Mark isMark(Map<String,Object> maps);
 	int insertReview(Map map);
 	int reviewAvg(int businessCode);
+	int reviewCount(int businessCode);
+	int ownerReviewCount(int businessCode);
 	
 }

@@ -181,4 +181,13 @@
 	<select id="reviewAvg" parameterType="_int" resultType="_int"> 
 		select nvl(avg(grade),0) from review where businesscode=#{businessCode}
 	</select>
+	
+	<select id="reviewCount" parameterType="_int" resultType="_int">
+	
+		select count(*) from review where businesscode=#{businessCode}
+	</select>
+	<select id="ownerReviewCount" parameterType="_int" resultType="_int">
+	
+		select count(*) from review_sub where businesscode=#{businessCode}
+	</select>
 </mapper>

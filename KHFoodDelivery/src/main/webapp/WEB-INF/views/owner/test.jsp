@@ -45,6 +45,9 @@ pageEncoding="UTF-8"%>
 
 .star_rating span.on {color:crimson;}
 </style>
+<c:if test="${empty rv }">
+등록된 리뷰가 없습니다.
+</c:if>
  <c:forEach var="st" items="${rv }" varStatus="status">
 
 <div class="row">
