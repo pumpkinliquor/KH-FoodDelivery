@@ -18,10 +18,10 @@
 </select>
 
 <insert id="insertPay" parameterType="map">
-	insert into pay values(seq_paycode.nextval,#{businessCode},sysdate,#{menuCode},null,null,null,#{price},#{count},#{memberNum},'신용카드',#{payRequest},seq_payOrderNum.nextval,default,#{payAddress})
+	insert into pay values(seq_paycode.nextval,#{businessCode},sysdate,#{menuCode},null,null,null,#{price},#{count},#{memberNum},'신용카드',#{payRequest},seq_payOrderNum.nextval,default,#{payAddress},#{impUid})
 </insert>
 <insert id="insertPay2" parameterType="map">
-	insert into pay values(seq_paycode.nextval,#{businessCode},sysdate,#{menuCode},null,null,null,#{price},#{count},#{memberNum},'신용카드',#{payRequest},seq_payOrderNum.currval,default,#{payAddress})
+	insert into pay values(seq_paycode.nextval,#{businessCode},sysdate,#{menuCode},null,null,null,#{price},#{count},#{memberNum},'신용카드',#{payRequest},seq_payOrderNum.currval,default,#{payAddress},#{impUid})
 </insert>
 
 
