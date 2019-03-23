@@ -9,7 +9,8 @@ pageEncoding="UTF-8"%>
 <style>
 	/* Bootstrap 수정 */
     .table > thead {
-      background-color: rgb(253, 238, 238);
+      background-color: grey;
+      color:white;
     }
     .table > thead > tr > th {
       text-align: center;
