@@ -12,6 +12,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.qna.model.vo.MemberQnaReview;
 import com.kh.food.review.model.vo.Review;
 
 public interface MemberService {
@@ -71,6 +72,7 @@ public interface MemberService {
 	List<OwnerReview> selectOwnerRevie(int businessCode);
 	int reviewCount(int businessCode);
 	int ownerReviewCount(int businessCode);
+	MemberQnaReview selectMemberQnaReview(int no);
 	
 	// 회원 공지사항
 	List<MemberNotice> selectMemberNotice(int cPage,int numPerPage);

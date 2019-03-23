@@ -44,6 +44,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.qna.model.vo.MemberQnaReview;
 import com.kh.food.review.model.vo.Review;
 
 @Controller
@@ -160,8 +161,17 @@ public class MemberController {
 				
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		mq.setFormatWriteDate(df.format(mq.getWriteDate()));
-		
 		mv.addObject("mq",mq);
+		
+		try {
+			MemberQnaReview mqr = service.selectMemberQnaReview(no);
+			// 답변 날짜 포맷
+			mqr.setFormatWriteDate(df.format(mqr.getWriteDate()));
+			mv.addObject("mqr", mqr);
+		} catch(NullPointerException e) {
+			e.printStackTrace();
+		}
+		
 		mv.setViewName("customer/detailQna");
 		return mv;
 		

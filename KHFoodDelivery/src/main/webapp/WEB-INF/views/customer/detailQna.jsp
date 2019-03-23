@@ -58,8 +58,24 @@
 			</div>
 			<div class="col-sm-2 back"></div>
 		</div>
-		</div>
-		</section>
+		<c:if test="${!empty mqr}">
+			<hr/>		
+			<div class="row">
+				<div class="col-sm-1">
+					<p><b>관리자</b></p>
+				</div>
+				<div class="col-sm-9">
+					<p>${mqr.formatWriteDate }</p>
+				</div>				
+				<div class="col-sm-2">
+				</div>
+				<div class="col-sm-12">
+					<p>${mqr.reviewContext }</p>
+				</div>
+			</div>
+		</c:if>
+	</div>
+</section>
 	
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
