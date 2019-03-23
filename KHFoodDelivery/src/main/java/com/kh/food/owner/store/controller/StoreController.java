@@ -35,8 +35,8 @@ public class StoreController {
 	}
 	
 	@RequestMapping("/owner/storeFormEnd.do")
-	public ModelAndView storeFormEnd(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, String businessName, String businessPhone, String businessNum, 
-			String storeCategory, String storeName, String storePhone, String frontAddress, String backAddress, int minPrice, String storeProfile,String deliveryPrice ,MultipartFile storeImage,
+	public ModelAndView storeFormEnd(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, String businessName, String frontPhone, String middlePhone, String finalPhone, String frontBusinessNum, String middleBusinessNum, String finalBusinessNum,
+			String storeCategory, String storeName, String frontStorePhone, String middleStorePhone, String finalStorePhone, String frontAddress, String backAddress, int minPrice, String storeProfile,String deliveryPrice ,MultipartFile storeImage,
 			String lat, String lng) {
 			Map<String,Object> store=new HashMap<String,Object>();
 			String ownerId=(String) request.getSession().getAttribute("ownerId");
@@ -45,6 +45,9 @@ public class StoreController {
 			BigDecimal lng1 = new BigDecimal(lng);
 			System.out.println("" + lat1);
 			System.out.println("" + lng1);
+			String businessPhone=frontPhone+"-"+middlePhone+"-"+finalPhone;
+			String businessNum=frontBusinessNum+"-"+middleBusinessNum+"-"+finalBusinessNum;
+			String storePhone=frontStorePhone+"-"+middleStorePhone+"-"+finalStorePhone;
 			store.put("ownerId", ownerId);
 			store.put("businessNum", businessNum);
 			store.put("businessName", businessName);
