@@ -182,6 +182,19 @@ $('#result').text(result);
     </div>
 </form>
 <script>
+history.pushState(null, null, location.href);
+window.onpopstate = function () {
+	var replay=1;
+	var businessRe=${businessCode};
+	$.ajax({
+		type:"POST",
+		url:"${path}/customer/menuInfo.do",
+		data:{"replay":replay, "businessCode":businessCode},
+		success: function(data){
+		}
+	});
+		history.go(-1);
+};
 $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디쓸것
 	var payRequest=$('#payRequest').val();
 	console.log(payRequest);

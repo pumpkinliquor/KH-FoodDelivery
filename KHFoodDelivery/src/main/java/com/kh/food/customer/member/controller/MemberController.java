@@ -531,7 +531,7 @@ public class MemberController {
 
 	
 	@RequestMapping("/customer/menuInfo.do")
-	public ModelAndView infoMenu(HttpServletRequest request, ModelAndView mv,int businessCode)
+	public ModelAndView infoMenu(HttpServletRequest request, ModelAndView mv,int businessCode, @RequestParam(value="replay", required=false, defaultValue="0") int replay) 
 	{
 		String memberId=(String) request.getSession().getAttribute("logined");
 		Map<String, Object> maps=new HashMap<>();
@@ -540,8 +540,10 @@ public class MemberController {
 		List<Store> list=service.menuInfo(businessCode);
 		List<WishList> wishList=service.selectWishList(maps);
 		List<WishList> callPrice=service.plusPrice(maps);
-		
-		
+		int repl=0;
+		if(replay==1) {
+			repl=replay;
+		}
 		int reviewAvg = service.reviewAvg(businessCode);
 		
 		String storeP =service.storeP(businessCode);
@@ -554,6 +556,7 @@ public class MemberController {
 			resultPrice+=callPrice.get(i).getPlusMenuPrice();
 		}
 		System.out.println("reviewAvg : " + reviewAvg);
+		mv.addObject("repl", repl);
 		mv.addObject("storeP",storeP);
 		mv.addObject("mark", mark);
 		mv.addObject("minPrice", minPrice);

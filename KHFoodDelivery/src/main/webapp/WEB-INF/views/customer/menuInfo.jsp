@@ -5,7 +5,6 @@
    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>   
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/WEB-INF/views/common/searchHeader.jsp"/>
-
 <style>
 .restaurant-info{
     background-color: white;
@@ -209,6 +208,7 @@ margin:0;
     cursor: pointer;
 }
 
+
 </style>
  <script>
 /*  var backWishList=${backWish};
@@ -217,6 +217,10 @@ margin:0;
 			alert('장바구니에 담긴 메뉴가 초기화 되었습니다.');
 		});
 	} */
+	var repl=${repl};
+	if(repl==1){
+		location.reload();
+	}
 	history.pushState(null, null, location.href);
     window.onpopstate = function () {
     	$.ajax({
@@ -310,12 +314,17 @@ margin:0;
            });
           
        });
-       
-       
 	setInterval(function() {
 		$('#mark1').click(function(){
-		var markState=1;
-		var businessCode=${businessCode};
+			/* toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 1800
+            };
+            toastr.warning('찜 성공'); */
+			var markState=1;
+			var businessCode=${businessCode};
 			$.ajax({
 			type:"POST",
 			url:"${path}/store/markStore.do?markState="+markState+"&businessCode="+businessCode,
@@ -330,8 +339,15 @@ margin:0;
 			});
 		});
 		$('#mark2').click(function(){
-		var markState=0;
-		var businessCode=${businessCode};
+			/* toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 1800
+            };
+            toastr.warning('찜 실패'); */
+			var markState=0;
+			var businessCode=${businessCode};
 			$.ajax({
 			type:"POST",
 			url:"${path}/store/markStore.do?markState="+markState+"&businessCode="+businessCode,
@@ -346,10 +362,6 @@ margin:0;
 			});
 		});
 	}, 600);
-       
-
-       
-   
  </script>
  
     <div class="container">
