@@ -227,7 +227,7 @@ div#map{visibility: hidden;}
  
  </script>
 
-
+ <!-- <div id="map" style="width:0.1px;height:0.1px;"></div>   -->
        
       <div class="newsletter">
               <div id="hd container">             
@@ -279,7 +279,7 @@ div#map{visibility: hidden;}
                        </form>
               </div>
               </div>
-               <div id="map" style="width:300px;height:300px; position:relative;"></div>
+               
      </div>
   
                
