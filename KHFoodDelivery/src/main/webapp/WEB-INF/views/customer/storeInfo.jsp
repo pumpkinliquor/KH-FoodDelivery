@@ -58,6 +58,7 @@
         <div class="info-item-title">사업자정보</div>
         <p><i>상호명</i> <span class="tc ng-binding">${storeList.storeName}</span></p>
         <p><i>사업자등록번호</i> <span class="tc ng-binding">${storeList.businessNum}</span></p>
+        <p><i>주소</i> <span class="tc ng-binding">${storeList.storeAddress}</span></p>
       </div>
 
       
