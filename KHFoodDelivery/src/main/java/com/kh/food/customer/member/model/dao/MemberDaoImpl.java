@@ -30,6 +30,17 @@ public class MemberDaoImpl implements MemberDao {
 
 	
 	@Override
+	public int reviewCount(int businessCode) {
+		
+		return sqlSession.selectOne("member.reviewCount",businessCode);
+	}
+	@Override
+	public int ownerReviewCount(int businessCode) {
+		
+		return sqlSession.selectOne("member.ownerReviewCount",businessCode);
+	}
+	
+	@Override
 	public Store storeList(int businessCode) {
 		
 		return sqlSession.selectOne("store.storeList",businessCode);

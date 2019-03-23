@@ -69,7 +69,8 @@ public interface MemberService {
 	int kakaoEnrollEnd(Member m);
 	String storeP(int businessCode);
 	List<OwnerReview> selectOwnerRevie(int businessCode);
-	
+	int reviewCount(int businessCode);
+	int ownerReviewCount(int businessCode);
 	
 	// 회원 공지사항
 	List<MemberNotice> selectMemberNotice(int cPage,int numPerPage);
