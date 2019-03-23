@@ -49,6 +49,10 @@
 		DELETE FROM WISHLIST WHERE MENUCODE=#{menuCode}
 	</delete>
 	
+	<select id="menuCount" parameterType="map" resultType="_int">
+		SELECT COUNT(*) FROM MENU WHERE BUSINESSCODE=#{businessCode}
+	</select>
+	
 	<select id="plusPrice" parameterType="map" resultType="wishList">
 		SELECT * FROM WISHLIST WHERE BUSINESSCODE=#{businessCode} AND MEMBERID=#{memberId}
 	</select>

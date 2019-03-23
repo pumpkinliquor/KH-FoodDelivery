@@ -71,6 +71,7 @@ public interface MemberService {
 	List<OwnerReview> selectOwnerRevie(int businessCode);
 	int reviewCount(int businessCode);
 	int ownerReviewCount(int businessCode);
+	int menuCount(Map<String,Object> maps);
 	
 	// 회원 공지사항
 	List<MemberNotice> selectMemberNotice(int cPage,int numPerPage);
