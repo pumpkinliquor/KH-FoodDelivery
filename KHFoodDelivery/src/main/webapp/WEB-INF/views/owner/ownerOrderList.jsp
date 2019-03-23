@@ -82,6 +82,7 @@ pageEncoding="UTF-8"%>
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${price[status.index].price}</td>
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.payOrderMethod}</td>							
 								<td>
+								<c:if test="${o.orderState ne 4 }">
 								<c:if test="${o.orderState eq 1 }">
 								<button id="state1"  value="1" onclick="fn_state(${o.payOrderNum},this)" class="btn btn-default statusBtn trueBtn">주문접수</button>
 								</c:if>
@@ -105,6 +106,13 @@ pageEncoding="UTF-8"%>
 								</c:if>
 								<c:if test="${o.orderState ne 4 }">
 								<button id="state4" value="4" class="btn btn-default statusBtn notBtn" onclick="fn_state1(${o.payOrderNum},this)">주문취소</button>							
+								</c:if>
+								</c:if>
+								<c:if test="${o.orderState eq 4 }">
+								<button id="state1"  value="1" onclick="fn_state(${o.payOrderNum},this)" class="btn btn-default statusBtn notBtn" disabled="disabled">주문접수</button>			
+								<button id="state2" value="2" class="btn btn-default statusBtn notBtn" onclick="fn_state(${o.payOrderNum},this)" disabled="disabled">배달중</button>			
+								<button id="state3" value="3" class="btn btn-default statusBtn notBtn" onclick="fn_state(${o.payOrderNum},this)" disabled="disabled">배달완료</button>
+								<button id="state4" value="4" class="btn btn-default statusBtn trueBtn" onclick="fn_state1(${o.payOrderNum},this)" disabled="disabled">주문취소</button>							
 								</c:if>
 								</td>
 							</tr>
@@ -173,7 +181,7 @@ pageEncoding="UTF-8"%>
                                                 <tbody>                  
                                                     <tr style="cursor:pointer;">
                                                         <td width="30%" >배달주소</td>                                                 
-                                                        <td width="70%"></td>
+                                                        <td class="memberAddress" width="70%"></td>
                                                     </tr>
                                                     <tr style="cursor:pointer;">
                                                         <td width="30%" >전화번호</td>                                                 
@@ -224,38 +232,15 @@ function fn_state1(payOrderNum,e)
 					{
 							if(data==1)
 							{
-								$(e).css("color","red");
-								if(orderState == 1)
+								if(orderState == 4)
 									{
-										$(e).css("color","red");
-										$(e).next().css("color","black");
-										$(e).next().next().css("color","black");
-										$(e).next().next().next().css("color","black");
-										
-									
-									}
-								else if(orderState == 2)
-									{
-										$(e).css("color","red");
-										$(e).prev().css("color","black");
-										$(e).next().css("color","black");
-										$(e).next().next().css("color","black");
-									}
-								else if(orderState == 3)
-									{
-										$(e).css("color","red");
-										$(e).prev().css("color","black");
-										$(e).prev().prev().css("color","black");
-										$(e).next().css("color","black");
-									}
-								else
-									{
-									$(e).css("color","red");
-									$(e).prev().css("color","black");
-									$(e).prev().prev().css("color","black");
-									$(e).prev().prev().prev().css("color","black");
+									$(e).css("color","red").attr("disabled",true).attr("readonly",false);
+									$(e).prev().css("color","black").attr("disabled",true).attr("readonly",false);
+									$(e).prev().prev().css("color","black").attr("disabled",true).attr("readonly",false);
+									$(e).prev().prev().prev().css("color","black").attr("disabled",true).attr("readonly",false);									
 									}
 								alert("주문취소를 하셨습니다.");
+								
 							}
 							else
 							{
@@ -292,6 +277,7 @@ function fn_detailOrder(payOrderNum){
 				$('.orderDate').text(data[0].PAYDATE);
 				$('.orderRequest').text(data[0].PAYREQUEST);
 				$('.memberPhone').text(data[0].MEMBERPHONE);
+				$('.memberAddress').text(data[0].PAYADDRESS)
 				var html = "";
 				var sum = "";
 				for(var i=0; i<data.length; i++)
@@ -358,19 +344,12 @@ function fn_detailOrder(payOrderNum){
 								$(e).next().css("color","black");
 								$(e).next().next().css("color","black");
 							}
-						else if(orderState == 3)
+						else
 							{
 								$(e).css("color","red");
 								$(e).prev().css("color","black");
 								$(e).prev().prev().css("color","black");
 								$(e).next().css("color","black");
-							}
-						else
-							{
-							$(e).css("color","red");
-							$(e).prev().css("color","black");
-							$(e).prev().prev().css("color","black");
-							$(e).prev().prev().prev().css("color","black");
 							}
 						
 					}
