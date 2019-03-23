@@ -446,7 +446,7 @@ margin:0;
                     <span id="hehe" style="color: #666;">${storeP }...</span>
                 </div>
             
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 8px;">
                     <ul class="navbar-nav mr-aurto">
                         <li class="nav-item active">
                             <a class="nav-link" id="menuList">메뉴 <span>35</span></a>
