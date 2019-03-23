@@ -457,10 +457,10 @@ margin:0;
                 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 8px;">
                     <ul class="navbar-nav mr-aurto">
                         <li class="nav-item active">
-                            <a class="nav-link" id="menuList">메뉴 <span>35</span></a>
+                            <a class="nav-link" id="menuList">메뉴 <span>${menuCount }</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" id="menuReview" >리뷰 <span>55</span></a>
+                            <a class="nav-link" id="menuReview" >리뷰 <span>${reviewAvg }</span></a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" id="storeInfo">정보</a>

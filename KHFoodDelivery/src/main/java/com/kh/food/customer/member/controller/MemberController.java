@@ -545,6 +545,8 @@ public class MemberController {
 		
 		String storeP =service.storeP(businessCode);
 		
+		int menuCount=service.menuCount(maps);
+		
 		System.out.println("storeP : " + storeP);
 		Mark mark = service.isMark(maps);
 		Store minPrice=service.minPrice(businessCode);
@@ -553,6 +555,7 @@ public class MemberController {
 			resultPrice+=callPrice.get(i).getPlusMenuPrice();
 		}
 		System.out.println("reviewAvg : " + reviewAvg);
+		mv.addObject("menuCount", menuCount);
 		mv.addObject("storeP",storeP);
 		mv.addObject("mark", mark);
 		mv.addObject("minPrice", minPrice);
