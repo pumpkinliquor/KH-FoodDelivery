@@ -377,7 +377,7 @@ margin:0;
                         <div class="logo"><img class="mainlogo" src="${path }/resources/upload/owner/storeMainImage/${i.storeImage }" /></div>
                         <ul class="list">
                             <li>별점
-                            
+                            			<c:if test="${!empty reviewAvg }">
                             			<c:if test="${reviewAvg==1 }">
 						             		<a class="star_rating">
 										        <span class="on">★</span>
@@ -421,6 +421,16 @@ margin:0;
 										        <span class="on">★</span>
 										        <span class="on">★</span>
 										        <span class="on">★</span>
+						    				</a>
+						             	</c:if>
+						             	</c:if>
+						             	<c:if test="${reviewAvg==0}">
+						             		<a class="star_rating">
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
 						    				</a>
 						             	</c:if>
 						   </li>	

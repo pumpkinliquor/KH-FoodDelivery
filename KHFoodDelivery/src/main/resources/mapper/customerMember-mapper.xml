@@ -179,6 +179,6 @@
 	</insert>
 	
 	<select id="reviewAvg" parameterType="_int" resultType="_int"> 
-		select round(avg(grade),1) from review where businesscode=#{businessCode}
+		select nvl(avg(grade),0) from review where businesscode=#{businessCode}
 	</select>
 </mapper>

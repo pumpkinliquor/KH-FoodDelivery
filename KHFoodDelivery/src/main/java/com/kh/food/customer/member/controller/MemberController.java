@@ -180,7 +180,7 @@ public class MemberController {
 		orList.put("menucode",menucode);
 		
 		Map<String,String>orList1=service.orderOne(orList);
-		System.out.println(orList1);
+		System.out.println("orList : "+orList1);
 		
 
 		
@@ -541,7 +541,10 @@ public class MemberController {
 		List<Store> list=service.menuInfo(businessCode);
 		List<WishList> wishList=service.selectWishList(maps);
 		List<WishList> callPrice=service.plusPrice(maps);
+		
+		
 		int reviewAvg = service.reviewAvg(businessCode);
+		
 		String storeP =service.storeP(businessCode);
 		
 		System.out.println("storeP : " + storeP);
