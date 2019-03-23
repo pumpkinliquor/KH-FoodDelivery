@@ -41,6 +41,15 @@ text-align: center
         			${reviewAvg }
         		</strong>
         		<span class="star-point">
+        		<c:if test="${reviewAvg==0 }">
+						             		<a class="star_rating">
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+										        <span class="off">★</span>
+						    				</a>
+						             	</c:if>
         			<c:if test="${reviewAvg==1 }">
 						             		<a class="star_rating">
 										        <span class="on">★</span>
