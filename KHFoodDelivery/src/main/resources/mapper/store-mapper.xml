@@ -11,7 +11,10 @@
 	<select id="selectAppStoreList" resultType="store">
 		SELECT * FROM STORE WHERE isConfirm = 0 ORDER BY appDate DESC
 	</select>
+	<select id="storeList" parameterType="_int" resultType="store">
+		select * from store where businesscode=#{businessCode}
 	
+	</select>
 	<!-- 입점 신청 store 모달 띄우기 -->
 	<select id="selectAppStore" resultType="store" parameterType="_int">
 		SELECT * FROM STORE WHERE businessCode = #{no}
