@@ -4,21 +4,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <title>Insert title here</title>
 </head>
+<style>
+#errorContainer{
+	vertical-align: middle;
+	text-align: center;
+	margin-top:auto;
+	margin-bottom:auto;
+}
+</style>
 <body>
 <section>
-<!-- 프로젝트 완성하면 에러 이유 지울것임 -->
-      <div class="container"> 
+      <div class="container" id="errorContainer">
+      <br><br><br><br><br> <br><br> <br><br> 
          <div class="col-md-12">
-            <img src="${pageContext.request.contextPath }/resources/images/errorImage.png" style="width:300px; height:300px;">
-              <br>
-              <br>
-              
-              <h3>당신의 에러는</h3><h1><%=exception.getMessage()%></h1>
-              <h3><a href="${pageContext.request.contextPath }/">에러페이지만드는중 메인 페이지 이동</a></h3>   
+            <img src="${pageContext.request.contextPath }/resources/images/error.png">
+              <br><br><br>
+              <h3><a href="${pageContext.request.contextPath }/">홈</a> &nbsp;&nbsp; 
+              <a href="#" onClick="history.back()">이전 페이지</a></h3> 
         </div>
       </div>
   </section>
+
 </body>
 </html>
