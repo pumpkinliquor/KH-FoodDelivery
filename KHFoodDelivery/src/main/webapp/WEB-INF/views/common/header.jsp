@@ -12,8 +12,8 @@
 %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+
+<!DOCTYPE html>
 <head>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -25,7 +25,7 @@
 <title>Insert title here</title>
 </head>
 <style>
-div#map{visibility: hidden;}
+ div#map{visibility: hidden;} 
 </style>
 
 <body>
@@ -48,7 +48,6 @@ div#map{visibility: hidden;}
                     navigator.geolocation.getCurrentPosition(function(position) {
                     var latitude = position.coords.latitude;
                     var longitude = position.coords.longitude;
-
                     var coords = new daum.maps.LatLng(latitude);
                     var coords1 = new daum.maps.LatLng(longitude); 
                     
@@ -59,7 +58,7 @@ div#map{visibility: hidden;}
 
                     console.log(coords1.jb);//경도
 
-
+                   
 
 
                    
@@ -227,11 +226,11 @@ div#map{visibility: hidden;}
  
  </script>
 
-
+    <div id="map" style="width:0.1px;height:0.1px;"></div>    
        
-      <div class="newsletter">
+      <div class="newsletter" style="margin-bottom:50px">  
               <div id="hd container">             
-              <div class="row" style="margin:0;">           
+              <div class="row">          
               <div class="col-sm-12 headerDiv2">
             <div class="headerDiv1">
              <c:if test="${sessionScope.logined==null }">
@@ -240,6 +239,7 @@ div#map{visibility: hidden;}
                  
             </c:if> 
              <c:if test="${sessionScope.logined!=null}">
+             	<a href="${path }/customer/logout.do">로그아웃</a>
              	<c:choose>
              		<c:when test="${sessionScope.isAdmin == 1 }">             	
              			<a href="${path}/admin/adminMain.do">관리자 페이지</a>
@@ -248,7 +248,6 @@ div#map{visibility: hidden;}
              			<a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
              		</c:otherwise>
              	</c:choose>
-             	<a href="${path }/customer/logout.do">로그아웃</a>
             </c:if> 
       
             
@@ -263,7 +262,7 @@ div#map{visibility: hidden;}
                   <div class="content">
                   <div class="input-group">
                        <button type="button"id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
-                    <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="${sessionScope.myAddr }" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요" readonly/>
+                    <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="${sessionScope.myAddr }" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요" readonly />
                        <span class="input-group-btn">
                        	<input type="hidden" value="전체" name="category"/>
  						<input type="hidden" value="${sessionScope.lat }" name="lat" id="lat"/>
@@ -278,9 +277,10 @@ div#map{visibility: hidden;}
 
                        </form>
               </div>
-              </div>
-               <div id="map" style="width:300px;height:300px; position:relative;"></div>
-     </div>
+             </div> 
+               
+      </div> 
+    
   
                
               

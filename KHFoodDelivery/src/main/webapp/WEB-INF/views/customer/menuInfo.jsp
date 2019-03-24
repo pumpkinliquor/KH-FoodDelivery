@@ -177,12 +177,6 @@
  cursor:pointer;
  
 }
-.onMark{
-	color: #FF0000;
-}
-.offMark{
-	color:#ccc;
-}
 .star_rating {font-size:0; letter-spacing:-4px;}
 .star_rating span{
     font-size:22px;
@@ -197,8 +191,6 @@ color:#ccc;
  font-size:18px;
  margin:0;
 }
-
-
 .star_rating span.on 
 {color:crimson;
 font-size:18px;
@@ -328,7 +320,7 @@ margin:0;
 			success: function(data){
 				console.log(data.markState);
 				var h="<a style='cursor:pointer; float:right;' id='mark2'>";
-				h+="<span id='mark' class='onMark'>♥</span>";
+				h+="<span id='mark' class='onMark'><img src='${path}/resources/images/owner/icons/1.png' width=28px/></span>";
 				h+="</a>";
 				$('#markList').html(h);
 			}
@@ -351,7 +343,7 @@ margin:0;
 			success: function(data){
 				console.log(data.markState);
 				var h="<a style='cursor:pointer; float:right;' id='mark1'>";
-				h+="<span id='mark' class='offMark'>♥</span>";
+				h+="<span id='mark' class='offMark'><img src='${path}/resources/images/owner/icons/0.png' width=28px/></span>";
 				h+="</a>";
 				$('#markList').html(h);
 			}
@@ -361,27 +353,27 @@ margin:0;
  </script>
  
     <div class="container">
-        <div class="row justify-content-start" style="padding-top:180px">
+        <div class="row justify-content-start">
            
            <c:forEach items="${list}" var="i" >
             <div class="col-sm-8">
                 <div class="restaurant-info">
                     <div class="restaurant-title">
-                        <span id="storeName">${i.storeName }</span>
-                        <span id="markList">
+                        <span id="storeName" style="text-align:left;">${i.storeName }</span>
+                        <span id="markList" style="float:right;">
 				    	 <c:if test='${mark.markState==1}'>
-                         <a style='cursor:pointer; float:right;' id='mark2'>
-				    	 <span id='mark' class='onMark'>♥</span>
+                         <a style='cursor:pointer;' id='mark2'>
+				    	 <span id='mark' class='onMark'><img src='${path}/resources/images/owner/icons/1.png' width=28px/></span>
 				    	 </a>
 				    	 </c:if>
 				    	 <c:if test='${mark.markState==0||mark.markState==null}'>
-				    	 <a style='cursor:pointer; float:right;' id='mark1'>
-				    	 <span id='mark' class='offMark'>♥</span>
+				    	 <a style='cursor:pointer;' id='mark1'>
+				    	 <span id='mark' class='offMark'><img src='${path}/resources/images/owner/icons/0.png' width=28px/></span>
 				    	 </a>
 				    	 </c:if>
 				    	 </span>
                     </div>
-                    <div class="restaurant-content">
+                    <div class="restaurant-content" style="clear:both;">
                         <div class="logo"><img class="mainlogo" src="${path }/resources/upload/owner/storeMainImage/${i.storeImage }" /></div>
                         <ul class="list">
                             <li>별점

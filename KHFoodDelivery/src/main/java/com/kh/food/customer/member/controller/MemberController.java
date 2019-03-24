@@ -487,6 +487,9 @@ public class MemberController {
 		mv.addObject("popularityMenu", popularityMenu);
 		mv.addObject("categoryList", menuCategory);
 		mv.setViewName("customer/menuList");
+		for(int i=0; i<menuCategory.size(); i++) {
+			System.out.println(menuCategory.get(i));
+		}
 		return mv;
 	}
 	@RequestMapping("/customer/menuListEnd.do")
@@ -741,7 +744,7 @@ public class MemberController {
 									@RequestParam(value="lng", defaultValue="1")String lng,
 									HttpServletRequest request) {			
 			ModelAndView mv=new ModelAndView();
-
+		
 			
 			if(category.equals("전체")) {
 				session.setAttribute("myAddr", myAddr);

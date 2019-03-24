@@ -9,7 +9,8 @@ pageEncoding="UTF-8"%>
 <style>
 	/* Bootstrap 수정 */
     .table > thead {
-      background-color: rgb(253, 238, 238);
+      background-color: grey;
+      color:white;
     }
     .table > thead > tr > th {
       text-align: center;
@@ -154,7 +155,7 @@ pageEncoding="UTF-8"%>
 					    </div>
 				    </div>
 					<table class="table table-bordered">
-						<thead style="cursor:pointer;" onclick="location.href='${path}owner/ownerNoticeListOwnerView.do'">
+						<thead style="cursor:pointer;" onclick="location.href='${path}/owner/ownerNoticeListOwnerView.do'">
 							<tr>
 								<th width="11%">번호</th>
 								<th width="65%">제목</th>

@@ -67,5 +67,6 @@ function validate123(){
 		</form>
 	</div>
 </div>
+
 </section>
 <jsp:include page="/WEB-INF/views/common/ownerFooter.jsp"></jsp:include>
