@@ -262,7 +262,7 @@ div.newsletter,div.group{display:inline-block;}
               </div>
               <form action="${path}/customer/searchmenuView" onsubmit="return locationSearchStore()" method="post">
                     <div class="content1">
-                       <h2 onclick="mainpage();" style="cursor: pointer"><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></h2>
+                       <h2><span onclick="mainpage();" style="cursor: pointer"><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></span></h2>
                     </div>
                 </div>
              <div class="col-sm-12">
