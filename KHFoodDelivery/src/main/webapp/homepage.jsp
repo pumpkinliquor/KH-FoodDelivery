@@ -191,14 +191,14 @@ color:white;
 	        <div class="col">
 	        <div class="counter">
       <i class="fa fa-code fa-2x"></i>
-      <h2 class="timer count-title count-number" data-to="100" data-speed="1500"></h2>
+      <h2 class="timer count-title count-number" data-to="28" data-speed="1500"></h2>
        <p class="count-text ">간신배 가입된 회원 수</p>
     </div>
 	        </div>
               <div class="col">
                <div class="counter">
       <i class="fa fa-coffee fa-2x"></i>
-      <h2 class="timer count-title count-number" data-to="1300" data-speed="1500"></h2>
+      <h2 class="timer count-title count-number" data-to="35" data-speed="1500"></h2>
       <!-- data-to에 카운트들고오면 됨 -->
       <p class="count-text ">간신배 가입된 사장님 수</p>
     </div>
@@ -207,14 +207,15 @@ color:white;
                   <div class="counter">
       <i class="fa fa-lightbulb-o fa-2x"></i>
       <h2 class="timer count-title count-number" data-to="11900" data-speed="1500"></h2>
-      <p class="count-text ">총 주문 수</p>
+      <p class="count-text ">오늘 주문 수</p>
     </div></div>
-              <!-- <div class="col">
-              <div class="counter">
-      <i class="fa fa-bug fa-2x"></i>
-      <h2 class="timer count-title count-number" data-to="157" data-speed="1500"></h2>
-      <p class="count-text ">Coffee With Clients</p>
-    </div>
-              </div> -->
+<!--     select count(*) as todayOrderCount
+from(select 
+row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest
+from pay) p
+JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM)
+JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE)
+where rnum = 1 and TO_CHAR(paydate, 'YY/MM/DD') = TO_CHAR(SYSDATE, 'YY/MM/DD'); -->
+   
          </div>
 </div>
