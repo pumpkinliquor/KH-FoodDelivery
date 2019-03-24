@@ -44,6 +44,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.qna.model.vo.MemberQnaReview;
 import com.kh.food.review.model.vo.Review;
 
 @Controller
@@ -160,8 +161,17 @@ public class MemberController {
 				
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		mq.setFormatWriteDate(df.format(mq.getWriteDate()));
-		
 		mv.addObject("mq",mq);
+		
+		try {
+			MemberQnaReview mqr = service.selectMemberQnaReview(no);
+			// 답변 날짜 포맷
+			mqr.setFormatWriteDate(df.format(mqr.getWriteDate()));
+			mv.addObject("mqr", mqr);
+		} catch(NullPointerException e) {
+			e.printStackTrace();
+		}
+		
 		mv.setViewName("customer/detailQna");
 		return mv;
 		
@@ -487,6 +497,9 @@ public class MemberController {
 		mv.addObject("popularityMenu", popularityMenu);
 		mv.addObject("categoryList", menuCategory);
 		mv.setViewName("customer/menuList");
+		for(int i=0; i<menuCategory.size(); i++) {
+			System.out.println(menuCategory.get(i));
+		}
 		return mv;
 	}
 	@RequestMapping("/customer/menuListEnd.do")
@@ -532,7 +545,7 @@ public class MemberController {
 
 	
 	@RequestMapping("/customer/menuInfo.do")
-	public ModelAndView infoMenu(HttpServletRequest request, ModelAndView mv,int businessCode)
+	public ModelAndView infoMenu(HttpServletRequest request, ModelAndView mv,int businessCode) 
 	{
 		String memberId=(String) request.getSession().getAttribute("logined");
 		Map<String, Object> maps=new HashMap<>();
@@ -541,11 +554,11 @@ public class MemberController {
 		List<Store> list=service.menuInfo(businessCode);
 		List<WishList> wishList=service.selectWishList(maps);
 		List<WishList> callPrice=service.plusPrice(maps);
-		
-		
 		int reviewAvg = service.reviewAvg(businessCode);
 		
 		String storeP =service.storeP(businessCode);
+		
+		int menuCount=service.menuCount(maps);
 		
 		System.out.println("storeP : " + storeP);
 		Mark mark = service.isMark(maps);
@@ -555,6 +568,7 @@ public class MemberController {
 			resultPrice+=callPrice.get(i).getPlusMenuPrice();
 		}
 		System.out.println("reviewAvg : " + reviewAvg);
+		mv.addObject("menuCount", menuCount);
 		mv.addObject("storeP",storeP);
 		mv.addObject("mark", mark);
 		mv.addObject("minPrice", minPrice);
@@ -740,7 +754,7 @@ public class MemberController {
 									@RequestParam(value="lng", defaultValue="1")String lng,
 									HttpServletRequest request) {			
 			ModelAndView mv=new ModelAndView();
-
+		
 			
 			if(category.equals("전체")) {
 				session.setAttribute("myAddr", myAddr);

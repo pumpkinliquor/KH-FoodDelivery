@@ -131,7 +131,7 @@ function memberQnA(){
                             <li><a href="${path }/customer/memberNoticeList.do"><i class="fa fa-angle-double-right"></i>공지사항</a></li>
                             <%-- <li><a href="${path }"><i class="fa fa-angle-double-right"></i>1:1문의</a></li>
                             <li><a href="${path }/admin/memberNoticeList.do"><i class="fa fa-angle-double-right"></i>공지사항</a></li> --%>
-                            <li><a onclick="memberQnA();"><i class="fa fa-angle-double-right"></i>1:1문의</a></li>
+                            <li><a onclick="memberQnA();" style="cursor:pointer;"><i class="fa fa-angle-double-right"></i>1:1문의</a></li>
 
                         </ul>
 

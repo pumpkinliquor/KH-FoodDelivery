@@ -5,7 +5,6 @@
    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>   
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/WEB-INF/views/common/searchHeader.jsp"/>
-
 <style>
 .restaurant-info{
     background-color: white;
@@ -178,12 +177,6 @@
  cursor:pointer;
  
 }
-.onMark{
-	color: #FF0000;
-}
-.offMark{
-	color:#ccc;
-}
 .star_rating {font-size:0; letter-spacing:-4px;}
 .star_rating span{
     font-size:22px;
@@ -198,8 +191,6 @@ color:#ccc;
  font-size:18px;
  margin:0;
 }
-
-
 .star_rating span.on 
 {color:crimson;
 font-size:18px;
@@ -208,6 +199,7 @@ margin:0;
 .owner_massage{
     cursor: pointer;
 }
+
 
 </style>
  <script>
@@ -310,12 +302,17 @@ margin:0;
            });
           
        });
-       
-       
 	setInterval(function() {
 		$('#mark1').click(function(){
-		var markState=1;
-		var businessCode=${businessCode};
+			/* toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 1800
+            };
+            toastr.warning('찜 성공'); */
+			var markState=1;
+			var businessCode=${businessCode};
 			$.ajax({
 			type:"POST",
 			url:"${path}/store/markStore.do?markState="+markState+"&businessCode="+businessCode,
@@ -323,15 +320,22 @@ margin:0;
 			success: function(data){
 				console.log(data.markState);
 				var h="<a style='cursor:pointer; float:right;' id='mark2'>";
-				h+="<span id='mark' class='onMark'>♥</span>";
+				h+="<span id='mark' class='onMark'><img src='${path}/resources/images/owner/icons/1.png' width=28px/></span>";
 				h+="</a>";
 				$('#markList').html(h);
 			}
 			});
 		});
 		$('#mark2').click(function(){
-		var markState=0;
-		var businessCode=${businessCode};
+			/* toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 1800
+            };
+            toastr.warning('찜 실패'); */
+			var markState=0;
+			var businessCode=${businessCode};
 			$.ajax({
 			type:"POST",
 			url:"${path}/store/markStore.do?markState="+markState+"&businessCode="+businessCode,
@@ -339,41 +343,48 @@ margin:0;
 			success: function(data){
 				console.log(data.markState);
 				var h="<a style='cursor:pointer; float:right;' id='mark1'>";
-				h+="<span id='mark' class='offMark'>♥</span>";
+				h+="<span id='mark' class='offMark'><img src='${path}/resources/images/owner/icons/0.png' width=28px/></span>";
 				h+="</a>";
 				$('#markList').html(h);
 			}
 			});
 		});
 	}, 600);
-       
-
-       
-   
+	
+   	//최저금액보다 낮을 때 주문막기
+   	function check() {
+   		var minPrice=${minPrice.minPrice};
+   		var resultPrice=${resultPrice};
+   		if(minPrice > resultPrice ) {
+   			alert("최소 주문금액(${minPrice.minPrice}원)에 맞게 주문해주세요.");
+   			return false;
+   		}
+   		else return true;
+   	}
  </script>
  
     <div class="container">
-        <div class="row justify-content-start" style="padding-top:180px">
+        <div class="row justify-content-start">
            
            <c:forEach items="${list}" var="i" >
             <div class="col-sm-8">
                 <div class="restaurant-info">
                     <div class="restaurant-title">
-                        <span id="storeName">${i.storeName }</span>
-                        <span id="markList">
+                        <span id="storeName" style="text-align:left;">${i.storeName }</span>
+                        <span id="markList" style="float:right;">
 				    	 <c:if test='${mark.markState==1}'>
-                         <a style='cursor:pointer; float:right;' id='mark2'>
-				    	 <span id='mark' class='onMark'>♥</span>
+                         <a style='cursor:pointer;' id='mark2'>
+				    	 <span id='mark' class='onMark'><img src='${path}/resources/images/owner/icons/1.png' width=28px/></span>
 				    	 </a>
 				    	 </c:if>
 				    	 <c:if test='${mark.markState==0||mark.markState==null}'>
-				    	 <a style='cursor:pointer; float:right;' id='mark1'>
-				    	 <span id='mark' class='offMark'>♥</span>
+				    	 <a style='cursor:pointer;' id='mark1'>
+				    	 <span id='mark' class='offMark'><img src='${path}/resources/images/owner/icons/0.png' width=28px/></span>
 				    	 </a>
 				    	 </c:if>
 				    	 </span>
                     </div>
-                    <div class="restaurant-content">
+                    <div class="restaurant-content" style="clear:both;">
                         <div class="logo"><img class="mainlogo" src="${path }/resources/upload/owner/storeMainImage/${i.storeImage }" /></div>
                         <ul class="list">
                             <li>별점
@@ -433,11 +444,10 @@ margin:0;
 										        <span class="off">★</span>
 						    				</a>
 						             	</c:if>
-						   </li>	
+						   </li>
                             <li>최소주문금액 <span>${i.minPrice}원</span></li>
                             <li>배달시간</li>
                             <li>결제방법 <span>신용카드,현금</span></li>
-                        
                         </ul>
                     </div>
                 </div>
@@ -449,10 +459,10 @@ margin:0;
                 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 8px;">
                     <ul class="navbar-nav mr-aurto">
                         <li class="nav-item active">
-                            <a class="nav-link" id="menuList">메뉴 <span>35</span></a>
+                            <a class="nav-link" id="menuList">메뉴 <span>${menuCount }</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" id="menuReview" >리뷰 <span>55</span></a>
+                            <a class="nav-link" id="menuReview" >리뷰 <span>${reviewAvg }</span></a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" id="storeInfo">정보</a>
@@ -555,9 +565,9 @@ margin:0;
 
 
 					<!-- !!!!!!!!!!!!!!!정빈 하는 중!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-                             <form id='businessCodeFrm' action='${path}/customer/pay.do'>
+                             <form id='businessCodeFrm' action='${path}/customer/pay.do' onsubmit="return check();">
                            	<input type='hidden' id='businessCode' name='businessCode' value='${businessCode }'/>
- 							<button class="cart-btn clearfix" id="pay" type="submit" style="clear:both;">
+ 							<button class="cart-btn clearfix" id="pay" type="submit" style="clear:both; width:100%;">
 							주문하기							    
 							</button>
                            </form>

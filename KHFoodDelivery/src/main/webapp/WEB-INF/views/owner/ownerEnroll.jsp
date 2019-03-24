@@ -34,6 +34,7 @@ span.error,span.error1 {
 	var tr = "";
 	var ownerPw = "";
 	var reownerPw = "";
+	
 	// 아이디 중복검사 ajax
 	$(function() {
 		$("#ownerId").keyup(function() {
@@ -41,6 +42,11 @@ span.error,span.error1 {
 			var a = $('#ownerId').val().replace(/ /gi, '');
 	        $('#ownerId').val(a);
 			
+	        var pattern = /[^a-zA-Z0-9]/gi;
+	        if(pattern.test(a)){
+	        	$('#ownerId').val("");
+	        }
+	        
 			var ownerId = $("#ownerId").val().trim();
 			if (ownerId.length < 4) {
 				$(".guide").hide();
@@ -126,7 +132,19 @@ span.error,span.error1 {
 			$(".guide.error1").hide();
 			}
 		});
-
+		
+		
+		$('#ownerName').keyup(function(){
+			var a = $('#ownerName').val().replace(/ /gi, '');
+	        $('#ownerName').val(a);
+	        
+	        var pattern = /[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z]/gi;
+	        if(pattern.test(a)){
+	        	$('#ownerName').val("");
+	        }
+	        
+	        
+		});
 	});
 	
 	// submit 가기전 검사
@@ -186,7 +204,7 @@ span.error,span.error1 {
 										<label for="username" class="col-4 col-form-label">아이디</label>
 										<div class="col-8">
 											<input type="text" id="ownerId" name="ownerId"
-												placeholder="아이디" class="form-control here"
+												placeholder="아이디(한글,특수문자 불가)" class="form-control here"
 												required="required"> <span class="guide ok">이
 												아이디는 사용할 수 있음 </span> <span class="guide error">이 아이디는 사용할 수
 												없음 </span> <input type="hidden" name="checkId" value="0" />
@@ -219,7 +237,7 @@ span.error,span.error1 {
 									<div class="form-group row">
 										<label for="ownerPhone" class="col-4 col-form-label">연락처</label>
 										<div class="col-8">
-											<input type="text" id="ownerPhone" name="ownerPhone"
+											<input type="number" id="ownerPhone" name="ownerPhone"
 												class="form-control here" required="required"
 												placeholder="예)01091634624" maxlength="11">
 										</div>

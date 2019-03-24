@@ -117,9 +117,10 @@ text-align: center
         
         
         </div>
+        
 		<div class="review-count">
 			<div style ="padding: 16px; border-top: 8px solid #fafafa;">
-					리뷰 <strong>${reviewCount }</strong>개·사장님댓글<strong>${ownerReviewCount }</strong>개
+					리뷰 <strong>${reviewCount }</strong>개 · 사장님댓글<strong> ${ownerReviewCount }</strong>개
 			 </div>
 		</div>
 		<c:forEach items="${review}" var="re">

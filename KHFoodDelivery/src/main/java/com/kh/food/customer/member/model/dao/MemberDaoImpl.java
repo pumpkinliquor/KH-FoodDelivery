@@ -18,6 +18,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.qna.model.vo.MemberQnaReview;
 import com.kh.food.review.model.vo.Review;
 
 @Repository
@@ -66,6 +67,10 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList("store.selectOwnerRevie2",businessCode);
 	}
 	
+	@Override
+	public int menuCount(Map<String, Object> maps) {
+		return sqlSession.selectOne("menu.menuCount",maps);
+	}
 	//회원 문의 등록
 	@Override
 	public int addQna(Map<String,Object> map) {
@@ -294,5 +299,11 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Mark isMark(Map<String, Object> maps) {
 		return sqlSession.selectOne("member.selectIsMark", maps);
+	}
+	@Override
+	public MemberQnaReview selectMemberQnaReview(int no) {
+		return sqlSession.selectOne("member.selectMqr", no);
 	}	
+	
+	
 }

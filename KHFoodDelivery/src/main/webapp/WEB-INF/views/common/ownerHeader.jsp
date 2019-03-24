@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -29,6 +29,7 @@
   .headerDiv1 a{
   	color:white;
   }
+   .headerDiv1 a:hover { text-decoration: none;}
 </style>
 <script>
 
@@ -73,7 +74,7 @@
     <!-- Links -->
     <ul class="navbar-nav container ">
       <li class="nav-item" style="margin-left:-20px;font-size:40px">
-      <a class="nav-link" href="${path }/owner/ownerMain.do"><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></a>
+      <a class="nav-link" href="${path }/owner/ownerMain.do" style="cursor:pointer;"><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></a>
     </li>
       <li class="nav-item">
         <a class="nav-link" href="${path }/owner/menuStoreChoice.do?ownerId=${sessionScope.ownerId}">메뉴관리</a>

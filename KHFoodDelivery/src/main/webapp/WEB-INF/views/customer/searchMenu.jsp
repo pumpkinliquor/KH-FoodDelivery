@@ -6,7 +6,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/WEB-INF/views/common/searchHeader.jsp"/>
      <style>
-        div.store{border:1px solid #E4E4E4; background-color:#FFFFFF;position: relative; display:inline-block;margin-bottom:20px; height:250px;}
+        div.store{border:1px solid #E4E4E4; background-color:#FFFFFF;position: relative; display:inline-block;margin-bottom:20px; height:285px;}
         div.store a{text-decoration:none; color:black; text-align:left;}   
         div.me{margin-top:-3%;}  
        body{background-color:#F6F6F6;} 
@@ -19,7 +19,7 @@
      </style>
 
 
-<br/><br/><br/><br/>
+
 <section>
         <div class="me container">
             
@@ -45,7 +45,7 @@
                                 <div class="row rowDiv1">
                                     <label for="username" class="col-6 col-form-label">배달비</label> 
                                     <div class="col-6 menuSearch_Div1">
-                                        <a class="" href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">3000원</a>
+                                        <a class="" href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">${i.deliveryPrice }원</a>
                                     </div>
                                 </div>   
                                 <div class="row rowDiv1">
@@ -71,9 +71,9 @@
                 </div>
                 
        		 </div>
-
+       		        		
     </section>
 
 
-
+ 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

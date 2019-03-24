@@ -62,7 +62,7 @@
 			<tbody>
 				<c:forEach var="on" items="${list }">
 					<tr style="cursor: pointer;"
-						onclick="location.href='${path}/owner/ownerNoticeListOwnerView.do'">
+						onclick="location.href='${path}/owner/ownerNoticeViewOwnerView.do?ownerNoticeNum=${on.OWNERNOTICENUM}'">
 						<td>${on.OWNERNOTICENUM }</td>
 						<td id="noticeTitleId"><a
 							href="${path }/owner/ownerNoticeViewOwnerView.do?ownerNoticeNum=${on.OWNERNOTICENUM}">${on.OWNERNOTICETITLE }</a></td>

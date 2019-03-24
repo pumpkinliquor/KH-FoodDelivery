@@ -49,6 +49,11 @@ public class OrderServiceImpl implements OrderService {
 	public int updateOrderState(Map<String, String> map) {
 		return dao.updateOrderState(map);
 	}
+
+	@Override
+	public Map<String, String> selectPayOne(String payOrderNum) {
+		return dao.selectPayOne(payOrderNum);
+	}
 	
 	
 

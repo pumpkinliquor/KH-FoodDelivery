@@ -12,6 +12,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.qna.model.vo.MemberQnaReview;
 import com.kh.food.review.model.vo.Review;
 
 public interface MemberDao {
@@ -60,6 +61,7 @@ public interface MemberDao {
 	Menu menuSelect(int menuCode);
 	int kakaoEnrollEnd(Member m);
 	List<Review> selectReview(int businessCode);
+	int menuCount(Map<String,Object> maps);
 	// 회원공지사항
 	List<MemberNotice> selectMemberNotice(int cPage,int numPerPage);
 	// 찜 목록
@@ -69,5 +71,5 @@ public interface MemberDao {
 	int reviewAvg(int businessCode);
 	int reviewCount(int businessCode);
 	int ownerReviewCount(int businessCode);
-	
+	MemberQnaReview selectMemberQnaReview(int no);
 }

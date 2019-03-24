@@ -19,6 +19,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.qna.model.vo.MemberQnaReview;
 import com.kh.food.review.model.vo.Review;
 
 @Service
@@ -51,6 +52,11 @@ public class MemberServiceImpl implements MemberService {
 	public String storeP(int businessCode) {
 	
 		return dao.storeP(businessCode);
+	}
+
+	@Override
+	public int menuCount(Map<String, Object> maps) {
+		return dao.menuCount(maps);
 	}
 
 	@Override
@@ -294,6 +300,11 @@ public Store minPrice(int businessCode) {
 	public List<OwnerReview> selectOwnerRevie(int businessCode) {
 		
 		return dao.selectOwnerRevie(businessCode);
+	}
+
+	@Override
+	public MemberQnaReview selectMemberQnaReview(int no) {
+		return dao.selectMemberQnaReview(no);
 	}
 	
 	
