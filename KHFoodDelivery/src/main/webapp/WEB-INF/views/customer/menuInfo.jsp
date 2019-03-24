@@ -350,6 +350,17 @@ margin:0;
 			});
 		});
 	}, 600);
+	
+   	//최저금액보다 낮을 때 주문막기
+   	function check() {
+   		var minPrice=${minPrice.minPrice};
+   		var resultPrice=${resultPrice};
+   		if(minPrice > resultPrice ) {
+   			alert("최소 주문금액(${minPrice.minPrice}원)에 맞게 주문해주세요.");
+   			return false;
+   		}
+   		else return true;
+   	}
  </script>
  
     <div class="container">
@@ -433,11 +444,10 @@ margin:0;
 										        <span class="off">★</span>
 						    				</a>
 						             	</c:if>
-						   </li>	
+						   </li>
                             <li>최소주문금액 <span>${i.minPrice}원</span></li>
                             <li>배달시간</li>
                             <li>결제방법 <span>신용카드,현금</span></li>
-                        
                         </ul>
                     </div>
                 </div>
@@ -555,9 +565,9 @@ margin:0;
 
 
 					<!-- !!!!!!!!!!!!!!!정빈 하는 중!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-                             <form id='businessCodeFrm' action='${path}/customer/pay.do'>
+                             <form id='businessCodeFrm' action='${path}/customer/pay.do' onsubmit="return check();">
                            	<input type='hidden' id='businessCode' name='businessCode' value='${businessCode }'/>
- 							<button class="cart-btn clearfix" id="pay" type="submit" style="clear:both;">
+ 							<button class="cart-btn clearfix" id="pay" type="submit" style="clear:both; width:100%;">
 							주문하기							    
 							</button>
                            </form>

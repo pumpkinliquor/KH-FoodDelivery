@@ -15,12 +15,23 @@
 <div class="clearfix" style="background-color:ivory; color:red; font-weight:bold;">
 합계 : ${resultPrice }원
 </div>
-  <form id='businessCodeFrm' action='${path}/customer/pay.do'>
+  <form id='businessCodeFrm' action='${path}/customer/pay.do' onsubmit="return check();">
                            	<input type='hidden' id='businessCode' name='businessCode' value='${businessCode}'/>
                            	<script>
                            	</script>
- 							<button class="cart-btn clearfix" id="pay" type="submit" style="clear:both;">
-							주문하기							    
+ 							<button class="cart-btn clearfix" id="pay" type="submit" style="clear:both; width:100%">
+							주문하기
 							</button>
                            </form>
 </div>
+<script>
+function check() {
+	var minPrice=${minPrice.minPrice};
+	var resultPrice=${resultPrice};
+	if(minPrice > resultPrice ) {
+		alert("최소 주문금액(${minPrice.minPrice}원)에 맞게 주문해주세요.");
+		return false;
+	}
+	else return true;
+}
+</script>
