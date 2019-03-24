@@ -158,11 +158,11 @@ function address1() {
 					<th colspan='2'>찜한 가게(${count })</th>				
 				</tr>
 				<c:forEach items="${list}" var="s">
-					<tr onclick="location.href='${path}/customer/menuInfo.do?businessCode=${s.businessCode }'">
+					<tr onclick="location.href='${path}/customer/menuInfo.do?businessCode=${s.businessCode }'" style="cursor:pointer;">
 						<td>
 							<img alt="${s.storeName}" src="${path}/resources/upload/owner/storeMainImage/${s.storeImage}" style="width:50px; height:50px;"/>
 						</td>
-						<td>
+						<td style="cursor:pointer;">
 							${s.storeName }
 						</td>
 					</tr>

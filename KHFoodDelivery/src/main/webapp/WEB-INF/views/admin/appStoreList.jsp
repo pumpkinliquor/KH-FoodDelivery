@@ -142,6 +142,7 @@
 							<form action="${path}/admin/confirmApp.do" method="post">
 								<input type="hidden" name="no" id="mdBsCode"/>
 								<input type="submit" class="btn btn-outline-success" value="승인"/>
+								<button type="button" class="btn btn-outline-danger" data-dismiss="modal">거절</button>
 							</form>
 						</td>
 					</tr>

@@ -29,6 +29,7 @@
   .headerDiv1 a{
   	color:white;
   }
+   .headerDiv1 a:hover { text-decoration: none;}
 </style>
 <script>
 

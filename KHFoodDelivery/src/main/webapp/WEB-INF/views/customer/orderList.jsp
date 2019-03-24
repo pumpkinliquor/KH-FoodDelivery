@@ -141,9 +141,9 @@ function detailOrder1(payorderNum,menucode){
 				</thead>
 				<tbody>
 					<c:forEach items="${orderList}" var="m">
-						<tr class="pnt" >
+						<tr class="pnt" style='cursor:pointer;'>
 						
-							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.STORECATEGORY }"/></td>
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"style="cursor:pointer;"><c:out value="${m.STORECATEGORY }"/></td>
 							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.STORENAME }"/></td>
 							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.PAYDATE}"/></td>
 							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value=""/></td>

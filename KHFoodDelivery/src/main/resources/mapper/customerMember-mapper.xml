@@ -11,6 +11,7 @@
 	</resultMap>
 	 <resultMap id="store" type="map">
 	</resultMap>
+	<resultMap id="memberQnaReview" type="map"></resultMap>
 	
 	   <resultMap id="member1" type="member">
 	</resultMap>
@@ -95,7 +96,7 @@
 	</update>
 
 	<select id="selectMenuList" parameterType="map" resultMap="member">
-		select * from menu where MENUCATEGORYCODE=#{menuCategoryCode} AND BUSINESSCODE=#{businessCode}
+		select * from menu where MENUCATEGORYCODE=#{menuCategoryCode} AND BUSINESSCODE=#{businessCode} AND menustate=0
 	</select>
 		
 	
@@ -190,5 +191,9 @@
 	<select id="ownerReviewCount" parameterType="_int" resultType="_int">
 	
 		select count(*) from review_sub where businesscode=#{businessCode}
+	</select>
+	
+	<select id="selectMqr" parameterType="_int" resultType="memberQnaReview">
+		SELECT * FROM MEMBER_QNA_REVIEW WHERE qnaCode = #{no}
 	</select>
 </mapper>
