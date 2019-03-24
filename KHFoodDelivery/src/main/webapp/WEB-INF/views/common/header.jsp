@@ -226,7 +226,7 @@
  
  </script>
 
-   <!-- <div id="map" style="width:0.1px;height:0.1px;"></div>    -->   
+    <div id="map" style="width:0.1px;height:0.1px;"></div>    
        
       <div class="newsletter" style="margin-bottom:50px">  
               <div id="hd container">             
