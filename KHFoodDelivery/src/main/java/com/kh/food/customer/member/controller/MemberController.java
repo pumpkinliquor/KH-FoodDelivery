@@ -744,7 +744,7 @@ public class MemberController {
 									@RequestParam(value="lng", defaultValue="1")String lng,
 									HttpServletRequest request) {			
 			ModelAndView mv=new ModelAndView();
-
+		
 			
 			if(category.equals("전체")) {
 				session.setAttribute("myAddr", myAddr);
