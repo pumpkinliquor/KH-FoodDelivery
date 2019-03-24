@@ -19,7 +19,7 @@
      </style>
 
 
-<br/><br/><br/><br/>
+
 <section>
         <div class="me container">
             
@@ -75,5 +75,5 @@
     </section>
 
 
-
+ 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

@@ -79,7 +79,7 @@ div{
 <body>
 <form action="/customer/payEnd.do" method="post"> 
     <div class="container">
-        <div class="row justify-content-start" style="padding-top:150px">
+        <div class="row justify-content-start">
 
             <div class="col-sm-8">
                 <div class="sub-title">

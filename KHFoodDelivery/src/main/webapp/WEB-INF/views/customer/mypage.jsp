@@ -162,7 +162,7 @@ function address1() {
 
 <div class="container up">
  			
-	<div class="row" style="padding-top:150px">
+	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}" class="list-group-item list-group-item-action" style="z-index:0;">나의 주문내역</a>

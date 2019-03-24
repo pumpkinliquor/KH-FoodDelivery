@@ -353,7 +353,7 @@ margin:0;
  </script>
  
     <div class="container">
-        <div class="row justify-content-start" style="padding-top:180px">
+        <div class="row justify-content-start">
            
            <c:forEach items="${list}" var="i" >
             <div class="col-sm-8">

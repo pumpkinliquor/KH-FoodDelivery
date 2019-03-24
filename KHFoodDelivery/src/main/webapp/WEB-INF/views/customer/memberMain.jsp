@@ -38,7 +38,7 @@ div.main{text-align:center;}
 
 <div class="container">
 
-	 <div class="mainrow row" style="padding-top:150px">
+	 <div class="mainrow row" >
 	 
 	<div class="main col-sm-12">
 	
