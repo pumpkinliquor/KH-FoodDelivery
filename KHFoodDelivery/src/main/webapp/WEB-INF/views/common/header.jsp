@@ -25,7 +25,7 @@
 <title>Insert title here</title>
 </head>
 <style>
-div#map{visibility: hidden;}
+ div#map{visibility: hidden;} 
 </style>
 
 <body>
@@ -281,6 +281,7 @@ div#map{visibility: hidden;}
               </div>
                
      </div>
+    
   
                
               
