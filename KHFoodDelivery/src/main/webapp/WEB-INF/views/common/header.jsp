@@ -227,7 +227,7 @@ div#map{visibility: hidden;}
  
  </script>
 
-
+ <div id="map" style="width:0.1px;height:0.1px;"></div>   
        
       <div class="newsletter">
               <div id="hd container">             
@@ -263,7 +263,7 @@ div#map{visibility: hidden;}
                   <div class="content">
                   <div class="input-group">
                        <button type="button"id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
-                    <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="${sessionScope.myAddr }" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요" readonly/>
+                    <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="${sessionScope.myAddr }" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요" readonly />
                        <span class="input-group-btn">
                        	<input type="hidden" value="전체" name="category"/>
  						<input type="hidden" value="${sessionScope.lat }" name="lat" id="lat"/>
@@ -279,7 +279,7 @@ div#map{visibility: hidden;}
                        </form>
               </div>
               </div>
-               <div id="map" style="width:300px;height:300px; position:relative;"></div>
+               
      </div>
   
                

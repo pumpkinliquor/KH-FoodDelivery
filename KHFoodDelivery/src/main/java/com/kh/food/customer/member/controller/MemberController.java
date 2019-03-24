@@ -487,6 +487,9 @@ public class MemberController {
 		mv.addObject("popularityMenu", popularityMenu);
 		mv.addObject("categoryList", menuCategory);
 		mv.setViewName("customer/menuList");
+		for(int i=0; i<menuCategory.size(); i++) {
+			System.out.println(menuCategory.get(i));
+		}
 		return mv;
 	}
 	@RequestMapping("/customer/menuListEnd.do")
