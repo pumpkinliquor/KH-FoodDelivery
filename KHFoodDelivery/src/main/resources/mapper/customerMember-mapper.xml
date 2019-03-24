@@ -95,7 +95,7 @@
 	</update>
 
 	<select id="selectMenuList" parameterType="map" resultMap="member">
-		select * from menu where MENUCATEGORYCODE=#{menuCategoryCode} AND BUSINESSCODE=#{businessCode}
+		select * from menu where MENUCATEGORYCODE=#{menuCategoryCode} AND BUSINESSCODE=#{businessCode} AND menustate=0
 	</select>
 		
 	
