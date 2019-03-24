@@ -233,6 +233,8 @@ $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디�
      msg += '실패 사유 : ' + rsp.error_msg;
  }
  alert(msg);
+/*  history.go(-3); */
+location.href="${path}/customer/menuInfo.do?businessCode="+${businessCode};
 });
 });
 </script>
