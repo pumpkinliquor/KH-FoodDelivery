@@ -83,7 +83,7 @@
         <a class="nav-link" href="${path }/owner/storeForm.do">업체등록</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${path }">업소통계</a>
+        <a class="nav-link" href="${path }/owner/salesStoreChoice.do?ownerId=${sessionScope.ownerId}">업소통계</a>
       </li>
       <li class="nav-item">
        <a class="nav-link" href="${path }/owner/customService.do">고객센터</a>

@@ -62,7 +62,7 @@ pageEncoding="UTF-8"%>
                                         <form method="post" action="${path }/menu/deleteCategory.do?businessCode=${businessCode}" onsubmit="return validate();">
                                           <div class="form-group row">
                                             <div class="col-8">
-                                                <select id="select" name="menuCategory" class="custom-select">
+                                                <select id="select" name="menuCategory" class="custom-select" required="required">
                                                     <c:forEach var="c" items="${category }">
                                                     <option value="${c.MENUCATEGORYCODE}">${c.MENUCATEGORY}</option>
                                                     </c:forEach>
