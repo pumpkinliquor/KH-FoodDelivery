@@ -73,6 +73,7 @@ public interface MemberService {
 	int reviewCount(int businessCode);
 	int ownerReviewCount(int businessCode);
 	MemberQnaReview selectMemberQnaReview(int no);
+	int menuCount(Map<String,Object> maps);
 	
 	// 회원 공지사항
 	List<MemberNotice> selectMemberNotice(int cPage,int numPerPage);

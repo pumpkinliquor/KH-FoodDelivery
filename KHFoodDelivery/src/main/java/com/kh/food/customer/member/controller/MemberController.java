@@ -497,6 +497,9 @@ public class MemberController {
 		mv.addObject("popularityMenu", popularityMenu);
 		mv.addObject("categoryList", menuCategory);
 		mv.setViewName("customer/menuList");
+		for(int i=0; i<menuCategory.size(); i++) {
+			System.out.println(menuCategory.get(i));
+		}
 		return mv;
 	}
 	@RequestMapping("/customer/menuListEnd.do")
@@ -555,6 +558,8 @@ public class MemberController {
 		
 		String storeP =service.storeP(businessCode);
 		
+		int menuCount=service.menuCount(maps);
+		
 		System.out.println("storeP : " + storeP);
 		Mark mark = service.isMark(maps);
 		Store minPrice=service.minPrice(businessCode);
@@ -563,6 +568,7 @@ public class MemberController {
 			resultPrice+=callPrice.get(i).getPlusMenuPrice();
 		}
 		System.out.println("reviewAvg : " + reviewAvg);
+		mv.addObject("menuCount", menuCount);
 		mv.addObject("storeP",storeP);
 		mv.addObject("mark", mark);
 		mv.addObject("minPrice", minPrice);
@@ -748,7 +754,7 @@ public class MemberController {
 									@RequestParam(value="lng", defaultValue="1")String lng,
 									HttpServletRequest request) {			
 			ModelAndView mv=new ModelAndView();
-
+		
 			
 			if(category.equals("전체")) {
 				session.setAttribute("myAddr", myAddr);

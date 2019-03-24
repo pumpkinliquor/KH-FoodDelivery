@@ -30,9 +30,9 @@
 </script>
 
 <section>
-
-	<div class="container de">  
-		<div class="row" style="padding-top:100px">
+ 
+	<div class="container de" style="padding-top:250px">  
+		<div class="row" >
 			<div class="col-sm-12">
 			</div>
 			<div class="col-sm-2">

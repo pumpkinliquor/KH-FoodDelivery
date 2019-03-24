@@ -61,6 +61,7 @@ public interface MemberDao {
 	Menu menuSelect(int menuCode);
 	int kakaoEnrollEnd(Member m);
 	List<Review> selectReview(int businessCode);
+	int menuCount(Map<String,Object> maps);
 	// 회원공지사항
 	List<MemberNotice> selectMemberNotice(int cPage,int numPerPage);
 	// 찜 목록

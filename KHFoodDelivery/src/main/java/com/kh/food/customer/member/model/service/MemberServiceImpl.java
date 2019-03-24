@@ -55,6 +55,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public int menuCount(Map<String, Object> maps) {
+		return dao.menuCount(maps);
+	}
+
+	@Override
 	public int reviewAvg(int businessCode) {
 		
 		return dao.reviewAvg(businessCode);

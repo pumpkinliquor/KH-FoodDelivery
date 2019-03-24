@@ -67,6 +67,10 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectList("store.selectOwnerRevie2",businessCode);
 	}
 	
+	@Override
+	public int menuCount(Map<String, Object> maps) {
+		return sqlSession.selectOne("menu.menuCount",maps);
+	}
 	//회원 문의 등록
 	@Override
 	public int addQna(Map<String,Object> map) {

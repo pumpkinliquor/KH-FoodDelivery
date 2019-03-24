@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
+<!DOCTYPE html>
 <html>
 <head>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>

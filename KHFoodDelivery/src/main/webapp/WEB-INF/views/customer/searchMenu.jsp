@@ -19,7 +19,7 @@
      </style>
 
 
-<br/><br/><br/><br/>
+
 <section>
         <div class="me container">
             
@@ -45,7 +45,7 @@
                                 <div class="row rowDiv1">
                                     <label for="username" class="col-6 col-form-label">배달비</label> 
                                     <div class="col-6 menuSearch_Div1">
-                                        <a class="" href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">3000원</a>
+                                        <a class="" href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">${i.deliveryPrice }원</a>
                                     </div>
                                 </div>   
                                 <div class="row rowDiv1">
@@ -71,9 +71,9 @@
                 </div>
                 
        		 </div>
-
+       		        		
     </section>
 
 
-
+ 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

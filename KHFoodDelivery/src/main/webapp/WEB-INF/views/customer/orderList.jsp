@@ -114,7 +114,7 @@ function detailOrder1(payorderNum,menucode){
 
  			
  			
-	<div class="row">
+	<div class="row" >
 		<div class="col-md-3 ">
 		     <div class="list-group ">
   <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}" class="list-group-item list-group-item-action active" style="z-index:0;">나의 주문내역</a>
@@ -141,9 +141,9 @@ function detailOrder1(payorderNum,menucode){
 				</thead>
 				<tbody>
 					<c:forEach items="${orderList}" var="m">
-						<tr class="pnt" >
+						<tr class="pnt" style='cursor:pointer;'>
 						
-							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.STORECATEGORY }"/></td>
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"style="cursor:pointer;"><c:out value="${m.STORECATEGORY }"/></td>
 							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.STORENAME }"/></td>
 							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.PAYDATE}"/></td>
 							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value=""/></td>

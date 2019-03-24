@@ -5,9 +5,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
+<%
+request.setCharacterEncoding("UTF-8");
+%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
 <head>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -240,9 +242,9 @@ div.newsletter,div.group{display:inline-block;}
 
 
        
-        <div class="newsletter">
+        <div class="newsletter" style="margin-bottom:80px"> 
                 <div id="hd container">             
-                <div class="row" style="margin:0;">           
+                <div class="row" >           
                 <div class="col-sm-12 headerDiv2">
               <div class="headerDiv1">
                <c:if test="${sessionScope.logined==null }">
@@ -260,7 +262,7 @@ div.newsletter,div.group{display:inline-block;}
               </div>
               <form action="${path}/customer/searchmenuView" onsubmit="return locationSearchStore()" method="post">
                     <div class="content1">
-                       <h2 onclick="mainpage();"><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></h2>
+                       <h2><span onclick="mainpage();" style="cursor: pointer"><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></span></h2>
                     </div>
                 </div>
              <div class="col-sm-12">
