@@ -115,10 +115,10 @@ margin-bottom:50px;
                                       <hr>
                                   </div>
                                   <div class="col-md-3">
-                                  	<input type="date" class="form-control"  name="payDate1">
+                                  	<input type="date" class="form-control"  name="payDate1" required="required">
                                   </div>
                                   <div class="col-md-3">
-                                  	<input type="date" class="form-control" name="payDate2">
+                                  	<input type="date" class="form-control" name="payDate2" required="required">
                                   </div>
                                   <div class="col-md-6">
                                   <input type="hidden" name="businessCode" value="${businessCode}">

@@ -154,6 +154,7 @@ public class OrderController {
 		response.getWriter().print(result);
 	}
 	
+	// 결제 환불
 	@RequestMapping("order/updateOrderState1.do")
 	public void updateOrderState1(String payOrderNum,int orderState,HttpServletResponse response) throws IOException
 	{
