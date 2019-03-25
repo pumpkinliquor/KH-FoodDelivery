@@ -182,7 +182,7 @@ public class OrderStoreSalesController {
 		
 		List<Map<String,String>> category = menuService.selectMenuCategory(businessCode);
 		List<Map<String,String>> menuList = menuService.selectMenuList(businessCode);
-		List<Pay> orderOneList = orderService.selectOrderOneList(cPage,numPerPage,businessCode1);
+		List<Map<String,String>> goodsList = orderService.selectGoodsOrderList(businessCode);
 		int orderCount = orderService.selectOrderCount(businessCode1);
 		String todaySales = "";
 		String monthSales ="";
@@ -229,7 +229,7 @@ public class OrderStoreSalesController {
 		mv.addObject("todaySales",todaySales);
 		mv.addObject("oderCount",orderCount);
 		mv.addObject("businessCode",businessCode1);
-		mv.addObject("orderOneList",orderOneList);
+		mv.addObject("goodsList",goodsList);
 		mv.addObject("pageBar",PagingFactory.getPageBar4(orderCount, cPage, numPerPage, "/food/owner/selectStoreGoodsSales.do?businessCode="+businessCode1));
 		mv.setViewName("owner/ownerGoodsSales");
 		
