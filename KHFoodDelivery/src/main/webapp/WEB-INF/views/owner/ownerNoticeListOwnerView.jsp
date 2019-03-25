@@ -10,8 +10,8 @@
 
 <style>
  #topTable {
-	background-color: #4D4D4D;
-	color: rgba(255, 255, 255, .5);
+	background-color: rgba(61, 58, 129, 0.986);
+	color: white;
 }
 
 #noticeListCount {

@@ -21,7 +21,11 @@ pageEncoding="UTF-8"%>
      div#enroll-container span.guide2 {display:none;font-size: 12px;position:absolute; top:200px; right:10px;}
     div#enroll-container span.ok,span.ok1,span.ok2{color:blue;}
     div#enroll-container span.error,span.error2{color:red;}
-	    
+	    .submitBtn{
+	    border-color:rgb(250, 163, 148);
+	    color:black;
+	    float:right;
+	    }
        
 </style>      
  <script>
@@ -317,8 +321,8 @@ pageEncoding="UTF-8"%>
      																					
             <br />
             
-            <input  type="submit" class="btn btn-outline-secondary" value="가입"/>&nbsp;
-            <input type="reset" class="btn btn-outline-secondary" value="취소"/>
+            <input  type="submit" class="btn btn-outline-light submitBtn"  value="가입"/>&nbsp;&nbsp;
+            <input type="reset" class="btn btn-outline-light submitBtn"  value="취소"/>
          </form>
       </div>
       

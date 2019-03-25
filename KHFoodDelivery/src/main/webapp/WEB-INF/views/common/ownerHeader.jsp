@@ -18,6 +18,7 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Ostyle.css" />
 <style>
+
   .headerDiv2{
   	width:100%;
   	z-index: 9;
@@ -55,7 +56,7 @@
 </head>
  <body>
 	<header>
-<div class="headerDiv2">
+<div class="headerDiv2" >
     <div class="headerDiv1">
     	<c:if test="${sessionScope.ownerId == null}">
           <a href="${path }/owner/login.do">로그인</a>
@@ -69,21 +70,21 @@
   
   
   
-      <nav class="navbar navbar-expand-sm  navbar-dark ownerNav" style="background-color:rgba(6, 4, 75, 0.986);">
+      <nav class="navbar navbar-expand-sm  navbar-dark ownerNav" style="background-color: rgba(6, 4, 75, 0.986);" >
   
     <!-- Links -->
     <ul class="navbar-nav container " >
       <li class="nav-item" style="margin-left:-20px;font-size:40px">
       <a class="nav-link" href="${path }/owner/ownerMain.do" style="cursor:pointer;"><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></a>
     </li>
-      <li class="nav-item">
+      <li class="nav-item" >
         <a class="nav-link" href="${path }/owner/menuStoreChoice.do?ownerId=${sessionScope.ownerId}">메뉴관리</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="${path }/owner/storeForm.do">업체등록</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${path }/owner/salesStoreChoice.do?ownerId=${sessionScope.ownerId}">업소통계</a>
+        <a class="nav-link"  href="${path }/owner/salesStoreChoice.do?ownerId=${sessionScope.ownerId}">업소통계</a>
       </li>
       <li class="nav-item">
        <a class="nav-link" href="${path }/owner/customService.do">고객센터</a>
