@@ -33,9 +33,9 @@
 </style>
 <section>
 	<div class="container" id="memberNoticeDiv">
-		<div>
-			<h4>회원 공지사항</h4>
-		</div>
+		<div style="text-align: center; margin-bottom: 5em;">
+				<h2 style="font-weight: bold;">회원 공지사항</h2>
+			</div>
 		<div class="col-md-12">
 			<table class="table table-hover notice">
 
