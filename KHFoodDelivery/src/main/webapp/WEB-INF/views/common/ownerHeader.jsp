@@ -24,7 +24,7 @@
  
   }
   .headerDiv1{
-   	background-color: #4D4D4D;
+   	background-color: rgba(6, 4, 75, 0.986);
   }
   .headerDiv1 a{
   	color:white;
@@ -69,10 +69,10 @@
   
   
   
-      <nav class="navbar navbar-expand-sm  navbar-dark ownerNav">
+      <nav class="navbar navbar-expand-sm  navbar-dark ownerNav" style="background-color:rgba(6, 4, 75, 0.986);">
   
     <!-- Links -->
-    <ul class="navbar-nav container ">
+    <ul class="navbar-nav container " >
       <li class="nav-item" style="margin-left:-20px;font-size:40px">
       <a class="nav-link" href="${path }/owner/ownerMain.do" style="cursor:pointer;"><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></a>
     </li>

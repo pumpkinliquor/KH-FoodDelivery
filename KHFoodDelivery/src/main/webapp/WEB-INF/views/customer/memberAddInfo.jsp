@@ -35,11 +35,7 @@ function noSpaceForm(obj) { // 공백사용못하게  , 특수문자 사용못�
         obj.value = obj.value.replace(' ',''); // 공백제거
         return false;
     }
-    if (pattern.test(val)) {
-    	alert("해당 항목에는 특수문자를 사용할수 없습니다.\n특수문자는 자동적으로 제거 됩니다.");
-        obj.value = val.replace(pattern, "");
 
-       }
     if (pattern2.test(val)) {
     	alert("영어와 숫자만 가능합니다.\n한글은 자동적으로 제거 됩니다.");
     	obj.value = val.replace(pattern2, "");
