@@ -165,7 +165,7 @@ $('#result').text(result);
                         <div class="clearfix" id="resultDeliveryPrice">
                    			         배달요금 별도 : ${payReady.DELIVERYPRICE} 원
                         </div>
-                        <div class="cart-btn clearfix" style="cursor:pointer;">
+                        <div id="payButton" class="cart-btn clearfix" style="cursor:pointer;">
                             <a id="payButton" class="btu">결제하기</a>
                         </div>
                     </div>
