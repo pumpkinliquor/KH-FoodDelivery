@@ -59,4 +59,17 @@
 	<select id="selectGoodsCount" parameterType="_int" resultType="_int">
 			  select count(*) from pay p  join menu me on(p.menucode = me.menucode) join menu_category c on(me.menucategorycode = c.menucategorycode) where p.businessCode = #{businessCode} and p.orderstate != 4 order by p.paydate desc	
 	</select>
+	
+	<select id="selectSalePriceList" parameterType="map" resultType="map">
+		select payordernum,sum(price) as price from pay where businesscode = #{businessCode} and paydate between to_date(#{payDate1}, 'YYYY-MM-DD') and to_date(#{payDate2} || ' 23:59:59', 'YYYY-MM-DD HH24:MI:SS') group by payordernum order by payordernum desc
+    
+	</select>
+	
+	<select id="selectOrderOneList" parameterType="_int" resultType="pay">
+					select p.*,M.MEMBERID,M.MEMBERNAME,M.MEMBERPHONE,ME.MENUNAME,S.DELIVERYPRICE from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest,price,orderState from pay) p JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) JOIN STORE S ON(P.BUSINESSCODE = S.BUSINESSCODE) where rnum = 1 and p.businesscode = #{businessCode1} and p.orderstate != 4 order by payordernum desc
+	</select>
+	
+	<select id="selectOrderCount" resultType="_int">
+			select count(*) from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest,orderState from pay) p JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) where rnum = 1 and p.businesscode = #{businessCode1} and p.orderstate != 4
+	</select>
 </mapper>

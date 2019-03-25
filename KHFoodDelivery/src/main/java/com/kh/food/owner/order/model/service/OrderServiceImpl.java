@@ -64,6 +64,11 @@ public class OrderServiceImpl implements OrderService {
 	public int selectGoodsCount(int businessCode1) {
 		return dao.selectGoodsCount(businessCode1);
 	}
+
+	@Override
+	public List<Map<String, String>> selectPayList(int cPage,int numPerPage,int businessCode1) {
+		return dao.selectPayList(cPage,numPerPage,businessCode1);
+	}
 	
 	
 

@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.food.owner.order.model.vo.Pay;
+
 @Repository
 public class OrderStoreSalesDaoImpl implements OrderStoreSalesDao {
 
@@ -54,6 +56,23 @@ public class OrderStoreSalesDaoImpl implements OrderStoreSalesDao {
 	@Override
 	public int selectMenuCount(Map<String, String> map) {
 		return sqlSession.selectOne("ownerSale.selectMenuCount",map);
+	}
+
+	@Override
+	public List<Map<String, String>> selectSalePriceList(int cPage, int numPerPage, Map<String, String> map) {
+		RowBounds rb = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("ownerSale.selectSalePriceList",map,rb);
+	}
+
+	@Override
+	public List<Pay> selectOrderOneList(int cPage, int numPerPage, int businessCode1) {
+		RowBounds rb = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("ownerSale.selectOrderOneList",businessCode1,rb);
+	}
+
+	@Override
+	public int selectOrderCount(int businessCode1) {
+		return sqlSession.selectOne("ownerSale.selectOrderCount",businessCode1);
 	}
 	
 	

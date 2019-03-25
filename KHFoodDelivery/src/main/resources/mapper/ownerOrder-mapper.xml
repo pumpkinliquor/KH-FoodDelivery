@@ -17,7 +17,7 @@
 	</select>
 	
 	<select id="selectTodayOrderCount" resultType="map">
-		select count(*) as todayOrderCount from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest from pay) p JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) where rnum = 1 and p.businesscode = #{businessCode1} and TO_CHAR(paydate, 'YY/MM/DD') = TO_CHAR(SYSDATE, 'YY/MM/DD')
+		select count(*) as todayOrderCount from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest,orderstate from pay) p JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) where rnum = 1 and p.businesscode = #{businessCode1} and TO_CHAR(paydate, 'YY/MM/DD') = TO_CHAR(SYSDATE, 'YY/MM/DD') and p.orderstate != 4
 	</select>
 	
 	<select id="selectPayOneList" parameterType="string" resultType="map">
@@ -34,13 +34,16 @@
 		inner join member on (review.membernum=member.membernum) 
 		where ownerId=#{ownerId} order by reviewnum desc
 	</select>
-	<select id="updateOrderState" parameterType="map">
-		update pay set orderState = #{orderState} where payorderNum = #{payOrderNum}
-	</select>
-	
+	<update id="updateOrderState" parameterType="map">
+		update pay set orderstate = #{orderState} where payordernum = #{payOrderNum}
+	</update>
 	<select id="selectPayOne" parameterType="string" resultType="map">
 	select p.*,M.MEMBERID,M.MEMBERNAME,M.MEMBERPHONE,ME.MENUNAME,S.DELIVERYPRICE
 	 from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest,price,orderState,impid from pay) p 
 	 JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) JOIN STORE S ON(P.BUSINESSCODE = S.BUSINESSCODE) where rnum = 1 and payordernum=#{payOrderNum} order by payordernum desc
+	</select>
+	
+	<select id="selectPayList" resultType="map" parameterType="_int">
+		select payordernum,sum(price) as price from pay where businesscode = #{businessCode} group by payordernum order by payordernum desc
 	</select>
 </mapper>

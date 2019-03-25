@@ -78,18 +78,22 @@ public class OrderController {
 		logger.debug("orderCount"+orderCount);
 		ArrayList<Pay> list = new ArrayList<>();
 		int sum = 0;
-		/*logger.debug("사이즈"+orderList.size());*/
+		int a = 0;
+		List<Map<String,String>> payList = service.selectPayList(cPage,numPerPage,businessCode1);
+		logger.debug("paylist"+payList);
+		logger.debug("ddd"+String.valueOf(payList.get(0).get("PRICE")));
 		
-		ArrayList<Pay> price = new ArrayList<>();
+		for(int i=0; i<orderOneList.size(); i++)
+		{
+			orderOneList.get(i).setPrice(Integer.parseInt(String.valueOf((payList.get(i).get("PRICE")))));
+		}
+		
+		/*ArrayList<Pay> price = new ArrayList<>();
 		for(int i=0; i<orderOneList.size(); i++)
 		{
 			price.add(orderOneList.get(i));
 		}
-		
-		/*logger.debug("orderList"+orderList);*/
 		logger.debug("orderOneList"+orderOneList);
-		/*logger.debug("price"+price);
-		logger.debug("price사이즈"+price.size());*/
 		int count = 0;
 		for(int i=0; i<price.size(); i++)
 		{
@@ -97,30 +101,25 @@ public class OrderController {
 			{
 				if(orderList.get(j).getPayOrderNum() == price.get(i).getPayOrderNum())
 				{
-					/*logger.debug("합계전"+sum);
-					logger.debug("오더리스트가격"+orderList.get(j).getPrice()+"IIII"+i);*/
 					sum = sum + orderList.get(j).getPrice();
 					price.get(i).setPrice(sum);
 					logger.debug("합계후"+sum);
 				}
 				else
 				{
-					/*logger.debug("else문"+i+":::"+j);
-					logger.debug("가격"+price.get(i).getPrice());*/
 					sum = 0 ;
 					count = j;
 					break;
 				}
 			}
-		}
-		/*logger.debug("가격내역"+price);
-		logger.debug("오더리스트"+orderList);*/
+		}*/
 		
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("payList",payList);
 		mv.addObject("todayOrderCount",todayOrderCount);
 		mv.addObject("orderOneList",orderOneList);
 		mv.addObject("orderList",orderList);
-		mv.addObject("price",price);
+		/*mv.addObject("price",price);*/
 		mv.setViewName("owner/ownerOrderList");
 		mv.addObject("pageBar",PagingFactory.getPageBar4(orderCount, cPage, numPerPage, "/food/owner/orderService.do?businessCode="+businessCode1));
 

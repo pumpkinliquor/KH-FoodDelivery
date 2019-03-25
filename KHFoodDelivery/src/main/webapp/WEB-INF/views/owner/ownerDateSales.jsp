@@ -142,7 +142,7 @@ margin-bottom:50px;
 								<td onclick="fn_detailOrder(${o.PAYORDERNUM});" class="td1">${o.PAYDATE}</td>
 								<td onclick="fn_detailOrder(${o.PAYORDERNUM});" class="td1">${o.MEMBERNAME}님의 주문입니다.</td>
 								<td onclick="fn_detailOrder(${o.PAYORDERNUM});" class="td1">${o.DELIVERYPRICE}</td>							
-								<td onclick="fn_detailOrder(${o.PAYORDERNUM});" class="td1"></td>
+								<td onclick="fn_detailOrder(${o.PAYORDERNUM});" class="td1">${salePriceList[status.index].PRICE}</td>
 								<td onclick="fn_detailOrder(${o.PAYORDERNUM});" class="td1">${o.PAYORDERMETHOD}</td>							
 							</tr>
 							
