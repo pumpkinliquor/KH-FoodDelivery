@@ -133,6 +133,16 @@ span.error,span.error1 {
 			}
 		});
 		
+		$('#ownerPhone').bind("keyup", function(event) {
+    	    var regNumber = /^[0-9]*$/;
+    	    var temp = $('#ownerPhone').val();
+    	    if(!regNumber.test(temp))
+    	    {
+    	        alert('숫자만 입력하세요');
+    	        $('#ownerPhone').val(temp.replace(/[^0-9]/g,""));
+    	    }
+    	});
+		
 		
 		$('#ownerName').keyup(function(){
 			var a = $('#ownerName').val().replace(/ /gi, '');
@@ -237,7 +247,7 @@ span.error,span.error1 {
 									<div class="form-group row">
 										<label for="ownerPhone" class="col-4 col-form-label">연락처</label>
 										<div class="col-8">
-											<input type="number" id="ownerPhone" name="ownerPhone"
+											<input type="tel" id="ownerPhone" name="ownerPhone"
 												class="form-control here" required="required"
 												placeholder="예)01091634624" maxlength="11">
 										</div>
