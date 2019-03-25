@@ -27,6 +27,7 @@ pageEncoding="UTF-8"%>
         .loginBtn{
          background-color:rgba(61, 58, 129, 0.986);
          border-color: rgba(61, 58, 129, 0.986);
+         color:white;
         }
         #myPageBtn{
             width: 100%;
@@ -113,7 +114,7 @@ pageEncoding="UTF-8"%>
                         <p>사장님 로그인 해주세요!</p>
                     </div> 
                     <div class="col-md-12">
-                        <button id="loginBtn" class="btn btn-secondary loginBtn" onclick="location.href='${path }/owner/login.do'">로그인</button>
+                        <button id="loginBtn" class="btn btn-default loginBtn" onclick="location.href='${path }/owner/login.do'">로그인</button>
                     </div>
                     <div class="row">
                     <div class="col-md-6"></div>
@@ -122,7 +123,7 @@ pageEncoding="UTF-8"%>
                     </div>
                     </div>
                     <div class="col-md-12">
-                        <button id="enrollBtn" class="btn btn-secondary loginBtn" onclick="location.href='${path }/owner/insertOwner.do'">회원가입</button>
+                        <button id="enrollBtn" class="btn btn-default loginBtn" onclick="location.href='${path }/owner/insertOwner.do'">회원가입</button>
                     </div>
                      </c:if>
                      <c:if test="${sessionScope.ownerId!=null }">
@@ -130,11 +131,11 @@ pageEncoding="UTF-8"%>
                         <p><b>${ownerId}사장님</b> 환영 합니다!</p>
                      </div>
                      <div class="col-md-12">
-                        <button id="myPageBtn" class="btn btn-secondary loginBtn" onclick="location.href='${path }/owner/myPage.do'">마이페이지</button>
+                        <button id="myPageBtn" class="btn btn-default loginBtn" onclick="location.href='${path }/owner/myPage.do'">마이페이지</button>
                      </div> 
                      <br>
                      <div class="col-md-12">
-                        <button id="logoutBtn" class="btn btn-secondary loginBtn" onclick="location.href='${path }/owner/logout.do'">로그아웃</button>
+                        <button id="logoutBtn" class="btn btn-default loginBtn" onclick="location.href='${path }/owner/logout.do'">로그아웃</button>
                      </div> 
                      </c:if>
                 </div>           
