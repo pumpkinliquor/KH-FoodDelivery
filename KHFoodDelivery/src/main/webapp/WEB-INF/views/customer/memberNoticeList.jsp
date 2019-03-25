@@ -4,15 +4,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Cstyle.css" />
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Cstyle.css" /> --%>
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 <style>
 #noticeTitleTd{
    width:800px;
 }
 #topTable {
-   background-color: #4D4D4D;
-   color: rgba(255, 255, 255, .5);
+   background-color:rgb(250, 163, 148);
+   color: white;
 }
 
 #noticeListCount {
@@ -29,6 +29,7 @@
 #memberNoticeDiv{
 	padding-bottom: 5%;
 }
+
 </style>
 <section>
 	<div class="container" id="memberNoticeDiv">

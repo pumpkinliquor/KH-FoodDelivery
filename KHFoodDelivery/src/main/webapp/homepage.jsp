@@ -191,7 +191,7 @@ color:white;
 		</div>
 		<div class="col-sm-3" id="ownerSite">
 		<br><br><br>
-			<a href="${path }/owner/memberMain.do"><img src="${path }/resources/images/customerIcon.png" width=230px;></a>
+			<a href="${path}/member/main.do"><img src="${path }/resources/images/customerIcon.png" width=230px;></a>
 		</div>
 		<div class="col-sm-3">
 		<br><br><br>

@@ -442,7 +442,7 @@ public class MemberController {
 		
 		int result=service.memberEnroll(m);
 		String msg="";
-		String loc="/";
+		String loc="/member/main.do";
 		if(result>0)
 		{
 			msg="회원가입을 성공하였습니다.";
