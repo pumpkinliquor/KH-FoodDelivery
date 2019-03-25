@@ -73,12 +73,20 @@ public class OrderStoreSalesController {
 		}
 		try {
 			monthSales = service.selectMonthSales(businessCode);
+			if(monthSales.equals(""))
+			{
+				todaySales = "0";
+			}
 		}catch(NullPointerException e)
 		{
 			monthSales = "0";
 		}
 		try {
 			yearSales = service.selectYearSales(businessCode);
+			if(yearSales.equals(""))
+			{
+				todaySales = "0";
+			}
 		}catch(NullPointerException e)
 		{
 			yearSales = "0";
@@ -105,7 +113,42 @@ public class OrderStoreSalesController {
 	{
 		logger.debug("payDate1"+payDate1+"payDate2"+payDate2);
 		logger.debug("bucODE"+businessCode);
-		int numPerPage = 5;
+		int numPerPage = 10;
+		
+		String todaySales = "";
+		String monthSales ="";
+		String yearSales = "";
+		try {
+			todaySales = service.selectTodaySales(businessCode);
+			if(todaySales.equals(""))
+			{
+				todaySales = "0";
+			}
+		}
+		catch(NullPointerException e)
+		{
+			todaySales = "0";
+		}
+		try {
+			monthSales = service.selectMonthSales(businessCode);
+			if(monthSales.equals(""))
+			{
+				todaySales = "0";
+			}
+		}catch(NullPointerException e)
+		{
+			monthSales = "0";
+		}
+		try {
+			yearSales = service.selectYearSales(businessCode);
+			if(yearSales.equals(""))
+			{
+				todaySales = "0";
+			}
+		}catch(NullPointerException e)
+		{
+			yearSales = "0";
+		}
 		
 		Map<String,String> map = new HashMap<>();
 		map.put("businessCode", businessCode);
@@ -116,6 +159,10 @@ public class OrderStoreSalesController {
 		logger.debug("saleCount"+saleCount);
 		logger.debug("saleList"+saleList);
 		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("monthSales",monthSales);
+		mv.addObject("yearSales",yearSales);
+		mv.addObject("todaySales",todaySales);
 		mv.addObject("saleList",saleList);
 		mv.addObject("saleCount",saleCount);
 		mv.addObject("businessCode",businessCode);
@@ -135,7 +182,7 @@ public class OrderStoreSalesController {
 		
 		List<Map<String,String>> category = menuService.selectMenuCategory(businessCode);
 		List<Map<String,String>> menuList = menuService.selectMenuList(businessCode);
-		List<Pay> orderOneList = orderService.selectOrderOneList(cPage,numPerPage,businessCode1);
+		List<Map<String,String>> goodsList = orderService.selectGoodsOrderList(businessCode);
 		int orderCount = orderService.selectOrderCount(businessCode1);
 		String todaySales = "";
 		String monthSales ="";
@@ -153,12 +200,20 @@ public class OrderStoreSalesController {
 		}
 		try {
 			monthSales = service.selectMonthSales(businessCode);
+			if(monthSales.equals(""))
+			{
+				todaySales = "0";
+			}
 		}catch(NullPointerException e)
 		{
 			monthSales = "0";
 		}
 		try {
 			yearSales = service.selectYearSales(businessCode);
+			if(yearSales.equals(""))
+			{
+				todaySales = "0";
+			}
 		}catch(NullPointerException e)
 		{
 			yearSales = "0";
@@ -174,7 +229,7 @@ public class OrderStoreSalesController {
 		mv.addObject("todaySales",todaySales);
 		mv.addObject("oderCount",orderCount);
 		mv.addObject("businessCode",businessCode1);
-		mv.addObject("orderOneList",orderOneList);
+		mv.addObject("goodsList",goodsList);
 		mv.addObject("pageBar",PagingFactory.getPageBar4(orderCount, cPage, numPerPage, "/food/owner/selectStoreGoodsSales.do?businessCode="+businessCode1));
 		mv.setViewName("owner/ownerGoodsSales");
 		
@@ -196,9 +251,69 @@ public class OrderStoreSalesController {
 	
 	//선택한 메뉴 카테고리와 메뉴로 리스트 가져오기
 	@RequestMapping("owner/selectStoreGoodsSalesEnd.do")
-	public ModelAndView selectStoreGoodsSalesEnd()
+	public ModelAndView selectStoreGoodsSalesEnd(@RequestParam(value="cPage",required=false,defaultValue="0") int cPage,String menuCategory1,String menuCategory2,String businessCode)
 	{
-		return null;
+		int numPerPage = 10;	
+		List<Map<String,String>> category = menuService.selectMenuCategory(businessCode);
+		List<Map<String,String>> menuList = menuService.selectMenuList(businessCode);
+		
+		
+		String todaySales = "";
+		String monthSales ="";
+		String yearSales = "";
+		try {
+			todaySales = service.selectTodaySales(businessCode);
+			if(todaySales.equals(""))
+			{
+				todaySales = "0";
+			}
+		}
+		catch(NullPointerException e)
+		{
+			todaySales = "0";
+		}
+		try {
+			monthSales = service.selectMonthSales(businessCode);
+			if(monthSales.equals(""))
+			{
+				todaySales = "0";
+			}
+		}catch(NullPointerException e)
+		{
+			monthSales = "0";
+		}
+		try {
+			yearSales = service.selectYearSales(businessCode);
+			if(yearSales.equals(""))
+			{
+				todaySales = "0";
+			}
+		}catch(NullPointerException e)
+		{
+			yearSales = "0";
+		}
+		
+		Map<String,String> map = new HashMap<>();
+		map.put("menuCategoryCode", menuCategory1);
+		map.put("menuCode", menuCategory2);
+		map.put("businessCode", businessCode);
+		logger.debug("menu"+menuCategory1 + "menu2"+menuCategory2 + "BU" + businessCode);
+		List<Map<String,String>> list = service.menuCateList(cPage,numPerPage,map);
+		int menuCount = service.selectMenuCount(map);
+		logger.debug("list"+list);
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("monthSales",monthSales);
+		mv.addObject("yearSales",yearSales);
+		mv.addObject("todaySales",todaySales);
+		mv.addObject("menuCount",menuCount);
+		mv.addObject("list",list);
+		mv.addObject("menuList",menuList);
+		mv.addObject("category",category);
+		mv.addObject("businessCode",businessCode);
+		mv.setViewName("owner/ownerGoodsList");
+		mv.addObject("pageBar",PagingFactory.getPageBar4(menuCount, cPage, numPerPage, "/food/owner/selectStoreGoodsSalesEnd.do?businessCode="+businessCode+"&menuCategory1="+menuCategory1+"&menuCategory2="+menuCategory2));
+		return mv;
 		
 	}
 }

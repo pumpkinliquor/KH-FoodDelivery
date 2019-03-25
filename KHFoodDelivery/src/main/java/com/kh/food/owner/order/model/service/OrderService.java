@@ -22,5 +22,7 @@ public interface OrderService {
 	int updateOrderState(Map<String, String> map);
 
 	Map<String, String> selectPayOne(String payOrderNum);
+
+	List<Map<String, String>> selectGoodsOrderList(String businessCode);
 	
 }

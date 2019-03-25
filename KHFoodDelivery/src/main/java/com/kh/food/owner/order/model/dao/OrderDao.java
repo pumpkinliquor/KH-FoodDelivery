@@ -23,5 +23,7 @@ public interface OrderDao {
 
 	Map<String, String> selectPayOne(String payOrderNum);
 
+	List<Map<String, String>> selectGoodsOrderList(String businessCode);
+
 
 }
