@@ -44,5 +44,15 @@ public class OrderStoreSalesServiceImpl implements OrderStoreSalesService {
 		return dao.selectCaMenuList(menuCategorycode);
 	}
 
+	@Override
+	public List<Map<String, String>> menuCateList(int cPage,int numPerPage,Map<String, String> map) {
+		return dao.menuCateList(cPage,numPerPage,map);
+	}
+
+	@Override
+	public int selectMenuCount(Map<String, String> map) {
+		return dao.selectMenuCount(map);
+	}
+
 	
 }

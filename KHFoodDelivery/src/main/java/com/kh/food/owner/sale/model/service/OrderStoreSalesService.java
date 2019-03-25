@@ -17,4 +17,8 @@ public interface OrderStoreSalesService {
 
 	List<Map<String,String>> selectCaMenuList(int menuCategorycode);
 
+	List<Map<String, String>> menuCateList(int cPage, int numPerPage, Map<String, String> map);
+
+	int selectMenuCount(Map<String, String> map);
+
 }
