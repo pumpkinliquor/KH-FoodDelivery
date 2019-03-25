@@ -29,7 +29,79 @@ div#map{height:1px;weight:1px;visibility: hidden;}
 div.newsletter div.search1{text-align:center; margin-top:0.25%;}   
 btn:active{color:blue;}
 div.newsletter div.search1 .btn{background-color:#F6F6F6; }
-div.newsletter div.search1 .btn:hover{background-color:#8C8C8C; color:white;}
+div.newsletter div.search1 .btn:hover{background-color:red; color:white;}
+#japan:hover{cursor:pointer;
+ 	background:url("${path}/resources/images/customer/menuBtn/일식.png");
+    height:auto;
+    animation:walk 1s steps(1) infinite,
+                forward 0s linear infinite;
+    text-indent:-10000px;
+    width:144px;
+ }
+  #pran:hover{cursor:pointer;
+ 	background:url("${path}/resources/images/customer/menuBtn/프랜차이즈.png");
+    height:auto;
+    animation:walk 1s steps(1) infinite,
+                forward 0s linear infinite;
+    text-indent:-10000px;
+    width:134px;
+ }
+ #chicken:hover{cursor:pointer;
+ 	background:url("${path}/resources/images/customer/menuBtn/치킨.png");
+    height:auto;
+    animation:walk 1s steps(1) infinite,
+                forward 0s linear infinite;
+    text-indent:-10000px;
+    width:74px;
+ }
+  #pizza:hover{cursor:pointer;
+ 	background:url("${path}/resources/images/customer/menuBtn/피자.png");
+    height:auto;
+    animation:walk 1s steps(1) infinite,
+                forward 0s linear infinite;
+    text-indent:-10000px;
+    width:74px;
+ }
+ #china:hover{cursor:pointer;
+ 	background:url("${path}/resources/images/customer/menuBtn/짜장면.png");
+    height:auto;
+    animation:walk 1s steps(1) infinite,
+                forward 0s linear infinite;
+    text-indent:-10000px;
+    width:74px;
+ }
+ #korea:hover{cursor:pointer;
+ 	background:url("${path}/resources/images/customer/menuBtn/한식.png");
+    height:auto;
+    animation:walk 1s steps(1) infinite,
+                forward 0s linear infinite;
+    text-indent:-10000px;
+    width:74px;
+ }
+ #bossam:hover{cursor:pointer;
+ 	background:url("${path}/resources/images/customer/menuBtn/족발.png");
+    height:auto;
+    animation:walk 1s steps(1) infinite,
+                forward 0s linear infinite;
+    text-indent:-10000px;
+    width:124px;
+ }
+ #bunsik:hover{cursor:pointer;
+ 	background:url("${path}/resources/images/customer/menuBtn/떡볶이.png");
+    height:auto;
+    animation:walk 1s steps(1) infinite,
+                forward 0s linear infinite;
+    text-indent:-10000px;
+    width:74px;
+ }
+  #dessert:hover{cursor:pointer;
+ 	background:url("${path}/resources/images/customer/menuBtn/디저트.png");
+    height:auto;
+    animation:walk 1s steps(1) infinite,
+                forward 0s linear infinite;
+    text-indent:-10000px;
+    width:94px;
+ }
 div.group{text-align:center; box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);background-color:#F6F6F6; margin-top:1%; padding:0; display:none;}
 div.group1{text-align:center;box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);padding:0;background-color:#F6F6F6;} 
 div.newsletter,div.group{display:inline-block;}
@@ -39,7 +111,6 @@ div.newsletter,div.group{display:inline-block;}
 	}
 	
 }
-
 @media (min-width:843px){
 	div.group1{
 	
@@ -334,15 +405,15 @@ div.newsletter,div.group{display:inline-block;}
                    <div class="group col-md-12 col-lg-12">
                 <div class="btn-group btn-group-lg search1">
                <button type="button" class="btn btn-default active" onclick="allview();">전체보기</button> 
-              <button type="button" class="btn btn-default active" onclick="don();">돈까스/일식</button>
-              <button type="button" class="btn btn-default active" onclick="fre();">프랜차이즈</button>
-              <button type="button" class="btn btn-default active" onclick="chi();">치킨</button>
-              <button type="button" class="btn btn-default active" onclick="piz();">피자</button>
-              <button type="button" class="btn btn-default active" onclick="jun();">중식</button>
-              <button type="button" class="btn btn-default active" onclick="kor();">한식</button>
-              <button type="button" class="btn btn-default active" onclick="jok();">족발/보쌈</button>
-              <button type="button" class="btn btn-default active" onclick="base();">분식</button>
-              <button type="button" class="btn btn-default active" onclick="des();">디저트</button>
+              <button type="button" class="btn btn-default active" id="japan" onclick="don();">돈까스/일식</button>
+              <button type="button" class="btn btn-default active" id="pran" onclick="fre();">프랜차이즈</button>
+              <button type="button" class="btn btn-default active" id="chicken" onclick="chi();">치킨</button>
+              <button type="button" class="btn btn-default active" id="pizza" onclick="piz();">피자</button>
+              <button type="button" class="btn btn-default active" id="china" onclick="jun();">중식</button>
+              <button type="button" class="btn btn-default active" id="korea" onclick="kor();">한식</button>
+              <button type="button" class="btn btn-default active" id="bossam" onclick="jok();">족발/보쌈</button>
+              <button type="button" class="btn btn-default active" id="bunsik" onclick="base();">분식</button>
+              <button type="button" class="btn btn-default active" id="dessert" onclick="des();">디저트</button>
                 
        </div>      
                </div>          
