@@ -30,13 +30,13 @@
 	
 	<!-- 회원공지사항 등록 -->
 	<insert id="insertMemberNotice" parameterType="Map">
-	insert into notice values(seq_noticeNum.nextval, #{noticeTitle},sysdate,#{noticeContent})
+	insert into notice values(seq_noticeNum.nextval, #{noticeTitle},SYSDATE+9/24,#{noticeContent})
 	<selectKey keyProperty="noticeNum" resultType="string" order="AFTER">
 		select seq_noticenum.currval from dual
 	</selectKey>
 	</insert>
 	<insert id="insertMemberNoticeAttach" parameterType="com.kh.food.admin.notice.attachment.vo.NoticeAttachment">
-	insert into NOTICE_ATTACHMENT values(SEQ_NOTICEATTACHMENTNO.NEXTVAL,#{noticeNum},#{originalFileName},#{renamedFileName},default,default)
+	insert into NOTICE_ATTACHMENT values(SEQ_NOTICEATTACHMENTNO.NEXTVAL,#{noticeNum},#{originalFileName},#{renamedFileName},SYSDATE+9/24,default)
 	</insert>
 	
 	<!-- 회원공지사항 수정 -->

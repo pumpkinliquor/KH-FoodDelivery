@@ -16,7 +16,7 @@
 	   <resultMap id="member1" type="member">
 	</resultMap>
 	<insert id="insertMember" parameterType="member" >
-		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},#{memberPw},#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},default,#{memberGender},default,0,0,#{profileImage},#{memberAddress1})
+		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},#{memberPw},#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},SYSDATE+9/24,#{memberGender},default,0,0,#{profileImage},#{memberAddress1})
 	</insert>
 	
 	<select id="checkId" parameterType="String" resultType="_int">
@@ -39,7 +39,7 @@
 		select * from member where memberId=#{memberId}
 	</select>
 	<update id="update" parameterType="member">
-		update member set NICKNAME=#{nickName},MEMBERBIRTH=#{formatBirth},MEMBEREMAIL=#{memberEmail},MEMBERPHONE=#{memberPhone},MEMBERADDRESS=#{memberAddress},MEMBERENROLLDATE=default,MEMBERGENDER=#{memberGender},PROFILEIMAGE=#{profileImage},MEMBERADDRESS1=#{memberAddress1} where MEMBERID=#{memberId}		
+		update member set NICKNAME=#{nickName},MEMBERBIRTH=#{formatBirth},MEMBEREMAIL=#{memberEmail},MEMBERPHONE=#{memberPhone},MEMBERADDRESS=#{memberAddress},MEMBERGENDER=#{memberGender},PROFILEIMAGE=#{profileImage},MEMBERADDRESS1=#{memberAddress1} where MEMBERID=#{memberId}		
 	</update>
 	
 
@@ -106,7 +106,7 @@
 		
 	
 	<insert id="qnaAdd" parameterType="map">
-		insert into member_qna values(SEQ_M_QNACODE.NEXTVAL,#{no},default,#{qnaCategory},#{qnaContent},#{qnaTitle})
+		insert into member_qna values(SEQ_M_QNACODE.NEXTVAL,#{no},sysdate+9/24,#{qnaCategory},#{qnaContent},#{qnaTitle})
 	</insert>
 	
 	 
@@ -118,7 +118,7 @@
 	</select>
 	
 	<insert id="kakaoEnrollEnd" parameterType="member">
-		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},default,#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},default,#{memberGender},default,0,0,#{profileImage},#{memberAddress1})
+		insert into member values(SEQ_MEMBERNUM.nextval,#{memberId},default,#{memberName},#{memberAddress},#{memberBirth},#{memberPhone},#{memberEmail},#{nickName},SYSDATE+9/24,#{memberGender},default,0,0,#{profileImage},#{memberAddress1})
 	</insert>
 	<!-- 마이페이지 문의 상세 -->
 	<select id="qnaDtail" parameterType="_int" resultType="memberQna">
@@ -129,7 +129,7 @@
 	</delete>
 	
 	<update id="qnaUpdate" parameterType="memberQna">
-		update member_qna set QNACATEGORY=#{qnaCategory},QNATITLE=#{qnaTitle},QNACONTENT=#{qnaContent},WRITEDATE=sysdate  where  qnaCode = #{qnaCode} 
+		update member_qna set QNACATEGORY=#{qnaCategory},QNATITLE=#{qnaTitle},QNACONTENT=#{qnaContent},WRITEDATE=SYSDATE+9/24  where  qnaCode = #{qnaCode} 
 
 	</update>
 	
@@ -182,7 +182,7 @@
 	</select>
 	
 	<insert id="insertReview" parameterType="map">
-		insert into review values(seq_reviewnum.nextval,#{bsCode},#{memNum},DEFAULT,#{img},#{grade},#{context})
+		insert into review values(seq_reviewnum.nextval,#{bsCode},#{memNum},SYSDATE+9/24,#{img},#{grade},#{context})
 	</insert>
 	
 	<select id="reviewAvg" parameterType="_int" resultType="_int"> 

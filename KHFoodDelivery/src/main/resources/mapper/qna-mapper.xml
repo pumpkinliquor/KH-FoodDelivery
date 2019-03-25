@@ -37,7 +37,7 @@
 	
 	<!-- 회원 문의 답변 등록 -->
 	<insert id="insertMemberQnaReview" parameterType="map">
-		INSERT INTO MEMBER_QNA_REVIEW VALUES(#{no}, DEFAULT, #{context})
+		INSERT INTO MEMBER_QNA_REVIEW VALUES(#{no}, SYSDATE+9/24, #{context})
 	</insert>
 
 	<!-- 회원 문의 답변 삭제 -->
@@ -161,7 +161,7 @@
 	
 	<!-- 사장 문의 답변 등록 -->
 	<insert id="insertOwnerQnaReview" parameterType="map">
-		INSERT INTO OWNER_QNA_REVIEW VALUES(#{no}, DEFAULT, #{context})
+		INSERT INTO OWNER_QNA_REVIEW VALUES(#{no}, SYSDATE+9/24, #{context})
 	</insert>
 
 	<!-- 사장 문의 답변 삭제 -->

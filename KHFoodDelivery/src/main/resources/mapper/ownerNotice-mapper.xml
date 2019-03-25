@@ -40,13 +40,13 @@
 	
 	<!-- 사장 공지사항 등록 -->
 	<insert id="insertOwnerNotice" parameterType="Map">
-	insert into ownernotice values(seq_ownernoticenum.nextval, #{noticeTitle},sysdate,#{noticeContent})
+	insert into ownernotice values(seq_ownernoticenum.nextval, #{noticeTitle},SYSDATE+9/24,#{noticeContent})
 	<selectKey keyProperty="ownerNoticeNum" resultType="string" order="AFTER">
 		select seq_ownernoticenum.currval from dual
 	</selectKey>
 	</insert>
 	<insert id="insertOwnerNoticeAttach" parameterType="com.kh.food.owner.notice.attachment.vo.OwnerNoticeAttachment">
-	insert into OWNERNOTICE_ATTACHMENT values(seq_ownernoticeattachmentno.NEXTVAL,#{ownerNoticeNum},#{ownerOriginalFileName},#{ownerRenamedFileName},default,default)
+	insert into OWNERNOTICE_ATTACHMENT values(seq_ownernoticeattachmentno.NEXTVAL,#{ownerNoticeNum},#{ownerOriginalFileName},#{ownerRenamedFileName},SYSDATE+9/24,default)
 	</insert>
 	
 	<update id="ownerNoticeUpdateEnd" parameterType="map">

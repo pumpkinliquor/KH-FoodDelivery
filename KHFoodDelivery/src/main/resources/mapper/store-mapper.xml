@@ -83,7 +83,7 @@
 	</select>
 	
 	<insert id="addStore" parameterType="map">
-		INSERT INTO STORE VALUES(SEQ_BUSINESSCODE.NEXTVAL, #{ownerId}, #{businessName}, #{businessPhone}, #{storeName}, #{storePhone}, #{storeAddress}, #{storeCategory}, #{reName}, #{minPrice}, #{storeProfile}, DEFAULT, SYSDATE, #{businessNum}, #{lat}, #{lng}, #{deliveryPrice})
+		INSERT INTO STORE VALUES(SEQ_BUSINESSCODE.NEXTVAL, #{ownerId}, #{businessName}, #{businessPhone}, #{storeName}, #{storePhone}, #{storeAddress}, #{storeCategory}, #{reName}, #{minPrice}, #{storeProfile}, DEFAULT, SYSDATE+9/24, #{businessNum}, #{lat}, #{lng}, #{deliveryPrice})
 	</insert>
 		
 	<!-- resultMap : Store -->
@@ -96,7 +96,7 @@
 	</select>
 
 	<insert id="insertReviewRe" parameterType="map">
-		INSERT INTO REVIEW_SUB VALUES(#{no},#{code},#{context},DEFAULT)
+		INSERT INTO REVIEW_SUB VALUES(#{no},#{code},#{context},SYSDATE+9/24)
 	</insert>
 	
 	<select id="selectOwnerRevie" parameterType="_int" resultType="com.kh.food.owner.review.model.vo.OwnerReview">
