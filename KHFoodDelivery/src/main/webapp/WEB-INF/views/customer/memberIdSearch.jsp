@@ -12,7 +12,12 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-
+<style>
+.send-button{
+background: rgb(250, 163, 148);
+border:rgb(250, 163, 148);
+}
+</style>
 <section>
     <div class="container">
                 <div class="col-md-6 mx-auto text-center">
@@ -33,7 +38,7 @@ pageEncoding="UTF-8"%>
                                <input type="email" name="memberEmail"  class="form-control my-input" id="memberEmail" placeholder="이메일을 입력하세요.">
                             </div>
                             <div class="text-center loginDiv_1">
-                               <button type="submit" class=" btn btn-block send-button tx-tfm">찾기</button>
+                               <button type="submit" class=" btn btn-default send-button tx-tfm">찾기</button>
                             </div>
                              <p class="small mt-3">비밀번호가 기억이 안나세요?<a href="${path }/customer/pwSearch.do" class="ps-hero__content__link"> 비밀번호 찾기</a>
                             </p>

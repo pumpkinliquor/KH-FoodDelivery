@@ -8,6 +8,10 @@
 	<jsp:param value="사장님 회원가입" name="pageTitle" />
 </jsp:include>
 <style>
+.send-button{
+background-color: rgba(61, 58, 129, 0.986);
+border:rgba(61, 58, 129, 0.986);
+}
 #ownerJoinBtn {
 	width: 100%;
 }
@@ -263,7 +267,7 @@ span.error,span.error1 {
 										<div class="col-4"></div>
 										<div class="col-8">
 											<button id="ownerJoinBtn" name="submit" type="submit"
-												class="btn btn-primary">회원가입</button>
+												class="btn btn-default send-button">회원가입</button>
 										</div>
 									</div>
 								</form>
