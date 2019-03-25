@@ -11,7 +11,7 @@
    width:800px;
 }
 #topTable {
-   background-color:rgb(255, 72, 40);
+   background-color:rgb(250, 163, 148);
    color: white;
 }
 
@@ -29,8 +29,7 @@
 #memberNoticeDiv{
 	padding-bottom: 5%;
 }
-thead#tableHead {
-    background-color: rgb(255, 72, 40);
+
 </style>
 <section>
 	<div class="container" id="memberNoticeDiv">
