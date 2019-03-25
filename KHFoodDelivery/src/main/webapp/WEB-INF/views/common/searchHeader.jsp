@@ -39,6 +39,7 @@ div.newsletter,div.group{display:inline-block;}
 	}
 	
 }
+
 @media (min-width:843px){
 	div.group1{
 	
@@ -46,6 +47,22 @@ div.newsletter,div.group{display:inline-block;}
 	}
 	
 } 
+#memberHeaderTitle1:hover{
+ 	cursor:pointer;
+ 	background:url("${path}/resources/images/owner/main/배달이미지2.png");
+ 	 width:100px;
+    height:70px;
+    animation:walk 1s steps(200) infinite,
+                forward 18s linear infinite;
+ }
+ @keyframes walk{
+    0%{
+        background-position: 0px;
+    }
+    100%{
+        background-position: 294px;
+    }
+}
 </style>
 </head>
 <body>
@@ -61,6 +78,20 @@ div.newsletter,div.group{display:inline-block;}
 
    
    <script>
+   $(function(){
+	   $('#memberHeaderTitle1').hover(function(){
+		   $('#memberHeaderTitle1').css({"width":"270"});
+		   $('#memberHeaderTitle2').hide();
+		   $('#memberHeaderTitle1').click(function(){
+			   location.href="${path}/member/main.do";
+		   });
+	   },
+	  	function(){
+		 	$('#memberHeaderTitle2').show();
+		 	$('#memberHeaderTitle1').css({"width":"294"});
+	   });
+   });
+   
     $(document).ready(function () {
       $("#positionBtn").click(function(){
     	  
@@ -262,7 +293,7 @@ div.newsletter,div.group{display:inline-block;}
               </div>
               <form action="${path}/customer/searchmenuView" onsubmit="return locationSearchStore()" method="post">
                     <div class="content1">
-                       <h2><span onclick="mainpage();" style="cursor: pointer"><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></span></h2>
+                       <h2 id='memberHeaderTitle1' style="margin:auto; width:294px;"><span id="memberHeaderTitle2" onclick="mainpage();" style="cursor:pointer;"><img src="${path }/resources/images/owner/main/배달이미지.png" width=70px;/><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></span></h2>
                     </div>
                 </div>
              <div class="col-sm-12">
