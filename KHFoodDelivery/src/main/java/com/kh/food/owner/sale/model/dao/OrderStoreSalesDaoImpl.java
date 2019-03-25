@@ -1,0 +1,49 @@
+package com.kh.food.owner.sale.model.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.RowBounds;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class OrderStoreSalesDaoImpl implements OrderStoreSalesDao {
+
+	@Autowired
+	SqlSessionTemplate sqlSession;
+
+	@Override
+	public List<Map<String, String>> selectSalesDateList(int cPage,int numPerPage,Map<String, String> map) {
+		RowBounds rb = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("ownerSale.selectSalesDateList",map,rb);
+	}
+
+	@Override
+	public int selectSaleDateCount(Map<String, String> map) {
+		return sqlSession.selectOne("ownerSale.selectSaleDateCount",map);
+	}
+
+	@Override
+	public String selectTodaySales(String businessCode) {
+		return sqlSession.selectOne("ownerSale.selectTodaySales",businessCode);
+	}
+
+	@Override
+	public String selectMonthSales(String businessCode) {
+		return sqlSession.selectOne("ownerSale.selectMonthSales",businessCode);
+	}
+
+	@Override
+	public String selectYearSales(String businessCode) {
+		return sqlSession.selectOne("ownerSale.selectYearSales",businessCode);
+	}
+
+	@Override
+	public List<Map<String, String>> selectCaMenuList(int menuCategorycode) {
+		return sqlSession.selectList("ownerSale.selectCaMenuList",menuCategorycode);
+	}
+	
+	
+}

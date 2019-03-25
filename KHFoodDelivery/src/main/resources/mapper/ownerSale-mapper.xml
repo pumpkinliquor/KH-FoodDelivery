@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ownerSale">
+	
+	<select id="selectSalesDateList" parameterType="map" resultType="map">
+		select p.*,M.MEMBERID,M.MEMBERNAME,M.MEMBERPHONE,ME.MENUNAME,S.DELIVERYPRICE 
+		from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest,price,orderState from pay) p 
+		JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) 
+		JOIN STORE S ON(P.BUSINESSCODE = S.BUSINESSCODE) where rnum = 1 and p.businesscode = #{businessCode} 
+		and paydate between to_date(#{payDate1}, 'YYYY-MM-DD') and to_date(#{payDate2} || ' 23:59:59', 'YYYY-MM-DD HH24:MI:SS') and orderstate != 4
+		order by payordernum desc
+	</select>
+
+	<select id="selectSaleDateCount" parameterType="map" resultType="_int">
+		select count(*)
+		from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest,price,orderState from pay) p 
+		JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) 
+		JOIN STORE S ON(P.BUSINESSCODE = S.BUSINESSCODE) where rnum = 1 and p.businesscode = #{businessCode}
+		and paydate between to_date(#{payDate1}, 'YYYY-MM-DD') and to_date(#{payDate2} || ' 23:59:59', 'YYYY-MM-DD HH24:MI:SS') and orderstate != 4
+		order by payordernum desc
+	</select>
+	
+	<select id="selectTodaySales" parameterType="string" resultType="string">
+		select to_char(sum(price), '999,999,999,999,999') from pay where businessCode = #{businessCode} and TO_CHAR(paydate, 'YY/MM/DD') = TO_CHAR(SYSDATE, 'YY/MM/DD')
+	</select>
+	
+	<select id="selectMonthSales" resultType="string" parameterType="string">
+		select to_char(sum(price), '999,999,999,999,999') from pay where businessCode = 38 and TO_CHAR(paydate, 'YY/MM') = TO_CHAR(SYSDATE, 'YY/MM')
+	</select>
+	
+	<select id="selectYearSales" resultType="string" parameterType="string">
+		select to_char(sum(price), '999,999,999,999,999') from pay where businessCode = 38 and TO_CHAR(paydate, 'YY') = TO_CHAR(SYSDATE, 'YY')
+	</select>
+	
+	<select id="selectCaMenuList" resultType="map" parameterType="_int">
+		select * from menu where menucategorycode = #{menuCategorycode}
+	</select>
+</mapper>
