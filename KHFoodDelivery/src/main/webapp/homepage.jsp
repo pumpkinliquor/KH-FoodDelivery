@@ -628,7 +628,7 @@ html {
 				 	</div>
 				 </div>
 			</div>
-			<a href="${path}/member/main.do"><img src="${path }/resources/images/customerIcon.png" width=230px;></a>
+			
 		</div>
 		<div class="col-sm-3">
 		<br><br><br><br>
