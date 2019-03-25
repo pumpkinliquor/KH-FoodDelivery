@@ -231,11 +231,9 @@ $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디�
  } else {
      var msg = '결제에 실패하였습니다.';
      msg += '실패 사유 : ' + rsp.error_msg;
-     location.href="${path}/member/main.do";
  }
  alert(msg);
-/*  history.go(-3); */
-/* location.href="${path}/customer/menuInfo.do?businessCode="+${businessCode}; */
+ location.href="${path}/customer/menuInfo.do?businessCode="+${businessCode};
 });
 });
 </script>
