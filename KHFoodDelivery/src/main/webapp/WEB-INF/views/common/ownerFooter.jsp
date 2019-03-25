@@ -35,8 +35,8 @@
         }
 
         #footer {
-            background: black !important;
-            opacity: 0.7;
+            background: rgba(6, 4, 75, 0.986) !important;
+            
             height: 220px;
         }
 

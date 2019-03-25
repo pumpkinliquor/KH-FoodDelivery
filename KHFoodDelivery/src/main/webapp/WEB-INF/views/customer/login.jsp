@@ -16,10 +16,10 @@ pageEncoding="UTF-8"%>
 /*  로그인 */ 
 
 .send-button{
-background: #54C7C3;
+background: rgb(250, 163, 148);
 width:100%;
 font-weight: 600;
-color:#fff;
+color:white;
 padding: 8px 25px;
 }
 input[type=number]::-webkit-inner-spin-button, 
