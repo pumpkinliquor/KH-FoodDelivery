@@ -20,9 +20,9 @@
 	table#table-sort th{ background-color: rgb(250, 163, 148); color: white; border: 1px solid #444444; padding: 0; }
 	table#table-sort td{ border: 1px solid #444444; padding: 0; }
 	.btn10{float:right; background-color:black; color:white; border:none;}
-	#activeOn{background-color:rgb(64, 131, 255); color:white;}
+	#activeOn{background-color: rgb(250, 163, 148); color:white;}
 #activeOff:hover{
-	background-color:rgb(129, 173, 255);
+	background-color: rgb(250, 163, 148);
 	color:white;
 }
 </style>

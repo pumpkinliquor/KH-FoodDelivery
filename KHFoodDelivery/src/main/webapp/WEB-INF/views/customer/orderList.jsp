@@ -30,9 +30,9 @@ table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
     text-decoration:none;
     cursor:pointer;
 }
-#activeOn{background-color:rgb(64, 131, 255); color:white;}
+#activeOn{background-color: rgb(250, 163, 148); color:white;}
 #activeOff:hover{
-	background-color:rgb(129, 173, 255);
+	background-color: rgb(250, 163, 148);
 	color:white;
 }
 

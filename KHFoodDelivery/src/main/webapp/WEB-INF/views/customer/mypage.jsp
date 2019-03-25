@@ -25,9 +25,9 @@ input.memberAddress{display:inline;}
     div.up span.error,span.error2{color:red;}
 .btn{background-color:rgb(250, 163, 148); color:white; margin-top:5%;}
 #drop{float:right;}
-#activeOn{background-color:rgb(64, 131, 255); color:white;}
+#activeOn{background-color: rgb(250, 163, 148); color:white;}
 #activeOff:hover{
-	background-color:rgb(129, 173, 255);
+	background-color: rgb(250, 163, 148);
 	color:white;
 }
 .btn-ser1{margin-top:0;float:right;}           
@@ -168,7 +168,7 @@ function address1() {
 <div class="container up">
  			
 	<div class="row">
-		<div class="col-md-3 ">
+		<div class="col-md-3" style="padding-top:150px">
 		     <div class="list-group ">
               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}" id="activeOff" class="list-group-item list-group-item-action" style="z-index:0; ">나의 주문내역</a>
               <a href="${path}/customer/mypage.do?memberId=${sessionScope.logined}" id="activeOn" class="list-group-item list-group-item-action">회원정보변경</a>
