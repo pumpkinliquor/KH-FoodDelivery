@@ -157,7 +157,7 @@ public class OrderStoreSalesController {
 		List<Map<String,String>> saleList = service.selectSalesDateList(cPage,numPerPage,map);
 		int saleCount = service.selectSaleDateCount(map);
 		logger.debug("saleCount"+saleCount);
-		logger.debug("saleList"+saleList);
+		logger.debug("saleList"+saleList.size());
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("monthSales",monthSales);
@@ -182,8 +182,8 @@ public class OrderStoreSalesController {
 		
 		List<Map<String,String>> category = menuService.selectMenuCategory(businessCode);
 		List<Map<String,String>> menuList = menuService.selectMenuList(businessCode);
-		List<Map<String,String>> goodsList = orderService.selectGoodsOrderList(businessCode);
-		int orderCount = orderService.selectOrderCount(businessCode1);
+		List<Map<String,String>> goodsList = orderService.selectGoodsOrderList(cPage,numPerPage,businessCode);
+		int goodsCount = orderService.selectGoodsCount(businessCode1);
 		String todaySales = "";
 		String monthSales ="";
 		String yearSales = "";
@@ -221,16 +221,16 @@ public class OrderStoreSalesController {
 		logger.debug("today"+todaySales);
 		logger.debug("monthSales"+monthSales);
 		logger.debug("yearSales"+yearSales);
-		
+		logger.debug("goodsList"+goodsList);
 		mv.addObject("menuList",menuList);
 		mv.addObject("category",category);
 		mv.addObject("monthSales",monthSales);
 		mv.addObject("yearSales",yearSales);
 		mv.addObject("todaySales",todaySales);
-		mv.addObject("oderCount",orderCount);
+		mv.addObject("oderCount",goodsCount);
 		mv.addObject("businessCode",businessCode1);
 		mv.addObject("goodsList",goodsList);
-		mv.addObject("pageBar",PagingFactory.getPageBar4(orderCount, cPage, numPerPage, "/food/owner/selectStoreGoodsSales.do?businessCode="+businessCode1));
+		mv.addObject("pageBar",PagingFactory.getPageBar4(goodsCount, cPage, numPerPage, "/food/owner/selectStoreGoodsSales.do?businessCode="+businessCode1));
 		mv.setViewName("owner/ownerGoodsSales");
 		
 		return mv;
@@ -300,7 +300,8 @@ public class OrderStoreSalesController {
 		logger.debug("menu"+menuCategory1 + "menu2"+menuCategory2 + "BU" + businessCode);
 		List<Map<String,String>> list = service.menuCateList(cPage,numPerPage,map);
 		int menuCount = service.selectMenuCount(map);
-		logger.debug("list"+list);
+		logger.debug("list"+list.size());
+		logger.debug("menuCount"+menuCount);
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("monthSales",monthSales);
