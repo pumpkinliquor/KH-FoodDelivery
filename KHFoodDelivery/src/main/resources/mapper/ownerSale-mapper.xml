@@ -41,6 +41,7 @@
 		join menu me on(p.menucode = me.menucode) 
 	 	join menu_category c on(me.menucategorycode = c.menucategorycode) 
 	 	where p.businesscode = #{businessCode} and p.menucode = #{menuCode} and c.menucategorycode = #{menuCategoryCode} and p.orderstate != 4
+	 	order by paydate desc
 	</select>
 	
 	<select id="selectMenuCount" parameterType="map" resultType="_int">
