@@ -654,7 +654,7 @@ html {
 		</div>
 		<div class="col-sm-3 ">
 		<br><br><br>
-		 	<div class="img-wrapper img2">
+		 	<div onclick="location.href='${path }/member/main.do'" class="img-wrapper img2">
 		 		 <div class="example-container">
 			      	<div class="example-container">
 			      		<div class="example-container__example example-container__example--hamburger">
@@ -667,7 +667,7 @@ html {
 		</div>
 		<div class="col-sm-3">
 		<br><br><br><br>
-			 <div class="img-wrapper img3">
+			 <div onclick="location.href='${path}/owner/ownerMain.do'" class="img-wrapper img3">
 			     <div class="example-container">
   					<div class="example-container__example example-container__example--hamburger">
 
