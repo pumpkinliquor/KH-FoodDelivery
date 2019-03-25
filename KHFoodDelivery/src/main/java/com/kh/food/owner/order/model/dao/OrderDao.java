@@ -27,5 +27,7 @@ public interface OrderDao {
 
 	int selectGoodsCount(int businessCode1);
 
+	List<Map<String, String>> selectPayList(int cPage,int numPerPage,int businessCode1);
+
 
 }

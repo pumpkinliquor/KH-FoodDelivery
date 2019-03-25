@@ -73,13 +73,14 @@ pageEncoding="UTF-8"%>
 					</thead>
 					<tbody>
 					
+					<c:set var="index" value="0"/>
 					<c:forEach var="o" items="${orderOneList}" varStatus="status">		
 							<tr style="cursor:pointer;">						
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1"><c:out value="${status.count}"/></td>
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.payDate}</td>
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.memberName}님의 주문입니다.</td>
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.deliveryPrice}</td>							
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${price[status.index].price}</td>
+								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.price}</td>
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.payOrderMethod}</td>							
 								<td>
 								<c:if test="${o.orderState ne 4 }">
@@ -116,7 +117,7 @@ pageEncoding="UTF-8"%>
 								</c:if>
 								</td>
 							</tr>
-							
+					<c:set var="index" value="${index + 1 }"/>		
 					</c:forEach> 
 					</tbody>
 				</table>
@@ -221,7 +222,7 @@ function fn_state1(payOrderNum,e)
 	console.log($(e).val());
 	var orderState = $(e).val();
 	
-		var UP = confirm("정말로 삭제 하시겠습니까?");
+		var UP = confirm("정말로 주문취소 하시겠습니까?");
 		
 		if(UP == true)
 			{
@@ -230,7 +231,7 @@ function fn_state1(payOrderNum,e)
 					data:{"payOrderNum" : payOrderNum , "orderState" : orderState},
 					success:function(data)
 					{
-							if(data==1)
+							if(data==2)
 							{
 								if(orderState == 4)
 									{
@@ -325,7 +326,8 @@ function fn_detailOrder(payOrderNum){
 			data:{"payOrderNum" : payOrderNum , "orderState" : orderState},
 			success:function(data)
 			{
-					if(data==1)
+				console.log(data);
+					if(data==2)
 					{
 						$(e).css("color","red");
 						if(orderState == 1)

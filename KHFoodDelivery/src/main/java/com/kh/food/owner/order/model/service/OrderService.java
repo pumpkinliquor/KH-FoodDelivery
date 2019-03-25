@@ -26,5 +26,7 @@ public interface OrderService {
 	List<Map<String, String>> selectGoodsOrderList(int cPage, int numPerPage, String businessCode);
 
 	int selectGoodsCount(int businessCode1);
+
+	List<Map<String, String>> selectPayList(int cPage, int numPerPage, int businessCode1);
 	
 }

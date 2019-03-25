@@ -55,8 +55,16 @@ public class OrderStoreSalesController {
 		logger.debug("bucODE"+businessCode1);
 		ModelAndView mv = new ModelAndView();
 		
-		List<Pay> orderOneList = orderService.selectOrderOneList(cPage,numPerPage,businessCode1);
-		int orderCount = orderService.selectOrderCount(businessCode1);
+		List<Pay> orderOneList = service.selectOrderOneList(cPage,numPerPage,businessCode1);
+		
+		int orderCount = service.selectOrderCount(businessCode1);
+		List<Map<String,String>> payList = orderService.selectPayList(cPage,numPerPage,businessCode1);
+		logger.debug("ddd"+String.valueOf(payList.get(0).get("PRICE")));
+		logger.debug("orderOneList"+orderOneList);
+		for(int i=0; i<orderOneList.size(); i++)
+		{
+			orderOneList.get(i).setPrice(Integer.parseInt(String.valueOf((payList.get(i).get("PRICE")))));
+		}
 		String todaySales = "";
 		String monthSales ="";
 		String yearSales = "";
@@ -113,7 +121,7 @@ public class OrderStoreSalesController {
 	{
 		logger.debug("payDate1"+payDate1+"payDate2"+payDate2);
 		logger.debug("bucODE"+businessCode);
-		int numPerPage = 10;
+		int numPerPage = 5;
 		
 		String todaySales = "";
 		String monthSales ="";
@@ -155,11 +163,13 @@ public class OrderStoreSalesController {
 		map.put("payDate1", payDate1);
 		map.put("payDate2", payDate2);
 		List<Map<String,String>> saleList = service.selectSalesDateList(cPage,numPerPage,map);
+		List<Map<String,String>> salePriceList = service.selectSalePriceList(cPage,numPerPage,map);
 		int saleCount = service.selectSaleDateCount(map);
 		logger.debug("saleCount"+saleCount);
 		logger.debug("saleList"+saleList.size());
 		ModelAndView mv = new ModelAndView();
 		
+		mv.addObject("salePriceList",salePriceList);
 		mv.addObject("monthSales",monthSales);
 		mv.addObject("yearSales",yearSales);
 		mv.addObject("todaySales",todaySales);
