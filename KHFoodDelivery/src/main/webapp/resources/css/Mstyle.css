@@ -16,15 +16,14 @@ section {position:relative; min-height:621px;width:100%;}
 
 /********** footer **********/
 footer {position:relative; width:100%; overflow:hidden;}
-footer      {background-color:#f8f   9fa; background-clip:content-box; clear:both; height:95px; text-align:center;}
+footer      {background-clip:content-box; clear:both; height:95px; text-align:center;}
 footer p    {margin-top:30px;}
 
 
 /* 헤더 */
 
  .newsletter  {
- 
-background-color: #4D4D4D;
+ background-color: rgb(255, 72, 40);
 height: 200px;
 width:100%;
 z-index:1;
