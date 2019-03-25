@@ -387,6 +387,7 @@ public class MemberController {
 			}
 		}else {
 			msg="아이디가 존재하지 않습니다.";
+			loc="/customer/login.do";
 		}
 		mv.addObject("msg",msg);
 		mv.addObject("loc",loc);

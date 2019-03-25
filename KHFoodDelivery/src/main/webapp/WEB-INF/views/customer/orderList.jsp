@@ -150,7 +150,28 @@ function detailOrder1(payorderNum,menucode){
 							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"style="cursor:pointer;"><c:out value="${m.STORECATEGORY }"/></td>
 							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.STORENAME }"/></td>
 							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.PAYDATE}"/></td>
-							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value=""/></td>
+
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});">
+							<c:set var="state" value="${m.ORDERSTATE }" />
+							<c:choose>
+							<c:when test="${ state eq 0}">
+							결제완료
+							</c:when>
+							<c:when test="${ state eq 1}">
+							주문접수
+							</c:when>
+							<c:when test="${ state eq 2}">
+							배달중
+							</c:when>
+							<c:when test="${ state eq 3}">
+							밷라완료
+							</c:when>
+							<c:when test="${ state eq 4}">
+							주문취소
+							</c:when>
+							</c:choose>
+						
+							</td>
 							<td><button class="btn btn-default" value="${m.MEMBERID}"  id="modal" type="button" onclick="fn_review(${m.BUSINESSCODE},${m.MEMBERNUM},this)">리뷰</button></td>
 						</tr>				
 					</c:forEach>
