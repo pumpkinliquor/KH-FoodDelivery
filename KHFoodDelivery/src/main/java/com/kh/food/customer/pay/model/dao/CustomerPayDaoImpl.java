@@ -60,6 +60,11 @@ public Map<String, String> selectOnePay(String memberId) {
 	return sqlSession.selectOne("pay.selectOnePay", memberId);
 }
 
+@Override
+public int menuSoldCount(Map<String, String> map) {
+	return sqlSession.update("pay.menuSoldCount", map);
+}
+
 
 
 

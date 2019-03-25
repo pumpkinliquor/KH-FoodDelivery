@@ -18,7 +18,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
 	int insertPay2(Map<String, String> map);
 	int deleteWishList(String memberId);
 	Map<String, String> selectOnePay(String memberId);
-  
+	int menuSoldCount(Map<String,String> map);
   
   }
  
