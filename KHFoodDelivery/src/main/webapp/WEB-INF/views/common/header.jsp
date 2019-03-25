@@ -292,7 +292,7 @@
               <div class="col-sm-12">
                   <div class="content">
                   <div class="input-group">
-                       <a style="cursor:pointer;" id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></a>
+                       <a style="cursor:pointer;" id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png" onmouseover="this.src='${path}/resources/images/placeHover.png'" onmouseout="this.src='${path }/resources/images/place.png'"></a>
                     <input type="text" id="location1" onclick="execDaumPostcode();" name="myAddr" value="${sessionScope.myAddr }" class="form-control" placeholder="주소찾기를 원하시면 클릭해주세요" readonly />
                        <span class="input-group-btn">
                        	<input type="hidden" value="전체" name="category"/>
@@ -304,8 +304,6 @@
                   </div>
                   </div>
               </div>
-              
-
                        </form>
               </div>
              </div> 
