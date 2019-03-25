@@ -193,6 +193,7 @@ color:white;
   cursor:pointer;
   border-radius:50%;
 	border : 1px ridge white;
+background-color:white;
 
 }
 
@@ -202,6 +203,7 @@ color:white;
  margin-top:85px;
  margin-left:30px;
  background : dark;
+ 
 }
 .img3 {
     border-radius:50%;
@@ -209,7 +211,7 @@ color:white;
  margin-left:30px;
 }
 a{
-	color:white; 
+	color:#90afc5; 
 }
 /* general START */
 *,
@@ -623,7 +625,7 @@ html {
 		 		 <div class="example-container">
 			      	<div class="example-container">
 			      		<div class="example-container__example example-container__example--hamburger">
-			      			<a href="${path }/owner/memberMain.do"><span>&nbsp;</span><span>회</span><span>원</span><br/><span>페</span><span>이</span><span>지</span></a>
+			      			<a href="${path }/member/main.do"><span>&nbsp;</span><span>회</span><span>원</span><br/><span>페</span><span>이</span><span>지</span></a>
 				 		</div>
 				 	</div>
 				 </div>
@@ -636,7 +638,7 @@ html {
 			     <div class="example-container">
   					<div class="example-container__example example-container__example--hamburger">
 
-    					<a href="${path }/owner/ownerrMain.do"><span>&nbsp;</span><span>사</span><span>장</span><br/><span>페</span><span>이</span><span>지</span></a>
+    					<a href="${path }/owner/ownerMain.do"><span>&nbsp;</span><span>사</span><span>장</span><br/><span>페</span><span>이</span><span>지</span></a>
 
   					</div>
 				</div>
