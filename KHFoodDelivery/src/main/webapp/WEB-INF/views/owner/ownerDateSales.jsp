@@ -43,6 +43,9 @@ pageEncoding="UTF-8"%>
 .saleDiv{
 margin-top:100px
 }
+.saleDiv3{
+margin-bottom:50px;
+}
 </style>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 
