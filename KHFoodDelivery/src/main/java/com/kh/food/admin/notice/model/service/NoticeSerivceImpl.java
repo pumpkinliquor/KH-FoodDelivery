@@ -95,6 +95,7 @@ public class NoticeSerivceImpl implements NoticeService {
 				a.setNoticeNum(Integer.parseInt(map.get("noticeNum").toString()));
 				result=dao.memberNoticeAUpdateEnd(a);
 				if(result==0) throw new Exception();
+				System.out.println(result+" : service");
 			}
 			
 		}catch(Exception e)

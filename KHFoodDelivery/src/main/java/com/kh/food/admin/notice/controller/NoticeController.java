@@ -108,6 +108,7 @@ public class NoticeController {
 			}
 		}
 		int result=service.insertMemberNotice(notice,files);
+		System.out.println(result+" : controllerresult");
 		String loc="/admin/memberNoticeList.do";
 		String msg="";
 		if(result>0) {
