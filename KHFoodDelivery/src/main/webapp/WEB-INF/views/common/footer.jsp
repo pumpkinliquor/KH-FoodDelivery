@@ -39,7 +39,7 @@
         }
 
         #footer {
-            background: rgb(255, 72, 40);
+            background-color: rgb(219, 83, 83);
             height: 220px;
         }
 
@@ -53,7 +53,6 @@
         #footer a {
             color: #ffffff;
             text-decoration: none !important;
-            background-color: transparent;
             -webkit-text-decoration-skip: objects;
         }
 
