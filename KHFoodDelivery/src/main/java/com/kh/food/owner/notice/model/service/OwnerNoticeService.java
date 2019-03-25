@@ -19,4 +19,7 @@ public interface OwnerNoticeService {
 	List<Map<String,String>>ownerNoticeList();
 	
 	List<Map<String,String>>ownerNoticeListOwnerView(int cPage,int numPerPage);
+	int memberCount();
+	int ownerCount();
+	int todayPayCount();
 }

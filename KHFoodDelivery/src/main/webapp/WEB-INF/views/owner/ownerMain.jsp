@@ -23,6 +23,10 @@ pageEncoding="UTF-8"%>
             width: 100%;
             height: 50px;
         }
+        #myPageBtn{
+            width: 100%;
+            height: 50px;
+        }
         table td{
             border-top: 1px solid #dee2e6;
         }
@@ -104,7 +108,7 @@ pageEncoding="UTF-8"%>
                         <p>사장님 로그인 해주세요!</p>
                     </div> 
                     <div class="col-md-12">
-                        <button id="loginBtn" onclick="location.href='${path }/owner/login.do'">로그인</button>
+                        <button id="loginBtn" class="btn btn-secondary" onclick="location.href='${path }/owner/login.do'">로그인</button>
                     </div>
                     <div class="row">
                     <div class="col-md-6"></div>
@@ -113,15 +117,19 @@ pageEncoding="UTF-8"%>
                     </div>
                     </div>
                     <div class="col-md-12">
-                        <button id="enrollBtn" onclick="location.href='${path }/owner/insertOwner.do'">회원가입</button>
+                        <button id="enrollBtn" class="btn btn-secondary" onclick="location.href='${path }/owner/insertOwner.do'">회원가입</button>
                     </div>
                      </c:if>
                      <c:if test="${sessionScope.ownerId!=null }">
                      <div class="col-md-12 div1">
-                        <p>${ownerId}사장님 환영 합니다!!</p>
+                        <p><b>${ownerId}사장님</b> 환영 합니다!</p>
                      </div>
                      <div class="col-md-12">
-                        <button id="logoutBtn" onclick="location.href='${path }/owner/logout.do'">로그아웃</button>
+                        <button id="myPageBtn" class="btn btn-secondary" onclick="location.href='${path }/owner/myPage.do'">마이페이지</button>
+                     </div> 
+                     <br>
+                     <div class="col-md-12">
+                        <button id="logoutBtn" class="btn btn-secondary" onclick="location.href='${path }/owner/logout.do'">로그아웃</button>
                      </div> 
                      </c:if>
                 </div>           
@@ -161,8 +169,8 @@ pageEncoding="UTF-8"%>
                     <div class="col-md-12 infoDiv2">
                         <div class="row">
                         <div class="col-md-6 col-sm-6 infoDiv3">
-                            <a href="${path }/owner/menuEnroll.do">
-                            <p id="p1">사장님 가게의 매출을 통계를 통해 확인하세요! 통계주소는 아직~</p>
+                            <a href="${path }/owner/salesStoreChoice.do?ownerId=${sessionScope.ownerId}">
+                            <p id="p1">사장님 가게의 매출을 통계를 통해 확인하세요!</p>
                         </div>
                         <div class="col-md-6 col-sm-6 infoDiv4">
                             <img src="${path }/resources/images/owner/main/매출.png" width="100px" height="100px">

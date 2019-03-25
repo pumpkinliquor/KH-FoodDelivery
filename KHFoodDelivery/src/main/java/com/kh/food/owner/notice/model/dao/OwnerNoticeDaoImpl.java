@@ -41,7 +41,23 @@ public class OwnerNoticeDaoImpl implements OwnerNoticeDao {
 	}
 
 
-	
+	@Override
+	public int todayPayCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("ownerMember.todayPayCount");
+	}
+
+
+	@Override
+	public int ownerCount() {
+		return sqlSession.selectOne("ownerMember.ownerCount");
+	}
+
+
+	@Override
+	public int memberCount() {
+		return sqlSession.selectOne("member.memberCount");
+	}
 
 
 	@Override

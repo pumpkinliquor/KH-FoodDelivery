@@ -39,6 +39,7 @@
 			<mapping path="/owner/menuStoreChoice.do"/>
 			<mapping path="/owner/storeChoice.do"/>
 			<mapping path="/owner/ownerReview.do"/>
+			<mapping path="/owner/salesStoreChoice.do"/>
 			<beans:bean id="ownerInterceptor" class="com.kh.food.common.OwnerInterceptor"/>
 		</interceptor>
 	</interceptors>
