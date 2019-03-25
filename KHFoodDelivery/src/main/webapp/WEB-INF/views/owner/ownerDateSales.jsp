@@ -93,7 +93,7 @@ margin-bottom:50px;
                     <div class="col-md-12">
                     	<div class="row">
 	                         	<div class="col-md-2">
-	                          		<a href="${path }/owner/menuEnroll.do?businessCode=${businessCode}" class="list-group-item list-group-item-action menu">상품별</a>
+	                          		<a href="${path }/owner/selectStoreGoodsSales.do?businessCode=${businessCode}" class="list-group-item list-group-item-action menu">상품별</a>
 	                          	</div>
 	                          	<div class="col-md-2">
 	                          		<a href="${path }/owner/selectStoreSales.do?businessCode=${businessCode}" class="list-group-item list-group-item-action active menu">기간별</a>                 
@@ -110,10 +110,10 @@ margin-bottom:50px;
                               	  	<p>기간선택</p>
                               	  </div>
                                   <div class="col-md-3">
-                                  	<input type="date" name="payDate1">&nbsp;&nbsp;&nbsp;~
+                                  	<input type="date" name="payDate1" required="required">&nbsp;&nbsp;&nbsp;~
                                   </div>
                                   <div class="col-md-2">
-                                  	<input type="date" name="payDate2">
+                                  	<input type="date" name="payDate2" required="required">
                                   </div>
                                   <div class="col-md-5">
                                   <input type="hidden" name="businessCode" value="${businessCode}">

@@ -23,6 +23,8 @@ public interface OrderService {
 
 	Map<String, String> selectPayOne(String payOrderNum);
 
-	List<Map<String, String>> selectGoodsOrderList(String businessCode);
+	List<Map<String, String>> selectGoodsOrderList(int cPage, int numPerPage, String businessCode);
+
+	int selectGoodsCount(int businessCode1);
 	
 }

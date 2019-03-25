@@ -48,7 +48,7 @@
 				<th><b>음식</b></th>
 				<td>
 				<c:forEach var="p" items="${payList}">
-					<c:out value="${p.MENUNAME}"/>
+					<c:out value="${p.MENUNAME}"/>&nbsp;<c:out value="(${p.COUNT})"/>
 				</c:forEach>
 				</td>
 			</tr>

@@ -128,10 +128,11 @@ margin-bottom:50px;
 					<thead>
 						<tr>
 							<th width=7%>번호</th>
+							<th width=30%>주문날짜</th>
 							<th width=18%>카테고리명</th>
 							<th width=27%>메뉴명</th>
 							<th width=9%>수량</th>
-							<th width=9%>금액</th>
+							<th width=9%>금액</th>					
 						</tr>
 					</thead>
 					<tbody>
@@ -139,10 +140,13 @@ margin-bottom:50px;
 					<c:forEach var="o" items="${list}" varStatus="status">		
 							<tr style="cursor:pointer;">						
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1"><c:out value="${status.count}"/></td>
+								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.PAYDATE }</td>
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.MENUCATEGORY}</td>
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.MENUNAME}</td>
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.COUNT}</td>							
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.PRICE }</td>							
+								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.PRICE }</td>
+								
+															
 							</tr>
 							
 					</c:forEach>
