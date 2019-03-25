@@ -8,12 +8,12 @@
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include> 
 <style>
-div.menu1,div.menu2,div.menu3{ position: relative; display:inline-block; border :1px solid #BDBDBD;margin:7px;   text-align:center; overflow:hidden;width:100%;box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);}
-div.menu4,div.menu5,div.menu6{ position: relative; display:inline-block;  border :1px solid #BDBDBD;margin:7px;  text-align:center; overflow:hidden;width:100%;box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5); }
-div.menu7,div.menu8,div.menu9{ position: relative; display:inline-block;  border :1px solid #BDBDBD; margin:7px; text-align:center; overflow:hidden;width:100%;box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5); }
+div.menu1,div.menu2,div.menu3{ position: relative; display:inline-block; border :1px solid #BDBDBD;margin:7px;   text-align:center; overflow:hidden;width:100%;box-shadow: 0px 0px 10px 1px rgb(250, 163, 148);}
+div.menu4,div.menu5,div.menu6{ position: relative; display:inline-block;  border :1px solid #BDBDBD;margin:7px;  text-align:center; overflow:hidden;width:100%;box-shadow: 0px 0px 10px 1px rgb(250, 163, 148); }
+div.menu7,div.menu8,div.menu9{ position: relative; display:inline-block;  border :1px solid #BDBDBD; margin:7px; text-align:center; overflow:hidden;width:100%;box-shadow: 0px 0px 10px 1px rgb(250, 163, 148); }
 div.main a{text-decoration:none; color:black;}
 img.i{max-width:100%; max-height: 100%; margin-bottom:-9.9305px;margin-left:14%;vertical-align: middle;}
-div.main{text-align:center;}
+div.main{text-align:center; }
 .category-title{
 	margin-top:10px;
 	font-size: 18px;

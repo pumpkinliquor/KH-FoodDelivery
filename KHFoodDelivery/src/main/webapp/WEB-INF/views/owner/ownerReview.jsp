@@ -48,7 +48,7 @@ pageEncoding="UTF-8"%>
 .star_rating span.on {color:crimson;}
 </style>
 
-
+<section>
 
 	<script>
 		function SetSelectBox(){
@@ -95,6 +95,6 @@ pageEncoding="UTF-8"%>
 
     </div>
 
-
+</section>
 
 <jsp:include page="/WEB-INF/views/common/ownerFooter.jsp"></jsp:include>

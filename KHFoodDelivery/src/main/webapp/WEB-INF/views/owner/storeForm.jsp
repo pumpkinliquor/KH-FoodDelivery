@@ -89,6 +89,10 @@ function maxLengthCheck(object){
     td{
     	font-weight:bold;
     }
+    .submitBtn{
+    border-color: rgba(61, 58, 129, 0.986);
+    color:rgba(61, 58, 129, 0.986);
+    }
 </style>
 <section>
 	<div class="container">
@@ -179,7 +183,7 @@ function maxLengthCheck(object){
 			            </tr>
 			            <tr>
 			                <td colspan="2">
-			                    <input type="submit" value="신청" class="btn btn-outline-success" style="float:right;"/>
+			                    <input type="submit" value="신청" class="btn btn-outline-light submitBtn" style="float:right;"/>
 			                </td>
 			            </tr>
 			    </tbody>

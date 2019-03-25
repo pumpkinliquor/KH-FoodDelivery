@@ -77,6 +77,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
 		if(i==0)
 		{
 			int result = service.insertPay(map);
+			int update=service.menuSoldCount(map);
 			Map<String,String> pay = service.selectOnePay(memberId);
 			logger.debug("pay"+pay);
 			payList.add(pay);
@@ -86,7 +87,6 @@ import com.kh.food.owner.menu.model.vo.Menu;
 				if(wishList.size()==1)
 				{
 					int result2=service.deleteWishList(memberId);
-					
 				}
 			}
 			else
@@ -97,19 +97,18 @@ import com.kh.food.owner.menu.model.vo.Menu;
 		else
 		{		
 			int result1 = service.insertPay2(map);
+			int update=service.menuSoldCount(map);
 			Map<String,String> pay = service.selectOnePay(memberId);
 			logger.debug("pay"+pay);
 			payList.add(pay);
 			if(wishList.size()!=1)
 			{
 				int result2=service.deleteWishList(memberId);
-				
 			}
 			
 			if(result1>0)
 			{
 				logger.debug("나머지성공");
-				
 			}
 			else
 			{

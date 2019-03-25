@@ -23,7 +23,7 @@ footer p    {margin-top:30px;}
 /* 헤더 */
 
  .newsletter  {
- background-color: rgb(255, 72, 40);
+ background-color: rgb(219, 83, 83);
 height: 200px;
 width:100%;
 z-index:1;
@@ -73,8 +73,8 @@ font-weight:600;
 }
 
 #locationImg{
-    width: 30px;
-    height:30px;
+    width: 50px;
+    height:50px;
 }
 
 div.headerDiv1{

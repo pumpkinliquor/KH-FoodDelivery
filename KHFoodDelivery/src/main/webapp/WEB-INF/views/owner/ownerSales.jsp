@@ -44,7 +44,7 @@ pageEncoding="UTF-8"%>
 margin-top:100px
 }
 .saleDiv2{
-background-color:#4D4D4D;
+background-color:rgba(61, 58, 129, 0.986);
 height:130px;
 }
 .saleDiv3{
@@ -177,4 +177,4 @@ margin-bottom:50px;
 
 
 </script>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/ownerFooter.jsp"></jsp:include>

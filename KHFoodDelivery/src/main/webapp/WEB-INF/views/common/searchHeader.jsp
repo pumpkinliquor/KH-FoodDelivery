@@ -370,7 +370,7 @@ div.newsletter,div.group{display:inline-block;}
              <div class="col-sm-12">
                   <div class="content">
                   <div class="input-group">
-                       <button type="button" id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png"></button>
+                       <a style="cursor:pointer;" id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png" onmouseover="this.src='${path}/resources/images/placeHover.png'" onmouseout="this.src='${path }/resources/images/place.png'"></a>
                        <input type="hidden" value="${sessionScope.lat }" name="lat" id="lat"/>
  						<input type="hidden" value="${sessionScope.lng }" name="lng" id="lng"/>
  						<input type="hidden" value="전체" name="category"/>   

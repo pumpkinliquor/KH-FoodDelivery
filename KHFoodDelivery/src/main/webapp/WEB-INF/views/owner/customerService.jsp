@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
 <style>
 	/* Bootstrap 수정 */
     .table > thead {
-      background-color: grey;
+      background-color: rgba(61, 58, 129, 0.986);
       color:white;
     }
     .table > thead > tr > th {

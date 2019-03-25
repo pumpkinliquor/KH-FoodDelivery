@@ -165,7 +165,7 @@ $('#result').text(result);
                         <div class="clearfix" id="resultDeliveryPrice">
                    			         배달요금 별도 : ${payReady.DELIVERYPRICE} 원
                         </div>
-                        <div class="cart-btn clearfix" style="cursor:pointer;">
+                        <div id="payButton" class="cart-btn clearfix" style="cursor:pointer;">
                             <a id="payButton" class="btu">결제하기</a>
                         </div>
                     </div>
@@ -233,8 +233,7 @@ $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디�
      msg += '실패 사유 : ' + rsp.error_msg;
  }
  alert(msg);
-/*  history.go(-3); */
-/* location.href="${path}/customer/menuInfo.do?businessCode="+${businessCode}; */
+ location.href="${path}/customer/menuInfo.do?businessCode="+${businessCode};
 });
 });
 </script>

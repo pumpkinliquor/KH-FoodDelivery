@@ -54,6 +54,10 @@ public class CustomerPayServiceImpl implements CustomerPayService {
 	public Map<String, String> selectOnePay(String memberId) {
 		return dao.selectOnePay(memberId);
 	}
+	@Override
+	public int menuSoldCount(Map<String, String> map) {
+		return dao.menuSoldCount(map);
+	}
 	
 	
 	//결제 후 장바구니 삭제

@@ -161,17 +161,17 @@ font-weight:600;
 
   .nav-link{
     color:black;
-    background-color: #4D4D4D;
+    background-color: rgba(6, 4, 75, 0.986);
     margin-left: 1em;
     margin-right: 1em;
   }
   nav{
-    background-color: #4D4D4D;
+    background-color: rgba(6, 4, 75, 0.986);
 
   }
 
   #topnav{
-    background-color: #F8F9FA;
+    background-color: #f9fafb;
   }
 
 .headerDiv1{
