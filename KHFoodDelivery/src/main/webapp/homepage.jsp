@@ -133,6 +133,18 @@ jQuery(function ($) {
 	$this.countTo(options);
   }
 });
+	$(document).ready(function(){
+		$.ajax({
+			type:"POST",
+			url:"${path}/owner/homePage.do",
+			dataType:"JSON",
+			success: function(data){
+				$('#memberCount').countTo({to:data.memberCount});
+				$('#ownerCount').countTo({to:data.ownerCount});
+				$('#todayPayCount').countTo({to:data.todayPayCount});
+			}
+		});
+	});
 </script>
 <style>
 body{
@@ -191,14 +203,14 @@ color:white;
 	        <div class="col">
 	        <div class="counter">
       <i class="fa fa-code fa-2x"></i>
-      <h2 class="timer count-title count-number" data-to="28" data-speed="1500"></h2>
+      <h2 class="timer count-title count-number" id='memberCount' data-to="" data-speed="1500"></h2>
        <p class="count-text ">간신배 가입된 회원 수</p>
     </div>
 	        </div>
               <div class="col">
                <div class="counter">
       <i class="fa fa-coffee fa-2x"></i>
-      <h2 class="timer count-title count-number" data-to="35" data-speed="1500"></h2>
+      <h2 class="timer count-title count-number" id="ownerCount" data-to="" data-speed="1500"></h2>
       <!-- data-to에 카운트들고오면 됨 -->
       <p class="count-text ">간신배 가입된 사장님 수</p>
     </div>
@@ -206,7 +218,7 @@ color:white;
               <div class="col">
                   <div class="counter">
       <i class="fa fa-lightbulb-o fa-2x"></i>
-      <h2 class="timer count-title count-number" data-to="11900" data-speed="1500"></h2>
+      <h2 class="timer count-title count-number" id="todayPayCount" data-to="" data-speed="1500"></h2>
       <p class="count-text ">오늘 주문 수</p>
     </div></div>
 <!--     select count(*) as todayOrderCount

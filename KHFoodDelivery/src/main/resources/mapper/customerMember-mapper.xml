@@ -23,6 +23,11 @@
 		select count(*) from member where memberId=#{memberId}
 	</select>
 	
+	<select id="memberCount" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+	</select>
+	
+	
 	<select id="checkNick" parameterType="string" resultType="_int">
 		select count(*) from member where nickName=#{nickName}
 	</select>

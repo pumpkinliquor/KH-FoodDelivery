@@ -37,8 +37,24 @@ public class OwnerNoticeServiceImpl implements OwnerNoticeService {
 		// TODO Auto-generated method stub
 		return dao.ownNotCount();
 	}
-
 	
+
+	@Override
+	public int memberCount() {
+		return dao.memberCount();
+	}
+	
+	@Override
+	public int ownerCount() {
+		return dao.ownerCount();
+	}
+
+
+	@Override
+	public int todayPayCount() {
+		return dao.todayPayCount();
+	}
+
 
 	//사장공지사항 뷰
 	@Override

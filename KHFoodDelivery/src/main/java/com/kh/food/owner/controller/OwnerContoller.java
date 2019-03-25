@@ -1,5 +1,6 @@
 package com.kh.food.owner.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.food.owner.notice.model.service.OwnerNoticeService;
@@ -57,5 +59,20 @@ public class OwnerContoller {
 		return "owner/ownerIdSearch";
 	}
 	
+	@RequestMapping("/owner/homePage.do")
+	@ResponseBody
+	public Map homePageCount(ModelAndView mv){
+		
+		int memberCount=service.memberCount();
+		int ownerCount=service.ownerCount();
+		int todayPayCount=service.todayPayCount();
+		
+		Map<String,Object> mm=new HashMap<String, Object>();
+		mm.put("todayPayCount", todayPayCount);
+		mm.put("memberCount", memberCount);
+		mm.put("ownerCount", ownerCount);
+		
+		return mm;
+	}
 
 }
