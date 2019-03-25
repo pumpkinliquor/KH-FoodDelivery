@@ -39,10 +39,21 @@ public class OrderStoreSalesDaoImpl implements OrderStoreSalesDao {
 	public String selectYearSales(String businessCode) {
 		return sqlSession.selectOne("ownerSale.selectYearSales",businessCode);
 	}
-
+	
 	@Override
 	public List<Map<String, String>> selectCaMenuList(int menuCategorycode) {
 		return sqlSession.selectList("ownerSale.selectCaMenuList",menuCategorycode);
+	}
+
+	@Override
+	public List<Map<String, String>> menuCateList(int cPage,int numPerPage,Map<String, String> map) {
+		RowBounds rb = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("ownerSale.menuCateList",map,rb);
+	}
+
+	@Override
+	public int selectMenuCount(Map<String, String> map) {
+		return sqlSession.selectOne("ownerSale.selectMenuCount",map);
 	}
 	
 	

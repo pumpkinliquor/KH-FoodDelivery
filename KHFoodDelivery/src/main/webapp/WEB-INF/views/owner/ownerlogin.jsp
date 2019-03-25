@@ -94,7 +94,7 @@ font-size: 20px;
                 <div class="col-md-6 mx-auto text-center">
                    <div class="header-title">
                       <h1 class="wv-heading--title">
-                        KH Delivery 사장님 로그인 해주세요!
+                        사장님 로그인 해주세요!
                       </h1>
                    </div>
                 </div>

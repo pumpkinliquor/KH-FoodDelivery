@@ -47,6 +47,9 @@ margin-top:100px
 background-color:#4D4D4D;
 height:130px;
 }
+.saleDiv3{
+margin-bottom:50px;
+}
 
 </style>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
@@ -56,7 +59,7 @@ height:130px;
 	<div class="container">
 	<div class="row">
 	    <br/>
-	   <div class="col text-center">
+	   <div class="col text-center saleDiv3">
 		<h2>매출 현황</h2>
 		</div>
 		
@@ -103,7 +106,7 @@ height:130px;
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="card categoryDiv" style="overflow-y:auto;overflow-x:hidden;height:1000px;">
+                        <div class="card categoryDiv">
                           <div class="card-body">
                           	<form action="${path}/owner/selectStoreSalesEnd.do" method="post">
                               <div class="row">
@@ -112,10 +115,10 @@ height:130px;
                                       <hr>
                                   </div>
                                   <div class="col-md-3">
-                                  	<input type="date" class="form-control"  name="payDate1">
+                                  	<input type="date" class="form-control"  name="payDate1" required="required">
                                   </div>
                                   <div class="col-md-3">
-                                  	<input type="date" class="form-control" name="payDate2">
+                                  	<input type="date" class="form-control" name="payDate2" required="required">
                                   </div>
                                   <div class="col-md-6">
                                   <input type="hidden" name="businessCode" value="${businessCode}">

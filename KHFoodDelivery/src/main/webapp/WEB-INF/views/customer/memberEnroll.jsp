@@ -31,7 +31,7 @@ pageEncoding="UTF-8"%>
 		
 		   
 		    if(str_space.exec(obj.value)) { //공백 체크
-		        alert("해당 항목에는 공백을 사용할수 없습니다.\n\n공백은 자동적으로 제거 됩니다.");
+		        alert("해당 항목에는 공백을 사용할수 없습니다.\n공백은 자동적으로 제거 됩니다.");
 		        obj.focus();
 		        obj.value = obj.value.replace(' ',''); // 공백제거
 		        return false;
@@ -44,18 +44,38 @@ pageEncoding="UTF-8"%>
 		   	var val=obj.value;
 		   
 		    if(str_space.exec(obj.value)) { //공백 체크
-		        alert("해당 항목에는 공백을 사용할수 없습니다.\n\n공백은 자동적으로 제거 됩니다.");
+		        alert("해당 항목에는 공백을 사용할수 없습니다.\n공백은 자동적으로 제거 됩니다.");
 		        obj.focus();
 		        obj.value = obj.value.replace(' ',''); // 공백제거
 		        return false;
 		    }
 		    if (pattern.test(val)) {
-		    	alert("해당 항목에는 특수문자를 사용할수 없습니다.특수문자는 자동적으로 제거 됩니다.");
+		    	alert("해당 항목에는 특수문자를 사용할수 없습니다.\n특수문자는 자동적으로 제거 됩니다.");
 		        obj.value = val.replace(pattern, "");
 
 		       }
 		
 			}
+	 
+	 
+	 //이메일 한글 공백막기
+	  function noSpaceForm3(obj) { // 공백사용못하게  , 특수문자 사용못하게
+		    var str_space = /\s/;  // 공백체크
+		   	var val=obj.value;
+		   	var pattern2 =  /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+		   	
+		    if(str_space.exec(obj.value)) { //공백 체크
+		        alert("해당 항목에는 공백을 사용할수 없습니다.\n공백은 자동적으로 제거 됩니다.");
+		        obj.focus();
+		        obj.value = obj.value.replace(' ',''); // 공백제거
+		        return false;
+		    }
+		    if (pattern2.test(val)) {
+		    	alert("영어와 숫자만 가능합니다.\n한글은 자동적으로 제거 됩니다.");
+		    	obj.value = val.replace(pattern2, "");
+				return false;
+		       }
+	 }
 	 
 	 //아이디
 	 function noSpaceForm(obj) { // 공백사용못하게  , 특수문자 사용못하게
@@ -65,18 +85,18 @@ pageEncoding="UTF-8"%>
 		   	var val=obj.value;
 		   
 		    if(str_space.exec(obj.value)) { //공백 체크
-		        alert("해당 항목에는 공백을 사용할수 없습니다.\n\n공백은 자동적으로 제거 됩니다.");
+		        alert("해당 항목에는 공백을 사용할수 없습니다.\n공백은 자동적으로 제거 됩니다.");
 		        obj.focus();
 		        obj.value = obj.value.replace(' ',''); // 공백제거
 		        return false;
 		    }
 		    if (pattern.test(val)) {
-		    	alert("해당 항목에는 특수문자를 사용할수 없습니다.특수문자는 자동적으로 제거 됩니다.");
+		    	alert("해당 항목에는 특수문자를 사용할수 없습니다.\n특수문자는 자동적으로 제거 됩니다.");
 		        obj.value = val.replace(pattern, "");
 
 		       }
 		    if (pattern2.test(val)) {
-		    	alert("영어와 숫자만 가능합니다.한글은 자동적으로 제거 됩니다.");
+		    	alert("영어와 숫자만 가능합니다.\n한글은 자동적으로 제거 됩니다.");
 		    	obj.value = val.replace(pattern2, "");
 				return false;
 		       }
@@ -280,7 +300,7 @@ pageEncoding="UTF-8"%>
              <span class="guide2 ok2">사용 가능한 닉네임입니다. </span>
             <span class="guide2 error2">닉네임이 존재합니다. </span>
             <input type="date" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth" max="2018-12-31" min="1900-01-01"/>
-            <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" >
+            <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" onkeyup="noSpaceForm3(this);" onchange="noSpaceForm3(this)" >
             <input type="tel" class="form-control" placeholder="전화번호 (예:01012345678)" name="memberPhone" id="memberPhone" maxlength="11"/>
              
              <input type="button" class="btn-ser btn btn-default" onclick="address();" value="주소검색"/>

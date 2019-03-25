@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
 table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
 	table#table-sort th{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); border: 1px solid #444444; padding: 0; }
 	table#table-sort td{ border: 1px solid #444444; padding: 0; }
-	thead#tableHead{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); } 
+	thead#tableHead{ background-color: rgb(250, 163, 148); color: white } 
 
 .star_rating {font-size:0; letter-spacing:-4px;}
 .star_rating span{

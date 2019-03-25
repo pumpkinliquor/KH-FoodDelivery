@@ -21,18 +21,41 @@
 	</select>
 	
 	<select id="selectTodaySales" parameterType="string" resultType="string">
-		select to_char(sum(price), '999,999,999,999,999') from pay where businessCode = #{businessCode} and TO_CHAR(paydate, 'YY/MM/DD') = TO_CHAR(SYSDATE, 'YY/MM/DD')
+		select to_char(sum(price), '999,999,999,999,999') from pay where businessCode = #{businessCode} and TO_CHAR(paydate, 'YY/MM/DD') = TO_CHAR(SYSDATE, 'YY/MM/DD') and orderstate !=4
 	</select>
 	
 	<select id="selectMonthSales" resultType="string" parameterType="string">
-		select to_char(sum(price), '999,999,999,999,999') from pay where businessCode = 38 and TO_CHAR(paydate, 'YY/MM') = TO_CHAR(SYSDATE, 'YY/MM')
+		select to_char(sum(price), '999,999,999,999,999') from pay where businessCode = #{businessCode} and TO_CHAR(paydate, 'YY/MM') = TO_CHAR(SYSDATE, 'YY/MM') and orderstate !=4
 	</select>
 	
 	<select id="selectYearSales" resultType="string" parameterType="string">
-		select to_char(sum(price), '999,999,999,999,999') from pay where businessCode = 38 and TO_CHAR(paydate, 'YY') = TO_CHAR(SYSDATE, 'YY')
+		select to_char(sum(price), '999,999,999,999,999') from pay where businessCode = #{businessCode} and TO_CHAR(paydate, 'YY') = TO_CHAR(SYSDATE, 'YY') and orderstate !=4
 	</select>
 	
 	<select id="selectCaMenuList" resultType="map" parameterType="_int">
 		select * from menu where menucategorycode = #{menuCategorycode}
+	</select>
+	
+	<select id="menuCateList" parameterType="map" resultType="map">
+		select p.*,c.*,me.menuname from pay p 
+		join menu me on(p.menucode = me.menucode) 
+	 	join menu_category c on(me.menucategorycode = c.menucategorycode) 
+	 	where p.businesscode = #{businessCode} and p.menucode = #{menuCode} and c.menucategorycode = #{menuCategoryCode} and p.orderstate != 4
+	</select>
+	
+	<select id="selectMenuCount" parameterType="map" resultType="_int">
+	 select count(*) from pay p 
+	 join menu me on(p.menucode = me.menucode) 
+	 join menu_category c on(me.menucategorycode = c.menucategorycode) 
+	 where p.businesscode = #{businessCode} and p.menucode = #{menuCode} and c.menucategorycode = #{menuCategoryCode} and p.orderstate != 4
+   
+	</select>
+	
+	<select id="selectGoodsOrderList" parameterType="string" resultType="map">
+		  select p.*,c.*,me.menuname from pay p  join menu me on(p.menucode = me.menucode) join menu_category c on(me.menucategorycode = c.menucategorycode) where p.businessCode = #{businessCode} and p.orderstate != 4 order by p.paydate desc
+	</select>
+	
+	<select id="selectGoodsCount" parameterType="_int" resultType="_int">
+			  select count(*) from pay p  join menu me on(p.menucode = me.menucode) join menu_category c on(me.menucategorycode = c.menucategorycode) where p.businessCode = #{businessCode} and p.orderstate != 4 order by p.paydate desc	
 	</select>
 </mapper>

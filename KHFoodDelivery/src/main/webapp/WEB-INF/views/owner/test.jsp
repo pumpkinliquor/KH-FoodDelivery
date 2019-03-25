@@ -41,6 +41,10 @@ pageEncoding="UTF-8"%>
 	margin-left:5px;
 	font-weight: bold;
 }
+.subBtn{
+	background-color:white;
+	border-color:#4D4D4D;
+}
 
 
 .star_rating span.on {color:crimson;}
@@ -149,7 +153,7 @@ pageEncoding="UTF-8"%>
                             <input type="hidden" name="qnaCode" value="${st.BUSINESSCODE}"/>
                             <input type="hidden" name="ownerId" value="${st.OWNERID}"/>                            
                             <textarea id="textarea" name="context" cols="70" rows="5" placeholder="답글을 달아주세요" style="margin-left: 250px;"></textarea><br/>
-                            <input type="submit" class="btn" value="사장님 댓글 등록" style=" width:200px; margin-top:15px; float: right;"/>  
+                            <input type="submit" class="btn subBtn" value="사장님 댓글 등록" style=" width:200px; margin-top:15px; float: right;"/>  
                         </div>              
             </div>                
         </form>

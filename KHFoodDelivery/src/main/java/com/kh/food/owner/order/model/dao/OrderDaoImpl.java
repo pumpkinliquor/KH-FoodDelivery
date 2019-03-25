@@ -56,6 +56,17 @@ public class OrderDaoImpl implements OrderDao {
 	public Map<String, String> selectPayOne(String payOrderNum) {
 		return sqlSession.selectOne("ownerOrder.selectPayOne",payOrderNum);
 	}
+
+	@Override
+	public List<Map<String, String>> selectGoodsOrderList(int cPage,int numPerPage,String businessCode) {
+		RowBounds rb = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("ownerSale.selectGoodsOrderList",businessCode,rb);
+	}
+
+	@Override
+	public int selectGoodsCount(int businessCode1) {
+		return sqlSession.selectOne("ownerSale.selectGoodsCount",businessCode1);
+	}
 	
 	
 	

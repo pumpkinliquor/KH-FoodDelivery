@@ -37,6 +37,9 @@ pageEncoding="UTF-8"%>
 .saleDiv{
 margin-top:100px
 }
+.saleDiv3{
+margin-bottom:50px;
+}
 </style>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 
@@ -115,7 +118,7 @@ margin-top:100px
                                   </div>
                                   <div class="col-md-5">
                                   <input type="hidden" name="businessCode" value="${businessCode}">
-                                  <input type="submit" class="btn btn-primary bt1">
+                                  <input type="submit" class="btn btn-primary bt1" value="검색">
                                   </div>
                               </div>
                               </form>
@@ -125,23 +128,23 @@ margin-top:100px
 					<thead>
 						<tr>
 							<th width=7%>번호</th>
-							<th width=18%>주문일시</th>
-							<th width=27%>주문명</th>
-							<th width=9%>배달비</th>
-							<th width=9%>결제금액</th>
-							<th width=10%>결제방식</th>
+							<th width=30%>주문날짜</th>
+							<th width=18%>카테고리명</th>
+							<th width=27%>메뉴명</th>
+							<th width=9%>수량</th>
+							<th width=9%>금액</th>
 						</tr>
 					</thead>
 					<tbody>
 					
-					<c:forEach var="o" items="${orderOneList}" varStatus="status">		
+					<c:forEach var="o" items="${goodsList}" varStatus="status">		
 							<tr style="cursor:pointer;">						
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1"><c:out value="${status.count}"/></td>
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.payDate}</td>
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.memberName}님의 주문입니다.</td>
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.deliveryPrice}</td>							
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1"></td>
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.payOrderMethod}</td>							
+								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.PAYDATE }</td>							
+								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.MENUCATEGORY}</td>
+								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.MENUNAME}</td>
+								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.COUNT}</td>							
+								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.PRICE }</td>
 							</tr>
 							
 					</c:forEach>

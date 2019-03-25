@@ -23,5 +23,9 @@ public interface OrderDao {
 
 	Map<String, String> selectPayOne(String payOrderNum);
 
+	List<Map<String, String>> selectGoodsOrderList(int cPage, int numPerPage, String businessCode);
+
+	int selectGoodsCount(int businessCode1);
+
 
 }

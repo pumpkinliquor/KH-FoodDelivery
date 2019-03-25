@@ -21,9 +21,9 @@ input.memberAddress{display:inline;}
     div.up{position:relative; padding:0px;}
     div.up span.guide1 {display:none;font-size: 12px;position:absolute; top:5px; right:10px;}
      div.up span.guide2 {display:none;font-size: 12px;position:absolute; top:5px; right:10px;}
-    div.upr span.ok,span.ok1,span.ok2{color:blue;}
+    div.upr span.ok,span.ok1,span.ok2{color:rgb(250, 163, 148);}
     div.up span.error,span.error2{color:red;}
-.btn{background-color:skyblue; color:white; margin-top:5%;}
+.btn{background-color:rgb(250, 163, 148); color:white; margin-top:5%;}
 #drop{float:right;}
 .btn-ser1{margin-top:0;float:right;}           
 </style>
@@ -165,7 +165,7 @@ function address1() {
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
-              <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}" class="list-group-item list-group-item-action" style="z-index:0;">나의 주문내역</a>
+              <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}" class="list-group-item list-group-item-action" style="z-index:0; ">나의 주문내역</a>
               <a href="${path}/customer/mypage.do?memberId=${sessionScope.logined}"  class="list-group-item list-group-item-action active">회원정보변경</a>
               <a href="${path }/member/markList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action">즐겨찾는매장</a>
               <a href="${path }/member/qnaList.do?memberId=${sessionScope.logined}" class="list-group-item list-group-item-action">나의 문의내역</a>
