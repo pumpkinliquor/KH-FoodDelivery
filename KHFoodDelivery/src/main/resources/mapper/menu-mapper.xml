@@ -39,7 +39,7 @@
 		SELECT MENUCOUNT FROM WISHLIST WHERE MENUCODE=#{menuCode} GROUP BY MENUCOUNT
 	</select> -->
 	<select id="popularityMenu" parameterType="_int" resultType="menu">
-		SELECT * FROM MENU WHERE BUSINESSCODE=#{businessCode} AND MENUSOLDCOUNT>=11
+		SELECT * FROM MENU WHERE BUSINESSCODE=#{businessCode} AND MENUSOLDCOUNT>=10
 	</select>
 	<delete id="backWish" parameterType="string">
 		DELETE FROM WISHLIST WHERE MEMBERID=#{memberId}

@@ -228,7 +228,42 @@ $('#menuSelectModal').on('hidden.bs.modal', function (e) {
             <button type="button" id="menuInsert_" class="btn btn-success btn-lg btn-block">장바구니담기</button>
             </div>
             <div class="col-sm-6" style="padding-left:0px; padding-right:0px;">
-            <button type="button" class="btn btn-danger btn-lg btn-block">결제하기</button>
+            <button type="button" id="modalPay_" class="btn btn-danger btn-lg btn-block">주문하기</button>
+            <script>
+            $(document).ready(function(){
+                  $("#modalPay_").click(function(){
+               var menuCount=$("#menuCount_").val();
+               var minPrice=${minPrice.minPrice};
+               var plusMenuPrice=$("#plusMenuPrice_").val();
+               var menuPrice=$("#menuPrice_").val();
+               var menuTitle=$("#menuTitle_").val();
+               var menuCode=$('#menuCode_').val();
+               var businessCode=${businessCode};
+               var price=$('#menuPrice_').val();
+               var plus=$('#menuCount_').val();
+                     if(menuCount.trim().length==0||menuCount==0){
+                        alert('수량이 0 입니다.');
+                        return false;
+                        }
+                        if(minPrice > plusMenuPrice ) {
+                           alert("최소 주문금액(${minPrice.minPrice}원)에 맞게 주문해주세요.");
+                           return false;
+                        }
+                        else{
+                      $.ajax({
+                         type:"POST",
+                         url:"${path}/customer/menuInsert.do",
+                         data:{"plusMenuPrice" : plusMenuPrice, "menuCount" : menuCount, "menuPrice" : menuPrice, "menuTitle" : menuTitle, "businessCode" : businessCode, "menuCode" : menuCode},
+                         dataType:"JSON",
+                         success: function(data) {
+                                 console.log(data);
+                                location.href="${path}/customer/pay.do?businessCode="+businessCode;
+                         }
+                           });
+                        }
+                  });
+            });
+            </script>
             </div>
             </div>
             </div>
