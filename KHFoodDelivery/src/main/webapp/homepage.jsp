@@ -644,14 +644,35 @@ html {
   
 }
 body{
-background:url("https://images.samsung.com/is/image/samsung/p5/sec/explore/181011/02-art-of-the-foostagram.jpg?$ORIGIN_JPG$")no-repeat 0 0px;
+background:url("${path}/resources/images/홈페이지.png")no-repeat 0 0px;
 /* background-color:#5F9EA0; */
 background-size:100%;
 width:100%;
 }
-
+#runner{
+	background:url("${path}/resources/images/owner/main/배달이미지.png");
+	width:250px;
+	animation:walk 1s steps(100) infinite, forward 5s linear infinite;
+}
+@keyframes walk{
+	0%{
+		background-position: 0px;
+	}
+	100%{
+		background-position: 3000px;
+	}
+}
+@keyframes forward{
+	0%{
+		transform:translateX(-100px);
+	}
+	100%{
+		transform:translateX(1319px);
+	}
+}
 </style>
-<div class="container" >
+<div id="runner"></div>
+<div class="container">
 	<div class="row">
 	    <br/>
 		<div class="col-md-6">
