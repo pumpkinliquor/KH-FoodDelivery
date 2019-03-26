@@ -141,8 +141,8 @@ function plusCount() {
 $(document).ready(function(){
    $("#menuInsert_").click(function(){
       var menuCount=$("#menuCount_").val();
-      if(menuCount.trim().length==0||menuCount==0){
-         alert('수량이 0 입니다.');
+      if(menuCount.trim().length==0||menuCount<=0||menuCount>=100){
+         alert('수량을 잘못 입력하셨습니다.');
          return false;
       }
       var same=0;
@@ -211,7 +211,7 @@ $('#menuSelectModal').on('hidden.bs.modal', function (e) {
             <input type="hidden" id="menuPrice_" name="menuPrice" value=""/>
             <br/>
             <h6 class="menu-countM" style="float:left; margin-bottom:0px; margin-top:8px;">수량</h6>
-            <input type="number" onkeyup="plusCount();" name="menuCount" id="menuCount_" class="form-control" style="float:right; width:3em;"/>
+            <input type="number" min="0" onkeyup="plusCount();" name="menuCount" id="menuCount_" class="form-control" style="float:right; width:3em;"/>
             <br/>
             <br/>
             <div style="background-color:rgb(231, 231, 231); height:5em; margin-top:2em;">
@@ -241,8 +241,8 @@ $('#menuSelectModal').on('hidden.bs.modal', function (e) {
                var businessCode=${businessCode};
                var price=$('#menuPrice_').val();
                var plus=$('#menuCount_').val();
-                     if(menuCount.trim().length==0||menuCount==0){
-                        alert('수량이 0 입니다.');
+                     if(menuCount.trim().length==0||menuCount<=0||menuCount>=100){
+                        alert('수량을 잘못 입력하셨습니다.');
                         return false;
                         }
                         if(minPrice > plusMenuPrice ) {

@@ -78,9 +78,16 @@
                     navigator.geolocation.getCurrentPosition(function(position) {
                     var latitude = position.coords.latitude;
                     var longitude = position.coords.longitude;
-                    var coords = new daum.maps.LatLng(latitude);
-                    var coords1 = new daum.maps.LatLng(longitude); 
+
+                    var coords = new daum.maps.LatLng(longitude);
+                    var coords1 = new daum.maps.LatLng(latitude);
                     
+                    $('#lat').val(coords.jb); // 위도
+                    $('#lng').val(coords1.jb)// 경도
+                    
+                    console.log(coords.jb);
+                    console.log(coords1.jb);
+
              
                    
 

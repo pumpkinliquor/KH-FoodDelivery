@@ -81,9 +81,22 @@ function noSpaceForm(obj) { // 공백사용못하게  , 특수문자 사용못�
 	}
 
 $(document).ready(function() {
+	
 
     
     var readURL = function(input) {
+    	var fileNm = $("#file").val();
+
+    	if (fileNm != "") {
+    	 
+    	    var ext = fileNm.slice(fileNm.lastIndexOf(".") + 1).toLowerCase();
+    	 
+    	    if (!(ext == "jpg" || ext == "png")) {
+    	        alert("이미지파일 (.jpg, .png ) 만 업로드 가능합니다.");
+    	        return false;
+    	    }
+    	 
+    	}
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
@@ -185,7 +198,7 @@ function address1() {
 						  <div class="text-center">
 				  			
 				  			<img onclick="fileUpload()" style="cursor: pointer;" name="file" title="profile image" class="avatar img-circle img-thumbnail" alt="avatar" src="${path}/resources/upload/member/profile/${member.profileImage}"/>
-				 			<input type="file" class="btn btn-primary" id="file" name="profileImg" value="${member.profileImage}" style="display: none ;">
+				 			<input type="file"  class="btn btn-primary" id="file" name="profileImg" value="${member.profileImage}" style="display: none ;">
 				 			 <input type="hidden" name="profileImage" value="${member.profileImage}"/>
 			 				
 			 			<hr>
