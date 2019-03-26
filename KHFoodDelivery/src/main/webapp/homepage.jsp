@@ -625,10 +625,7 @@ html {
 }
 
 /* 글씨 */
-.mainP {
-  animation-duration: 3s;
-  animation-name: slidein;
-}
+
 
 @keyframes slidein {
   from {
@@ -647,9 +644,10 @@ html {
   
 }
 body{
-background-color:#5F9EA0;
+background:url("https://images.samsung.com/is/image/samsung/p5/sec/explore/181011/02-art-of-the-foostagram.jpg?$ORIGIN_JPG$")no-repeat 0 0px;
+/* background-color:#5F9EA0; */
 background-size:100%;
-
+width:100%;
 }
 
 </style>
@@ -668,7 +666,7 @@ background-size:100%;
 			      			<a href="${path }/member/main.do"><span>&nbsp;</span><span>회</span><span>원</span><br/><span>페</span><span>이</span><span>지</span></a>
 				 			
 				 		</div>
-				 		<img class="img" src="${path}/resources/images/owner/main/배달이미지.png" style="width : 100px; margin-top : 150px; margin-left: 80px;">
+				 		<%-- <img class="img" src="${path}/resources/images/owner/main/배달이미지.png" style="width : 100px; margin-top : 150px; margin-left: 80px;"> --%>
 				 	</div>
 				 </div>
 			</div>
