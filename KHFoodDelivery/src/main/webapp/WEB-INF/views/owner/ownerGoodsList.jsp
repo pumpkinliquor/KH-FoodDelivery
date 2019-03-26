@@ -8,8 +8,9 @@ pageEncoding="UTF-8"%>
 <style>
 .counter {
     background-color:#f5f5f5;
-    padding: 20px 0;
+   /*  padding: 20px 0; */
     border-radius: 5px;
+     height:110px;
 }
 
 .count-title {
@@ -21,7 +22,7 @@ pageEncoding="UTF-8"%>
 }
 
 .count-text {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: normal;
     margin-top: 10px;
     margin-bottom: 0;
@@ -35,7 +36,11 @@ pageEncoding="UTF-8"%>
     color: #4ad1e5;
 }
 .saleDiv{
-margin-top:100px
+margin-top:100px;
+}
+.saleDiv2{
+background-color:rgba(61, 58, 129, 0.986);
+height:130px;
 }
 .saleDiv3{
 margin-bottom:50px;
@@ -48,7 +53,7 @@ margin-bottom:50px;
 	<div class="container">
 	<div class="row">
 	    <br/>
-	   <div class="col text-center">
+	   <div class="col text-center saleDiv3">
 		<h2>매출 현황</h2>
 		</div>
 		

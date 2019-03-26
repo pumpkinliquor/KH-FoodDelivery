@@ -356,8 +356,8 @@ div.newsletter,div.group{display:inline-block;}
                    
               </c:if> 
                <c:if test="${sessionScope.logined!=null}">
-               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
                <a href="${path }/customer/logout.do">로그아웃</a>
+               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
                
              
               </c:if> 
@@ -367,7 +367,7 @@ div.newsletter,div.group{display:inline-block;}
                        <h2 id='memberHeaderTitle1' style="margin:auto; width:294px;"><span id="memberHeaderTitle2" onclick="mainpage();" style="cursor:pointer;"><img src="${path }/resources/images/owner/main/배달이미지.png" width=70px;/><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></span></h2>
                     </div>
                 </div>
-             <div class="col-sm-12">
+             <div class="col-sm-12">	
                   <div class="content">
                   <div class="input-group">
                        <a style="cursor:pointer;" id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png" onmouseover="this.src='${path}/resources/images/placeHover.png'" onmouseout="this.src='${path }/resources/images/place.png'"></a>
@@ -389,7 +389,7 @@ div.newsletter,div.group{display:inline-block;}
                 <div class="group1  col-md-12 col-lg-12">
                 	 <select class="form-control" name="menuSearch" id="menuSearch" onchange="window.open(value,'_self');">
 					            <option  disabled selected>메뉴검색</option>
-					            <option value="${path}/customer/selectallstore.do?myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">전체보기</option>
+					            <option value="${path}/customer/searchmenuView.do?category=전체&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">전체보기</option>
 					            <option value="${path}/customer/searchmenuView?category=돈까스/일식&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">돈까스</option> 
 					            <option value="${path}/customer/searchmenuView?category=프랜차이즈&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">프랜차이즈</option>
 					            <option value="${path}/customer/searchmenuView?category=치킨&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">치킨</option>

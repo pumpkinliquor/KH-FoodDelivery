@@ -25,7 +25,7 @@
             
                 <div class="row searchMenu_row">
                 	<c:forEach var="i" items="${list }">
-                    <div class="col-6" style="overflow:hidden;">
+                    <div class="col-xs-6 col-sm-12 col-md-12 col-lg-6" style="overflow:hidden;">
                         <div class="store col-sm-12" style="overflow:hidden;">
                             <div class="col-sm-8" style="float:left;" style="overflow:hidden;" >
                             
@@ -45,7 +45,7 @@
                                 <div class="row rowDiv1">
                                     <label for="username" class="col-6 col-form-label">배달비</label> 
                                     <div class="col-6 menuSearch_Div1">
-                                        <a class="" href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">${i.deliveryPrice }원</a>
+                                        <a class="" href="${path }/customer/menuInfo.do?businessCode=${i.businessCode}">${i.distance * 1000 }원</a>
                                     </div>
                                 </div>   
                                 <div class="row rowDiv1">

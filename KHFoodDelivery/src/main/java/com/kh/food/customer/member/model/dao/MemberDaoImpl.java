@@ -18,6 +18,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.qna.model.vo.MemberQnaAttachment;
 import com.kh.food.qna.model.vo.MemberQnaReview;
 import com.kh.food.review.model.vo.Review;
 
@@ -28,8 +29,19 @@ public class MemberDaoImpl implements MemberDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-
 	
+	
+	
+	// 회원 문의 첨부파일
+	@Override
+	public List<Map<String, String>> selectMemberQnaAttach(int no) {
+		return sqlSession.selectList("member.memberQnaAttach", no);
+	
+	}
+	@Override
+	public int addAttach(MemberQnaAttachment a) {
+		return sqlSession.insert("member.addAttach", a);
+	}
 	@Override
 	public int reviewCount(int businessCode) {
 		
@@ -74,7 +86,7 @@ public class MemberDaoImpl implements MemberDao {
 	//회원 문의 등록
 	@Override
 	public int addQna(Map<String,Object> map) {
-		System.out.println("컨트롤러"+map);
+		
 		return sqlSession.insert("member.qnaAdd",map);
 	}
 	
