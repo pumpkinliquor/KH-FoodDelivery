@@ -149,8 +149,7 @@ div#memberList {
 }
 
 thead#tableHead {
-	background-color: #4D4D4D;
-	color: rgba(255, 255, 255, .5);
+	background-color: rgb(219, 83, 83); color: white;
 }
 
 /* 정빈ownerList */
@@ -179,14 +178,16 @@ div#ownerList {
 	margin-top: 15px;
 }
 
+#list{
+	background-color: rgb(219, 83, 83); color: white;
+}
 
 /* 정빈 memberNoticeList, ownerNoticeList */
 #noticeTitleTd{
    width:800px;
 }
 #topTable {
-   background-color: #4D4D4D;
-   color: rgba(255, 255, 255, .5);
+   background-color: rgb(219, 83, 83); color: white;
 }
 
 #noticeListCount {
