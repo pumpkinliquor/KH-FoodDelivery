@@ -356,8 +356,8 @@ div.newsletter,div.group{display:inline-block;}
                    
               </c:if> 
                <c:if test="${sessionScope.logined!=null}">
-               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
                <a href="${path }/customer/logout.do">로그아웃</a>
+               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}">마이페이지</a>
                
              
               </c:if> 

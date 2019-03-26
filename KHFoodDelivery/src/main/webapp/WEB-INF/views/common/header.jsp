@@ -82,29 +82,11 @@
                     var coords = new daum.maps.LatLng(latitude);
                     var coords1 = new daum.maps.LatLng(longitude); 
                     
-                    $('#lat').val(coords.jb); // 위도
-                    $('#lng').val(coords1.jb)// 경도
-
-                    console.log(coords.jb);//위도
-
-                    console.log(coords1.jb);//경도
-
+             
                    
 
 
-                   
-				 /*  
-                     $.ajax({
-                        url: 'http:////dapi.kakao.com/v2/local/geo/coord2address.json?x='+latitude+'&y='+longitude+'&input_coord=WGS84',
-                        headers: { 'Authorization': 'feed05c2d7c3c51d07205126e0f9d71b'},
-                        contentType: "application/json; charset=utf-8",
-                        type: 'GET',
-                        
-                    }).done(function(data) {
-                        console.log(data);
-                        console.log(total_count);
-                    }); 
-				     */
+             
     
                      
                         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -132,10 +114,16 @@
             	    if (status === daum.maps.services.Status.OK) {
 
             	        for(var i = 0; i < result.length; i++) {
+            	               /*  $('#lat').val(coords.jb); // 위도
+                                $('#lng').val(coords1.jb)// 경도
+
+                                console.log(coords.jb);//위도
+
+                                console.log(coords1.jb);//경도 */
             	            // 행정동의 region_type 값은 'H' 이므로
             	            if (result[i].region_type === 'H') {
             	            	$('#location1').val(result[i].address_name); 
-            	          
+
             	                break;
             	            }
             	        }

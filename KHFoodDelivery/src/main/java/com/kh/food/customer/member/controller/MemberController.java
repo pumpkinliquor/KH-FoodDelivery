@@ -176,6 +176,10 @@ public class MemberController {
 			e.printStackTrace();
 		}
 		
+		// 첨부 파일
+				List<Map<String, String>> attach = service.selectMemberQnaAttach(no);
+		
+		mv.addObject("attach", attach);
 		mv.setViewName("customer/detailQna");
 		return mv;
 		
@@ -505,6 +509,8 @@ public class MemberController {
 //		System.out.println(businessCode);
 		List<Map<String,String>> menuCategory=service.selectCategoryList(businessCode);
 		List<Menu> popularityMenu=service.popularityMenu(businessCode);
+		Store minPrice=service.minPrice(businessCode);
+		mv.addObject("minPrice", minPrice);
 		mv.addObject("businessCode", businessCode);
 		mv.addObject("popularityMenu", popularityMenu);
 		mv.addObject("categoryList", menuCategory);
