@@ -180,11 +180,11 @@ div.newsletter,div.group{display:inline-block;}
                     var coords = new daum.maps.LatLng(latitude);
                     var coords1 = new daum.maps.LatLng(longitude); 
                     
-                    $('#lat').val(coords.jb); // 위도
-                    $('#lng').val(coords1.jb)// 경도
+                    $('#lat').val(coords1.jb); // 위도
+                    $('#lng').val(coords.jb)// 경도
                     
-                    console.log(coords.jb);//위도
-                    console.log(coords1.jb);//경도
+                    console.log(coords1.jb);//위도
+                    console.log(coords.jb);//경도
                      
                         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                      mapOption = {
