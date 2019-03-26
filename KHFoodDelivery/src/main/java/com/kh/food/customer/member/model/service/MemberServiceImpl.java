@@ -32,6 +32,12 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	
+	// 회원 문의 첨부 파일
+	@Override
+	public List<Map<String, String>> selectMemberQnaAttach(int no) {
+		return dao.selectMemberQnaAttach(no);
+	}
+	
 	@Override
 	public int reviewCount(int businessCode) {
 		

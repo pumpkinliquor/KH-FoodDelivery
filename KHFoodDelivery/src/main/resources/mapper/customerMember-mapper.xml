@@ -207,4 +207,9 @@
 		INSERT INTO MEMBER_QNA_ATTACHMENT VALUES(SEQ_M_QNA_FILEUPLOAD.NEXTVAL, #{qnaCode}, #{originalFileName}, #{reNamedFileName}, SYSDATE+9/24, DEFAULT)
 	</insert>
 	
+	<!-- 회원 문의 첨부파일 -->
+	<select id="memberQnaAttach" parameterType="_int" resultType="map">
+		SELECT * FROM MEMBER_QNA_ATTACHMENT WHERE qnaCode = #{no}
+	</select>
+	
 </mapper>
