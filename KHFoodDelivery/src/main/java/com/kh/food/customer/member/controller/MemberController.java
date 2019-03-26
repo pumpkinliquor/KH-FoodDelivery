@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -41,9 +43,11 @@ import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
+import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.qna.model.vo.MemberQnaAttachment;
 import com.kh.food.qna.model.vo.MemberQnaReview;
 import com.kh.food.review.model.vo.Review;
 
@@ -722,7 +726,8 @@ public class MemberController {
 	}
 	//문의글  폼 뷰
 	@RequestMapping("/customer/memberQnaAddform.do")
-	public ModelAndView addQna(MemberQna memberqna,int no,String memberId) {
+	public ModelAndView addQna(MemberQna memberqna,int no,String memberId,HttpServletRequest request,
+								MultipartFile [] upFile) {
 		
 		ModelAndView mv= new ModelAndView();
 		Map<String,Object> map = new HashMap();
@@ -731,11 +736,36 @@ public class MemberController {
 		map.put("qnaContent",memberqna.getQnaContent());
 		map.put("qnaTitle",memberqna.getQnaTitle());
 		
+	ArrayList<MemberQnaAttachment> files=new ArrayList<MemberQnaAttachment>();
+		
+		//저장경료
+		String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/member/qnaAttach");
+		
+		for(MultipartFile f : upFile) {
+			if(!f.isEmpty()) {
+				String oriFileName=f.getOriginalFilename();
+				String ext=oriFileName.substring(oriFileName.lastIndexOf("."));
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+				int randomV=(int)(Math.random()*1000);
+				String reName=sdf.format(System.currentTimeMillis())+"_"+randomV+ext;
+				try {
+					f.transferTo(new File(saveDir+"/"+reName));
+				}
+				catch(IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}
+				MemberQnaAttachment att=new MemberQnaAttachment();
+				att.setReNamedFileName(reName);
+				att.setOriginalFileName(oriFileName);
+				files.add(att);
+			}
+		}
 	
 		
 		
-		System.out.println(memberqna);
-		int result = service.addQna(map);
+		
+		
+		int result = service.addQna(map,files);
 		String msg="";
 		String loc="";
 		

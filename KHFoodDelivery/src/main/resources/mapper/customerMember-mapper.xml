@@ -107,6 +107,7 @@
 	
 	<insert id="qnaAdd" parameterType="map">
 		insert into member_qna values(SEQ_M_QNACODE.NEXTVAL,#{no},sysdate+9/24,#{qnaCategory},#{qnaContent},#{qnaTitle})
+		<selectKey keyProperty="qnaCode" resultType="string" order="AFTER">SELECT SEQ_M_QNACODE.CURRVAL FROM DUAL</selectKey>
 	</insert>
 	
 	 
@@ -201,4 +202,9 @@
 	<select id="selectMqr" parameterType="_int" resultType="memberQnaReview">
 		SELECT * FROM MEMBER_QNA_REVIEW WHERE qnaCode = #{no}
 	</select>
+	
+	<insert id="addAttach" parameterType="com.kh.food.qna.model.vo.MemberQnaAttachment">
+		INSERT INTO MEMBER_QNA_ATTACHMENT VALUES(SEQ_M_QNA_FILEUPLOAD.NEXTVAL, #{qnaCode}, #{originalFileName}, #{reNamedFileName}, SYSDATE+9/24, DEFAULT)
+	</insert>
+	
 </mapper>

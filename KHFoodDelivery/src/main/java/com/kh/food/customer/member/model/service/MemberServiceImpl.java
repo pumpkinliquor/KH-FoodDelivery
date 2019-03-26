@@ -16,9 +16,11 @@ import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
+import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.qna.model.vo.MemberQnaAttachment;
 import com.kh.food.qna.model.vo.MemberQnaReview;
 import com.kh.food.review.model.vo.Review;
 
@@ -72,8 +74,28 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public 	int addQna(Map<String,Object> map) {
-		return dao.addQna(map);
+	public 	int addQna(Map<String,Object> map, List<MemberQnaAttachment> files) {
+		int result = 0;
+		
+		try {
+			result=dao.addQna(map);
+			if(result==0) {
+				throw new Exception();
+			}
+			for(MemberQnaAttachment a : files) {
+				a.setQnaCode(Integer.parseInt((String) map.get("qnaCode")));
+				result=dao.addAttach(a);
+				if(result==0) {
+					throw new Exception("업로드 실패");
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 	@Override
