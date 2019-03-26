@@ -8,7 +8,7 @@
 
 <style>
 	a {color: black;}
-	th {background-color: rgb(219, 83, 83); color: white}
+	#t1 th, #t2 th, #t3 th {color: rgba(255, 255, 255, .5); background-color: #4D4D4D;}
 </style>
 
 <script> 
@@ -48,7 +48,7 @@
 			<div class="col-sm-6">
 				<a href="${path }/admin/appStoreList.do" style="float: right">더 보기</a>
 			</div>
-			<table class="table table-hover" style="margin-top: 10px">
+			<table class="table table-hover" style="margin-top: 10px" id="t1">
 				<tr>
 					<th>업종</th>
 					<th>점포명</th>
@@ -71,7 +71,7 @@
 			<div class="col-sm-6">
 				<h4 style="display: inline">답변해주세요 - 회원</h4>
 				<a href="${path }/admin/memberQnaList.do" style="float: right">더 보기</a>
-				<table class="table table-hover" style="margin-top: 10px" >
+				<table class="table table-hover" style="margin-top: 10px" id="t2">
 					<tr>
 						<th>카테고리</th>
 						<th style="width: 60%;">제목</th>
@@ -91,7 +91,7 @@
 			<div class="col-sm-6">
 				<h4 style="display: inline">답변해주세요 - 사장님</h4>
 				<a href="${path }/admin/ownerQnaList.do" style="float: right">더 보기</a>
-				<table class="table table-hover" style="margin-top: 10px">
+				<table class="table table-hover" style="margin-top: 10px" id="t3">
 					<tr>
 						<th>카테고리</th>
 						<th style="width: 60%;">제목</th>
