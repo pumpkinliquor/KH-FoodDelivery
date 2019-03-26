@@ -39,8 +39,8 @@
         }
 
         #footer {
-            background-color: rgb(219, 83, 83);
-            height: 220px;
+            color:black;
+    		background-color: #4D4D4D;
         }
 
           #footer h5 {

@@ -12,11 +12,13 @@ import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.qna.model.vo.MemberQnaAttachment;
 import com.kh.food.qna.model.vo.MemberQnaReview;
 import com.kh.food.review.model.vo.Review;
 
 public interface MemberDao {
 	
+	int addAttach(MemberQnaAttachment a);
 	int addQna(Map<String,Object> map);
 	Map<String,String> orderOne(Map<String,String> orList);
 	int selectOrderCount(int memberNum);

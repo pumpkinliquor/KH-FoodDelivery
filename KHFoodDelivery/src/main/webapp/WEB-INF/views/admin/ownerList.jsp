@@ -25,7 +25,7 @@
 		<h4 id="ownerListTitle">사장님 리스트</h4>
 		<div class="btn-group" id="btn-category">
 			<button class="btn btn-default dropdown-toggle"
-				data-toggle="dropdown" aria-expanded="false" id="list">
+				data-toggle="dropdown" aria-expanded="false">
 				목록<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu">

@@ -9,7 +9,7 @@
 <style>
 	h4#titleText{ display: inline; }	
 	div#storeList{ margin-top: 15px; }
-	thead#tableHead{ background-color: rgb(219, 83, 83); color: white; }
+	thead#tableHead{color: rgba(255, 255, 255, .5); background-color: #4D4D4D;}
 	.pnt{ cursor: pointer; }
 	table#storeTable{ table-layout: fixed; word-wrap: break-word; }
 	table#storeTable th, table#storeTable td{ text-align: center; vertical-align: middle; }
@@ -17,7 +17,6 @@
 	select{display: inline;}
 	div#store-search{display: inline; float: right;}	
 	input[type=checkbox], input[type=radio] {display: none; }	
-	input[type=submit] {background-color: rgb(219, 83, 83); color: white;}
 </style>
 
 <script> 
@@ -74,7 +73,7 @@
 								<input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="제목을 입력하세요"/>
 								<input type="hidden" name="isFirst" value="1"/>
 								<span class="input-group-btn">
-									<input type="submit" class="btn btn-default" id="searchBar" value="검색"/>
+									<input type="submit" class="btn btn-outline-dark" id="searchBar" value="검색"/>
 								</span>
 							</div>
 						</div>
