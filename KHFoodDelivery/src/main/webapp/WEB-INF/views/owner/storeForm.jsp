@@ -119,7 +119,7 @@ function maxLengthCheck(object){
 			            </tr>
 			             <tr>
 			                <th>사업자 등록 번호</th>
-			                <td><input type="number" maxlength="3" min="0" oninput="maxLengthCheck(this);" style="width:10em; margin-bottom:1em; float:left; margin-right:1em;" id="frontBusinessNum" name="frontBusinessNum" placeholder="000" class="form-control" required><input type="number" maxlength="3" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; float:left; margin-right:1em;" id="middleBusinessNum" name="middleBusinessNum" placeholder="000" class="form-control" required><input type="number" maxlength="6" oninput="maxLengthCheck(this);" style="width:13em; margin-bottom:1em; float:left; margin-right:1em;" placeholder="000000" id="finalBusinessNum" name="finalBusinessNum" class="form-control" required></td>
+			                <td><input type="number" maxlength="3" min="0" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; float:left; margin-right:1em;" id="frontBusinessNum" name="frontBusinessNum" placeholder="000" class="form-control" required><input type="number" maxlength="3" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; float:left; margin-right:1em;" id="middleBusinessNum" name="middleBusinessNum" placeholder="000" class="form-control" required><input type="number" maxlength="6" oninput="maxLengthCheck(this);" style="width:13em; margin-bottom:1em; float:left; margin-right:1em;" placeholder="000000" id="finalBusinessNum" name="finalBusinessNum" class="form-control" required></td>
 			            </tr>
 			        	<tr>
 			        		<th>카테고리</th>
@@ -159,11 +159,7 @@ function maxLengthCheck(object){
 			             <tr>
 			                <th>배달 최저금액</th>
 			                <td><input type="number" maxlength="5" min="0" max="50000" oninput="maxLengthCheck(this);" name="minPrice" style="color:black;" placeholder="배달 시 최저주문금액을 적어주세요." class="form-control" required></td>
-			            </tr>
-			            <tr>
-			                <th>배달비</th>
-			                <td><input type="number" maxlength="5" min="0" max="50000" oninput="maxLengthCheck(this);" name="deliveryPrice" style="color:black;" placeholder="배달비를 적어주세요." class="form-control" required></td>
-			            </tr>
+			            </tr>			            
 			            <tr>
 			                <th>업체소개</th>
 			                <td><textarea cols="10" id="storeProfile" maxlength="1000" oninput="maxLengthCheck(this);" name="storeProfile" class="form-control" style="resize:none; color:black; height:15em;" required></textarea></td>
