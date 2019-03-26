@@ -17,4 +17,5 @@ public interface CustomerPayService {
 	int deleteWishList(String memberId);
 	Map<String, String> selectOnePay(String memberId);
 	int menuSoldCount(Map<String,String> map);
+	int selectDistance(Map<String, Object> map);
 }

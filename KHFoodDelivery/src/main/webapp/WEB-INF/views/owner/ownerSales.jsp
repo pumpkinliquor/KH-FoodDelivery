@@ -14,12 +14,13 @@ pageEncoding="UTF-8"%>
 <style>
 .counter {
     background-color:#f5f5f5;
-   height:110px;
+   	height:110px;
     border-radius: 5px;
+    /* padding: 20px 0; */
 }
 
 .count-title {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: normal;
     margin-top: 10px;
     margin-bottom: 0;
@@ -27,7 +28,7 @@ pageEncoding="UTF-8"%>
 }
 
 .count-text {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: normal;
     margin-top: 10px;
     margin-bottom: 0;
@@ -41,7 +42,7 @@ pageEncoding="UTF-8"%>
     color: #4ad1e5;
 }
 .saleDiv{
-margin-top:100px
+margin-top:100px;
 }
 .saleDiv2{
 background-color:rgba(61, 58, 129, 0.986);

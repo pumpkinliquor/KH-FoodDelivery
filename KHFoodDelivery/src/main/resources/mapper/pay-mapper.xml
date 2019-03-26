@@ -36,4 +36,19 @@ delete from wishlist where memberId=#{memberId}
 <select id="selectOnePay" parameterType="string" resultType="map">
 	select p.*,m.menuname,s.storename from (select * from pay order by paydate desc) p join menu m on(p.menucode = m.menucode) join store s on(p.businesscode = s.businesscode) where rownum = 1 AND memberNum=(select memberNum from member where memberid=#{memberId})
 </select>
+
+<!-- 거리 구하기 -->
+<select id="selectDistance" parameterType="map" resultType="_int">
+	SELECT distance
+		FROM 
+		(
+    		SELECT STORE.*, DISTNACE_WGS84(#{lat}, #{lng}, atitude, longitude) AS DISTANCE
+    		FROM STORE
+    		WHERE (atitude between #{lat} - 0.1 and #{lat} + 0.1)
+    			AND (longitude between #{lng} - 0.1 and #{lng} + 0.1)
+    			AND isConfirm = 1
+    			AND businessCode = #{businessCode}    			                    
+    		ORDER BY DISTANCE
+    	)
+</select>
 </mapper>
