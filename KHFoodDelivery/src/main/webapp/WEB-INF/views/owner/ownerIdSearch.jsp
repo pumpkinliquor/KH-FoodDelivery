@@ -14,7 +14,12 @@ pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp">
 	 	<jsp:param value="사장님 아이디찾기" name="pageTitle"/>
 </jsp:include>
-
+<style>
+.send-button{
+background: rgba(61, 58, 129, 0.986);
+border:rgba(61, 58, 129, 0.986);
+}
+</style>
 <section>
     <div class="container">
                 <div class="col-md-6 mx-auto text-center">
