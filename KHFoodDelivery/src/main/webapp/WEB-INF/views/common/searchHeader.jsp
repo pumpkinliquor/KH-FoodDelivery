@@ -367,7 +367,7 @@ div.newsletter,div.group{display:inline-block;}
                        <h2 id='memberHeaderTitle1' style="margin:auto; width:294px;"><span id="memberHeaderTitle2" onclick="mainpage();" style="cursor:pointer;"><img src="${path }/resources/images/owner/main/배달이미지.png" width=70px;/><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></span></h2>
                     </div>
                 </div>
-             <div class="col-sm-12">
+             <div class="col-sm-12">	
                   <div class="content">
                   <div class="input-group">
                        <a style="cursor:pointer;" id="positionBtn"><img id="locationImg" src="${path }/resources/images/place.png" onmouseover="this.src='${path}/resources/images/placeHover.png'" onmouseout="this.src='${path }/resources/images/place.png'"></a>
