@@ -23,8 +23,14 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700&amp;subset=korean" rel="stylesheet">
+
 </head>
 <style>
+body{
+font-family: 'Nanum Gothic Coding', monospace;
+
+}
  div#map{visibility: hidden;}
  
  #memberHeaderTitle1:hover{
