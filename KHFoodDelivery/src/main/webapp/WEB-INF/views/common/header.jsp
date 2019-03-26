@@ -46,7 +46,6 @@
 </style>
 
 <body>
- 
  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=72e4455e8e74d792419a0939fdffed0c&libraries=services"></script> 
 
   <span id="centerAddr"></span>
