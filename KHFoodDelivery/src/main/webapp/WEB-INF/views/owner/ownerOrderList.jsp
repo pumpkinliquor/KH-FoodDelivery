@@ -231,7 +231,7 @@ function fn_state1(payOrderNum,e)
 					data:{"payOrderNum" : payOrderNum , "orderState" : orderState},
 					success:function(data)
 					{
-							if(data==2)
+							if(data!=0)
 							{
 								if(orderState == 4)
 									{
@@ -327,7 +327,7 @@ function fn_detailOrder(payOrderNum){
 			success:function(data)
 			{
 				console.log(data);
-					if(data==2)
+					if(data!=0)
 					{
 						$(e).css("color","red");
 						if(orderState == 1)

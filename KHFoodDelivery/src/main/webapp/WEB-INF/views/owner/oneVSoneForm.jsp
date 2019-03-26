@@ -21,6 +21,25 @@ function validate(){
     }
     return true;
 }
+function maxLengthCheck(object){
+	if (object.value.length > object.maxLength){
+		alert('최대 입력량을 초과하였습니다.');
+		object.value = object.value.slice(0, object.maxLength);
+	}    
+}
+function check(){
+	var fileNm = $("#upFile1").val();
+	var fileNm2 = $("#upFile2").val();
+	if (fileNm != ""||fileNm2 != "") {
+	    var ext = fileNm.slice(fileNm.lastIndexOf(".") + 1).toLowerCase();
+	    var ext2 = fileNm2.slice(fileNm.lastIndexOf(".") + 1).toLowerCase();
+	    if (!(ext == "jpg" || ext == "png" || ext2 == "jpg" || ext2 =="png")) {
+	        alert("이미지파일 (.jpg, .png ) 만 업로드 가능합니다.");
+	        return false;
+	    }
+	}
+	return true;
+}
 </script>
 <section>
 <div class="container">
@@ -28,7 +47,7 @@ function validate(){
 		<h2 style="font-weight:bold;">1:1문의</h2>
 	</div>
 	<div class="col-md-12">
-		<form name="qnaFrm" action="${path }/owner/oneVSoneFormEnd.do" method="post" enctype="multipart/form-data">
+		<form name="qnaFrm" action="${path }/owner/oneVSoneFormEnd.do" onsubmit="return check();" method="post" enctype="multipart/form-data">
 			<table class="table table-bordered">
 			    <tbody>
 			        	<tr>
@@ -51,11 +70,11 @@ function validate(){
 			        	</tr>
 			            <tr>
 			                <th>제목</th>
-			                <td><input type="text" placeholder="제목 " name="qnaTitle" class="form-control" required></td>
+			                <td><input type="text" maxlength="50" min="0" oninput="maxLengthCheck(this);" placeholder="50글자 이내 " name="qnaTitle" class="form-control" required></td>
 			            </tr>
 			            <tr>
 			                <th>내용</th>
-			                <td><textarea cols="10" placeholder="내용" id="qnaContent" name="qnaContent" class="form-control" style="resize:none; height:15em;" required></textarea></td>
+			                <td><textarea maxlength="1000" oninput="maxLengthCheck(this);" cols="10" placeholder="내용" id="qnaContent" name="qnaContent" class="form-control" style="resize:none; height:15em;" required></textarea></td>
 			            </tr>
 			            <tr>
 			                <th>

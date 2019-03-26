@@ -46,12 +46,13 @@ function noSpaceForm(obj) { // 공백사용못하게  , 특수문자 사용못�
 
 //닉네임,이름 공백 특수문자 막음
 function noSpaceForm2(obj) { // 공백사용못하게  , 특수문자 사용못하게
+	
     var str_space = /\s/;  // 공백체크
     var pattern = /[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]/gi; //특수문제체크
    	var val=obj.value;
    
     if(str_space.exec(obj.value)) { //공백 체크
-        alert("해당 항목에는 공백을 사용할수 없습니다.\n공백은 자동적으로 제거 됩니다.");
+       /*  alert("해당 항목에는 공백을 사용할수 없습니다.\n공백은 자동적으로 제거 됩니다."); */
         obj.focus();
         obj.value = obj.value.replace(' ',''); // 공백제거
         return false;
@@ -76,12 +77,21 @@ $('#memberPhone').bind("keyup", function(event) {
 
 $(function(){
 	$("#nickName").keyup(function(){
+		
+		var a = $('#nickName').val().replace(/ /gi, '');
+        $('#nickName').val(a);
+        
 		nickName=$("#nickName").val().trim();
 
 		$.ajax({
 			url:"${path}/member/checkNick.do",
 			data:{"nickName":nickName},
-			success:function(data){          
+			success:function(data){      
+				if(data.REVIEWNUM != null)
+				{
+					$('#textarea'.val('data.REVIEWCONTEXT'))
+					$('#textarea').attr('reon')
+				}
 				console.log(data.isNick);
 				nick=data.isNick;
 				console.log(nick);       					
@@ -103,6 +113,15 @@ $(function(){
 });
 
 function validate(){
+	
+	var regExp = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+    
+    if ( !regExp.test( $('#memberPhone').val() ) ) {
+
+          alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
+          return false;
+    } 
+    
 	if(nick==true)
 	{
 		alert("닉네임을 확인해주세요");
@@ -160,14 +179,14 @@ function address() {
         	<input type="hidden" value="${kakaoId}" name="memberId">
         	<span class="guide2 ok2">사용 가능한 닉네임입니다. </span>
             <span class="guide2 error2">닉네임이 존재합니다. </span>
-        	<input type="text" class="form-control" placeholder="닉네임" name="nickName" id="nickName"onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this)"/>
-            <input type="text" class="form-control" placeholder="이름" name="memberName" id="memberName" onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this)"/>
-            <input type="date" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth" max="2019-03-29" min="1900-01-01"/>
-            <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)">
-            <input type="number" class="form-control" placeholder="전화번호 (예:01012345678)" name="memberPhone" id="memberPhone" maxlength="11"/>            
+        	<input type="text" class="form-control" placeholder="닉네임" name="nickName" id="nickName"onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this)" required="required"/>
+            <input type="text" class="form-control" placeholder="이름" name="memberName" id="memberName" onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this)" required="required"/>
+            <input type="date" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth" max="2019-03-29" min="1900-01-01" required="required"/>
+            <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" required="required">
+            <input type="number" class="form-control" placeholder="전화번호 (예:01012345678)" name="memberPhone" id="memberPhone" maxlength="11" required="required"/>            
              <input type="button" class="btn-ser btn btn-default" onclick="address();" value="주소검색"/>             
             <input type="text" class="add form-control"  placeholder="주소" name="memberAddress" id="memberAddress"/>
-            <input type="text" class="form-control" placeholder="상세주소" name="memberAddress1" id="memberAddress1"/>
+            <input type="text" class="form-control" placeholder="상세주소" name="memberAddress1" id="memberAddress1" required="required"/>
               <select class="form-control" name="memberGender" required>
                <option value="" disabled selected>성별</option>
                <option value="M">남</option>

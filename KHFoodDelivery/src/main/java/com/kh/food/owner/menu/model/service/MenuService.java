@@ -32,6 +32,8 @@ public interface MenuService {
 	int deleteMenu1(String menuCategory);
 
 	List<Map<String, String>> selectMenuCategory1(String menuCategory);
+
+	Map<String, String> selectOriMenu(Map<String, String> map);
 	
 	
 

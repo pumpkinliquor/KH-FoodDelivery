@@ -159,8 +159,11 @@ public class MenuController {
 			map.put("menuImage", reName);
 		}
 		
+		
 		String msg="";
 		String loc="/owner/menuEnroll.do?businessCode="+businessCode;
+		
+		Map<String,String> oriMenu = service.selectOriMenu(map);
 		
 		int result = service.insertMenu(map);
 		if(result > 0)

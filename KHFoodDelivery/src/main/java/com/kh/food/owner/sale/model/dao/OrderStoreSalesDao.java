@@ -29,4 +29,6 @@ public interface OrderStoreSalesDao {
 
 	int selectOrderCount(int businessCode1);
 
+	String selectWeekSales(String businessCode);
+
 }
