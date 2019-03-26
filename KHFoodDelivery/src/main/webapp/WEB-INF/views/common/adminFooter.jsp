@@ -23,7 +23,7 @@
  		margin:1px !important;
  	}
  
-        .footer_info {
+         .footer_info {
 
             font-weight: bold;
             color: white;
@@ -39,12 +39,11 @@
         }
 
         #footer {
-            background: black !important;
-            opacity: 0.7;
+            background-color: rgb(219, 83, 83);
             height: 220px;
         }
 
-        #footer h5 {
+          #footer h5 {
             padding-right: 10px;
             padding-bottom: 6px;
             margin-bottom: 20px;
@@ -54,7 +53,6 @@
         #footer a {
             color: #ffffff;
             text-decoration: none !important;
-            background-color: transparent;
             -webkit-text-decoration-skip: objects;
         }
 
@@ -73,7 +71,7 @@
             text-align: left;
         }
 
-        #footer ul.footer_info li {
+       #footer ul.footer_info li {
             margin: 0px 1px;
         }
 

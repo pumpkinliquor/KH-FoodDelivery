@@ -8,8 +8,8 @@
 
 <style>
 	h4#titleText{ display: inline; }	
-	div#qnaList{ margin-top: 15px; }
-	thead#tableHead{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); }
+	div#qnaList{ margin-top: 15px; }	
+	thead#tableHead{ background-color: rgb(219, 83, 83); color: white; }
 	.pnt{ cursor: pointer; }
 	table#qnaTable{ table-layout: fixed; word-wrap: break-word; }
 	table#qnaTable th, table#qnaTable td{ text-align: center; vertical-align: middle; }
@@ -18,6 +18,9 @@
 	div#qna-search{display: inline; margin-top: 20px; float: right;}
 	div#qna-sort{ float: left; margin-top: 20px;}
 	input[type=checkbox], input[type=radio] {display: none; }
+	input[type=submit]{background-color: rgb(219, 83, 83); color: white;}
+	label{background-color: rgb(219, 83, 83); color: white;}
+	label.active{background-color: rgb(250, 80, 80); color: white;}
 /* 	table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
 	table#table-sort th{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); border: 1px solid #444444; padding: 0; }
 	table#table-sort td{ border: 1px solid #444444; padding: 0; } */
@@ -38,13 +41,13 @@
 				<div class="col-sm-4">
 					<div id="qna-sort">
 						<div class="btn-group" data-toggle="buttons">
-							<label class="btn btn-secondary active">
+							<label class="btn active">
 								<input type="radio" name="isRe" id="all" value="3" autocomplete="off" checked> 전체
 							</label>
-							<label class="btn btn-secondary">
+							<label class="btn">
 								<input type="radio" name="isRe" id="complete" value="1" autocomplete="off"> 완료 
 							</label>
-							<label class="btn btn-secondary">
+							<label class="btn">
 								<input type="radio" name="isRe" id="incomplete" value="0" autocomplete="off"> 대기 
 							</label>
 						</div>
