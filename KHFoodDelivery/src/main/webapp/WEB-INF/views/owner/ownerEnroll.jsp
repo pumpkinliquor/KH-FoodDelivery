@@ -140,6 +140,7 @@ span.error,span.error1 {
 		$('#ownerPhone').bind("keyup", function(event) {
     	    var regNumber = /^[0-9]*$/;
     	    var temp = $('#ownerPhone').val();
+    	 	      	    
     	    if(!regNumber.test(temp))
     	    {
     	        alert('숫자만 입력하세요');
@@ -163,6 +164,15 @@ span.error,span.error1 {
 	
 	// submit 가기전 검사
 	function fn_enroll_validate() {
+		
+		var regExp = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+ 	    
+ 	    if ( !regExp.test( $('#ownerPhone').val() ) ) {
+
+ 	          alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
+ 	          return false;
+ 	    } 
+ 	    
 		console.log("여부" + tr);
 		console.log("들어왔니?");
 		if ($("#ownerId").val().length < 4) {
@@ -228,7 +238,7 @@ span.error,span.error1 {
 										<label for="name" class="col-4 col-form-label">비밀번호</label>
 										<div class="col-8">
 											<input type="password" id="ownerPw" name="ownerPw"
-												placeholder="6~20 영문 대소문자," class="form-control here" maxlength="20">
+												placeholder="6~20 영문 대소문자" class="form-control here" maxlength="20">
 										</div>
 									</div>
 									<div class="form-group row">
