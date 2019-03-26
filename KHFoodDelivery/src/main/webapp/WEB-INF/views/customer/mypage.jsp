@@ -172,7 +172,18 @@ function address1() {
        }
     }).open(); 
 }
+function phone(){
+	
+var regExp = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
 
+if ( !regExp.test( $('#memberPhone').val() ) ) {
+
+      alert("잘못된 휴대폰 번호입니다.  숫자만 입력하세요.");
+      return false;
+} 
+
+return true;
+}
 
 
 
@@ -194,7 +205,7 @@ function address1() {
 			
  			 <div class="row">
 		         <div class="col-md-12">
-		              <form name="update" action="${path}/member/update.do" method="post" enctype="multipart/form-data">
+		              <form name="update" action="${path}/member/update.do" method="post" onsubmit="return phone();" enctype="multipart/form-data">
 						  <div class="text-center">
 				  			
 				  			<img onclick="fileUpload()" style="cursor: pointer;" name="file" title="profile image" class="avatar img-circle img-thumbnail" alt="avatar" src="${path}/resources/upload/member/profile/${member.profileImage}"/>
@@ -239,7 +250,7 @@ function address1() {
                               <div class="form-group row">
                                 <label for="email" class="col-4 col-form-label">전화번호</label> 
                                 <div class="col-8">
-                                  <input id="email" name="memberPhone" id="memberPhone" value="${member.memberPhone}" class="form-control here" required="required" type="text"  maxlength="11" required/>
+                                  <input name="memberPhone" id="memberPhone" value="${member.memberPhone}" class="form-control here" required="required" type="text"  maxlength="11" required/>
                                 </div>
                               </div>
                                <div class="form-group row"> 

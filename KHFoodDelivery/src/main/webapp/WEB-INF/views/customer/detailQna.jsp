@@ -111,7 +111,7 @@
 				<button type="button" class="close" data-dismiss="modal">×</button>
 			</div>
 			<form action="${path}/customer/memberQnaUpdate.do" method="post">
-				<div class="modal-body" style="height: 500px;">
+				<div class="modal-body" style="height: 600px;">
 					<table class="table">
 						<tr>
 							<th style="vertical-align: middle">카테고리</th>
@@ -133,7 +133,19 @@
 						<tr>
 							<th style="vertical-align: middle">문의글</th>
 							<td><textarea name="qnaContent" class="form-control" style="resize: none" rows="6">${mq.qnaContent }</textarea></td>						
-						</tr>															
+						</tr>
+					 <tr>
+					<th>첨부파일</th>
+					<td>	
+						<div>
+						 <c:forEach items="${attach}" var="a" varStatus="vs">
+						 <button type="button" style="padding:0px; background-color:white; cursor:pointer; border:0px;" class="fileDownLoadBtn" onclick="fileDownLoad('${a.ORIGINALFILENAME}','${a.RENAMEDFILENAME}');">
+	         				<img src="${path }/resources/images/owner/icons/attach_file_icon.png" width=17px;/> - ${a.ORIGINALFILENAME}
+	        			</button>
+        				</c:forEach> 
+						</div>
+						</td>	
+					</tr>						 -					
 					</table>
 						<input type="hidden" name="qnaCode" value="${mq.qnaCode }"/>
 				</div>

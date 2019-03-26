@@ -10,7 +10,14 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700&amp;subset=korean" rel="stylesheet">
+<style>
+body{
+font-family: 'Nanum Gothic Coding', monospace;
+
+}
+
+</style>
 <%-- <style>
 .mainP{
 font-size:100px;
@@ -165,7 +172,7 @@ background-color:gray;
 }
 
 .count-text {
-    font-size: 13px;
+    font-size: 20px;
     font-weight: normal;
     margin-top: 10px;
     margin-bottom: 0;
@@ -719,7 +726,7 @@ width:100%;
 	        <div class="counter">
       <i class="fa fa-code fa-2x"></i>
       <h2 class="timer count-title count-number" id="memberCount" data-to="" data-speed="1500"></h2>
-       <p class="count-text ">간신배 가입된 회원 수</p>
+       <p class="count-text">간신배 가입된 회원 수</p>
     </div>
 	        </div>
               <div class="col">
@@ -727,14 +734,14 @@ width:100%;
       <i class="fa fa-coffee fa-2x"></i>
       <h2 class="timer count-title count-number" id="ownerCount" data-to="" data-speed="1500"></h2>
       <!-- data-to에 카운트들고오면 됨 -->
-      <p class="count-text ">간신배 가입된 사장님 수</p>
+      <p class="count-text">간신배 가입된 사장님 수</p>
     </div>
               </div>
               <div class="col">
                   <div class="counter">
       <i class="fa fa-lightbulb-o fa-2x"></i>
       <h2 class="timer count-title count-number" id="todayPayCount" data-to="" data-speed="1500"></h2>
-      <p class="count-text ">오늘 주문 수</p>
+      <h3 class="count-text">오늘 주문 수</h3>
     </div></div>
 <!--     select count(*) as todayOrderCount
 from(select 

@@ -18,12 +18,17 @@ request.setCharacterEncoding("UTF-8");
 <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700&amp;subset=korean" rel="stylesheet">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>finalproject</title>
 <style>
 
+body{
+font-family: 'Nanum Gothic Coding', monospace;
+
+}
 div#map{height:1px;weight:1px;visibility: hidden;}
 
 div.newsletter div.search1{text-align:center; margin-top:0.25%;}   
@@ -131,7 +136,7 @@ div.newsletter,div.group{display:inline-block;}
         background-position: 0px;
     }
     100%{
-        background-position: 294px;
+        background-position: 300px;
     }
 }
 </style>
@@ -159,7 +164,7 @@ div.newsletter,div.group{display:inline-block;}
 	   },
 	  	function(){
 		 	$('#memberHeaderTitle2').show();
-		 	$('#memberHeaderTitle1').css({"width":"294"});
+		 	$('#memberHeaderTitle1').css({"width":"300"});
 	   });
    });
    
@@ -364,7 +369,7 @@ div.newsletter,div.group{display:inline-block;}
               </div>
               <form action="${path}/customer/searchmenuView" onsubmit="return locationSearchStore()" method="post">
                     <div class="content1">
-                       <h2 id='memberHeaderTitle1' style="margin:auto; width:294px;"><span id="memberHeaderTitle2" onclick="mainpage();" style="cursor:pointer;"><img src="${path }/resources/images/owner/main/배달이미지.png" width=70px;/><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></span></h2>
+                       <h2 id='memberHeaderTitle1' style="margin:auto; width:300px;"><span id="memberHeaderTitle2" onclick="mainpage();" style="cursor:pointer;"><img src="${path }/resources/images/owner/main/배달이미지.png" width=70px;/><span style="color:white; font-weight:bold;">간</span><span style="font-size:16px;">단하고</span> <span style="color:white; font-weight:bold;">신</span><span style="font-size:16px;">속한</span> <span style="color:white; font-weight:bold;">배</span><span style="font-size:16px;">달</span></span></h2>
                     </div>
                 </div>
              <div class="col-sm-12">	

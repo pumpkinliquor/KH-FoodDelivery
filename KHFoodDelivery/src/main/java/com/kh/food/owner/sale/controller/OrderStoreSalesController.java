@@ -59,7 +59,7 @@ public class OrderStoreSalesController {
 		
 		int orderCount = service.selectOrderCount(businessCode1);
 		List<Map<String,String>> payList = orderService.selectPayList(cPage,numPerPage,businessCode1);
-		logger.debug("orderOneList"+orderOneList);
+		/* logger.debug("orderOneList"+orderOneList); */
 		for(int i=0; i<orderOneList.size(); i++)
 		{
 			orderOneList.get(i).setPrice(Integer.parseInt(String.valueOf((payList.get(i).get("PRICE")))));

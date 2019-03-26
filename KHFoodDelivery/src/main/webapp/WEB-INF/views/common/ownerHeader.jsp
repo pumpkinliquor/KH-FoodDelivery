@@ -17,8 +17,12 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Ostyle.css" />
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700&amp;subset=korean" rel="stylesheet">
 <style>
+body{
+font-family: 'Nanum Gothic Coding', monospace;
 
+}
   .headerDiv2{
   	width:100%;
   	z-index: 9;
