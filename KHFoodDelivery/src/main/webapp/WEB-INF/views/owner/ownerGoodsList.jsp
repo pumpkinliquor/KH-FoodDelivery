@@ -193,7 +193,10 @@ margin-bottom:50px;
 							{
 								html += "<option value='"+data[i].MENUCODE+"'>"+data[i].MENUNAME+"(단종된메뉴)</option>";
 							}
-						html += "<option value='"+data[i].MENUCODE+"'>"+data[i].MENUNAME+"</option>";
+						else
+						{
+							html += "<option value='"+data[i].MENUCODE+"'>"+data[i].MENUNAME+"</option>";
+						}
 					}
 				console.log(html);
 				$('#menuCategory2').append(html);
