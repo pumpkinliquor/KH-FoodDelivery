@@ -63,7 +63,7 @@
 	<select id="selectQnaCount" parameterType="_int" resultType="_int">
 		SELECT COUNT(*) FROM OWNER_QNA WHERE OWNERNUM=#{ownerNum}
 	</select>
-	
+
 	<select id="businessReviewCount" parameterType="_int" resultType="_int">
 		SELECT COUNT(*) FROM OWNER_REVIEW WHERE BUSINESSCODE=#{businessCode}
 	</select>

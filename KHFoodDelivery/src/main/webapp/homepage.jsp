@@ -256,8 +256,8 @@ html {
 
 .example-container__example {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  margin-top: 100px;
+  margin-left: 93px;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   font-size: 35px;
@@ -625,10 +625,7 @@ html {
 }
 
 /* 글씨 */
-.mainP {
-  animation-duration: 3s;
-  animation-name: slidein;
-}
+
 
 @keyframes slidein {
   from {
@@ -644,9 +641,17 @@ html {
     margin-left: 0%;
     width: 100%;
   }
+  
 }
+body{
+background:url("https://images.samsung.com/is/image/samsung/p5/sec/explore/181011/02-art-of-the-foostagram.jpg?$ORIGIN_JPG$")no-repeat 0 0px;
+/* background-color:#5F9EA0; */
+background-size:100%;
+width:100%;
+}
+
 </style>
-<div class="container">
+<div class="container" >
 	<div class="row">
 	    <br/>
 		<div class="col-md-6">
@@ -659,11 +664,15 @@ html {
 			      	<div class="example-container">
 			      		<div class="example-container__example example-container__example--hamburger">
 			      			<a href="${path }/member/main.do"><span>&nbsp;</span><span>회</span><span>원</span><br/><span>페</span><span>이</span><span>지</span></a>
+				 			
 				 		</div>
+				 		<%-- <img class="img" src="${path}/resources/images/owner/main/배달이미지.png" style="width : 100px; margin-top : 150px; margin-left: 80px;"> --%>
 				 	</div>
 				 </div>
 			</div>
-			
+			<div>
+				
+			</div>
 		</div>
 		<div class="col-sm-3">
 		<br><br><br><br>
@@ -674,6 +683,7 @@ html {
     					<a href="${path }/owner/ownerMain.do"><span>&nbsp;</span><span>사</span><span>장</span><br/><span>페</span><span>이</span><span>지</span></a>
 
   					</div>
+  					
 				</div>
 			     
 			</div>
@@ -681,7 +691,7 @@ html {
 		
 	</div>
 	
-	
+	`
 	
 		<div class="row text-center">
 	        <div class="col">

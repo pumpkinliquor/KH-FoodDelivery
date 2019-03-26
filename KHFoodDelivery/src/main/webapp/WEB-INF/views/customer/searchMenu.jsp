@@ -25,7 +25,7 @@
             
                 <div class="row searchMenu_row">
                 	<c:forEach var="i" items="${list }">
-                    <div class="col-6" style="overflow:hidden;">
+                    <div class="col-xs-6 col-sm-12 col-md-12 col-lg-6" style="overflow:hidden;">
                         <div class="store col-sm-12" style="overflow:hidden;">
                             <div class="col-sm-8" style="float:left;" style="overflow:hidden;" >
                             
