@@ -7,7 +7,12 @@ pageEncoding="UTF-8"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp">
  	<jsp:param value="사장님 비밀번호찾기" name="pageTitle"/></jsp:include>
-
+<style>
+.send-button{
+background: rgba(61, 58, 129, 0.986);
+border:rgba(61, 58, 129, 0.986);
+}
+</style>
 <section>
     <div class="container">
                 <div class="col-md-6 mx-auto text-center">
