@@ -293,26 +293,26 @@ pageEncoding="UTF-8"%>
        <br/><br/><br/><br/><br/><br/><br/>
              <div id="enroll-container" class="col-sm-12" >
         <form name="enroll" action="${path}/member/memberEnrollEnd.do" method="post" onsubmit="return validate();">
-       <input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="memberId" id="memberId" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)"/>
+       <input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="memberId" id="memberId" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" required="required"/>
             <span class="guide ok">사용 가능한 아이디입니다. </span>
             <span class="guide error">아이디가 존재합니다. </span>
-            <input type="password" class="form-control" placeholder="비밀번호" name="memberPw" id="memberPw"onkeyup="noSpaceForm1(this);" onchange="noSpaceForm1(this)"/>
-            <input type="password" class="form-control" placeholder="비밀번호확인"name="memberPw2" id="memberPw2"onkeyup="noSpaceForm1(this);" onchange="noSpaceForm1(this)"/>
+            <input type="password" class="form-control" placeholder="비밀번호" name="memberPw" id="memberPw"onkeyup="noSpaceForm1(this);" onchange="noSpaceForm1(this)" required="required"/>
+            <input type="password" class="form-control" placeholder="비밀번호확인"name="memberPw2" id="memberPw2"onkeyup="noSpaceForm1(this);" onchange="noSpaceForm1(this)" required="required"/>
             	<span class="guide1 ok1">비밀번호가 일치합니다. </span>
         
-            <input type="text" class="form-control" placeholder="이름" name="memberName" id="memberName"onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this)"/>
-             <input type="text" class="form-control" placeholder="닉네임" name="nickName" id="nickName"onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this)"/>
+            <input type="text" class="form-control" placeholder="이름" name="memberName" id="memberName"onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this)" required="required"/>
+             <input type="text" class="form-control" placeholder="닉네임" name="nickName" id="nickName"onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this)" required="required"/>
              <span class="guide2 ok2">사용 가능한 닉네임입니다. </span>
             <span class="guide2 error2">닉네임이 존재합니다. </span>
-            <input type="date" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth" max="2018-12-31" min="1900-01-01"/>
-            <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" onkeyup="noSpaceForm3(this);" onchange="noSpaceForm3(this)" >
-            <input type="tel" class="form-control" placeholder="전화번호 (예:01012345678)" name="memberPhone" id="memberPhone" maxlength="11"/>
+            <input type="date" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth" max="2018-12-31" min="1900-01-01"required="required"/>
+            <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" onkeyup="noSpaceForm3(this);" onchange="noSpaceForm3(this)"required="required" >
+            <input type="tel" class="form-control" placeholder="전화번호 (예:01012345678)" name="memberPhone" id="memberPhone" maxlength="11"required="required"/>
              
              <input type="button" class="btn-ser btn btn-default" onclick="address();" value="주소검색"/>
              
-            <input type="text" class="add form-control"  placeholder="주소" name="memberAddress" id="memberAddress"/>
-            <input type="text" class="form-control" placeholder="상세주소" name="memberAddress1" id="memberAddress1"/>
-              <select class="form-control" name="memberGender" required>
+            <input type="text" class="add form-control"  placeholder="주소" name="memberAddress" id="memberAddress" required="required"/>
+            <input type="text" class="form-control" placeholder="상세주소" name="memberAddress1" id="memberAddress1" required="required"/>
+              <select class="form-control" name="memberGender" required="required">
                <option value="" disabled selected>성별</option>
                <option value="M">남</option>
                <option value="F">여</option>
