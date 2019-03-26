@@ -18,6 +18,8 @@ import com.kh.food.review.model.vo.Review;
 
 public interface MemberDao {
 	
+	
+	List<Map<String, String>> selectMemberQnaAttach(int no);	
 	int addAttach(MemberQnaAttachment a);
 	int addQna(Map<String,Object> map);
 	Map<String,String> orderOne(Map<String,String> orList);

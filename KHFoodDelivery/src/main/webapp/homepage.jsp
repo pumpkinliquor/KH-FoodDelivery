@@ -625,10 +625,7 @@ html {
 }
 
 /* 글씨 */
-.mainP {
-  animation-duration: 3s;
-  animation-name: slidein;
-}
+
 
 @keyframes slidein {
   from {
@@ -647,13 +644,35 @@ html {
   
 }
 body{
-background-color:#5F9EA0;
+background:url("${path}/resources/images/홈페이지.png")no-repeat 0 0px;
+/* background-color:#5F9EA0; */
 background-size:100%;
-
+width:100%;
 }
-
+#runner{
+	background:url("${path}/resources/images/owner/main/배달이미지.png");
+	width:250px;
+	animation:walk 1s steps(100) infinite, forward 5s linear infinite;
+}
+@keyframes walk{
+	0%{
+		background-position: 0px;
+	}
+	100%{
+		background-position: 3000px;
+	}
+}
+@keyframes forward{
+	0%{
+		transform:translateX(-100px);
+	}
+	100%{
+		transform:translateX(1319px);
+	}
+}
 </style>
-<div class="container" >
+<div id="runner"></div>
+<div class="container">
 	<div class="row">
 	    <br/>
 		<div class="col-md-6">
@@ -668,7 +687,7 @@ background-size:100%;
 			      			<a href="${path }/member/main.do"><span>&nbsp;</span><span>회</span><span>원</span><br/><span>페</span><span>이</span><span>지</span></a>
 				 			
 				 		</div>
-				 		<img class="img" src="${path}/resources/images/owner/main/배달이미지.png" style="width : 100px; margin-top : 150px; margin-left: 80px;">
+				 		<%-- <img class="img" src="${path}/resources/images/owner/main/배달이미지.png" style="width : 100px; margin-top : 150px; margin-left: 80px;"> --%>
 				 	</div>
 				 </div>
 			</div>

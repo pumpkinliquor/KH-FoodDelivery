@@ -65,6 +65,12 @@ public int menuSoldCount(Map<String, String> map) {
 	return sqlSession.update("pay.menuSoldCount", map);
 }
 
+// 거리 구하기
+@Override
+public int selectDistance(Map<String, Object> map) {
+	return sqlSession.selectOne("pay.selectDistance", map);
+}
+
 
 
 

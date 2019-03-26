@@ -809,11 +809,13 @@ public class MemberController {
 			String memberId=(String) request.getSession().getAttribute("logined");
 			Map<String,Object> map = new HashMap();
 			map.put("category",category);
-			map.put("lat", lat);
+			map.put("lat", lat1);
 			map.put("lng", lng1);
 			List<Store> list=service.selectStore(map);
 			int backWish=service.backWish(memberId);
 			
+			logger.debug("" + lat1);
+			logger.debug("" + lng1);
 			
 			mv.addObject("list",list);
 			mv.setViewName("customer/searchMenu");

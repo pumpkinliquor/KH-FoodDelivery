@@ -29,7 +29,15 @@ public class MemberDaoImpl implements MemberDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-
+	
+	
+	
+	// 회원 문의 첨부파일
+	@Override
+	public List<Map<String, String>> selectMemberQnaAttach(int no) {
+		return sqlSession.selectList("member.memberQnaAttach", no);
+	
+	}
 	@Override
 	public int addAttach(MemberQnaAttachment a) {
 		return sqlSession.insert("member.addAttach", a);
