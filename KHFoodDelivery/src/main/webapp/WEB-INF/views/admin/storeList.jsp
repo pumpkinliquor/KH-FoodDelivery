@@ -9,7 +9,7 @@
 <style>
 	h4#titleText{ display: inline; }	
 	div#storeList{ margin-top: 15px; }
-	thead#tableHead{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); }
+	thead#tableHead{ background-color: rgb(219, 83, 83); color: white; }
 	.pnt{ cursor: pointer; }
 	table#storeTable{ table-layout: fixed; word-wrap: break-word; }
 	table#storeTable th, table#storeTable td{ text-align: center; vertical-align: middle; }
@@ -17,6 +17,7 @@
 	select{display: inline;}
 	div#store-search{display: inline; float: right;}	
 	input[type=checkbox], input[type=radio] {display: none; }	
+	input[type=submit] {background-color: rgb(219, 83, 83); color: white;}
 </style>
 
 <script> 

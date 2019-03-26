@@ -8,6 +8,7 @@
 
 <style>
 	a {color: black;}
+	th {background-color: rgb(219, 83, 83); color: white}
 </style>
 
 <script> 
@@ -73,7 +74,7 @@
 				<table class="table table-hover" style="margin-top: 10px" >
 					<tr>
 						<th>카테고리</th>
-						<th>제목</th>
+						<th style="width: 60%;">제목</th>
 						<th>작성자</th>
 					</tr>
 					<c:forEach begin="0" end="2" items="${mqList }" var="mq">
@@ -93,7 +94,7 @@
 				<table class="table table-hover" style="margin-top: 10px">
 					<tr>
 						<th>카테고리</th>
-						<th>제목</th>
+						<th style="width: 60%;">제목</th>
 						<th>작성자</th>
 					</tr>
 					<c:forEach begin="0" end="2" items="${oqList }" var="oq">

@@ -9,7 +9,7 @@
 <style>
 	h4#titleText{ display: inline; }	
 	div#qnaList{ margin-top: 15px; }
-	thead#tableHead{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); }
+	thead#tableHead{ background-color: rgb(219, 83, 83); color: white; }
 	.pnt{ cursor: pointer; }
 	table#qnaTable{ table-layout: fixed; word-wrap: break-word; }
 	table#qnaTable th, table#qnaTable td{ text-align: center; vertical-align: middle; }
@@ -20,7 +20,8 @@
 	table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
 	table#table-sort th{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); border: 1px solid #444444; padding: 0; }
 	table#table-sort td{ border: 1px solid #444444; padding: 0; }
-	input[type=checkbox], input[type=radio] {display: none; }	
+	input[type=checkbox], input[type=radio] {display: none; }
+	input[type=submit] {background-color: rgb(219, 83, 83); color: white;}
 </style>
 
 <script>	
