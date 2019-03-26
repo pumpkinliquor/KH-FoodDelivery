@@ -389,7 +389,7 @@ div.newsletter,div.group{display:inline-block;}
                 <div class="group1  col-md-12 col-lg-12">
                 	 <select class="form-control" name="menuSearch" id="menuSearch" onchange="window.open(value,'_self');">
 					            <option  disabled selected>메뉴검색</option>
-					            <option value="${path}/customer/selectallstore.do?myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">전체보기</option>
+					            <option value="${path}/customer/searchmenuView.do?category=전체&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">전체보기</option>
 					            <option value="${path}/customer/searchmenuView?category=돈까스/일식&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">돈까스</option> 
 					            <option value="${path}/customer/searchmenuView?category=프랜차이즈&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">프랜차이즈</option>
 					            <option value="${path}/customer/searchmenuView?category=치킨&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}">치킨</option>
