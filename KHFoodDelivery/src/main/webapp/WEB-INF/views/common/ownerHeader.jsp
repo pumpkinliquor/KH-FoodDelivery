@@ -31,6 +31,10 @@
   	color:white;
   }
    .headerDiv1 a:hover { text-decoration: none;}
+  
+   .nav-link{
+   margin:0px;
+   }
 </style>
 <script>
 

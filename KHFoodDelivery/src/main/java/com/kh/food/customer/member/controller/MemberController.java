@@ -1048,7 +1048,7 @@ public class MemberController {
 				result2=service.login(map);
 				session.setAttribute("loginedno", result2.get("MEMBERNUM"));
 				session.setAttribute("logined", memberId);
-				msg = "로그인 성공";
+				msg = "환영합니다";
 				loc = "/";
 			// 있으면 바로 로그인 / 메인으로간다.
 		}
@@ -1071,7 +1071,7 @@ public class MemberController {
 		logger.debug("result"+result);
 		if(result>0)
 		{
-			msg = "로그인 성공!";
+			msg = "환영 합니다";
 			session.setAttribute("logined", m.getMemberId());
 			session.setAttribute("loginedno", m.getMemberNum());
 		}

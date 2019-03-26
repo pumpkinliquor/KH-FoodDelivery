@@ -77,6 +77,35 @@ function maxLengthCheck(object){
 		object.value = object.value.slice(0, object.maxLength);
 	}    
 }
+function check(){
+	var menuImage = $('#upFile').val();
+	if(menuImage.trim().length==0)
+		{
+			alert("이미지 등록을 해주세요");
+			return false;
+		}
+	var fileNm = $("#upFile").val();
+	if (fileNm != "") {
+	    var ext = fileNm.slice(fileNm.lastIndexOf(".") + 1).toLowerCase();
+	    if (!(ext == "jpg" || ext == "png")) {
+	        alert("이미지파일 (.jpg, .png ) 만 업로드 가능합니다.");
+	        return false;
+	    }
+	}
+	return true;
+}
+
+function enter(evt){
+	$(function(){
+		$('input:text').keydown(function(evt){
+			if(evt.keyCode==13){
+				return false;
+			}
+		});
+	});
+}
+
+
 </script>
 <style>
     div#update-container{
@@ -100,7 +129,7 @@ function maxLengthCheck(object){
 		<h2 style="font-weight:bold;">업체 등록 신청</h2>
 	</div>
 	<div class="col-md-12">
-		<form action="${path }/owner/storeFormEnd.do" method="post" enctype="multipart/form-data">
+		<form action="${path }/owner/storeFormEnd.do" method="post" onsubmit="return check();" enctype="multipart/form-data">
 			<table class="table table-bordered">
 			    <tbody>
 			        	<tr>
@@ -111,15 +140,15 @@ function maxLengthCheck(object){
 			        	</tr>
 			        	 <tr>
 			                <th>사업자 이름</th>
-			                <td><input type="text" style="color:black;" id="businessName" maxlength="10" oninput="maxLengthCheck(this);" name="businessName" placeholder="10글자 미만으로 입력하세요." class="form-control" required></td>
+			                <td><input type="text" style="color:black;" id="businessName" maxlength="10" oninput="maxLengthCheck(this);" name="businessName" placeholder="10글자 미만으로 입력하세요." class="form-control" onkeydown="enter();" required></td>
 			            </tr>
 			             <tr>
 			                <th>사업자 연락처</th>
-			                <td><input type="number" maxlength="3" min="0" oninput="maxLengthCheck(this);" style="width:5em; float:left; margin-bottom:1em; margin-right:1em; color:black;" value="010" id="frontPhone" name="frontPhone" class="form-control" required><input type="number" maxlength="4" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; color:black; float:left; margin-right:1em;" id="middlePhone" name="middlePhone" class="form-control" required><input type="number" maxlength="4" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; color:black; float:left; margin-right:1em;" id="finalPhone" name="finalPhone" class="form-control" required></td>
+			                <td><input type="number" maxlength="3" min="0" oninput="maxLengthCheck(this);" style="width:5em; float:left;  margin-bottom:1em; margin-right:1em; color:black;" value="010" id="frontPhone" name="frontPhone" class="form-control" onkeydown="enter(event);" required><input type="number" maxlength="4" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; color:black; float:left; margin-right:1em;" id="middlePhone" name="middlePhone" class="form-control" required><input type="number" maxlength="4" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; color:black; float:left; margin-right:1em;" id="finalPhone" name="finalPhone" class="form-control" required></td>
 			            </tr>
 			             <tr>
 			                <th>사업자 등록 번호</th>
-			                <td><input type="number" maxlength="3" min="0" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; float:left; margin-right:1em;" id="frontBusinessNum" name="frontBusinessNum" placeholder="000" class="form-control" required><input type="number" maxlength="3" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; float:left; margin-right:1em;" id="middleBusinessNum" name="middleBusinessNum" placeholder="000" class="form-control" required><input type="number" maxlength="6" oninput="maxLengthCheck(this);" style="width:13em; margin-bottom:1em; float:left; margin-right:1em;" placeholder="000000" id="finalBusinessNum" name="finalBusinessNum" class="form-control" required></td>
+			                <td><input type="number" maxlength="3" min="0" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; float:left; margin-right:1em;" id="frontBusinessNum" onkeydown="enter(event);" name="frontBusinessNum" placeholder="000" class="form-control" required><input type="number" maxlength="3" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; float:left; margin-right:1em;" id="middleBusinessNum" onkeydown="enter(event);" name="middleBusinessNum" placeholder="000" class="form-control" required><input type="number" maxlength="6" oninput="maxLengthCheck(this);" style="width:13em; margin-bottom:1em; float:left; margin-right:1em;" placeholder="000000" id="finalBusinessNum" onkeydown="enter(event);" name="finalBusinessNum" class="form-control" required></td>
 			            </tr>
 			        	<tr>
 			        		<th>카테고리</th>
@@ -139,27 +168,27 @@ function maxLengthCheck(object){
 			        	</tr>
 			            <tr>
 			                <th>업체명</th>
-			                <td><input type="text" style="color:black;" maxlength="25" oninput="maxLengthCheck(this);" name="storeName" placeholder="25글자 미만으로 입력하세요." class="form-control" required></td>
+			                <td><input type="text" style="color:black;" maxlength="25" oninput="maxLengthCheck(this);" name="storeName" placeholder="25글자 미만으로 입력하세요." class="form-control" onkeydown="enter(event);" required></td>
 			            </tr>
 			             <tr>
 			                <th>업체 연락처</th>
-			                <td><input type="number" maxlength="3" min="0" oninput="maxLengthCheck(this);" style="width:5em; margin-bottom:1em; float:left; margin-right:1em; color:black;" value="02" id="frontStorePhone" name="frontStorePhone" class="form-control" required><input type="number" maxlength="4" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; color:black; float:left; margin-right:1em;" id="middleStorePhone" name="middleStorePhone" class="form-control" required><input type="number" maxlength="4" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; color:black; float:left; margin-right:1em;" id="finalStorePhone" name="finalStorePhone" class="form-control" required></td>
+			                <td><input type="number" maxlength="3" min="0" oninput="maxLengthCheck(this);" style="width:5em; margin-bottom:1em; float:left; margin-right:1em; color:black;" value="02" id="frontStorePhone" onkeydown="enter(event);" name="frontStorePhone" class="form-control" required><input type="number" maxlength="4" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; color:black; float:left; margin-right:1em;" id="middleStorePhone" onkeydown="enter(event);" name="middleStorePhone" class="form-control" required><input type="number" maxlength="4" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; color:black; float:left; margin-right:1em;" id="finalStorePhone" onkeydown="enter(event);" name="finalStorePhone" class="form-control" required></td>
 			            </tr>
 			             <tr>
 			                <th>주소</th>
 			                <td>
-			                	<button onclick="execDaumPostcode();" class="btn btn-default" style="float:left; margin-right:1em;" >주소찾기</button>
-			                	<input type="text" id="zip" class="form-control" style="width:7em; color:black;" placeholder="우편주소" value="" required/>
+			                	<button onclick="execDaumPostcode();" type="button" class="btn btn-default" style="float:left; margin-right:1em;" >주소찾기</button>
+			                	<input type="text" id="zip" class="form-control" style="width:7em; color:black;" placeholder="우편주소" value="" required readonly/>
 			                	<input type="text" id="addr1" name="frontAddress" placeholder="기본주소" class="form-control" style="width:30em; margin-top:1em; color:black;" value="" readonly required/>
-			                	<input type="text" id="addr2" name="backAddress" placeholder="상세주소" maxlength="30" oninput="maxLengthCheck(this);" class="form-control" style="width:30em; margin-top:1em; color:black;" value="" required/>
+			                	<input type="text" id="addr2" name="backAddress" placeholder="상세주소" maxlength="30" oninput="maxLengthCheck(this);" class="form-control" style="width:30em; margin-top:1em; color:black;" value="" onkeydown="enter(event);" required/>
 			                	<input type="hidden" id="lat" name="lat" value=""/>
 			                	<input type="hidden" id="lng" name="lng" value=""/>
 			                </td>
 			            </tr>
 			             <tr>
 			                <th>배달 최저금액</th>
-			                <td><input type="number" maxlength="5" min="0" max="50000" oninput="maxLengthCheck(this);" name="minPrice" style="color:black;" placeholder="배달 시 최저주문금액을 적어주세요." class="form-control" required></td>
-			            </tr>			            
+			                <td><input type="number" maxlength="5" min="0" max="50000" oninput="maxLengthCheck(this);" name="minPrice" style="color:black;" placeholder="배달 시 최저주문금액을 적어주세요." class="form-control" onkeydown="enter(event);" required></td>
+			            </tr>
 			            <tr>
 			                <th>업체소개</th>
 			                <td><textarea cols="10" id="storeProfile" maxlength="1000" oninput="maxLengthCheck(this);" name="storeProfile" class="form-control" style="resize:none; color:black; height:15em;" required></textarea></td>
