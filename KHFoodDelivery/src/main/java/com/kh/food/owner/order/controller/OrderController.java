@@ -81,7 +81,9 @@ public class OrderController {
 		int a = 0;
 		List<Map<String,String>> payList = service.selectPayList(cPage,numPerPage,businessCode1);
 		logger.debug("paylist"+payList);
-//		logger.debug("ddd"+String.valueOf(payList.get(0).get("PRICE")));
+
+		/*logger.debug("ddd"+String.valueOf(payList.get(0).get("PRICE")));*/
+
 		
 		for(int i=0; i<orderOneList.size(); i++)
 		{

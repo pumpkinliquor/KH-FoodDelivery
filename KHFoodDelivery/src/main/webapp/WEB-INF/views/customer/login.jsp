@@ -145,6 +145,14 @@ background-color: transparent;
  
 		function login(){
 			
+ 			var regExp = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+ 	        
+ 	        if ( !regExp.test( $('#memberPhone').val() ) ) {
+
+ 	              alert("잘못된 휴대폰 번호입니다.");
+ 	              return false;
+ 	        } 
+ 			
 			var id = $('#id').val().trim().length;
     		var pw = $('#pw').val().trim().length;  
     		
@@ -261,7 +269,8 @@ background-color: transparent;
 							<script type='text/javascript'>
 							  //<![CDATA[
 							    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-							    Kakao.init('011c109c7507b9fbacd344180992f049');
+							    /* Kakao.init('011c109c7507b9fbacd344180992f049'); */
+							    Kakao.init('c09f7e7ab198332b78f59b0c8d0815d0');
 							    // 카카오 로그인 버튼을 생성합니다.
 							    Kakao.Auth.createLoginButton({
 							      container: '#kakao-login-btn',

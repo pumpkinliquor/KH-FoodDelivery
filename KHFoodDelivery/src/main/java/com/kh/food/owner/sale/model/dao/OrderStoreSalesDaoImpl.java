@@ -74,6 +74,12 @@ public class OrderStoreSalesDaoImpl implements OrderStoreSalesDao {
 	public int selectOrderCount(int businessCode1) {
 		return sqlSession.selectOne("ownerSale.selectOrderCount",businessCode1);
 	}
+
+	@Override
+	public String selectWeekSales(String businessCode) {
+		return sqlSession.selectOne("ownerSale.selectWeekSales",businessCode);
+	}
+	
 	
 	
 }
