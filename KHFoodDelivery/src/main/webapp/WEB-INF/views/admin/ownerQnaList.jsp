@@ -9,7 +9,7 @@
 <style>
 	h4#titleText{ display: inline; }	
 	div#qnaList{ margin-top: 15px; }
-	thead#tableHead{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); }
+	thead#tableHead{color: rgba(255, 255, 255, .5); background-color: #4D4D4D; }
 	.pnt{ cursor: pointer; }
 	table#qnaTable{ table-layout: fixed; word-wrap: break-word; }
 	table#qnaTable th, table#qnaTable td{ text-align: center; vertical-align: middle; }
@@ -20,7 +20,7 @@
 	table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
 	table#table-sort th{ background-color: #4D4D4D; color: rgba(255, 255, 255, .5); border: 1px solid #444444; padding: 0; }
 	table#table-sort td{ border: 1px solid #444444; padding: 0; }
-	input[type=checkbox], input[type=radio] {display: none; }	
+	input[type=checkbox], input[type=radio] {display: none; }
 </style>
 
 <script>	
@@ -70,7 +70,7 @@
 								<input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="제목을 입력하세요"/>
 								<input type="hidden" name="isFirst" value="1"/>
 								<span class="input-group-btn">
-									<input type="submit" class="btn btn-default" id="searchBar" value="검색"/>
+									<input type="submit" class="btn btn-outline-dark" id="searchBar" value="검색"/>
 								</span>
 							</div>
 						</div>

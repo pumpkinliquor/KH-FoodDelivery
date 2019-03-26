@@ -32,10 +32,13 @@ footer p 	{margin-top:30px;}
 /* 사장님 / 관리자 헤더 */
 
   .nav-link{
-    color:black;
     background-color: #4D4D4D;
+    color: rgba(255, 255, 255, .5);
     margin-left: 1em;
     margin-right: 1em;
+  }
+  .nav-link:hover{
+  	color:rgba(255, 255, 255, .5);
   }
   nav{
     background-color: #4D4D4D;

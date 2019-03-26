@@ -18,7 +18,7 @@
 </head>
 <body> 
 	<header>
-		<nav class="navbar navbar-expand-sm  navbar-dark ">  
+		<nav class="navbar navbar-expand-sm">  
 			<!-- Links -->
 			<ul class="navbar-nav container ">
 				<li class="nav-item" style="margin-left:-20px;font-size:30px">
