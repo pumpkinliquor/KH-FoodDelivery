@@ -1,11 +1,13 @@
 package com.kh.food.customer.pay.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +28,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
    @Autowired
    CustomerPayService service;
   @RequestMapping("/customer/pay.do")
-  public ModelAndView customerPay(HttpServletRequest request, String businessCode) 
+  public ModelAndView customerPay(HttpServletRequest request, String businessCode, HttpSession session) 
   { 
      String memberId=(String) request.getSession().getAttribute("logined");
      Map<String,String> setPay=new HashMap();
@@ -38,13 +40,20 @@ import com.kh.food.owner.menu.model.vo.Menu;
      
      List<Map<String,String>> payWishList=service.payWishList(setPay);
      
-     
-     for(int i=0; i<payWishList.size(); i++) {
-//    	 System.out.println(payWishList.get(i));
-     }
+	String lat = (String)session.getAttribute("lat");
+	String lng = (String)session.getAttribute("lng");
+	BigDecimal lat1 = new BigDecimal(lat);
+	BigDecimal lng1 = new BigDecimal(lng);
+	
+	Map<String,Object> delMap = new HashMap();
+	delMap.put("lat", lat1);
+	delMap.put("lng", lng1);
+	delMap.put("businessCode", businessCode);
+	int delivery = service.selectDistance(delMap);
      
      mv.addObject("businessCode", businessCode);
      mv.addObject("payWishList", payWishList);
+     mv.addObject("delivery", delivery);
      mv.addObject("payReady",payReady);
      mv.setViewName("/customer/pay");
      return mv;

@@ -19,6 +19,10 @@ import com.kh.food.review.model.vo.Review;
 
 public interface MemberService {
 	
+
+	
+	
+	List<Map<String, String>> selectMemberQnaAttach(int no);	
 	//회원 문의
 	int addQna(Map<String,Object> map, List<MemberQnaAttachment> files);
 	//상세 주문내역

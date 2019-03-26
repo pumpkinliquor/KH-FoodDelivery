@@ -163,7 +163,7 @@ $('#result').text(result);
                          		   총 음식 합계 : ${payReady.TOTALPRICE}원
                         </div>
                         <div class="clearfix" id="resultDeliveryPrice">
-                   			         배달요금 별도 : ${payReady.DELIVERYPRICE} 원
+                   			         배달요금 별도 : ${delivery * 1000} 원
                         </div>
                         <div id="payButton" class="cart-btn clearfix" style="cursor:pointer;">
                             <a id="payButton" class="btu">결제하기</a>
@@ -191,7 +191,8 @@ $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디�
     var memberId = $('#memberId').val();
     var foodPrice=$('#resultPrice').val();
     var deliveryPrice=$('#resultDeliveryPrice').val();//총 합계금액     
-    var resultPrice =${payReady.TOTALPRICE}+${payReady.DELIVERYPRICE};
+    var resultPrice = ${payReady.TOTALPRICE} + ${delivery * 1000};
+    /* var resultPrice =${payReady.TOTALPRICE}+${payReady.DELIVERYPRICE}; */
     /* location.href="${path}/customer/payEnd.do?businessCode="+${businessCode}+"&payAddress="+payAddress+"&payRequest="+payRequest+"&resultPrice="+resultPrice+"&memberId="+memberId; //보낼값들 */
  	var IMP = window.IMP; // 생략가능
     IMP.init('imp51687071'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용

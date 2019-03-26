@@ -59,6 +59,11 @@ public class CustomerPayServiceImpl implements CustomerPayService {
 		return dao.menuSoldCount(map);
 	}
 	
+	// 거리 구하기
+	@Override
+	public int selectDistance(Map<String, Object> map) {
+		return dao.selectDistance(map);
+	}
 	
 	//결제 후 장바구니 삭제
 	

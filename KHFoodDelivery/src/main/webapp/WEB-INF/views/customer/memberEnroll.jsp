@@ -239,6 +239,7 @@ pageEncoding="UTF-8"%>
             				alert("닉네임을 확인해주세요");
             				return false;
             			}
+            	
             		return true;
             		
             	}
