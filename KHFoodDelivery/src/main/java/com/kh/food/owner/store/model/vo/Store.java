@@ -25,7 +25,7 @@ public class Store implements Serializable
 	private Date appDate;
 	private Owner owner;
 	private String formatAppDate;
-	private int distance;
+	private long distance;
 	private int deliveryPrice;
 	
 	
@@ -216,11 +216,11 @@ public class Store implements Serializable
 		this.formatAppDate = formatAppDate;
 	}
 
-	public int getDistance() {
+	public long getDistance() {
 		return distance;
 	}
 
-	public void setDistance(int distance) {
+	public void setDistance(long distance) {
 		this.distance = distance;
 	}
 
