@@ -184,12 +184,19 @@ public class MemberController {
 		
 		
 		
-		System.out.println(payorderNum+""+menucode);
+		
 		Map<String,String> orList=new HashMap();
 		orList.put("payorderNum",payorderNum);
 		orList.put("menucode",menucode);
 		
 		Map<String,String>orList1=service.orderOne(orList);
+		
+		 SimpleDateFormat sdf=new SimpleDateFormat();
+		 
+		 String payDate=String.valueOf(orList1.get("PAYDATE"));
+		 String payDateSubStr=payDate.substring(0, 10);
+		 orList1.put("PAYDATE",payDateSubStr);		
+		
 		System.out.println("orList : "+orList1);
 		
 
