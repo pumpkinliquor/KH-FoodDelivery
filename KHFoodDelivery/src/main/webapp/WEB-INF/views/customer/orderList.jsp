@@ -85,7 +85,7 @@ function detailOrder1(payorderNum,menucode){
 			console.log(mem1);
 			$('.category').val(mem1.STORECATEGORY);
 			$('.storeName').val(mem1.STORENAME);
-			$('.orderDate').val(mem1.PAYDATE);
+			$('.payDate1').val(mem1.PAYDATE);
 			$('.way').val(mem1.PAYORDERMETHOD);
 			$('.price').val(mem1.PRICE);
 			$('.payRequest').val(mem1.PAYREQUEST);
@@ -164,7 +164,7 @@ function detailOrder1(payorderNum,menucode){
 							배달중
 							</c:when>
 							<c:when test="${ state eq 3}">
-							밷라완료
+							배달완료
 							</c:when>
 							<c:when test="${ state eq 4}">
 							주문취소
@@ -342,7 +342,7 @@ function handleImgRecipeFileSelect(e) {
 						</tr>						
 						<tr>
 							<th style="vertical-align: middle">주문날짜</th>
-					<td><input type="text"  class="form-control orderDate" value="" readonly/></td>						
+					<td><input type="text"  id="payDate1" class="form-control payDate1"  readonly/></td>						
 						</tr>	
 						<tr>
 							<th style="vertical-align: middle">주문메뉴</th>

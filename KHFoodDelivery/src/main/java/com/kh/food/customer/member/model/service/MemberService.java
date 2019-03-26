@@ -9,16 +9,18 @@ import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
+import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
+import com.kh.food.qna.model.vo.MemberQnaAttachment;
 import com.kh.food.qna.model.vo.MemberQnaReview;
 import com.kh.food.review.model.vo.Review;
 
 public interface MemberService {
 	
 	//회원 문의
-	int addQna(Map<String,Object> map);
+	int addQna(Map<String,Object> map, List<MemberQnaAttachment> files);
 	//상세 주문내역
 	Map<String,String> orderOne(Map<String,String> orList);
 	//고객 문의 수정

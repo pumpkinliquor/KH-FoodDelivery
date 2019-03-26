@@ -11,10 +11,7 @@
 <jsp:include page="/WEB-INF/views/common/adminHeader.jsp"></jsp:include>
 
 <style>
-	thead#tableHead {
-		background-color: #4D4D4D;
-		color: rgba(255, 255, 255, .5);
-	}
+	thead#tableHead  {color: rgba(255, 255, 255, .5); background-color: #4D4D4D;}
 	.pnt { cursor: pointer; }
 	tr#btnGroup td{
 		margin-top: 15px;
