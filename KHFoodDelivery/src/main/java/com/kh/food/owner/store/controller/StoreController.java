@@ -37,7 +37,7 @@ public class StoreController {
 	@RequestMapping("/owner/storeFormEnd.do")
 	public ModelAndView storeFormEnd(HttpServletRequest request, HttpServletResponse response, ModelAndView mv, String businessName, String frontPhone, String middlePhone, String finalPhone, String frontBusinessNum, String middleBusinessNum, String finalBusinessNum,
 			String storeCategory, String storeName, String frontStorePhone, String middleStorePhone, String finalStorePhone, String frontAddress, String backAddress, int minPrice, String storeProfile,String deliveryPrice ,MultipartFile storeImage,
-			String lat, String lng) {
+			String lat, String lng) throws ClassNotFoundException {
 			Map<String,Object> store=new HashMap<String,Object>();
 			String ownerId=(String) request.getSession().getAttribute("ownerId");
 			String storeAddress=frontAddress+" "+backAddress;

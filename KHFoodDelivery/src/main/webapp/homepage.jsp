@@ -649,7 +649,7 @@ background:url("${path}/resources/images/홈페이지.png")no-repeat 0 0px;
 background-size:100%;
 width:100%;
 }
-#runner{
+/* #runner{
 	background:url("${path}/resources/images/owner/main/배달이미지.png");
 	width:250px;
 	animation:walk 1s steps(100) infinite, forward 5s linear infinite;
@@ -669,9 +669,9 @@ width:100%;
 	100%{
 		transform:translateX(1319px);
 	}
-}
+} */
 </style>
-<div id="runner"></div>
+<!-- <div id="runner"></div> -->
 <div class="container">
 	<div class="row">
 	    <br/>
