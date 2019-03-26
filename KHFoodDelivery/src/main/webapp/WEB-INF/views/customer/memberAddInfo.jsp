@@ -86,7 +86,12 @@ $(function(){
 		$.ajax({
 			url:"${path}/member/checkNick.do",
 			data:{"nickName":nickName},
-			success:function(data){          
+			success:function(data){      
+				if(data.REVIEWNUM != null)
+				{
+					$('#textarea'.val('data.REVIEWCONTEXT'))
+					$('#textarea').attr('reon')
+				}
 				console.log(data.isNick);
 				nick=data.isNick;
 				console.log(nick);       					
@@ -108,6 +113,15 @@ $(function(){
 });
 
 function validate(){
+	
+	var regExp = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+    
+    if ( !regExp.test( $('#memberPhone').val() ) ) {
+
+          alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
+          return false;
+    } 
+    
 	if(nick==true)
 	{
 		alert("닉네임을 확인해주세요");
