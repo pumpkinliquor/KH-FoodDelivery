@@ -119,7 +119,7 @@ function maxLengthCheck(object){
 			            </tr>
 			             <tr>
 			                <th>사업자 등록 번호</th>
-			                <td><input type="number" maxlength="3" min="0" oninput="maxLengthCheck(this);" style="width:10em; margin-bottom:1em; float:left; margin-right:1em;" id="frontBusinessNum" name="frontBusinessNum" placeholder="000" class="form-control" required><input type="number" maxlength="3" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; float:left; margin-right:1em;" id="middleBusinessNum" name="middleBusinessNum" placeholder="000" class="form-control" required><input type="number" maxlength="6" oninput="maxLengthCheck(this);" style="width:13em; margin-bottom:1em; float:left; margin-right:1em;" placeholder="000000" id="finalBusinessNum" name="finalBusinessNum" class="form-control" required></td>
+			                <td><input type="number" maxlength="3" min="0" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; float:left; margin-right:1em;" id="frontBusinessNum" name="frontBusinessNum" placeholder="000" class="form-control" required><input type="number" maxlength="3" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; float:left; margin-right:1em;" id="middleBusinessNum" name="middleBusinessNum" placeholder="000" class="form-control" required><input type="number" maxlength="6" oninput="maxLengthCheck(this);" style="width:13em; margin-bottom:1em; float:left; margin-right:1em;" placeholder="000000" id="finalBusinessNum" name="finalBusinessNum" class="form-control" required></td>
 			            </tr>
 			        	<tr>
 			        		<th>카테고리</th>
