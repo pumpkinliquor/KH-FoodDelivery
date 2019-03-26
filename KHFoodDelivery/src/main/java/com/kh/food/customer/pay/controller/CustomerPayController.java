@@ -63,7 +63,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
   
   
   @RequestMapping("/customer/payEnd.do") 
-  public ModelAndView customerPayEnd(int resultPrice, int businessCode, String payRequest, String payAddress,String memberId,String impUid) 
+  public ModelAndView customerPayEnd(int resultPrice, int businessCode, String payRequest, String payAddress,String memberId,String impUid,String deliveryPay) 
   {
 	ModelAndView mv=new ModelAndView();
 	
@@ -72,6 +72,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
 	List<Map<String,String>> payList = new ArrayList<>();
 	for(int i=0; i<wishList.size(); i++)
 	{
+		logger.debug("i"+i);
 		map.put("businessCode", String.valueOf(businessCode));
 		map.put("menuCode", String.valueOf(wishList.get(i).get("MENUCODE")));
 		map.put("price",String.valueOf(wishList.get(i).get("PLUSMENUPRICE")));
@@ -80,6 +81,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
 		map.put("payRequest", payRequest);
 		map.put("payAddress", payAddress);
 		map.put("impUid", impUid);
+		map.put("deliveryPay", deliveryPay);
 		logger.debug("impUid"+impUid);
 		logger.debug("mapmap"+map);
 		logger.debug("wishList"+wishList);
@@ -130,7 +132,7 @@ import com.kh.food.owner.menu.model.vo.Menu;
 	//	System.out.println("아이디 : "+memberId);
 	
 	
-	
+	mv.addObject("deliveryPay",deliveryPay);
 	mv.addObject("wishList",wishList);
 	mv.addObject("payList",payList);
 	mv.setViewName("customer/payEnd");

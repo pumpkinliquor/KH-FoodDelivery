@@ -79,7 +79,7 @@ pageEncoding="UTF-8"%>
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1"><c:out value="${status.count}"/></td>
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.payDate}</td>
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.memberName}님의 주문입니다.</td>
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.deliveryPrice}</td>							
+								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.deliveryPay}</td>							
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.price}</td>
 								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.payOrderMethod}</td>							
 								<td>
@@ -288,7 +288,7 @@ function fn_detailOrder(payOrderNum){
 				}
 				var totalPrice = Number(sum) + Number(data[0].DELIVERYPRICE);
 				html += "<tr style='cursor:pointer;'><td width='44%'>주문금액</td><td width='12%'>"+sum+"원</td></tr>"
-				html += "<tr style='cursor:pointer;'><td width='44%'>배달비</td><td width='12%'>"+data[0].DELIVERYPRICE+"원</td></tr>"
+				html += "<tr style='cursor:pointer;'><td width='44%'>배달비</td><td width='12%'>"+data[0].DELIVERYPAY+"원</td></tr>"
 				html += "<tr style='cursor:pointer;'><td width='44%'>총결제금액</td><td width='12%'>"+totalPrice+"원</td></tr>"
 				html += "<tr style='cursor:pointer;'><td width='44%'>결제방법</td><td width='12%'>"+data[0].PAYORDERMETHOD+"</td></tr>"
 				html += "<tr style='cursor:pointer;'><td width='44%'>주문자</td><td width='12%'>"+data[0].MEMBERNAME+"</td></tr>"

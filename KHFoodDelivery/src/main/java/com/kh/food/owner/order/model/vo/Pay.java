@@ -26,6 +26,7 @@ public class Pay {
 	private Date formatDate;
 	private int deliveryPrice;
 	private int orderState;
+	private int deliveryPay;
 	
 	public Pay() {}
 
@@ -33,6 +34,35 @@ public class Pay {
 	
 	
 	
+	public Pay(int rNum, int payNum, int businessCode, String payDate, int menuCode, String sideCode, String drinkCode,
+			String tasteCode, int price, int count, int memberNum, String payOrderMethod, String payRequest,
+			int payOrderNum, String memberId, String memberName, String memberPhone, String menuName, Date formatDate,
+			int deliveryPrice, int orderState, int deliveryPay) {
+		super();
+		this.rNum = rNum;
+		this.payNum = payNum;
+		this.businessCode = businessCode;
+		this.payDate = payDate;
+		this.menuCode = menuCode;
+		this.sideCode = sideCode;
+		this.drinkCode = drinkCode;
+		this.tasteCode = tasteCode;
+		this.price = price;
+		this.count = count;
+		this.memberNum = memberNum;
+		this.payOrderMethod = payOrderMethod;
+		this.payRequest = payRequest;
+		this.payOrderNum = payOrderNum;
+		this.memberId = memberId;
+		this.memberName = memberName;
+		this.memberPhone = memberPhone;
+		this.menuName = menuName;
+		this.formatDate = formatDate;
+		this.deliveryPrice = deliveryPrice;
+		this.orderState = orderState;
+		this.deliveryPay = deliveryPay;
+	}
+
 	public Pay(int rNum, int payNum, int businessCode, String payDate, int menuCode, String sideCode, String drinkCode,
 			String tasteCode, int price, int count, int memberNum, String payOrderMethod, String payRequest,
 			int payOrderNum, String memberId, String memberName, String memberPhone, String menuName, Date formatDate,
@@ -113,7 +143,7 @@ public class Pay {
 		this.formatDate = formatDate;
 	}
 	
-	public Pay(int payNum, int businessCode, String payDate, int menuCode, String sideCode, String drinkCode,
+/*	public Pay(int payNum, int businessCode, String payDate, int menuCode, String sideCode, String drinkCode,
 			String tasteCode, int price, int count, int memberNum, String payOrderMethod, String payRequest,
 			int payOrderNum, String memberId, String memberName, String memberPhone, String menuName
 			) {
@@ -135,7 +165,7 @@ public class Pay {
 		this.memberName = memberName;
 		this.memberPhone = memberPhone;
 		this.menuName = menuName;
-	}
+	}*/
 
 
 
@@ -164,6 +194,23 @@ public class Pay {
 		this.menuName = menuName;
 		this.formatDate = formatDate;
 	}
+
+
+	
+
+	public int getDeliveryPay() {
+		return deliveryPay;
+	}
+
+
+
+
+
+	public void setDeliveryPay(int deliveryPay) {
+		this.deliveryPay = deliveryPay;
+	}
+
+
 
 
 

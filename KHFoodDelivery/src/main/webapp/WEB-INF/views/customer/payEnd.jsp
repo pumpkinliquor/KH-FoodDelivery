@@ -47,8 +47,8 @@
 			<tr>
 				<th><b>음식</b></th>
 				<td>
-				<c:forEach var="p" items="${payList}">
-					<c:out value="${p.MENUNAME}"/>&nbsp;<c:out value="(${p.COUNT})"/>
+				<c:forEach var="p" items="${wishList}">
+					<c:out value="${p.MENUNAME}"/>&nbsp;<c:out value="(${p.MENUCOUNT})"/>
 				</c:forEach>
 				</td>
 			</tr>
@@ -56,10 +56,10 @@
 				<th><b>가격</b></th>
 				<td>
 				<c:set var="total" value="0"/>
-				<c:forEach var="p1" items="${payList}">
-					<c:set var="total" value="${total+p1.PRICE}"></c:set>
+				<c:forEach var="p1" items="${wishList}">
+					<c:set var="total" value="${total+p1.PLUSMENUPRICE}"></c:set>
 				</c:forEach>
-				<c:out value="${total}"/>
+				<c:out value="${total+deliveryPay}"/>
 				</td>
 			</tr>
 			<tr>

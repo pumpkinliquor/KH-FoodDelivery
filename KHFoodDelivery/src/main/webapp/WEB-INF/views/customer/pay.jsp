@@ -176,6 +176,7 @@ $('#result').text(result);
         <input type="hidden" value="${payReady.STORENAME }" id="storeName">
         <input type="hidden" value="${payReady.MEMBERID }" id="memberId" name="memberId">
         <input type="hidden" value="${payReady.MENUCODE }" id="menuCode" name="menuCode">
+        <input type="hidden" value="${delivery * 1000 }" id="deliveryPay" name="deliveryPay">
 							<!-- <script>
 							console.log(${payReady.MENUCODE});
 							</script> -->
@@ -219,7 +220,7 @@ $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디�
 	    var title=$('#storeName').val();//가게명
 	    var foodPrice=$('#resultPrice').val();
 	    var deliveryPrice=$('#resultDeliveryPrice').val();//총 합계금액     
-	
+		var deliveryPay=$('#deliveryPay').val();//배달비
  if ( rsp.success ) {
     var msg = '결제가 완료되었습니다. 주문 내역을 확인해주세요!';
     msg += '고유ID : ' + rsp.imp_uid;
@@ -228,7 +229,7 @@ $(document).on('click','#payButton',function(){ //결제하기 버튼 아이디�
     msg += '카드 승인번호 : ' + rsp.apply_num; 
     
     var impUid = rsp.imp_uid;
-    location.href="${path}/customer/payEnd.do?businessCode="+${businessCode}+"&payAddress="+payAddress+"&payRequest="+payRequest+"&resultPrice="+resultPrice+"&memberId="+memberId+"&impUid="+impUid; //보낼값들
+    location.href="${path}/customer/payEnd.do?businessCode="+${businessCode}+"&payAddress="+payAddress+"&payRequest="+payRequest+"&resultPrice="+resultPrice+"&memberId="+memberId+"&impUid="+impUid+"&deliveryPay="+deliveryPay; //보낼값들
  } else {
      var msg = '결제에 실패하였습니다.';
      msg += '실패 사유 : ' + rsp.error_msg;

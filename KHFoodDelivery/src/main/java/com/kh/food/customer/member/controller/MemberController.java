@@ -219,7 +219,7 @@ public class MemberController {
 		int count=service.selectOrderCount(memberNum);
 		
 		
-		 
+		
 		List<Member> memberList = service.selectMemberOrder(memberNum,cPage,numPerPage);
 		
 		mv.addObject("pageBar",PagingFactory.getPageBar3(memberNum,count, cPage, numPerPage, "/food/member/orderList.do"));

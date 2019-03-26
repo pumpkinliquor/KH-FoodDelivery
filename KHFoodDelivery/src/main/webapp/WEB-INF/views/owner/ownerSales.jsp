@@ -146,7 +146,7 @@ margin-bottom:50px;
 								<td  class="td1"><c:out value="${status.count}"/></td>
 								<td  class="td1">${o.payDate}</td>
 								<td  class="td1">${o.memberName}님의 주문입니다.</td>
-								<td  class="td1">${o.deliveryPrice}</td>							
+								<td  class="td1">${o.deliveryPay}</td>							
 								<td  class="td1">${o.price }</td>
 								<td  class="td1">${o.payOrderMethod}</td>							
 							</tr>

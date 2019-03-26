@@ -141,6 +141,7 @@ function detailOrder1(payorderNum,menucode){
 						<th>주문 날짜</th>	
 						<th>주문상태</th>
 						<th>리뷰작성</th>
+						<th>주문취소</th>
 					</tr>
 				</thead>
 				<tbody>

@@ -147,7 +147,7 @@ margin-bottom:50px;
 								<td  class="td1"><c:out value="${status.count}"/></td>
 								<td  class="td1">${o.PAYDATE}</td>
 								<td  class="td1">${o.MEMBERNAME}님의 주문입니다.</td>
-								<td  class="td1">${o.DELIVERYPRICE}</td>							
+								<td  class="td1">${o.DELIVERYPAY}</td>							
 								<td  class="td1">${salePriceList[status.index].PRICE}</td>
 								<td  class="td1">${o.PAYORDERMETHOD}</td>							
 							</tr>
