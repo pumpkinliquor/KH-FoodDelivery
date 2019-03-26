@@ -208,39 +208,39 @@ function address1() {
                                 <div class="col-8">
                                     <span class="guide2 ok2">사용 가능한 닉네임입니다. </span>
             						<span class="guide2 error2">닉네임이 존재합니다. </span>
-                                  <input  name="nickName" id="nickName" value="${member.nickName}" class="form-control here" type="text"onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)"/>
+                                  <input  name="nickName" id="nickName" value="${member.nickName}" class="form-control here" type="text"onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" required/>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="text" class="col-4 col-form-label">생년월일</label> 
                                 <div class="col-8">
-                                  <input type="date" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" max="2019-03-01" min="1900-01-01"/>
+                                  <input type="date" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" max="2019-03-01" min="1900-01-01" required/>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="select" class="col-4 col-form-label">이메일</label> 
                                 <div class="col-8">
-                                  <input id="email"id="memberEmail" name="memberEmail" value="${member.memberEmail}" class="form-control here" required="required" type="text"/>
+                                  <input id="email"id="memberEmail" name="memberEmail" value="${member.memberEmail}" class="form-control here" required="required" type="text" required/>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="email" class="col-4 col-form-label">전화번호</label> 
                                 <div class="col-8">
-                                  <input id="email" name="memberPhone" id="memberPhone" value="${member.memberPhone}" class="form-control here" required="required" type="text"  maxlength="11"/>
+                                  <input id="email" name="memberPhone" id="memberPhone" value="${member.memberPhone}" class="form-control here" required="required" type="text"  maxlength="11" required/>
                                 </div>
                               </div>
                                <div class="form-group row"> 
                                 <label for="website" class="col-4 col-form-label">주소</label> 
                                 <div class="addre col-7"> 
                                 	
-                                  <input  name="memberAddress" id="memberAddress"value="${member.memberAddress}" class="form-control here" type="text"/>
+                                  <input  name="memberAddress" id="memberAddress"value="${member.memberAddress}" class="form-control here" type="text" required/>
                                   </div>
                                 <div class="addre col-1">
                              	  <input type="button" class="btn-ser1 btn btn-default" onclick="address1();" value="주소검색"/> 
                                  </div>
                                   <label for="website" class="col-4 col-form-label">상세주소</label> 
                                   <div class="addre col-3"> 
-                               <input  name="memberAddress1" id="memberAddress1"value="${member.memberAddress1}" class="form-control here" type="text"/>
+                               <input  name="memberAddress1" id="memberAddress1"value="${member.memberAddress1}" class="form-control here" type="text" required/>
                                   </div> 
                                 
                                  
