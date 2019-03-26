@@ -82,6 +82,11 @@ public class MenuServiceImpl implements MenuService {
 	public List<Map<String, String>> selectMenuCategory1(String menuCategory) {
 		return dao.selectMenuCategory1(menuCategory);
 	}
+
+	@Override
+	public Map<String, String> selectOriMenu(Map<String, String> map) {
+		return null;
+	}
 	
 	
 	

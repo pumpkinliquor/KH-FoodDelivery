@@ -139,12 +139,12 @@ margin-bottom:50px;
 					
 					<c:forEach var="o" items="${list}" varStatus="status">		
 							<tr style="cursor:pointer;">						
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1"><c:out value="${status.count}"/></td>
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.PAYDATE }</td>
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.MENUCATEGORY}</td>
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.MENUNAME}</td>
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.COUNT}</td>							
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.PRICE }</td>
+								<td  class="td1"><c:out value="${status.count}"/></td>
+								<td  class="td1">${o.PAYDATE }</td>
+								<td  class="td1">${o.MENUCATEGORY}</td>
+								<td  class="td1">${o.MENUNAME}</td>
+								<td class="td1">${o.COUNT}</td>							
+								<td  class="td1">${o.PRICE }</td>
 								
 															
 							</tr>
@@ -184,6 +184,10 @@ margin-bottom:50px;
 				console.log(data);
 				for(var i=0; i<data.length; i++)
 					{
+						if(data[i].MENUSTATE == 1)
+							{
+								html += "<option value='"+data[i].MENUCODE+"'>"+data[i].MENUNAME+"(단종된메뉴)</option>";
+							}
 						html += "<option value='"+data[i].MENUCODE+"'>"+data[i].MENUNAME+"</option>";
 					}
 				console.log(html);

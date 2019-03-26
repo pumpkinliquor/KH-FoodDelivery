@@ -70,5 +70,10 @@ public class OrderStoreSalesServiceImpl implements OrderStoreSalesService {
 		return dao.selectOrderCount(businessCode1);
 	}
 
+	@Override
+	public String selectWeekSales(String businessCode) {
+		return dao.selectWeekSales(businessCode);
+	}
+
 	
 }

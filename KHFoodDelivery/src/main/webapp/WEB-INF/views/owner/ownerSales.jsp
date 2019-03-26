@@ -75,7 +75,7 @@ margin-bottom:50px;
 		    </div>
             <div class="col">
               <div class="counter">
-			      <p class="timer count-title count-number" data-to="1700" data-speed="1500">${monthSales }원</p>
+			      <p class="timer count-title count-number" data-to="1700" data-speed="1500">${weekSales }원</p>
 			      <p class="count-text ">이번주</p>
     		  </div>
             </div>
@@ -110,19 +110,18 @@ margin-bottom:50px;
                           <div class="card-body">
                           	<form action="${path}/owner/selectStoreSalesEnd.do" method="post">
                               <div class="row">
-                                  <div class="col-md-12">
-                                      <h4>메뉴 관리</h4>
-                                      <hr>
+                                  <div class="col-md-1">
+                              	  	<p style="font-size:18px;">기간</p>
+                              	  </div>
+                                  <div class="col-md-3">
+                                  	<input type="date" class="form-control"  name="payDate1" required="required" min="2019-03-01" max="2099-03-26">
                                   </div>
                                   <div class="col-md-3">
-                                  	<input type="date" class="form-control"  name="payDate1" required="required">
+                                  	<input type="date" class="form-control" name="payDate2" required="required" min="2019-03-01" max="2099-03-26">
                                   </div>
-                                  <div class="col-md-3">
-                                  	<input type="date" class="form-control" name="payDate2" required="required">
-                                  </div>
-                                  <div class="col-md-6">
+                                  <div class="col-md-5">
                                   <input type="hidden" name="businessCode" value="${businessCode}">
-                                  <input type="submit" class="btn btn-primary bt1">
+                                  <input type="submit" class="btn btn-primary bt1" value="검색">
                                   </div>
                               </div>
                               </form>
@@ -143,12 +142,12 @@ margin-bottom:50px;
 					
 					<c:forEach var="o" items="${orderOneList}" varStatus="status">		
 							<tr style="cursor:pointer;">						
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1"><c:out value="${status.count}"/></td>
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.payDate}</td>
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.memberName}님의 주문입니다.</td>
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.deliveryPrice}</td>							
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.price }</td>
-								<td onclick="fn_detailOrder(${o.payOrderNum});" class="td1">${o.payOrderMethod}</td>							
+								<td  class="td1"><c:out value="${status.count}"/></td>
+								<td  class="td1">${o.payDate}</td>
+								<td  class="td1">${o.memberName}님의 주문입니다.</td>
+								<td  class="td1">${o.deliveryPrice}</td>							
+								<td  class="td1">${o.price }</td>
+								<td  class="td1">${o.payOrderMethod}</td>							
 							</tr>
 							
 					</c:forEach> 

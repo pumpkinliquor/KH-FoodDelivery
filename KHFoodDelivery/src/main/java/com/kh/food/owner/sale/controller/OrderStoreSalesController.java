@@ -59,7 +59,6 @@ public class OrderStoreSalesController {
 		
 		int orderCount = service.selectOrderCount(businessCode1);
 		List<Map<String,String>> payList = orderService.selectPayList(cPage,numPerPage,businessCode1);
-		logger.debug("ddd"+String.valueOf(payList.get(0).get("PRICE")));
 		logger.debug("orderOneList"+orderOneList);
 		for(int i=0; i<orderOneList.size(); i++)
 		{
@@ -68,6 +67,7 @@ public class OrderStoreSalesController {
 		String todaySales = "";
 		String monthSales ="";
 		String yearSales = "";
+		String weekSales = "";
 		try {
 			todaySales = service.selectTodaySales(businessCode);
 			if(todaySales.equals(""))
@@ -99,10 +99,22 @@ public class OrderStoreSalesController {
 		{
 			yearSales = "0";
 		}
+		try {
+			weekSales = service.selectWeekSales(businessCode);
+			if(weekSales.equals(""))
+			{
+				weekSales = "0";
+			}
+		}
+		catch(NullPointerException e)
+		{
+			weekSales = "0";
+		}
 		logger.debug("today"+todaySales);
 		logger.debug("monthSales"+monthSales);
 		logger.debug("yearSales"+yearSales);
 		
+		mv.addObject("weekSales",weekSales);
 		mv.addObject("monthSales",monthSales);
 		mv.addObject("yearSales",yearSales);
 		mv.addObject("todaySales",todaySales);
@@ -126,6 +138,7 @@ public class OrderStoreSalesController {
 		String todaySales = "";
 		String monthSales ="";
 		String yearSales = "";
+		String weekSales = "";
 		try {
 			todaySales = service.selectTodaySales(businessCode);
 			if(todaySales.equals(""))
@@ -157,7 +170,17 @@ public class OrderStoreSalesController {
 		{
 			yearSales = "0";
 		}
-		
+		try {
+			weekSales = service.selectWeekSales(businessCode);
+			if(weekSales.equals(""))
+			{
+				weekSales = "0";
+			}
+		}
+		catch(NullPointerException e)
+		{
+			weekSales = "0";
+		}
 		Map<String,String> map = new HashMap<>();
 		map.put("businessCode", businessCode);
 		map.put("payDate1", payDate1);
@@ -197,6 +220,7 @@ public class OrderStoreSalesController {
 		String todaySales = "";
 		String monthSales ="";
 		String yearSales = "";
+		String weekSales = "";
 		try {
 			todaySales = service.selectTodaySales(businessCode);
 			if(todaySales.equals(""))
@@ -227,6 +251,17 @@ public class OrderStoreSalesController {
 		}catch(NullPointerException e)
 		{
 			yearSales = "0";
+		}
+		try {
+			weekSales = service.selectWeekSales(businessCode);
+			if(weekSales.equals(""))
+			{
+				weekSales = "0";
+			}
+		}
+		catch(NullPointerException e)
+		{
+			weekSales = "0";
 		}
 		logger.debug("today"+todaySales);
 		logger.debug("monthSales"+monthSales);
@@ -271,6 +306,7 @@ public class OrderStoreSalesController {
 		String todaySales = "";
 		String monthSales ="";
 		String yearSales = "";
+		String weekSales = "";
 		try {
 			todaySales = service.selectTodaySales(businessCode);
 			if(todaySales.equals(""))
@@ -302,7 +338,17 @@ public class OrderStoreSalesController {
 		{
 			yearSales = "0";
 		}
-		
+		try {
+			weekSales = service.selectWeekSales(businessCode);
+			if(weekSales.equals(""))
+			{
+				weekSales = "0";
+			}
+		}
+		catch(NullPointerException e)
+		{
+			weekSales = "0";
+		}
 		Map<String,String> map = new HashMap<>();
 		map.put("menuCategoryCode", menuCategory1);
 		map.put("menuCode", menuCategory2);

@@ -106,18 +106,19 @@ margin-bottom:50px;
                           <div class="card-body">
                           	<form action="${path}/owner/selectStoreSalesEnd.do" method="post">
                               <div class="row">
-                              	  <div class="col-md-2">
-                              	  	<p>기간선택</p>
+                              	  <div class="col-md-1">
+                              	  	<p style="font-size:18px;">기간</p>
                               	  </div>
                                   <div class="col-md-3">
-                                  	<input type="date" name="payDate1" required="required">&nbsp;&nbsp;&nbsp;~
+                                  	<input type="date" class="form-control" name="payDate1" required="required" min="2019-03-01" max="2099-03-26">
                                   </div>
-                                  <div class="col-md-2">
-                                  	<input type="date" name="payDate2" required="required">
+                                  	~
+                                  <div class="col-md-3">
+                                  	<input type="date" class="form-control" name="payDate2" required="required" min="2019-03-01" max="2099-03-26">
                                   </div>
-                                  <div class="col-md-5">
+                                  <div class="col-md-3">
                                   <input type="hidden" name="businessCode" value="${businessCode}">
-                                  <input type="submit" class="btn btn-primary bt1">
+                                  <input type="submit" class="btn btn-primary bt1" value="검색">
                                   </div>
                               </div>
                               </form>
@@ -138,12 +139,12 @@ margin-bottom:50px;
 					
 					<c:forEach var="o" items="${saleList}" varStatus="status">		
 							<tr style="cursor:pointer;">						
-								<td onclick="fn_detailOrder(${o.PAYORDERNUM});" class="td1"><c:out value="${status.count}"/></td>
-								<td onclick="fn_detailOrder(${o.PAYORDERNUM});" class="td1">${o.PAYDATE}</td>
-								<td onclick="fn_detailOrder(${o.PAYORDERNUM});" class="td1">${o.MEMBERNAME}님의 주문입니다.</td>
-								<td onclick="fn_detailOrder(${o.PAYORDERNUM});" class="td1">${o.DELIVERYPRICE}</td>							
-								<td onclick="fn_detailOrder(${o.PAYORDERNUM});" class="td1">${salePriceList[status.index].PRICE}</td>
-								<td onclick="fn_detailOrder(${o.PAYORDERNUM});" class="td1">${o.PAYORDERMETHOD}</td>							
+								<td  class="td1"><c:out value="${status.count}"/></td>
+								<td  class="td1">${o.PAYDATE}</td>
+								<td  class="td1">${o.MEMBERNAME}님의 주문입니다.</td>
+								<td  class="td1">${o.DELIVERYPRICE}</td>							
+								<td  class="td1">${salePriceList[status.index].PRICE}</td>
+								<td  class="td1">${o.PAYORDERMETHOD}</td>							
 							</tr>
 							
 					</c:forEach> 
