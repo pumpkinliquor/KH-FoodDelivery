@@ -18,7 +18,7 @@ public class PagingFactory {
 		}
 		else {
 			pageBar+="<li class='page-item'>";
-			pageBar+="<a class='page-link' href='javascript:fn_paging("+(pageNo-1)+")'이전</a>";
+			pageBar+="<a class='page-link' href='javascript:fn_paging("+(pageNo-1)+")'>이전</a>";
 			pageBar+="</li>";
 		}
 		
