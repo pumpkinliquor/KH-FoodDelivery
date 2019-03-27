@@ -33,6 +33,18 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	@Override
+	public Map<String, Object> selectReviewView(int no) {
+		return sqlSession.selectOne("member.selectReviewView", no);
+	}
+	@Override
+	public List<Map<String, Object>> selectReview(String memberId) {
+		return sqlSession.selectList("member.selectReviewList", memberId);
+	}
+	@Override
+	public Map<String, Object> selectReviewCon(int payNum) {
+		return sqlSession.selectOne("member.selectReviewCon", payNum);
+	}
+	@Override
 	public int updateAttach(Map<String,Object> map) {
 		return sqlSession.update("member.updateAttach",map);
 	}
@@ -240,6 +252,11 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
+	public int checkEmail(String memberEmail) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.checkEmail", memberEmail);
+	}
+	@Override
 	public int checkNick(String nickName) {
 		return sqlSession.selectOne("member.checkNick",nickName);
 	}
@@ -331,6 +348,10 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int selectMemberOrderCount(int memberNum) {
 		return sqlSession.selectOne("member.selectMemberOrderCount",memberNum);
+	}
+	@Override
+	public int updateOrderState(String payOrderNum) {
+		return sqlSession.update("member.updateOrderState",payOrderNum);
 	}	
 	
 	

@@ -8,7 +8,7 @@
 
 <style>
 	div#context-area{ min-height: 200px; }
-	div.row div.bt-group{float:right;}
+	.bt-group{float:right;}
 	button.b1 {
 		background-color: black;
 		border-color: white;
@@ -17,10 +17,19 @@
 	div.de{margin-top:-10%;}
 	.avatar:hover {
 
-  -webkit-transform: scale(1.5);
+  -webkit-transform: scale(1.8);
 
- 
+	
 }
+
+	span#grade{
+		font-size:22px;
+	    letter-spacing:0;
+	    display:inline-block;
+	    margin-left:5px;
+	    color:#ccc;
+	    text-decoration:none;
+	}
 </style>
 
 <script>	
@@ -39,56 +48,33 @@
 
 <section>
  
-	<div class="container de" style="padding-top:250px">  
-		<div class="row" >
-			<div class="col-sm-12">
-			</div>
-			<div class="col-sm-2">
-				<p>카테고리: <b>${mq.qnaCategory }</b></p>
-			</div>
-			<div class="col-sm-2">
-				<p>작성자: <b>${mq.memberId }</b></p>
-			</div>
-			<div class="col-sm-3">
-				<p>작성일:  <b>${mq.formatWriteDate }</b></p>
-			</div>
-			<div class="bt-group col-sm-5">			
+	<div class="container">  
+		<div class="row" >			
+			<div class="col-sm-8">
+				<h4 style="display: inline;"><b>${review.STORENAME}</b></h4>			
+				<c:forEach begin="1" end="${review.GRADE }">
+					<span id="grade" style="color:crimson;">★</span>
+				</c:forEach>
+				<c:forEach begin="1" end="${5 - review.GRADE }">
+					<span id="grade">★</span>
+				</c:forEach>
+				<c:out value="${review.WRITEDATE }"/>
+			</div>						
+			<div class="bt-group col-sm-4">			
 				<button type="button" class="btn btn-default b1" onclick="deleteQna()">삭제</button>
 				<button type="button" class="btn btn-default b1" onclick="updateQna();">수정</button>	
-				<button type="button" class="btn btn-default b1" onclick="location.href='${path }/member/qnaList.do?memberId=${sessionScope.logined}'">목록으로</button>			
+				<button type="button" class="btn btn-default b1" onclick="location.href='${path }/member/myReview.do?memberId=${sessionScope.logined}'">목록으로</button>			
 			</div>	
 		</div>
-		<hr/>
-		<br/>	
+		<hr/> <br/>	
 		<div class="row">			
-			<div class="col-sm-12" id="context-area">
-				<h4>${mq.qnaContent }</h4>
-			
+			<div class="col-sm-12" id="context-area">				
+				<c:if test="${review.REVIEWIMAGE != null }">
+					<img width="1000px" height="400px" src="${path }/resources/upload/member/review/${review.REVIEWIMAGE}"/> <br/>
+				</c:if>
+				<c:out value="${review.REVIEWCONTEXT }"/>
 			</div>
-				<div>
-				 <c:forEach items="${attach}" var="a" varStatus="vs">
-	         			
-	         		<img name="file" title="profile image" class="avatar img-circle img-thumbnail"  width="300px"  height="300px"alt="avatar" src="${path}/resources/upload/member/qnaAttach/${a.ORIGINALFILENAME}"/>  
-        		</c:forEach> 
-				</div>
-			<div class="col-sm-2 back"></div>
 		</div>
-		<c:if test="${!empty mqr}">
-			<hr/>		
-			<div class="row">
-				<div class="col-sm-1">
-					<p><b>관리자</b></p>
-				</div>
-				<div class="col-sm-9">
-					<p>${mqr.formatWriteDate }</p>
-				</div>				
-				<div class="col-sm-2">
-				</div>
-				<div class="col-sm-12">
-					<p>${mqr.reviewContext }</p>
-				</div>
-			</div>
-		</c:if>
 	</div>
 </section>
 	
@@ -119,7 +105,7 @@ $(function(){
 					<table class="table">
 						<tr>
 							<th style="vertical-align: middle">카테고리</th>
-							<td><input readonly="readonly" type="text" name="qnaCategory" class="form-control" value="${mq.qnaCategory }"/></td>						
+							<td><input type="text" name="qnaCategory" class="form-control" value="${mq.qnaCategory }"/></td>						
 						</tr>					
 						<tr>
 							<th style="vertical-align: middle">아이디</th>

@@ -197,6 +197,7 @@ return true;
               <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}" id="activeOff" class="list-group-item list-group-item-action" style="z-index:0; ">나의 주문내역</a>
               <a href="${path}/customer/mypage.do?memberId=${sessionScope.logined}" id="activeOn" class="list-group-item list-group-item-action">회원정보변경</a>
               <a href="${path }/member/markList.do?memberId=${sessionScope.logined}" id="activeOff" class="list-group-item list-group-item-action">즐겨찾는매장</a>
+              <a href="${path }/member/myReview.do?memberId=${sessionScope.logined}" id="activeOff" class="list-group-item list-group-item-action">리뷰 관리</a>
               <a href="${path }/member/qnaList.do?memberId=${sessionScope.logined}" id="activeOff" class="list-group-item list-group-item-action">나의 문의내역</a>
             </div> 
 		</div>
@@ -238,7 +239,7 @@ return true;
                               <div class="form-group row">
                                 <label for="text" class="col-4 col-form-label">생년월일</label> 
                                 <div class="col-8">
-                                  <input type="date" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" max="2019-03-01" min="1900-01-01" required/>
+                                  <input type="date" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" max="2018-12-31" min="1900-01-01" required/>
                                 </div>
                               </div>
                               <div class="form-group row">

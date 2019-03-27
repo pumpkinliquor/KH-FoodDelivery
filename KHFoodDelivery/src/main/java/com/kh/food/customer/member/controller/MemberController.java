@@ -23,7 +23,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -43,18 +42,22 @@ import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
-import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
-import com.kh.food.owner.order.model.vo.Pay;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
 import com.kh.food.qna.model.vo.MemberQnaAttachment;
 import com.kh.food.qna.model.vo.MemberQnaReview;
 import com.kh.food.review.model.vo.Review;
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.request.CancelData;
+import com.siot.IamportRestClient.response.AccessToken;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
 
 @Controller
 public class MemberController {
-
+	IamportClient client;
 	private Logger logger = LoggerFactory.getLogger(MemberController.class);
 
 	
@@ -68,7 +71,29 @@ public class MemberController {
 	private JavaMailSender mailSender;
 	
 	
+	// 내 리뷰 관리
+	@RequestMapping("/member/myReview.do")
+	public ModelAndView myReview(String memberId) {
+		ModelAndView mv = new ModelAndView();
+		
+		List<Map<String, Object>> review = service.selectReview(memberId);
+		
+		mv.addObject("review", review);
+		mv.setViewName("customer/myReview");
+		return mv;
+	}
 	
+	// 리뷰 보기
+	@RequestMapping("/member/reviewView.do")
+	public ModelAndView reviewView(int no) {
+		ModelAndView mv = new ModelAndView();
+		
+		Map<String, Object> review = service.selectReviewView(no);
+		
+		mv.addObject("review", review);
+		mv.setViewName("customer/reviewView");
+		return mv;
+	}
 	//메인보이기
 	@RequestMapping("/member/main.do")
 	public String mainView() {
@@ -258,13 +283,22 @@ public class MemberController {
 		List<Map<String,String>> orderList = service.selectMemberOrderList(memberNum,cPage,numPerPage);
 		int orderCount = service.selectMemberOrderCount(memberNum);
 		logger.debug("orderList"+orderList);
+				
+		
 		mv.addObject("pageBar",PagingFactory.getPageBar3(memberNum,orderCount, cPage, numPerPage, "/food/member/orderList.do"));
 		mv.addObject("orderList",orderList);
 		mv.setViewName("customer/orderList");
 		return mv;
 	}
 	
-	
+	// 리뷰 확인
+	@RequestMapping("/member/reviewCon.do")
+	@ResponseBody
+	public Map<String,Object> selectReviewCon(int payNum) {		
+		Map<String, Object> review = service.selectReviewCon(payNum); 
+		
+		return review;
+	}
 
 	
 	
@@ -390,6 +424,23 @@ public class MemberController {
 		return mv;
 		
 		
+	}
+	
+	//이메일체크
+	@RequestMapping("/member/checkEmail.do")
+	public ModelAndView checkEmail(String memberEmail, ModelAndView mv ) throws UnsupportedEncodingException{
+		
+		Map map=new HashMap();
+		boolean isEmail=service.checkEmail(memberEmail)==0?false:true;
+		map.put("isEmail",isEmail);
+
+		
+		mv.addAllObjects(map); //map 으로 된거 통째로 넣어줌
+		mv.addObject("num",1);
+			
+		mv.setViewName("jsonView");
+		
+		return mv;
 	}
 	
 	//로그인 폼
@@ -1165,6 +1216,7 @@ public class MemberController {
 	public ModelAndView memberReview(ModelAndView mv, @RequestParam("context") String context,
 														@RequestParam("bsCode") int bsCode,
 														@RequestParam("memNum") int memNum,
+														@RequestParam("payNum") int payNum,
 														@RequestParam("img") MultipartFile img,
 														@RequestParam("grade") String grade,
 														@RequestParam("memId") String memId,
@@ -1177,6 +1229,7 @@ public class MemberController {
 		map.put("context", context);
 		map.put("bsCode", bsCode);
 		map.put("memNum", memNum);
+		map.put("payNum", payNum);
 		map.put("grade", grade);
 		String saveDir = request.getSession().getServletContext().getRealPath("/resources/upload/member/review");
 		String orifileName = img.getOriginalFilename();
@@ -1214,9 +1267,69 @@ public class MemberController {
 	
 	//주문취소하기
 	@RequestMapping("member/cancelOrder.do")
-	public void cancelOrder(String payOrderNum , String impId)
+	public void cancelOrder(String payOrderNum , String impId,HttpServletResponse response) throws IOException
 	{
 		logger.debug("p"+payOrderNum + "i" + impId);
+		
+		String accessToken = null;
+
+		String test_api_key = "1817419586150738";
+		String test_api_secret = "Zka426NcWWWm3VRRx1nzLLrmS7bBdXLciWhl24xZ0ul3pdVXfix04YmW5xyjvjwNgN8iRGiSbEWBRRz6";
+		client = new IamportClient(test_api_key, test_api_secret);
+		
+		try {
+			IamportResponse<AccessToken> auth_response = client.getAuth();
+			accessToken = auth_response.getResponse().getToken();
+
+		} catch (IamportResponseException e) {
+			System.out.println(e.getMessage());
+			
+			switch(e.getHttpStatusCode()) {
+			case 401 :
+				//TODO
+				break;
+			case 500 :
+				//TODO
+				break;
+			}
+		} catch (IOException e) {
+			//서버 연결 실패
+			e.printStackTrace();
+		}
+		
+		int result = 0;
+		try {
+		 result = service.updateOrderState(payOrderNum);
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		String imp_uid = impId;
+		CancelData cancel_data = new CancelData(imp_uid, true); //imp_uid를 통한 전액취소
+		
+		try {
+			IamportResponse<Payment> payment_response = client.cancelPaymentByImpUid(cancel_data);
+			logger.debug(payment_response.getMessage());
+			
+		} catch (IamportResponseException e) {
+			System.out.println(e.getMessage());
+			
+			switch(e.getHttpStatusCode()) {
+			case 401 :
+				//TODO
+				break;
+			case 500 :
+				//TODO
+				break;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		logger.debug("result"+result);
+		response.getWriter().print(result);
 	}
 }
 
