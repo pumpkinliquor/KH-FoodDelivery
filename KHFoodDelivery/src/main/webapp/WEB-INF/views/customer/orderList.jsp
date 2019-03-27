@@ -42,6 +42,8 @@ table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
 
 .star_rating span.on {color:crimson;}
 
+.menu1{
+}
 </style>
 <script>
 
@@ -83,13 +85,22 @@ function detailOrder1(payorderNum,menucode){
 		},
 		success : function(mem1){
 			console.log(mem1);
-			$('.category').val(mem1.STORECATEGORY);
-			$('.storeName').val(mem1.STORENAME);
-			$('.payDate1').val(mem1.PAYDATE);
-			$('.way').val(mem1.PAYORDERMETHOD);
-			$('.price').val(mem1.PRICE);
-			$('.payRequest').val(mem1.PAYREQUEST);
-			$('.menu1').val(mem1.MENUNAME);
+			var menu = "";
+			var sum = "";
+			for(var i=0; i<mem1.length; i++)
+				{
+					menu += mem1[i].MENUNAME+"("+mem1[i].COUNT+") ";
+					sum = Number(sum) + Number(mem1[i].PRICE);
+				}
+			sum = Number(sum) + Number(mem1[0].DELIVERYPAY);
+			console.log(menu);
+			$('.category').val(mem1[0].STORECATEGORY);
+			$('.storeName').val(mem1[0].STORENAME);
+			$('.payDate1').val(mem1[0].PAYDATE);
+			$('.way').val(mem1[0].PAYORDERMETHOD);
+			$('.price').val(sum+"원");
+			$('.payRequest').val(mem1[0].PAYREQUEST);
+			$('.menu1').val(menu);
 			$('#orderListModal1').modal();
 			
 			
@@ -148,32 +159,39 @@ function detailOrder1(payorderNum,menucode){
 					<c:forEach items="${orderList}" var="m">
 						<tr class="pnt" style='cursor:pointer;'>
 						
-							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"style="cursor:pointer;"><c:out value="${m.STORECATEGORY }"/></td>
-							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.STORENAME }"/></td>
-							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.PAYDATE}"/></td>
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});" style="vertical-align: middle; cursor:pointer;"><c:out value="${m.STORECATEGORY }"/></td>
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});" style="vertical-align: middle;"><c:out value="${m.STORENAME }"/></td>
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});" style="vertical-align: middle;"><c:out value="${m.PAYDATE}"/></td>
 
-							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});">
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});" style="vertical-align: middle;">
 							<c:set var="state" value="${m.ORDERSTATE }" />
 							<c:choose>
-							<c:when test="${ state eq 0}">
-							결제완료
-							</c:when>
-							<c:when test="${ state eq 1}">
-							주문접수
-							</c:when>
-							<c:when test="${ state eq 2}">
-							배달중
-							</c:when>
-							<c:when test="${ state eq 3}">
-							배달완료
-							</c:when>
-							<c:when test="${ state eq 4}">
-							주문취소
-							</c:when>
+								<c:when test="${ state eq 0}">
+									결제완료
+								</c:when>
+								<c:when test="${ state eq 1}">
+									주문접수
+								</c:when>
+								<c:when test="${ state eq 2}">
+									배달중
+								</c:when>
+								<c:when test="${ state eq 3}">
+									배달완료
+								</c:when>
+								<c:when test="${ state eq 4}">
+									주문취소
+								</c:when>
 							</c:choose>
 						
 							</td>
-							<td><button class="btn btn-default" value="${m.MEMBERID}"  id="modal" type="button" onclick="fn_review(${m.BUSINESSCODE},${m.MEMBERNUM},this)">리뷰</button></td>
+							<td>
+								<c:if test="${ state eq 3}">
+									<button class="btn btn-default" value="${m.MEMBERID}"  id="modal" type="button" onclick="fn_review(${m.BUSINESSCODE},${m.MEMBERNUM},this)">리뷰</button>
+								</c:if>
+							</td>
+							<td>
+								
+							</td>
 						</tr>				
 					</c:forEach>
 				</tbody>
@@ -201,14 +219,15 @@ ${pageBar}
 				<div class="modal-body">
 					<table class="table">
 						<tr>
-							<th style="vertical-align: middle; font-weight:bold;">별점</th>
-							<td><p class="star_rating">
-								    <span id="1" onclick=mark(this)>★</span>
+							<th style="vertical-align: middle; font-weight:bold; width:100px;">별점</th>
+							<td>
+								<p class="star_rating">
+								    <span id="1" onclick=mark(this) class="on">★</span>
 								    <span id="2" onclick=mark(this)>★</span>
 								    <span id="3" onclick=mark(this)>★</span>
 								    <span id="4" onclick=mark(this)>★</span>
 								    <span id="5" onclick=mark(this)>★</span>
-								<input type="hidden" id="star" name="grade"/>
+									<input type="hidden" id="star" name="grade"/>
 								</p>
 							</td>
 
@@ -220,7 +239,7 @@ ${pageBar}
 								<input type="hidden" id="businessCode" name="bsCode" value=""/>
 								<input type="hidden" id="memberNum" name="memNum" value=""/>
 								<input type="hidden" id="memberId" name="memId" value=""/>
-								<textarea id="textarea" name="context" cols="50" rows="5" placeholder="리뷰를 작성해 주세요." ></textarea></td>
+								<textarea id="textarea" name="context" cols="50" rows="5" placeholder="리뷰를 작성해 주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" required="required"></textarea></td>
 							
 							</th>
 						
@@ -248,6 +267,18 @@ ${pageBar}
 </div>
 
 <script>
+function noSpaceForm(obj){		
+	var str_space = /(<([^>]+)>)/ig;  // 태그체크
+	
+	   
+    if(str_space.test(obj.value)) { //태그체크
+        obj.focus();
+        obj.value = obj.value.replace(str_space,''); // 태그제거
+        return false;
+    }
+   
+	
+}
 
 function fn_review(businessCode,membernum,e){
 	
@@ -331,7 +362,7 @@ function handleImgRecipeFileSelect(e) {
 				<button type="button" class="close" data-dismiss="modal">×</button>
 			</div>
 			<form action="${path}/customer/memberQnaUpdate.do"  method="post">
-				<div class="modal-body" style="height: 600px;">
+				<div class="modal-body" style="height: 700px;">
 					<table class="table">
 						<tr>
 							<th style="vertical-align: middle">카테고리</th>
@@ -347,8 +378,8 @@ function handleImgRecipeFileSelect(e) {
 						</tr>	
 						<tr>
 							<th style="vertical-align: middle">주문메뉴</th>
-							<td><input type="text"  class="form-control menu1" value="" readonly/></td>						
-						</tr>					
+							<td><textarea class="form-control menu1" rows="5" value="" readonly></textarea></td>											
+						</tr>						
 						<tr>
 							<th style="vertical-align: middle">결제 방식</th>
 							<td><input type="text"  class="form-control way" value="" readonly/></td>						

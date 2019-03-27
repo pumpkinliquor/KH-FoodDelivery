@@ -40,6 +40,18 @@ function check(){
 	}
 	return true;
 }
+function noSpaceForm(obj){		
+	var str_space = /(<([^>]+)>)/ig;  // 태그체크
+	
+	   
+    if(str_space.test(obj.value)) { //태그체크
+        obj.focus();
+        obj.value = obj.value.replace(str_space,''); // 태그제거
+        return false;
+    }
+   
+	
+}
 </script>
 <section>
 <div class="container">
@@ -70,11 +82,11 @@ function check(){
 			        	</tr>
 			            <tr>
 			                <th>제목</th>
-			                <td><input type="text" maxlength="50" min="0" oninput="maxLengthCheck(this);" placeholder="50글자 이내 " name="qnaTitle" class="form-control" required></td>
+			                <td><input type="text" maxlength="50" min="0" oninput="maxLengthCheck(this);" placeholder="50글자 이내 " name="qnaTitle" class="form-control" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" required></td>
 			            </tr>
 			            <tr>
 			                <th>내용</th>
-			                <td><textarea maxlength="1000" oninput="maxLengthCheck(this);" cols="10" placeholder="내용" id="qnaContent" name="qnaContent" class="form-control" style="resize:none; height:15em;" required></textarea></td>
+			                <td><textarea maxlength="1000" oninput="maxLengthCheck(this);" cols="10" placeholder="내용" id="qnaContent" name="qnaContent" class="form-control" style="resize:none; height:15em;" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" required></textarea></td>
 			            </tr>
 			            <tr>
 			                <th>

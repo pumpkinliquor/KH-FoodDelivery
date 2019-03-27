@@ -44,6 +44,7 @@ import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
+import com.kh.food.owner.order.model.vo.Pay;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -219,7 +220,7 @@ public class MemberController {
 	//상세 주문내역
 	@RequestMapping("/member/orderOne.do")
 	@ResponseBody
-	public Map orderOne(String payorderNum,String menucode) {
+	public List orderOne(String payorderNum,String menucode) {
 		
 		
 		
@@ -228,13 +229,13 @@ public class MemberController {
 		orList.put("payorderNum",payorderNum);
 		orList.put("menucode",menucode);
 		
-		Map<String,String>orList1=service.orderOne(orList);
+		List orList1=service.orderOne(orList);
 		
 		 SimpleDateFormat sdf=new SimpleDateFormat();
 		 
-		 String payDate=String.valueOf(orList1.get("PAYDATE"));
-		 String payDateSubStr=payDate.substring(0, 10);
-		 orList1.put("PAYDATE",payDateSubStr);		
+		 /*String payDate=String.valueOf(orList1.get(0).get("PAYDATE"));*/
+		/* String payDateSubStr=payDate.substring(0, 10);
+		 orList1.("PAYDATE",payDateSubStr);	*/	
 		
 		System.out.println("orList : "+orList1);
 		
@@ -253,12 +254,12 @@ public class MemberController {
 		
 		int count=service.selectOrderCount(memberNum);
 		
-		
-		
-		List<Member> memberList = service.selectMemberOrder(memberNum,cPage,numPerPage);
-		
-		mv.addObject("pageBar",PagingFactory.getPageBar3(memberNum,count, cPage, numPerPage, "/food/member/orderList.do"));
-		mv.addObject("orderList",memberList);
+		/*List<Member> memberList = service.selectMemberOrder(memberNum,cPage,numPerPage);*/
+		List<Map<String,String>> orderList = service.selectMemberOrderList(memberNum,cPage,numPerPage);
+		int orderCount = service.selectMemberOrderCount(memberNum);
+		logger.debug("orderList"+orderList);
+		mv.addObject("pageBar",PagingFactory.getPageBar3(memberNum,orderCount, cPage, numPerPage, "/food/member/orderList.do"));
+		mv.addObject("orderList",orderList);
 		mv.setViewName("customer/orderList");
 		return mv;
 	}
