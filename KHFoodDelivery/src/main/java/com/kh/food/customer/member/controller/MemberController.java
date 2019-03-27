@@ -81,29 +81,32 @@ public class MemberController {
 		
 	ArrayList<MemberQnaAttachment> files=new ArrayList<MemberQnaAttachment>();
 	 
-		
+	for(int i=0;i<upFile.length;i++) {
+		System.out.println(upFile[i]);
+	}
+		System.out.println(files);
+		//저장경료
 		//저장경료
 		String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/member/qnaAttach");
 		
 		for(MultipartFile f : upFile) {
 			if(!f.isEmpty()) {
 				String oriFileName=f.getOriginalFilename();
-				String ext=oriFileName.substring(oriFileName.lastIndexOf("."));
-				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
-				int randomV=(int)(Math.random()*1000);
-				String reName=sdf.format(System.currentTimeMillis())+"_"+randomV+ext;
+				
 				try {
-					f.transferTo(new File(saveDir+"/"+reName));
+					f.transferTo(new File(saveDir+"/"+oriFileName));
 				}
 				catch(IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
 				MemberQnaAttachment att=new MemberQnaAttachment();
-				att.setReNamedFileName(reName);
+				att.setReNamedFileName(oriFileName);
 				att.setOriginalFileName(oriFileName);
 				files.add(att);
 			}
 		}
+	
+		
 	
 		
 		int result = service.updateMemberQna(mq,files,qnaCode);
@@ -783,18 +786,15 @@ public class MemberController {
 		for(MultipartFile f : upFile) {
 			if(!f.isEmpty()) {
 				String oriFileName=f.getOriginalFilename();
-				String ext=oriFileName.substring(oriFileName.lastIndexOf("."));
-				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
-				int randomV=(int)(Math.random()*1000);
-				String reName=sdf.format(System.currentTimeMillis())+"_"+randomV+ext;
+				
 				try {
-					f.transferTo(new File(saveDir+"/"+reName));
+					f.transferTo(new File(saveDir+"/"+oriFileName));
 				}
 				catch(IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
 				MemberQnaAttachment att=new MemberQnaAttachment();
-				att.setReNamedFileName(reName);
+				att.setReNamedFileName(oriFileName);
 				att.setOriginalFileName(oriFileName);
 				files.add(att);
 			}
@@ -1218,6 +1218,13 @@ public class MemberController {
 		System.out.println(memId);
 			mv.setViewName("redirect:/member/orderList.do?memberId="+memId+"&memberNum="+memNum);
 			return mv;
+	}
+	
+	//주문취소하기
+	@RequestMapping("member/cancelOrder.do")
+	public void cancelOrder(String payOrderNum , String impId)
+	{
+		logger.debug("p"+payOrderNum + "i" + impId);
 	}
 }
 
