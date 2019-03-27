@@ -51,8 +51,8 @@
 		(
     		SELECT STORE.*, DISTNACE_WGS84(#{lat}, #{lng}, atitude, longitude) AS DISTANCE
     		FROM STORE
-    		WHERE (atitude between #{lat} - 0.1 and #{lat} + 0.1)
-    			AND (longitude between #{lng} - 0.1 and #{lng} + 0.1)
+    		WHERE (atitude between #{lat} - 0.039 and #{lat} + 0.039)
+    			AND (longitude between #{lng} - 0.042 and #{lng} + 0.042)
     			AND isConfirm = 1
     			AND 
     			<choose>

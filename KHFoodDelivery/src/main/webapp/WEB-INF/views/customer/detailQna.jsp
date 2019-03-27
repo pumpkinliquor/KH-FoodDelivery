@@ -15,6 +15,12 @@
 		color:white;
 	}
 	div.de{margin-top:-10%;}
+	.avatar:hover {
+
+  -webkit-transform: scale(1.8);
+
+ 
+}
 </style>
 
 <script>	
@@ -28,18 +34,7 @@
 		location.href="${path}/customer/deletememberQna.do?no=${mq.qnaCode}&memberId=${mq.memberId}";
 	}
 	
-	/* 파일다운로드 */
-	function fileDownLoad(oriName, reName){
-		if(oriName==null||reName==null){
-			alert("첨부파일을 다운로드 할 수 없습니다.");
-			return false;
-		}
-		if(confirm(oriName+"을(를) 다운로드 하시겠습니까?")){
-			oriName=encodeURIComponent(oriName); //한글일 가능성 때문 
-			location.href="${path}/admin/memberfileDownLoad.do?oriName="+oriName+"&reName="+reName;
-			return true;
-		}
-	}
+
 </script>
 
 <section>
@@ -72,9 +67,8 @@
 			</div>
 				<div>
 				 <c:forEach items="${attach}" var="a" varStatus="vs">
-					 <button type="button" style="padding:0px; background-color:white; cursor:pointer; border:0px;" class="fileDownLoadBtn" onclick="fileDownLoad('${a.ORIGINALFILENAME}','${a.RENAMEDFILENAME}');">
-	         			<img src="${path }/resources/images/owner/icons/attach_file_icon.png" width=17px;/> - ${a.ORIGINALFILENAME}
-	        		</button>
+	         			
+	         		<img name="file" title="profile image" class="avatar img-circle img-thumbnail"  width="300px"  height="300px"alt="avatar" src="${path}/resources/upload/member/qnaAttach/${a.ORIGINALFILENAME}"/>  
         		</c:forEach> 
 				</div>
 			<div class="col-sm-2 back"></div>
