@@ -92,7 +92,8 @@ public interface MemberService {
 	int insertReview(Map map);
 	List<Map<String, String>> selectMemberOrderList(int memberNum, int cPage, int numPerPage);
 	int selectMemberOrderCount(int memberNum);
-	
+	int updateOrderState(String payOrderNum);
 	//이메일중복
 	int checkEmail(String memberEmail);
+
 }

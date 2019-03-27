@@ -48,10 +48,16 @@ import com.kh.food.qna.model.vo.MemberQna;
 import com.kh.food.qna.model.vo.MemberQnaAttachment;
 import com.kh.food.qna.model.vo.MemberQnaReview;
 import com.kh.food.review.model.vo.Review;
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.request.CancelData;
+import com.siot.IamportRestClient.response.AccessToken;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
 
 @Controller
 public class MemberController {
-
+	IamportClient client;
 	private Logger logger = LoggerFactory.getLogger(MemberController.class);
 
 	
@@ -1261,9 +1267,69 @@ public class MemberController {
 	
 	//주문취소하기
 	@RequestMapping("member/cancelOrder.do")
-	public void cancelOrder(String payOrderNum , String impId)
+	public void cancelOrder(String payOrderNum , String impId,HttpServletResponse response) throws IOException
 	{
 		logger.debug("p"+payOrderNum + "i" + impId);
+		
+		String accessToken = null;
+
+		String test_api_key = "1817419586150738";
+		String test_api_secret = "Zka426NcWWWm3VRRx1nzLLrmS7bBdXLciWhl24xZ0ul3pdVXfix04YmW5xyjvjwNgN8iRGiSbEWBRRz6";
+		client = new IamportClient(test_api_key, test_api_secret);
+		
+		try {
+			IamportResponse<AccessToken> auth_response = client.getAuth();
+			accessToken = auth_response.getResponse().getToken();
+
+		} catch (IamportResponseException e) {
+			System.out.println(e.getMessage());
+			
+			switch(e.getHttpStatusCode()) {
+			case 401 :
+				//TODO
+				break;
+			case 500 :
+				//TODO
+				break;
+			}
+		} catch (IOException e) {
+			//서버 연결 실패
+			e.printStackTrace();
+		}
+		
+		int result = 0;
+		try {
+		 result = service.updateOrderState(payOrderNum);
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		String imp_uid = impId;
+		CancelData cancel_data = new CancelData(imp_uid, true); //imp_uid를 통한 전액취소
+		
+		try {
+			IamportResponse<Payment> payment_response = client.cancelPaymentByImpUid(cancel_data);
+			logger.debug(payment_response.getMessage());
+			
+		} catch (IamportResponseException e) {
+			System.out.println(e.getMessage());
+			
+			switch(e.getHttpStatusCode()) {
+			case 401 :
+				//TODO
+				break;
+			case 500 :
+				//TODO
+				break;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		logger.debug("result"+result);
+		response.getWriter().print(result);
 	}
 }
 
