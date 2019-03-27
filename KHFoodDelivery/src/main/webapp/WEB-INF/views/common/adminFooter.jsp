@@ -1,27 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" 
-    import="java.util.*, java.sql.* , com.kh.food.customer.member.model.vo.*"  %>
+    pageEncoding="UTF-8"  import="java.util.*, java.sql.* , com.kh.food.customer.member.model.vo.*"  %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
-	Member member = (Member)request.getAttribute("member");
+   Member member = (Member)request.getAttribute("member");
 %>
+   <c:set var="path" value="${pageContext.request.contextPath }"/>
    <c:set var="path" value="${pageContext.request.contextPath }"/>
 
  <style>
- 	.footerdiv{
- 		padding: 1px !important;
- 		margin:1px !important;
- 	}
- 	.footerDiv{
- 		padding:1px !important;
- 		margin:1px !important;
- 	}
- 	.footerDiv2{
- 	padding:1px !important;
- 		margin:1px !important;
- 	}
+    .footerdiv{
+       padding: 1px !important;
+       margin:1px !important;
+    }
+    .footerDiv{
+       padding:1px !important;
+       margin:1px !important;
+    }
+    .footerDiv2{
+    padding:1px !important;
+       margin:1px !important;
+    }
  
          .footer_info {
 
@@ -40,7 +40,8 @@
 
         #footer {
             color:black;
-    		background-color: #4D4D4D;
+          background-color: #4D4D4D;
+          height:220px;
         }
 
           #footer h5 {
@@ -106,33 +107,21 @@
 
         }
     </style>
-<!-- <script>
-function memberQnA(){
-	 if(${sessionScope.logined==null}){
-		 alert("로그인 후 이용해주세요");
-		 location.href="${path}/customer/login.do";
-	 }else{
-		 location.href="${path}/member/qnaList.do?memberId=${sessionScope.logined}";
-	 }
-}
-</script> -->
+
+
     <!-- Footer -->
     <footer id="footer">
         <div class="row footerdiv">
             <div class="col-md-2"> </div>
             <div class="col-md-8 footerDiv">
-                <div class="row text-center text-xs-left text-sm-left text-md-center footerDiv2">					
-                     <div class="col-xs-12 col-sm-4 col-md-12">
-                        <ul class="list-unstyled quick-links">
-                            <li><a href="${path }"><i class="fa fa-angle-double-right"></i>Home</a></li>
-                            <%-- <li><a href="${path }/customer/memberNoticeList.do"><i class="fa fa-angle-double-right"></i>공지사항</a></li>
-                            <li><a href="${path }"><i class="fa fa-angle-double-right"></i>1:1문의</a></li>
-                            <li><a href="${path }/admin/memberNoticeList.do"><i class="fa fa-angle-double-right"></i>공지사항</a></li>
-                            <li><a onclick="memberQnA();"><i class="fa fa-angle-double-right"></i>1:1문의</a></li> --%>
+                <div class="row text-center text-xs-left text-sm-left text-md-center footerDiv2">
 
+                    <div class="col-xs-12 col-sm-4 col-md-12">
+                        <ul class="list-unstyled quick-links">
+                            <li><a href="${path }/"><i class="fa fa-angle-double-right"></i>Home</a></li>
                         </ul>
 
-                    </div> 
+                    </div>
                    <!--  <div class="col-xs-12 col-sm-6 col-md-6"></div> -->
                 </div>
 			<div class="col-xs-2 col-sm-12 col-md-12 col-lg-12">
