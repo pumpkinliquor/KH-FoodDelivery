@@ -43,7 +43,7 @@
 	</update>
 	
 
-	<!-- 가게 카테고리별 검색 -->
+	<!-- 가게 거리로 검색 -->
 
 	<select id="selectStore" parameterType="map" resultType="store">
 		SELECT *
@@ -51,8 +51,8 @@
 		(
     		SELECT STORE.*, DISTNACE_WGS84(#{lat}, #{lng}, atitude, longitude) AS DISTANCE
     		FROM STORE
-    		WHERE (atitude between #{lat} - 0.1 and #{lat} + 0.1)
-    			AND (longitude between #{lng} - 0.1 and #{lng} + 0.1)
+    		WHERE (atitude between #{lat} - 0.039 and #{lat} + 0.039)
+    			AND (longitude between #{lng} - 0.042 and #{lng} + 0.042)
     			AND isConfirm = 1
     			AND 
     			<choose>
@@ -146,12 +146,12 @@
 		JOIN member m ON(p.membernum = m.membernum)  where m.memberNum=#{memberNum}
 	</select>
 	<!-- 상세주문내역 -->
-	<select id="orderOne"  resultType="Map" parameterType="map">
-		select s.storename,s.storecategory,p.*,m.memberid,q.menuname 
+	<select id="orderOne"  resultType="map" parameterType="map">
+		select s.storename,s.storecategory,p.PAYNUM,p.BUSINESSCODE,to_char(p.PAYDATE,'YYYY-MM-DD HH24:MI:SS') as PAYDATE,p.MENUCODE,p.PRICE,p.COUNT,p.MEMBERNUM,p.PAYORDERMETHOD,p.PAYREQUEST,p.PAYORDERNUM,p.PAYADDRESS,p.DELIVERYPAY,m.memberid,q.menuname 
 		from pay p 
 		JOIN store s ON(s.businesscode = p.businesscode) 
 		JOIN member m ON(p.membernum = m.membernum)  
-        JOIN menu q ON(p.menucode = q.menucode) where P.PAYORDERNUM=#{payorderNum} and q.menucode=#{menucode}
+        JOIN menu q ON(p.menucode = q.menucode) where P.PAYORDERNUM=#{payorderNum}
 	</select>
 
 	
@@ -183,7 +183,7 @@
 	</select>
 	
 	<insert id="insertReview" parameterType="map">
-		insert into review values(seq_reviewnum.nextval,#{bsCode},#{memNum},SYSDATE+9/24,#{img},#{grade},#{context})
+		insert into review values(#{payNum},seq_reviewnum.nextval,#{bsCode},#{memNum},SYSDATE+9/24,#{img},#{grade},#{context})
 	</insert>
 	
 	<select id="reviewAvg" parameterType="_int" resultType="_int"> 
@@ -211,8 +211,21 @@
 	<select id="memberQnaAttach" parameterType="_int" resultType="map">
 		SELECT * FROM MEMBER_QNA_ATTACHMENT WHERE qnaCode = #{no}
 	</select>
+	
+	<select id="selectMemberOrderList" parameterType="_int" resultType="map">
+		select p.*,M.MEMBERID,M.MEMBERNAME,M.MEMBERPHONE,ME.MENUNAME,S.DELIVERYPRICE,S.STORENAME,S.STORECATEGORY from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest,price,orderState,deliveryPay,impId from pay) p JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) JOIN STORE S ON(P.BUSINESSCODE = S.BUSINESSCODE) where rnum = 1 and p.membernum =  #{memberNum} order by payordernum desc
+	</select>
+	
+	<select id="selectMemberOrderCount" resultType="_int" parameterType="_int">
+			select count(*) from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest,price,orderState,deliveryPay from pay) p JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) JOIN STORE S ON(P.BUSINESSCODE = S.BUSINESSCODE) where rnum = 1 and p.membernum =  #{memberNum} order by payordernum desc
+	
+	</select>
 	<update id="updateAttach" parameterType="com.kh.food.qna.model.vo.MemberQnaAttachment">
 		UPDATE MEMBER_QNA_ATTACHMENT  set ORIGINALFILENAME=#{originalFileName} WHERE QNACODE=#{qnacode}	
 	</update>
-	
+
+	<select id="selectReviewCon" parameterType="_int" resultType="map">
+		SELECT * FROM REVIEW WHERE payNum = #{payNum}
+	</select>
+
 </mapper>

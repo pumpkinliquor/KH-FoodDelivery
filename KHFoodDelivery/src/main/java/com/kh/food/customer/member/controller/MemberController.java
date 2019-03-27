@@ -23,7 +23,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -43,7 +42,6 @@ import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
-import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -83,29 +81,32 @@ public class MemberController {
 		
 	ArrayList<MemberQnaAttachment> files=new ArrayList<MemberQnaAttachment>();
 	 
-		
+	for(int i=0;i<upFile.length;i++) {
+		System.out.println(upFile[i]);
+	}
+		System.out.println(files);
+		//저장경료
 		//저장경료
 		String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/member/qnaAttach");
 		
 		for(MultipartFile f : upFile) {
 			if(!f.isEmpty()) {
 				String oriFileName=f.getOriginalFilename();
-				String ext=oriFileName.substring(oriFileName.lastIndexOf("."));
-				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
-				int randomV=(int)(Math.random()*1000);
-				String reName=sdf.format(System.currentTimeMillis())+"_"+randomV+ext;
+				
 				try {
-					f.transferTo(new File(saveDir+"/"+reName));
+					f.transferTo(new File(saveDir+"/"+oriFileName));
 				}
 				catch(IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
 				MemberQnaAttachment att=new MemberQnaAttachment();
-				att.setReNamedFileName(reName);
+				att.setReNamedFileName(oriFileName);
 				att.setOriginalFileName(oriFileName);
 				files.add(att);
 			}
 		}
+	
+		
 	
 		
 		int result = service.updateMemberQna(mq,files,qnaCode);
@@ -216,7 +217,7 @@ public class MemberController {
 	//상세 주문내역
 	@RequestMapping("/member/orderOne.do")
 	@ResponseBody
-	public Map orderOne(String payorderNum,String menucode) {
+	public List orderOne(String payorderNum,String menucode) {
 		
 		
 		
@@ -225,13 +226,13 @@ public class MemberController {
 		orList.put("payorderNum",payorderNum);
 		orList.put("menucode",menucode);
 		
-		Map<String,String>orList1=service.orderOne(orList);
+		List orList1=service.orderOne(orList);
 		
 		 SimpleDateFormat sdf=new SimpleDateFormat();
 		 
-		 String payDate=String.valueOf(orList1.get("PAYDATE"));
-		 String payDateSubStr=payDate.substring(0, 10);
-		 orList1.put("PAYDATE",payDateSubStr);		
+		 /*String payDate=String.valueOf(orList1.get(0).get("PAYDATE"));*/
+		/* String payDateSubStr=payDate.substring(0, 10);
+		 orList1.("PAYDATE",payDateSubStr);	*/	
 		
 		System.out.println("orList : "+orList1);
 		
@@ -250,17 +251,26 @@ public class MemberController {
 		
 		int count=service.selectOrderCount(memberNum);
 		
+		/*List<Member> memberList = service.selectMemberOrder(memberNum,cPage,numPerPage);*/
+		List<Map<String,String>> orderList = service.selectMemberOrderList(memberNum,cPage,numPerPage);
+		int orderCount = service.selectMemberOrderCount(memberNum);
+		logger.debug("orderList"+orderList);
+				
 		
-		
-		List<Member> memberList = service.selectMemberOrder(memberNum,cPage,numPerPage);
-		
-		mv.addObject("pageBar",PagingFactory.getPageBar3(memberNum,count, cPage, numPerPage, "/food/member/orderList.do"));
-		mv.addObject("orderList",memberList);
+		mv.addObject("pageBar",PagingFactory.getPageBar3(memberNum,orderCount, cPage, numPerPage, "/food/member/orderList.do"));
+		mv.addObject("orderList",orderList);
 		mv.setViewName("customer/orderList");
 		return mv;
 	}
 	
-	
+	// 리뷰 확인
+	@RequestMapping("/member/reviewCon.do")
+	@ResponseBody
+	public Map<String,Object> selectReviewCon(int payNum) {		
+		Map<String, Object> review = service.selectReviewCon(payNum); 
+		
+		return review;
+	}
 
 	
 	
@@ -776,18 +786,15 @@ public class MemberController {
 		for(MultipartFile f : upFile) {
 			if(!f.isEmpty()) {
 				String oriFileName=f.getOriginalFilename();
-				String ext=oriFileName.substring(oriFileName.lastIndexOf("."));
-				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
-				int randomV=(int)(Math.random()*1000);
-				String reName=sdf.format(System.currentTimeMillis())+"_"+randomV+ext;
+				
 				try {
-					f.transferTo(new File(saveDir+"/"+reName));
+					f.transferTo(new File(saveDir+"/"+oriFileName));
 				}
 				catch(IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
 				MemberQnaAttachment att=new MemberQnaAttachment();
-				att.setReNamedFileName(reName);
+				att.setReNamedFileName(oriFileName);
 				att.setOriginalFileName(oriFileName);
 				files.add(att);
 			}
@@ -1164,6 +1171,7 @@ public class MemberController {
 	public ModelAndView memberReview(ModelAndView mv, @RequestParam("context") String context,
 														@RequestParam("bsCode") int bsCode,
 														@RequestParam("memNum") int memNum,
+														@RequestParam("payNum") int payNum,
 														@RequestParam("img") MultipartFile img,
 														@RequestParam("grade") String grade,
 														@RequestParam("memId") String memId,
@@ -1176,6 +1184,7 @@ public class MemberController {
 		map.put("context", context);
 		map.put("bsCode", bsCode);
 		map.put("memNum", memNum);
+		map.put("payNum", payNum);
 		map.put("grade", grade);
 		String saveDir = request.getSession().getServletContext().getRealPath("/resources/upload/member/review");
 		String orifileName = img.getOriginalFilename();
@@ -1209,6 +1218,13 @@ public class MemberController {
 		System.out.println(memId);
 			mv.setViewName("redirect:/member/orderList.do?memberId="+memId+"&memberNum="+memNum);
 			return mv;
+	}
+	
+	//주문취소하기
+	@RequestMapping("member/cancelOrder.do")
+	public void cancelOrder(String payOrderNum , String impId)
+	{
+		logger.debug("p"+payOrderNum + "i" + impId);
 	}
 }
 

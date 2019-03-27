@@ -9,6 +9,7 @@ import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
+import com.kh.food.owner.order.model.vo.Pay;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -17,12 +18,12 @@ import com.kh.food.qna.model.vo.MemberQnaReview;
 import com.kh.food.review.model.vo.Review;
 
 public interface MemberDao {
-	
+	Map<String, Object> selectReviewCon(int payNum);
 	int updateAttach(Map<String,Object> map);
 	List<Map<String, String>> selectMemberQnaAttach(int no);	
 	int addAttach(MemberQnaAttachment a);
 	int addQna(Map<String,Object> map);
-	Map<String,String> orderOne(Map<String,String> orList);
+	List<Map<String, String>> orderOne(Map<String,String> orList);
 	int selectOrderCount(int memberNum);
 	List<Member> selectMemberOrder(int memberNum,int cPage,int numPerPage);
 	int updateMemberQna(MemberQna mq);
@@ -76,4 +77,6 @@ public interface MemberDao {
 	int reviewCount(int businessCode);
 	int ownerReviewCount(int businessCode);
 	MemberQnaReview selectMemberQnaReview(int no);
+	List<Map<String, String>> selectMemberOrderList(int memberNum, int cPage, int numPerPage);
+	int selectMemberOrderCount(int memberNum);
 }

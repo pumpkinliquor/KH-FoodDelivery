@@ -42,6 +42,8 @@ table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
 
 .star_rating span.on {color:crimson;}
 
+.menu1{
+}
 </style>
 <script>
 
@@ -83,13 +85,22 @@ function detailOrder1(payorderNum,menucode){
 		},
 		success : function(mem1){
 			console.log(mem1);
-			$('.category').val(mem1.STORECATEGORY);
-			$('.storeName').val(mem1.STORENAME);
-			$('.payDate1').val(mem1.PAYDATE);
-			$('.way').val(mem1.PAYORDERMETHOD);
-			$('.price').val(mem1.PRICE);
-			$('.payRequest').val(mem1.PAYREQUEST);
-			$('.menu1').val(mem1.MENUNAME);
+			var menu = "";
+			var sum = "";
+			for(var i=0; i<mem1.length; i++)
+				{
+					menu += mem1[i].MENUNAME+"("+mem1[i].COUNT+") ";
+					sum = Number(sum) + Number(mem1[i].PRICE);
+				}
+			sum = Number(sum) + Number(mem1[0].DELIVERYPAY);
+			console.log(menu);
+			$('.category').val(mem1[0].STORECATEGORY);
+			$('.storeName').val(mem1[0].STORENAME);
+			$('.payDate1').val(mem1[0].PAYDATE);
+			$('.way').val(mem1[0].PAYORDERMETHOD);
+			$('.price').val(sum+"원");
+			$('.payRequest').val(mem1[0].PAYREQUEST);
+			$('.menu1').val(menu);
 			$('#orderListModal1').modal();
 			
 			
@@ -148,38 +159,38 @@ function detailOrder1(payorderNum,menucode){
 					<c:forEach items="${orderList}" var="m">
 						<tr class="pnt" style='cursor:pointer;'>
 						
-							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"style="cursor:pointer;"><c:out value="${m.STORECATEGORY }"/></td>
-							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.STORENAME }"/></td>
-							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.PAYDATE}"/></td>
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});" style="vertical-align: middle; cursor:pointer;"><c:out value="${m.STORECATEGORY }"/></td>
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});" style="vertical-align: middle;"><c:out value="${m.STORENAME }"/></td>
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});" style="vertical-align: middle;"><c:out value="${m.PAYDATE}"/></td>
 
-							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});">
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});" style="vertical-align: middle;">
 							<c:set var="state" value="${m.ORDERSTATE }" />
 							<c:choose>
-							<c:when test="${ state eq 0}">
-							결제완료
-							</c:when>
-							<c:when test="${ state eq 1}">
-							주문접수
-							</c:when>
-							<c:when test="${ state eq 2}">
-							배달중
-							</c:when>
-							<c:when test="${ state eq 3}">
-							배달완료
-							</c:when>
-							<c:when test="${ state eq 4}">
-							주문취소
-							</c:when>
+								<c:when test="${ state eq 0}">
+									결제완료
+								</c:when>
+								<c:when test="${ state eq 1}">
+									주문접수
+								</c:when>
+								<c:when test="${ state eq 2}">
+									배달중
+								</c:when>
+								<c:when test="${ state eq 3}">
+									배달완료
+								</c:when>
+								<c:when test="${ state eq 4}">
+									주문취소
+								</c:when>
 							</c:choose>
 						
 							</td>
 							<td>
 								<c:if test="${ state eq 3}">
-									<button class="btn btn-default" value="${m.MEMBERID}"  id="modal" type="button" onclick="fn_review(${m.BUSINESSCODE},${m.MEMBERNUM},this)">리뷰</button>
+									<button class="btn btn-default" value="${m.MEMBERID}"  id="modal" type="button" onclick="fn_review(${m.BUSINESSCODE},${m.MEMBERNUM},${m.PAYNUM },this)">리뷰</button>
 								</c:if>
 							</td>
 							<td>
-								
+								<button class="btn btn-default" onclick="fn_cancel(${m.PAYORDERNUM},${m.IMPID})">주문취소</button>
 							</td>
 						</tr>				
 					</c:forEach>
@@ -224,14 +235,14 @@ ${pageBar}
 						</tr>
 						<tr>
 							<th style="vertical-align: middle;">
+							</th>
 							<td>
 								<input type="hidden" id="businessCode" name="bsCode" value=""/>
 								<input type="hidden" id="memberNum" name="memNum" value=""/>
 								<input type="hidden" id="memberId" name="memId" value=""/>
-								<textarea id="textarea" name="context" cols="50" rows="5" placeholder="리뷰를 작성해 주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" required="required"></textarea></td>
-							
-							</th>
-						
+								<input type="hidden" id="payNum" name="payNum" value=""/>
+								<textarea id="textarea" name="context" cols="50" rows="5" placeholder="리뷰를 작성해 주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" required="required"></textarea>
+							</td>					
 						</tr>
 						<tr>
 							<th style="vertical-align: middle;">
@@ -256,6 +267,23 @@ ${pageBar}
 </div>
 
 <script>
+function fn_cancel(payOrderNum,impId){
+	
+	var UP = confirm("정말로 주문취소 하시겠습니까?");
+	if(UP == true)
+		{
+			$.ajax({
+				url: "${path}/member/cancelOrder.do",
+				data: { "payOrderNum" : payOrderNum , "impId" : impId},
+				success:function(data)
+				{
+					
+				}
+			})
+		}
+}
+
+
 function noSpaceForm(obj){		
 	var str_space = /(<([^>]+)>)/ig;  // 태그체크
 	
@@ -269,15 +297,26 @@ function noSpaceForm(obj){
 	
 }
 
-function fn_review(businessCode,membernum,e){
-	
-	console.log($(e).val());
-	var memberId = $(e).val();
-	$('#businessCode').val(businessCode);
-	$('#memberId').val(memberId);
-	$('#memberNum').val(membernum);
-	$('#reviewModal').modal();
-	
+function fn_review(businessCode,membernum,payNum,e){
+	$.ajax({
+		type: "POST",
+		url: "${path}/member/reviewCon.do?payNum=" + payNum,
+		data: JSON,
+		success: function(data){
+			if(data.REVIEWNUM != null) {
+				alert("이미 후기를 남겼습니다.");
+			}
+			else {
+				var memberId = $(e).val();
+				$('#businessCode').val(businessCode);
+				$('#memberId').val(memberId);
+				$('#memberNum').val(membernum);
+				$('#payNum').val(payNum);
+				$('#reviewModal').modal();			
+				console.log("후기없음");
+			}
+		}
+	});		
 }
 
 $( ".star_rating span" ).click(function() {
@@ -351,7 +390,7 @@ function handleImgRecipeFileSelect(e) {
 				<button type="button" class="close" data-dismiss="modal">×</button>
 			</div>
 			<form action="${path}/customer/memberQnaUpdate.do"  method="post">
-				<div class="modal-body" style="height: 600px;">
+				<div class="modal-body" style="height: 700px;">
 					<table class="table">
 						<tr>
 							<th style="vertical-align: middle">카테고리</th>
@@ -367,8 +406,8 @@ function handleImgRecipeFileSelect(e) {
 						</tr>	
 						<tr>
 							<th style="vertical-align: middle">주문메뉴</th>
-							<td><input type="text"  class="form-control menu1" value="" readonly/></td>						
-						</tr>					
+							<td><textarea class="form-control menu1" rows="5" value="" readonly></textarea></td>											
+						</tr>						
 						<tr>
 							<th style="vertical-align: middle">결제 방식</th>
 							<td><input type="text"  class="form-control way" value="" readonly/></td>						

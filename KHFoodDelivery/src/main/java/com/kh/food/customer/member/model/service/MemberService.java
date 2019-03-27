@@ -10,6 +10,7 @@ import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
+import com.kh.food.owner.order.model.vo.Pay;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -21,12 +22,12 @@ public interface MemberService {
 	
 
 	
-	
+	Map<String, Object> selectReviewCon(int payNum);
 	List<Map<String, String>> selectMemberQnaAttach(int no);	
 	//회원 문의
 	int addQna(Map<String,Object> map, List<MemberQnaAttachment> files);
 	//상세 주문내역
-	Map<String,String> orderOne(Map<String,String> orList);
+	List<Map<String, String>> orderOne(Map<String,String> orList);
 	//고객 문의 수정
 	int updateMemberQna(MemberQna mq,List<MemberQnaAttachment> files,int qnaCode);
 	//고객 문의 삭제
@@ -89,4 +90,6 @@ public interface MemberService {
 	Mark isMark(Map<String, Object> maps);
 	
 	int insertReview(Map map);
+	List<Map<String, String>> selectMemberOrderList(int memberNum, int cPage, int numPerPage);
+	int selectMemberOrderCount(int memberNum);
 }
