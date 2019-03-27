@@ -18,7 +18,7 @@ import com.kh.food.qna.model.vo.MemberQnaReview;
 import com.kh.food.review.model.vo.Review;
 
 public interface MemberDao {
-	
+	Map<String, Object> selectReviewCon(int payNum);
 	int updateAttach(Map<String,Object> map);
 	List<Map<String, String>> selectMemberQnaAttach(int no);	
 	int addAttach(MemberQnaAttachment a);
@@ -80,4 +80,5 @@ public interface MemberDao {
 	List<Map<String, String>> selectMemberOrderList(int memberNum, int cPage, int numPerPage);
 	int selectMemberOrderCount(int memberNum);
 	int updateOrderState(String payOrderNum);
+	int checkEmail(String memberEmail);
 }

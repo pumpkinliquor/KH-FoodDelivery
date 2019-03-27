@@ -261,13 +261,22 @@ public class MemberController {
 		List<Map<String,String>> orderList = service.selectMemberOrderList(memberNum,cPage,numPerPage);
 		int orderCount = service.selectMemberOrderCount(memberNum);
 		logger.debug("orderList"+orderList);
+				
+		
 		mv.addObject("pageBar",PagingFactory.getPageBar3(memberNum,orderCount, cPage, numPerPage, "/food/member/orderList.do"));
 		mv.addObject("orderList",orderList);
 		mv.setViewName("customer/orderList");
 		return mv;
 	}
 	
-	
+	// 리뷰 확인
+	@RequestMapping("/member/reviewCon.do")
+	@ResponseBody
+	public Map<String,Object> selectReviewCon(int payNum) {		
+		Map<String, Object> review = service.selectReviewCon(payNum); 
+		
+		return review;
+	}
 
 	
 	
@@ -393,6 +402,23 @@ public class MemberController {
 		return mv;
 		
 		
+	}
+	
+	//이메일체크
+	@RequestMapping("/member/checkEmail.do")
+	public ModelAndView checkEmail(String memberEmail, ModelAndView mv ) throws UnsupportedEncodingException{
+		
+		Map map=new HashMap();
+		boolean isEmail=service.checkEmail(memberEmail)==0?false:true;
+		map.put("isEmail",isEmail);
+
+		
+		mv.addAllObjects(map); //map 으로 된거 통째로 넣어줌
+		mv.addObject("num",1);
+			
+		mv.setViewName("jsonView");
+		
+		return mv;
 	}
 	
 	//로그인 폼
@@ -1168,6 +1194,7 @@ public class MemberController {
 	public ModelAndView memberReview(ModelAndView mv, @RequestParam("context") String context,
 														@RequestParam("bsCode") int bsCode,
 														@RequestParam("memNum") int memNum,
+														@RequestParam("payNum") int payNum,
 														@RequestParam("img") MultipartFile img,
 														@RequestParam("grade") String grade,
 														@RequestParam("memId") String memId,
@@ -1180,6 +1207,7 @@ public class MemberController {
 		map.put("context", context);
 		map.put("bsCode", bsCode);
 		map.put("memNum", memNum);
+		map.put("payNum", payNum);
 		map.put("grade", grade);
 		String saveDir = request.getSession().getServletContext().getRealPath("/resources/upload/member/review");
 		String orifileName = img.getOriginalFilename();

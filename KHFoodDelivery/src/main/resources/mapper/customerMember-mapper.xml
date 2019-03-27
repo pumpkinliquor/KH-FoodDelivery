@@ -32,6 +32,9 @@
 		select count(*) from member where nickName=#{nickName}
 	</select>
 	
+	<select id="checkEmail" parameterType="String" resultType="_int">
+		select count(*) from member where memberEmail=#{memberEmail}
+	</select>
 	<select id="login" parameterType="map" resultMap="member">
 		select * from member where memberId=#{id}
 	</select>
@@ -43,7 +46,7 @@
 	</update>
 	
 
-	<!-- 가게 카테고리별 검색 -->
+	<!-- 가게 거리로 검색 -->
 
 	<select id="selectStore" parameterType="map" resultType="store">
 		SELECT *
@@ -115,7 +118,7 @@
 	
 	
 	<select id="memberQnaList"  parameterType="string" resultType="memberQna">
-		select mq.*, m.memberId from member_qna mq JOIN member m ON(mq.memberNum = m.memberNum) where MEMBERID=#{memberId}
+		select mq.*, m.memberId from member_qna mq JOIN member m ON(mq.memberNum = m.memberNum) where MEMBERID=#{memberId} order by WRITEDATE DESC
 	</select>
 	
 	<insert id="kakaoEnrollEnd" parameterType="member">
@@ -183,7 +186,7 @@
 	</select>
 	
 	<insert id="insertReview" parameterType="map">
-		insert into review values(seq_reviewnum.nextval,#{bsCode},#{memNum},SYSDATE+9/24,#{img},#{grade},#{context})
+		insert into review values(#{payNum},seq_reviewnum.nextval,#{bsCode},#{memNum},SYSDATE+9/24,#{img},#{grade},#{context})
 	</insert>
 	
 	<select id="reviewAvg" parameterType="_int" resultType="_int"> 
@@ -227,4 +230,9 @@
 	<update id="updateOrderState" parameterType="string">
 		update pay set orderstate = 4 where payordernum = #{payOrderNum}
 	</update>
+	
+	<select id="selectReviewCon" parameterType="_int" resultType="map">
+		SELECT * FROM REVIEW WHERE payNum = #{payNum}
+	</select>
+
 </mapper>

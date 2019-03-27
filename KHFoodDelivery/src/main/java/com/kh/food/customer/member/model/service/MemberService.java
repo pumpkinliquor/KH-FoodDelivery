@@ -22,7 +22,7 @@ public interface MemberService {
 	
 
 	
-	
+	Map<String, Object> selectReviewCon(int payNum);
 	List<Map<String, String>> selectMemberQnaAttach(int no);	
 	//회원 문의
 	int addQna(Map<String,Object> map, List<MemberQnaAttachment> files);
@@ -93,4 +93,7 @@ public interface MemberService {
 	List<Map<String, String>> selectMemberOrderList(int memberNum, int cPage, int numPerPage);
 	int selectMemberOrderCount(int memberNum);
 	int updateOrderState(String payOrderNum);
+	//이메일중복
+	int checkEmail(String memberEmail);
+
 }

@@ -17,7 +17,7 @@
 	div.de{margin-top:-10%;}
 	.avatar:hover {
 
-  -webkit-transform: scale(1.8);
+  -webkit-transform: scale(1.5);
 
  
 }
@@ -119,7 +119,7 @@ $(function(){
 					<table class="table">
 						<tr>
 							<th style="vertical-align: middle">카테고리</th>
-							<td><input type="text" name="qnaCategory" class="form-control" value="${mq.qnaCategory }"/></td>						
+							<td><input readonly="readonly" type="text" name="qnaCategory" class="form-control" value="${mq.qnaCategory }"/></td>						
 						</tr>					
 						<tr>
 							<th style="vertical-align: middle">아이디</th>

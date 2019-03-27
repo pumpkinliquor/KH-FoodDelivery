@@ -34,8 +34,10 @@ public class MemberListController {
 	  ModelAndView mv=new ModelAndView();
 	  int numPerPage=10;
 		
-		int count = service.memCount();
+	  int count = service.memCount();
+	  
 	  List<Map<String,String>> list=service.selectListMember(cPage,numPerPage);
+	 
 	  mv.addObject("pageBar", PagingFactory.getPageBar(count, cPage, numPerPage, "/food/admin/memberList.do"));
 	  mv.addObject("list",list);
 	  mv.setViewName("admin/memberList"); 
@@ -48,7 +50,6 @@ public class MemberListController {
 	  public String memberDel(HttpServletRequest request) {
 		  String[] rowCheck=request.getParameterValues("rowCheck");
 		  service.memberDel(rowCheck);
-		/* int result=service.memberDel(memberNum); */
 		  return "redirect:/admin/memberList.do";
 	  }
 	  
@@ -58,12 +59,10 @@ public class MemberListController {
 	  public Map memberListModal(int memberNum) {
 		 ModelAndView mv=new ModelAndView();
 		 Map<String,String> memMo=service.memberOne(memberNum);	
-		 SimpleDateFormat sdf=new SimpleDateFormat();
-		 
+		 SimpleDateFormat sdf=new SimpleDateFormat();	 
 		 String memberEnrollDate=String.valueOf(memMo.get("MEMBERENROLLDATE"));
 		 String memberEnrollDateSubStr=memberEnrollDate.substring(0, 10);
-		 memMo.put("MEMBERENROLLDATE",memberEnrollDateSubStr);
-		 
+		 memMo.put("MEMBERENROLLDATE",memberEnrollDateSubStr); 
 		 return memMo;
 		 }
 	  

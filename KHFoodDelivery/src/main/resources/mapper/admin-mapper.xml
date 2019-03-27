@@ -21,7 +21,7 @@
 	 
 	 <!-- 사장 페이징 -->
 	 <select id="ownCount" resultType="_int">
-	  select count(*) from owner o, store s where o.ownerid=s.ownerid
+	  select count(*) from owner
 	 </select>
 	 
 	  <!-- 회원삭제 -->
