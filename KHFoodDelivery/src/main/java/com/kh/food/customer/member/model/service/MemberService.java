@@ -22,7 +22,7 @@ public interface MemberService {
 	
 
 	
-	
+	Map<String, Object> selectReviewCon(int payNum);
 	List<Map<String, String>> selectMemberQnaAttach(int no);	
 	//회원 문의
 	int addQna(Map<String,Object> map, List<MemberQnaAttachment> files);

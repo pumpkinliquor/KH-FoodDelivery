@@ -186,7 +186,7 @@ function detailOrder1(payorderNum,menucode){
 							</td>
 							<td>
 								<c:if test="${ state eq 3}">
-									<button class="btn btn-default" value="${m.MEMBERID}"  id="modal" type="button" onclick="fn_review(${m.BUSINESSCODE},${m.MEMBERNUM},this)">리뷰</button>
+									<button class="btn btn-default" value="${m.MEMBERID}"  id="modal" type="button" onclick="fn_review(${m.BUSINESSCODE},${m.MEMBERNUM},${m.PAYNUM },this)">리뷰</button>
 								</c:if>
 							</td>
 							<td>
@@ -235,14 +235,14 @@ ${pageBar}
 						</tr>
 						<tr>
 							<th style="vertical-align: middle;">
+							</th>
 							<td>
 								<input type="hidden" id="businessCode" name="bsCode" value=""/>
 								<input type="hidden" id="memberNum" name="memNum" value=""/>
 								<input type="hidden" id="memberId" name="memId" value=""/>
-								<textarea id="textarea" name="context" cols="50" rows="5" placeholder="리뷰를 작성해 주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" required="required"></textarea></td>
-							
-							</th>
-						
+								<input type="hidden" id="payNum" name="payNum" value=""/>
+								<textarea id="textarea" name="context" cols="50" rows="5" placeholder="리뷰를 작성해 주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" required="required"></textarea>
+							</td>					
 						</tr>
 						<tr>
 							<th style="vertical-align: middle;">
@@ -280,15 +280,26 @@ function noSpaceForm(obj){
 	
 }
 
-function fn_review(businessCode,membernum,e){
-	
-	console.log($(e).val());
-	var memberId = $(e).val();
-	$('#businessCode').val(businessCode);
-	$('#memberId').val(memberId);
-	$('#memberNum').val(membernum);
-	$('#reviewModal').modal();
-	
+function fn_review(businessCode,membernum,payNum,e){
+	$.ajax({
+		type: "POST",
+		url: "${path}/member/reviewCon.do?payNum=" + payNum,
+		data: JSON,
+		success: function(data){
+			if(data.REVIEWNUM != null) {
+				alert("이미 후기를 남겼습니다.");
+			}
+			else {
+				var memberId = $(e).val();
+				$('#businessCode').val(businessCode);
+				$('#memberId').val(memberId);
+				$('#memberNum').val(membernum);
+				$('#payNum').val(payNum);
+				$('#reviewModal').modal();			
+				console.log("후기없음");
+			}
+		}
+	});		
 }
 
 $( ".star_rating span" ).click(function() {

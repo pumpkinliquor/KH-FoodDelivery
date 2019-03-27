@@ -33,6 +33,10 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	@Override
+	public Map<String, Object> selectReviewCon(int payNum) {
+		return sqlSession.selectOne("member.selectReviewCon", payNum);
+	}
+	@Override
 	public int updateAttach(Map<String,Object> map) {
 		return sqlSession.update("member.updateAttach",map);
 	}

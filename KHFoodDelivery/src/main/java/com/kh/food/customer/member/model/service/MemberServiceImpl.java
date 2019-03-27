@@ -34,6 +34,11 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	
+	@Override
+	public Map<String, Object> selectReviewCon(int payNum) {
+		return dao.selectReviewCon(payNum);
+	}
+
 	// 회원 문의 첨부 파일
 	@Override
 	public List<Map<String, String>> selectMemberQnaAttach(int no) {

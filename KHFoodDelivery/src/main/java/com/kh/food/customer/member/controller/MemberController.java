@@ -23,7 +23,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -43,8 +42,6 @@ import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
-import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
-import com.kh.food.owner.order.model.vo.Pay;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -255,13 +252,22 @@ public class MemberController {
 		List<Map<String,String>> orderList = service.selectMemberOrderList(memberNum,cPage,numPerPage);
 		int orderCount = service.selectMemberOrderCount(memberNum);
 		logger.debug("orderList"+orderList);
+				
+		
 		mv.addObject("pageBar",PagingFactory.getPageBar3(memberNum,orderCount, cPage, numPerPage, "/food/member/orderList.do"));
 		mv.addObject("orderList",orderList);
 		mv.setViewName("customer/orderList");
 		return mv;
 	}
 	
-	
+	// 리뷰 확인
+	@RequestMapping("/member/reviewCon.do")
+	@ResponseBody
+	public Map<String,Object> selectReviewCon(int payNum) {		
+		Map<String, Object> review = service.selectReviewCon(payNum); 
+		
+		return review;
+	}
 
 	
 	
@@ -1165,6 +1171,7 @@ public class MemberController {
 	public ModelAndView memberReview(ModelAndView mv, @RequestParam("context") String context,
 														@RequestParam("bsCode") int bsCode,
 														@RequestParam("memNum") int memNum,
+														@RequestParam("payNum") int payNum,
 														@RequestParam("img") MultipartFile img,
 														@RequestParam("grade") String grade,
 														@RequestParam("memId") String memId,
@@ -1177,6 +1184,7 @@ public class MemberController {
 		map.put("context", context);
 		map.put("bsCode", bsCode);
 		map.put("memNum", memNum);
+		map.put("payNum", payNum);
 		map.put("grade", grade);
 		String saveDir = request.getSession().getServletContext().getRealPath("/resources/upload/member/review");
 		String orifileName = img.getOriginalFilename();
