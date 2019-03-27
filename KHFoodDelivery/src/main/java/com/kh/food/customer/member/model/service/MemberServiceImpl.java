@@ -245,6 +245,14 @@ public class MemberServiceImpl implements MemberService {
 	public int checkNick(String nickName) {
 		return dao.checkNick(nickName);
 	}
+	
+	
+
+	@Override
+	public int checkEmail(String memberEmail) {
+		// TODO Auto-generated method stub
+		return dao.checkEmail(memberEmail);
+	}
 
 	@Override
 	public Map<String,Object> login(Map<String,String> map){
@@ -374,6 +382,11 @@ public Store minPrice(int businessCode) {
 	@Override
 	public int selectMemberOrderCount(int memberNum) {
 		return dao.selectMemberOrderCount(memberNum);
+	}
+
+	@Override
+	public int updateOrderState(String payOrderNum) {
+		return dao.updateOrderState(payOrderNum);
 	}
 	
 	
