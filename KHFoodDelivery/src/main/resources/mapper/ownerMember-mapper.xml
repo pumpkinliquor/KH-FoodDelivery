@@ -42,7 +42,10 @@
 	<select id="ownerCheckId" parameterType="string" resultType="_int">
 		select count(*) from owner where ownerId = #{ownerId}
 	</select>
-	
+	<!-- 이메일중복 -->
+	<select id="ownerCheckEmail" parameterType="string" resultType="_int">
+		select count(*) from owner where ownerEmail=#{ownerEmail}
+	</select>
 	<update id="lastDate" parameterType="_int">
 		UPDATE OWNER SET LASTCONNECTIONDATE=SYSDATE+9/24 WHERE OWNERNUM=#{ownerNum} 
 	</update>
