@@ -10,20 +10,13 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700&amp;subset=korean" rel="stylesheet">
-<style>
-body{
-font-family: 'Nanum Gothic Coding', monospace;
-
-}
-
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
 <%-- <style>
 .mainP{
 font-size:100px;
 }
 body{
-	background-color:gray;
+   background-color:gray;
 }
 </style>
 
@@ -43,119 +36,119 @@ body{
 </div> --%>
 <script>
 $(document).ready(function(){
-	$.ajax({
-		type:"POST",
-		url:"${path}/owner/homePage.do",
-		dataType:"JSON",
-		success: function(data){
-			$('#memberCount').countTo({to:data.memberCount});
-			$('#ownerCount').countTo({to:data.ownerCount});
-			$('#todayPayCount').countTo({to:data.todayPayCount});
-		}
-	});
+   $.ajax({
+      type:"POST",
+      url:"${path}/owner/homePage.do",
+      dataType:"JSON",
+      success: function(data){
+         $('#memberCount').countTo({to:data.memberCount});
+         $('#ownerCount').countTo({to:data.ownerCount});
+         $('#todayPayCount').countTo({to:data.todayPayCount});
+      }
+   });
 });
 (function ($) {
-	$.fn.countTo = function (options) {
-		options = options || {};
-		
-		return $(this).each(function () {
-			// set options for current element
-			var settings = $.extend({}, $.fn.countTo.defaults, {
-				from:            $(this).data('from'),
-				to:              $(this).data('to'),
-				speed:           $(this).data('speed'),
-				refreshInterval: $(this).data('refresh-interval'),
-				decimals:        $(this).data('decimals')
-			}, options);
-			
-			// how many times to update the value, and how much to increment the value on each update
-			var loops = Math.ceil(settings.speed / settings.refreshInterval),
-				increment = (settings.to - settings.from) / loops;
-			
-			// references & variables that will change with each update
-			var self = this,
-				$self = $(this),
-				loopCount = 0,
-				value = settings.from,
-				data = $self.data('countTo') || {};
-			
-			$self.data('countTo', data);
-			
-			// if an existing interval can be found, clear it first
-			if (data.interval) {
-				clearInterval(data.interval);
-			}
-			data.interval = setInterval(updateTimer, settings.refreshInterval);
-			
-			// initialize the element with the starting value
-			render(value);
-			
-			function updateTimer() {
-				value += increment;
-				loopCount++;
-				
-				render(value);
-				
-				if (typeof(settings.onUpdate) == 'function') {
-					settings.onUpdate.call(self, value);
-				}
-				
-				if (loopCount >= loops) {
-					// remove the interval
-					$self.removeData('countTo');
-					clearInterval(data.interval);
-					value = settings.to;
-					
-					if (typeof(settings.onComplete) == 'function') {
-						settings.onComplete.call(self, value);
-					}
-				}
-			}
-			
-			function render(value) {
-				var formattedValue = settings.formatter.call(self, value, settings);
-				$self.html(formattedValue);
-			}
-		});
-	};
-	
-	$.fn.countTo.defaults = {
-		from: 0,               // the number the element should start at
-		to: 0,                 // the number the element should end at
-		speed: 1000,           // how long it should take to count between the target numbers
-		refreshInterval: 100,  // how often the element should be updated
-		decimals: 0,           // the number of decimal places to show
-		formatter: formatter,  // handler for formatting the value before rendering
-		onUpdate: null,        // callback method for every time the element is updated
-		onComplete: null       // callback method for when the element finishes updating
-	};
-	
-	function formatter(value, settings) {
-		return value.toFixed(settings.decimals);
-	}
+   $.fn.countTo = function (options) {
+      options = options || {};
+      
+      return $(this).each(function () {
+         // set options for current element
+         var settings = $.extend({}, $.fn.countTo.defaults, {
+            from:            $(this).data('from'),
+            to:              $(this).data('to'),
+            speed:           $(this).data('speed'),
+            refreshInterval: $(this).data('refresh-interval'),
+            decimals:        $(this).data('decimals')
+         }, options);
+         
+         // how many times to update the value, and how much to increment the value on each update
+         var loops = Math.ceil(settings.speed / settings.refreshInterval),
+            increment = (settings.to - settings.from) / loops;
+         
+         // references & variables that will change with each update
+         var self = this,
+            $self = $(this),
+            loopCount = 0,
+            value = settings.from,
+            data = $self.data('countTo') || {};
+         
+         $self.data('countTo', data);
+         
+         // if an existing interval can be found, clear it first
+         if (data.interval) {
+            clearInterval(data.interval);
+         }
+         data.interval = setInterval(updateTimer, settings.refreshInterval);
+         
+         // initialize the element with the starting value
+         render(value);
+         
+         function updateTimer() {
+            value += increment;
+            loopCount++;
+            
+            render(value);
+            
+            if (typeof(settings.onUpdate) == 'function') {
+               settings.onUpdate.call(self, value);
+            }
+            
+            if (loopCount >= loops) {
+               // remove the interval
+               $self.removeData('countTo');
+               clearInterval(data.interval);
+               value = settings.to;
+               
+               if (typeof(settings.onComplete) == 'function') {
+                  settings.onComplete.call(self, value);
+               }
+            }
+         }
+         
+         function render(value) {
+            var formattedValue = settings.formatter.call(self, value, settings);
+            $self.html(formattedValue);
+         }
+      });
+   };
+   
+   $.fn.countTo.defaults = {
+      from: 0,               // the number the element should start at
+      to: 0,                 // the number the element should end at
+      speed: 1000,           // how long it should take to count between the target numbers
+      refreshInterval: 100,  // how often the element should be updated
+      decimals: 0,           // the number of decimal places to show
+      formatter: formatter,  // handler for formatting the value before rendering
+      onUpdate: null,        // callback method for every time the element is updated
+      onComplete: null       // callback method for when the element finishes updating
+   };
+   
+   function formatter(value, settings) {
+      return value.toFixed(settings.decimals);
+   }
 }(jQuery));
 
 jQuery(function ($) {
   // custom formatting example
   $('.count-number').data('countToOptions', {
-	formatter: function (value, options) {
-	  return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
-	}
+   formatter: function (value, options) {
+     return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+   }
   });
   
   // start all the timers
   $('.timer').each(count);  
   
   function count(options) {
-	var $this = $(this);
-	options = $.extend({}, options || {}, $this.data('countToOptions') || {});
-	$this.countTo(options);
+   var $this = $(this);
+   options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+   $this.countTo(options);
   }
 });
 </script>
 <style>
 body{
-background-color:gray;
+background-color: #DC3548;
 }
 .counter {
     background-color:#f5f5f5;
@@ -172,7 +165,7 @@ background-color:gray;
 }
 
 .count-text {
-    font-size: 20px;
+    font-size: 13px;
     font-weight: normal;
     margin-top: 10px;
     margin-bottom: 0;
@@ -211,7 +204,7 @@ color:white;
   
   cursor:pointer;
   border-radius:50%;
-	border : 1px ridge white;
+   border : 1px ridge white;
 background-color:white;
 
 }
@@ -230,7 +223,7 @@ background-color:white;
  margin-left:30px;
 }
 a{
-	color:#90afc5; 
+   color:#90afc5; 
 }
 /* general START */
 *,
@@ -650,98 +643,168 @@ html {
   }
   
 }
-body{
-background:url("${path}/resources/images/홈페이지.png")no-repeat 0 0px;
-/* background-color:#5F9EA0; */
-background-size:100%;
-width:100%;
-}
-/* #runner{
-	background:url("${path}/resources/images/owner/main/배달이미지.png");
-	width:250px;
-	animation:walk 1s steps(100) infinite, forward 5s linear infinite;
+
+#runner{
+   background:url("${path}/resources/images/owner/main/배달이미지.png");
+   width:250px;
+   animation:walk 1s steps(100) infinite, forward 5s linear infinite;
 }
 @keyframes walk{
-	0%{
-		background-position: 0px;
-	}
-	100%{
-		background-position: 3000px;
-	}
+   0%{
+      background-position: 0px;
+   }
+   100%{
+      background-position: 3000px;
+   }
 }
 @keyframes forward{
-	0%{
-		transform:translateX(-100px);
-	}
-	100%{
-		transform:translateX(1319px);
-	}
-} */
+   0%{
+      transform:translateX(-100px);
+   }
+   100%{
+      transform:translateX(1319px);
+   }
+}
+
+
+.card {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 195px;
+  height: 195px;
+  transition: all .5s;
+  backface-visibility: hidden;
+   border-radius:50%;
+    margin-top:85px;
+    margin-left:30px;
+    background : dark;
+}
+
+.front {
+  z-index: 2;
+}
+
+.back {
+  z-index: 1;
+  transform: rotateY(-180deg);
+}
+
+#panel:hover .front {
+  z-index: 1;
+  transform: rotateY(180deg);
+}
+
+#panel:hover .back {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+.counter{
+background-color:#DC3548;
+border: 1px solid white;
+}
+.count-text
+{
+	color:white;
+    font-weight: bolder;
+}
+.count-title{
+color:white;
+}
+.blinking{
+	-webkit-animation:blink 1.5s ease-in-out infinite alternate;
+    -moz-animation:blink 1.5s ease-in-out infinite alternate;
+    animation:blink 1.5s ease-in-out infinite alternate;
+   
+}
+@-webkit-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@-moz-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+
 </style>
-<!-- <div id="runner"></div> -->
+
+<div id="runner"></div>
 <div class="container">
-	<div class="row">
-	    <br/>
-		<div class="col-md-6">
-		<p class="mainP"><b>간</b>단하고 <br><b>신</b>속한<br><b>배</b>달</p>
-		</div>
-		<div class="col-sm-3 ">
-		<br><br><br>
-		 	<div onclick="location.href='${path }/member/main.do'" class="img-wrapper img2">
-		 		 <div class="example-container">
-			      	<div class="example-container">
-			      		<div class="example-container__example example-container__example--hamburger">
-			      			<a href="${path }/member/main.do"><span>&nbsp;</span><span>회</span><span>원</span><br/><span>페</span><span>이</span><span>지</span></a>
-				 			
-				 		</div>
-				 		<%-- <img class="img" src="${path}/resources/images/owner/main/배달이미지.png" style="width : 100px; margin-top : 150px; margin-left: 80px;"> --%>
-				 	</div>
-				 </div>
-			</div>
-			<div>
-				
-			</div>
-		</div>
-		<div class="col-sm-3">
-		<br><br><br><br>
-			 <div onclick="location.href='${path}/owner/ownerMain.do'" class="img-wrapper img3">
-			     <div class="example-container">
-  					<div class="example-container__example example-container__example--hamburger">
+   <div class="row">
+       <br/>
+       
 
-    					<a href="${path }/owner/ownerMain.do"><span>&nbsp;</span><span>사</span><span>장</span><br/><span>페</span><span>이</span><span>지</span></a>
+      <div class="col-md-6">
+      <p class="mainP"><b>간</b>단하고 <br><b>신</b>속한<br><b>배</b>달</p>
+      </div>
+      <div class="col-sm-3" id="panel">
+      <br><br><br>
+      
+          <img class="front card" src="https://image.flaticon.com/icons/svg/1493/1493671.svg">
+          <div><span class="image blinking"> <img src="https://image.flaticon.com/icons/svg/889/889816.svg" style="width:100px; height: 100px; margin-top:240px; margin-left:100px;"><br/><strong style="text-align: center; margin-left:130px; color:white; font-size: 40px;">클릭!</strong> </span></div>   
+          <div onclick="location.href='${path }/member/main.do'" class="img-wrapper img2 back card">
+              <div class="example-container">
+                  <div class="example-container">
+                     <div class="example-container__example example-container__example--hamburger">
+                        <a href="${path }/member/main.do"><span>&nbsp;</span><span>회</span><span>원</span><br/><span>페</span><span>이</span><span>지</span></a>
+                      
+                   </div>
+                
+                </div>
+                
+             </div>
+             
+         </div>
+       
+         </div>      
+         
+   
+      <div class="col-sm-3" id="panel">
+      
+      <br><br><br><br>
+      <img class="front card" src="https://image.flaticon.com/icons/svg/138/138204.svg">
+          <div onclick="location.href='${path}/owner/ownerMain.do'" class="img-wrapper img3  back card">
+              <div class="example-container">
+                 <div class="example-container__example example-container__example--hamburger">
 
-  					</div>
-  					
-				</div>
-			     
-			</div>
-		</div>
-		
-	</div>
+                   <a href="${path }/owner/ownerMain.do"><span>&nbsp;</span><span>사</span><span>장</span><br/><span>페</span><span>이</span><span>지</span></a>
+
+                 </div>
+                 
+            </div>
+              
+         </div>
+      </div>
+       
+      </div>
 	
-	`
-	
-		<div class="row text-center">
-	        <div class="col">
-	        <div class="counter">
+   <br/><br/>  <br/><br/><br/><br/><br/><br/>
+   <div class="row text-center">
+           <div class="col">
+           <div class="counter">
       <i class="fa fa-code fa-2x"></i>
       <h2 class="timer count-title count-number" id="memberCount" data-to="" data-speed="1500"></h2>
-       <p class="count-text">간신배 가입된 회원 수</p>
+       <p class="count-text ">간신배 가입된 회원 수</p>
     </div>
-	        </div>
+           </div>
               <div class="col">
                <div class="counter">
       <i class="fa fa-coffee fa-2x"></i>
       <h2 class="timer count-title count-number" id="ownerCount" data-to="" data-speed="1500"></h2>
       <!-- data-to에 카운트들고오면 됨 -->
-      <p class="count-text">간신배 가입된 사장님 수</p>
+      <p class="count-text ">간신배 가입된 사장님 수</p>
     </div>
               </div>
               <div class="col">
                   <div class="counter">
       <i class="fa fa-lightbulb-o fa-2x"></i>
       <h2 class="timer count-title count-number" id="todayPayCount" data-to="" data-speed="1500"></h2>
-      <h3 class="count-text">오늘 주문 수</h3>
+      <p class="count-text ">오늘 주문 수</p>
     </div></div>
 <!--     select count(*) as todayOrderCount
 from(select 

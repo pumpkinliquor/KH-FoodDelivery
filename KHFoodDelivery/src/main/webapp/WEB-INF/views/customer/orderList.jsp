@@ -44,9 +44,26 @@ table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
 
 .menu1{
 }
+
+#cancelBtn{
+	background-color : white;
+	border-color :red;
+	color:red;
+}
+
+#cancelBtn1{
+	background-color : white;
+	border-color :rgb(250, 163, 148);
+	color:rgb(250, 163, 148);
+}
+#modal{
+	background-color : white;
+	border-color :rgb(250, 163, 148);
+	color:rgb(250, 163, 148);
+}
 </style>
 <script>
-
+	
 $(document).ready(function() {
 
     
@@ -75,7 +92,7 @@ function fileUpload(){
 
 function detailOrder1(payorderNum,menucode){
 	console.log(payorderNum,menucode);
-	
+
 	$.ajax({
 		url:"${path}/member/orderOne.do",
 		dataType : 'json',
@@ -135,6 +152,7 @@ function detailOrder1(payorderNum,menucode){
   <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}" id="activeOn" class="list-group-item list-group-item-action" style="z-index:0;">나의 주문내역</a>
               <a href="${path}/customer/mypage.do?memberId=${sessionScope.logined}" id="activeOff" class="list-group-item list-group-item-action">회원정보변경</a>
               <a href="${path }/member/markList.do?memberId=${sessionScope.logined}" id="activeOff" class="list-group-item list-group-item-action">즐겨찾는매장</a>
+              <a href="${path }/member/myReview.do?memberId=${sessionScope.logined}" id="activeOff" class="list-group-item list-group-item-action">리뷰 관리</a>
               <a href="${path }/member/qnaList.do?memberId=${sessionScope.logined}" id="activeOff" class="list-group-item list-group-item-action">나의 문의내역</a>
             </div> 
 		</div>
@@ -190,7 +208,13 @@ function detailOrder1(payorderNum,menucode){
 								</c:if>
 							</td>
 							<td>
-								<button class="btn btn-default" onclick="fn_cancel(${m.PAYORDERNUM},${m.IMPID})">주문취소</button>
+								<c:if test="${ state eq 3 || state eq 4 }">
+									<button class="btn btn-default" id="cancelBtn1" value="${m.IMPID }" onclick="fn_cancel(${m.PAYORDERNUM},${m.IMPID })" disabled="disabled">주문취소</button>
+							
+								</c:if>
+								<c:if test="${ state eq 0 || state eq 1 || state eq 2 }">
+								<button class="btn btn-default" id="cancelBtn" value="${m.IMPID }" onclick="fn_cancel(${m.PAYORDERNUM},this)">주문취소</button>
+								</c:if>
 							</td>
 						</tr>				
 					</c:forEach>
@@ -267,8 +291,11 @@ ${pageBar}
 </div>
 
 <script>
-function fn_cancel(payOrderNum,impId){
-	
+//주문취소
+function fn_cancel(payOrderNum,e){
+ 	var impId = $(e).val();
+	console.log(impId);
+	console.log(payOrderNum + "::" + impId)
 	var UP = confirm("정말로 주문취소 하시겠습니까?");
 	if(UP == true)
 		{
@@ -277,9 +304,18 @@ function fn_cancel(payOrderNum,impId){
 				data: { "payOrderNum" : payOrderNum , "impId" : impId},
 				success:function(data)
 				{
-					
+					console.log(data);
+					if(data!=0)
+						{
+							$(e).css("color","rgb(250, 163, 148)").css("border-color","rgb(250, 163, 148)").attr("disabled",true).attr("readonly",true);
+						}
+					alert("주문취소를 하셨습니다.");
 				}
 			})
+		}
+	else
+		{
+			alert("취소를 누르셨습니다.");
 		}
 }
 
