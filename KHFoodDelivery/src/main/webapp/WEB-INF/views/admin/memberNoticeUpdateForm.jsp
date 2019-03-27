@@ -25,7 +25,18 @@ function fn_validate(){
 	return true;
 	}
 	
+function noSpaceForm(obj){		
+	var str_space = /(<([^>]+)>)/ig;  // 태그체크
 	
+	   
+    if(str_space.test(obj.value)) { //태그체크
+        obj.focus();
+        obj.value = obj.value.replace(str_space,''); // 태그제거
+        return false;
+    }
+   
+	
+}	
 </script>
 
 
@@ -47,11 +58,11 @@ function fn_validate(){
 			        	</tr>
 						  <tr>
 			                <th>제목</th>
-			                <td><input type="text" name="noticeTitle" value="${notice.NOTICETITLE}"/> </td>
+			                <td><input type="text" name="noticeTitle" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" value="${notice.NOTICETITLE}"/> </td>
 			            </tr>
 			            <tr>
 			                <th>내용</th>
-			                <td><textarea cols="10" name="noticeContent" class="form-control" style="resize:none; height:15em;">${notice.NOTICECONTENT }</textarea></td>
+			                <td><textarea cols="10" name="noticeContent" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" class="form-control" style="resize:none; height:15em;">${notice.NOTICECONTENT }</textarea></td>
 			            </tr>
 			            <tr>
 			                <th>

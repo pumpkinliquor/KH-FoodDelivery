@@ -1,5 +1,6 @@
 package com.kh.food.customer.member.model.service;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -122,9 +123,33 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> selectMemberOrder(int memberNum,int cPage,int numPerPage) {
 		return dao.selectMemberOrder(memberNum,cPage,numPerPage);
 	}
+	
 	@Override
-	public int updateMemberQna(MemberQna mq) {
-		return dao.updateMemberQna(mq);
+	public int updateMemberQna(MemberQna mq,List<MemberQnaAttachment> files,int qnaCode) {
+		int result = 0;
+		
+		try {
+			result=dao.updateMemberQna(mq);
+			if(result==0) {
+				throw new Exception();
+			}
+			for(MemberQnaAttachment a : files) {
+				a.setQnaCode(mq.getQnaCode());
+				Map<String,Object> map= new HashMap();
+				map.put("originalFileName",a.getOriginalFileName());
+				map.put("qnacode",qnaCode);
+				result=dao.updateAttach(map);
+				if(result==0) {
+					throw new Exception("수정 실패");
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	@Override
 	public int backWish(String memberId) {

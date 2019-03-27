@@ -19,7 +19,7 @@ import com.kh.food.review.model.vo.Review;
 
 public interface MemberDao {
 	
-	
+	int updateAttach(Map<String,Object> map);
 	List<Map<String, String>> selectMemberQnaAttach(int no);	
 	int addAttach(MemberQnaAttachment a);
 	int addQna(Map<String,Object> map);

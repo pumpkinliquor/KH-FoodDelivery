@@ -27,6 +27,19 @@ function validate123(){
     }
     return true;
 }
+
+function noSpaceForm(obj){		
+	var str_space = /(<([^>]+)>)/ig;  // 태그체크
+	
+	   
+    if(str_space.test(obj.value)) { //태그체크
+        obj.focus();
+        obj.value = obj.value.replace(str_space,''); // 태그제거
+        return false;
+    }
+   
+	
+}
 </script>
 <section>
 <div class="container">
@@ -57,11 +70,11 @@ function validate123(){
 			        	</tr>
 			            <tr>
 			                <th>제목</th>
-			                <td><input type="text" placeholder="제목 " name="qnaTitle" id="qnaTitle" class="form-control" required></td>
+			                <td><input type="text" placeholder="제목 " name="qnaTitle" id="qnaTitle" class="form-control" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" required></td>
 			            </tr>
 			            <tr>
 			                <th>내용</th>
-			                <td><textarea cols="8" placeholder="내용" id="qnaContent" name="qnaContent" class="form-control" style="resize:none; height:15em;" required></textarea></td>
+			                <td><textarea cols="8" placeholder="내용" id="qnaContent" name="qnaContent" class="form-control" style="resize:none; height:15em;" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" required></textarea></td>
 			            </tr>
 			             <tr>
 			                <th>
@@ -74,18 +87,6 @@ function validate123(){
 				                    <input type="file" class="custom-file-input" name="upFile" id="upFile1">
 				                    <label class="custom-file-label" for="upFile1">파일을 선택하세요</label>
 		               	 		</div>
-		                	</td>
-			            </tr>
-			              <th>
-								<div class="input-group-prepend" style="padding:0px;">
-			                    	<label for="upFile2"><span class="input-group-text">첨부파일#2</span></label>
-			                	</div>
-							</th>
-			                <td>
-			                	<div class="custom-file">
-				                    <input type="file" class="custom-file-input" name="upFile" id="upFile2">
-				                    <label class="custom-file-label" for="upFile2">파일을 선택하세요</label>
-			                	</div>
 		                	</td>
 			            </tr>
 			            <tr>

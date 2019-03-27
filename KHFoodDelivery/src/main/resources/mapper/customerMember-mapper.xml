@@ -193,7 +193,7 @@
 	<select id="reviewCount" parameterType="_int" resultType="_int">
 	
 		select count(*) from review where businesscode=#{businessCode}
-	</select>
+		</select>
 	<select id="ownerReviewCount" parameterType="_int" resultType="_int">
 	
 		select count(*) from review_sub where businesscode=#{businessCode}
@@ -220,4 +220,9 @@
 			select count(*) from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest,price,orderState,deliveryPay from pay) p JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) JOIN STORE S ON(P.BUSINESSCODE = S.BUSINESSCODE) where rnum = 1 and p.membernum =  #{memberNum} order by payordernum desc
 	
 	</select>
+	<update id="updateAttach" parameterType="com.kh.food.qna.model.vo.MemberQnaAttachment">
+		UPDATE MEMBER_QNA_ATTACHMENT  set ORIGINALFILENAME=#{originalFileName} WHERE QNACODE=#{qnacode}	
+	</update>
+
+
 </mapper>

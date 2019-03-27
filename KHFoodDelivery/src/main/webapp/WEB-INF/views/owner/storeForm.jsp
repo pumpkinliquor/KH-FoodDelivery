@@ -172,7 +172,30 @@ function enter(evt){
 			            </tr>
 			             <tr>
 			                <th>업체 연락처</th>
-			                <td><input type="number" maxlength="3" min="0" oninput="maxLengthCheck(this);" style="width:5em; margin-bottom:1em; float:left; margin-right:1em; color:black;" value="02" id="frontStorePhone" onkeydown="enter(event);" name="frontStorePhone" class="form-control" required><input type="number" maxlength="4" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; color:black; float:left; margin-right:1em;" id="middleStorePhone" onkeydown="enter(event);" name="middleStorePhone" class="form-control" required><input type="number" maxlength="4" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; color:black; float:left; margin-right:1em;" id="finalStorePhone" onkeydown="enter(event);" name="finalStorePhone" class="form-control" required></td>
+			                <td>
+			                	<!-- <input type="number" maxlength="3" min="0" oninput="maxLengthCheck(this);" style="width:5em; margin-bottom:1em; float:left; margin-right:1em; color:black;" value="02" id="frontStorePhone" onkeydown="enter(event);" name="frontStorePhone" class="form-control" required> -->
+			                	<select style="width:5em; margin-bottom:1em; float:left; margin-right:1em; color:black;" id="frontStorePhone" onkeydown="enter(event);" name="frontStorePhone" class="form-control" required>
+			                		<option value="02">02</option>
+			                		<option value="051">051</option>
+			                		<option value="053">053</option>
+			                		<option value="032">032</option>
+			                		<option value="062">062</option>
+			                		<option value="042">042</option>
+			                		<option value="052">052</option>
+			                		<option value="044">044</option>
+			                		<option value="031">031</option>
+			                		<option value="033">033</option>
+			                		<option value="043">043</option>
+			                		<option value="041">041</option>
+			                		<option value="063">063</option>
+			                		<option value="061">061</option>
+			                		<option value="054">054</option>
+			                		<option value="055">055</option>
+			                		<option value="064">064</option>
+			                	</select>
+			                	<input type="number" maxlength="4" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; color:black; float:left; margin-right:1em;" id="middleStorePhone" onkeydown="enter(event);" name="middleStorePhone" class="form-control" required>
+			                	<input type="number" maxlength="4" oninput="maxLengthCheck(this);" style="width:7em; margin-bottom:1em; color:black; float:left; margin-right:1em;" id="finalStorePhone" onkeydown="enter(event);" name="finalStorePhone" class="form-control" required>
+			                </td>
 			            </tr>
 			             <tr>
 			                <th>주소</th>
