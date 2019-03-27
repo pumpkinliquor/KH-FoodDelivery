@@ -455,7 +455,7 @@ public class MemberController {
 	public ModelAndView login(String id,String pw,HttpSession session) {
 		
 		ModelAndView mv =new ModelAndView();
-		
+		System.out.println(pwEncoder.encode(pw)+"암호비번");
 		Map<String,String> map=new HashMap();
 		map.put("id",id);
 		map.put("pw",pw);

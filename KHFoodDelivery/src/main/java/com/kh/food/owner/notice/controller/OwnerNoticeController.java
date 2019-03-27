@@ -247,39 +247,100 @@ public class OwnerNoticeController {
 		
 		//사장 공지사항 수정 완료
 		@RequestMapping("/owner/ownerNoticeUpdateEnd.do")
-		public String noticeUpdateEnd(String noticeTitle,String noticeContent,int ownerNoticeNum, MultipartFile[] upFile, HttpServletRequest request) {
+		public String noticeUpdateEnd(String noticeTitle,String noticeContent,int ownerNoticeNum, MultipartFile upFile1,MultipartFile upFile2, HttpServletRequest request) {
+		
+		System.out.println(upFile1.getOriginalFilename() + " : 1오리");
+		System.out.println(upFile2.getOriginalFilename() + " : 2오리");
+		List<OwnerNoticeAttachment> attach=service.selectAttachModify(ownerNoticeNum);//어태치먼트 가져온 녀석
 		Map<String,Object> map=new HashMap();
+		System.out.println(ownerNoticeNum);
+		service.modifyFore(ownerNoticeNum);
 		map.put("noticeTitle", noticeTitle);
 		map.put("noticeContent", noticeContent);
 		map.put("ownerNoticeNum",ownerNoticeNum);
 		ArrayList<OwnerNoticeAttachment> files=new ArrayList();
 		String savDir=request.getSession().getServletContext().getRealPath("/resources/upload/owner/notAttach");
-		for(MultipartFile f:upFile)
+		if(!upFile1.isEmpty())
 		{
-			if(!f.isEmpty()) {
-				//파일명 생성하기(rename)
-				String orifileName=f.getOriginalFilename();
-				String ext=orifileName.substring(orifileName.lastIndexOf("."));
-				//rename 규칙설정
-				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
-				int rdv=(int)(Math.random()*1000);
-				String reName=sdf.format(System.currentTimeMillis())+"_"+rdv+ext;
+			System.out.println("업파일1이 들어있을때");
+			MultipartFile f1=upFile1;
+			
+			String orifileName=f1.getOriginalFilename();
+			String ext=orifileName.substring(orifileName.lastIndexOf("."));
+			//rename 규칙설정
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+			int rdv=(int)(Math.random()*1000);
+			String reName=sdf.format(System.currentTimeMillis())+"_"+rdv+ext;
+			
+			//파일저장하기
+			try {
+				f1.transferTo(new File(savDir+"/"+reName));
 				
-				//파일저장하기
-				try {
-					f.transferTo(new File(savDir+"/"+reName));
-					
-				}catch(IllegalStateException | IOException e)
-				{
-					e.printStackTrace();
-				}
-				OwnerNoticeAttachment att=new OwnerNoticeAttachment();
-				att.setOwnerRenamedFileName(reName);
-				att.setOwnerOriginalFileName(orifileName);
-				files.add(att);
+			}catch(IllegalStateException | IOException e)
+			{
+				e.printStackTrace();
+			}
+			OwnerNoticeAttachment att=new OwnerNoticeAttachment();
+			att.setOwnerRenamedFileName(reName);
+			att.setOwnerOriginalFileName(orifileName);
+			files.add(0,att);
+		}
+		else
+		{
+			System.out.println("업파일1이 비어있을때");
+			if(!attach.isEmpty())
+			{
+				System.out.println("업파일1이 비어있고 어태치가 비어있지 않을때");
+				files.add(0,attach.get(0));
 			}
 		}
+		
+		if(!upFile2.isEmpty())
+		{			
+			System.out.println("업파일2가 비어있지 않을때");
+			MultipartFile f2=upFile2;
+			
+			String orifileName=f2.getOriginalFilename();
+			String ext=orifileName.substring(orifileName.lastIndexOf("."));
+			//rename 규칙설정
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+			int rdv=(int)(Math.random()*1000);
+			String reName=sdf.format(System.currentTimeMillis())+"_"+rdv+ext;
+			
+			//파일저장하기
+			try {
+				f2.transferTo(new File(savDir+"/"+reName));
+				
+			}catch(IllegalStateException | IOException e)
+			{
+				e.printStackTrace();
+			}
+			OwnerNoticeAttachment att=new OwnerNoticeAttachment();
+			att.setOwnerRenamedFileName(reName);
+			att.setOwnerOriginalFileName(orifileName);
+			if(attach.isEmpty())
+			{
+				System.out.println("업파일 2가 비어있지 않고 어태치가 비어있을때");
+				files.add(0,att);
+			}
+			else
+			{
+				System.out.println("업파일 2가 비어있지 않고 어태치가 비어있지 않을때");
+				files.add(1,att);
+			}			
+		}
+		else
+		{
+			System.out.println("업파일 2가 비어있을때");
+			if(attach.size()==2)
+			{
+				System.out.println("업파일 2가 비어있고 어태치가 22이 비어있지 않을때");
+				files.add(1,attach.get(1));
+			}
+		}
+		System.out.println(files.get(0));
+		System.out.println(files.get(1));
 		int result = service.ownerNoticeUpdateEnd(map,files); 
 		return "redirect:ownerNoticeList.do";
-}
+	}
 }

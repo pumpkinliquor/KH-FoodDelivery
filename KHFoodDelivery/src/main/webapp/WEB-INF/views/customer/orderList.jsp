@@ -399,14 +399,7 @@ function handleImgRecipeFileSelect(e) {
 
       var reader = new FileReader();
       reader.onload = function(e){
-	  console.log(e.currentTarget);
-
-      		 //$(img).attr("src",e.target.result).attr("value",$("inputHiddenImg"+count).val()).css('width','158px').css('height','200px');
-      		$("#noImg1").attr("src",e.target.result).css('width','150px').css('height','150px');
-      		/*  $(document).on("click",".inputHiddenImg",function(){
-      			 
-      		 } */
-      		 console.log("미리보기123123123드렁옴");
+      		$("#noImg1").attr("src",e.target.result).css('width','150px').css('height','150px');      
       }
       reader.readAsDataURL(f);
   });

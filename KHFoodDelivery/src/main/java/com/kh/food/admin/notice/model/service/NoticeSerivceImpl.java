@@ -107,5 +107,17 @@ public class NoticeSerivceImpl implements NoticeService {
 		return result;
 	}
 
+	@Override
+	public List<NoticeAttachment> selectAttachModify(int noticeNum) {
+		// TODO Auto-generated method stub
+		return dao.selectAttachModify(noticeNum);
+	}
+
+	@Override
+	public void modifyFore(int noticeNum) {
+		dao.modifyFore(noticeNum);
+		
+	}
+
 	
 }
