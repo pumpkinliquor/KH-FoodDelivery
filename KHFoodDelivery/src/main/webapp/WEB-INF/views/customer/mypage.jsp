@@ -238,7 +238,7 @@ return true;
                               <div class="form-group row">
                                 <label for="text" class="col-4 col-form-label">생년월일</label> 
                                 <div class="col-8">
-                                  <input type="date" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" max="2019-03-01" min="1900-01-01" required/>
+                                  <input type="date" name="formatBirth" id="formatBirth"value="${member.memberBirth}"class="form-control here" required="required" max="2018-12-31" min="1900-01-01" required/>
                                 </div>
                               </div>
                               <div class="form-group row">

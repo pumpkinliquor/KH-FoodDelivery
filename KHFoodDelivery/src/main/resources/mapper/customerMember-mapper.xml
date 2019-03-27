@@ -118,7 +118,7 @@
 	
 	
 	<select id="memberQnaList"  parameterType="string" resultType="memberQna">
-		select mq.*, m.memberId from member_qna mq JOIN member m ON(mq.memberNum = m.memberNum) where MEMBERID=#{memberId}
+		select mq.*, m.memberId from member_qna mq JOIN member m ON(mq.memberNum = m.memberNum) where MEMBERID=#{memberId} order by WRITEDATE DESC
 	</select>
 	
 	<insert id="kakaoEnrollEnd" parameterType="member">
