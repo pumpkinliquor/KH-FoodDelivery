@@ -139,6 +139,8 @@ div.newsletter,div.group{display:inline-block;}
         background-position: 300px;
     }
 }
+
+
 </style>
 </head>
 <body>
@@ -154,6 +156,26 @@ div.newsletter,div.group{display:inline-block;}
 
    
    <script>
+  
+   
+   
+   $(document).ready(function(){
+   $("button").click(function(){
+    var sBtn = $(".group");    //  ul > li 이를 sBtn으로 칭한다. (클릭이벤트는 li에 적용 된다.)
+    sBtn.find("button").click(function(){   // sBtn에 속해 있는  a 찾아 클릭 하면.
+     sBtn.removeClass("active");     // sBtn 속에 (active) 클래스를 삭제 한다.
+     $(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
+    });
+   });
+   });
+
+   
+   
+   
+   
+   
+   
+   
    $(function(){
 	   $('#memberHeaderTitle1').hover(function(){
 		   $('#memberHeaderTitle1').css({"width":"270"});
@@ -409,7 +431,7 @@ div.newsletter,div.group{display:inline-block;}
                 </div>
                    <div class="group col-md-12 col-lg-12">
                 <div class="btn-group btn-group-lg search1">
-               <button type="button" class="btn btn-default active" onclick="allview();">전체보기</button> 
+               <button type="button" class="btn btn-default active" id="all1"onclick="allview();">전체보기</button> 
               <button type="button" class="btn btn-default active" id="japan" onclick="don();">돈까스/일식</button>
               <button type="button" class="btn btn-default active" id="pran" onclick="fre();">프랜차이즈</button>
               <button type="button" class="btn btn-default active" id="chicken" onclick="chi();">치킨</button>
@@ -431,7 +453,11 @@ div.newsletter,div.group{display:inline-block;}
 <script>
 
 function allview(){
+	
+	
+    
 	location.href="${path}/customer/searchmenuView.do?category=전체&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}";
+
 }
 function don(){
 	location.href="${path}/customer/searchmenuView?category=돈까스/일식&myAddr=${sessionScope.myAddr}&lat=${sessionScope.lat}&lng=${sessionScope.lng}"; 
