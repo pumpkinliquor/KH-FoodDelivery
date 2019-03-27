@@ -331,6 +331,10 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int selectMemberOrderCount(int memberNum) {
 		return sqlSession.selectOne("member.selectMemberOrderCount",memberNum);
+	}
+	@Override
+	public int updateOrderState(String payOrderNum) {
+		return sqlSession.update("member.updateOrderState",payOrderNum);
 	}	
 	
 	

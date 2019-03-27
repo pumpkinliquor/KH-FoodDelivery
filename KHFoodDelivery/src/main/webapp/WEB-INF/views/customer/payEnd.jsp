@@ -18,6 +18,36 @@
 	width: 70%;
 }
 </style>
+<script>
+
+history.pushState(null, null, location.href);
+
+window.onpopstate = function(event) {
+
+	history.go(1);
+
+};
+
+//새로고침 방지
+function noRefresh()
+{
+    /* CTRL + N키 막음. */
+    if ((event.keyCode == 78) && (event.ctrlKey == true))
+    {
+        event.keyCode = 0;
+        return false;
+    }
+    /* F5 번키 막음. */
+    if(event.keyCode == 116)
+    {
+        event.keyCode = 0;
+        return false;
+    }
+}
+
+document.onkeydown = noRefresh ;
+
+</script>
 <section>
 	<div class="container">
 
@@ -69,6 +99,13 @@
 			<tr>
 				<th><b>주문 시간</b></th>
 				<td>${payList.get(0).PAYDATE}</td>
+			</tr>
+			<tr>
+				<th><b>요청 사항</b></th>
+				<c:if test="${payList.get(0).PAYREQUEST eq null }">
+					<td>요청 사항이 없습니다.</td>
+				</c:if>
+				<td>${payList.get(0).PAYREQUEST}</td>
 			</tr>
 		</table>
 

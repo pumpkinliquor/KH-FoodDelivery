@@ -370,6 +370,11 @@ public Store minPrice(int businessCode) {
 	public int selectMemberOrderCount(int memberNum) {
 		return dao.selectMemberOrderCount(memberNum);
 	}
+
+	@Override
+	public int updateOrderState(String payOrderNum) {
+		return dao.updateOrderState(payOrderNum);
+	}
 	
 	
 
