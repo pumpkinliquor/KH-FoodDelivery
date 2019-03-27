@@ -43,7 +43,7 @@
 	</update>
 	
 
-	<!-- 가게 카테고리별 검색 -->
+	<!-- 가게 거리로 검색 -->
 
 	<select id="selectStore" parameterType="map" resultType="store">
 		SELECT *
