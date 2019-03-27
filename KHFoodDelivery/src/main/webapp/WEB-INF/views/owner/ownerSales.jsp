@@ -13,10 +13,10 @@ pageEncoding="UTF-8"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <style>
 .counter {
-    background-color:#f5f5f5;
-   	height:110px;
-    border-radius: 5px;
-    /* padding: 20px 0; */
+	background-color: white;
+	/*  padding: 20px 0; */
+	border-radius: 5px;
+	height: 110px;
 }
 
 .count-title {
@@ -26,14 +26,21 @@ pageEncoding="UTF-8"%>
     margin-bottom: 0;
     text-align: center;
 }
+.count-number {
+	text-align: left;
+	margin-left: 20px;
+}
 
 .count-text {
-    font-size: 15px;
-    font-weight: normal;
-    margin-top: 10px;
-    margin-bottom: 0;
-    text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	margin-top: 10px;
+	margin-left: 20px;
+	margin-bottom: 0;
+	text-align: left;
+	color: gray;
 }
+
 
 .fa-2x {
     margin: 0 auto;
@@ -44,14 +51,29 @@ pageEncoding="UTF-8"%>
 .saleDiv{
 margin-top:100px;
 }
-.saleDiv2{
-background-color:rgba(61, 58, 129, 0.986);
-height:130px;
+.saleDiv2 {
+	background-color: rgb(243, 243, 243);
+	height: 130px;
 }
 .saleDiv3{
 margin-bottom:50px;
 }
 
+#countYear {
+	color: rgb(189, 112, 189);
+}
+
+#countMonth {
+	color:rgb(116, 116, 240);
+}
+
+#countDay {
+	color: rgb(70, 219, 219);
+}
+
+#countWeek {
+	color: rgb(250, 102, 102);
+}
 </style>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 
@@ -70,25 +92,25 @@ margin-bottom:50px;
 	<div class="row text-center saleDiv2">
 	        <div class="col">
 	        <div class="counter">
-		      <p class="timer count-title count-number" data-to="100" data-speed="1500">${todaySales}원</p>
+		      <p class="timer count-title count-number" data-to="100" data-speed="1500" id="countDay">${todaySales}원</p>
 		       <p class="count-text ">오늘</p>
 	    	</div>
 		    </div>
             <div class="col">
               <div class="counter">
-			      <p class="timer count-title count-number" data-to="1700" data-speed="1500">${weekSales }원</p>
+			      <p class="timer count-title count-number" data-to="1700" data-speed="1500" id="countWeek">${weekSales }원</p>
 			      <p class="count-text ">이번주</p>
     		  </div>
             </div>
             <div class="col">
              <div class="counter">
-		      <p class="timer count-title count-number" data-to="11900" data-speed="1500">${monthSales }원</p>
+		      <p class="timer count-title count-number" data-to="11900" data-speed="1500" id="countMonth">${monthSales }원</p>
 		      <p class="count-text ">이번달</p>
     		 </div>
     		</div>
             <div class="col">
              <div class="counter">
-		      <p class="timer count-title count-number" data-to="157" data-speed="1500">${yearSales }원</p>
+		      <p class="timer count-title count-number" data-to="157" data-speed="1500" id="countYear">${yearSales }원</p>
 		      <p class="count-text ">올해</p>
     		 </div>
             </div>
