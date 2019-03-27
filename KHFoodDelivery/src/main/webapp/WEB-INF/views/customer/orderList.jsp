@@ -42,6 +42,8 @@ table#table-sort{ border: 1px solid #444444; border-collapse: collapse; }
 
 .star_rating span.on {color:crimson;}
 
+.menu1{
+}
 </style>
 <script>
 
@@ -83,13 +85,22 @@ function detailOrder1(payorderNum,menucode){
 		},
 		success : function(mem1){
 			console.log(mem1);
-			$('.category').val(mem1.STORECATEGORY);
-			$('.storeName').val(mem1.STORENAME);
-			$('.payDate1').val(mem1.PAYDATE);
-			$('.way').val(mem1.PAYORDERMETHOD);
-			$('.price').val(mem1.PRICE);
-			$('.payRequest').val(mem1.PAYREQUEST);
-			$('.menu1').val(mem1.MENUNAME);
+			var menu = "";
+			var sum = "";
+			for(var i=0; i<mem1.length; i++)
+				{
+					menu += mem1[i].MENUNAME+"("+mem1[i].COUNT+") ";
+					sum = Number(sum) + Number(mem1[i].PRICE);
+				}
+			sum = Number(sum) + Number(mem1[0].DELIVERYPAY);
+			console.log(menu);
+			$('.category').val(mem1[0].STORECATEGORY);
+			$('.storeName').val(mem1[0].STORENAME);
+			$('.payDate1').val(mem1[0].PAYDATE);
+			$('.way').val(mem1[0].PAYORDERMETHOD);
+			$('.price').val(sum+"원");
+			$('.payRequest').val(mem1[0].PAYREQUEST);
+			$('.menu1').val(menu);
 			$('#orderListModal1').modal();
 			
 			
@@ -331,7 +342,7 @@ function handleImgRecipeFileSelect(e) {
 				<button type="button" class="close" data-dismiss="modal">×</button>
 			</div>
 			<form action="${path}/customer/memberQnaUpdate.do"  method="post">
-				<div class="modal-body" style="height: 600px;">
+				<div class="modal-body" style="height: 700px;">
 					<table class="table">
 						<tr>
 							<th style="vertical-align: middle">카테고리</th>
@@ -347,8 +358,8 @@ function handleImgRecipeFileSelect(e) {
 						</tr>	
 						<tr>
 							<th style="vertical-align: middle">주문메뉴</th>
-							<td><input type="text"  class="form-control menu1" value="" readonly/></td>						
-						</tr>					
+							<td><textarea class="form-control menu1" rows="5" value="" readonly></textarea></td>											
+						</tr>						
 						<tr>
 							<th style="vertical-align: middle">결제 방식</th>
 							<td><input type="text"  class="form-control way" value="" readonly/></td>						

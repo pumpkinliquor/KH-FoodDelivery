@@ -146,12 +146,12 @@
 		JOIN member m ON(p.membernum = m.membernum)  where m.memberNum=#{memberNum}
 	</select>
 	<!-- 상세주문내역 -->
-	<select id="orderOne"  resultType="Map" parameterType="map">
-		select s.storename,s.storecategory,p.*,m.memberid,q.menuname 
+	<select id="orderOne"  resultType="map" parameterType="map">
+		select s.storename,s.storecategory,p.PAYNUM,p.BUSINESSCODE,to_char(p.PAYDATE,'YYYY-MM-DD HH24:MI:SS') as PAYDATE,p.MENUCODE,p.PRICE,p.COUNT,p.MEMBERNUM,p.PAYORDERMETHOD,p.PAYREQUEST,p.PAYORDERNUM,p.PAYADDRESS,p.DELIVERYPAY,m.memberid,q.menuname 
 		from pay p 
 		JOIN store s ON(s.businesscode = p.businesscode) 
 		JOIN member m ON(p.membernum = m.membernum)  
-        JOIN menu q ON(p.menucode = q.menucode) where P.PAYORDERNUM=#{payorderNum} and q.menucode=#{menucode}
+        JOIN menu q ON(p.menucode = q.menucode) where P.PAYORDERNUM=#{payorderNum}
 	</select>
 
 	
@@ -212,4 +212,12 @@
 		SELECT * FROM MEMBER_QNA_ATTACHMENT WHERE qnaCode = #{no}
 	</select>
 	
+	<select id="selectMemberOrderList" parameterType="_int" resultType="map">
+		select p.*,M.MEMBERID,M.MEMBERNAME,M.MEMBERPHONE,ME.MENUNAME,S.DELIVERYPRICE,S.STORENAME,S.STORECATEGORY from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest,price,orderState,deliveryPay from pay) p JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) JOIN STORE S ON(P.BUSINESSCODE = S.BUSINESSCODE) where rnum = 1 and p.membernum =  #{memberNum} order by payordernum desc
+	</select>
+	
+	<select id="selectMemberOrderCount" resultType="_int" parameterType="_int">
+			select count(*) from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest,price,orderState,deliveryPay from pay) p JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) JOIN STORE S ON(P.BUSINESSCODE = S.BUSINESSCODE) where rnum = 1 and p.membernum =  #{memberNum} order by payordernum desc
+	
+	</select>
 </mapper>

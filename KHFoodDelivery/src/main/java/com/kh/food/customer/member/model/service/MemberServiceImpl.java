@@ -17,6 +17,7 @@ import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
 import com.kh.food.owner.onevsone.model.vo.OwnerQnaAttachment;
+import com.kh.food.owner.order.model.vo.Pay;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -110,7 +111,7 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectReview(businessCode);
 	}
 	@Override
-	public Map<String,String> orderOne(Map<String,String> orList) {
+	public List<Map<String, String>> orderOne(Map<String,String> orList) {
 		return dao.orderOne(orList);
 	}
 	@Override
@@ -333,6 +334,16 @@ public Store minPrice(int businessCode) {
 	@Override
 	public MemberQnaReview selectMemberQnaReview(int no) {
 		return dao.selectMemberQnaReview(no);
+	}
+
+	@Override
+	public List<Map<String, String>> selectMemberOrderList(int memberNum, int cPage, int numPerPage) {
+		return dao.selectMemberOrderList(memberNum,cPage,numPerPage);
+	}
+
+	@Override
+	public int selectMemberOrderCount(int memberNum) {
+		return dao.selectMemberOrderCount(memberNum);
 	}
 	
 	

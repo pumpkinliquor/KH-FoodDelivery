@@ -15,6 +15,7 @@ import com.kh.food.customer.member.model.vo.Member;
 import com.kh.food.customer.member.model.vo.WishList;
 import com.kh.food.mark.model.vo.Mark;
 import com.kh.food.owner.menu.model.vo.Menu;
+import com.kh.food.owner.order.model.vo.Pay;
 import com.kh.food.owner.review.model.vo.OwnerReview;
 import com.kh.food.owner.store.model.vo.Store;
 import com.kh.food.qna.model.vo.MemberQna;
@@ -97,8 +98,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	//회원 주문내역
 	@Override
-	public Map<String,String> orderOne(Map<String,String> orList) {
-		return sqlSession.selectOne("member.orderOne",orList);
+	public List<Map<String, String>> orderOne(Map<String,String> orList) {
+		return sqlSession.selectList("member.orderOne",orList);
 	}
 	
 	//회원 주문내역 카운트
@@ -315,6 +316,18 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public MemberQnaReview selectMemberQnaReview(int no) {
 		return sqlSession.selectOne("member.selectMqr", no);
+	}
+
+	//나의주문내역 리스트 가져오기
+	@Override
+	public List<Map<String, String>> selectMemberOrderList(int memberNum, int cPage, int numPerPage) {
+		RowBounds rb=new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("member.selectMemberOrderList",memberNum,rb);
+	}
+	
+	@Override
+	public int selectMemberOrderCount(int memberNum) {
+		return sqlSession.selectOne("member.selectMemberOrderCount",memberNum);
 	}	
 	
 	
