@@ -213,7 +213,7 @@
 	</select>
 	
 	<select id="selectMemberOrderList" parameterType="_int" resultType="map">
-		select p.*,M.MEMBERID,M.MEMBERNAME,M.MEMBERPHONE,ME.MENUNAME,S.DELIVERYPRICE,S.STORENAME,S.STORECATEGORY from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest,price,orderState,deliveryPay from pay) p JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) JOIN STORE S ON(P.BUSINESSCODE = S.BUSINESSCODE) where rnum = 1 and p.membernum =  #{memberNum} order by payordernum desc
+		select p.*,M.MEMBERID,M.MEMBERNAME,M.MEMBERPHONE,ME.MENUNAME,S.DELIVERYPRICE,S.STORENAME,S.STORECATEGORY from(select row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest,price,orderState,deliveryPay,impId from pay) p JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM) JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE) JOIN STORE S ON(P.BUSINESSCODE = S.BUSINESSCODE) where rnum = 1 and p.membernum =  #{memberNum} order by payordernum desc
 	</select>
 	
 	<select id="selectMemberOrderCount" resultType="_int" parameterType="_int">

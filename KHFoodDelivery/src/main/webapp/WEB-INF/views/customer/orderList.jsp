@@ -190,7 +190,7 @@ function detailOrder1(payorderNum,menucode){
 								</c:if>
 							</td>
 							<td>
-								
+								<button class="btn btn-default" onclick="fn_cancel(${m.PAYORDERNUM},${m.IMPID})">주문취소</button>
 							</td>
 						</tr>				
 					</c:forEach>
@@ -267,6 +267,23 @@ ${pageBar}
 </div>
 
 <script>
+function fn_cancel(payOrderNum,impId){
+	
+	var UP = confirm("정말로 주문취소 하시겠습니까?");
+	if(UP == true)
+		{
+			$.ajax({
+				url: "${path}/member/cancelOrder.do",
+				data: { "payOrderNum" : payOrderNum , "impId" : impId},
+				success:function(data)
+				{
+					
+				}
+			})
+		}
+}
+
+
 function noSpaceForm(obj){		
 	var str_space = /(<([^>]+)>)/ig;  // 태그체크
 	

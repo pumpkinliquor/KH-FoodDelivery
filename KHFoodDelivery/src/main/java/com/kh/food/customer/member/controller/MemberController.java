@@ -1211,5 +1211,12 @@ public class MemberController {
 			mv.setViewName("redirect:/member/orderList.do?memberId="+memId+"&memberNum="+memNum);
 			return mv;
 	}
+	
+	//주문취소하기
+	@RequestMapping("member/cancelOrder.do")
+	public void cancelOrder(String payOrderNum , String impId)
+	{
+		logger.debug("p"+payOrderNum + "i" + impId);
+	}
 }
 
