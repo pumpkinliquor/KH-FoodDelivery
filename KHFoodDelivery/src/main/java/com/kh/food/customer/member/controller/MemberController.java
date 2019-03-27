@@ -89,27 +89,27 @@ public class MemberController {
 	}
 		System.out.println(files);
 		//저장경료
+		//저장경료
 		String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/member/qnaAttach");
 		
 		for(MultipartFile f : upFile) {
 			if(!f.isEmpty()) {
 				String oriFileName=f.getOriginalFilename();
-				String ext=oriFileName.substring(oriFileName.lastIndexOf("."));
-				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
-				int randomV=(int)(Math.random()*1000);
-				String reName=sdf.format(System.currentTimeMillis())+"_"+randomV+ext;
+				
 				try {
-					f.transferTo(new File(saveDir+"/"+reName));
+					f.transferTo(new File(saveDir+"/"+oriFileName));
 				}
 				catch(IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
 				MemberQnaAttachment att=new MemberQnaAttachment();
-				att.setReNamedFileName(reName);
+				att.setReNamedFileName(oriFileName);
 				att.setOriginalFileName(oriFileName);
 				files.add(att);
 			}
 		}
+	
+		
 	
 		
 		int result = service.updateMemberQna(mq,files,qnaCode);
