@@ -18,7 +18,7 @@
 	select * from notice where noticenum=#{noticeNum}
 	</select>
 	<select id="selectAttach" parameterType="_int" resultType="Map">
-	select * from notice_attachment where noticenum=#{noticeNum}
+	select * from notice_attachment where noticenum=#{noticeNum} order by noticeAttachmentNo
 	</select>
 	
 	
@@ -45,6 +45,14 @@
 	</update>
 	
 	<update id="memberNoticeAUpdateEnd" parameterType="com.kh.food.admin.notice.attachment.vo.NoticeAttachment">
-	update notice_attachment set originalfilename=#{originalFileName}, renamedfilename=#{renamedFileName} where noticenum=#{noticeNum}
+	insert into NOTICE_ATTACHMENT values(SEQ_NOTICEATTACHMENTNO.NEXTVAL,#{noticeNum},#{originalFileName},#{renamedFileName},SYSDATE+9/24,default)
 	</update>
+	
+	<select id="selectAttachModify" parameterType="_int" resultType="com.kh.food.admin.notice.attachment.vo.NoticeAttachment">
+		select * from notice_attachment where noticeNum=#{noticeNum} order by noticeAttachmentNo
+	</select>
+	
+	<delete id='modifyFore' parameterType='_int'>
+		delete from notice_attachment where noticeNum=#{noticeNum}
+	</delete>
 </mapper>

@@ -22,4 +22,6 @@ public interface NoticeDao {
 	 */
 	int memberNoticeUpdateEnd(Map<String,Object> map);
 	int memberNoticeAUpdateEnd(NoticeAttachment a);
+	List<NoticeAttachment> selectAttachModify(int noticeNum);
+	void modifyFore(int noticeNum);
 }
