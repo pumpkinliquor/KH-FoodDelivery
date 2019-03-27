@@ -173,9 +173,14 @@ function detailOrder1(payorderNum,menucode){
 							</c:choose>
 						
 							</td>
-							<c:if test="${ state eq 3}">
-								<td><button class="btn btn-default" value="${m.MEMBERID}"  id="modal" type="button" onclick="fn_review(${m.BUSINESSCODE},${m.MEMBERNUM},this)">리뷰</button></td>
-							</c:if>
+							<td>
+								<c:if test="${ state eq 3}">
+									<button class="btn btn-default" value="${m.MEMBERID}"  id="modal" type="button" onclick="fn_review(${m.BUSINESSCODE},${m.MEMBERNUM},this)">리뷰</button>
+								</c:if>
+							</td>
+							<td>
+								
+							</td>
 						</tr>				
 					</c:forEach>
 				</tbody>
