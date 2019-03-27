@@ -65,7 +65,29 @@ public class MemberController {
 	private JavaMailSender mailSender;
 	
 	
+	// 내 리뷰 관리
+	@RequestMapping("/member/myReview.do")
+	public ModelAndView myReview(String memberId) {
+		ModelAndView mv = new ModelAndView();
+		
+		List<Map<String, Object>> review = service.selectReview(memberId);
+		
+		mv.addObject("review", review);
+		mv.setViewName("customer/myReview");
+		return mv;
+	}
 	
+	// 리뷰 보기
+	@RequestMapping("/member/reviewView.do")
+	public ModelAndView reviewView(int no) {
+		ModelAndView mv = new ModelAndView();
+		
+		Map<String, Object> review = service.selectReviewView(no);
+		
+		mv.addObject("review", review);
+		mv.setViewName("customer/reviewView");
+		return mv;
+	}
 	//메인보이기
 	@RequestMapping("/member/main.do")
 	public String mainView() {
