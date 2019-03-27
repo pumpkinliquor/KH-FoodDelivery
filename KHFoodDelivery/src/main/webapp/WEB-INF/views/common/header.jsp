@@ -35,7 +35,7 @@ font-family: 'Nanum Gothic Coding', monospace;
  
  #memberHeaderTitle1:hover{
  	cursor:pointer;
- 	background:url("${path}/resources/images/owner/main/배달이미지2.png");
+ 	background:url("${path}/resources/images/owner/main/배달이미지2.gif");
  	 width:100px;
     height:70px;
     animation:walk 1s steps(200) infinite,
@@ -46,7 +46,7 @@ font-family: 'Nanum Gothic Coding', monospace;
         background-position: 0px;
     }
     100%{
-        background-position: 294px;
+        background-position: 258px;
     }
 }
 </style>
