@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.kh.food.admin.notice.attachment.vo.NoticeAttachment;
 import com.kh.food.owner.notice.attachment.vo.OwnerNoticeAttachment;
 import com.kh.food.owner.notice.model.dao.OwnerNoticeDao;
 
@@ -131,6 +133,22 @@ public class OwnerNoticeServiceImpl implements OwnerNoticeService {
 	}
 
 	
+	
+	@Override
+	public void modifyFore(int ownerNoticeNum) {
+		dao.modifyFore(ownerNoticeNum);
+		
+	}
+
+	
+
+	@Override
+	public List<OwnerNoticeAttachment> selectAttachModify(int ownerNoticeNum) {
+		// TODO Auto-generated method stub
+		return dao.selectAttachModify(ownerNoticeNum);
+	}
+
+
 	//메인공지사항
 	@Override
 	public List<Map<String, String>> ownerNoticeList() {

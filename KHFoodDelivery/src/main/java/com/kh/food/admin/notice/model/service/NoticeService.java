@@ -19,4 +19,6 @@ public interface NoticeService {
 	 * memberNoticeAUpdateEnd(List<NoticeAttachment>files);
 	 */
 	int memberNoticeUpdateEnd(Map<String,Object> map, List<NoticeAttachment> files);
+	List<NoticeAttachment> selectAttachModify(int noticeNum);
+	void modifyFore(int noticeNum);
 }
