@@ -30,24 +30,38 @@
 	    color:#ccc;
 	    text-decoration:none;
 	}
+	.star_rating {font-size:0; letter-spacing:-4px;}
+	.star_rating span {
+	    font-size:22px;
+	    letter-spacing:0;
+	    display:inline-block;
+	    margin-left:5px;
+	    color:#ccc;
+	    text-decoration:none;
+	    cursor:pointer;
+	}
+	.star_rating span.on {color:crimson;}
 </style>
 
 <script>	
 
 	//문의글 수정
-	function updateQna(){
-		$('#qnaUpdateModal').modal();
+	function updateReview(){
+		$('#star${review.GRADE}').parent().children("span").removeClass("on");
+		$('#star${review.GRADE}').addClass("on").prevAll("span").addClass("on");
+		$('#context').val('${review.REVIEWCONTEXT}');
+		$('#reviewNum').val('${review.REVIEWNUM}');
+		$('#updateReview').modal();	
 	}
 	/* 문의 글 삭제 */
-	function deleteQna(){
-		location.href="${path}/customer/deletememberQna.do?no=${mq.qnaCode}&memberId=${mq.memberId}";
+	function deleteReview(){
+		location.href="${path}/customer/deleteReview.do?no=${review.REVIEWNUM}&memberId=${review.MEMBERNUM}";
 	}
 	
 
 </script>
 
 <section>
- 
 	<div class="container">  
 		<div class="row" >			
 			<div class="col-sm-8">
@@ -61,8 +75,8 @@
 				<c:out value="${review.WRITEDATE }"/>
 			</div>						
 			<div class="bt-group col-sm-4">			
-				<button type="button" class="btn btn-default b1" onclick="deleteQna()">삭제</button>
-				<button type="button" class="btn btn-default b1" onclick="updateQna();">수정</button>	
+				<button type="button" class="btn btn-default b1" onclick="deleteReview()">삭제</button>
+				<button type="button" class="btn btn-default b1" onclick="updateReview();">수정</button>	
 				<button type="button" class="btn btn-default b1" onclick="location.href='${path }/member/myReview.do?memberId=${sessionScope.logined}'">목록으로</button>			
 			</div>	
 		</div>
@@ -80,76 +94,143 @@
 	
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
-
-<!-- 모달 구현 -->
-<div class="modal" id="qnaUpdateModal" role="dialog">
 <script>
 
+$(document).ready(function() {
+
+    
+    var readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.avatar').attr('src', e.target.result);
+            }
+    
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+
+    $("#file").on('change', function(){
+        readURL(this);
+    });
+});
+
+function fileUpload(){
+	$("#file").click();
+}
+
 $(function(){
-	   $('[name=upFile]').on('change',function(){
-	      var filename=this.files[0].name;
-	      $(this).next('.custom-file-label').html(filename);
-	   });
-	});
+	$('[name=upFile]').on('change',function(){
+		var filename=this.files[0].name;
+		$(this).next('.custom-file-label').html(filename);
+   });
+});
+
+function noSpaceForm(obj){		
+	var str_space = /(<([^>]+)>)/ig;  // 태그체크
+	
+    if(str_space.test(obj.value)) { //태그체크
+        obj.focus();
+        obj.value = obj.value.replace(str_space,''); // 태그제거
+        return false;
+    }
+}
+
+$(".star_rating span").click(function() {
+	console.log("ㅡㄹ릭");
+    $(this).parent().children("span").removeClass("on");
+    $(this).addClass("on").prevAll("span").addClass("on");
+    return false;
+});
+	
+$("#jdd_file1").hide();
+
+
+$(document).ready(function(){
+	
+	$(document).on("change",".jdd_file", handleImgRecipeFileSelect);
+});
+
+function handleImgRecipeFileSelect(e) {
+	
+  var files = e.target.files;	
+  var filesArr = Array.prototype.slice.call(files);
+  filesArr.forEach(function(f){
+      if(!f.type.match("image.*")) 
+      {
+          alert("확장자는 이미지 확장자만 가능합니다");
+          return;
+      }
+
+      sel_file = f;
+
+      var reader = new FileReader();
+      reader.onload = function(e){
+      		$("#noImg1").attr("src",e.target.result).css('width','150px').css('height','150px');      
+      }
+      reader.readAsDataURL(f);
+  });
+  
+}
 
 </script>
+
+
+<!-- 모달 구현 -->
+<div class="modal" id="updateReview" role="dialog">
 	<div class="modal-dialog">
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">문의글 수정</h4>
-				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h4 class="modal-title">리뷰 수정</h4>
 			</div>
-			<form action="${path}/customer/memberQnaUpdate.do" method="post" enctype="multipart/form-data" >
-				<div class="modal-body" style="height: 600px;">
+			<form action="${path }/customer/updateReview.do" method="post" enctype="multipart/form-data">
+				<div class="modal-body">
 					<table class="table">
 						<tr>
-							<th style="vertical-align: middle">카테고리</th>
-							<td><input type="text" name="qnaCategory" class="form-control" value="${mq.qnaCategory }"/></td>						
-						</tr>					
-						<tr>
-							<th style="vertical-align: middle">아이디</th>
-							<td><input type="text" name="memberId" class="form-control" value="${mq.memberId }" readonly/></td>						
-						</tr>						
-						<tr>
-							<th style="vertical-align: middle">등록일</th>
-					<td><input type="text" name="formatWriteDate" class="form-control" value="${mq.formatWriteDate}" readonly/></td>						
-						</tr>	
-						<tr>
-							<th style="vertical-align: middle">제목</th>
-							<td><input type="text" name="qnaTitle" class="form-control" value="${mq.qnaTitle}"/></td>						
-						</tr>						 
-					
-						<tr>
-							<th style="vertical-align: middle">문의글</th>
-							<td><textarea name="qnaContent" class="form-control" style="resize: none" rows="6">${mq.qnaContent }</textarea></td>						
+							<th style="vertical-align: middle; font-weight:bold; width:100px;">별점</th>
+							<td>
+								<p class="star_rating">
+								    <span id="star1"  class="on">★</span>
+								    <span id="star2" >★</span>
+								    <span id="star3" >★</span>
+								    <span id="star4" >★</span>
+								    <span id="star5" >★</span>
+									<input type="hidden" id="star" name="grade"/>
+								</p>
+							</td>
 						</tr>
-						<c:forEach items="${attach }" var="a">
-						    <tr>
-			                <th>
-								<div class="input-group-prepend" style="padding:0px;">
-			                    	<label for="upFile1"><span class="input-group-text">파일수정</span></label>
-				                </div>
+						<tr>
+							<th style="vertical-align: middle;">
 							</th>
-			                <td>
-           	 					<div class="custom-file">
-				                    <input type="file" class="custom-file-input" name="upFile" id="upFile1"/>
-				                    <label class="custom-file-label" for="upFile1">${a.ORIGINALFILENAME}</label>
-		               	 		</div>
-		                	</td>
-			            </tr>
-			            </c:forEach>
-			             
-						
+							<td>
+								<textarea id="context" name="context" cols="50" rows="5" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" required="required"></textarea>
+							</td>					
+						</tr>
+						<tr>
+							<th style="vertical-align: middle;">
+							<td>
+							<label for="jdd_file1">
+								<c:if test="${review.REVIEWIMAGE != null }">
+									<img class="defaultImg" id="noImg1" src="${path}/resources/upload/member/review/${review.REVIEWIMAGE}" style="width:150px; height:150px; border: 1px solid #d9d9d9;">
+								</c:if>
+								<c:if test="${review.REVIEWIMAGE == null }">
+									<img class="defaultImg" id="noImg1" src="${path}/resources/images/noImg.png" style="width:150px; height:150px; border: 1px solid #d9d9d9;">
+								</c:if>
+							</label>
+							<input id="jdd_file1" type="file" class="jdd_file" name="img"/>
+							</td>
+						</tr>
 					</table>
-						<input type="hidden" name="qnaCode" value="${mq.qnaCode }"/>
 				</div>
 				<div class="modal-footer">
-					<input type="submit" class="btn btn-outline-success" value="수정"/>
-				</div>
-			</form>
+					<input type="hidden" id="reviewNum" name="reviewNum"/>
+	        		<button type="submit" class="btn btn-secondary" >수정</button>
+	        		<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+	      		</div>
+	      	</form>
 		</div>  
 	</div>
 </div>
-
-
