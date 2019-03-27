@@ -17,7 +17,7 @@
 	div.de{margin-top:-10%;}
 	.avatar:hover {
 
-  -webkit-transform: scale(1.8);
+  -webkit-transform: scale(1.5);
 
  
 }
