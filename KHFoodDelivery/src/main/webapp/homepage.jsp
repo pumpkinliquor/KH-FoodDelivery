@@ -745,7 +745,7 @@ color:white;
       <div class="col-sm-3" id="panel" style="height:1px;">
       <br><br><br>
       
-          <img class="front card" style="cursor:pointer;" src="https://image.flaticon.com/icons/svg/1493/1493671.svg">
+          <img class="front card" style="cursor:pointer;" onclick="location.href='${path }/member/main.do'" src="https://image.flaticon.com/icons/svg/1493/1493671.svg">
          <!--  <div><span class="image blinking"> <img src="https://image.flaticon.com/icons/svg/889/889816.svg" style="width:100px; height: 100px; margin-top:240px; margin-left:100px;"><br/><strong style="text-align: center; margin-left:130px; color:white; font-size: 40px;">클릭!</strong> </span></div>  -->  
           <div onclick="location.href='${path }/member/main.do'" class="img-wrapper img2 back card">
               <div class="example-container">
@@ -767,7 +767,7 @@ color:white;
       <div class="col-sm-3" id="panel" style="height:1px;">
       
       <br><br><br><br>
-      <img class="front card" style="cursor:pointer;" src="https://image.flaticon.com/icons/svg/138/138204.svg">
+      <img class="front card" style="cursor:pointer;" onclick="location.href='${path }/member/main.do'" src="https://image.flaticon.com/icons/svg/138/138204.svg">
           <div onclick="location.href='${path}/owner/ownerMain.do'" class="img-wrapper img3  back card">
               <div class="example-container">
                  <div class="example-container__example example-container__example--hamburger">
