@@ -147,7 +147,9 @@ background-color: transparent;
 			
 			var id = $('#id').val().trim().length;
     		var pw = $('#pw').val().trim().length;  
-    		
+			var str_space= /\s/;  
+			
+		
 			if(id==0 || pw==0 ){
 				
 				alert("아이디와 비밀번호를 입력해주세요.");
@@ -159,50 +161,33 @@ background-color: transparent;
 			return true;
 
 		}
+ 		 function noSpaceForm2(obj) { // 공백사용못하게  , 특수문자 사용못하게
+ 		    var str_space = /\s/;  // 공백체크
+ 		    var pattern = /[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]/gi; //특수문제체크
+ 		   var pattern2 =  /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+ 		   	var val=obj.value;
+ 		   
+ 		    if(str_space.exec(obj.value)) { //공백 체크
+ 		        alert("해당 항목에는 공백을 사용할수 없습니다.\n공백은 자동적으로 제거 됩니다.");
+ 		        obj.focus();
+ 		        obj.value = obj.value.replace(' ',''); // 공백제거
+ 		        return false;
+ 		    }
+ 		    if (pattern.test(val)) {
+ 		    	alert("해당 항목에는 특수문자를 사용할수 없습니다.\n특수문자는 자동적으로 제거 됩니다.");
+ 		        obj.value = val.replace(pattern, "");
 
+ 		       }
+ 		   if (pattern2.test(val)) {
+		    	alert("영어와 숫자만 가능합니다.\n한글은 자동적으로 제거 됩니다.");
+		    	obj.value = val.replace(pattern2, "");
+				return false;
+		       }
  		
- 		 function address() {
-             new daum.Postcode({ 
-                oncomplete: function(data) {
-                    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                    var fullAddr = data.address; // 최종 주소 변수
-                    var extraAddr = ''; // 조합형 주소 변수
-     
-                    // 기본 주소가 도로명 타입일때 조합한다.
-                    if(data.addressType === 'R'){
-                        //법정동명이 있을 경우 추가한다.
-                        if(data.bname !== ''){
-                            extraAddr += data.bname;
-                        }
-                        // 건물명이 있을 경우 추가한다.
-                        if(data.buildingName !== ''){
-                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                        }
-                        
-                        // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-                         fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : ''); 
-                    }
-     
-                    // 주소 정보를 해당 필드에 넣는다.
-                    $('#memberAddress').val(fullAddr); 
-                     /* document.getElementById("location").value = fullAddr;  */
-                    // 주소로 상세 정보를 검색
-                    geocoder.addressSearch(data.address, function(results, status) {
-                        // 정상적으로 검색이 완료됐으면
-                        if (status === daum.maps.services.Status.OK) {
-     
-                            var result = results[0]; //첫번째 결과의 값을 활용
-     
-                            // 해당 주소에 대한 좌표를 받아서
-                            var coords = new daum.maps.LatLng(result.y, result.x);
-                           
-                         
-                        }
-                    });
-                }
-             }).open(); 
-        }
+ 			}
+ 	 
+ 		
+ 
 </script> 
 
 <section>
@@ -221,10 +206,10 @@ background-color: transparent;
                          <form  method="post"  onsubmit="return login();" action="${pageContext.request.contextPath}/member/login.do">
                          
                             <div class="form-group">
-                               <input type="text" name="id"  class="form-control my-input" id="id" placeholder="id">
+                               <input type="text" name="id" onkeyup="noSpaceForm2(this);" class="form-control my-input" id="id" placeholder="id">
                             </div>
                             <div class="form-group">
-                               <input type="password" name="pw"  class="form-control my-input" id="pw" placeholder="password">
+                               <input type="password" name="pw"  class="form-control my-input" id="pw" onkeyup="noSpaceForm2(this);" placeholder="password">
                             </div>
                             
                             <div class="text-center loginDiv_1">

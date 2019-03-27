@@ -125,7 +125,7 @@ div.newsletter,div.group{display:inline-block;}
 } 
 #memberHeaderTitle1:hover{
  	cursor:pointer;
- 	background:url("${path}/resources/images/owner/main/배달이미지2.png");
+ 	background:url("${path}/resources/images/owner/main/배달이미지2.gif");
  	 width:100px;
     height:70px;
     animation:walk 1s steps(200) infinite,
@@ -136,7 +136,7 @@ div.newsletter,div.group{display:inline-block;}
         background-position: 0px;
     }
     100%{
-        background-position: 300px;
+        background-position: 258px;
     }
 }
 
