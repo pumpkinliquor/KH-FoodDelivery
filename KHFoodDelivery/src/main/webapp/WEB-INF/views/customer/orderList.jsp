@@ -148,28 +148,28 @@ function detailOrder1(payorderNum,menucode){
 					<c:forEach items="${orderList}" var="m">
 						<tr class="pnt" style='cursor:pointer;'>
 						
-							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"style="cursor:pointer;"><c:out value="${m.STORECATEGORY }"/></td>
-							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.STORENAME }"/></td>
-							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});"><c:out value="${m.PAYDATE}"/></td>
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});" style="vertical-align: middle; cursor:pointer;"><c:out value="${m.STORECATEGORY }"/></td>
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});" style="vertical-align: middle;"><c:out value="${m.STORENAME }"/></td>
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});" style="vertical-align: middle;"><c:out value="${m.PAYDATE}"/></td>
 
-							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});">
+							<td onclick="detailOrder1(${m.PAYORDERNUM},${m.MENUCODE});" style="vertical-align: middle;">
 							<c:set var="state" value="${m.ORDERSTATE }" />
 							<c:choose>
-							<c:when test="${ state eq 0}">
-							결제완료
-							</c:when>
-							<c:when test="${ state eq 1}">
-							주문접수
-							</c:when>
-							<c:when test="${ state eq 2}">
-							배달중
-							</c:when>
-							<c:when test="${ state eq 3}">
-							배달완료
-							</c:when>
-							<c:when test="${ state eq 4}">
-							주문취소
-							</c:when>
+								<c:when test="${ state eq 0}">
+									결제완료
+								</c:when>
+								<c:when test="${ state eq 1}">
+									주문접수
+								</c:when>
+								<c:when test="${ state eq 2}">
+									배달중
+								</c:when>
+								<c:when test="${ state eq 3}">
+									배달완료
+								</c:when>
+								<c:when test="${ state eq 4}">
+									주문취소
+								</c:when>
 							</c:choose>
 						
 							</td>
