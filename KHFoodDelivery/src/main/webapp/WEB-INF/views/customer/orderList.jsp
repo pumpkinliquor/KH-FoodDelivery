@@ -173,7 +173,9 @@ function detailOrder1(payorderNum,menucode){
 							</c:choose>
 						
 							</td>
-							<td><button class="btn btn-default" value="${m.MEMBERID}"  id="modal" type="button" onclick="fn_review(${m.BUSINESSCODE},${m.MEMBERNUM},this)">리뷰</button></td>
+							<c:if test="${ state eq 3}">
+								<td><button class="btn btn-default" value="${m.MEMBERID}"  id="modal" type="button" onclick="fn_review(${m.BUSINESSCODE},${m.MEMBERNUM},this)">리뷰</button></td>
+							</c:if>
 						</tr>				
 					</c:forEach>
 				</tbody>
@@ -201,14 +203,15 @@ ${pageBar}
 				<div class="modal-body">
 					<table class="table">
 						<tr>
-							<th style="vertical-align: middle; font-weight:bold;">별점</th>
-							<td><p class="star_rating">
-								    <span id="1" onclick=mark(this)>★</span>
+							<th style="vertical-align: middle; font-weight:bold; width:100px;">별점</th>
+							<td>
+								<p class="star_rating">
+								    <span id="1" onclick=mark(this) class="on">★</span>
 								    <span id="2" onclick=mark(this)>★</span>
 								    <span id="3" onclick=mark(this)>★</span>
 								    <span id="4" onclick=mark(this)>★</span>
 								    <span id="5" onclick=mark(this)>★</span>
-								<input type="hidden" id="star" name="grade"/>
+									<input type="hidden" id="star" name="grade"/>
 								</p>
 							</td>
 
@@ -220,7 +223,7 @@ ${pageBar}
 								<input type="hidden" id="businessCode" name="bsCode" value=""/>
 								<input type="hidden" id="memberNum" name="memNum" value=""/>
 								<input type="hidden" id="memberId" name="memId" value=""/>
-								<textarea id="textarea" name="context" cols="50" rows="5" placeholder="리뷰를 작성해 주세요." ></textarea></td>
+								<textarea id="textarea" name="context" cols="50" rows="5" placeholder="리뷰를 작성해 주세요." onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" required="required"></textarea></td>
 							
 							</th>
 						
@@ -248,6 +251,18 @@ ${pageBar}
 </div>
 
 <script>
+function noSpaceForm(obj){		
+	var str_space = /(<([^>]+)>)/ig;  // 태그체크
+	
+	   
+    if(str_space.test(obj.value)) { //태그체크
+        obj.focus();
+        obj.value = obj.value.replace(str_space,''); // 태그제거
+        return false;
+    }
+   
+	
+}
 
 function fn_review(businessCode,membernum,e){
 	
