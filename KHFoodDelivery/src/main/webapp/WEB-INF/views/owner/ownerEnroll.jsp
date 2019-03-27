@@ -23,6 +23,14 @@ span.guide {
 	top: 12px;
 	right: 10px;
 }
+span.guide1 {
+	display: none;
+	font-size: 12px;
+	position: absolute;
+	top: 18px;
+	right: 10px;
+}
+
 
 span.ok,span.ok1 {
 	color: green;
@@ -104,6 +112,9 @@ span.error,span.error1 {
 			
 		});
 		
+		
+		
+		
 		//비밀번호 중복확인
 		$("#reownerPw").keyup(function() {
 			
@@ -160,8 +171,33 @@ span.error,span.error1 {
 	        
 	        
 		});
+	
 	});
 	
+	$(function() {
+		$("#ownerEmail").keyup(function() {
+		var ownerEmail = $("#ownerEmail").val().trim();
+		$.ajax({
+		url : "${path}/owner/ownerCheckEmail.do",
+		data : {
+			"ownerEmail" : ownerEmail
+		},
+		success : function(data) {
+			console.log(data);
+			tr = data;
+			console.log("tr" + tr);
+			if (data == 'true') {
+				$(".guide1.ok1").hide();
+				$(".guide1.error1").show();
+
+			} else {
+				$(".guide1.ok1").show();
+				$(".guide1.error1").hide();
+				}
+			}
+		});
+	});
+	});
 	// submit 가기전 검사
 	function fn_enroll_validate() {
 		
@@ -271,6 +307,9 @@ span.error,span.error1 {
 										<div class="col-8">
 											<input id="ownerEmail" name="ownerEmail" placeholder="Email"
 												class="form-control here" required="required" type="email">
+												<span class="guide1 ok1">이
+												이메일은 사용할 수 있음 </span> <span class="guide1 error1" onkeyup="noSpaceForm3(this);" onchange="noSpaceForm3(this)">이 이메일은 사용할 수
+												없음 </span>
 										</div>
 									</div>
 									<div class="form-group row">

@@ -31,6 +31,13 @@ public class OwnerMemberDaoImpl implements OwnerMemberDao {
 		return sqlSession.selectOne("ownerMember.selectSearchId",map);
 	}
 
+	
+	@Override
+	public int selectSearchEmail(String ownerEmail) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("ownerMember.ownerCheckEmail", ownerEmail);
+	}
+
 	@Override
 	public Map<String, String> selectConfirmIdEmail(Map<String, String> map) {
 		return sqlSession.selectOne("ownerMember.selectConfirmIdEmail",map);

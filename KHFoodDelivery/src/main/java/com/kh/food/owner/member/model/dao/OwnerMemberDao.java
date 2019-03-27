@@ -14,4 +14,5 @@ public interface OwnerMemberDao {
 	int ownerCheckId(String ownerId);
 	int lastDate(int ownerNum);
 	String selectBusiness(String ownerId);
+	int selectSearchEmail(String ownerEmail);
 }

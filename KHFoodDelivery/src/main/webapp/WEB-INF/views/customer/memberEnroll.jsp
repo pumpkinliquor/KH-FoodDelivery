@@ -217,7 +217,7 @@ pageEncoding="UTF-8"%>
             		});
             	});
             	
-            	//이메일막기
+            	//이메일 중복막기
             	$(function(){
             		$("#memberEmail").keyup(function(){
             			memberEmail=$("#memberEmail").val().trim();
