@@ -244,6 +244,11 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
+	public int checkEmail(String memberEmail) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.checkEmail", memberEmail);
+	}
+	@Override
 	public int checkNick(String nickName) {
 		return sqlSession.selectOne("member.checkNick",nickName);
 	}

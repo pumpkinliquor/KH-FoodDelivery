@@ -79,4 +79,5 @@ public interface MemberDao {
 	MemberQnaReview selectMemberQnaReview(int no);
 	List<Map<String, String>> selectMemberOrderList(int memberNum, int cPage, int numPerPage);
 	int selectMemberOrderCount(int memberNum);
+	int checkEmail(String memberEmail);
 }

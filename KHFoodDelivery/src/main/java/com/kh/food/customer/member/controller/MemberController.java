@@ -398,6 +398,23 @@ public class MemberController {
 		
 	}
 	
+	//이메일체크
+	@RequestMapping("/member/checkEmail.do")
+	public ModelAndView checkEmail(String memberEmail, ModelAndView mv ) throws UnsupportedEncodingException{
+		
+		Map map=new HashMap();
+		boolean isEmail=service.checkEmail(memberEmail)==0?false:true;
+		map.put("isEmail",isEmail);
+
+		
+		mv.addAllObjects(map); //map 으로 된거 통째로 넣어줌
+		mv.addObject("num",1);
+			
+		mv.setViewName("jsonView");
+		
+		return mv;
+	}
+	
 	//로그인 폼
 	@RequestMapping("/customer/login.do")
 	public String login()

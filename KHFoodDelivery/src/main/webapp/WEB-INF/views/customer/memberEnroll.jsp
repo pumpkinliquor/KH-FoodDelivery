@@ -19,8 +19,9 @@ pageEncoding="UTF-8"%>
     div#enroll-container span.guide {display:none;font-size: 12px;position:absolute; top:12px; right:10px;}
     div#enroll-container span.guide1 {display:none;font-size: 12px;position:absolute; top:105px; right:10px;}
      div#enroll-container span.guide2 {display:none;font-size: 12px;position:absolute; top:200px; right:10px;}
-    div#enroll-container span.ok,span.ok1,span.ok2{color:blue;}
-    div#enroll-container span.error,span.error2{color:red;}
+     div#enroll-container span.guide3 {display:none;font-size: 12px;position:absolute; top:300px; right:10px;}
+    div#enroll-container span.ok,span.ok1,span.ok2,span.ok3{color:blue;}
+    div#enroll-container span.error,span.error2,span.error3{color:red;}
 	    .submitBtn{
 	    border-color:rgb(250, 163, 148);
 	    color:black;
@@ -126,9 +127,7 @@ pageEncoding="UTF-8"%>
             	//비밀번호 확인
             		$('#memberPw2').blur(function(){
             			memberPw = $("#memberPw").val();
-            			var passwordRules =  /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
-            			
-            			console.log("패스워드룰"+passwordRules.test(memberPw));
+            			var passwordRules =  /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;		
              		   	if(passwordRules.test(memberPw) == false)
              		   	if($('#memberPw2').val()!=''){
              		   		{
@@ -174,7 +173,6 @@ pageEncoding="UTF-8"%>
             				url:"${path}/member/checkId.do",
             				data:{"memberId":memberId},
             				success:function(data){          
-            					console.log(data.isId);
             					id=data.isId;
             					if(data.isId==false){
             						$(".guide.ok").show();
@@ -201,9 +199,7 @@ pageEncoding="UTF-8"%>
             				url:"${path}/member/checkNick.do",
             				data:{"nickName":nickName},
             				success:function(data){          
-            					console.log(data.isNick);
-            					nick=data.isNick;
-            					console.log(nick);       					
+            					nick=data.isNick;     					
             					if(data.isNick==false){
             						$(".guide2.ok2").show();
             						$(".guide2.error2").hide();
@@ -212,6 +208,33 @@ pageEncoding="UTF-8"%>
             						
             						$(".guide2.error2").show();
             						$(".guide2.ok2").hide();
+            						
+            					}
+            					
+            					
+            				}
+            			});
+            		});
+            	});
+            	
+            	//이메일막기
+            	$(function(){
+            		$("#memberEmail").keyup(function(){
+            			memberEmail=$("#memberEmail").val().trim();
+         
+            			$.ajax({
+            				url:"${path}/member/checkEmail.do",
+            				data:{"memberEmail":memberEmail},
+            				success:function(data){          
+            					memberEmail=data.isEmail;     					
+            					if(data.isEmail==false){
+            						$(".guide3.ok3").show();
+            						$(".guide3.error3").hide();
+            					
+            					}else{
+            						
+            						$(".guide3.error3").show();
+            						$(".guide3.ok3").hide();
             						
             					}
             					
@@ -276,8 +299,9 @@ pageEncoding="UTF-8"%>
             <span class="guide2 error2">닉네임이 존재합니다. </span>
             <input type="date" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth" max="2018-12-31" min="1900-01-01"required="required"/>
             <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" onkeyup="noSpaceForm3(this);" onchange="noSpaceForm3(this)"required="required" >
-            <input type="tel" class="form-control" placeholder="전화번호 (예:01012345678)" name="memberPhone" id="memberPhone" maxlength="11"required="required"/>
              
+             <span class="guide3 ok3">사용 가능한 이메일입니다. </span>
+            <span class="guide3 error3">이메일이 존재합니다. </span>
              <input type="button" class="btn-ser btn btn-default" onclick="address();" value="주소검색"/>
              
             <input type="text" class="add form-control"  placeholder="주소" name="memberAddress" id="memberAddress" required="required"/>

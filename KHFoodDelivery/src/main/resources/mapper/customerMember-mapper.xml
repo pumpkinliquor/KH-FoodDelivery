@@ -32,6 +32,9 @@
 		select count(*) from member where nickName=#{nickName}
 	</select>
 	
+	<select id="checkEmail" parameterType="String" resultType="_int">
+		select count(*) from member where memberEmail=#{memberEmail}
+	</select>
 	<select id="login" parameterType="map" resultMap="member">
 		select * from member where memberId=#{id}
 	</select>

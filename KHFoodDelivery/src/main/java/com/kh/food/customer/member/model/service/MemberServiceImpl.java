@@ -245,6 +245,14 @@ public class MemberServiceImpl implements MemberService {
 	public int checkNick(String nickName) {
 		return dao.checkNick(nickName);
 	}
+	
+	
+
+	@Override
+	public int checkEmail(String memberEmail) {
+		// TODO Auto-generated method stub
+		return dao.checkEmail(memberEmail);
+	}
 
 	@Override
 	public Map<String,Object> login(Map<String,String> map){
