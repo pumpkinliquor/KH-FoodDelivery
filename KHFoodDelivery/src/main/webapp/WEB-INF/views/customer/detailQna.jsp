@@ -103,6 +103,16 @@
 
 <!-- 모달 구현 -->
 <div class="modal" id="qnaUpdateModal" role="dialog">
+<script>
+
+$(function(){
+	   $('[name=upFile]').on('change',function(){
+	      var filename=this.files[0].name;
+	      $(this).next('.custom-file-label').html(filename);
+	   });
+	});
+
+</script>
 	<div class="modal-dialog">
 		<!-- Modal content-->
 		<div class="modal-content">
@@ -110,7 +120,7 @@
 				<h4 class="modal-title">문의글 수정</h4>
 				<button type="button" class="close" data-dismiss="modal">×</button>
 			</div>
-			<form action="${path}/customer/memberQnaUpdate.do" method="post">
+			<form action="${path}/customer/memberQnaUpdate.do" method="post" enctype="multipart/form-data" >
 				<div class="modal-body" style="height: 600px;">
 					<table class="table">
 						<tr>
@@ -134,18 +144,23 @@
 							<th style="vertical-align: middle">문의글</th>
 							<td><textarea name="qnaContent" class="form-control" style="resize: none" rows="6">${mq.qnaContent }</textarea></td>						
 						</tr>
-					 <tr>
-					<th>첨부파일</th>
-					<td>	
-						<div>
-						 <c:forEach items="${attach}" var="a" varStatus="vs">
-						 <button type="button" style="padding:0px; background-color:white; cursor:pointer; border:0px;" class="fileDownLoadBtn" onclick="fileDownLoad('${a.ORIGINALFILENAME}','${a.RENAMEDFILENAME}');">
-	         				<img src="${path }/resources/images/owner/icons/attach_file_icon.png" width=17px;/> - ${a.ORIGINALFILENAME}
-	        			</button>
-        				</c:forEach> 
-						</div>
-						</td>	
-					</tr>						 -					
+						<c:forEach items="${attach }" var="a">
+						    <tr>
+			                <th>
+								<div class="input-group-prepend" style="padding:0px;">
+			                    	<label for="upFile1"><span class="input-group-text">파일수정</span></label>
+				                </div>
+							</th>
+			                <td>
+           	 					<div class="custom-file">
+				                    <input type="file" class="custom-file-input" name="upFile" id="upFile1"/>
+				                    <label class="custom-file-label" for="upFile1">${a.ORIGINALFILENAME}</label>
+		               	 		</div>
+		                	</td>
+			            </tr>
+			            </c:forEach>
+			             
+						
 					</table>
 						<input type="hidden" name="qnaCode" value="${mq.qnaCode }"/>
 				</div>
