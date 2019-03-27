@@ -216,6 +216,7 @@ public class OrderStoreSalesController {
 		List<Map<String,String>> category = menuService.selectMenuCategory(businessCode);
 		List<Map<String,String>> menuList = menuService.selectMenuList(businessCode);
 		List<Map<String,String>> goodsList = orderService.selectGoodsOrderList(cPage,numPerPage,businessCode);
+		logger.debug("ca"+category);
 		int goodsCount = orderService.selectGoodsCount(businessCode1);
 		String todaySales = "";
 		String monthSales ="";

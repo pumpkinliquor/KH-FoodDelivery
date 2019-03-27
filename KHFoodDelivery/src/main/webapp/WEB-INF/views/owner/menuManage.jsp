@@ -64,7 +64,9 @@ pageEncoding="UTF-8"%>
                                             <div class="col-8">
                                                 <select id="select" name="menuCategory" class="custom-select" required="required">
                                                     <c:forEach var="c" items="${category }">
+                                                    <c:if test="${c.CATEGORYSTATE eq 0 }">
                                                     <option value="${c.MENUCATEGORYCODE}">${c.MENUCATEGORY}</option>
+                                                    </c:if>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -96,16 +98,18 @@ pageEncoding="UTF-8"%>
                                   <div class="col-md-12">
                                   			<c:if test="${ !empty category}">
                                   			<c:forEach items="${category}" var="c" varStatus="status">
-                                                    
+                                           	         
                                             <table class="table table-hover board">
                                                 <tbody>
+                                                	<c:if test="${c.CATEGORYSTATE eq 0}">
                                                     <h5>${c.MENUCATEGORY}</h5>            
+                                                    </c:if>
                                                     <c:forEach items="${menuList}" var="m" varStatus="status1">
                                                     <c:if test="${m.MENUSTATE eq 0}">
                                                     <c:if test="${c.MENUCATEGORYCODE eq m.MENUCATEGORYCODE}">
                                                     <!-- data-toggle="modal" data-target="#myModal" -->
-                                                    <tr style="cursor:pointer;" onclick="updateMenu(${m.MENUCODE},${businessCode })">
-                                                        <td width="44%" >${m.MENUNAME }</td>
+                                                    <tr style="cursor:pointer;">
+                                                        <td width="44%"  onclick="updateMenu(${m.MENUCODE},${businessCode })">${m.MENUNAME }</td>
                                                         <td width="32%"><input type="text"  value="${m.MENUPRICE}" class="form-control here menu11" placeholder=""></td>
                                                         <td width="12%"><button onclick="updatePrice(this,${m.MENUCODE},${businessCode })" class="btn btn-default bt1">수정</button></td>
                                                         <td width="12%"><button onclick="deleteMenu(${m.MENUCODE},${businessCode });" class="btn btn-default bt1">삭제</button></td>
@@ -161,7 +165,7 @@ pageEncoding="UTF-8"%>
 										<label for="username" class="col-4 col-form-label">메뉴이름</label>
 										<div class="col-8">
 											<input type="text" id="menuName" name="menuName"
-												placeholder="아이디" class="form-control here"
+												placeholder="메뉴이름" class="form-control here"
 												required="required"> <input type="hidden"
 												name="checkId" value="0" />
 										</div>
@@ -213,7 +217,18 @@ pageEncoding="UTF-8"%>
 	</div>
 
 	<script>
+			$(function(){
+								
+				$('#menuName').keyup(function(){
+					var a = $('#menuName').val();
+					var pattern = /[^a-zA-Z0-9]/gi;
+				        if(pattern.test(a)){
+				        	$('#menuName').val("");
+				        }
+				});
 				
+				
+			});
 				function updatePrice(e,menuCode,businessCode)
 				{
 					var price = $(e).parent().prev().children().val();

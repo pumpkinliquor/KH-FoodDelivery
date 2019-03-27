@@ -28,7 +28,7 @@ public class MenuDaoImpl implements MenuDao {
 
 	@Override
 	public int deleteCategory(String menuCategory) {
-		return sqlSession.delete("menu.deleteCategory",menuCategory);
+		return sqlSession.update("menu.deleteCategory",menuCategory);
 	}
 
 	@Override

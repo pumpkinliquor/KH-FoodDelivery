@@ -145,7 +145,12 @@ font-family: 'Noto Serif KR', serif;
                                   	<select id="menuCategory1" name="menuCategory1" class="custom-select" required="required" onchange="itemChange(this)">                         
 	                                   	<option value="" selected disabled hidden>==선택하세요==</option>                   
 	                                   <c:forEach var="c" items="${category }">
+	                                   <c:if test="${c.CATEGORYSTATE eq 1 }">
+	                                   <option value="${c.MENUCATEGORYCODE }">${c.MENUCATEGORY }(단종됨)</option>
+	                                   </c:if>
+	                                   <c:if test="${c.CATEGORYSTATE eq 0 }">
                                        <option value="${c.MENUCATEGORYCODE }">${c.MENUCATEGORY }</option>
+                                       </c:if>
                                        </c:forEach>
 	                                </select>        
                                   </div>

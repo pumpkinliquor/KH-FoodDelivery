@@ -27,6 +27,9 @@ a:hover {
   color: #000;
   text-decoration: none;
 }
+.menuEnrollDiv{
+margin-top : 20px;
+}
 
 h1,h2,h3,h4,h5{
        font-family: 'Open Sans', sans-serif;
@@ -62,7 +65,6 @@ left: 0;
 }
 
 .categoryDiv{
-  margin-top: 20px;
   height:200px;
 }
 
@@ -89,7 +91,37 @@ left: 0;
                         </div> 
                     </div>
                     <div class="col-md-9">
-                        <div class="card">
+                    	 <div class="card categoryDiv">
+                          <div class="card-body">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <h4>카테고리 등록</h4>
+                                      <hr>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <form action="${path }/owner/enrollCategory.do?businessCode=${businessCode}" method="post">
+                                        <div class="form-group row">
+                                          <label for="menuCategory" class="col-4 col-form-label">카테고리명</label> 
+                                          <div class="col-8">
+                                            <input id="menuCategory" name="menuCategory" placeholder="" class="form-control here" required="required" type="text">
+                                          </div>
+                                        </div>                                  
+                                        <div class="form-group row">
+                                          <div class="offset-4 col-8">
+                                            <button name="submit" type="submit" class="btn btn-primary bt1">등록</button>
+                                          </div>
+                                        </div>
+                                      </form>
+                                  </div>
+                              </div>
+                              
+                                
+
+                          </div>
+                      </div>
+                        <div class="card menuEnrollDiv">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -109,9 +141,11 @@ left: 0;
                                           <div class="form-group row">
                                             <label for="select" class="col-4 col-form-label">메뉴카테고리</label> 
                                             <div class="col-8">
-                                              <select id="select" name="menuCategoryCode" class="custom-select">
+                                              <select id="select" name="menuCategoryCode" class="custom-select" required="required">
                                               	<c:forEach var="c" items="${category }">
+                                              	<c:if test="${c.CATEGORYSTATE eq 0 }">
                                                 <option value="${c.MENUCATEGORYCODE }">${c.MENUCATEGORY }</option>
+                                                </c:if>
                                                 </c:forEach>
                                               
                                               </select>
@@ -152,36 +186,6 @@ left: 0;
                             </div>
                         </div>
 
-                        <div class="card categoryDiv">
-                          <div class="card-body">
-                              <div class="row">
-                                  <div class="col-md-12">
-                                      <h4>카테고리 등록</h4>
-                                      <hr>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-md-12">
-                                      <form action="${path }/owner/enrollCategory.do?businessCode=${businessCode}" method="post">
-                                        <div class="form-group row">
-                                          <label for="menuCategory" class="col-4 col-form-label">카테고리명</label> 
-                                          <div class="col-8">
-                                            <input id="menuCategory" name="menuCategory" placeholder="" class="form-control here" required="required" type="text">
-                                          </div>
-                                        </div>                                  
-                                        <div class="form-group row">
-                                          <div class="offset-4 col-8">
-                                            <button name="submit" type="submit" class="btn btn-primary bt1">등록</button>
-                                          </div>
-                                        </div>
-                                      </form>
-                                  </div>
-                              </div>
-                              
-                                
-
-                          </div>
-                      </div>
                     </div>
                 </div>
             </div>
@@ -193,6 +197,26 @@ left: 0;
 
 
 <script>
+$(function(){
+	
+	$('#menuName').keyup(function(){
+		var a = $('#menuName').val();
+		var pattern = /[^a-zA-Z0-9]/gi;
+	        if(pattern.test(a)){
+	        	$('#menuName').val("");
+	        }
+	});
+	
+	$('#menuCategory').keyup(function(){
+		var a = $('#menuCategory').val();
+		var pattern = /[^a-zA-Z0-9]/gi;
+	        if(pattern.test(a)){
+	        	$('#menuCategory').val("");
+	        }
+	});
+	
+});
+
 $('#menuImage').change(function(){
 /* 	$('label[id*="menuImage1"]').text($('#menuImage').val());  */
 })
