@@ -76,10 +76,39 @@ public class MemberController {
 	}
 	//문의글 수정
 	@RequestMapping("/customer/memberQnaUpdate.do")
-	public ModelAndView updateMemberQna(MemberQna mq) {
+	public ModelAndView updateMemberQna(MemberQna mq,int qnaCode,MultipartFile [] upFile,HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		
-		int result = service.updateMemberQna(mq);
+		
+		
+	ArrayList<MemberQnaAttachment> files=new ArrayList<MemberQnaAttachment>();
+	 
+		
+		//저장경료
+		String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/member/qnaAttach");
+		
+		for(MultipartFile f : upFile) {
+			if(!f.isEmpty()) {
+				String oriFileName=f.getOriginalFilename();
+				String ext=oriFileName.substring(oriFileName.lastIndexOf("."));
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+				int randomV=(int)(Math.random()*1000);
+				String reName=sdf.format(System.currentTimeMillis())+"_"+randomV+ext;
+				try {
+					f.transferTo(new File(saveDir+"/"+reName));
+				}
+				catch(IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}
+				MemberQnaAttachment att=new MemberQnaAttachment();
+				att.setReNamedFileName(reName);
+				att.setOriginalFileName(oriFileName);
+				files.add(att);
+			}
+		}
+	
+		
+		int result = service.updateMemberQna(mq,files,qnaCode);
 
 		String msg="";
 		String loc="/";
@@ -134,9 +163,8 @@ public class MemberController {
 	//나의 문의내역
 	@RequestMapping("/member/qnaList.do")
 	public ModelAndView memberQna(String memberId) {
-		ModelAndView mv = new ModelAndView();
 		
-
+		ModelAndView mv = new ModelAndView();
 		
 		List<MemberQna> qnaList=service.selectmemberQna(memberId);
 		// 문의 날짜 포맷 (패턴 : yyyy-MM-dd)
@@ -176,6 +204,10 @@ public class MemberController {
 			e.printStackTrace();
 		}
 		
+		List<Map<String, String>> attach = service.selectMemberQnaAttach(no);
+		
+		
+		mv.addObject("attach",attach);
 		mv.setViewName("customer/detailQna");
 		return mv;
 		

@@ -28,7 +28,7 @@ public interface MemberService {
 	//상세 주문내역
 	Map<String,String> orderOne(Map<String,String> orList);
 	//고객 문의 수정
-	int updateMemberQna(MemberQna mq);
+	int updateMemberQna(MemberQna mq,List<MemberQnaAttachment> files,int qnaCode);
 	//고객 문의 삭제
 	int deleteMemberQna(int no);
 	//고객 문의상세내용

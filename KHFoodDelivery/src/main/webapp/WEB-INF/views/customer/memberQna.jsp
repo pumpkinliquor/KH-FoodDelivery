@@ -89,18 +89,6 @@ function noSpaceForm(obj){
 		               	 		</div>
 		                	</td>
 			            </tr>
-			              <th>
-								<div class="input-group-prepend" style="padding:0px;">
-			                    	<label for="upFile2"><span class="input-group-text">첨부파일#2</span></label>
-			                	</div>
-							</th>
-			                <td>
-			                	<div class="custom-file">
-				                    <input type="file" class="custom-file-input" name="upFile" id="upFile2">
-				                    <label class="custom-file-label" for="upFile2">파일을 선택하세요</label>
-			                	</div>
-		                	</td>
-			            </tr>
 			            <tr>
 			                <td colspan="2">
 			                    <input type="submit" value="문의하기" class="btn btn-outline-success" style="float:right;"/>

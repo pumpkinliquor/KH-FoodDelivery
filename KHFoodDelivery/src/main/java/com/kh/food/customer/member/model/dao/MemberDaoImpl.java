@@ -31,7 +31,10 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	
-	
+	@Override
+	public int updateAttach(Map<String,Object> map) {
+		return sqlSession.update("member.updateAttach",map);
+	}
 	// 회원 문의 첨부파일
 	@Override
 	public List<Map<String, String>> selectMemberQnaAttach(int no) {
