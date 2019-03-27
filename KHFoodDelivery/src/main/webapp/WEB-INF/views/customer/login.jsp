@@ -185,6 +185,27 @@ background-color: transparent;
 		       }
  		
  			}
+ 		 function noSpaceForm1(obj) { // 공백사용못하게  , 특수문자 사용못하게
+  		    var str_space = /\s/;  // 공백체크
+  		  
+  		   var pattern2 =  /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+  		   	var val=obj.value;
+  		   
+  		    if(str_space.exec(obj.value)) { //공백 체크
+  		        alert("해당 항목에는 공백을 사용할수 없습니다.\n공백은 자동적으로 제거 됩니다.");
+  		        obj.focus();
+  		        obj.value = obj.value.replace(' ',''); // 공백제거
+  		        return false;
+  		    }
+  		  
+  		   if (pattern2.test(val)) {
+ 		    	alert("영어와 숫자만 가능합니다.\n한글은 자동적으로 제거 됩니다.");
+ 		    	obj.value = val.replace(pattern2, "");
+ 				return false;
+ 		       }
+  		
+  			}
+  	 
  	 
  		
  
@@ -209,7 +230,7 @@ background-color: transparent;
                                <input type="text" name="id" onkeyup="noSpaceForm2(this);" class="form-control my-input" id="id" placeholder="id">
                             </div>
                             <div class="form-group">
-                               <input type="password" name="pw"  class="form-control my-input" id="pw" onkeyup="noSpaceForm2(this);" placeholder="password">
+                               <input type="password" name="pw"  class="form-control my-input" id="pw" onkeyup="noSpaceForm1(this);" placeholder="password">
                             </div>
                             
                             <div class="text-center loginDiv_1">
