@@ -84,8 +84,22 @@ public class NoticeDaoImpl implements NoticeDao {
 				System.out.println("dao 글: " +map );
 				return sqlSession.update("memberNotice.memberNoticeUpdateEnd",map); 
 			}
-	 
 
+			@Override
+			public List<NoticeAttachment> selectAttachModify(int noticeNum) {
+				// TODO Auto-generated method stub
+				return sqlSession.selectList("memberNotice.selectAttachModify",noticeNum);
+			}
+
+			@Override
+			public void modifyFore(int noticeNum) {
+				sqlSession.delete("memberNotice.modifyFore", noticeNum);
+				
+			}
+			
+			
+	 
+			
 			
 			
 			
