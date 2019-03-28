@@ -102,7 +102,7 @@ pageEncoding="UTF-8"%>
 		    </div>
             <div class="col">
               <div class="counter">
-			      <p class="timer count-title count-number" data-to="1700" data-speed="1500" id="countWeek">${monthSales }원</p>
+			      <p class="timer count-title count-number" data-to="1700" data-speed="1500" id="countWeek">${weekSales }원</p>
 			      <p class="count-text ">이번주</p>
     		  </div>
             </div>
