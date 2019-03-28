@@ -286,16 +286,16 @@ public class MenuController {
 	{
 //		logger.debug("메뉴하나 가져왔니?" + menuCode);
 		Map menu = service.selectOneMenu(menuCode);
-//		logger.debug("menu"+menu);
+		logger.debug("menu"+menu);
 		return menu;
 	}
 	
 	//메뉴 수정 하기
 	@RequestMapping("owner/updateMenu.do")
-	public ModelAndView updateMenu(String menuName,String menuPrice,String menuContent,MultipartFile menuImage,String menuCode,String businessCode,HttpServletRequest request)
+	public ModelAndView updateMenu(String menuName,String menuPrice,String menuContent,MultipartFile menuImage,String menuCode,String businessCode,String orimenuImage,HttpServletRequest request)
 	{
 		String saveDir = request.getSession().getServletContext().getRealPath("/resources/upload/owner/menu");
-		
+		logger.debug("image"+menuImage.getOriginalFilename());
 		ModelAndView mv = new ModelAndView();
 		Map<String,String> map = new HashMap<>();
 		map.put("menuName", menuName);
@@ -325,6 +325,10 @@ public class MenuController {
 				e.printStackTrace();
 			}
 			map.put("menuImage", reName);
+		}
+		else
+		{
+			map.put("menuImage", orimenuImage);
 		}
 		logger.debug("메뉴수정" + map);
 		int result = service.updateMenu(map);
