@@ -89,7 +89,7 @@ pageEncoding="UTF-8"%>
 		<div class="row text-center saleDiv2">
 	        <div class="col">
 	        <div class="counter">
-		      <p class="timer count-title count-number" data-to="100" data-speed="1500" id="countYear">${todaySales}원</p>
+		      <p class="timer count-title count-number" data-to="100" data-speed="1500" id="countDay">${todaySales}원</p>
 		       <p class="count-text ">오늘</p>
 	    	</div>
 		    </div>
