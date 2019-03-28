@@ -43,7 +43,7 @@ delete from wishlist where memberId=#{memberId}
 	SELECT distance
 		FROM 
 		(
-    		SELECT STORE.*, DISTNACE_WGS84(#{lat}, #{lng}, atitude, longitude) AS DISTANCE
+    		SELECT STORE.*, DISTNACE_WGS84(#{lat} - 0.0000000000009, #{lng}, atitude, longitude) AS DISTANCE
     		FROM STORE
     		WHERE (atitude between #{lat} - 0.1 and #{lat} + 0.1)
     			AND (longitude between #{lng} - 0.1 and #{lng} + 0.1)
