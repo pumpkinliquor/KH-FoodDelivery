@@ -62,7 +62,7 @@
 		SELECT *
 		FROM 
 		(
-    		SELECT STORE.*, DISTNACE_WGS84(#{lat}, #{lng}, atitude, longitude) AS DISTANCE
+    		SELECT STORE.*, DISTNACE_WGS84(#{lng}, #{lat}, atitude, longitude) AS DISTANCE
     		FROM STORE
     		WHERE (atitude between #{lat} - 0.039 and #{lat} + 0.039)
     			AND (longitude between #{lng} - 0.042 and #{lng} + 0.042)

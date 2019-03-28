@@ -45,6 +45,8 @@ public class StoreController {
 			BigDecimal lng1 = new BigDecimal(lng);
 			System.out.println("" + lat1);
 			System.out.println("" + lng1);
+			
+			System.out.println("위도 변환 :" + lat1.longValue());
 			String businessPhone=frontPhone+"-"+middlePhone+"-"+finalPhone;
 			String businessNum=frontBusinessNum+"-"+middleBusinessNum+"-"+finalBusinessNum;
 			String storePhone=frontStorePhone+"-"+middleStorePhone+"-"+finalStorePhone;
