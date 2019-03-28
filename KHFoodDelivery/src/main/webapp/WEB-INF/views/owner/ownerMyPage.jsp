@@ -26,6 +26,12 @@ small {
 }
 div.container span.guide1 {display:none;font-size: 12px;position:absolute; top:10px; right:20px;}
 div.container span.ok1 {color:blue;}
+
+#modalBtn{
+background-color : white;
+border-color:rgba(6, 4, 75, 0.986);
+color:rgba(6, 4, 75, 0.986);
+}
 </style>
 <section>
 	<div class="container">
