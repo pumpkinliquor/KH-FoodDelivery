@@ -24,7 +24,7 @@
 		from pay) p
 		JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM)
 		JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE)
-		where rnum = 1 and TO_CHAR(paydate, 'YY/MM/DD') = TO_CHAR(SYSDATE, 'YY/MM/DD')
+		where rnum = 1 and TO_CHAR(paydate, 'YY/MM/DD') = TO_CHAR(SYSDATE+9/24, 'YY/MM/DD')
 		and p.orderstate != 4 
 	</select>
 	
