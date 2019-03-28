@@ -286,7 +286,7 @@ function fn_detailOrder(payOrderNum){
 					html += "<tr style='cursor:pointer;'><td width='44%'>"+data[i].MENUNAME+"</td><td width='12%'>"+data[i].PRICE+"원</td></tr>";
 					sum = Number(sum) + Number(data[i].PRICE);
 				}
-				var totalPrice = Number(sum) + Number(data[0].DELIVERYPRICE);
+				var totalPrice = Number(sum) + Number(data[0].DELIVERYPAY);
 				html += "<tr style='cursor:pointer;'><td width='44%'>주문금액</td><td width='12%'>"+sum+"원</td></tr>"
 				html += "<tr style='cursor:pointer;'><td width='44%'>배달비</td><td width='12%'>"+data[0].DELIVERYPAY+"원</td></tr>"
 				html += "<tr style='cursor:pointer;'><td width='44%'>총결제금액</td><td width='12%'>"+totalPrice+"원</td></tr>"

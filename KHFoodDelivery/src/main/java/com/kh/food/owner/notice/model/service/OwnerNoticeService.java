@@ -3,6 +3,7 @@ package com.kh.food.owner.notice.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.food.admin.notice.attachment.vo.NoticeAttachment;
 import com.kh.food.owner.notice.attachment.vo.OwnerNoticeAttachment;
 
 public interface OwnerNoticeService {
@@ -22,4 +23,6 @@ public interface OwnerNoticeService {
 	int memberCount();
 	int ownerCount();
 	int todayPayCount();
+	void modifyFore(int ownerNoticeNum);
+	List<OwnerNoticeAttachment> selectAttachModify(int ownerNoticeNum);
 }

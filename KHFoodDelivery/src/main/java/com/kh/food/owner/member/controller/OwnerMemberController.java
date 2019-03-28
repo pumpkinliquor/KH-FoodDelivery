@@ -253,4 +253,14 @@ public class OwnerMemberController {
 		logger.debug(String.valueOf(isId));
 		response.getWriter().print(isId);
 	}
+	
+	
+	
+	@RequestMapping("/owner/ownerCheckEmail.do")
+	public void ownerCheckEmail(String ownerEmail,HttpServletResponse response) throws IOException 
+	{
+		logger.debug("아이디중복체크");
+		boolean isEmail = service.ownerCheckEmail(ownerEmail)==0?false:true;
+		response.getWriter().print(isEmail);
+	}
 }

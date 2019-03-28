@@ -198,9 +198,9 @@ public class MenuController {
 			logger.debug("menuCATE"+menuCategory);
 			
 			List<Map<String,String>> list = service.selectMenuCategory1(menuCategory);
-			logger.debug("list"+list);
 			if(list.size()!=0)
 			{
+			logger.debug("list"+list);
 			int result1 = service.deleteMenu1(menuCategory);
 				logger.debug("result1"+result1);
 				if(result1>0)
@@ -211,10 +211,6 @@ public class MenuController {
 				{
 					msg = "삭제실패";
 				}
-			}
-			else
-			{
-				msg = "삭제성공";
 			}
 		}
 		else

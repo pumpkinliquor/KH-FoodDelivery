@@ -33,6 +33,14 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	@Override
+	public Map<String, Object> selectReviewView(int no) {
+		return sqlSession.selectOne("member.selectReviewView", no);
+	}
+	@Override
+	public List<Map<String, Object>> selectReview(String memberId) {
+		return sqlSession.selectList("member.selectReviewList", memberId);
+	}
+	@Override
 	public Map<String, Object> selectReviewCon(int payNum) {
 		return sqlSession.selectOne("member.selectReviewCon", payNum);
 	}

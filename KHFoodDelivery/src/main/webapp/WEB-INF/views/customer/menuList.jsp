@@ -231,7 +231,7 @@ $('#menuSelectModal').on('hidden.bs.modal', function (e) {
             <button type="button" id="modalPay_" class="btn btn-danger btn-lg btn-block">주문하기</button>
             <script>
             $(document).ready(function(){
-                  $("#modalPay_").click(function(){
+               $("#modalPay_").click(function(){
                var menuCount=$("#menuCount_").val();
                var minPrice=${minPrice.minPrice};
                var plusMenuPrice=$("#plusMenuPrice_").val();
@@ -250,15 +250,15 @@ $('#menuSelectModal').on('hidden.bs.modal', function (e) {
                            return false;
                         }
                         else{
-                      $.ajax({
-                         type:"POST",
-                         url:"${path}/customer/menuInsert.do",
-                         data:{"plusMenuPrice" : plusMenuPrice, "menuCount" : menuCount, "menuPrice" : menuPrice, "menuTitle" : menuTitle, "businessCode" : businessCode, "menuCode" : menuCode},
-                         dataType:"JSON",
-                         success: function(data) {
+	                      $.ajax({
+	                         type:"POST",
+	                         url:"${path}/customer/menuInsert.do",
+	                         data:{"plusMenuPrice" : plusMenuPrice, "menuCount" : menuCount, "menuPrice" : menuPrice, "menuTitle" : menuTitle, "businessCode" : businessCode, "menuCode" : menuCode},
+	                         dataType:"JSON",
+	                         success: function(data) {
                                  console.log(data);
                                 location.href="${path}/customer/pay.do?businessCode="+businessCode;
-                         }
+	                         }
                            });
                         }
                   });

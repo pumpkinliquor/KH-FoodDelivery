@@ -8,7 +8,11 @@
 
 <script>
 $(function(){
-	$('[name=upFile]').on('change',function(){
+	$('[name=upFile1]').on('change',function(){
+		var filename=this.files[0].name;
+		$(this).next('.custom-file-label').html(filename);
+	});
+	$('[name=upFile2]').on('change',function(){
 		var filename=this.files[0].name;
 		$(this).next('.custom-file-label').html(filename);
 	});
@@ -68,11 +72,15 @@ function noSpaceForm(obj){
 			                <th>
 								<div class="input-group-prepend" style="padding:0px;">
 			                    	<span class="input-group-text">첨부파일1</span>
+			                    	<c:if test='${!attach.isEmpty()}'>
+			                    	${attach.get(0).ORIGINALFILENAME}
+			                    	</c:if>
+			                    	
 				                </div>
 							</th>
 			                <td>
            	 					<div class="custom-file">
-				                    <input type="file" class="custom-file-input" name="upFile" id="upFile1">
+				                    <input type="file" class="custom-file-input" name="upFile1" id="upFile1">
 				                    <label class="custom-file-label" for="upFile1">파일을 선택하세요.</label>
 		               	 		</div>
 		                	</td>
@@ -80,12 +88,15 @@ function noSpaceForm(obj){
 			            <tr>
 			                <th>
 								<div class="input-group-prepend" style="padding:0px;">
-			                    	<span class="input-group-text">첨부파일2</span>
+			                    	<span class="input-group-text">첨부파일2</span>			                  
+			                    	<c:if test='${attach.size()==2}'>
+			                    	${attach.get(1).ORIGINALFILENAME}
+			                    	</c:if>
 			                	</div>
 							</th>
 			                <td>
 			                	<div class="custom-file">
-				                    <input type="file" class="custom-file-input" name="upFile" id="upFile2">
+				                    <input type="file" class="custom-file-input" name="upFile2" id="upFile2">
 				                    <label class="custom-file-label" for="upFile2">파일을 선택하세요.</label>
 			                	</div>
 		                	</td>

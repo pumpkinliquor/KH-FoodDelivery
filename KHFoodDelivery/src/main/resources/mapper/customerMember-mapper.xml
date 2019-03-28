@@ -27,6 +27,9 @@
 		SELECT COUNT(*) FROM MEMBER
 	</select>
 	
+	<select id="selectReviewList" resultType="map" parameterType="string">
+		SELECT r.*, s.STORENAME FROM REVIEW r JOIN MEMBER m ON(r.memberNum = m.memberNum) JOIN STORE s ON(r.businessCode = s.businessCode) WHERE m.memberId = #{memberId} 
+	</select>
 	
 	<select id="checkNick" parameterType="string" resultType="_int">
 		select count(*) from member where nickName=#{nickName}
@@ -45,6 +48,9 @@
 		update member set NICKNAME=#{nickName},MEMBERBIRTH=#{formatBirth},MEMBEREMAIL=#{memberEmail},MEMBERPHONE=#{memberPhone},MEMBERADDRESS=#{memberAddress},MEMBERGENDER=#{memberGender},PROFILEIMAGE=#{profileImage},MEMBERADDRESS1=#{memberAddress1} where MEMBERID=#{memberId}		
 	</update>
 	
+	<select id="selectReviewView" parameterType="_int" resultType="map">
+		SELECT r.*, s.STORENAME FROM REVIEW r JOIN STORE s ON(r.businessCode = s.businessCode) WHERE r.reviewNum = #{no}
+	</select>
 
 	<!-- 가게 거리로 검색 -->
 

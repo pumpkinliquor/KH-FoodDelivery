@@ -18,6 +18,8 @@ import com.kh.food.qna.model.vo.MemberQnaReview;
 import com.kh.food.review.model.vo.Review;
 
 public interface MemberDao {
+	Map<String, Object> selectReviewView(int no);
+	List<Map<String, Object>> selectReview(String memberId);
 	Map<String, Object> selectReviewCon(int payNum);
 	int updateAttach(Map<String,Object> map);
 	List<Map<String, String>> selectMemberQnaAttach(int no);	

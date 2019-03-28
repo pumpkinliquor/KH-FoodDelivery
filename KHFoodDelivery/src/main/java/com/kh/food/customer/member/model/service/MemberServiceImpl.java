@@ -35,6 +35,16 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
+	public Map<String, Object> selectReviewView(int no) {
+		return dao.selectReviewView(no);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectReview(String memberId) {
+		return dao.selectReview(memberId);
+	}
+
+	@Override
 	public Map<String, Object> selectReviewCon(int payNum) {
 		return dao.selectReviewCon(payNum);
 	}

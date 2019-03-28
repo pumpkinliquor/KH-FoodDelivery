@@ -9,11 +9,18 @@ pageEncoding="UTF-8"%>
 
 <script>
 $(function(){
-	$('[name=upFile]').on('change',function(){
+	$('[name=upFile1]').on('change',function(){
 		var filename=this.files[0].name;
 		$(this).next('.custom-file-label').html(filename);
 	});
 });
+$(function(){
+	$('[name=upFile2]').on('change',function(){
+		var filename=this.files[0].name;
+		$(this).next('.custom-file-label').html(filename);
+	});
+});
+
 
 
 
@@ -72,7 +79,7 @@ function noSpaceForm(obj){
 							</th>
 			                <td>
            	 					<div class="custom-file">
-				                    <input type="file" class="custom-file-input" name="upFile" id="upFile1">
+				                    <input type="file" class="custom-file-input" name="upFile1" id="upFile1">
 				                    <label class="custom-file-label" for="upFile1">파일을 선택하세요</label>
 		               	 		</div>
 		                	</td>
@@ -85,7 +92,7 @@ function noSpaceForm(obj){
 							</th>
 			                <td>
 			                	<div class="custom-file">
-				                    <input type="file" class="custom-file-input" name="upFile" id="upFile2">
+				                    <input type="file" class="custom-file-input" name="upFile2" id="upFile2">
 				                    <label class="custom-file-label" for="upFile2">파일을 선택하세요</label>
 			                	</div>
 		                	</td>
@@ -104,4 +111,4 @@ function noSpaceForm(obj){
 	</div>
 </div>
 
-<jsp:include page="/WEB-INF/views/common/ownerFooter.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/adminFooter.jsp"></jsp:include>

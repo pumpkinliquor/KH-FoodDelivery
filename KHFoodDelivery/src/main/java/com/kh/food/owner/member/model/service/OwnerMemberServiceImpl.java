@@ -36,6 +36,14 @@ public class OwnerMemberServiceImpl implements OwnerMemberService {
 	public Map<String, String> selectSearchId(Map<String, String> map) {
 		return dao.selectSearchId(map);
 	}
+	
+	
+
+	@Override
+	public int ownerCheckEmail(String ownerEmail) {
+		// TODO Auto-generated method stub
+		return dao.selectSearchEmail(ownerEmail);
+	}
 
 	@Override
 	public Map<String, String> selectConfirmIdEmail(Map<String, String> map) {

@@ -71,7 +71,29 @@ public class MemberController {
 	private JavaMailSender mailSender;
 	
 	
+	// 내 리뷰 관리
+	@RequestMapping("/member/myReview.do")
+	public ModelAndView myReview(String memberId) {
+		ModelAndView mv = new ModelAndView();
+		
+		List<Map<String, Object>> review = service.selectReview(memberId);
+		
+		mv.addObject("review", review);
+		mv.setViewName("customer/myReview");
+		return mv;
+	}
 	
+	// 리뷰 보기
+	@RequestMapping("/member/reviewView.do")
+	public ModelAndView reviewView(int no) {
+		ModelAndView mv = new ModelAndView();
+		
+		Map<String, Object> review = service.selectReviewView(no);
+		
+		mv.addObject("review", review);
+		mv.setViewName("customer/reviewView");
+		return mv;
+	}
 	//메인보이기
 	@RequestMapping("/member/main.do")
 	public String mainView() {
@@ -433,7 +455,7 @@ public class MemberController {
 	public ModelAndView login(String id,String pw,HttpSession session) {
 		
 		ModelAndView mv =new ModelAndView();
-		
+		System.out.println(pwEncoder.encode(pw)+"암호비번");
 		Map<String,String> map=new HashMap();
 		map.put("id",id);
 		map.put("pw",pw);
@@ -570,7 +592,9 @@ public class MemberController {
 //		System.out.println(businessCode);
 		List<Map<String,String>> menuCategory=service.selectCategoryList(businessCode);
 		List<Menu> popularityMenu=service.popularityMenu(businessCode);
+		Store minPrice=service.minPrice(businessCode);
 		mv.addObject("businessCode", businessCode);
+		mv.addObject("minPrice", minPrice);
 		mv.addObject("popularityMenu", popularityMenu);
 		mv.addObject("categoryList", menuCategory);
 		mv.setViewName("customer/menuList");

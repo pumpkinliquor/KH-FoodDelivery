@@ -152,6 +152,7 @@ function detailOrder1(payorderNum,menucode){
   <a href="${path }/member/orderList.do?memberId=${sessionScope.logined}&memberNum=${sessionScope.loginedno}" id="activeOn" class="list-group-item list-group-item-action" style="z-index:0;">나의 주문내역</a>
               <a href="${path}/customer/mypage.do?memberId=${sessionScope.logined}" id="activeOff" class="list-group-item list-group-item-action">회원정보변경</a>
               <a href="${path }/member/markList.do?memberId=${sessionScope.logined}" id="activeOff" class="list-group-item list-group-item-action">즐겨찾는매장</a>
+              <a href="${path }/member/myReview.do?memberId=${sessionScope.logined}" id="activeOff" class="list-group-item list-group-item-action">리뷰 관리</a>
               <a href="${path }/member/qnaList.do?memberId=${sessionScope.logined}" id="activeOff" class="list-group-item list-group-item-action">나의 문의내역</a>
             </div> 
 		</div>
@@ -398,14 +399,7 @@ function handleImgRecipeFileSelect(e) {
 
       var reader = new FileReader();
       reader.onload = function(e){
-	  console.log(e.currentTarget);
-
-      		 //$(img).attr("src",e.target.result).attr("value",$("inputHiddenImg"+count).val()).css('width','158px').css('height','200px');
-      		$("#noImg1").attr("src",e.target.result).css('width','150px').css('height','150px');
-      		/*  $(document).on("click",".inputHiddenImg",function(){
-      			 
-      		 } */
-      		 console.log("미리보기123123123드렁옴");
+      		$("#noImg1").attr("src",e.target.result).css('width','150px').css('height','150px');      
       }
       reader.readAsDataURL(f);
   });

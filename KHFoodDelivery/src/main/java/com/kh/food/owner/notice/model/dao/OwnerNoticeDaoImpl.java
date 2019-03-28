@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.food.admin.notice.attachment.vo.NoticeAttachment;
 import com.kh.food.owner.notice.attachment.vo.OwnerNoticeAttachment;
 
 @Repository
@@ -89,6 +90,21 @@ public class OwnerNoticeDaoImpl implements OwnerNoticeDao {
 	public List<Map<String, String>> selectOwnerAttach(int ownerNoticeNum) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("ownerNotice.selectOwnerAttach", ownerNoticeNum);
+	}
+
+
+	@Override
+	public List<OwnerNoticeAttachment> selectAttachModify(int ownerNoticeNum) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("ownerNotice.selectAttachModify",ownerNoticeNum);
+	}
+
+
+	@Override
+	public void modifyFore(int ownerNoticeNum) {
+		// TODO Auto-generated method stub
+		sqlSession.delete("ownerNotice.modifyFore",ownerNoticeNum);
+		
 	}
 
 
