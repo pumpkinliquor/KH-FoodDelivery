@@ -61,7 +61,7 @@ color:rgba(6, 4, 75, 0.986);
 					<table class="table">
 						<tr>
 							<th width=40%><small>내가쓴글</small></th>
-							<td>(문의글:${qnaCount}개<c:if test="${not empty businessReviewCount }">, 코멘트:${businessReviewCount}개</c:if>)</td>
+							<td>(문의글:${qnaCount}개<c:if test="${not empty businessReviewCount }">, 리뷰답글:${businessReviewCount}개</c:if>)</td>
 						</tr>
 						<tr>
 							<th width=40%><small>E-MAIL</small></th>

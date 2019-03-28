@@ -90,7 +90,7 @@ public interface MemberService {
 	List<Store> selectMarkList(String memberId);
 	List<Review> selectReview(int businessCode);
 	Mark isMark(Map<String, Object> maps);
-	
+
 	int insertReview(Map map);
 	List<Map<String, String>> selectMemberOrderList(int memberNum, int cPage, int numPerPage);
 	int selectMemberOrderCount(int memberNum);
