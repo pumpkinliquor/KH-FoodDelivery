@@ -78,6 +78,14 @@ font-family: 'Noto Serif KR', serif;
 #countWeek {
 	color: rgb(250, 102, 102);
 }
+.saleBtn,.bt1{
+	background-color: white !important;
+	border-color : rgba(6, 4, 75, 0.986) !important;
+	color:rgba(6, 4, 75, 0.986) !important;
+}
+.saleDiv4{
+	margin-bottom : 10px;
+}
 </style>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 
@@ -122,15 +130,15 @@ font-family: 'Noto Serif KR', serif;
       	</div>
 		
          <div class="row saleDiv">
-                    <div class="col-md-12">
+                    <div class="col-md-12 saleDiv4">
                     	<div class="row">
-	                         	<div class="col-md-2">
-	                          		<a href="${path }/owner/selectStoreGoodsSales.do?businessCode=${businessCode}" class="list-group-item list-group-item-action active menu">상품별</a>
-	                          	</div>
-	                          	<div class="col-md-2">
-	                          		<a href="${path }/owner/selectStoreSales.do?businessCode=${businessCode}" class="list-group-item list-group-item-action menu">기간별</a>                 
-	                          	</div>
-	                          	<div class="col-md-8"></div>
+	                         	<div class="col-md-1">
+                        		<button class="btn btn-default saleBtn" onclick="fn_sale(${businessCode});">상품별</button>
+                         		</div>
+                         		<div class="col-md-1">
+                         		<button class="btn btn-default saleBtn"  onclick="fn_date(${businessCode});">기간별</button>	
+                         		</div>
+	                          	<div class="col-md-10"></div>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -217,14 +225,14 @@ font-family: 'Noto Serif KR', serif;
 		$('#menuCategory2').empty();
 		
 		var html = "";
-		console.log($(e).val());
+
 		var menucategorycode = $(e).val();
 		$.ajax({
 			url:"${path}/owner/selectCaMenuList.do",
 			data:{"menuCategorycode" : menucategorycode},
 			success : function(data)
 			{
-				console.log(data);
+
 				for(var i=0; i<data.length; i++)
 					{
 						if(data[i].MENUSTATE == 1)
@@ -236,12 +244,20 @@ font-family: 'Noto Serif KR', serif;
 							html += "<option value='"+data[i].MENUCODE+"'>"+data[i].MENUNAME+"</option>";
 						}
 					}
-				console.log(html);
+
 				$('#menuCategory2').append(html);
 			}
 		});
 		
 	}
+	
+	function fn_sale(businessCode){
+		location.href="${path }/owner/selectStoreGoodsSales.do?businessCode="+businessCode;
+	}
+	function fn_date(businessCode)
+	{
+		location.href="${path }/owner/selectStoreSales.do?businessCode="+businessCode;
+		}
 </script>	
 </section>
 

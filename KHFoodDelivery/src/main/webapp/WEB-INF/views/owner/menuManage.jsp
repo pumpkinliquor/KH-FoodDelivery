@@ -195,6 +195,7 @@ pageEncoding="UTF-8"%>
 										<div class="col-8">
 											 <input type="hidden" id="menuCode" name="menuCode">
 											 <input type="hidden" id="businessCode" name="businessCode">
+											 <input type="hidden" id="orimenuImage" name="orimenuImage">
 											<button id="ownerJoinBtn" name="submit" type="submit"
 												class="btn btn-primary">수정</button>
 										</div>
@@ -227,6 +228,16 @@ pageEncoding="UTF-8"%>
 				        }
 				});
 				
+				$('#menuContent').keyup(function(){
+			 		var a = $('#menuContent').val();
+			 		a.replace(/(<([^>]+)>)/ig,"");
+			 		var str_space = /(<([^>]+)>)/ig;  
+					var RegExpJS = new RegExp("(<script[^>]*>(.|[\\s\\r\\n])*<"+"/script>)", "gim");  
+				 	 if(str_space.test(a))
+						{
+						$('#menuContent').val("");
+						}  
+			 	});
 				
 			});
 				function updatePrice(e,menuCode,businessCode)
@@ -242,7 +253,6 @@ pageEncoding="UTF-8"%>
 				
 				function updateMenu(menuCode,businessCode)
 				{
-					console.log("업데이트메뉴 들어왔니?");
 					
 		 			$.ajax({
 						url: "${path}/owner/selectOneMenu.do",
@@ -252,14 +262,13 @@ pageEncoding="UTF-8"%>
 						},
 						success : function(data){
 							
-							console.log("뭐냐"+data.MENUNAME);
+		
 							console.log(data);
-							
 							$('#businessCode').val(businessCode);
 							$('#menuCode').val(data.MENUCODE);
 							$('#menuName').val(data.MENUNAME);
 							$('#menuPrice').val(data.MENUPRICE);
-							$('#menuIMAGE').val(data.MENUIMAGE);
+							$('#orimenuImage').val(data.MENUIMAGE);
 							$('#menuContent').val(data.MENUCONTENT);
 							$('label[id*="menuImage1"]').text(data.MENUIMAGE); 
 							$('#myModal').modal();

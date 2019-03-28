@@ -99,7 +99,7 @@ color:rgba(6, 4, 75, 0.986);
        		$('#ownerPw2').blur(function(){
        			ownerPw = $("#ownerPw").val();
        			var passwordRules =  /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
-       			console.log("패스워드룰"+passwordRules.test(ownerPw));
+       			
        		   	if(passwordRules.test(ownerPw) == false){
         		   	if($('#ownerPw2').val()!=''){
         		   		{

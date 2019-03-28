@@ -64,8 +64,7 @@ function execDaumPostcode(){
                     $('#lat').val(coords.jb); // 위도
                     $('#lng').val(coords1.jb)// 경도
                     
-                    console.log(coords.jb);
-                    console.log(coords1.jb);
+     
                 }
             });
 		}
@@ -201,7 +200,9 @@ function enter(evt){
 			                <th>주소</th>
 			                <td>
 			                	<button onclick="execDaumPostcode();" type="button" class="btn btn-default" style="float:left; margin-right:1em;" >주소찾기</button>
-			                	<input type="text" id="zip" class="form-control" style="width:7em; color:black;" placeholder="우편주소" value="" required readonly/>
+			                	<!-- <input type="text" id="zip" class="form-control" style="width:7em; color:black;" placeholder="우편주소" value="" required readonly/> -->
+			                	<br>
+			                	<br>
 			                	<input type="text" id="addr1" name="frontAddress" placeholder="기본주소" class="form-control" style="width:30em; margin-top:1em; color:black;" value="" readonly required/>
 			                	<input type="text" id="addr2" name="backAddress" placeholder="상세주소" maxlength="30" oninput="maxLengthCheck(this);" class="form-control" style="width:30em; margin-top:1em; color:black;" value="" onkeydown="enter(event);" required/>
 			                	<input type="hidden" id="lat" name="lat" value=""/>

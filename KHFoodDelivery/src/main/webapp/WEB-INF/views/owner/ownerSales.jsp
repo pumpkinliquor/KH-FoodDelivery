@@ -74,6 +74,14 @@ margin-bottom:50px;
 #countWeek {
 	color: rgb(250, 102, 102);
 }
+.saleDiv4{
+	margin-bottom : 10px;
+}
+.saleBtn,.bt1{
+	background-color: white !important;
+	border-color : rgba(6, 4, 75, 0.986) !important;
+	color:rgba(6, 4, 75, 0.986) !important;
+}
 </style>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 
@@ -117,15 +125,17 @@ margin-bottom:50px;
       </div>
          
          <div class="row saleDiv">
-                     <div class="col-md-12">
+                     <div class="col-md-12 saleDiv4">
                     	<div class="row">
-	                         	<div class="col-md-2">
-	                          		<a href="${path }/owner/selectStoreGoodsSales.do?businessCode=${businessCode}" class="list-group-item list-group-item-action menu">상품별</a>
+	                         	<div class="col-md-1">
+	                         		<button class="btn btn-default saleBtn" onclick="fn_sale(${businessCode});">상품별</button>
+	                          		
 	                          	</div>
-	                          	<div class="col-md-2">
-	                          		<a href="${path }/owner/selectStoreSales.do?businessCode=${businessCode}" class="list-group-item list-group-item-action active menu">기간별</a>                 
+	                          	<div class="col-md-1">
+	                          		<button class="btn btn-default saleBtn"  onclick="fn_date(${businessCode});">기간별</button>
+	                          		
 	                          	</div>
-	                          	<div class="col-md-8"></div>
+	                          	<div class="col-md-10"></div>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -196,7 +206,13 @@ margin-bottom:50px;
 </section>
 
 <script>
-
+function fn_sale(businessCode){
+	location.href="${path }/owner/selectStoreGoodsSales.do?businessCode="+businessCode;
+}
+function fn_date(businessCode)
+{
+	location.href="${path }/owner/selectStoreSales.do?businessCode="+businessCode;
+	}
 
 </script>
 <jsp:include page="/WEB-INF/views/common/ownerFooter.jsp"></jsp:include>

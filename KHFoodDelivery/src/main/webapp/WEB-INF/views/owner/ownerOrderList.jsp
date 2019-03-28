@@ -219,7 +219,7 @@ pageEncoding="UTF-8"%>
 
 function fn_state1(payOrderNum,e)
 {
-	console.log($(e).val());
+
 	var orderState = $(e).val();
 	
 		var UP = confirm("정말로 주문취소 하시겠습니까?");
@@ -268,8 +268,7 @@ function fn_detailOrder(payOrderNum){
 			data: {"payOrderNum":payOrderNum},
 			success : function(data)
 			{
-				console.log(data);
-				console.log(data[0].PAYDATE);
+
 				/* for(var i=0; i<data.length; i++)
 				{
 					$('.menu').prepend("<tr style='cursor:pointer;'><td width='44%'>"+data[i].MENUNAME+"</td><td width='12%'>"+data[i].PRICE+"원</td></tr>")
@@ -303,7 +302,7 @@ function fn_detailOrder(payOrderNum){
 	function fn_state(payOrderNum,e)
 	{
 		
-		console.log($(e).val());
+
 		var orderState = $(e).val();
 /* 		if($(e).attr('id') == 'state1')
 			{
@@ -326,7 +325,7 @@ function fn_detailOrder(payOrderNum){
 			data:{"payOrderNum" : payOrderNum , "orderState" : orderState},
 			success:function(data)
 			{
-				console.log(data);
+
 					if(data!=0)
 					{
 						$(e).css("color","red");

@@ -201,20 +201,29 @@ $(function(){
 	
 	$('#menuName').keyup(function(){
 		var a = $('#menuName').val();
-		var pattern = /[^a-zA-Z0-9]/gi;
+		var pattern = /[^(가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9\s)]/gi;
 	        if(pattern.test(a)){
 	        	$('#menuName').val("");
 	        }
 	});
 	
-	$('#menuCategory').keyup(function(){
+ 	$('#menuCategory').keyup(function(){
 		var a = $('#menuCategory').val();
-		var pattern = /[^a-zA-Z0-9]/gi;
+		var pattern = /[^(가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9\s)]/gi;
 	        if(pattern.test(a)){
 	        	$('#menuCategory').val("");
 	        }
-	});
+	}); 
 	
+ 	$('#menuContent').keyup(function(){
+ 		var a = $('#menuContent').val();
+ 		var str_space = /(<([^>]+)>)/ig;  
+		var RegExpJS = new RegExp("(<script[^>]*>(.|[\\s\\r\\n])*<"+"/script>)", "gim");  
+	 	 if(str_space.test(a))
+			{
+			$('#menuContent').val("");
+			}  
+ 	});
 });
 
 $('#menuImage').change(function(){

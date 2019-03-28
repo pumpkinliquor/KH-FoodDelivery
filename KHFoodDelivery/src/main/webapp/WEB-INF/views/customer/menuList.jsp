@@ -60,6 +60,7 @@ dt:hover{
             data:{"menuCode" : no},
             dataType:"JSON",
             success: function(data) {
+            	console.log(data);
                if(data.menuSoldOut==1){
                   alert('품절 되었습니다.');   
                }
@@ -71,6 +72,14 @@ dt:hover{
                $('#menuPrice').empty().append(data.menuPrice);
                $('#menuPrice_').val(data.menuPrice);
                $('#menuCode_').val(data.menuCode);
+               if(data.menuContent!=null){
+            	   var h="<h6 style='float:left; font-weight:bold; margin-top:8px;'>메뉴 설명</h6>";
+            	   h+="<textarea class='form-control' id='menuInfo_' style='cursor:default; background-color:rgb(207, 207, 207); font-size:12px; resize:none; border:0px; width:100%; height:100px; color:black;' readonly>"+data.menuContent+"</textarea>";
+            	   $('#menu_InfoM').html(h);
+               }
+               else{
+            	   $('#menu_InfoM').html("");
+               }
                }
             }
          });
@@ -206,14 +215,16 @@ $('#menuSelectModal').on('hidden.bs.modal', function (e) {
          <div class="modal-body" style="height: auto;">
             <div class="menu-image" id="menuImage"></div>
             <br/>
-            <h6 class="menu-priceM" style="float:left;">가격</h6>
+            <h6 class="menu-priceM" style="float:left; font-weight:bold;">가격</h6>
             <h6 class="menu-price" id="menuPrice" style="text-align:right;"></h6>
             <input type="hidden" id="menuPrice_" name="menuPrice" value=""/>
             <br/>
-            <h6 class="menu-countM" style="float:left; margin-bottom:0px; margin-top:8px;">수량</h6>
+            <h6 class="menu-countM" style="float:left; font-weight:bold; margin-bottom:0px; margin-top:8px;">수량</h6>
             <input type="number" min="0" onkeyup="plusCount();" name="menuCount" id="menuCount_" class="form-control" style="float:right; width:3em;"/>
             <br/>
             <br/>
+            <br/>
+            <div id="menu_InfoM"></div>
             <div style="background-color:rgb(231, 231, 231); height:5em; margin-top:2em;">
             <h5 style="font-weight:bold; float:left; padding-left:1em; line-height:80px;">총 주문금액</h5>
             <h5 style="float:right; padding-right:1em; line-height:80px;" id="plusMenuPrice"></h5>
@@ -244,23 +255,25 @@ $('#menuSelectModal').on('hidden.bs.modal', function (e) {
                      if(menuCount.trim().length==0||menuCount<=0||menuCount>=100){
                         alert('수량을 잘못 입력하셨습니다.');
                         return false;
-                        }
-                        if(minPrice > plusMenuPrice ) {
-                           alert("최소 주문금액(${minPrice.minPrice}원)에 맞게 주문해주세요.");
-                           return false;
-                        }
-                        else{
-	                      $.ajax({
-	                         type:"POST",
-	                         url:"${path}/customer/menuInsert.do",
-	                         data:{"plusMenuPrice" : plusMenuPrice, "menuCount" : menuCount, "menuPrice" : menuPrice, "menuTitle" : menuTitle, "businessCode" : businessCode, "menuCode" : menuCode},
-	                         dataType:"JSON",
-	                         success: function(data) {
-                                 console.log(data);
-                                location.href="${path}/customer/pay.do?businessCode="+businessCode;
-	                         }
-                           });
-                        }
+                     }
+              		 $.ajax({
+	                       type:"POST",
+	                       url:"${path}/customer/menuInsert.do",
+	                       data:{"plusMenuPrice" : plusMenuPrice, "menuCount" : menuCount, "menuPrice" : menuPrice, "menuTitle" : menuTitle, "businessCode" : businessCode, "menuCode" : menuCode},
+	                       dataType:"JSON",
+	                       success: function(data) {
+	                    	   var reresultPrice=data.insertResultPrice;
+								console.log(data);
+								if(minPrice>reresultPrice){
+									alert('최소 주문금액에 맞춰 주문해주세요.');
+									return false;
+								}
+								else{
+									location.href="${path}/customer/pay.do?businessCode="+businessCode;
+									return true;
+								}
+	                       }
+                      });
                   });
             });
             </script>

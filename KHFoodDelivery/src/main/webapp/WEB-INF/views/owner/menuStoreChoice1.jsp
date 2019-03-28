@@ -44,7 +44,6 @@ pageEncoding="UTF-8"%>
 
 <script>
 function fn_storeChoice(businessCode){
-	console.log("비지니스코드"+businessCode)
 	location.href = "${path}/owner/menuEnroll.do?businessCode="+businessCode
 }
 

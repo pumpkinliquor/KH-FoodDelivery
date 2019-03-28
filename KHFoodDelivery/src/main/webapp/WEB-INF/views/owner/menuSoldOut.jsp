@@ -108,13 +108,13 @@ pageEncoding="UTF-8"%>
 		} 
 		
 		function fn_noSoldOut(menuCode,e){
-			console.log("솔드아웃 취소 들어왔니?");
+
 			$.ajax({
 				url:"${path}/menu/updateCancelSoldOut.do",
 				data: {"menuCode" : menuCode},
 				success : function(data)
 				{
-					console.log(data);
+
 					if(data ==1 )
 						{
 							$(e).css("color","red");
