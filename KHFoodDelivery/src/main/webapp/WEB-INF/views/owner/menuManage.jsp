@@ -228,7 +228,6 @@ pageEncoding="UTF-8"%>
 				});
 				
 				$('#menuContent').keyup(function(){
-					console.log("ㅇㅇㅇ");
 			 		var a = $('#menuContent').val();
 			 		a.replace(/(<([^>]+)>)/ig,"");
 			 		var str_space = /(<([^>]+)>)/ig;  
@@ -253,7 +252,6 @@ pageEncoding="UTF-8"%>
 				
 				function updateMenu(menuCode,businessCode)
 				{
-					console.log("업데이트메뉴 들어왔니?");
 					
 		 			$.ajax({
 						url: "${path}/owner/selectOneMenu.do",
@@ -263,8 +261,7 @@ pageEncoding="UTF-8"%>
 						},
 						success : function(data){
 							
-							console.log("뭐냐"+data.MENUNAME);
-							console.log(data);
+		
 							
 							$('#businessCode').val(businessCode);
 							$('#menuCode').val(data.MENUCODE);

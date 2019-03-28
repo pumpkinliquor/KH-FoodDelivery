@@ -64,8 +64,7 @@ function execDaumPostcode(){
                     $('#lat').val(coords.jb); // 위도
                     $('#lng').val(coords1.jb)// 경도
                     
-                    console.log(coords.jb);
-                    console.log(coords1.jb);
+     
                 }
             });
 		}

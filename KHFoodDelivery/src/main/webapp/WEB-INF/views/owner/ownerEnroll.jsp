@@ -70,9 +70,8 @@ span.error,span.error1 {
 					"ownerId" : ownerId
 				},
 				success : function(data) {
-					console.log(data);
 					tr = data;
-					console.log("tr" + tr);
+				
 					if (data == 'true') {
 						$(".guide.ok").hide();
 						$(".guide.error").show();
@@ -94,7 +93,7 @@ span.error,span.error1 {
 			ownerPw = $("#ownerPw").val();
 			var ownewPw1 = $("#ownerPw").val().trim();
 			reownerPw = $("#reownerPw").val();
-			console.log(ownerPw);
+
 				if (ownerPw == reownerPw) {
 					$(".guide.ok1").show();
 					$(".guide.error1").hide();
@@ -123,7 +122,7 @@ span.error,span.error1 {
 			ownerPw = $("#ownerPw").val();
 			var ownewPw1 = $("#ownerPw").val().trim();
 			reownerPw = $("#reownerPw").val();
-			console.log(ownerPw);
+
 			if (ownerPw < 1) {
 				/* $("#reownerPw").attr("readonly",true); */
 				alert("비밀번호 먼저 입력해주세요");
@@ -181,9 +180,9 @@ span.error,span.error1 {
 			"ownerEmail" : ownerEmail
 		},
 		success : function(data) {
-			console.log(data);
+
 			tr = data;
-			console.log("tr" + tr);
+
 			if (data == 'true') {
 				$(".guide1.ok1").hide();
 				$(".guide1.error1").show();
@@ -215,16 +214,15 @@ span.error,span.error1 {
  	          alert("잘못된 휴대폰 번호입니다.");
  	          return false;
  	    } 
- 	    
-		console.log("여부" + tr);
-		console.log("들어왔니?");
+
+
 		if ($("#ownerId").val().length < 4) {
 			alert("최소 4자리 이상 입력하세요!");
 			$("#ownerId").focus();
 			return false;
 		}
 		if (tr == 'true') {
-			console.log("아이디에들어왔니?");
+
 			alert("아이디를 다시 확인해주세요");
 			$("#ownerId").val('');
 			$("#ownerId").focus();
@@ -238,7 +236,7 @@ span.error,span.error1 {
 		}
 		
 		var passwordRules = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
-		console.log("패스워드룰"+passwordRules.test(ownerPw));
+
 		if(passwordRules.test(ownerPw) == false)
 			{
 				alert(" 6~20 영문 대소문자 , 최소 1개의 숫자 혹은 특수 문자를 포함 하세요!");

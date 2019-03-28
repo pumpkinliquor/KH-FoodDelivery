@@ -54,7 +54,7 @@ pageEncoding="UTF-8"%>
 		function SetSelectBox(){
 			var stN=$(".form-control").val();
 			
-			console.log(stN);
+
 				$.ajax({
 				
                 type: "post",

@@ -216,14 +216,14 @@ pageEncoding="UTF-8"%>
 		$('#menuCategory2').empty();
 		
 		var html = "";
-		console.log($(e).val());
+
 		var menucategorycode = $(e).val();
 		$.ajax({
 			url:"${path}/owner/selectCaMenuList.do",
 			data:{"menuCategorycode" : menucategorycode},
 			success : function(data)
 			{
-				console.log(data);
+
 				for(var i=0; i<data.length; i++)
 					{
 						if(data[i].MENUSTATE == 1)
@@ -236,7 +236,7 @@ pageEncoding="UTF-8"%>
 						html += "<option value='"+data[i].MENUCODE+"'>"+data[i].MENUNAME+"</option>";
 							}
 					}
-				console.log(html);
+
 				$('#menuCategory2').append(html);
 			}
 		});
