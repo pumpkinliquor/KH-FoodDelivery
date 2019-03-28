@@ -956,9 +956,19 @@ public class MemberController {
 				reMenuCode=wishList.get(i).getMenuCode();
 			}
 		}
+		
+		List<WishList> callPrice=service.plusPrice(menuMap);
+		
+		int resultPrice=0;
+		for(int i=0; i<callPrice.size(); i++) {
+			resultPrice+=callPrice.get(i).getPlusMenuPrice();
+		}
+		resultPrice=resultPrice+plusMenuPrice;
+		
 		int delete=service.deleteMenuCode(reMenuCode);
 		int result=service.insertWishList(menuMap);
 		
+		menuMap.put("insertResultPrice", resultPrice);
 		menuMap.put("reMenuCode", menuCode);
 		
 		return menuMap;
