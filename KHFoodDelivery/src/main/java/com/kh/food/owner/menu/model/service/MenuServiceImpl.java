@@ -59,8 +59,8 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public int updateMenu(Menu m) {
-		return dao.updateMenu(m);
+	public int updateMenu(Map<String,String> map) {
+		return dao.updateMenu(map);
 	}
 
 	@Override

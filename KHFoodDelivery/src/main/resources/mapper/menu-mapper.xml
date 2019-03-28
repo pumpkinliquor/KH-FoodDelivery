@@ -86,7 +86,7 @@
 		select * from menu where menucode = #{menuCode}
 	</select>
 	
-	<update id="updateMenu" parameterType="menu" >
+	<update id="updateMenu" parameterType="map" >
 		update menu set menuName = #{menuName} , menuPrice = #{menuPrice} , menuContent = #{menuContent} , menuImage = #{menuImage} where menuCode = #{menuCode}
 	</update>
 	

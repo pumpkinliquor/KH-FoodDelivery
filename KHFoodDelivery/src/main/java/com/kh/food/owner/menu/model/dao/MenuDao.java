@@ -23,7 +23,7 @@ public interface MenuDao {
 
 	Map selectOneMenu(String menuCode);
 
-	int updateMenu(Menu m);
+	int updateMenu(Map<String, String> map);
 
 	int updateMenuSoldOut(String menuCode);
 

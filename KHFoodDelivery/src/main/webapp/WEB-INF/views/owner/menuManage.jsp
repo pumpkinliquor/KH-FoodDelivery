@@ -160,7 +160,7 @@ pageEncoding="UTF-8"%>
 						</div>
 						<div class="row">
 							<div class="col-md-12">
-								<form action="${path }/owner/updateMenu.do" method="post">
+								<form action="${path }/owner/updateMenu.do" method="post" enctype="multipart/form-data">
 									<div class="form-group row">
 										<label for="username" class="col-4 col-form-label">메뉴이름</label>
 										<div class="col-8">
