@@ -58,8 +58,8 @@ public class MenuDaoImpl implements MenuDao {
 	}
 
 	@Override
-	public int updateMenu(Menu m) {
-		return sqlSession.update("menu.updateMenu",m);
+	public int updateMenu(Map<String,String> map) {
+		return sqlSession.update("menu.updateMenu",map);
 	}
 
 	@Override

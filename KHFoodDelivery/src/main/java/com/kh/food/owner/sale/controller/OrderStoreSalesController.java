@@ -192,6 +192,7 @@ public class OrderStoreSalesController {
 		logger.debug("saleList"+saleList.size());
 		ModelAndView mv = new ModelAndView();
 		
+		mv.addObject("weekSales",weekSales);
 		mv.addObject("salePriceList",salePriceList);
 		mv.addObject("monthSales",monthSales);
 		mv.addObject("yearSales",yearSales);
@@ -268,6 +269,7 @@ public class OrderStoreSalesController {
 		logger.debug("monthSales"+monthSales);
 		logger.debug("yearSales"+yearSales);
 		logger.debug("goodsList"+goodsList);
+		mv.addObject("weekSales",weekSales);
 		mv.addObject("menuList",menuList);
 		mv.addObject("category",category);
 		mv.addObject("monthSales",monthSales);
@@ -360,7 +362,7 @@ public class OrderStoreSalesController {
 		logger.debug("list"+list.size());
 		logger.debug("menuCount"+menuCount);
 		ModelAndView mv = new ModelAndView();
-		
+		mv.addObject("weekSales",weekSales);
 		mv.addObject("monthSales",monthSales);
 		mv.addObject("yearSales",yearSales);
 		mv.addObject("todaySales",todaySales);

@@ -33,7 +33,7 @@
 	</select>
 
 	<select id="selectWeekSales" resultType="string" parameterType="string">
-	select sum(price)
+	select to_char(sum(price), '999,999,999,999,999')
 	from pay
 	where paydate between TRUNC(SYSDATE,'IW') and TRUNC(SYSDATE,'IW')+5 and businesscode = #{businessCode} and orderstate !=4
 	</select>
