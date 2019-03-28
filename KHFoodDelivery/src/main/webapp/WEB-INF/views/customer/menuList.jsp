@@ -255,23 +255,25 @@ $('#menuSelectModal').on('hidden.bs.modal', function (e) {
                      if(menuCount.trim().length==0||menuCount<=0||menuCount>=100){
                         alert('수량을 잘못 입력하셨습니다.');
                         return false;
-                        }
-                        if(minPrice > plusMenuPrice ) {
-                           alert("최소 주문금액(${minPrice.minPrice}원)에 맞게 주문해주세요.");
-                           return false;
-                        }
-                        else{
-	                      $.ajax({
-	                         type:"POST",
-	                         url:"${path}/customer/menuInsert.do",
-	                         data:{"plusMenuPrice" : plusMenuPrice, "menuCount" : menuCount, "menuPrice" : menuPrice, "menuTitle" : menuTitle, "businessCode" : businessCode, "menuCode" : menuCode},
-	                         dataType:"JSON",
-	                         success: function(data) {
-                                 console.log(data);
-                                location.href="${path}/customer/pay.do?businessCode="+businessCode;
-	                         }
-                           });
-                        }
+                     }
+              		 $.ajax({
+	                       type:"POST",
+	                       url:"${path}/customer/menuInsert.do",
+	                       data:{"plusMenuPrice" : plusMenuPrice, "menuCount" : menuCount, "menuPrice" : menuPrice, "menuTitle" : menuTitle, "businessCode" : businessCode, "menuCode" : menuCode},
+	                       dataType:"JSON",
+	                       success: function(data) {
+	                    	   var reresultPrice=data.insertResultPrice;
+								console.log(data);
+								if(minPrice>reresultPrice){
+									alert('최소 주문금액에 맞춰 주문해주세요.');
+									return false;
+								}
+								else{
+									location.href="${path}/customer/pay.do?businessCode="+businessCode;
+									return true;
+								}
+	                       }
+                      });
                   });
             });
             </script>
