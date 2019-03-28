@@ -69,7 +69,7 @@ function noSpaceForm(obj){
 			            </tr>
 			            <tr>
 			                <th>내용</th>
-			                <td><textarea cols="10" name="noticeContent" class="form-control" style="resize:none; height:15em;" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)">${notice.OWNERNOTICECONTENT } </textarea></td>
+			                <td><textarea cols="10" name="noticeContent" class="form-control" style="resize:none; height:15em;" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)">${notice.OWNERNOTICECONTENT }</textarea></td>
 			            </tr>
 			            <tr>
 			                <th>

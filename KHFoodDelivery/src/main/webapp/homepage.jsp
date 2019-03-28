@@ -12,29 +12,7 @@
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700&amp;subset=korean" rel="stylesheet">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
-<%-- <style>
-.mainP{
-font-size:100px;
-}
-body{
-   background-color:gray;
-}
-</style>
 
-<div class="container">
-<div class="row">
-<div class="col-md-6">
-<p class="mainP"><b>간</b>단하고 <br><b>신</b>속한<br><b>배</b>달</p>
-
-<div class="col-sm-6" id="ownerSite">
-<a href="${path }/owner/memberMain.do"><img src="${path }/resources/images/owner/icons/memberIcon.jpg" width=560px;></a>
-</div>
-<div class="col-sm-6">
-<a href="${path }/owner/ownerMain.do"><img src="${path }/resources/images/owner/icons/ownerIcon.jpg" width=560px;></a>
-</div>
-</div>
-</div>
-</div> --%>
 <script>
 $(document).ready(function(){
    $.ajax({
@@ -264,7 +242,7 @@ html {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   font-size: 35px;
-  font-family: 'Slabo 15px', serif;
+  /* font-family: 'Slabo 15px', serif; */
   cursor: pointer;
   letter-spacing: -5px;
 }
@@ -786,7 +764,7 @@ color:white;
        
       </div>
 	
-   <br/><br/>  <br/><br/><br/><br/><br/><br/>
+   <br/><br/>  
    <div class="row text-center">
            <div class="col">
            <div class="counter">
@@ -809,13 +787,6 @@ color:white;
       <h2 class="timer count-title count-number" id="todayPayCount" data-to="" data-speed="1500"></h2>
       <p class="count-text ">오늘 주문 수</p>
     </div></div>
-<!--     select count(*) as todayOrderCount
-from(select 
-row_number() over(partition by payorderNum order by payorderNum) as rnum,payordernum,paynum,businesscode,paydate,menucode,count,membernum,payordermethod,payrequest
-from pay) p
-JOIN MEMBER M ON(P.MEMBERNUM = M.MEMBERNUM)
-JOIN MENU ME ON(ME.MENUCODE = P.MENUCODE)
-where rnum = 1 and TO_CHAR(paydate, 'YY/MM/DD') = TO_CHAR(SYSDATE, 'YY/MM/DD'); -->
    
          </div>
 </div>
