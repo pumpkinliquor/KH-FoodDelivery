@@ -227,6 +227,17 @@ pageEncoding="UTF-8"%>
 				        }
 				});
 				
+				$('#menuContent').keyup(function(){
+					console.log("ㅇㅇㅇ");
+			 		var a = $('#menuContent').val();
+			 		a.replace(/(<([^>]+)>)/ig,"");
+			 		var str_space = /(<([^>]+)>)/ig;  
+					var RegExpJS = new RegExp("(<script[^>]*>(.|[\\s\\r\\n])*<"+"/script>)", "gim");  
+				 	 if(str_space.test(a))
+						{
+						$('#menuContent').val("");
+						}  
+			 	});
 				
 			});
 				function updatePrice(e,menuCode,businessCode)

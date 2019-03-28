@@ -113,8 +113,6 @@ span.error,span.error1 {
 		});
 		
 		
-		
-		
 		//비밀번호 중복확인
 		$("#reownerPw").keyup(function() {
 			
@@ -201,11 +199,20 @@ span.error,span.error1 {
 	// submit 가기전 검사
 	function fn_enroll_validate() {
 		
+		var e = $('#ownerEmail').val();
+		var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 
+		if(!regExp.test(e))
+			{
+				alert("잘못된 이메일 형식입니다.");
+				return false;
+			}
+		
+		
 		var regExp = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
- 	    
+
  	    if ( !regExp.test( $('#ownerPhone').val() ) ) {
 
- 	          alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
+ 	          alert("잘못된 휴대폰 번호입니다.");
  	          return false;
  	    } 
  	    
@@ -282,7 +289,7 @@ span.error,span.error1 {
 											확인</label>
 										<div class="col-8">
 											<input type="password" id="reownerPw" name="reownerPw"
-												placeholder="최소 1개의 숫자 혹은 특수 문자를 포함" class="form-control here" > <span
+												placeholder="최소 1개의 숫자 혹은 특수 문자를 포함" class="form-control here" maxlength="20"> <span
 												class="guide ok1">비밀 번호가 일치함</span> <span
 												class="guide error1">비밀번호가 일치하지 않음 </span>
 										</div>

@@ -215,6 +215,15 @@ $(function(){
 	        }
 	}); 
 	
+ 	$('#menuContent').keyup(function(){
+ 		var a = $('#menuContent').val();
+ 		var str_space = /(<([^>]+)>)/ig;  
+		var RegExpJS = new RegExp("(<script[^>]*>(.|[\\s\\r\\n])*<"+"/script>)", "gim");  
+	 	 if(str_space.test(a))
+			{
+			$('#menuContent').val("");
+			}  
+ 	});
 });
 
 $('#menuImage').change(function(){
