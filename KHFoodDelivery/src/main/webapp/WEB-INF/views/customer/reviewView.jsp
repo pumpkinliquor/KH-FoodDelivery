@@ -45,14 +45,11 @@
 
 <script>	
 
-	//문의글 수정
-	function updateReview(){
-		$('#star${review.GRADE}').parent().children("span").removeClass("on");
-		$('#star${review.GRADE}').addClass("on").prevAll("span").addClass("on");
-		$('#context').val('${review.REVIEWCONTEXT}');
-		$('#reviewNum').val('${review.REVIEWNUM}');
-		$('#updateReview').modal();	
-	}
+var str = $('.#textarea').val();
+
+str = str.split('<br/>').join("\r\n");
+
+$('#textarea').val(str);
 	/* 문의 글 삭제 */
 	function deleteReview(){
 		location.href="${path}/customer/deleteReview.do?no=${review.REVIEWNUM}&memberId=${sessionScope.logined}";
@@ -74,9 +71,8 @@
 				</c:forEach>
 				<c:out value="${review.WRITEDATE }"/>
 			</div>						
-			<div class="bt-group col-sm-4">			
+			<div class="bt-group col-sm-4">	
 				<button type="button" class="btn btn-default b1" onclick="deleteReview()">삭제</button>
-				<button type="button" class="btn btn-default b1" onclick="updateReview();">수정</button>	
 				<button type="button" class="btn btn-default b1" onclick="location.href='${path }/member/myReview.do?memberId=${sessionScope.logined}'">목록으로</button>			
 			</div>	
 		</div>
@@ -174,6 +170,16 @@ function handleImgRecipeFileSelect(e) {
   });
   
 }
+function mark(e)
+{
+	
+	var score=$(e).attr('id');
+	$("#star").val(score);
+	console.log(e)
+	console.log(score)
+	
+	
+	}
 
 </script>
 
@@ -193,11 +199,11 @@ function handleImgRecipeFileSelect(e) {
 							<th style="vertical-align: middle; font-weight:bold; width:100px;">별점</th>
 							<td>
 								<p class="star_rating">
-								    <span id="star1"  class="on">★</span>
-								    <span id="star2" >★</span>
-								    <span id="star3" >★</span>
-								    <span id="star4" >★</span>
-								    <span id="star5" >★</span>
+								    <span id="1" onclick=mark(this) class="on">★</span>
+								    <span id="2" onclick=mark(this)>★</span>
+								    <span id="3" onclick=mark(this)>★</span>
+								    <span id="4" onclick=mark(this)>★</span>
+								    <span id="5" onclick=mark(this)>★</span>
 									<input type="hidden" id="star" name="grade"/>
 								</p>
 							</td>
