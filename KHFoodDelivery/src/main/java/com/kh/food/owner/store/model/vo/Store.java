@@ -1,6 +1,7 @@
 package com.kh.food.owner.store.model.vo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.kh.food.owner.member.model.vo.Owner;
@@ -19,8 +20,8 @@ public class Store implements Serializable
 	private String storeImage;
 	private int minPrice;
 	private String storeProfile;
-	private double longitude;
-	private double atitude;
+	private BigDecimal longitude;
+	private BigDecimal atitude;
 	private int isConfirm;
 	private Date appDate;
 	private Owner owner;
@@ -30,34 +31,12 @@ public class Store implements Serializable
 	
 	
 	public Store() {}
+		
 	
 	public Store(int businessCode, String businessNum, String businessName, String businessPhone, String storeName,
 			String storePhone, String storeAddress, String storeCategory, String storeImage, int minPrice,
-			String storeProfile, double longitude, double atitude, int isConfirm, Owner owner, Date appDate, String formatAppDate) {
-		super();
-		this.businessCode = businessCode;
-		this.businessNum = businessNum;
-		this.businessName = businessName;
-		this.businessPhone = businessPhone;
-		this.storeName = storeName;
-		this.storePhone = storePhone;
-		this.storeAddress = storeAddress;
-		this.storeCategory = storeCategory;
-		this.storeImage = storeImage;
-		this.minPrice = minPrice;
-		this.storeProfile = storeProfile;
-		this.longitude = longitude;
-		this.atitude = atitude;
-		this.isConfirm = isConfirm;
-		this.owner = owner;
-		this.appDate = appDate;
-		this.formatAppDate = formatAppDate;
-	}
-
-	public Store(int businessCode, String businessNum, String businessName, String businessPhone, String storeName,
-			String storePhone, String storeAddress, String storeCategory, String storeImage, int minPrice,
-			String storeProfile, double longitude, double atitude, int isConfirm, Date appDate, Owner owner,
-			String formatAppDate, int distance, int deliveryPrice) {
+			String storeProfile, BigDecimal longitude, BigDecimal atitude, int isConfirm, Date appDate, Owner owner,
+			String formatAppDate, long distance, int deliveryPrice) {
 		super();
 		this.businessCode = businessCode;
 		this.businessNum = businessNum;
@@ -79,6 +58,8 @@ public class Store implements Serializable
 		this.distance = distance;
 		this.deliveryPrice = deliveryPrice;
 	}
+
+
 
 	public int getBusinessCode() {
 		return businessCode;
@@ -168,21 +149,29 @@ public class Store implements Serializable
 		this.storeProfile = storeProfile;
 	}
 
-	public double getLongitude() {
+	
+
+
+
+	public BigDecimal getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(double longitude) {
+
+	public void setLongitude(BigDecimal longitude) {
 		this.longitude = longitude;
 	}
 
-	public double getAtitude() {
+
+	public BigDecimal getAtitude() {
 		return atitude;
 	}
 
-	public void setAtitude(double atitude) {
+
+	public void setAtitude(BigDecimal atitude) {
 		this.atitude = atitude;
 	}
+
 
 	public int getIsConfirm() {
 		return isConfirm;
