@@ -70,7 +70,7 @@
 					<div class="input-group" id="store-search" style="width: 89%">			
 						<div class="form-group">						
 							<div class="input-group">														
-								<input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="제목을 입력하세요"/>
+								<input type="text" class="form-control" name="keyword" id="keyword" autocomplete="off" placeholder="점포명 혹은 주소 입력"/>
 								<input type="hidden" name="isFirst" value="1"/>
 								<span class="input-group-btn">
 									<input type="submit" class="btn btn-outline-dark" id="searchBar" value="검색"/>
