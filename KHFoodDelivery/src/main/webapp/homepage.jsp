@@ -8,7 +8,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/Mstyle.css" />
+
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700&amp;subset=korean" rel="stylesheet">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
@@ -138,7 +138,7 @@ font-family: 'Nanum Gothic Coding', monospace;
 }
 
 .count-title {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: normal;
     margin-top: 10px;
     margin-bottom: 0;
@@ -160,7 +160,7 @@ font-family: 'Nanum Gothic Coding', monospace;
     color: #4ad1e5;
 }
 .mainP{
-font-size:100px;
+font-size:70px;
 color:white;
 }
 #wrapper {
