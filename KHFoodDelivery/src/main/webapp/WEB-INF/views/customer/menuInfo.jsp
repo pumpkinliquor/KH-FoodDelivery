@@ -462,7 +462,7 @@ margin:0;
                             <a class="nav-link" id="menuList">메뉴 <span>${menuCount }</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" id="menuReview" >리뷰 <span>${reviewAvg }</span></a>
+                            <a class="nav-link" id="menuReview" >리뷰 <span>${reviewCount}</span></a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" id="storeInfo">정보</a>

@@ -674,7 +674,7 @@ public class MemberController {
 		List<WishList> wishList=service.selectWishList(maps);
 		List<WishList> callPrice=service.plusPrice(maps);
 		int reviewAvg = service.reviewAvg(businessCode);
-		
+		int reviewCount = service.reviewCount(businessCode);
 		String storeP =service.storeP(businessCode);
 		
 		int menuCount=service.menuCount(maps);
@@ -687,6 +687,7 @@ public class MemberController {
 			resultPrice+=callPrice.get(i).getPlusMenuPrice();
 		}
 		System.out.println("reviewAvg : " + reviewAvg);
+		mv.addObject("reviewCount" , reviewCount);
 		mv.addObject("menuCount", menuCount);
 		mv.addObject("storeP",storeP);
 		mv.addObject("mark", mark);

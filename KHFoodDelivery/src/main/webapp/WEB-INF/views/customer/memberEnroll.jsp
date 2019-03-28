@@ -343,7 +343,7 @@ pageEncoding="UTF-8"%>
             <span class="guide2 error2">닉네임이 존재합니다. </span>
             <input type="date" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth" max="2018-12-31" min="1900-01-01"required="required"/>
             <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" onkeyup="noSpaceForm3(this);" onchange="noSpaceForm3(this)"required="required" >
-             
+             <input type="tel" class="form-control" placeholder="전화번호 (예:01012345678)" name="memberPhone" id="memberPhone" maxlength="11"required="required"/>
              <span class="guide3 ok3">사용 가능한 이메일입니다. </span>
             <span class="guide3 error3">이메일이 존재합니다. </span>
              <input type="button" class="btn-ser btn btn-default" onclick="address();" value="주소검색"/>
