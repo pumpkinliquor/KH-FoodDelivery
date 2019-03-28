@@ -201,19 +201,19 @@ $(function(){
 	
 	$('#menuName').keyup(function(){
 		var a = $('#menuName').val();
-		var pattern = /[^a-zA-Z0-9]/gi;
+		var pattern = /[^(가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9\s)]/gi;
 	        if(pattern.test(a)){
 	        	$('#menuName').val("");
 	        }
 	});
 	
-	$('#menuCategory').keyup(function(){
+ 	$('#menuCategory').keyup(function(){
 		var a = $('#menuCategory').val();
-		var pattern = /[^a-zA-Z0-9]/gi;
+		var pattern = /[^(가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9\s)]/gi;
 	        if(pattern.test(a)){
 	        	$('#menuCategory').val("");
 	        }
-	});
+	}); 
 	
 });
 
