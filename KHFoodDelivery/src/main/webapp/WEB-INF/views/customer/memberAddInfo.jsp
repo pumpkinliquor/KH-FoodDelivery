@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
  <style>
-      div#enroll-container{width:400px; margin:0 auto;}
+      div#enroll-container{width:400px; margin:0 auto; height:500px;}
       div#enroll-container input, div#enroll-container select {margin-bottom:10px;}
       div#enroll-container .btn-ser{position:absolute;display:inline;margin-left: 78%; }
 	  div#enroll-container{position:relative; padding:0px;}	

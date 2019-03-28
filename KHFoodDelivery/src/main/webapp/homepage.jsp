@@ -138,7 +138,11 @@ font-family: 'Nanum Gothic Coding', monospace;
 }
 
 .count-title {
+<<<<<<< HEAD
+    font-size: 30px;
+=======
     font-size: 35px;
+>>>>>>> branch 'master' of https://github.com/pumpkinliquor/KH-FoodDelivery.git
     font-weight: normal;
     margin-top: 10px;
     margin-bottom: 0;

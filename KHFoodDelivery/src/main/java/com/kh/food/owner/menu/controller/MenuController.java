@@ -292,16 +292,42 @@ public class MenuController {
 	
 	//메뉴 수정 하기
 	@RequestMapping("owner/updateMenu.do")
-	public ModelAndView updateMenu(Menu m,int businessCode)
+	public ModelAndView updateMenu(String menuName,String menuPrice,String menuContent,MultipartFile menuImage,String menuCode,String businessCode,HttpServletRequest request)
 	{
+		String saveDir = request.getSession().getServletContext().getRealPath("/resources/upload/owner/menu");
+		
 		ModelAndView mv = new ModelAndView();
-		logger.debug("메뉴수정" + m);
-		logger.debug("비지니스코드"+businessCode);
+		Map<String,String> map = new HashMap<>();
+		map.put("menuName", menuName);
+		map.put("menuPrice", menuPrice);
+		map.put("menuContent", menuContent);
+		map.put("menuCode", menuCode);
 		String msg = "";
 		String loc = "/owner/menuManage.do?businessCode="+businessCode;
-		
-		
-		int result = service.updateMenu(m);
+		String orifileName = menuImage.getOriginalFilename();
+		if(!menuImage.isEmpty())
+		{
+			//파일명을 생성
+			String ext = orifileName.substring(orifileName.lastIndexOf("."));
+			//rename 규칙 설정
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+			int rdv = (int)(Math.random()*1000);
+			
+			
+			String reName = sdf.format(System.currentTimeMillis())+"_"+rdv+ext;
+			//파일저장하기
+			try
+			{
+				menuImage.transferTo(new File(saveDir+"/"+reName));
+				logger.debug("들어왔냐?");
+			}catch(IllegalStateException | IOException e)
+			{
+				e.printStackTrace();
+			}
+			map.put("menuImage", reName);
+		}
+		logger.debug("메뉴수정" + map);
+		int result = service.updateMenu(map);
 		if(result > 0)
 		{
 			msg = "수정 성공";
