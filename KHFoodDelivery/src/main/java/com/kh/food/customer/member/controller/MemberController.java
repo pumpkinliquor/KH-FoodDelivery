@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.kh.food.admin.notice.model.service.NoticeService;
 import com.kh.food.admin.notice.model.vo.MemberNotice;
@@ -70,6 +71,15 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
+	// 내 리뷰 삭제
+	@RequestMapping("customer/deleteReview.do")
+	public ModelAndView deleteReview(int no, String memberId) {
+		ModelAndView mv = new ModelAndView();
+		
+		service.deleteReview(no);
+		mv.setView(new RedirectView("/food/member/myReview.do?memberId="+memberId));
+		return mv;
+	}
 	
 	// 내 리뷰 관리
 	@RequestMapping("/member/myReview.do")

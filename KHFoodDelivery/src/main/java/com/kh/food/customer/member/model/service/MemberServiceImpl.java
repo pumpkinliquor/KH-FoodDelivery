@@ -35,6 +35,11 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
+	public int deleteReview(int no) {
+		return dao.deleteReview(no);
+	}
+
+	@Override
 	public Map<String, Object> selectReviewView(int no) {
 		return dao.selectReviewView(no);
 	}

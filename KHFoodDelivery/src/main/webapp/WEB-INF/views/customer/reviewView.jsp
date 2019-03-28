@@ -55,7 +55,7 @@
 	}
 	/* 문의 글 삭제 */
 	function deleteReview(){
-		location.href="${path}/customer/deleteReview.do?no=${review.REVIEWNUM}&memberId=${review.MEMBERNUM}";
+		location.href="${path}/customer/deleteReview.do?no=${review.REVIEWNUM}&memberId=${sessionScope.logined}";
 	}
 	
 

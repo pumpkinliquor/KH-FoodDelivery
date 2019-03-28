@@ -20,6 +20,8 @@ import com.kh.food.review.model.vo.Review;
 
 public interface MemberService {
 	
+	// 리뷰 삭제
+	int deleteReview(int no);
 	Map<String, Object> selectReviewView(int no);
 	List<Map<String, Object>> selectReview(String memberId);
 	Map<String, Object> selectReviewCon(int payNum);

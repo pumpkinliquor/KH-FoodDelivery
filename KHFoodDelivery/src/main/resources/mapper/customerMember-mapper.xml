@@ -31,6 +31,10 @@
 		SELECT r.*, s.STORENAME FROM REVIEW r JOIN MEMBER m ON(r.memberNum = m.memberNum) JOIN STORE s ON(r.businessCode = s.businessCode) WHERE m.memberId = #{memberId} 
 	</select>
 	
+	<delete id="deleteReview" parameterType="_int">
+		DELETE FROM REVIEW WHERE reviewNum = #{no}
+	</delete>
+	
 	<select id="checkNick" parameterType="string" resultType="_int">
 		select count(*) from member where nickName=#{nickName}
 	</select>

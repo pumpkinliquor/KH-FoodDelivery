@@ -33,6 +33,10 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	@Override
+	public int deleteReview(int no) {
+		return sqlSession.delete("member.deleteReview", no);
+	}
+	@Override
 	public Map<String, Object> selectReviewView(int no) {
 		return sqlSession.selectOne("member.selectReviewView", no);
 	}
