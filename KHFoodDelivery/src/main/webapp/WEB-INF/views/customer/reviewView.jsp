@@ -80,9 +80,9 @@ $('#textarea').val(str);
 		<div class="row">			
 			<div class="col-sm-12" id="context-area">				
 				<c:if test="${review.REVIEWIMAGE != null }">
-					<img width="1000px" height="400px" src="${path }/resources/upload/member/review/${review.REVIEWIMAGE}"/> <br/>
+					<img width="500px" height="400px" src="${path }/resources/upload/member/review/${review.REVIEWIMAGE}"/> <br/>
 				</c:if>
-				<c:out value="${review.REVIEWCONTEXT }"/>
+				<h4><c:out value="${review.REVIEWCONTEXT }"/></h4>
 			</div>
 		</div>
 	</div>
