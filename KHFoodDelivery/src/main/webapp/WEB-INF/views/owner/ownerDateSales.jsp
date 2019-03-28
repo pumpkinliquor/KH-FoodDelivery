@@ -12,6 +12,11 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <style>
+.saleBtn,.bt1{
+	background-color: white !important;
+	border-color : rgba(6, 4, 75, 0.986) !important;
+	color:rgba(6, 4, 75, 0.986) !important;
+}
 .counter {
 	background-color: white;
 	/*  padding: 20px 0; */
@@ -77,6 +82,9 @@ pageEncoding="UTF-8"%>
 #countWeek {
 	color: rgb(250, 102, 102);
 }
+.saleDiv4{
+	margin-bottom : 10px;
+}
 </style>
 <jsp:include page="/WEB-INF/views/common/ownerHeader.jsp"></jsp:include>
 
@@ -121,15 +129,15 @@ pageEncoding="UTF-8"%>
       </div>
          
          <div class="row saleDiv">
-                    <div class="col-md-12">
+                    <div class="col-md-12 saleDiv4">
                     	<div class="row">
-	                         	<div class="col-md-2">
-	                          		<a href="${path }/owner/selectStoreGoodsSales.do?businessCode=${businessCode}" class="list-group-item list-group-item-action menu">상품별</a>
-	                          	</div>
-	                          	<div class="col-md-2">
-	                          		<a href="${path }/owner/selectStoreSales.do?businessCode=${businessCode}" class="list-group-item list-group-item-action active menu">기간별</a>                 
-	                          	</div>
-	                          	<div class="col-md-8"></div>
+	                         	<div class="col-md-1">
+                        		<button class="btn btn-default saleBtn" onclick="fn_sale(${businessCode});">상품별</button>
+                         		</div>
+                         		<div class="col-md-1">
+                         		<button class="btn btn-default saleBtn"  onclick="fn_date(${businessCode});">기간별</button>	
+                         		</div>
+	                          	<div class="col-md-10"></div>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -197,7 +205,15 @@ pageEncoding="UTF-8"%>
          
 </div>
 	
-	
+	<script>
+	function fn_sale(businessCode){
+		location.href="${path }/owner/selectStoreGoodsSales.do?businessCode="+businessCode;
+	}
+	function fn_date(businessCode)
+	{
+		location.href="${path }/owner/selectStoreSales.do?businessCode="+businessCode;
+		}
+	</script>
 </section>
 
 <jsp:include page="/WEB-INF/views/common/ownerFooter.jsp"></jsp:include>
