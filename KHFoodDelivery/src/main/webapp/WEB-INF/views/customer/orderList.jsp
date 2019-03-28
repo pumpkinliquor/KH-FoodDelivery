@@ -129,8 +129,9 @@ function detailOrder1(payorderNum,menucode){
 	});
 	
 }
-
-	
+var str = $('#textarea').val();
+str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+$('#textarea').val(str);
 </script>
 	
 	
@@ -356,6 +357,7 @@ function fn_review(businessCode,membernum,payNum,e){
 }
 
 $( ".star_rating span" ).click(function() {
+	console.log("star 클릭");
     $(this).parent().children("span").removeClass("on");
     $(this).addClass("on").prevAll("span").addClass("on");
     return false;

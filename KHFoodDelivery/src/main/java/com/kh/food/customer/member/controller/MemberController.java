@@ -81,6 +81,14 @@ public class MemberController {
 		return mv;
 	}
 	
+	// 내 리뷰 수정
+	@RequestMapping("/customer/updateReview.do")
+	public ModelAndView updateReview(int reviewNum, String context) {
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
+	
 	// 내 리뷰 관리
 	@RequestMapping("/member/myReview.do")
 	public ModelAndView myReview(String memberId) {
