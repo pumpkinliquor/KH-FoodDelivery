@@ -180,10 +180,11 @@ span.error,span.error1 {
 			"ownerEmail" : ownerEmail
 		},
 		success : function(data) {
-
-			tr = data;
-
-			if (data == 'true') {
+			
+			var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 
+			em = data;
+		
+			if (data == 'true' || !regExp.test(ownerEmail)) {
 				$(".guide1.ok1").hide();
 				$(".guide1.error1").show();
 
@@ -193,6 +194,10 @@ span.error,span.error1 {
 				}
 			}
 		});
+		
+		var e = $('#ownerEmail').val();
+		var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 
+
 	});
 	});
 	// submit 가기전 검사
@@ -206,6 +211,14 @@ span.error,span.error1 {
 				return false;
 			}
 		
+		if( em == 'true')
+			{
+				alert("이메일을 다시 확인해주세요");
+				$('#ownerEmail').val('');
+				$('#ownerEmail').focus();
+				return false;
+				
+			}
 		
 		var regExp = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
 
@@ -313,7 +326,8 @@ span.error,span.error1 {
 											<input id="ownerEmail" name="ownerEmail" placeholder="Email"
 												class="form-control here" required="required" type="email">
 												<span class="guide1 ok1">이
-												이메일은 사용할 수 있음 </span> <span class="guide1 error1" onkeyup="noSpaceForm3(this);" onchange="noSpaceForm3(this)">이 이메일은 사용할 수
+												이메일은 사용할 수 있음 </span> 
+												<span class="guide1 error1" onkeyup="noSpaceForm3(this);" onchange="noSpaceForm3(this)">이 이메일은 사용할 수
 												없음 </span>
 										</div>
 									</div>
