@@ -86,7 +86,7 @@
 <script>
 	function fn_memListmodal(memberNum) {
 
-		console.log(memberNum);
+		
 
 				$.ajax({
 					url : "${path}/admin/memberOne.do", //요청보낼 서버 url주소

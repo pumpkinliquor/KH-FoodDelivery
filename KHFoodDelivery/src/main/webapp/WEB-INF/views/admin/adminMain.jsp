@@ -18,7 +18,6 @@
 			url: "${path}/admin/selectAppStore.do?no=" + num,
 			data: JSON,
 			success: function(data){
-				console.log(data);
 				$('#storeModal').modal();
 				$('#mdCategory').val(data.storeCategory);
 				$('#mdName').val(data.storeName)

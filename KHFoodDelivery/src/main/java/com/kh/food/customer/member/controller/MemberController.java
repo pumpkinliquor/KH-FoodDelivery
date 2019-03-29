@@ -1156,6 +1156,7 @@ public class MemberController {
 		else
 		{
 				result2=service.login(map);
+				logger.debug("result2"+result2);
 				session.setAttribute("loginedno", result2.get("MEMBERNUM"));
 				session.setAttribute("logined", memberId);
 				msg = "환영합니다";

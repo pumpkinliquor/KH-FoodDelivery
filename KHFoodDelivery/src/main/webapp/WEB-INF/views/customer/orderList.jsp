@@ -129,9 +129,6 @@ function detailOrder1(payorderNum,menucode){
 	});
 	
 }
-var str = $('#textarea').val();
-str = str.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-$('#textarea').val(str);
 </script>
 	
 	
