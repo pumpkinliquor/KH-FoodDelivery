@@ -331,10 +331,11 @@ span.error,span.error1 {
 										<div class="col-8">
 											<input id="ownerEmail" name="ownerEmail" placeholder="Email"
 												class="form-control here" required="required" type="email">
-												<span class="guide1 ok1">이
-												이메일은 사용할 수 있음 </span> 
-												<span class="guide1 error1" onkeyup="noSpaceForm3(this);" onchange="noSpaceForm3(this)">이 이메일은 사용할 수
-												없음 </span>
+
+												<!-- <span class="guide1 ok1">이
+												이메일은 사용할 수 있음 </span> <span class="guide1 error1" onkeyup="noSpaceForm3(this);" onchange="noSpaceForm3(this)">이 이메일은 사용할 수
+												없음 </span> -->
+
 										</div>
 									</div>
 									<div class="form-group row">

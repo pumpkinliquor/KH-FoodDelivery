@@ -258,7 +258,7 @@ return true;
                                 <label for="website" class="col-4 col-form-label">주소</label> 
                                 <div class="addre col-7"> 
                                 	
-                                  <input  name="memberAddress" id="memberAddress"value="${member.memberAddress}" class="form-control here" type="text" required/>
+                                  <input  name="memberAddress" id="memberAddress"value="${member.memberAddress}" class="form-control here" type="text" required readonly/>
                                   </div>
                                 <div class="addre col-1">
                              	  <input type="button" class="btn-ser1 btn btn-default" onclick="address1();" value="주소검색"/> 
