@@ -60,7 +60,7 @@ span.error,span.error1 {
 	        }
 	        
 			var ownerId = $("#ownerId").val().trim();
-			if (ownerId.length < 4) {
+			if (ownerId.length < 1) {
 				$(".guide").hide();
 				return;
 			}
@@ -174,6 +174,12 @@ span.error,span.error1 {
 	$(function() {
 		$("#ownerEmail").keyup(function() {
 		var ownerEmail = $("#ownerEmail").val().trim();
+		
+		if (ownerEmail.length < 1) {
+			$(".guide1").hide();
+			return;
+		}
+
 		$.ajax({
 		url : "${path}/owner/ownerCheckEmail.do",
 		data : {
