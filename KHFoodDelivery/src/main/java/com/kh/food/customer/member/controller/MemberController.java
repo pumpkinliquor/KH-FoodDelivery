@@ -385,7 +385,7 @@ public class MemberController {
 		
 		if(result>0) {
 			msg="회원정보 수정 완료.";
-			loc="/member/main.do";
+			loc="/customer/mypage.do?memberId="+m.getMemberId();
 		}else {
 			msg="회원정보 수정 실패";
 			loc="/customer/mypage.do?memberId="+m.getMemberId();
