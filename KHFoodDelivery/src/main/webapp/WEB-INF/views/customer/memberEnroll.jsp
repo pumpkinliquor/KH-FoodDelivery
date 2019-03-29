@@ -239,7 +239,12 @@ pageEncoding="UTF-8"%>
             	$(function(){
             		$("#nickName").keyup(function(){
             			nickName=$("#nickName").val().trim();
-         
+            			if(nickName.length<1)
+            			{
+            				
+            				$(".guide2").hide();
+            				return;
+            			}
             			$.ajax({
             				url:"${path}/member/checkNick.do",
             				data:{"nickName":nickName},
@@ -266,7 +271,12 @@ pageEncoding="UTF-8"%>
             	$(function(){
             		$("#memberEmail").keyup(function(){
             			memberEmail=$("#memberEmail").val().trim();
-         
+            			if(memberEmail.length<4)
+            			{
+            				
+            				$(".guide3").hide();
+            				return;
+            			}
             			$.ajax({
             				url:"${path}/member/checkEmail.do",
             				data:{"memberEmail":memberEmail},

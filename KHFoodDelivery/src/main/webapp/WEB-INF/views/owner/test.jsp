@@ -49,6 +49,18 @@ pageEncoding="UTF-8"%>
 
 .star_rating span.on {color:crimson;}
 </style>
+<script>
+function noSpaceForm(obj){		
+	var str_space = /(<([^>]+)>)/ig;  // 태그체크
+	
+    if(str_space.test(obj.value)) { //태그체크
+        obj.focus();
+        obj.value = obj.value.replace(str_space,''); // 태그제거
+        return false;
+    }
+}
+
+</script>
 <c:if test="${empty rv }">
 등록된 리뷰가 없습니다.
 </c:if>
@@ -128,6 +140,10 @@ pageEncoding="UTF-8"%>
         
         <c:forEach var="re" items="${orr}">
         <script>
+	  
+
+        
+        
         $(document).ready(function(){
         	var h="<br><div style='border: 1px solid #d9d9d9;padding: 16px 16px 10px 16px;background: #f0f0f0;coler:#d9d9d9'>└<span id='ohoh${re.reviewNum}' style='font-weight:bold; font-size:19px; margin-left:10px;'>사장님 <span style='font-weight: normal; font-size:18px; margin-left:20px; color: #666;'>${re.formatWriteDate}<br/>${re.reviewContext}</span></span><div>";
         	$('#ohohoh${re.reviewNum}').html("");
@@ -152,8 +168,8 @@ pageEncoding="UTF-8"%>
                             <input type="hidden" name="qnaNo" value="${st.REVIEWNUM}"/>
                             <input type="hidden" name="qnaCode" value="${st.BUSINESSCODE}"/>
                             <input type="hidden" name="ownerId" value="${st.OWNERID}"/>                            
-                            <textarea id="textarea" name="context" cols="70" rows="5" placeholder="답글을 달아주세요" style="margin-left: 250px; resize:none;"></textarea><br/>
-                            <input type="submit" class="btn subBtn" value="사장님 댓글 등록" style=" width:200px; margin-top:15px; float: right;"/>  
+                            <textarea id="textarea" name="context" cols="70" rows="5" placeholder="답글을 달아주세요" style="margin-left: 250px; resize:none;"  onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)"	></textarea><br/>
+                            <input type="submit" class="btn subBtn" value="사장님 댓글 등록" style=" width:200px; margin-top:15px; float: right;" />  
                         </div>              
             </div>                
         </form>

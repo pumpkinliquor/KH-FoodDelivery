@@ -51,6 +51,10 @@ pageEncoding="UTF-8"%>
 <section>
 
 	<script>
+	
+
+		
+
 		function SetSelectBox(){
 			var stN=$(".form-control").val();
 			
