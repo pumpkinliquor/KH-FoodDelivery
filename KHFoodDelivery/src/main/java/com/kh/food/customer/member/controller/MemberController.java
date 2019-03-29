@@ -126,11 +126,8 @@ public class MemberController {
 		
 		
 	ArrayList<MemberQnaAttachment> files=new ArrayList<MemberQnaAttachment>();
-	 
-	for(int i=0;i<upFile.length;i++) {
-		System.out.println(upFile[i]);
-	}
-		System.out.println(files);
+	
+		
 		//저장경료
 		//저장경료
 		String saveDir=request.getSession().getServletContext().getRealPath("resources/upload/member/qnaAttach");
@@ -280,7 +277,7 @@ public class MemberController {
 		/* String payDateSubStr=payDate.substring(0, 10);
 		 orList1.("PAYDATE",payDateSubStr);	*/	
 		
-		System.out.println("orList : "+orList1);
+	
 		
 
 		
@@ -327,7 +324,6 @@ public class MemberController {
 
 		Member member = service.selectMember(memberId);
 		
-		System.out.println(member);
 		mv.addObject("member",member);
 		mv.setViewName("customer/mypage");
 		return mv;
@@ -363,7 +359,7 @@ public class MemberController {
 	@RequestMapping("/member/update.do")
 	public ModelAndView update(Member m, HttpServletRequest request, MultipartFile profileImg) {
 		
-		System.out.println(m);
+		
 		logger.debug(""+profileImg);
 		//파일 업데이트
 		String savDir=request.getSession().getServletContext().getRealPath("/resources/upload/member/profile");
@@ -382,14 +378,14 @@ public class MemberController {
 			String filename=oriFileName;
 			m.setProfileImage(filename);
 		}
-		System.out.println(m);
+		
 		int result=service.update(m);
 		String msg="";
 		String loc="";
 		
 		if(result>0) {
 			msg="회원정보 수정 완료.";
-			loc="/member/main.do";
+			loc="/customer/mypage.do?memberId="+m.getMemberId();
 		}else {
 			msg="회원정보 수정 실패";
 			loc="/customer/mypage.do?memberId="+m.getMemberId();
@@ -473,7 +469,7 @@ public class MemberController {
 	public ModelAndView login(String id,String pw,HttpSession session) {
 		
 		ModelAndView mv =new ModelAndView();
-		System.out.println(pwEncoder.encode(pw)+"암호비번");
+		
 		Map<String,String> map=new HashMap();
 		map.put("id",id);
 		map.put("pw",pw);
@@ -548,7 +544,7 @@ public class MemberController {
 		
 		
 		String rawPw=m.getMemberPw();
-		System.out.println("암호화전"+rawPw);
+		
 		
 		m.setMemberPw(pwEncoder.encode(rawPw));
 		
@@ -582,12 +578,12 @@ public class MemberController {
 	{
 		List<Review> review=service.selectReview(businessCode);
 		List<OwnerReview> or = service.selectOwnerRevie(businessCode);
-		System.out.println("review : "+review);
+
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		int reviewAvg = service.reviewAvg(businessCode);
 		int reviewCount = service.reviewCount(businessCode);
 		int ownerReviewCount = service.ownerReviewCount(businessCode);
-		System.out.println("reviewAvg : "+reviewAvg);
+	
 		for(int i=0; i<or.size(); i++) {
 			or.get(i).setFormatWriteDate(df.format(or.get(i).getWriteDate()));
 		}
@@ -607,7 +603,7 @@ public class MemberController {
 	@RequestMapping("/customer/menuList.do")
 	public ModelAndView test1(ModelAndView mv, int businessCode)
 	{
-//		System.out.println(businessCode);
+
 		List<Map<String,String>> menuCategory=service.selectCategoryList(businessCode);
 		List<Menu> popularityMenu=service.popularityMenu(businessCode);
 		Store minPrice=service.minPrice(businessCode);
@@ -640,7 +636,7 @@ public class MemberController {
 		
 		Store storeList = service.storeList(businessCode);
 		
-		System.out.println("storeList : "+storeList);
+	
 		mv.addObject("storeList",storeList);
 		mv.setViewName("customer/storeInfo");
 		return mv;
@@ -679,14 +675,14 @@ public class MemberController {
 		
 		int menuCount=service.menuCount(maps);
 		
-		System.out.println("storeP : " + storeP);
+		
 		Mark mark = service.isMark(maps);
 		Store minPrice=service.minPrice(businessCode);
 		int resultPrice=0;
 		for(int i=0; i<callPrice.size(); i++) {
 			resultPrice+=callPrice.get(i).getPlusMenuPrice();
 		}
-		System.out.println("reviewAvg : " + reviewAvg);
+		
 		mv.addObject("reviewCount" , reviewCount);
 		mv.addObject("menuCount", menuCount);
 		mv.addObject("storeP",storeP);
@@ -919,8 +915,7 @@ public class MemberController {
 			List<Store> list=service.selectStore(map);
 			int backWish=service.backWish(memberId);
 			
-			logger.debug("" + lat1);
-			logger.debug("" + lng1);
+			
 			
 			mv.addObject("list",list);
 			mv.setViewName("customer/searchMenu");
@@ -951,7 +946,7 @@ public class MemberController {
 		
 		int reMenuCode=0;
 		for(int i=0; i<wishList.size(); i++) {
-			System.out.println(i+"번째 메뉴코드"+wishList.get(i).getMenuCode());
+			
 			if(menuCode==wishList.get(i).getMenuCode()) {
 				reMenuCode=wishList.get(i).getMenuCode();
 			}
@@ -1023,9 +1018,9 @@ public class MemberController {
 		ModelAndView mv=new ModelAndView();
 		Map<String,String> map=new HashMap();
 		map.put("memberId",memberId);
-		System.out.println("멤버이이디 받니 : "+memberId);
+		
 		map.put("memberEmail",memberEmail);
-		System.out.println("멤버이메일받니 : "+memberEmail);
+	
 		Map<String,String> idAndEmail=service.selectConfirmEmail(map);
 		
 		
@@ -1051,7 +1046,7 @@ public class MemberController {
 			
 			String newPw=pwEncoder.encode(sb);
 			map.put("memberPw",newPw);
-			System.out.println("랜덤" + newPw);
+	
 			int result=service.updatePw(map);
 			
 			//임시비밀번호 디비 업데이트
@@ -1064,7 +1059,7 @@ public class MemberController {
 				String tomail=memberEmail;
 				String title="배달의민족 회원님의 임시 비밀번호입니다.";
 				String content="임시 비밀번호는 "+sb+ " 입니다.";
-				System.out.println("임시비번 : " +sb);
+				
 				try {
 					MimeMessage message=mailSender.createMimeMessage();
 					MimeMessageHelper messageHelper= new MimeMessageHelper(message, true, "UTF-8");
@@ -1107,7 +1102,7 @@ public class MemberController {
 		Map<String,Object> result=service.login(map);
 		logger.debug("result"+result);
 		String msg="";
-		String loc="/";
+		String loc="/member/main.do";
 		if(result == null)
 		{
 			int result1=service.memberEnroll(m);
@@ -1142,7 +1137,7 @@ public class MemberController {
 		logger.debug("id"+memberId);
 		logger.debug("nickName"+nickName);
 		String msg="";
-		String loc="/";
+		String loc="/member/main.do";
 		
 		Map<String,String> map = new HashMap<>();
 		Map<String,Object> result2 = new HashMap<>();
@@ -1164,7 +1159,7 @@ public class MemberController {
 				session.setAttribute("loginedno", result2.get("MEMBERNUM"));
 				session.setAttribute("logined", memberId);
 				msg = "환영합니다";
-				loc = "/";
+				loc = "/member/main.do";
 			// 있으면 바로 로그인 / 메인으로간다.
 		}
 		mv.addObject("member",result);
@@ -1180,7 +1175,7 @@ public class MemberController {
 	{
 		logger.debug("m"+m);
 		String msg = "";
-		String loc ="/";
+		String loc ="/member/main.do";
 		
 		int result = service.kakaoEnrollEnd(m);
 		logger.debug("result"+result);
@@ -1255,7 +1250,7 @@ public class MemberController {
 	{
 
 		String reName="";
-		System.out.println(img.getOriginalFilename());
+	
 		Map<String,Object> map = new HashMap();
 		map.put("context", context);
 		map.put("bsCode", bsCode);
@@ -1289,9 +1284,7 @@ public class MemberController {
 		map.put("img", reName);
 		int result= service.insertReview(map);
 		
-		System.out.println(bsCode);
-		System.out.println(memNum);
-		System.out.println(memId);
+		
 			mv.setViewName("redirect:/member/orderList.do?memberId="+memId+"&memberNum="+memNum);
 			return mv;
 	}

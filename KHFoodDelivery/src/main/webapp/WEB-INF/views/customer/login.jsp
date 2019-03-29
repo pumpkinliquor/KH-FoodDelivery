@@ -206,7 +206,14 @@ background-color: transparent;
   		
   			}
   	 
- 	 
+ 		$(document).ready(function(){
+ 		    $("#id").focus();
+ 		});
+
+
+
+
+ 	
  		
  
 </script> 

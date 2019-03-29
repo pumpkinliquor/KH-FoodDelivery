@@ -181,7 +181,7 @@ function address() {
             <span class="guide2 error2">닉네임이 존재합니다. </span>
         	<input type="text" class="form-control" placeholder="닉네임" name="nickName" id="nickName"onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this)" required="required"/>
             <input type="text" class="form-control" placeholder="이름" name="memberName" id="memberName" onkeyup="noSpaceForm2(this);" onchange="noSpaceForm2(this)" required="required"/>
-            <input type="date" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth" max="2019-03-29" min="1900-01-01" required="required"/>
+            <input type="date" class="form-control" placeholder="생년월일(예:910729)" name="memberBirth" id="memberBirth" max="2018-12-31" min="1900-01-01" required="required"/>
             <input type="email" class="form-control" placeholder="이메일" name="memberEmail" id="memberEmail" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this)" required="required">
             <input type="number" class="form-control" placeholder="전화번호 (예:01012345678)" name="memberPhone" id="memberPhone" maxlength="11" required="required"/>            
              <input type="button" class="btn-ser btn btn-default" onclick="address();" value="주소검색"/>             
