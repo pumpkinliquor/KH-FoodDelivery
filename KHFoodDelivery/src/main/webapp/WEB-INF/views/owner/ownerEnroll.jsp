@@ -259,8 +259,12 @@ span.error,span.error1 {
 		if(passwordRules.test(ownerPw) == false)
 			{
 				alert(" 6~20 영문 대소문자 , 최소 1개의 숫자 혹은 특수 문자를 포함 하세요!");
+				$(".guide.ok1").hide();
+				$(".guide.error1").hide();
 				$("#ownerPw").val('');
 				$("#ownerPw").focus();
+				$("#reownerPw").val('');
+				
 			return false;
 			}
 		return true;
@@ -332,9 +336,9 @@ span.error,span.error1 {
 											<input id="ownerEmail" name="ownerEmail" placeholder="Email"
 												class="form-control here" required="required" type="email">
 
-												<!-- <span class="guide1 ok1">이
-												이메일은 사용할 수 있음 </span> <span class="guide1 error1" onkeyup="noSpaceForm3(this);" onchange="noSpaceForm3(this)">이 이메일은 사용할 수
-												없음 </span> -->
+												 <span class="guide1 ok1">사용할 수 있음 </span> 
+												<span class="guide1 error1" onkeyup="noSpaceForm3(this);" onchange="noSpaceForm3(this)">사용할 수
+												없음 </span> 
 
 										</div>
 									</div>
