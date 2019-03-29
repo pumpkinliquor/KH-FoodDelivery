@@ -14,7 +14,7 @@ pageEncoding="UTF-8"%>
 	</div>
 	<div class="QnaWriteBtn" style="text-align:right; padding-bottom:5px;">
 		<button onclick="location.href='${path}/owner/oneVSoneList.do'" id="QnaListBtn" class="btn btn-outline-success">문의게시판</button>
-		<button onclick="location.href='${path}/owner/oneVSoneQ.do'" id="QnaWriteBtn" class="btn btn-outline-success">1:1문의하기</button>
+		<button onclick="location.href='${path}/owner/oneVSoneForm.do'" id="QnaWriteBtn" class="btn btn-outline-success">1:1문의하기</button>
 	</div>
 	<div class="row">
 		<div class="col-md-12">

@@ -61,7 +61,7 @@
 		update menu_category set categorystate = 1 where menucategorycode = #{menuCategory}
 	</update>
 	<select id="selectMenuCategory" parameterType="string" resultMap="categoryMap">
-		select * from menu_category where businesscode = #{businessCode} order by menucategorycode asc
+		select * from menu_category where businesscode = #{businessCode} and categorystate = 0 order by menucategorycode asc
 	</select>
 	<select id="selectMenuList" parameterType="string" resultMap="menuMap">
 		select * from menu where businessCode = #{businessCode} and menustate=0
