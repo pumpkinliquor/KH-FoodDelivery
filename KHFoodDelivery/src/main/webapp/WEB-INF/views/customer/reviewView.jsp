@@ -226,7 +226,7 @@ function mark(e)
 									<img class="defaultImg" id="noImg1" src="${path}/resources/images/noImg.png" style="width:150px; height:150px; border: 1px solid #d9d9d9;">
 								</c:if>
 							</label>
-							<input id="jdd_file1" type="file" class="jdd_file" name="img"/>
+								<input id="jdd_file1" type="file" class="jdd_file" name="img"/>
 							</td>
 						</tr>
 					</table>
