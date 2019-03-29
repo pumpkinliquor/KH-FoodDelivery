@@ -147,7 +147,7 @@ margin-bottom:50px;
                               	  	<p style="font-size:18px;">기간</p>
                               	  </div>
                                   <div class="col-md-3">
-                                  	<input type="date" class="form-control"  name="payDate1" required="required" min="2019-03-01" max="2099-03-26">
+                                  	<input type="date" class="form-control"  name="payDate1" required="required" min="2019-03-01" max="2019-03-29">
                                   </div>
                                   <div class="col-md-3">
                                   	<input type="date" class="form-control" name="payDate2" required="required" min="2019-03-01" max="2099-03-26">
