@@ -154,6 +154,7 @@ pageEncoding="UTF-8"%>
             var id="";
             var memberId="";
             var nick="";
+            var memberEmail="";
             $(function(){
             	
             	
@@ -318,7 +319,11 @@ pageEncoding="UTF-8"%>
             				alert("닉네임을 확인해주세요");
             				return false;
             			}
-            	
+            		if(memberEmail==true)
+            			{
+            				alert("이메일을 확인해주세요");
+            				return false;
+            			}
             		return true;
             		
             	}
