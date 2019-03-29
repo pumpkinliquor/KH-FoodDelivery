@@ -353,7 +353,7 @@ pageEncoding="UTF-8"%>
             <span class="guide3 error3">이메일이 존재합니다. </span>
              <input type="button" class="btn-ser btn btn-default" onclick="address();" value="주소검색"/>
              
-            <input type="text" class="add form-control"  placeholder="주소" name="memberAddress" id="memberAddress" required="required"/>
+            <input type="text" class="add form-control"  placeholder="주소" name="memberAddress" id="memberAddress" required="required" readonly/>
             <input type="text" class="form-control" placeholder="상세주소" name="memberAddress1" id="memberAddress1" required="required"/>
               <select class="form-control" name="memberGender" required="required">
                <option value="" disabled selected>성별</option>

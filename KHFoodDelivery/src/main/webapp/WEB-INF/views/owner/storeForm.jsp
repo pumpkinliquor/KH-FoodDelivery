@@ -45,7 +45,7 @@ function execDaumPostcode(){
 				fullRoadAddr+=extraRoadAddr;
 			}
 			// 우편번호와 주소 정보를 해당 필드에 넣는다.
-			document.getElementById('zip').value=data.zonecode; // 5자리 새우편번호 사용
+			/* document.getElementById('zip').value=data.zonecode; // 5자리 새우편번호 사용 */
 			document.getElementById('addr1').value=fullRoadAddr; // 선택 주소
 			document.getElementById('addr2').focus(); // 상세 주소			
             
@@ -200,7 +200,7 @@ function enter(evt){
 			                <th>주소</th>
 			                <td>
 			                	<button onclick="execDaumPostcode();" type="button" class="btn btn-default" style="float:left; margin-right:1em;" >주소찾기</button>
-			                	<!-- <input type="text" id="zip" class="form-control" style="width:7em; color:black;" placeholder="우편주소" value="" required readonly/> -->
+			                	<!-- <input type="text" id="zip" class="form-control" style="width:7em; color:black;" placeholder="우편주소" value="" required readonly/> --> 
 			                	<br>
 			                	<br>
 			                	<input type="text" id="addr1" name="frontAddress" placeholder="기본주소" class="form-control" style="width:30em; margin-top:1em; color:black;" value="" readonly required/>
