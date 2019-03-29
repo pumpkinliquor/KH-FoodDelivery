@@ -138,7 +138,7 @@ $(function(){
 							<th style="vertical-align: middle">문의글</th>
 							<td><textarea name="qnaContent" class="form-control" style="resize: none" rows="6">${mq.qnaContent }</textarea></td>						
 						</tr>
-						<c:forEach items="${attach }" var="a">
+						 <c:forEach items="${attach }" var="a"> 
 						    <tr>
 			                <th>
 								<div class="input-group-prepend" style="padding:0px;">
@@ -152,7 +152,7 @@ $(function(){
 		               	 		</div>
 		                	</td>
 			            </tr>
-			            </c:forEach>
+			           </c:forEach> 
 			             
 						
 					</table>
