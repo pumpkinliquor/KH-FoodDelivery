@@ -1102,7 +1102,7 @@ public class MemberController {
 		Map<String,Object> result=service.login(map);
 		logger.debug("result"+result);
 		String msg="";
-		String loc="/";
+		String loc="/member/main.do";
 		if(result == null)
 		{
 			int result1=service.memberEnroll(m);
@@ -1137,7 +1137,7 @@ public class MemberController {
 		logger.debug("id"+memberId);
 		logger.debug("nickName"+nickName);
 		String msg="";
-		String loc="/";
+		String loc="/member/main.do";
 		
 		Map<String,String> map = new HashMap<>();
 		Map<String,Object> result2 = new HashMap<>();
@@ -1159,7 +1159,7 @@ public class MemberController {
 				session.setAttribute("loginedno", result2.get("MEMBERNUM"));
 				session.setAttribute("logined", memberId);
 				msg = "환영합니다";
-				loc = "/";
+				loc = "/member/main.do";
 			// 있으면 바로 로그인 / 메인으로간다.
 		}
 		mv.addObject("member",result);
@@ -1175,7 +1175,7 @@ public class MemberController {
 	{
 		logger.debug("m"+m);
 		String msg = "";
-		String loc ="/";
+		String loc ="/member/main.do";
 		
 		int result = service.kakaoEnrollEnd(m);
 		logger.debug("result"+result);
